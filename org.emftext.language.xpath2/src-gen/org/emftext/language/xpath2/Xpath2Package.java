@@ -1913,7 +1913,7 @@ public interface Xpath2Package extends EPackage {
    * @generated
    * @ordered
    */
-	int NUMERIC_LITERAL_FEATURE_COUNT = 0;
+	int NUMERIC_LITERAL_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 0;
 
 	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.impl.StringLiteralImpl <em>String Literal</em>}' class.
@@ -1932,7 +1932,7 @@ public interface Xpath2Package extends EPackage {
    * @generated
    * @ordered
    */
-	int STRING_LITERAL__VALUE = 0;
+	int STRING_LITERAL__VALUE = LITERAL_FEATURE_COUNT + 0;
 
 	/**
    * The number of structural features of the '<em>String Literal</em>' class.
@@ -1941,7 +1941,7 @@ public interface Xpath2Package extends EPackage {
    * @generated
    * @ordered
    */
-	int STRING_LITERAL_FEATURE_COUNT = 1;
+	int STRING_LITERAL_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 1;
 
 	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.impl.IntegerLiteralImpl <em>Integer Literal</em>}' class.

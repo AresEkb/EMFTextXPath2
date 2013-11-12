@@ -789,6 +789,8 @@ public class Xpath2Switch<T> extends Switch<T> {
       {
         NumericLiteral numericLiteral = (NumericLiteral)theEObject;
         T result = caseNumericLiteral(numericLiteral);
+        if (result == null) result = caseLiteral(numericLiteral);
+        if (result == null) result = casePrimaryExpr(numericLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -796,6 +798,8 @@ public class Xpath2Switch<T> extends Switch<T> {
       {
         StringLiteral stringLiteral = (StringLiteral)theEObject;
         T result = caseStringLiteral(stringLiteral);
+        if (result == null) result = caseLiteral(stringLiteral);
+        if (result == null) result = casePrimaryExpr(stringLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -804,6 +808,8 @@ public class Xpath2Switch<T> extends Switch<T> {
         IntegerLiteral integerLiteral = (IntegerLiteral)theEObject;
         T result = caseIntegerLiteral(integerLiteral);
         if (result == null) result = caseNumericLiteral(integerLiteral);
+        if (result == null) result = caseLiteral(integerLiteral);
+        if (result == null) result = casePrimaryExpr(integerLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -812,6 +818,8 @@ public class Xpath2Switch<T> extends Switch<T> {
         DecimalLiteral decimalLiteral = (DecimalLiteral)theEObject;
         T result = caseDecimalLiteral(decimalLiteral);
         if (result == null) result = caseNumericLiteral(decimalLiteral);
+        if (result == null) result = caseLiteral(decimalLiteral);
+        if (result == null) result = casePrimaryExpr(decimalLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -820,6 +828,8 @@ public class Xpath2Switch<T> extends Switch<T> {
         DoubleLiteral doubleLiteral = (DoubleLiteral)theEObject;
         T result = caseDoubleLiteral(doubleLiteral);
         if (result == null) result = caseNumericLiteral(doubleLiteral);
+        if (result == null) result = caseLiteral(doubleLiteral);
+        if (result == null) result = casePrimaryExpr(doubleLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }

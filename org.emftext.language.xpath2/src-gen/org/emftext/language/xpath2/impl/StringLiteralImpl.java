@@ -7,7 +7,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.emftext.language.xpath2.StringLiteral;
 import org.emftext.language.xpath2.Xpath2Package;
@@ -25,7 +24,7 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class StringLiteralImpl extends EObjectImpl implements StringLiteral {
+public class StringLiteralImpl extends LiteralImpl implements StringLiteral {
 	/**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->

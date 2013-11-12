@@ -3200,6 +3200,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     parenthesizedExprEClass.getESuperTypes().add(this.getPrimaryExpr());
     contextItemExprEClass.getESuperTypes().add(this.getPrimaryExpr());
     functionCallEClass.getESuperTypes().add(this.getPrimaryExpr());
+    numericLiteralEClass.getESuperTypes().add(this.getLiteral());
+    stringLiteralEClass.getESuperTypes().add(this.getLiteral());
     integerLiteralEClass.getESuperTypes().add(this.getNumericLiteral());
     decimalLiteralEClass.getESuperTypes().add(this.getNumericLiteral());
     doubleLiteralEClass.getESuperTypes().add(this.getNumericLiteral());

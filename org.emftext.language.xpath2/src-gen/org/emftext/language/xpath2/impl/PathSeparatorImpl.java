@@ -1,8 +1,11 @@
+/**
+ */
 package org.emftext.language.xpath2.impl;
 
-
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import org.emftext.language.xpath2.PathSeparator;
 import org.emftext.language.xpath2.Xpath2Package;
 
@@ -15,26 +18,23 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public abstract class PathSeparatorImpl extends EObjectImpl implements PathSeparator
-{
-  /**
+public abstract class PathSeparatorImpl extends EObjectImpl implements PathSeparator {
+	/**
    * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-  protected PathSeparatorImpl()
-  {
+	protected PathSeparatorImpl() {
     super();
   }
 
-  /**
+	/**
    * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
     return Xpath2Package.Literals.PATH_SEPARATOR;
   }
 

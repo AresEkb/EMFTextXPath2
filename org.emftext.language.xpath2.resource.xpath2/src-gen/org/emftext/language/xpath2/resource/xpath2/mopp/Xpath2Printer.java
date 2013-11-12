@@ -312,10 +312,6 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			print_org_emftext_language_xpath2_StringLiteral((org.emftext.language.xpath2.StringLiteral) element, globaltab, out);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.Comment) {
-			print_org_emftext_language_xpath2_Comment((org.emftext.language.xpath2.Comment) element, globaltab, out);
-			return;
-		}
 		if (element instanceof org.emftext.language.xpath2.QName) {
 			print_org_emftext_language_xpath2_QName((org.emftext.language.xpath2.QName) element, globaltab, out);
 			return;
@@ -3292,104 +3288,6 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 				out.print(" ");
 			}
 			printCountingMap.put("value", count - 1);
-		}
-	}
-	
-	
-	public void print_org_emftext_language_xpath2_Comment(org.emftext.language.xpath2.Comment element, String outertab, java.io.PrintWriter out) {
-		String localtab = outertab;
-		// The printCountingMap contains a mapping from feature names to the number of
-		// remaining elements that still need to be printed. The map is initialized with
-		// the number of elements stored in each structural feature. For lists this is the
-		// list size. For non-multiple features it is either 1 (if the feature is set) or
-		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(2);
-		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.COMMENT__TEXT));
-		printCountingMap.put("text", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.COMMENT__COMMENT));
-		printCountingMap.put("comment", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
-		// print collected hidden tokens
-		boolean iterate = true;
-		java.io.StringWriter sWriter = null;
-		java.io.PrintWriter out1 = null;
-		java.util.Map<String, Integer> printCountingMap1 = null;
-		// DEFINITION PART BEGINS (CsString)
-		out.print("(:");
-		out.print(" ");
-		// DEFINITION PART BEGINS (CompoundDefinition)
-		iterate = true;
-		while (iterate) {
-			sWriter = new java.io.StringWriter();
-			out1 = new java.io.PrintWriter(sWriter);
-			printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
-			print_org_emftext_language_xpath2_Comment_0(element, localtab, out1, printCountingMap1);
-			if (printCountingMap.equals(printCountingMap1)) {
-				iterate = false;
-				out1.close();
-			} else {
-				out1.flush();
-				out1.close();
-				out.print(sWriter.toString());
-				printCountingMap.putAll(printCountingMap1);
-			}
-		}
-		// DEFINITION PART BEGINS (CsString)
-		out.print(":)");
-		out.print(" ");
-	}
-	
-	public void print_org_emftext_language_xpath2_Comment_0(org.emftext.language.xpath2.Comment element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
-		String localtab = outertab;
-		int count;
-		int alt = -1;
-		alt = 0;
-		int matches = 		matchCount(printCountingMap, java.util.Arrays.asList(		"text"		));
-		int tempMatchCount;
-		tempMatchCount = 		matchCount(printCountingMap, java.util.Arrays.asList(		"comment"		));
-		if (tempMatchCount > matches) {
-			alt = 1;
-			matches = tempMatchCount;
-		}
-		switch(alt) {
-			case 1:			{
-				// DEFINITION PART BEGINS (Containment)
-				count = printCountingMap.get("comment");
-				if (count > 0) {
-					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.COMMENT__COMMENT));
-					java.util.List<?> list = (java.util.List<?>) o;
-					int index = list.size() - count;
-					if (index >= 0) {
-						o = list.get(index);
-					} else {
-						o = null;
-					}
-					if (o != null) {
-						doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
-					}
-					printCountingMap.put("comment", count - 1);
-				}
-			}
-			break;
-			default:			// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
-			count = printCountingMap.get("text");
-			if (count > 0) {
-				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.COMMENT__TEXT));
-				java.util.List<?> list = (java.util.List<?>) o;
-				int index = list.size() - count;
-				if (index >= 0) {
-					o = list.get(index);
-				} else {
-					o = null;
-				}
-				if (o != null) {
-					org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("COMMENT_CONTENTS");
-					resolver.setOptions(getOptions());
-					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.COMMENT__TEXT), element));
-					out.print(" ");
-				}
-				printCountingMap.put("text", count - 1);
-			}
 		}
 	}
 	

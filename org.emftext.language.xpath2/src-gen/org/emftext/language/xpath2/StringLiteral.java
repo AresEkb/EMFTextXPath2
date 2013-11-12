@@ -2,7 +2,6 @@
  */
 package org.emftext.language.xpath2;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface StringLiteral extends EObject {
+public interface StringLiteral extends Literal {
 	/**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->

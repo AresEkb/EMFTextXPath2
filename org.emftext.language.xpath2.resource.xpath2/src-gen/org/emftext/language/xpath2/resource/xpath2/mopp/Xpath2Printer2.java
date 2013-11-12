@@ -452,12 +452,8 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_64, foundFormattingElements);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.Comment) {
-			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_65, foundFormattingElements);
-			return;
-		}
 		if (element instanceof org.emftext.language.xpath2.QName) {
-			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_66, foundFormattingElements);
+			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_65, foundFormattingElements);
 			return;
 		}
 		

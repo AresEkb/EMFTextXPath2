@@ -104,6 +104,6 @@ RULES {
 	DoubleLiteral ::= value[DOUBLE_LITERAL];
 	StringLiteral ::= value[STRING_LITERAL];
 	// TODO: I don't understand where to place comments
-	Comment ::= "(:" (text[COMMENT_CONTENTS] | comment)* ":)";
+	//Comment ::= "(:" (text[COMMENT_CONTENTS] | comment)* ":)";
 	QName ::= (prefix[NCNAME] ":")? localPart[NCNAME];
 }

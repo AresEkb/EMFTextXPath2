@@ -75,7 +75,6 @@ public class Xpath2SyntaxCoverageInformationProvider {
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDecimalLiteral(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDoubleLiteral(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getStringLiteral(),
-			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComment(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getQName(),
 		};
 	}

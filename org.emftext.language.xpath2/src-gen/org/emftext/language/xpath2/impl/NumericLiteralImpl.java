@@ -4,8 +4,6 @@ package org.emftext.language.xpath2.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.emftext.language.xpath2.NumericLiteral;
 import org.emftext.language.xpath2.Xpath2Package;
 
@@ -18,7 +16,7 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public abstract class NumericLiteralImpl extends EObjectImpl implements NumericLiteral {
+public abstract class NumericLiteralImpl extends LiteralImpl implements NumericLiteral {
 	/**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

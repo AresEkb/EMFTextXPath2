@@ -418,6 +418,12 @@ public class AbstractXpath2Interpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof org.emftext.language.xpath2.DecimalLiteral) {
+			result = interprete_org_emftext_language_xpath2_DecimalLiteral((org.emftext.language.xpath2.DecimalLiteral) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof org.emftext.language.xpath2.Literal) {
 			result = interprete_org_emftext_language_xpath2_Literal((org.emftext.language.xpath2.Literal) object, context);
 		}
@@ -432,6 +438,24 @@ public class AbstractXpath2Interpreter<ResultType, ContextType> {
 		}
 		if (object instanceof org.emftext.language.xpath2.FunctionCall) {
 			result = interprete_org_emftext_language_xpath2_FunctionCall((org.emftext.language.xpath2.FunctionCall) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof org.emftext.language.xpath2.NumericLiteral) {
+			result = interprete_org_emftext_language_xpath2_NumericLiteral((org.emftext.language.xpath2.NumericLiteral) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof org.emftext.language.xpath2.StringLiteral) {
+			result = interprete_org_emftext_language_xpath2_StringLiteral((org.emftext.language.xpath2.StringLiteral) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof org.emftext.language.xpath2.DoubleLiteral) {
+			result = interprete_org_emftext_language_xpath2_DoubleLiteral((org.emftext.language.xpath2.DoubleLiteral) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -462,30 +486,6 @@ public class AbstractXpath2Interpreter<ResultType, ContextType> {
 		}
 		if (object instanceof org.emftext.language.xpath2.IntegerLiteral) {
 			result = interprete_org_emftext_language_xpath2_IntegerLiteral((org.emftext.language.xpath2.IntegerLiteral) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof org.emftext.language.xpath2.DecimalLiteral) {
-			result = interprete_org_emftext_language_xpath2_DecimalLiteral((org.emftext.language.xpath2.DecimalLiteral) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof org.emftext.language.xpath2.DoubleLiteral) {
-			result = interprete_org_emftext_language_xpath2_DoubleLiteral((org.emftext.language.xpath2.DoubleLiteral) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof org.emftext.language.xpath2.NumericLiteral) {
-			result = interprete_org_emftext_language_xpath2_NumericLiteral((org.emftext.language.xpath2.NumericLiteral) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof org.emftext.language.xpath2.StringLiteral) {
-			result = interprete_org_emftext_language_xpath2_StringLiteral((org.emftext.language.xpath2.StringLiteral) object, context);
 		}
 		if (result != null) {
 			return result;
