@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.emftext.language.xpath2/src-gen" modelPluginID="org.emftext.language.xpath2"
+    modelName="xpath2" complianceLevel="5.0" copyrightFields="false">
+  <genPackages prefix="Xpath2" basePackage="org.emftext.language" disposableProviderFactory="true"
+      ecorePackage="xpath2.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xpath2.ecore#//PathSeparatorKind">
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//PathSeparatorKind/single"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//PathSeparatorKind/multiple"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xpath2.ecore#//ForwardAxisKind">
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ForwardAxisKind/child"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ForwardAxisKind/descendant"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ForwardAxisKind/attribute"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ForwardAxisKind/self"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ForwardAxisKind/descendant_or_self"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ForwardAxisKind/following_sibling"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ForwardAxisKind/following"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ForwardAxisKind/namespace"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xpath2.ecore#//ReverseAxisKind">
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ReverseAxisKind/parent"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ReverseAxisKind/ancestor"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ReverseAxisKind/preceding_sibling"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ReverseAxisKind/preceding"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ReverseAxisKind/ancestor_or_self"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xpath2.ecore#//UnionOp">
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//UnionOp/union"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//UnionOp/vertical_bar"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xpath2.ecore#//AdditiveOpKind">
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//AdditiveOpKind/addition"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//AdditiveOpKind/subtraction"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xpath2.ecore#//MultiplicativeOpKind">
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//MultiplicativeOpKind/multiplication"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//MultiplicativeOpKind/div"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//MultiplicativeOpKind/idiv"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//MultiplicativeOpKind/mod"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xpath2.ecore#//QuantifierKind">
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//QuantifierKind/some"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//QuantifierKind/every"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xpath2.ecore#//IntersectExceptOpKind">
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//IntersectExceptOpKind/intersect"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//IntersectExceptOpKind/except"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xpath2.ecore#//UnaryOp">
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//UnaryOp/plus"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//UnaryOp/minus"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xpath2.ecore#//GeneralCompKind">
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//GeneralCompKind/eq"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//GeneralCompKind/ne"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//GeneralCompKind/lt"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//GeneralCompKind/le"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//GeneralCompKind/gt"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//GeneralCompKind/ge"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xpath2.ecore#//ValueCompKind">
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ValueCompKind/eq"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ValueCompKind/ne"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ValueCompKind/lt"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ValueCompKind/le"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ValueCompKind/gt"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//ValueCompKind/ge"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xpath2.ecore#//NodeCompKind">
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//NodeCompKind/is"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//NodeCompKind/precedes"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//NodeCompKind/follows"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="xpath2.ecore#//OccurrenceIndicatorKind">
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//OccurrenceIndicatorKind/mandatory"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//OccurrenceIndicatorKind/optional"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//OccurrenceIndicatorKind/star"/>
+      <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//OccurrenceIndicatorKind/plus"/>
+    </genEnums>
+    <genClasses ecoreClass="xpath2.ecore#//Expr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//Expr/ownedExprSingle"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//ExprSingle"/>
+    <genClasses ecoreClass="xpath2.ecore#//ForExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//ForExpr/ownedSimpleForClause"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//ForExpr/return"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//QuantifiedExpr">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//QuantifiedExpr/quantifier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//QuantifiedExpr/iterator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//QuantifiedExpr/satisfies"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//IfExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//IfExpr/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//IfExpr/then"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//IfExpr/else"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//SimpleForClause">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//SimpleForClause/iterator"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//SimpleForClauseIterator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//SimpleForClauseIterator/varName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//SimpleForClauseIterator/list"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//OrExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//OrExpr/operand"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//OrExprChild"/>
+    <genClasses ecoreClass="xpath2.ecore#//AndExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//AndExpr/operand"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//AndExprChild"/>
+    <genClasses ecoreClass="xpath2.ecore#//ComparisonExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//ComparisonExpr/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//ComparisonExpr/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//ComparisonExpr/right"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//ComparisonExprChild"/>
+    <genClasses ecoreClass="xpath2.ecore#//RangeExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//RangeExpr/from"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//RangeExpr/to"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//RangeExprChild"/>
+    <genClasses ecoreClass="xpath2.ecore#//AdditiveExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//AdditiveExpr/operand"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//AdditiveExpr/operator"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//AdditiveExprChild"/>
+    <genClasses ecoreClass="xpath2.ecore#//MultiplicativeExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//MultiplicativeExpr/operand"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//MultiplicativeExpr/operator"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//MultiplicativeExprChild"/>
+    <genClasses ecoreClass="xpath2.ecore#//UnionExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//UnionExpr/operand"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//UnionExpr/operation"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//UnionExprChild"/>
+    <genClasses ecoreClass="xpath2.ecore#//IntersectExceptExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//IntersectExceptExpr/operand"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//IntersectExceptExpr/operator"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//IntersectExceptExprChild"/>
+    <genClasses ecoreClass="xpath2.ecore#//InstanceofExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//InstanceofExpr/operand"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//InstanceofExpr/type"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//InstanceofExprChild"/>
+    <genClasses ecoreClass="xpath2.ecore#//TreatExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//TreatExpr/operand"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//TreatExpr/type"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//TreatExprChild"/>
+    <genClasses ecoreClass="xpath2.ecore#//CastableExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//CastableExpr/operand"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//CastableExpr/type"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//CastableExprChild"/>
+    <genClasses ecoreClass="xpath2.ecore#//CastExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//CastExpr/operand"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//CastExpr/type"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//CastExprChild"/>
+    <genClasses ecoreClass="xpath2.ecore#//UnaryExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//UnaryExpr/operand"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//UnaryExpr/operator"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//UnaryExprChild"/>
+    <genClasses ecoreClass="xpath2.ecore#//ValueExpr"/>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//PathExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//PathExpr/initialSeparator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//PathExpr/path"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//PathSeparator"/>
+    <genClasses ecoreClass="xpath2.ecore#//SinglePathSeparator"/>
+    <genClasses ecoreClass="xpath2.ecore#//DoublePathSeparator"/>
+    <genClasses ecoreClass="xpath2.ecore#//RelativePathExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//RelativePathExpr/step"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//RelativePathExpr/separator"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//StepExpr"/>
+    <genClasses ecoreClass="xpath2.ecore#//FilterExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//FilterExpr/primaryExpr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//FilterExpr/predicate"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//AxisStep">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//AxisStep/step"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//AxisStep/predicate"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//DirectionalStep"/>
+    <genClasses ecoreClass="xpath2.ecore#//ForwardStep"/>
+    <genClasses ecoreClass="xpath2.ecore#//ReverseStep"/>
+    <genClasses ecoreClass="xpath2.ecore#//GeneralForwardStep">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xpath2.ecore#//GeneralForwardStep/axis"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xpath2.ecore#//GeneralForwardStep/nodeTest"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//AbbrevForwardStep">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//AbbrevForwardStep/at"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xpath2.ecore#//AbbrevForwardStep/nodeTest"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//ForwardAxis">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//ForwardAxis/kind"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//GeneralReverseStep">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//GeneralReverseStep/axis"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//GeneralReverseStep/nodeTest"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//AbbrevReverseStep"/>
+    <genClasses ecoreClass="xpath2.ecore#//ReverseAxis">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//ReverseAxis/kind"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//NodeTest"/>
+    <genClasses ecoreClass="xpath2.ecore#//NodeKindTest">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//NodeKindTest/test"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//NameTest"/>
+    <genClasses ecoreClass="xpath2.ecore#//QNameTest">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//QNameTest/name"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//Wildcard"/>
+    <genClasses ecoreClass="xpath2.ecore#//AnyWildcard"/>
+    <genClasses ecoreClass="xpath2.ecore#//LocalNameWildcard">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//LocalNameWildcard/namespace"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//NamespaceWildcard">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//NamespaceWildcard/localName"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//Predicate">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xpath2.ecore#//Predicate/expr"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//PrimaryExpr"/>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//Literal"/>
+    <genClasses ecoreClass="xpath2.ecore#//VarRef">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//VarRef/varName"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//VarName">
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference xpath2.ecore#//VarName/name"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//ParenthesizedExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//ParenthesizedExpr/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//ContextItemExpr"/>
+    <genClasses ecoreClass="xpath2.ecore#//FunctionCall">
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference xpath2.ecore#//FunctionCall/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xpath2.ecore#//FunctionCall/arg"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//NumericLiteral"/>
+    <genClasses ecoreClass="xpath2.ecore#//StringLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//StringLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//IntegerLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//IntegerLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//DecimalLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//DecimalLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//DoubleLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//DoubleLiteral/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//Comp"/>
+    <genClasses ecoreClass="xpath2.ecore#//GeneralComp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//GeneralComp/operator"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//ValueComp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//ValueComp/operator"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//NodeComp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//NodeComp/operator"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//SingleType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xpath2.ecore#//SingleType/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//SingleType/optional"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//AtomicType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference xpath2.ecore#//AtomicType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//SequenceType"/>
+    <genClasses ecoreClass="xpath2.ecore#//EmptySequenceType"/>
+    <genClasses ecoreClass="xpath2.ecore#//ItemSequenceType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xpath2.ecore#//ItemSequenceType/itemType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//ItemSequenceType/occurrence"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//ItemType"/>
+    <genClasses ecoreClass="xpath2.ecore#//ItemKindTest">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//ItemKindTest/test"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//AnyItemType"/>
+    <genClasses ecoreClass="xpath2.ecore#//AtomicItemType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xpath2.ecore#//AtomicItemType/type"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//KindTest"/>
+    <genClasses ecoreClass="xpath2.ecore#//DocumentTest">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//DocumentTest/test"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//ElementTest">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//ElementTest/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//ElementTest/wildcard"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//ElementTest/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//ElementTest/typeIsOptional"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//AttributeTest">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xpath2.ecore#//AttributeTest/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//AttributeTest/wildcard"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xpath2.ecore#//AttributeTest/type"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//SchemaElementTest">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//SchemaElementTest/name"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//SchemaAttributeTest">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//SchemaAttributeTest/name"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//PITest">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//PITest/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//PITest/literal"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//CommentTest"/>
+    <genClasses ecoreClass="xpath2.ecore#//TextTest"/>
+    <genClasses ecoreClass="xpath2.ecore#//AnyKindTest"/>
+    <genClasses ecoreClass="xpath2.ecore#//Comment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//Comment/text"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//Comment/comment"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//QName">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//QName/prefix"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//QName/localPart"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

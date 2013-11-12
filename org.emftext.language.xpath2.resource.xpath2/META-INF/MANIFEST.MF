@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMFText Parser Plugin: xpath2
+Bundle-SymbolicName: org.emftext.language.xpath2.resource.xpath2;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Software Technology Group - TU Dresden Germany
+Require-Bundle: org.eclipse.core.runtime;resolution:=optional,
+  org.eclipse.emf.ecore,
+  org.eclipse.emf.ecore.change,
+  org.eclipse.emf.validation;resolution:=optional,
+  org.emftext.access;resolution:=optional,
+  org.eclipse.debug.core;resolution:=optional,
+  org.emftext.commons.antlr3_4_0,
+  org.emftext.language.xpath2
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.emftext.language.xpath2.resource.xpath2,
+  org.emftext.language.xpath2.resource.xpath2.analysis,
+  org.emftext.language.xpath2.resource.xpath2.mopp,
+  org.emftext.language.xpath2.resource.xpath2.debug,
+  org.emftext.language.xpath2.resource.xpath2.launch,
+  org.emftext.language.xpath2.resource.xpath2.grammar,
+  org.emftext.language.xpath2.resource.xpath2.util
+Bundle-Activator: org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Plugin
