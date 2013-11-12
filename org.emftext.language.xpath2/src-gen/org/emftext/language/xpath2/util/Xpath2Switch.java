@@ -955,11 +955,47 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case Xpath2Package.NAME_ELEMENT_TEST:
+      {
+        NameElementTest nameElementTest = (NameElementTest)theEObject;
+        T result = caseNameElementTest(nameElementTest);
+        if (result == null) result = caseElementTest(nameElementTest);
+        if (result == null) result = caseKindTest(nameElementTest);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case Xpath2Package.WILDCARD_ELEMENT_TEST:
+      {
+        WildcardElementTest wildcardElementTest = (WildcardElementTest)theEObject;
+        T result = caseWildcardElementTest(wildcardElementTest);
+        if (result == null) result = caseElementTest(wildcardElementTest);
+        if (result == null) result = caseKindTest(wildcardElementTest);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case Xpath2Package.ATTRIBUTE_TEST:
       {
         AttributeTest attributeTest = (AttributeTest)theEObject;
         T result = caseAttributeTest(attributeTest);
         if (result == null) result = caseKindTest(attributeTest);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case Xpath2Package.NAME_ATTRIBUTE_TEST:
+      {
+        NameAttributeTest nameAttributeTest = (NameAttributeTest)theEObject;
+        T result = caseNameAttributeTest(nameAttributeTest);
+        if (result == null) result = caseAttributeTest(nameAttributeTest);
+        if (result == null) result = caseKindTest(nameAttributeTest);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case Xpath2Package.WILDCARD_ATTRIBUTE_TEST:
+      {
+        WildcardAttributeTest wildcardAttributeTest = (WildcardAttributeTest)theEObject;
+        T result = caseWildcardAttributeTest(wildcardAttributeTest);
+        if (result == null) result = caseAttributeTest(wildcardAttributeTest);
+        if (result == null) result = caseKindTest(wildcardAttributeTest);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -984,6 +1020,24 @@ public class Xpath2Switch<T> extends Switch<T> {
         PITest piTest = (PITest)theEObject;
         T result = casePITest(piTest);
         if (result == null) result = caseKindTest(piTest);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case Xpath2Package.NC_NAME_PI_TEST:
+      {
+        NCNamePITest ncNamePITest = (NCNamePITest)theEObject;
+        T result = caseNCNamePITest(ncNamePITest);
+        if (result == null) result = casePITest(ncNamePITest);
+        if (result == null) result = caseKindTest(ncNamePITest);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case Xpath2Package.STRING_LITERAL_PI_TEST:
+      {
+        StringLiteralPITest stringLiteralPITest = (StringLiteralPITest)theEObject;
+        T result = caseStringLiteralPITest(stringLiteralPITest);
+        if (result == null) result = casePITest(stringLiteralPITest);
+        if (result == null) result = caseKindTest(stringLiteralPITest);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2350,6 +2404,36 @@ public class Xpath2Switch<T> extends Switch<T> {
   }
 
 	/**
+   * Returns the result of interpreting the object as an instance of '<em>Name Element Test</em>'.
+   * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Name Element Test</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+	public T caseNameElementTest(NameElementTest object) {
+    return null;
+  }
+
+	/**
+   * Returns the result of interpreting the object as an instance of '<em>Wildcard Element Test</em>'.
+   * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Wildcard Element Test</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+	public T caseWildcardElementTest(WildcardElementTest object) {
+    return null;
+  }
+
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Attribute Test</em>'.
    * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2361,6 +2445,36 @@ public class Xpath2Switch<T> extends Switch<T> {
    * @generated
    */
 	public T caseAttributeTest(AttributeTest object) {
+    return null;
+  }
+
+	/**
+   * Returns the result of interpreting the object as an instance of '<em>Name Attribute Test</em>'.
+   * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Name Attribute Test</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+	public T caseNameAttributeTest(NameAttributeTest object) {
+    return null;
+  }
+
+	/**
+   * Returns the result of interpreting the object as an instance of '<em>Wildcard Attribute Test</em>'.
+   * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Wildcard Attribute Test</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+	public T caseWildcardAttributeTest(WildcardAttributeTest object) {
     return null;
   }
 
@@ -2406,6 +2520,36 @@ public class Xpath2Switch<T> extends Switch<T> {
    * @generated
    */
 	public T casePITest(PITest object) {
+    return null;
+  }
+
+	/**
+   * Returns the result of interpreting the object as an instance of '<em>NC Name PI Test</em>'.
+   * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>NC Name PI Test</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+	public T caseNCNamePITest(NCNamePITest object) {
+    return null;
+  }
+
+	/**
+   * Returns the result of interpreting the object as an instance of '<em>String Literal PI Test</em>'.
+   * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>String Literal PI Test</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+	public T caseStringLiteralPITest(StringLiteralPITest object) {
     return null;
   }
 

@@ -119,10 +119,16 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
       case Xpath2Package.ATOMIC_ITEM_TYPE: return createAtomicItemType();
       case Xpath2Package.DOCUMENT_TEST: return createDocumentTest();
       case Xpath2Package.ELEMENT_TEST: return createElementTest();
+      case Xpath2Package.NAME_ELEMENT_TEST: return createNameElementTest();
+      case Xpath2Package.WILDCARD_ELEMENT_TEST: return createWildcardElementTest();
       case Xpath2Package.ATTRIBUTE_TEST: return createAttributeTest();
+      case Xpath2Package.NAME_ATTRIBUTE_TEST: return createNameAttributeTest();
+      case Xpath2Package.WILDCARD_ATTRIBUTE_TEST: return createWildcardAttributeTest();
       case Xpath2Package.SCHEMA_ELEMENT_TEST: return createSchemaElementTest();
       case Xpath2Package.SCHEMA_ATTRIBUTE_TEST: return createSchemaAttributeTest();
       case Xpath2Package.PI_TEST: return createPITest();
+      case Xpath2Package.NC_NAME_PI_TEST: return createNCNamePITest();
+      case Xpath2Package.STRING_LITERAL_PI_TEST: return createStringLiteralPITest();
       case Xpath2Package.COMMENT_TEST: return createCommentTest();
       case Xpath2Package.TEXT_TEST: return createTextTest();
       case Xpath2Package.ANY_KIND_TEST: return createAnyKindTest();
@@ -798,9 +804,49 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	 * <!-- end-user-doc -->
    * @generated
    */
+	public NameElementTest createNameElementTest() {
+    NameElementTestImpl nameElementTest = new NameElementTestImpl();
+    return nameElementTest;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public WildcardElementTest createWildcardElementTest() {
+    WildcardElementTestImpl wildcardElementTest = new WildcardElementTestImpl();
+    return wildcardElementTest;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
 	public AttributeTest createAttributeTest() {
     AttributeTestImpl attributeTest = new AttributeTestImpl();
     return attributeTest;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public NameAttributeTest createNameAttributeTest() {
+    NameAttributeTestImpl nameAttributeTest = new NameAttributeTestImpl();
+    return nameAttributeTest;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public WildcardAttributeTest createWildcardAttributeTest() {
+    WildcardAttributeTestImpl wildcardAttributeTest = new WildcardAttributeTestImpl();
+    return wildcardAttributeTest;
   }
 
 	/**
@@ -831,6 +877,26 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	public PITest createPITest() {
     PITestImpl piTest = new PITestImpl();
     return piTest;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public NCNamePITest createNCNamePITest() {
+    NCNamePITestImpl ncNamePITest = new NCNamePITestImpl();
+    return ncNamePITest;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public StringLiteralPITest createStringLiteralPITest() {
+    StringLiteralPITestImpl stringLiteralPITest = new StringLiteralPITestImpl();
+    return stringLiteralPITest;
   }
 
 	/**

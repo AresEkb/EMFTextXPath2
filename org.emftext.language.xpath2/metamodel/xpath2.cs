@@ -34,7 +34,7 @@ TOKENS {
 RULES {
 	Expr ::= ownedExprSingle ("," ownedExprSingle)*;
 	ForExpr ::= ownedSimpleForClause "return" return;
-	SimpleForClause	::= "for" iterator ("," iterator)*;
+	SimpleForClause ::= "for" iterator ("," iterator)*;
 	SimpleForClauseIterator ::= "$" varName[] "in" list;
 	QuantifiedExpr ::= quantifier[some : "some", every : "every"] iterator ("," iterator)* "satisfies" satisfies;
 	IfExpr ::= "if" "(" condition ")" "then" then "else" else;
@@ -93,10 +93,16 @@ RULES {
 	DocumentTest ::= "document-node" "(" (test:ElementTest,SchemaElementTest)? ")";
 	TextTest ::= "text" "(" ")";
 	CommentTest ::= "comment" "(" ")";
-	PITest ::= "processing-instruction" "(" (name[NCNAME] | literal[STRING_LITERAL])? ")";
-	AttributeTest ::= "attribute" "(" ((name | wildcard["*" : ""]) ("," type)?)? ")";
+	PITest ::= "processing-instruction" "("  ")";
+	NCNamePITest ::= "processing-instruction" "(" name[NCNAME] ")";
+	StringLiteralPITest ::= "processing-instruction" "(" literal[STRING_LITERAL] ")";
+	AttributeTest ::= "attribute" "("  ")";
+	WildcardAttributeTest ::= "attribute" "(" "*" ("," type)? ")";
+	NameAttributeTest ::= "attribute" "(" name ("," type)? ")";
 	SchemaAttributeTest ::= "schema-attribute" "(" name ")";
-	ElementTest ::= "element" "(" ((name | wildcard["*" : ""]) ("," type typeIsOptional["?" : ""])?)? ")";
+	ElementTest ::= "element" "("  ")";
+	WildcardElementTest ::= "element" "(" "*" ("," type typeIsOptional["?" : ""])? ")";
+	NameElementTest ::= "element" "(" name ("," type typeIsOptional["?" : ""])? ")";
 	SchemaElementTest ::= "schema-element" "(" name ")";
 
 	IntegerLiteral ::= value[INTEGER_LITERAL];
@@ -104,6 +110,6 @@ RULES {
 	DoubleLiteral ::= value[DOUBLE_LITERAL];
 	StringLiteral ::= value[STRING_LITERAL];
 	// TODO: I don't understand where to place comments
-	//Comment ::= "(:" (text[COMMENT_CONTENTS] | comment)* ":)";
+	Comment ::= "(:" (text[COMMENT_CONTENTS] | comment)* ":)";
 	QName ::= (prefix[NCNAME] ":")? localPart[NCNAME];
 }

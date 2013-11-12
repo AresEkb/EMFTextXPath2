@@ -512,9 +512,29 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
         return createElementTestAdapter();
       }
       @Override
+      public Adapter caseNameElementTest(NameElementTest object)
+      {
+        return createNameElementTestAdapter();
+      }
+      @Override
+      public Adapter caseWildcardElementTest(WildcardElementTest object)
+      {
+        return createWildcardElementTestAdapter();
+      }
+      @Override
       public Adapter caseAttributeTest(AttributeTest object)
       {
         return createAttributeTestAdapter();
+      }
+      @Override
+      public Adapter caseNameAttributeTest(NameAttributeTest object)
+      {
+        return createNameAttributeTestAdapter();
+      }
+      @Override
+      public Adapter caseWildcardAttributeTest(WildcardAttributeTest object)
+      {
+        return createWildcardAttributeTestAdapter();
       }
       @Override
       public Adapter caseSchemaElementTest(SchemaElementTest object)
@@ -530,6 +550,16 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
       public Adapter casePITest(PITest object)
       {
         return createPITestAdapter();
+      }
+      @Override
+      public Adapter caseNCNamePITest(NCNamePITest object)
+      {
+        return createNCNamePITestAdapter();
+      }
+      @Override
+      public Adapter caseStringLiteralPITest(StringLiteralPITest object)
+      {
+        return createStringLiteralPITestAdapter();
       }
       @Override
       public Adapter caseCommentTest(CommentTest object)
@@ -1810,6 +1840,34 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
   }
 
 	/**
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.NameElementTest <em>Name Element Test</em>}'.
+   * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.emftext.language.xpath2.NameElementTest
+   * @generated
+   */
+	public Adapter createNameElementTestAdapter() {
+    return null;
+  }
+
+	/**
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.WildcardElementTest <em>Wildcard Element Test</em>}'.
+   * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.emftext.language.xpath2.WildcardElementTest
+   * @generated
+   */
+	public Adapter createWildcardElementTestAdapter() {
+    return null;
+  }
+
+	/**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.AttributeTest <em>Attribute Test</em>}'.
    * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1820,6 +1878,34 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
 	public Adapter createAttributeTestAdapter() {
+    return null;
+  }
+
+	/**
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.NameAttributeTest <em>Name Attribute Test</em>}'.
+   * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.emftext.language.xpath2.NameAttributeTest
+   * @generated
+   */
+	public Adapter createNameAttributeTestAdapter() {
+    return null;
+  }
+
+	/**
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.WildcardAttributeTest <em>Wildcard Attribute Test</em>}'.
+   * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.emftext.language.xpath2.WildcardAttributeTest
+   * @generated
+   */
+	public Adapter createWildcardAttributeTestAdapter() {
     return null;
   }
 
@@ -1862,6 +1948,34 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
 	public Adapter createPITestAdapter() {
+    return null;
+  }
+
+	/**
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.NCNamePITest <em>NC Name PI Test</em>}'.
+   * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.emftext.language.xpath2.NCNamePITest
+   * @generated
+   */
+	public Adapter createNCNamePITestAdapter() {
+    return null;
+  }
+
+	/**
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.StringLiteralPITest <em>String Literal PI Test</em>}'.
+   * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.emftext.language.xpath2.StringLiteralPITest
+   * @generated
+   */
+	public Adapter createStringLiteralPITestAdapter() {
     return null;
   }
 

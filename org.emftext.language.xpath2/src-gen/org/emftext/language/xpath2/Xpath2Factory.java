@@ -544,6 +544,24 @@ public interface Xpath2Factory extends EFactory {
 	ElementTest createElementTest();
 
 	/**
+   * Returns a new object of class '<em>Name Element Test</em>'.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @return a new object of class '<em>Name Element Test</em>'.
+   * @generated
+   */
+	NameElementTest createNameElementTest();
+
+	/**
+   * Returns a new object of class '<em>Wildcard Element Test</em>'.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @return a new object of class '<em>Wildcard Element Test</em>'.
+   * @generated
+   */
+	WildcardElementTest createWildcardElementTest();
+
+	/**
    * Returns a new object of class '<em>Attribute Test</em>'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -551,6 +569,24 @@ public interface Xpath2Factory extends EFactory {
    * @generated
    */
 	AttributeTest createAttributeTest();
+
+	/**
+   * Returns a new object of class '<em>Name Attribute Test</em>'.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @return a new object of class '<em>Name Attribute Test</em>'.
+   * @generated
+   */
+	NameAttributeTest createNameAttributeTest();
+
+	/**
+   * Returns a new object of class '<em>Wildcard Attribute Test</em>'.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @return a new object of class '<em>Wildcard Attribute Test</em>'.
+   * @generated
+   */
+	WildcardAttributeTest createWildcardAttributeTest();
 
 	/**
    * Returns a new object of class '<em>Schema Element Test</em>'.
@@ -578,6 +614,24 @@ public interface Xpath2Factory extends EFactory {
    * @generated
    */
 	PITest createPITest();
+
+	/**
+   * Returns a new object of class '<em>NC Name PI Test</em>'.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @return a new object of class '<em>NC Name PI Test</em>'.
+   * @generated
+   */
+	NCNamePITest createNCNamePITest();
+
+	/**
+   * Returns a new object of class '<em>String Literal PI Test</em>'.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @return a new object of class '<em>String Literal PI Test</em>'.
+   * @generated
+   */
+	StringLiteralPITest createStringLiteralPITest();
 
 	/**
    * Returns a new object of class '<em>Comment Test</em>'.

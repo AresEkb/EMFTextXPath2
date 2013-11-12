@@ -293,16 +293,23 @@
     <genClasses ecoreClass="xpath2.ecore#//DocumentTest">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//DocumentTest/test"/>
     </genClasses>
-    <genClasses ecoreClass="xpath2.ecore#//ElementTest">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//ElementTest/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//ElementTest/wildcard"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//ElementTest/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//ElementTest/typeIsOptional"/>
+    <genClasses ecoreClass="xpath2.ecore#//ElementTest"/>
+    <genClasses ecoreClass="xpath2.ecore#//NameElementTest">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//NameElementTest/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//NameElementTest/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//NameElementTest/typeIsOptional"/>
     </genClasses>
-    <genClasses ecoreClass="xpath2.ecore#//AttributeTest">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xpath2.ecore#//AttributeTest/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//AttributeTest/wildcard"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xpath2.ecore#//AttributeTest/type"/>
+    <genClasses ecoreClass="xpath2.ecore#//WildcardElementTest">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//WildcardElementTest/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//WildcardElementTest/typeIsOptional"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//AttributeTest"/>
+    <genClasses ecoreClass="xpath2.ecore#//NameAttributeTest">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//NameAttributeTest/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//NameAttributeTest/type"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//WildcardAttributeTest">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//WildcardAttributeTest/type"/>
     </genClasses>
     <genClasses ecoreClass="xpath2.ecore#//SchemaElementTest">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//SchemaElementTest/name"/>
@@ -310,9 +317,12 @@
     <genClasses ecoreClass="xpath2.ecore#//SchemaAttributeTest">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//SchemaAttributeTest/name"/>
     </genClasses>
-    <genClasses ecoreClass="xpath2.ecore#//PITest">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//PITest/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//PITest/literal"/>
+    <genClasses ecoreClass="xpath2.ecore#//PITest"/>
+    <genClasses ecoreClass="xpath2.ecore#//NCNamePITest">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//NCNamePITest/name"/>
+    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//StringLiteralPITest">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference xpath2.ecore#//StringLiteralPITest/literal"/>
     </genClasses>
     <genClasses ecoreClass="xpath2.ecore#//CommentTest"/>
     <genClasses ecoreClass="xpath2.ecore#//TextTest"/>

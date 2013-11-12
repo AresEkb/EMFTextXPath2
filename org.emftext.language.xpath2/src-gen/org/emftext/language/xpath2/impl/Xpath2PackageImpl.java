@@ -69,6 +69,9 @@ import org.emftext.language.xpath2.LocalNameWildcard;
 import org.emftext.language.xpath2.MultiplicativeExpr;
 import org.emftext.language.xpath2.MultiplicativeExprChild;
 import org.emftext.language.xpath2.MultiplicativeOpKind;
+import org.emftext.language.xpath2.NCNamePITest;
+import org.emftext.language.xpath2.NameAttributeTest;
+import org.emftext.language.xpath2.NameElementTest;
 import org.emftext.language.xpath2.NameTest;
 import org.emftext.language.xpath2.NamespaceWildcard;
 import org.emftext.language.xpath2.NodeComp;
@@ -105,6 +108,7 @@ import org.emftext.language.xpath2.SinglePathSeparator;
 import org.emftext.language.xpath2.SingleType;
 import org.emftext.language.xpath2.StepExpr;
 import org.emftext.language.xpath2.StringLiteral;
+import org.emftext.language.xpath2.StringLiteralPITest;
 import org.emftext.language.xpath2.TextTest;
 import org.emftext.language.xpath2.TreatExpr;
 import org.emftext.language.xpath2.TreatExprChild;
@@ -120,6 +124,8 @@ import org.emftext.language.xpath2.ValueExpr;
 import org.emftext.language.xpath2.VarName;
 import org.emftext.language.xpath2.VarRef;
 import org.emftext.language.xpath2.Wildcard;
+import org.emftext.language.xpath2.WildcardAttributeTest;
+import org.emftext.language.xpath2.WildcardElementTest;
 import org.emftext.language.xpath2.Xpath2Factory;
 import org.emftext.language.xpath2.Xpath2Package;
 
@@ -751,7 +757,35 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
+	private EClass nameElementTestEClass = null;
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	private EClass wildcardElementTestEClass = null;
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
 	private EClass attributeTestEClass = null;
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	private EClass nameAttributeTestEClass = null;
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	private EClass wildcardAttributeTestEClass = null;
 
 	/**
    * <!-- begin-user-doc -->
@@ -773,6 +807,20 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
    * @generated
    */
 	private EClass piTestEClass = null;
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	private EClass ncNamePITestEClass = null;
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	private EClass stringLiteralPITestEClass = null;
 
 	/**
    * <!-- begin-user-doc -->
@@ -2460,8 +2508,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getElementTest_Name() {
-    return (EReference)elementTestEClass.getEStructuralFeatures().get(0);
+	public EClass getNameElementTest() {
+    return nameElementTestEClass;
   }
 
 	/**
@@ -2469,8 +2517,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getElementTest_Wildcard() {
-    return (EAttribute)elementTestEClass.getEStructuralFeatures().get(1);
+	public EReference getNameElementTest_Name() {
+    return (EReference)nameElementTestEClass.getEStructuralFeatures().get(0);
   }
 
 	/**
@@ -2478,8 +2526,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getElementTest_Type() {
-    return (EReference)elementTestEClass.getEStructuralFeatures().get(2);
+	public EReference getNameElementTest_Type() {
+    return (EReference)nameElementTestEClass.getEStructuralFeatures().get(1);
   }
 
 	/**
@@ -2487,8 +2535,35 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getElementTest_TypeIsOptional() {
-    return (EAttribute)elementTestEClass.getEStructuralFeatures().get(3);
+	public EAttribute getNameElementTest_TypeIsOptional() {
+    return (EAttribute)nameElementTestEClass.getEStructuralFeatures().get(2);
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public EClass getWildcardElementTest() {
+    return wildcardElementTestEClass;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public EReference getWildcardElementTest_Type() {
+    return (EReference)wildcardElementTestEClass.getEStructuralFeatures().get(0);
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public EAttribute getWildcardElementTest_TypeIsOptional() {
+    return (EAttribute)wildcardElementTestEClass.getEStructuralFeatures().get(1);
   }
 
 	/**
@@ -2505,8 +2580,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getAttributeTest_Name() {
-    return (EReference)attributeTestEClass.getEStructuralFeatures().get(0);
+	public EClass getNameAttributeTest() {
+    return nameAttributeTestEClass;
   }
 
 	/**
@@ -2514,8 +2589,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getAttributeTest_Wildcard() {
-    return (EAttribute)attributeTestEClass.getEStructuralFeatures().get(1);
+	public EReference getNameAttributeTest_Name() {
+    return (EReference)nameAttributeTestEClass.getEStructuralFeatures().get(0);
   }
 
 	/**
@@ -2523,8 +2598,26 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getAttributeTest_Type() {
-    return (EReference)attributeTestEClass.getEStructuralFeatures().get(2);
+	public EReference getNameAttributeTest_Type() {
+    return (EReference)nameAttributeTestEClass.getEStructuralFeatures().get(1);
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public EClass getWildcardAttributeTest() {
+    return wildcardAttributeTestEClass;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public EReference getWildcardAttributeTest_Type() {
+    return (EReference)wildcardAttributeTestEClass.getEStructuralFeatures().get(0);
   }
 
 	/**
@@ -2577,8 +2670,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getPITest_Name() {
-    return (EAttribute)piTestEClass.getEStructuralFeatures().get(0);
+	public EClass getNCNamePITest() {
+    return ncNamePITestEClass;
   }
 
 	/**
@@ -2586,8 +2679,26 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getPITest_Literal() {
-    return (EAttribute)piTestEClass.getEStructuralFeatures().get(1);
+	public EAttribute getNCNamePITest_Name() {
+    return (EAttribute)ncNamePITestEClass.getEStructuralFeatures().get(0);
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public EClass getStringLiteralPITest() {
+    return stringLiteralPITestEClass;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public EReference getStringLiteralPITest_Literal() {
+    return (EReference)stringLiteralPITestEClass.getEStructuralFeatures().get(0);
   }
 
 	/**
@@ -3069,15 +3180,24 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     createEReference(documentTestEClass, DOCUMENT_TEST__TEST);
 
     elementTestEClass = createEClass(ELEMENT_TEST);
-    createEReference(elementTestEClass, ELEMENT_TEST__NAME);
-    createEAttribute(elementTestEClass, ELEMENT_TEST__WILDCARD);
-    createEReference(elementTestEClass, ELEMENT_TEST__TYPE);
-    createEAttribute(elementTestEClass, ELEMENT_TEST__TYPE_IS_OPTIONAL);
+
+    nameElementTestEClass = createEClass(NAME_ELEMENT_TEST);
+    createEReference(nameElementTestEClass, NAME_ELEMENT_TEST__NAME);
+    createEReference(nameElementTestEClass, NAME_ELEMENT_TEST__TYPE);
+    createEAttribute(nameElementTestEClass, NAME_ELEMENT_TEST__TYPE_IS_OPTIONAL);
+
+    wildcardElementTestEClass = createEClass(WILDCARD_ELEMENT_TEST);
+    createEReference(wildcardElementTestEClass, WILDCARD_ELEMENT_TEST__TYPE);
+    createEAttribute(wildcardElementTestEClass, WILDCARD_ELEMENT_TEST__TYPE_IS_OPTIONAL);
 
     attributeTestEClass = createEClass(ATTRIBUTE_TEST);
-    createEReference(attributeTestEClass, ATTRIBUTE_TEST__NAME);
-    createEAttribute(attributeTestEClass, ATTRIBUTE_TEST__WILDCARD);
-    createEReference(attributeTestEClass, ATTRIBUTE_TEST__TYPE);
+
+    nameAttributeTestEClass = createEClass(NAME_ATTRIBUTE_TEST);
+    createEReference(nameAttributeTestEClass, NAME_ATTRIBUTE_TEST__NAME);
+    createEReference(nameAttributeTestEClass, NAME_ATTRIBUTE_TEST__TYPE);
+
+    wildcardAttributeTestEClass = createEClass(WILDCARD_ATTRIBUTE_TEST);
+    createEReference(wildcardAttributeTestEClass, WILDCARD_ATTRIBUTE_TEST__TYPE);
 
     schemaElementTestEClass = createEClass(SCHEMA_ELEMENT_TEST);
     createEReference(schemaElementTestEClass, SCHEMA_ELEMENT_TEST__NAME);
@@ -3086,8 +3206,12 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     createEReference(schemaAttributeTestEClass, SCHEMA_ATTRIBUTE_TEST__NAME);
 
     piTestEClass = createEClass(PI_TEST);
-    createEAttribute(piTestEClass, PI_TEST__NAME);
-    createEAttribute(piTestEClass, PI_TEST__LITERAL);
+
+    ncNamePITestEClass = createEClass(NC_NAME_PI_TEST);
+    createEAttribute(ncNamePITestEClass, NC_NAME_PI_TEST__NAME);
+
+    stringLiteralPITestEClass = createEClass(STRING_LITERAL_PI_TEST);
+    createEReference(stringLiteralPITestEClass, STRING_LITERAL_PI_TEST__LITERAL);
 
     commentTestEClass = createEClass(COMMENT_TEST);
 
@@ -3215,10 +3339,16 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     atomicItemTypeEClass.getESuperTypes().add(this.getItemType());
     documentTestEClass.getESuperTypes().add(this.getKindTest());
     elementTestEClass.getESuperTypes().add(this.getKindTest());
+    nameElementTestEClass.getESuperTypes().add(this.getElementTest());
+    wildcardElementTestEClass.getESuperTypes().add(this.getElementTest());
     attributeTestEClass.getESuperTypes().add(this.getKindTest());
+    nameAttributeTestEClass.getESuperTypes().add(this.getAttributeTest());
+    wildcardAttributeTestEClass.getESuperTypes().add(this.getAttributeTest());
     schemaElementTestEClass.getESuperTypes().add(this.getKindTest());
     schemaAttributeTestEClass.getESuperTypes().add(this.getKindTest());
     piTestEClass.getESuperTypes().add(this.getKindTest());
+    ncNamePITestEClass.getESuperTypes().add(this.getPITest());
+    stringLiteralPITestEClass.getESuperTypes().add(this.getPITest());
     commentTestEClass.getESuperTypes().add(this.getKindTest());
     textTestEClass.getESuperTypes().add(this.getKindTest());
     anyKindTestEClass.getESuperTypes().add(this.getKindTest());
@@ -3477,15 +3607,24 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     initEReference(getDocumentTest_Test(), this.getKindTest(), null, "test", null, 0, 1, DocumentTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(elementTestEClass, ElementTest.class, "ElementTest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getElementTest_Name(), this.getQName(), null, "name", null, 0, 1, ElementTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getElementTest_Wildcard(), ecorePackage.getEBoolean(), "wildcard", null, 0, 1, ElementTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getElementTest_Type(), this.getQName(), null, "type", null, 0, 1, ElementTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getElementTest_TypeIsOptional(), ecorePackage.getEBoolean(), "typeIsOptional", null, 0, 1, ElementTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(nameElementTestEClass, NameElementTest.class, "NameElementTest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNameElementTest_Name(), this.getQName(), null, "name", null, 1, 1, NameElementTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNameElementTest_Type(), this.getQName(), null, "type", null, 0, 1, NameElementTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getNameElementTest_TypeIsOptional(), ecorePackage.getEBoolean(), "typeIsOptional", null, 0, 1, NameElementTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(wildcardElementTestEClass, WildcardElementTest.class, "WildcardElementTest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getWildcardElementTest_Type(), this.getQName(), null, "type", null, 0, 1, WildcardElementTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getWildcardElementTest_TypeIsOptional(), ecorePackage.getEBoolean(), "typeIsOptional", null, 0, 1, WildcardElementTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attributeTestEClass, AttributeTest.class, "AttributeTest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAttributeTest_Name(), this.getQName(), null, "name", null, 0, 1, AttributeTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAttributeTest_Wildcard(), ecorePackage.getEBoolean(), "wildcard", null, 0, 1, AttributeTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAttributeTest_Type(), this.getQName(), null, "type", null, 0, 1, AttributeTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(nameAttributeTestEClass, NameAttributeTest.class, "NameAttributeTest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNameAttributeTest_Name(), this.getQName(), null, "name", null, 1, 1, NameAttributeTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNameAttributeTest_Type(), this.getQName(), null, "type", null, 0, 1, NameAttributeTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(wildcardAttributeTestEClass, WildcardAttributeTest.class, "WildcardAttributeTest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getWildcardAttributeTest_Type(), this.getQName(), null, "type", null, 0, 1, WildcardAttributeTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(schemaElementTestEClass, SchemaElementTest.class, "SchemaElementTest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSchemaElementTest_Name(), this.getQName(), null, "name", null, 1, 1, SchemaElementTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3494,8 +3633,12 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     initEReference(getSchemaAttributeTest_Name(), this.getQName(), null, "name", null, 1, 1, SchemaAttributeTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(piTestEClass, PITest.class, "PITest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPITest_Name(), ecorePackage.getEString(), "name", null, 0, 1, PITest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPITest_Literal(), ecorePackage.getEString(), "literal", null, 0, 1, PITest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(ncNamePITestEClass, NCNamePITest.class, "NCNamePITest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getNCNamePITest_Name(), ecorePackage.getEString(), "name", null, 1, 1, NCNamePITest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(stringLiteralPITestEClass, StringLiteralPITest.class, "StringLiteralPITest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getStringLiteralPITest_Literal(), this.getStringLiteral(), null, "literal", null, 1, 1, StringLiteralPITest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(commentTestEClass, CommentTest.class, "CommentTest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

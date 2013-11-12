@@ -358,18 +358,27 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="test" eType="#//KindTest"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ElementTest" eSuperTypes="#//KindTest">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//QName"
+  <eClassifiers xsi:type="ecore:EClass" name="ElementTest" eSuperTypes="#//KindTest"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NameElementTest" eSuperTypes="#//ElementTest">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" lowerBound="1" eType="#//QName"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wildcard" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//QName"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeIsOptional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AttributeTest" eSuperTypes="#//KindTest">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//QName"
+  <eClassifiers xsi:type="ecore:EClass" name="WildcardElementTest" eSuperTypes="#//ElementTest">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//QName"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wildcard" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeIsOptional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeTest" eSuperTypes="#//KindTest"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NameAttributeTest" eSuperTypes="#//AttributeTest">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" lowerBound="1" eType="#//QName"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//QName"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WildcardAttributeTest" eSuperTypes="#//AttributeTest">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//QName"
         containment="true"/>
   </eClassifiers>
@@ -381,9 +390,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="name" lowerBound="1" eType="#//QName"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PITest" eSuperTypes="#//KindTest">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="literal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PITest" eSuperTypes="#//KindTest"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NCNamePITest" eSuperTypes="#//PITest">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringLiteralPITest" eSuperTypes="#//PITest">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="literal" lowerBound="1"
+        eType="#//StringLiteral"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CommentTest" eSuperTypes="#//KindTest"/>
   <eClassifiers xsi:type="ecore:EClass" name="TextTest" eSuperTypes="#//KindTest"/>
