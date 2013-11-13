@@ -36,7 +36,7 @@ public enum ReverseAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	ANCESTOR(0, "ancestor", "ancestor"),
+	ANCESTOR(1, "ancestor", "ancestor"),
 
 	/**
    * The '<em><b>Preceding sibling</b></em>' literal object.
@@ -46,7 +46,7 @@ public enum ReverseAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	PRECEDING_SIBLING(0, "preceding_sibling", "preceding_sibling"),
+	PRECEDING_SIBLING(2, "preceding_sibling", "preceding_sibling"),
 
 	/**
    * The '<em><b>Preceding</b></em>' literal object.
@@ -56,7 +56,7 @@ public enum ReverseAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	PRECEDING(0, "preceding", "preceding"),
+	PRECEDING(3, "preceding", "preceding"),
 
 	/**
    * The '<em><b>Ancestor or self</b></em>' literal object.
@@ -66,7 +66,7 @@ public enum ReverseAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	ANCESTOR_OR_SELF(0, "ancestor_or_self", "ancestor_or_self");
+	ANCESTOR_OR_SELF(4, "ancestor_or_self", "ancestor_or_self");
 
 	/**
    * The '<em><b>Parent</b></em>' literal value.
@@ -96,7 +96,7 @@ public enum ReverseAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int ANCESTOR_VALUE = 0;
+	public static final int ANCESTOR_VALUE = 1;
 
 	/**
    * The '<em><b>Preceding sibling</b></em>' literal value.
@@ -111,7 +111,7 @@ public enum ReverseAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int PRECEDING_SIBLING_VALUE = 0;
+	public static final int PRECEDING_SIBLING_VALUE = 2;
 
 	/**
    * The '<em><b>Preceding</b></em>' literal value.
@@ -126,7 +126,7 @@ public enum ReverseAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int PRECEDING_VALUE = 0;
+	public static final int PRECEDING_VALUE = 3;
 
 	/**
    * The '<em><b>Ancestor or self</b></em>' literal value.
@@ -141,7 +141,7 @@ public enum ReverseAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int ANCESTOR_OR_SELF_VALUE = 0;
+	public static final int ANCESTOR_OR_SELF_VALUE = 4;
 
 	/**
    * An array of all the '<em><b>Reverse Axis Kind</b></em>' enumerators.
@@ -213,6 +213,10 @@ public enum ReverseAxisKind implements Enumerator {
     switch (value)
     {
       case PARENT_VALUE: return PARENT;
+      case ANCESTOR_VALUE: return ANCESTOR;
+      case PRECEDING_SIBLING_VALUE: return PRECEDING_SIBLING;
+      case PRECEDING_VALUE: return PRECEDING;
+      case ANCESTOR_OR_SELF_VALUE: return ANCESTOR_OR_SELF;
     }
     return null;
   }

@@ -8,8 +8,8 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.emftext.language.xpath2.GeneralCompKind;
 import org.emftext.language.xpath2.ValueComp;
-import org.emftext.language.xpath2.ValueCompKind;
 import org.emftext.language.xpath2.Xpath2Package;
 
 /**
@@ -34,7 +34,7 @@ public class ValueCompImpl extends CompImpl implements ValueComp {
    * @generated
    * @ordered
    */
-	protected static final ValueCompKind OPERATOR_EDEFAULT = ValueCompKind.EQ;
+	protected static final GeneralCompKind OPERATOR_EDEFAULT = GeneralCompKind.EQ;
 
 	/**
    * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
@@ -44,7 +44,7 @@ public class ValueCompImpl extends CompImpl implements ValueComp {
    * @generated
    * @ordered
    */
-	protected ValueCompKind operator = OPERATOR_EDEFAULT;
+	protected GeneralCompKind operator = OPERATOR_EDEFAULT;
 
 	/**
    * <!-- begin-user-doc -->
@@ -70,7 +70,7 @@ public class ValueCompImpl extends CompImpl implements ValueComp {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public ValueCompKind getOperator() {
+	public GeneralCompKind getOperator() {
     return operator;
   }
 
@@ -79,8 +79,8 @@ public class ValueCompImpl extends CompImpl implements ValueComp {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public void setOperator(ValueCompKind newOperator) {
-    ValueCompKind oldOperator = operator;
+	public void setOperator(GeneralCompKind newOperator) {
+    GeneralCompKind oldOperator = operator;
     operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.VALUE_COMP__OPERATOR, oldOperator, operator));
@@ -111,7 +111,7 @@ public class ValueCompImpl extends CompImpl implements ValueComp {
     switch (featureID)
     {
       case Xpath2Package.VALUE_COMP__OPERATOR:
-        setOperator((ValueCompKind)newValue);
+        setOperator((GeneralCompKind)newValue);
         return;
     }
     super.eSet(featureID, newValue);

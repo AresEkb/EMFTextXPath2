@@ -36,7 +36,7 @@ public enum ForwardAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	DESCENDANT(0, "descendant", "descendant"),
+	DESCENDANT(1, "descendant", "descendant"),
 
 	/**
    * The '<em><b>Attribute</b></em>' literal object.
@@ -46,7 +46,7 @@ public enum ForwardAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	ATTRIBUTE(0, "attribute", "attribute"),
+	ATTRIBUTE(2, "attribute", "attribute"),
 
 	/**
    * The '<em><b>Self</b></em>' literal object.
@@ -56,7 +56,7 @@ public enum ForwardAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	SELF(0, "self", "self"),
+	SELF(3, "self", "self"),
 
 	/**
    * The '<em><b>Descendant or self</b></em>' literal object.
@@ -66,7 +66,7 @@ public enum ForwardAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	DESCENDANT_OR_SELF(0, "descendant_or_self", "descendant_or_self"),
+	DESCENDANT_OR_SELF(4, "descendant_or_self", "descendant_or_self"),
 
 	/**
    * The '<em><b>Following sibling</b></em>' literal object.
@@ -76,7 +76,7 @@ public enum ForwardAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	FOLLOWING_SIBLING(0, "following_sibling", "following_sibling"),
+	FOLLOWING_SIBLING(5, "following_sibling", "following_sibling"),
 
 	/**
    * The '<em><b>Following</b></em>' literal object.
@@ -86,7 +86,7 @@ public enum ForwardAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	FOLLOWING(0, "following", "following"),
+	FOLLOWING(6, "following", "following"),
 
 	/**
    * The '<em><b>Namespace</b></em>' literal object.
@@ -96,7 +96,7 @@ public enum ForwardAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	NAMESPACE(0, "namespace", "namespace");
+	NAMESPACE(7, "namespace", "namespace");
 
 	/**
    * The '<em><b>Child</b></em>' literal value.
@@ -126,7 +126,7 @@ public enum ForwardAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int DESCENDANT_VALUE = 0;
+	public static final int DESCENDANT_VALUE = 1;
 
 	/**
    * The '<em><b>Attribute</b></em>' literal value.
@@ -141,7 +141,7 @@ public enum ForwardAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int ATTRIBUTE_VALUE = 0;
+	public static final int ATTRIBUTE_VALUE = 2;
 
 	/**
    * The '<em><b>Self</b></em>' literal value.
@@ -156,7 +156,7 @@ public enum ForwardAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int SELF_VALUE = 0;
+	public static final int SELF_VALUE = 3;
 
 	/**
    * The '<em><b>Descendant or self</b></em>' literal value.
@@ -171,7 +171,7 @@ public enum ForwardAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int DESCENDANT_OR_SELF_VALUE = 0;
+	public static final int DESCENDANT_OR_SELF_VALUE = 4;
 
 	/**
    * The '<em><b>Following sibling</b></em>' literal value.
@@ -186,7 +186,7 @@ public enum ForwardAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int FOLLOWING_SIBLING_VALUE = 0;
+	public static final int FOLLOWING_SIBLING_VALUE = 5;
 
 	/**
    * The '<em><b>Following</b></em>' literal value.
@@ -201,7 +201,7 @@ public enum ForwardAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int FOLLOWING_VALUE = 0;
+	public static final int FOLLOWING_VALUE = 6;
 
 	/**
    * The '<em><b>Namespace</b></em>' literal value.
@@ -216,7 +216,7 @@ public enum ForwardAxisKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int NAMESPACE_VALUE = 0;
+	public static final int NAMESPACE_VALUE = 7;
 
 	/**
    * An array of all the '<em><b>Forward Axis Kind</b></em>' enumerators.
@@ -291,6 +291,13 @@ public enum ForwardAxisKind implements Enumerator {
     switch (value)
     {
       case CHILD_VALUE: return CHILD;
+      case DESCENDANT_VALUE: return DESCENDANT;
+      case ATTRIBUTE_VALUE: return ATTRIBUTE;
+      case SELF_VALUE: return SELF;
+      case DESCENDANT_OR_SELF_VALUE: return DESCENDANT_OR_SELF;
+      case FOLLOWING_SIBLING_VALUE: return FOLLOWING_SIBLING;
+      case FOLLOWING_VALUE: return FOLLOWING;
+      case NAMESPACE_VALUE: return NAMESPACE;
     }
     return null;
   }

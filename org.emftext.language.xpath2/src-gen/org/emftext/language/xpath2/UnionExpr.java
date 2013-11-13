@@ -33,7 +33,7 @@ public interface UnionExpr extends MultiplicativeExprChild {
 	 * <!-- end-user-doc -->
    * @return the value of the '<em>Operand</em>' containment reference list.
    * @see org.emftext.language.xpath2.Xpath2Package#getUnionExpr_Operand()
-   * @model containment="true" lower="2"
+   * @model containment="true" required="true"
    * @generated
    */
 	EList<UnionExprChild> getOperand();
@@ -51,7 +51,7 @@ public interface UnionExpr extends MultiplicativeExprChild {
    * @return the value of the '<em>Operation</em>' attribute list.
    * @see org.emftext.language.xpath2.UnionOp
    * @see org.emftext.language.xpath2.Xpath2Package#getUnionExpr_Operation()
-   * @model required="true"
+   * @model
    * @generated
    */
 	EList<UnionOp> getOperation();

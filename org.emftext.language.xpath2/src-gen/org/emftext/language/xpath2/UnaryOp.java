@@ -36,7 +36,7 @@ public enum UnaryOp implements Enumerator {
    * @generated
    * @ordered
    */
-	MINUS(0, "minus", "minus");
+	MINUS(1, "minus", "minus");
 
 	/**
    * The '<em><b>Plus</b></em>' literal value.
@@ -66,7 +66,7 @@ public enum UnaryOp implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int MINUS_VALUE = 0;
+	public static final int MINUS_VALUE = 1;
 
 	/**
    * An array of all the '<em><b>Unary Op</b></em>' enumerators.
@@ -135,6 +135,7 @@ public enum UnaryOp implements Enumerator {
     switch (value)
     {
       case PLUS_VALUE: return PLUS;
+      case MINUS_VALUE: return MINUS;
     }
     return null;
   }

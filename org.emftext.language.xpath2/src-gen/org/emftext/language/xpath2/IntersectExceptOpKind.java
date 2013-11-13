@@ -36,7 +36,7 @@ public enum IntersectExceptOpKind implements Enumerator {
    * @generated
    * @ordered
    */
-	EXCEPT(0, "except", "except");
+	EXCEPT(1, "except", "except");
 
 	/**
    * The '<em><b>Intersect</b></em>' literal value.
@@ -66,7 +66,7 @@ public enum IntersectExceptOpKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int EXCEPT_VALUE = 0;
+	public static final int EXCEPT_VALUE = 1;
 
 	/**
    * An array of all the '<em><b>Intersect Except Op Kind</b></em>' enumerators.
@@ -135,6 +135,7 @@ public enum IntersectExceptOpKind implements Enumerator {
     switch (value)
     {
       case INTERSECT_VALUE: return INTERSECT;
+      case EXCEPT_VALUE: return EXCEPT;
     }
     return null;
   }

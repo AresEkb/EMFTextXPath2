@@ -193,31 +193,22 @@ public interface Xpath2Factory extends EFactory {
 	UnaryExpr createUnaryExpr();
 
 	/**
-   * Returns a new object of class '<em>Path Expr</em>'.
+   * Returns a new object of class '<em>Single Path Expr</em>'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Path Expr</em>'.
+   * @return a new object of class '<em>Single Path Expr</em>'.
    * @generated
    */
-	PathExpr createPathExpr();
+	SinglePathExpr createSinglePathExpr();
 
 	/**
-   * Returns a new object of class '<em>Single Path Separator</em>'.
+   * Returns a new object of class '<em>Double Path Expr</em>'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Single Path Separator</em>'.
+   * @return a new object of class '<em>Double Path Expr</em>'.
    * @generated
    */
-	SinglePathSeparator createSinglePathSeparator();
-
-	/**
-   * Returns a new object of class '<em>Double Path Separator</em>'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Double Path Separator</em>'.
-   * @generated
-   */
-	DoublePathSeparator createDoublePathSeparator();
+	DoublePathExpr createDoublePathExpr();
 
 	/**
    * Returns a new object of class '<em>Relative Path Expr</em>'.
@@ -227,6 +218,24 @@ public interface Xpath2Factory extends EFactory {
    * @generated
    */
 	RelativePathExpr createRelativePathExpr();
+
+	/**
+   * Returns a new object of class '<em>Single Tail Path Expr</em>'.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @return a new object of class '<em>Single Tail Path Expr</em>'.
+   * @generated
+   */
+	SingleTailPathExpr createSingleTailPathExpr();
+
+	/**
+   * Returns a new object of class '<em>Double Tail Path Expr</em>'.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @return a new object of class '<em>Double Tail Path Expr</em>'.
+   * @generated
+   */
+	DoubleTailPathExpr createDoubleTailPathExpr();
 
 	/**
    * Returns a new object of class '<em>Filter Expr</em>'.

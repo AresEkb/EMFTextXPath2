@@ -58,7 +58,7 @@ public interface CastExpr extends CastableExprChild {
    * @return the value of the '<em>Type</em>' containment reference.
    * @see #setType(SingleType)
    * @see org.emftext.language.xpath2.Xpath2Package#getCastExpr_Type()
-   * @model containment="true" required="true"
+   * @model containment="true"
    * @generated
    */
 	SingleType getType();

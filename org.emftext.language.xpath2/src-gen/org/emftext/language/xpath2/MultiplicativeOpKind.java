@@ -36,7 +36,7 @@ public enum MultiplicativeOpKind implements Enumerator {
    * @generated
    * @ordered
    */
-	DIV(0, "div", "div"),
+	DIV(1, "div", "div"),
 
 	/**
    * The '<em><b>Idiv</b></em>' literal object.
@@ -46,7 +46,7 @@ public enum MultiplicativeOpKind implements Enumerator {
    * @generated
    * @ordered
    */
-	IDIV(0, "idiv", "idiv"),
+	IDIV(2, "idiv", "idiv"),
 
 	/**
    * The '<em><b>Mod</b></em>' literal object.
@@ -56,7 +56,7 @@ public enum MultiplicativeOpKind implements Enumerator {
    * @generated
    * @ordered
    */
-	MOD(0, "mod", "mod");
+	MOD(3, "mod", "mod");
 
 	/**
    * The '<em><b>Multiplication</b></em>' literal value.
@@ -86,7 +86,7 @@ public enum MultiplicativeOpKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int DIV_VALUE = 0;
+	public static final int DIV_VALUE = 1;
 
 	/**
    * The '<em><b>Idiv</b></em>' literal value.
@@ -101,7 +101,7 @@ public enum MultiplicativeOpKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int IDIV_VALUE = 0;
+	public static final int IDIV_VALUE = 2;
 
 	/**
    * The '<em><b>Mod</b></em>' literal value.
@@ -116,7 +116,7 @@ public enum MultiplicativeOpKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int MOD_VALUE = 0;
+	public static final int MOD_VALUE = 3;
 
 	/**
    * An array of all the '<em><b>Multiplicative Op Kind</b></em>' enumerators.
@@ -187,6 +187,9 @@ public enum MultiplicativeOpKind implements Enumerator {
     switch (value)
     {
       case MULTIPLICATION_VALUE: return MULTIPLICATION;
+      case DIV_VALUE: return DIV;
+      case IDIV_VALUE: return IDIV;
+      case MOD_VALUE: return MOD;
     }
     return null;
   }

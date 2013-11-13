@@ -247,19 +247,14 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
         return createPathExprAdapter();
       }
       @Override
-      public Adapter casePathSeparator(PathSeparator object)
+      public Adapter caseSinglePathExpr(SinglePathExpr object)
       {
-        return createPathSeparatorAdapter();
+        return createSinglePathExprAdapter();
       }
       @Override
-      public Adapter caseSinglePathSeparator(SinglePathSeparator object)
+      public Adapter caseDoublePathExpr(DoublePathExpr object)
       {
-        return createSinglePathSeparatorAdapter();
-      }
-      @Override
-      public Adapter caseDoublePathSeparator(DoublePathSeparator object)
-      {
-        return createDoublePathSeparatorAdapter();
+        return createDoublePathExprAdapter();
       }
       @Override
       public Adapter caseRelativePathExpr(RelativePathExpr object)
@@ -270,6 +265,21 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
       public Adapter caseStepExpr(StepExpr object)
       {
         return createStepExprAdapter();
+      }
+      @Override
+      public Adapter caseTailPathExpr(TailPathExpr object)
+      {
+        return createTailPathExprAdapter();
+      }
+      @Override
+      public Adapter caseSingleTailPathExpr(SingleTailPathExpr object)
+      {
+        return createSingleTailPathExprAdapter();
+      }
+      @Override
+      public Adapter caseDoubleTailPathExpr(DoubleTailPathExpr object)
+      {
+        return createDoubleTailPathExprAdapter();
       }
       @Override
       public Adapter caseFilterExpr(FilterExpr object)
@@ -1098,44 +1108,30 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
   }
 
 	/**
-   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.PathSeparator <em>Path Separator</em>}'.
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.SinglePathExpr <em>Single Path Expr</em>}'.
    * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.emftext.language.xpath2.PathSeparator
+   * @see org.emftext.language.xpath2.SinglePathExpr
    * @generated
    */
-	public Adapter createPathSeparatorAdapter() {
+	public Adapter createSinglePathExprAdapter() {
     return null;
   }
 
 	/**
-   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.SinglePathSeparator <em>Single Path Separator</em>}'.
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.DoublePathExpr <em>Double Path Expr</em>}'.
    * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.emftext.language.xpath2.SinglePathSeparator
+   * @see org.emftext.language.xpath2.DoublePathExpr
    * @generated
    */
-	public Adapter createSinglePathSeparatorAdapter() {
-    return null;
-  }
-
-	/**
-   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.DoublePathSeparator <em>Double Path Separator</em>}'.
-   * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.emftext.language.xpath2.DoublePathSeparator
-   * @generated
-   */
-	public Adapter createDoublePathSeparatorAdapter() {
+	public Adapter createDoublePathExprAdapter() {
     return null;
   }
 
@@ -1164,6 +1160,48 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
 	public Adapter createStepExprAdapter() {
+    return null;
+  }
+
+	/**
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.TailPathExpr <em>Tail Path Expr</em>}'.
+   * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.emftext.language.xpath2.TailPathExpr
+   * @generated
+   */
+	public Adapter createTailPathExprAdapter() {
+    return null;
+  }
+
+	/**
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.SingleTailPathExpr <em>Single Tail Path Expr</em>}'.
+   * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.emftext.language.xpath2.SingleTailPathExpr
+   * @generated
+   */
+	public Adapter createSingleTailPathExprAdapter() {
+    return null;
+  }
+
+	/**
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.DoubleTailPathExpr <em>Double Tail Path Expr</em>}'.
+   * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.emftext.language.xpath2.DoubleTailPathExpr
+   * @generated
+   */
+	public Adapter createDoubleTailPathExprAdapter() {
     return null;
   }
 

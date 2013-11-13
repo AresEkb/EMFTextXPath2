@@ -38,7 +38,8 @@ import org.emftext.language.xpath2.DecimalLiteral;
 import org.emftext.language.xpath2.DirectionalStep;
 import org.emftext.language.xpath2.DocumentTest;
 import org.emftext.language.xpath2.DoubleLiteral;
-import org.emftext.language.xpath2.DoublePathSeparator;
+import org.emftext.language.xpath2.DoublePathExpr;
+import org.emftext.language.xpath2.DoubleTailPathExpr;
 import org.emftext.language.xpath2.ElementTest;
 import org.emftext.language.xpath2.EmptySequenceType;
 import org.emftext.language.xpath2.Expr;
@@ -85,8 +86,6 @@ import org.emftext.language.xpath2.OrExprChild;
 import org.emftext.language.xpath2.PITest;
 import org.emftext.language.xpath2.ParenthesizedExpr;
 import org.emftext.language.xpath2.PathExpr;
-import org.emftext.language.xpath2.PathSeparator;
-import org.emftext.language.xpath2.PathSeparatorKind;
 import org.emftext.language.xpath2.Predicate;
 import org.emftext.language.xpath2.PrimaryExpr;
 import org.emftext.language.xpath2.QName;
@@ -104,11 +103,13 @@ import org.emftext.language.xpath2.SchemaElementTest;
 import org.emftext.language.xpath2.SequenceType;
 import org.emftext.language.xpath2.SimpleForClause;
 import org.emftext.language.xpath2.SimpleForClauseIterator;
-import org.emftext.language.xpath2.SinglePathSeparator;
+import org.emftext.language.xpath2.SinglePathExpr;
+import org.emftext.language.xpath2.SingleTailPathExpr;
 import org.emftext.language.xpath2.SingleType;
 import org.emftext.language.xpath2.StepExpr;
 import org.emftext.language.xpath2.StringLiteral;
 import org.emftext.language.xpath2.StringLiteralPITest;
+import org.emftext.language.xpath2.TailPathExpr;
 import org.emftext.language.xpath2.TextTest;
 import org.emftext.language.xpath2.TreatExpr;
 import org.emftext.language.xpath2.TreatExprChild;
@@ -119,7 +120,6 @@ import org.emftext.language.xpath2.UnionExpr;
 import org.emftext.language.xpath2.UnionExprChild;
 import org.emftext.language.xpath2.UnionOp;
 import org.emftext.language.xpath2.ValueComp;
-import org.emftext.language.xpath2.ValueCompKind;
 import org.emftext.language.xpath2.ValueExpr;
 import org.emftext.language.xpath2.VarName;
 import org.emftext.language.xpath2.VarRef;
@@ -386,21 +386,14 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	private EClass pathSeparatorEClass = null;
+	private EClass singlePathExprEClass = null;
 
 	/**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
-	private EClass singlePathSeparatorEClass = null;
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	private EClass doublePathSeparatorEClass = null;
+	private EClass doublePathExprEClass = null;
 
 	/**
    * <!-- begin-user-doc -->
@@ -415,6 +408,27 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
    * @generated
    */
 	private EClass stepExprEClass = null;
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	private EClass tailPathExprEClass = null;
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	private EClass singleTailPathExprEClass = null;
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	private EClass doubleTailPathExprEClass = null;
 
 	/**
    * <!-- begin-user-doc -->
@@ -862,13 +876,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	private EEnum pathSeparatorKindEEnum = null;
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
 	private EEnum forwardAxisKindEEnum = null;
 
 	/**
@@ -926,13 +933,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
    * @generated
    */
 	private EEnum generalCompKindEEnum = null;
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	private EEnum valueCompKindEEnum = null;
 
 	/**
    * <!-- begin-user-doc -->
@@ -1662,8 +1662,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getPathExpr_InitialSeparator() {
-    return (EReference)pathExprEClass.getEStructuralFeatures().get(0);
+	public EClass getSinglePathExpr() {
+    return singlePathExprEClass;
   }
 
 	/**
@@ -1671,8 +1671,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getPathExpr_Path() {
-    return (EReference)pathExprEClass.getEStructuralFeatures().get(1);
+	public EReference getSinglePathExpr_RelativePathExpr() {
+    return (EReference)singlePathExprEClass.getEStructuralFeatures().get(0);
   }
 
 	/**
@@ -1680,8 +1680,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EClass getPathSeparator() {
-    return pathSeparatorEClass;
+	public EClass getDoublePathExpr() {
+    return doublePathExprEClass;
   }
 
 	/**
@@ -1689,17 +1689,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EClass getSinglePathSeparator() {
-    return singlePathSeparatorEClass;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EClass getDoublePathSeparator() {
-    return doublePathSeparatorEClass;
+	public EReference getDoublePathExpr_RelativePathExpr() {
+    return (EReference)doublePathExprEClass.getEStructuralFeatures().get(0);
   }
 
 	/**
@@ -1716,7 +1707,7 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getRelativePathExpr_Step() {
+	public EReference getRelativePathExpr_Head() {
     return (EReference)relativePathExprEClass.getEStructuralFeatures().get(0);
   }
 
@@ -1725,7 +1716,7 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getRelativePathExpr_Separator() {
+	public EReference getRelativePathExpr_Tail() {
     return (EReference)relativePathExprEClass.getEStructuralFeatures().get(1);
   }
 
@@ -1736,6 +1727,42 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
    */
 	public EClass getStepExpr() {
     return stepExprEClass;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public EClass getTailPathExpr() {
+    return tailPathExprEClass;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public EReference getTailPathExpr_StepExpression() {
+    return (EReference)tailPathExprEClass.getEStructuralFeatures().get(0);
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public EClass getSingleTailPathExpr() {
+    return singleTailPathExprEClass;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public EClass getDoubleTailPathExpr() {
+    return doubleTailPathExprEClass;
   }
 
 	/**
@@ -2787,15 +2814,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EEnum getPathSeparatorKind() {
-    return pathSeparatorKindEEnum;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
 	public EEnum getForwardAxisKind() {
     return forwardAxisKindEEnum;
   }
@@ -2870,15 +2888,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
    */
 	public EEnum getGeneralCompKind() {
     return generalCompKindEEnum;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EEnum getValueCompKind() {
-    return valueCompKindEEnum;
   }
 
 	/**
@@ -3033,20 +3042,25 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     valueExprEClass = createEClass(VALUE_EXPR);
 
     pathExprEClass = createEClass(PATH_EXPR);
-    createEReference(pathExprEClass, PATH_EXPR__INITIAL_SEPARATOR);
-    createEReference(pathExprEClass, PATH_EXPR__PATH);
 
-    pathSeparatorEClass = createEClass(PATH_SEPARATOR);
+    singlePathExprEClass = createEClass(SINGLE_PATH_EXPR);
+    createEReference(singlePathExprEClass, SINGLE_PATH_EXPR__RELATIVE_PATH_EXPR);
 
-    singlePathSeparatorEClass = createEClass(SINGLE_PATH_SEPARATOR);
-
-    doublePathSeparatorEClass = createEClass(DOUBLE_PATH_SEPARATOR);
+    doublePathExprEClass = createEClass(DOUBLE_PATH_EXPR);
+    createEReference(doublePathExprEClass, DOUBLE_PATH_EXPR__RELATIVE_PATH_EXPR);
 
     relativePathExprEClass = createEClass(RELATIVE_PATH_EXPR);
-    createEReference(relativePathExprEClass, RELATIVE_PATH_EXPR__STEP);
-    createEReference(relativePathExprEClass, RELATIVE_PATH_EXPR__SEPARATOR);
+    createEReference(relativePathExprEClass, RELATIVE_PATH_EXPR__HEAD);
+    createEReference(relativePathExprEClass, RELATIVE_PATH_EXPR__TAIL);
 
     stepExprEClass = createEClass(STEP_EXPR);
+
+    tailPathExprEClass = createEClass(TAIL_PATH_EXPR);
+    createEReference(tailPathExprEClass, TAIL_PATH_EXPR__STEP_EXPRESSION);
+
+    singleTailPathExprEClass = createEClass(SINGLE_TAIL_PATH_EXPR);
+
+    doubleTailPathExprEClass = createEClass(DOUBLE_TAIL_PATH_EXPR);
 
     filterExprEClass = createEClass(FILTER_EXPR);
     createEReference(filterExprEClass, FILTER_EXPR__PRIMARY_EXPR);
@@ -3228,7 +3242,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     createEAttribute(qNameEClass, QNAME__LOCAL_PART);
 
     // Create enums
-    pathSeparatorKindEEnum = createEEnum(PATH_SEPARATOR_KIND);
     forwardAxisKindEEnum = createEEnum(FORWARD_AXIS_KIND);
     reverseAxisKindEEnum = createEEnum(REVERSE_AXIS_KIND);
     unionOpEEnum = createEEnum(UNION_OP);
@@ -3238,7 +3251,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     intersectExceptOpKindEEnum = createEEnum(INTERSECT_EXCEPT_OP_KIND);
     unaryOpEEnum = createEEnum(UNARY_OP);
     generalCompKindEEnum = createEEnum(GENERAL_COMP_KIND);
-    valueCompKindEEnum = createEEnum(VALUE_COMP_KIND);
     nodeCompKindEEnum = createEEnum(NODE_COMP_KIND);
     occurrenceIndicatorKindEEnum = createEEnum(OCCURRENCE_INDICATOR_KIND);
   }
@@ -3302,8 +3314,11 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     unaryExprChildEClass.getESuperTypes().add(this.getCastExprChild());
     valueExprEClass.getESuperTypes().add(this.getUnaryExprChild());
     pathExprEClass.getESuperTypes().add(this.getValueExpr());
-    singlePathSeparatorEClass.getESuperTypes().add(this.getPathSeparator());
-    doublePathSeparatorEClass.getESuperTypes().add(this.getPathSeparator());
+    singlePathExprEClass.getESuperTypes().add(this.getPathExpr());
+    doublePathExprEClass.getESuperTypes().add(this.getPathExpr());
+    relativePathExprEClass.getESuperTypes().add(this.getPathExpr());
+    singleTailPathExprEClass.getESuperTypes().add(this.getTailPathExpr());
+    doubleTailPathExprEClass.getESuperTypes().add(this.getTailPathExpr());
     filterExprEClass.getESuperTypes().add(this.getStepExpr());
     axisStepEClass.getESuperTypes().add(this.getStepExpr());
     forwardStepEClass.getESuperTypes().add(this.getDirectionalStep());
@@ -3381,73 +3396,73 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     initEReference(getSimpleForClauseIterator_List(), this.getExprSingle(), null, "list", null, 1, 1, SimpleForClauseIterator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(orExprEClass, OrExpr.class, "OrExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getOrExpr_Operand(), this.getOrExprChild(), null, "operand", null, 2, -1, OrExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getOrExpr_Operand(), this.getOrExprChild(), null, "operand", null, 1, -1, OrExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(orExprChildEClass, OrExprChild.class, "OrExprChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(andExprEClass, AndExpr.class, "AndExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAndExpr_Operand(), this.getAndExprChild(), null, "operand", null, 2, -1, AndExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAndExpr_Operand(), this.getAndExprChild(), null, "operand", null, 1, -1, AndExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(andExprChildEClass, AndExprChild.class, "AndExprChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(comparisonExprEClass, ComparisonExpr.class, "ComparisonExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getComparisonExpr_Left(), this.getComparisonExprChild(), null, "left", null, 1, 1, ComparisonExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getComparisonExpr_Operator(), this.getComp(), null, "operator", null, 1, 1, ComparisonExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getComparisonExpr_Right(), this.getComparisonExprChild(), null, "right", null, 1, 1, ComparisonExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getComparisonExpr_Operator(), this.getComp(), null, "operator", null, 0, 1, ComparisonExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getComparisonExpr_Right(), this.getComparisonExprChild(), null, "right", null, 0, 1, ComparisonExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(comparisonExprChildEClass, ComparisonExprChild.class, "ComparisonExprChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(rangeExprEClass, RangeExpr.class, "RangeExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRangeExpr_From(), this.getRangeExprChild(), null, "from", null, 1, 1, RangeExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRangeExpr_To(), this.getRangeExprChild(), null, "to", null, 1, 1, RangeExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRangeExpr_To(), this.getRangeExprChild(), null, "to", null, 0, 1, RangeExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(rangeExprChildEClass, RangeExprChild.class, "RangeExprChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(additiveExprEClass, AdditiveExpr.class, "AdditiveExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAdditiveExpr_Operand(), this.getAdditiveExprChild(), null, "operand", null, 2, -1, AdditiveExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAdditiveExpr_Operator(), this.getAdditiveOpKind(), "operator", null, 1, -1, AdditiveExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAdditiveExpr_Operand(), this.getAdditiveExprChild(), null, "operand", null, 1, -1, AdditiveExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAdditiveExpr_Operator(), this.getAdditiveOpKind(), "operator", null, 0, -1, AdditiveExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(additiveExprChildEClass, AdditiveExprChild.class, "AdditiveExprChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(multiplicativeExprEClass, MultiplicativeExpr.class, "MultiplicativeExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getMultiplicativeExpr_Operand(), this.getMultiplicativeExprChild(), null, "operand", null, 2, -1, MultiplicativeExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMultiplicativeExpr_Operator(), this.getMultiplicativeOpKind(), "operator", null, 1, -1, MultiplicativeExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMultiplicativeExpr_Operand(), this.getMultiplicativeExprChild(), null, "operand", null, 1, -1, MultiplicativeExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMultiplicativeExpr_Operator(), this.getMultiplicativeOpKind(), "operator", null, 0, -1, MultiplicativeExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(multiplicativeExprChildEClass, MultiplicativeExprChild.class, "MultiplicativeExprChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(unionExprEClass, UnionExpr.class, "UnionExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getUnionExpr_Operand(), this.getUnionExprChild(), null, "operand", null, 2, -1, UnionExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getUnionExpr_Operation(), this.getUnionOp(), "operation", null, 1, -1, UnionExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getUnionExpr_Operand(), this.getUnionExprChild(), null, "operand", null, 1, -1, UnionExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getUnionExpr_Operation(), this.getUnionOp(), "operation", null, 0, -1, UnionExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(unionExprChildEClass, UnionExprChild.class, "UnionExprChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(intersectExceptExprEClass, IntersectExceptExpr.class, "IntersectExceptExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getIntersectExceptExpr_Operand(), this.getIntersectExceptExprChild(), null, "operand", null, 2, -1, IntersectExceptExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getIntersectExceptExpr_Operator(), this.getIntersectExceptOpKind(), "operator", null, 1, -1, IntersectExceptExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIntersectExceptExpr_Operand(), this.getIntersectExceptExprChild(), null, "operand", null, 1, -1, IntersectExceptExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getIntersectExceptExpr_Operator(), this.getIntersectExceptOpKind(), "operator", null, 0, -1, IntersectExceptExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(intersectExceptExprChildEClass, IntersectExceptExprChild.class, "IntersectExceptExprChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(instanceofExprEClass, InstanceofExpr.class, "InstanceofExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getInstanceofExpr_Operand(), this.getInstanceofExprChild(), null, "operand", null, 1, 1, InstanceofExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getInstanceofExpr_Type(), this.getSequenceType(), null, "type", null, 1, 1, InstanceofExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInstanceofExpr_Type(), this.getSequenceType(), null, "type", null, 0, 1, InstanceofExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(instanceofExprChildEClass, InstanceofExprChild.class, "InstanceofExprChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(treatExprEClass, TreatExpr.class, "TreatExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTreatExpr_Operand(), this.getTreatExprChild(), null, "operand", null, 1, 1, TreatExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTreatExpr_Type(), this.getSequenceType(), null, "type", null, 1, 1, TreatExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTreatExpr_Type(), this.getSequenceType(), null, "type", null, 0, 1, TreatExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(treatExprChildEClass, TreatExprChild.class, "TreatExprChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(castableExprEClass, CastableExpr.class, "CastableExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCastableExpr_Operand(), this.getCastableExprChild(), null, "operand", null, 1, 1, CastableExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCastableExpr_Type(), this.getSingleType(), null, "type", null, 1, 1, CastableExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCastableExpr_Type(), this.getSingleType(), null, "type", null, 0, 1, CastableExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(castableExprChildEClass, CastableExprChild.class, "CastableExprChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(castExprEClass, CastExpr.class, "CastExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCastExpr_Operand(), this.getCastExprChild(), null, "operand", null, 1, 1, CastExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCastExpr_Type(), this.getSingleType(), null, "type", null, 1, 1, CastExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCastExpr_Type(), this.getSingleType(), null, "type", null, 0, 1, CastExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(castExprChildEClass, CastExprChild.class, "CastExprChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3459,21 +3474,26 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 
     initEClass(valueExprEClass, ValueExpr.class, "ValueExpr", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(pathExprEClass, PathExpr.class, "PathExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPathExpr_InitialSeparator(), this.getPathSeparator(), null, "initialSeparator", null, 0, 1, PathExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPathExpr_Path(), this.getRelativePathExpr(), null, "path", null, 0, 1, PathExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(pathExprEClass, PathExpr.class, "PathExpr", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(pathSeparatorEClass, PathSeparator.class, "PathSeparator", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(singlePathExprEClass, SinglePathExpr.class, "SinglePathExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSinglePathExpr_RelativePathExpr(), this.getRelativePathExpr(), null, "relativePathExpr", null, 0, 1, SinglePathExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(singlePathSeparatorEClass, SinglePathSeparator.class, "SinglePathSeparator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(doublePathSeparatorEClass, DoublePathSeparator.class, "DoublePathSeparator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(doublePathExprEClass, DoublePathExpr.class, "DoublePathExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDoublePathExpr_RelativePathExpr(), this.getRelativePathExpr(), null, "relativePathExpr", null, 1, 1, DoublePathExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(relativePathExprEClass, RelativePathExpr.class, "RelativePathExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRelativePathExpr_Step(), this.getStepExpr(), null, "step", null, 1, -1, RelativePathExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRelativePathExpr_Separator(), this.getPathSeparator(), null, "separator", null, 0, -1, RelativePathExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRelativePathExpr_Head(), this.getStepExpr(), null, "head", null, 1, 1, RelativePathExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRelativePathExpr_Tail(), this.getTailPathExpr(), null, "tail", null, 0, -1, RelativePathExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(stepExprEClass, StepExpr.class, "StepExpr", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(tailPathExprEClass, TailPathExpr.class, "TailPathExpr", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTailPathExpr_StepExpression(), this.getStepExpr(), null, "stepExpression", null, 1, 1, TailPathExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(singleTailPathExprEClass, SingleTailPathExpr.class, "SingleTailPathExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(doubleTailPathExprEClass, DoubleTailPathExpr.class, "DoubleTailPathExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(filterExprEClass, FilterExpr.class, "FilterExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getFilterExpr_PrimaryExpr(), this.getPrimaryExpr(), null, "primaryExpr", null, 1, 1, FilterExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3571,7 +3591,7 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     initEAttribute(getGeneralComp_Operator(), this.getGeneralCompKind(), "operator", null, 1, 1, GeneralComp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(valueCompEClass, ValueComp.class, "ValueComp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getValueComp_Operator(), this.getValueCompKind(), "operator", null, 1, 1, ValueComp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getValueComp_Operator(), this.getGeneralCompKind(), "operator", null, 1, 1, ValueComp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(nodeCompEClass, NodeComp.class, "NodeComp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getNodeComp_Operator(), this.getNodeCompKind(), "operator", null, 1, 1, NodeComp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3655,10 +3675,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     initEAttribute(getQName_LocalPart(), ecorePackage.getEString(), "localPart", null, 1, 1, QName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
-    initEEnum(pathSeparatorKindEEnum, PathSeparatorKind.class, "PathSeparatorKind");
-    addEEnumLiteral(pathSeparatorKindEEnum, PathSeparatorKind.SINGLE);
-    addEEnumLiteral(pathSeparatorKindEEnum, PathSeparatorKind.MULTIPLE);
-
     initEEnum(forwardAxisKindEEnum, ForwardAxisKind.class, "ForwardAxisKind");
     addEEnumLiteral(forwardAxisKindEEnum, ForwardAxisKind.CHILD);
     addEEnumLiteral(forwardAxisKindEEnum, ForwardAxisKind.DESCENDANT);
@@ -3709,14 +3725,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     addEEnumLiteral(generalCompKindEEnum, GeneralCompKind.LE);
     addEEnumLiteral(generalCompKindEEnum, GeneralCompKind.GT);
     addEEnumLiteral(generalCompKindEEnum, GeneralCompKind.GE);
-
-    initEEnum(valueCompKindEEnum, ValueCompKind.class, "ValueCompKind");
-    addEEnumLiteral(valueCompKindEEnum, ValueCompKind.EQ);
-    addEEnumLiteral(valueCompKindEEnum, ValueCompKind.NE);
-    addEEnumLiteral(valueCompKindEEnum, ValueCompKind.LT);
-    addEEnumLiteral(valueCompKindEEnum, ValueCompKind.LE);
-    addEEnumLiteral(valueCompKindEEnum, ValueCompKind.GT);
-    addEEnumLiteral(valueCompKindEEnum, ValueCompKind.GE);
 
     initEEnum(nodeCompKindEEnum, NodeCompKind.class, "NodeCompKind");
     addEEnumLiteral(nodeCompKindEEnum, NodeCompKind.IS);

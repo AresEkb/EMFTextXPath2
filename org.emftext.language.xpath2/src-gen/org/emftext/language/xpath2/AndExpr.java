@@ -32,7 +32,7 @@ public interface AndExpr extends OrExprChild {
 	 * <!-- end-user-doc -->
    * @return the value of the '<em>Operand</em>' containment reference list.
    * @see org.emftext.language.xpath2.Xpath2Package#getAndExpr_Operand()
-   * @model containment="true" lower="2"
+   * @model containment="true" required="true"
    * @generated
    */
 	EList<AndExprChild> getOperand();

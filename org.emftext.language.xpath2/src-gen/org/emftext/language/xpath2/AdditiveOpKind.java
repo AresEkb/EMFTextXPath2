@@ -36,7 +36,7 @@ public enum AdditiveOpKind implements Enumerator {
    * @generated
    * @ordered
    */
-	SUBTRACTION(0, "subtraction", "subtraction");
+	SUBTRACTION(1, "subtraction", "subtraction");
 
 	/**
    * The '<em><b>Addition</b></em>' literal value.
@@ -66,7 +66,7 @@ public enum AdditiveOpKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int SUBTRACTION_VALUE = 0;
+	public static final int SUBTRACTION_VALUE = 1;
 
 	/**
    * An array of all the '<em><b>Additive Op Kind</b></em>' enumerators.
@@ -135,6 +135,7 @@ public enum AdditiveOpKind implements Enumerator {
     switch (value)
     {
       case ADDITION_VALUE: return ADDITION;
+      case SUBTRACTION_VALUE: return SUBTRACTION;
     }
     return null;
   }

@@ -527,26 +527,49 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case Xpath2Package.PATH_SEPARATOR:
+      case Xpath2Package.SINGLE_PATH_EXPR:
       {
-        PathSeparator pathSeparator = (PathSeparator)theEObject;
-        T result = casePathSeparator(pathSeparator);
+        SinglePathExpr singlePathExpr = (SinglePathExpr)theEObject;
+        T result = caseSinglePathExpr(singlePathExpr);
+        if (result == null) result = casePathExpr(singlePathExpr);
+        if (result == null) result = caseValueExpr(singlePathExpr);
+        if (result == null) result = caseUnaryExprChild(singlePathExpr);
+        if (result == null) result = caseCastExprChild(singlePathExpr);
+        if (result == null) result = caseCastableExprChild(singlePathExpr);
+        if (result == null) result = caseTreatExprChild(singlePathExpr);
+        if (result == null) result = caseInstanceofExprChild(singlePathExpr);
+        if (result == null) result = caseIntersectExceptExprChild(singlePathExpr);
+        if (result == null) result = caseUnionExprChild(singlePathExpr);
+        if (result == null) result = caseMultiplicativeExprChild(singlePathExpr);
+        if (result == null) result = caseAdditiveExprChild(singlePathExpr);
+        if (result == null) result = caseRangeExprChild(singlePathExpr);
+        if (result == null) result = caseComparisonExprChild(singlePathExpr);
+        if (result == null) result = caseAndExprChild(singlePathExpr);
+        if (result == null) result = caseOrExprChild(singlePathExpr);
+        if (result == null) result = caseExprSingle(singlePathExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case Xpath2Package.SINGLE_PATH_SEPARATOR:
+      case Xpath2Package.DOUBLE_PATH_EXPR:
       {
-        SinglePathSeparator singlePathSeparator = (SinglePathSeparator)theEObject;
-        T result = caseSinglePathSeparator(singlePathSeparator);
-        if (result == null) result = casePathSeparator(singlePathSeparator);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case Xpath2Package.DOUBLE_PATH_SEPARATOR:
-      {
-        DoublePathSeparator doublePathSeparator = (DoublePathSeparator)theEObject;
-        T result = caseDoublePathSeparator(doublePathSeparator);
-        if (result == null) result = casePathSeparator(doublePathSeparator);
+        DoublePathExpr doublePathExpr = (DoublePathExpr)theEObject;
+        T result = caseDoublePathExpr(doublePathExpr);
+        if (result == null) result = casePathExpr(doublePathExpr);
+        if (result == null) result = caseValueExpr(doublePathExpr);
+        if (result == null) result = caseUnaryExprChild(doublePathExpr);
+        if (result == null) result = caseCastExprChild(doublePathExpr);
+        if (result == null) result = caseCastableExprChild(doublePathExpr);
+        if (result == null) result = caseTreatExprChild(doublePathExpr);
+        if (result == null) result = caseInstanceofExprChild(doublePathExpr);
+        if (result == null) result = caseIntersectExceptExprChild(doublePathExpr);
+        if (result == null) result = caseUnionExprChild(doublePathExpr);
+        if (result == null) result = caseMultiplicativeExprChild(doublePathExpr);
+        if (result == null) result = caseAdditiveExprChild(doublePathExpr);
+        if (result == null) result = caseRangeExprChild(doublePathExpr);
+        if (result == null) result = caseComparisonExprChild(doublePathExpr);
+        if (result == null) result = caseAndExprChild(doublePathExpr);
+        if (result == null) result = caseOrExprChild(doublePathExpr);
+        if (result == null) result = caseExprSingle(doublePathExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -554,6 +577,22 @@ public class Xpath2Switch<T> extends Switch<T> {
       {
         RelativePathExpr relativePathExpr = (RelativePathExpr)theEObject;
         T result = caseRelativePathExpr(relativePathExpr);
+        if (result == null) result = casePathExpr(relativePathExpr);
+        if (result == null) result = caseValueExpr(relativePathExpr);
+        if (result == null) result = caseUnaryExprChild(relativePathExpr);
+        if (result == null) result = caseCastExprChild(relativePathExpr);
+        if (result == null) result = caseCastableExprChild(relativePathExpr);
+        if (result == null) result = caseTreatExprChild(relativePathExpr);
+        if (result == null) result = caseInstanceofExprChild(relativePathExpr);
+        if (result == null) result = caseIntersectExceptExprChild(relativePathExpr);
+        if (result == null) result = caseUnionExprChild(relativePathExpr);
+        if (result == null) result = caseMultiplicativeExprChild(relativePathExpr);
+        if (result == null) result = caseAdditiveExprChild(relativePathExpr);
+        if (result == null) result = caseRangeExprChild(relativePathExpr);
+        if (result == null) result = caseComparisonExprChild(relativePathExpr);
+        if (result == null) result = caseAndExprChild(relativePathExpr);
+        if (result == null) result = caseOrExprChild(relativePathExpr);
+        if (result == null) result = caseExprSingle(relativePathExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -561,6 +600,29 @@ public class Xpath2Switch<T> extends Switch<T> {
       {
         StepExpr stepExpr = (StepExpr)theEObject;
         T result = caseStepExpr(stepExpr);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case Xpath2Package.TAIL_PATH_EXPR:
+      {
+        TailPathExpr tailPathExpr = (TailPathExpr)theEObject;
+        T result = caseTailPathExpr(tailPathExpr);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case Xpath2Package.SINGLE_TAIL_PATH_EXPR:
+      {
+        SingleTailPathExpr singleTailPathExpr = (SingleTailPathExpr)theEObject;
+        T result = caseSingleTailPathExpr(singleTailPathExpr);
+        if (result == null) result = caseTailPathExpr(singleTailPathExpr);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case Xpath2Package.DOUBLE_TAIL_PATH_EXPR:
+      {
+        DoubleTailPathExpr doubleTailPathExpr = (DoubleTailPathExpr)theEObject;
+        T result = caseDoubleTailPathExpr(doubleTailPathExpr);
+        if (result == null) result = caseTailPathExpr(doubleTailPathExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1609,47 +1671,32 @@ public class Xpath2Switch<T> extends Switch<T> {
   }
 
 	/**
-   * Returns the result of interpreting the object as an instance of '<em>Path Separator</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Single Path Expr</em>'.
    * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Path Separator</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Single Path Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-	public T casePathSeparator(PathSeparator object) {
+	public T caseSinglePathExpr(SinglePathExpr object) {
     return null;
   }
 
 	/**
-   * Returns the result of interpreting the object as an instance of '<em>Single Path Separator</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Double Path Expr</em>'.
    * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Single Path Separator</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Double Path Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-	public T caseSinglePathSeparator(SinglePathSeparator object) {
-    return null;
-  }
-
-	/**
-   * Returns the result of interpreting the object as an instance of '<em>Double Path Separator</em>'.
-   * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Double Path Separator</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-	public T caseDoublePathSeparator(DoublePathSeparator object) {
+	public T caseDoublePathExpr(DoublePathExpr object) {
     return null;
   }
 
@@ -1680,6 +1727,51 @@ public class Xpath2Switch<T> extends Switch<T> {
    * @generated
    */
 	public T caseStepExpr(StepExpr object) {
+    return null;
+  }
+
+	/**
+   * Returns the result of interpreting the object as an instance of '<em>Tail Path Expr</em>'.
+   * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Tail Path Expr</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+	public T caseTailPathExpr(TailPathExpr object) {
+    return null;
+  }
+
+	/**
+   * Returns the result of interpreting the object as an instance of '<em>Single Tail Path Expr</em>'.
+   * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Single Tail Path Expr</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+	public T caseSingleTailPathExpr(SingleTailPathExpr object) {
+    return null;
+  }
+
+	/**
+   * Returns the result of interpreting the object as an instance of '<em>Double Tail Path Expr</em>'.
+   * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Double Tail Path Expr</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+	public T caseDoubleTailPathExpr(DoubleTailPathExpr object) {
     return null;
   }
 

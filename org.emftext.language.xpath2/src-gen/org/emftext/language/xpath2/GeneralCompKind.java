@@ -36,7 +36,7 @@ public enum GeneralCompKind implements Enumerator {
    * @generated
    * @ordered
    */
-	NE(0, "ne", "ne"),
+	NE(1, "ne", "ne"),
 
 	/**
    * The '<em><b>Lt</b></em>' literal object.
@@ -46,7 +46,7 @@ public enum GeneralCompKind implements Enumerator {
    * @generated
    * @ordered
    */
-	LT(0, "lt", "lt"),
+	LT(2, "lt", "lt"),
 
 	/**
    * The '<em><b>Le</b></em>' literal object.
@@ -56,7 +56,7 @@ public enum GeneralCompKind implements Enumerator {
    * @generated
    * @ordered
    */
-	LE(0, "le", "le"),
+	LE(3, "le", "le"),
 
 	/**
    * The '<em><b>Gt</b></em>' literal object.
@@ -66,7 +66,7 @@ public enum GeneralCompKind implements Enumerator {
    * @generated
    * @ordered
    */
-	GT(0, "gt", "gt"),
+	GT(4, "gt", "gt"),
 
 	/**
    * The '<em><b>Ge</b></em>' literal object.
@@ -76,7 +76,7 @@ public enum GeneralCompKind implements Enumerator {
    * @generated
    * @ordered
    */
-	GE(0, "ge", "ge");
+	GE(5, "ge", "ge");
 
 	/**
    * The '<em><b>Eq</b></em>' literal value.
@@ -106,7 +106,7 @@ public enum GeneralCompKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int NE_VALUE = 0;
+	public static final int NE_VALUE = 1;
 
 	/**
    * The '<em><b>Lt</b></em>' literal value.
@@ -121,7 +121,7 @@ public enum GeneralCompKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int LT_VALUE = 0;
+	public static final int LT_VALUE = 2;
 
 	/**
    * The '<em><b>Le</b></em>' literal value.
@@ -136,7 +136,7 @@ public enum GeneralCompKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int LE_VALUE = 0;
+	public static final int LE_VALUE = 3;
 
 	/**
    * The '<em><b>Gt</b></em>' literal value.
@@ -151,7 +151,7 @@ public enum GeneralCompKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int GT_VALUE = 0;
+	public static final int GT_VALUE = 4;
 
 	/**
    * The '<em><b>Ge</b></em>' literal value.
@@ -166,7 +166,7 @@ public enum GeneralCompKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int GE_VALUE = 0;
+	public static final int GE_VALUE = 5;
 
 	/**
    * An array of all the '<em><b>General Comp Kind</b></em>' enumerators.
@@ -239,6 +239,11 @@ public enum GeneralCompKind implements Enumerator {
     switch (value)
     {
       case EQ_VALUE: return EQ;
+      case NE_VALUE: return NE;
+      case LT_VALUE: return LT;
+      case LE_VALUE: return LE;
+      case GT_VALUE: return GT;
+      case GE_VALUE: return GE;
     }
     return null;
   }

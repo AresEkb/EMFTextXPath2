@@ -36,7 +36,7 @@ public enum NodeCompKind implements Enumerator {
    * @generated
    * @ordered
    */
-	PRECEDES(0, "precedes", "precedes"),
+	PRECEDES(1, "precedes", "precedes"),
 
 	/**
    * The '<em><b>Follows</b></em>' literal object.
@@ -46,7 +46,7 @@ public enum NodeCompKind implements Enumerator {
    * @generated
    * @ordered
    */
-	FOLLOWS(0, "follows", "follows");
+	FOLLOWS(2, "follows", "follows");
 
 	/**
    * The '<em><b>Is</b></em>' literal value.
@@ -76,7 +76,7 @@ public enum NodeCompKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int PRECEDES_VALUE = 0;
+	public static final int PRECEDES_VALUE = 1;
 
 	/**
    * The '<em><b>Follows</b></em>' literal value.
@@ -91,7 +91,7 @@ public enum NodeCompKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int FOLLOWS_VALUE = 0;
+	public static final int FOLLOWS_VALUE = 2;
 
 	/**
    * An array of all the '<em><b>Node Comp Kind</b></em>' enumerators.
@@ -161,6 +161,8 @@ public enum NodeCompKind implements Enumerator {
     switch (value)
     {
       case IS_VALUE: return IS;
+      case PRECEDES_VALUE: return PRECEDES;
+      case FOLLOWS_VALUE: return FOLLOWS;
     }
     return null;
   }

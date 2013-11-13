@@ -36,7 +36,7 @@ public enum UnionOp implements Enumerator {
    * @generated
    * @ordered
    */
-	VERTICAL_BAR(0, "vertical_bar", "vertical_bar");
+	VERTICAL_BAR(1, "vertical_bar", "vertical_bar");
 
 	/**
    * The '<em><b>Union</b></em>' literal value.
@@ -66,7 +66,7 @@ public enum UnionOp implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int VERTICAL_BAR_VALUE = 0;
+	public static final int VERTICAL_BAR_VALUE = 1;
 
 	/**
    * An array of all the '<em><b>Union Op</b></em>' enumerators.
@@ -135,6 +135,7 @@ public enum UnionOp implements Enumerator {
     switch (value)
     {
       case UNION_VALUE: return UNION;
+      case VERTICAL_BAR_VALUE: return VERTICAL_BAR;
     }
     return null;
   }

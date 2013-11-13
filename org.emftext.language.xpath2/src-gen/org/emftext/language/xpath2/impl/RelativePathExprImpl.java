@@ -4,6 +4,7 @@ package org.emftext.language.xpath2.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -11,14 +12,14 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.emftext.language.xpath2.PathSeparator;
 import org.emftext.language.xpath2.RelativePathExpr;
 import org.emftext.language.xpath2.StepExpr;
+import org.emftext.language.xpath2.TailPathExpr;
 import org.emftext.language.xpath2.Xpath2Package;
 
 /**
@@ -28,33 +29,33 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.emftext.language.xpath2.impl.RelativePathExprImpl#getStep <em>Step</em>}</li>
- *   <li>{@link org.emftext.language.xpath2.impl.RelativePathExprImpl#getSeparator <em>Separator</em>}</li>
+ *   <li>{@link org.emftext.language.xpath2.impl.RelativePathExprImpl#getHead <em>Head</em>}</li>
+ *   <li>{@link org.emftext.language.xpath2.impl.RelativePathExprImpl#getTail <em>Tail</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class RelativePathExprImpl extends EObjectImpl implements RelativePathExpr {
+public class RelativePathExprImpl extends PathExprImpl implements RelativePathExpr {
 	/**
-   * The cached value of the '{@link #getStep() <em>Step</em>}' containment reference list.
+   * The cached value of the '{@link #getHead() <em>Head</em>}' containment reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see #getStep()
+   * @see #getHead()
    * @generated
    * @ordered
    */
-	protected EList<StepExpr> step;
+	protected StepExpr head;
 
 	/**
-   * The cached value of the '{@link #getSeparator() <em>Separator</em>}' containment reference list.
+   * The cached value of the '{@link #getTail() <em>Tail</em>}' containment reference list.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see #getSeparator()
+   * @see #getTail()
    * @generated
    * @ordered
    */
-	protected EList<PathSeparator> separator;
+	protected EList<TailPathExpr> tail;
 
 	/**
    * <!-- begin-user-doc -->
@@ -80,12 +81,8 @@ public class RelativePathExprImpl extends EObjectImpl implements RelativePathExp
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EList<StepExpr> getStep() {
-    if (step == null)
-    {
-      step = new EObjectContainmentEList<StepExpr>(StepExpr.class, this, Xpath2Package.RELATIVE_PATH_EXPR__STEP);
-    }
-    return step;
+	public StepExpr getHead() {
+    return head;
   }
 
 	/**
@@ -93,12 +90,48 @@ public class RelativePathExprImpl extends EObjectImpl implements RelativePathExp
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EList<PathSeparator> getSeparator() {
-    if (separator == null)
+	public NotificationChain basicSetHead(StepExpr newHead, NotificationChain msgs) {
+    StepExpr oldHead = head;
+    head = newHead;
+    if (eNotificationRequired())
     {
-      separator = new EObjectContainmentEList<PathSeparator>(PathSeparator.class, this, Xpath2Package.RELATIVE_PATH_EXPR__SEPARATOR);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.RELATIVE_PATH_EXPR__HEAD, oldHead, newHead);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return separator;
+    return msgs;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public void setHead(StepExpr newHead) {
+    if (newHead != head)
+    {
+      NotificationChain msgs = null;
+      if (head != null)
+        msgs = ((InternalEObject)head).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.RELATIVE_PATH_EXPR__HEAD, null, msgs);
+      if (newHead != null)
+        msgs = ((InternalEObject)newHead).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.RELATIVE_PATH_EXPR__HEAD, null, msgs);
+      msgs = basicSetHead(newHead, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.RELATIVE_PATH_EXPR__HEAD, newHead, newHead));
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public EList<TailPathExpr> getTail() {
+    if (tail == null)
+    {
+      tail = new EObjectContainmentEList<TailPathExpr>(TailPathExpr.class, this, Xpath2Package.RELATIVE_PATH_EXPR__TAIL);
+    }
+    return tail;
   }
 
 	/**
@@ -110,10 +143,10 @@ public class RelativePathExprImpl extends EObjectImpl implements RelativePathExp
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
-      case Xpath2Package.RELATIVE_PATH_EXPR__STEP:
-        return ((InternalEList<?>)getStep()).basicRemove(otherEnd, msgs);
-      case Xpath2Package.RELATIVE_PATH_EXPR__SEPARATOR:
-        return ((InternalEList<?>)getSeparator()).basicRemove(otherEnd, msgs);
+      case Xpath2Package.RELATIVE_PATH_EXPR__HEAD:
+        return basicSetHead(null, msgs);
+      case Xpath2Package.RELATIVE_PATH_EXPR__TAIL:
+        return ((InternalEList<?>)getTail()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -127,10 +160,10 @@ public class RelativePathExprImpl extends EObjectImpl implements RelativePathExp
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
-      case Xpath2Package.RELATIVE_PATH_EXPR__STEP:
-        return getStep();
-      case Xpath2Package.RELATIVE_PATH_EXPR__SEPARATOR:
-        return getSeparator();
+      case Xpath2Package.RELATIVE_PATH_EXPR__HEAD:
+        return getHead();
+      case Xpath2Package.RELATIVE_PATH_EXPR__TAIL:
+        return getTail();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -145,13 +178,12 @@ public class RelativePathExprImpl extends EObjectImpl implements RelativePathExp
 	public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
-      case Xpath2Package.RELATIVE_PATH_EXPR__STEP:
-        getStep().clear();
-        getStep().addAll((Collection<? extends StepExpr>)newValue);
+      case Xpath2Package.RELATIVE_PATH_EXPR__HEAD:
+        setHead((StepExpr)newValue);
         return;
-      case Xpath2Package.RELATIVE_PATH_EXPR__SEPARATOR:
-        getSeparator().clear();
-        getSeparator().addAll((Collection<? extends PathSeparator>)newValue);
+      case Xpath2Package.RELATIVE_PATH_EXPR__TAIL:
+        getTail().clear();
+        getTail().addAll((Collection<? extends TailPathExpr>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -166,11 +198,11 @@ public class RelativePathExprImpl extends EObjectImpl implements RelativePathExp
 	public void eUnset(int featureID) {
     switch (featureID)
     {
-      case Xpath2Package.RELATIVE_PATH_EXPR__STEP:
-        getStep().clear();
+      case Xpath2Package.RELATIVE_PATH_EXPR__HEAD:
+        setHead((StepExpr)null);
         return;
-      case Xpath2Package.RELATIVE_PATH_EXPR__SEPARATOR:
-        getSeparator().clear();
+      case Xpath2Package.RELATIVE_PATH_EXPR__TAIL:
+        getTail().clear();
         return;
     }
     super.eUnset(featureID);
@@ -185,10 +217,10 @@ public class RelativePathExprImpl extends EObjectImpl implements RelativePathExp
 	public boolean eIsSet(int featureID) {
     switch (featureID)
     {
-      case Xpath2Package.RELATIVE_PATH_EXPR__STEP:
-        return step != null && !step.isEmpty();
-      case Xpath2Package.RELATIVE_PATH_EXPR__SEPARATOR:
-        return separator != null && !separator.isEmpty();
+      case Xpath2Package.RELATIVE_PATH_EXPR__HEAD:
+        return head != null;
+      case Xpath2Package.RELATIVE_PATH_EXPR__TAIL:
+        return tail != null && !tail.isEmpty();
     }
     return super.eIsSet(featureID);
   }

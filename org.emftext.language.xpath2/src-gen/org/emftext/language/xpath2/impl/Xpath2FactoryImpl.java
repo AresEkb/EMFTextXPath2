@@ -80,10 +80,11 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
       case Xpath2Package.CASTABLE_EXPR: return createCastableExpr();
       case Xpath2Package.CAST_EXPR: return createCastExpr();
       case Xpath2Package.UNARY_EXPR: return createUnaryExpr();
-      case Xpath2Package.PATH_EXPR: return createPathExpr();
-      case Xpath2Package.SINGLE_PATH_SEPARATOR: return createSinglePathSeparator();
-      case Xpath2Package.DOUBLE_PATH_SEPARATOR: return createDoublePathSeparator();
+      case Xpath2Package.SINGLE_PATH_EXPR: return createSinglePathExpr();
+      case Xpath2Package.DOUBLE_PATH_EXPR: return createDoublePathExpr();
       case Xpath2Package.RELATIVE_PATH_EXPR: return createRelativePathExpr();
+      case Xpath2Package.SINGLE_TAIL_PATH_EXPR: return createSingleTailPathExpr();
+      case Xpath2Package.DOUBLE_TAIL_PATH_EXPR: return createDoubleTailPathExpr();
       case Xpath2Package.FILTER_EXPR: return createFilterExpr();
       case Xpath2Package.AXIS_STEP: return createAxisStep();
       case Xpath2Package.GENERAL_FORWARD_STEP: return createGeneralForwardStep();
@@ -148,8 +149,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	public Object createFromString(EDataType eDataType, String initialValue) {
     switch (eDataType.getClassifierID())
     {
-      case Xpath2Package.PATH_SEPARATOR_KIND:
-        return createPathSeparatorKindFromString(eDataType, initialValue);
       case Xpath2Package.FORWARD_AXIS_KIND:
         return createForwardAxisKindFromString(eDataType, initialValue);
       case Xpath2Package.REVERSE_AXIS_KIND:
@@ -168,8 +167,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
         return createUnaryOpFromString(eDataType, initialValue);
       case Xpath2Package.GENERAL_COMP_KIND:
         return createGeneralCompKindFromString(eDataType, initialValue);
-      case Xpath2Package.VALUE_COMP_KIND:
-        return createValueCompKindFromString(eDataType, initialValue);
       case Xpath2Package.NODE_COMP_KIND:
         return createNodeCompKindFromString(eDataType, initialValue);
       case Xpath2Package.OCCURRENCE_INDICATOR_KIND:
@@ -188,8 +185,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	public String convertToString(EDataType eDataType, Object instanceValue) {
     switch (eDataType.getClassifierID())
     {
-      case Xpath2Package.PATH_SEPARATOR_KIND:
-        return convertPathSeparatorKindToString(eDataType, instanceValue);
       case Xpath2Package.FORWARD_AXIS_KIND:
         return convertForwardAxisKindToString(eDataType, instanceValue);
       case Xpath2Package.REVERSE_AXIS_KIND:
@@ -208,8 +203,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
         return convertUnaryOpToString(eDataType, instanceValue);
       case Xpath2Package.GENERAL_COMP_KIND:
         return convertGeneralCompKindToString(eDataType, instanceValue);
-      case Xpath2Package.VALUE_COMP_KIND:
-        return convertValueCompKindToString(eDataType, instanceValue);
       case Xpath2Package.NODE_COMP_KIND:
         return convertNodeCompKindToString(eDataType, instanceValue);
       case Xpath2Package.OCCURRENCE_INDICATOR_KIND:
@@ -414,9 +407,9 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public PathExpr createPathExpr() {
-    PathExprImpl pathExpr = new PathExprImpl();
-    return pathExpr;
+	public SinglePathExpr createSinglePathExpr() {
+    SinglePathExprImpl singlePathExpr = new SinglePathExprImpl();
+    return singlePathExpr;
   }
 
 	/**
@@ -424,19 +417,9 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public SinglePathSeparator createSinglePathSeparator() {
-    SinglePathSeparatorImpl singlePathSeparator = new SinglePathSeparatorImpl();
-    return singlePathSeparator;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public DoublePathSeparator createDoublePathSeparator() {
-    DoublePathSeparatorImpl doublePathSeparator = new DoublePathSeparatorImpl();
-    return doublePathSeparator;
+	public DoublePathExpr createDoublePathExpr() {
+    DoublePathExprImpl doublePathExpr = new DoublePathExprImpl();
+    return doublePathExpr;
   }
 
 	/**
@@ -447,6 +430,26 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	public RelativePathExpr createRelativePathExpr() {
     RelativePathExprImpl relativePathExpr = new RelativePathExprImpl();
     return relativePathExpr;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public SingleTailPathExpr createSingleTailPathExpr() {
+    SingleTailPathExprImpl singleTailPathExpr = new SingleTailPathExprImpl();
+    return singleTailPathExpr;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public DoubleTailPathExpr createDoubleTailPathExpr() {
+    DoubleTailPathExprImpl doubleTailPathExpr = new DoubleTailPathExprImpl();
+    return doubleTailPathExpr;
   }
 
 	/**
@@ -954,26 +957,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public PathSeparatorKind createPathSeparatorKindFromString(EDataType eDataType, String initialValue) {
-    PathSeparatorKind result = PathSeparatorKind.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public String convertPathSeparatorKindToString(EDataType eDataType, Object instanceValue) {
-    return instanceValue == null ? null : instanceValue.toString();
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
 	public ForwardAxisKind createForwardAxisKindFromString(EDataType eDataType, String initialValue) {
     ForwardAxisKind result = ForwardAxisKind.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -1146,26 +1129,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
    * @generated
    */
 	public String convertGeneralCompKindToString(EDataType eDataType, Object instanceValue) {
-    return instanceValue == null ? null : instanceValue.toString();
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public ValueCompKind createValueCompKindFromString(EDataType eDataType, String initialValue) {
-    ValueCompKind result = ValueCompKind.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public String convertValueCompKindToString(EDataType eDataType, Object instanceValue) {
     return instanceValue == null ? null : instanceValue.toString();
   }
 

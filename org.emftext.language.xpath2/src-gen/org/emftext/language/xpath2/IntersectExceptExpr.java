@@ -33,7 +33,7 @@ public interface IntersectExceptExpr extends UnionExprChild {
 	 * <!-- end-user-doc -->
    * @return the value of the '<em>Operand</em>' containment reference list.
    * @see org.emftext.language.xpath2.Xpath2Package#getIntersectExceptExpr_Operand()
-   * @model containment="true" lower="2"
+   * @model containment="true" required="true"
    * @generated
    */
 	EList<IntersectExceptExprChild> getOperand();
@@ -51,7 +51,7 @@ public interface IntersectExceptExpr extends UnionExprChild {
    * @return the value of the '<em>Operator</em>' attribute list.
    * @see org.emftext.language.xpath2.IntersectExceptOpKind
    * @see org.emftext.language.xpath2.Xpath2Package#getIntersectExceptExpr_Operator()
-   * @model required="true"
+   * @model
    * @generated
    */
 	EList<IntersectExceptOpKind> getOperator();

@@ -58,7 +58,7 @@ public interface TreatExpr extends InstanceofExprChild {
    * @return the value of the '<em>Type</em>' containment reference.
    * @see #setType(SequenceType)
    * @see org.emftext.language.xpath2.Xpath2Package#getTreatExpr_Type()
-   * @model containment="true" required="true"
+   * @model containment="true"
    * @generated
    */
 	SequenceType getType();

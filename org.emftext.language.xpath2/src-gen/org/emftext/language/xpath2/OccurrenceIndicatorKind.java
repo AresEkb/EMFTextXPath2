@@ -36,7 +36,7 @@ public enum OccurrenceIndicatorKind implements Enumerator {
    * @generated
    * @ordered
    */
-	OPTIONAL(0, "optional", "optional"),
+	OPTIONAL(1, "optional", "optional"),
 
 	/**
    * The '<em><b>Star</b></em>' literal object.
@@ -46,7 +46,7 @@ public enum OccurrenceIndicatorKind implements Enumerator {
    * @generated
    * @ordered
    */
-	STAR(0, "star", "star"),
+	STAR(2, "star", "star"),
 
 	/**
    * The '<em><b>Plus</b></em>' literal object.
@@ -56,7 +56,7 @@ public enum OccurrenceIndicatorKind implements Enumerator {
    * @generated
    * @ordered
    */
-	PLUS(0, "plus", "plus");
+	PLUS(3, "plus", "plus");
 
 	/**
    * The '<em><b>Mandatory</b></em>' literal value.
@@ -86,7 +86,7 @@ public enum OccurrenceIndicatorKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int OPTIONAL_VALUE = 0;
+	public static final int OPTIONAL_VALUE = 1;
 
 	/**
    * The '<em><b>Star</b></em>' literal value.
@@ -101,7 +101,7 @@ public enum OccurrenceIndicatorKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int STAR_VALUE = 0;
+	public static final int STAR_VALUE = 2;
 
 	/**
    * The '<em><b>Plus</b></em>' literal value.
@@ -116,7 +116,7 @@ public enum OccurrenceIndicatorKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int PLUS_VALUE = 0;
+	public static final int PLUS_VALUE = 3;
 
 	/**
    * An array of all the '<em><b>Occurrence Indicator Kind</b></em>' enumerators.
@@ -187,6 +187,9 @@ public enum OccurrenceIndicatorKind implements Enumerator {
     switch (value)
     {
       case MANDATORY_VALUE: return MANDATORY;
+      case OPTIONAL_VALUE: return OPTIONAL;
+      case STAR_VALUE: return STAR;
+      case PLUS_VALUE: return PLUS;
     }
     return null;
   }

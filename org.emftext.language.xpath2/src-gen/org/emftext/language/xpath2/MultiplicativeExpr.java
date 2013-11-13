@@ -33,7 +33,7 @@ public interface MultiplicativeExpr extends AdditiveExprChild {
 	 * <!-- end-user-doc -->
    * @return the value of the '<em>Operand</em>' containment reference list.
    * @see org.emftext.language.xpath2.Xpath2Package#getMultiplicativeExpr_Operand()
-   * @model containment="true" lower="2"
+   * @model containment="true" required="true"
    * @generated
    */
 	EList<MultiplicativeExprChild> getOperand();
@@ -51,7 +51,7 @@ public interface MultiplicativeExpr extends AdditiveExprChild {
    * @return the value of the '<em>Operator</em>' attribute list.
    * @see org.emftext.language.xpath2.MultiplicativeOpKind
    * @see org.emftext.language.xpath2.Xpath2Package#getMultiplicativeExpr_Operator()
-   * @model required="true"
+   * @model
    * @generated
    */
 	EList<MultiplicativeOpKind> getOperator();

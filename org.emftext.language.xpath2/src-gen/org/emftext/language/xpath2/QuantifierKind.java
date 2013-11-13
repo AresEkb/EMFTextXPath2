@@ -36,7 +36,7 @@ public enum QuantifierKind implements Enumerator {
    * @generated
    * @ordered
    */
-	EVERY(0, "every", "every");
+	EVERY(1, "every", "every");
 
 	/**
    * The '<em><b>Some</b></em>' literal value.
@@ -66,7 +66,7 @@ public enum QuantifierKind implements Enumerator {
    * @generated
    * @ordered
    */
-	public static final int EVERY_VALUE = 0;
+	public static final int EVERY_VALUE = 1;
 
 	/**
    * An array of all the '<em><b>Quantifier Kind</b></em>' enumerators.
@@ -135,6 +135,7 @@ public enum QuantifierKind implements Enumerator {
     switch (value)
     {
       case SOME_VALUE: return SOME;
+      case EVERY_VALUE: return EVERY;
     }
     return null;
   }

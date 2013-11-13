@@ -58,7 +58,7 @@ public interface RangeExpr extends ComparisonExprChild {
    * @return the value of the '<em>To</em>' containment reference.
    * @see #setTo(RangeExprChild)
    * @see org.emftext.language.xpath2.Xpath2Package#getRangeExpr_To()
-   * @model containment="true" required="true"
+   * @model containment="true"
    * @generated
    */
 	RangeExprChild getTo();

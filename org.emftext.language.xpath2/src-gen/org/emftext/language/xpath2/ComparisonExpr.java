@@ -59,7 +59,7 @@ public interface ComparisonExpr extends AndExprChild {
    * @return the value of the '<em>Operator</em>' containment reference.
    * @see #setOperator(Comp)
    * @see org.emftext.language.xpath2.Xpath2Package#getComparisonExpr_Operator()
-   * @model containment="true" required="true"
+   * @model containment="true"
    * @generated
    */
 	Comp getOperator();
@@ -85,7 +85,7 @@ public interface ComparisonExpr extends AndExprChild {
    * @return the value of the '<em>Right</em>' containment reference.
    * @see #setRight(ComparisonExprChild)
    * @see org.emftext.language.xpath2.Xpath2Package#getComparisonExpr_Right()
-   * @model containment="true" required="true"
+   * @model containment="true"
    * @generated
    */
 	ComparisonExprChild getRight();
