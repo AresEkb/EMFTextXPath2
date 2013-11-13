@@ -72,6 +72,7 @@ public class Xpath2Switch<T> extends Switch<T> {
       {
         Expr expr = (Expr)theEObject;
         T result = caseExpr(expr);
+        if (result == null) result = caseParenthesizedExprChild(expr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -79,6 +80,7 @@ public class Xpath2Switch<T> extends Switch<T> {
       {
         ExprSingle exprSingle = (ExprSingle)theEObject;
         T result = caseExprSingle(exprSingle);
+        if (result == null) result = caseParenthesizedExprChild(exprSingle);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -87,6 +89,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         ForExpr forExpr = (ForExpr)theEObject;
         T result = caseForExpr(forExpr);
         if (result == null) result = caseExprSingle(forExpr);
+        if (result == null) result = caseParenthesizedExprChild(forExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -95,6 +98,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         QuantifiedExpr quantifiedExpr = (QuantifiedExpr)theEObject;
         T result = caseQuantifiedExpr(quantifiedExpr);
         if (result == null) result = caseExprSingle(quantifiedExpr);
+        if (result == null) result = caseParenthesizedExprChild(quantifiedExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -103,6 +107,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         IfExpr ifExpr = (IfExpr)theEObject;
         T result = caseIfExpr(ifExpr);
         if (result == null) result = caseExprSingle(ifExpr);
+        if (result == null) result = caseParenthesizedExprChild(ifExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -113,10 +118,10 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case Xpath2Package.SIMPLE_FOR_CLAUSE_ITERATOR:
+      case Xpath2Package.ITERATOR:
       {
-        SimpleForClauseIterator simpleForClauseIterator = (SimpleForClauseIterator)theEObject;
-        T result = caseSimpleForClauseIterator(simpleForClauseIterator);
+        Iterator iterator = (Iterator)theEObject;
+        T result = caseIterator(iterator);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -125,6 +130,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         OrExpr orExpr = (OrExpr)theEObject;
         T result = caseOrExpr(orExpr);
         if (result == null) result = caseExprSingle(orExpr);
+        if (result == null) result = caseParenthesizedExprChild(orExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -133,6 +139,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         OrExprChild orExprChild = (OrExprChild)theEObject;
         T result = caseOrExprChild(orExprChild);
         if (result == null) result = caseExprSingle(orExprChild);
+        if (result == null) result = caseParenthesizedExprChild(orExprChild);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -142,6 +149,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         T result = caseAndExpr(andExpr);
         if (result == null) result = caseOrExprChild(andExpr);
         if (result == null) result = caseExprSingle(andExpr);
+        if (result == null) result = caseParenthesizedExprChild(andExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -151,6 +159,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         T result = caseAndExprChild(andExprChild);
         if (result == null) result = caseOrExprChild(andExprChild);
         if (result == null) result = caseExprSingle(andExprChild);
+        if (result == null) result = caseParenthesizedExprChild(andExprChild);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -161,6 +170,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(comparisonExpr);
         if (result == null) result = caseOrExprChild(comparisonExpr);
         if (result == null) result = caseExprSingle(comparisonExpr);
+        if (result == null) result = caseParenthesizedExprChild(comparisonExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -171,6 +181,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(comparisonExprChild);
         if (result == null) result = caseOrExprChild(comparisonExprChild);
         if (result == null) result = caseExprSingle(comparisonExprChild);
+        if (result == null) result = caseParenthesizedExprChild(comparisonExprChild);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -182,6 +193,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(rangeExpr);
         if (result == null) result = caseOrExprChild(rangeExpr);
         if (result == null) result = caseExprSingle(rangeExpr);
+        if (result == null) result = caseParenthesizedExprChild(rangeExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -193,6 +205,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(rangeExprChild);
         if (result == null) result = caseOrExprChild(rangeExprChild);
         if (result == null) result = caseExprSingle(rangeExprChild);
+        if (result == null) result = caseParenthesizedExprChild(rangeExprChild);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -205,6 +218,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(additiveExpr);
         if (result == null) result = caseOrExprChild(additiveExpr);
         if (result == null) result = caseExprSingle(additiveExpr);
+        if (result == null) result = caseParenthesizedExprChild(additiveExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -217,6 +231,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(additiveExprChild);
         if (result == null) result = caseOrExprChild(additiveExprChild);
         if (result == null) result = caseExprSingle(additiveExprChild);
+        if (result == null) result = caseParenthesizedExprChild(additiveExprChild);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -230,6 +245,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(multiplicativeExpr);
         if (result == null) result = caseOrExprChild(multiplicativeExpr);
         if (result == null) result = caseExprSingle(multiplicativeExpr);
+        if (result == null) result = caseParenthesizedExprChild(multiplicativeExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -243,6 +259,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(multiplicativeExprChild);
         if (result == null) result = caseOrExprChild(multiplicativeExprChild);
         if (result == null) result = caseExprSingle(multiplicativeExprChild);
+        if (result == null) result = caseParenthesizedExprChild(multiplicativeExprChild);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -257,6 +274,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(unionExpr);
         if (result == null) result = caseOrExprChild(unionExpr);
         if (result == null) result = caseExprSingle(unionExpr);
+        if (result == null) result = caseParenthesizedExprChild(unionExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -271,6 +289,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(unionExprChild);
         if (result == null) result = caseOrExprChild(unionExprChild);
         if (result == null) result = caseExprSingle(unionExprChild);
+        if (result == null) result = caseParenthesizedExprChild(unionExprChild);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -286,6 +305,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(intersectExceptExpr);
         if (result == null) result = caseOrExprChild(intersectExceptExpr);
         if (result == null) result = caseExprSingle(intersectExceptExpr);
+        if (result == null) result = caseParenthesizedExprChild(intersectExceptExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -301,6 +321,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(intersectExceptExprChild);
         if (result == null) result = caseOrExprChild(intersectExceptExprChild);
         if (result == null) result = caseExprSingle(intersectExceptExprChild);
+        if (result == null) result = caseParenthesizedExprChild(intersectExceptExprChild);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -317,6 +338,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(instanceofExpr);
         if (result == null) result = caseOrExprChild(instanceofExpr);
         if (result == null) result = caseExprSingle(instanceofExpr);
+        if (result == null) result = caseParenthesizedExprChild(instanceofExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -333,6 +355,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(instanceofExprChild);
         if (result == null) result = caseOrExprChild(instanceofExprChild);
         if (result == null) result = caseExprSingle(instanceofExprChild);
+        if (result == null) result = caseParenthesizedExprChild(instanceofExprChild);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -350,6 +373,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(treatExpr);
         if (result == null) result = caseOrExprChild(treatExpr);
         if (result == null) result = caseExprSingle(treatExpr);
+        if (result == null) result = caseParenthesizedExprChild(treatExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -367,6 +391,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(treatExprChild);
         if (result == null) result = caseOrExprChild(treatExprChild);
         if (result == null) result = caseExprSingle(treatExprChild);
+        if (result == null) result = caseParenthesizedExprChild(treatExprChild);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -385,6 +410,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(castableExpr);
         if (result == null) result = caseOrExprChild(castableExpr);
         if (result == null) result = caseExprSingle(castableExpr);
+        if (result == null) result = caseParenthesizedExprChild(castableExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -403,6 +429,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(castableExprChild);
         if (result == null) result = caseOrExprChild(castableExprChild);
         if (result == null) result = caseExprSingle(castableExprChild);
+        if (result == null) result = caseParenthesizedExprChild(castableExprChild);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -422,6 +449,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(castExpr);
         if (result == null) result = caseOrExprChild(castExpr);
         if (result == null) result = caseExprSingle(castExpr);
+        if (result == null) result = caseParenthesizedExprChild(castExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -441,6 +469,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(castExprChild);
         if (result == null) result = caseOrExprChild(castExprChild);
         if (result == null) result = caseExprSingle(castExprChild);
+        if (result == null) result = caseParenthesizedExprChild(castExprChild);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -461,6 +490,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(unaryExpr);
         if (result == null) result = caseOrExprChild(unaryExpr);
         if (result == null) result = caseExprSingle(unaryExpr);
+        if (result == null) result = caseParenthesizedExprChild(unaryExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -481,6 +511,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(unaryExprChild);
         if (result == null) result = caseOrExprChild(unaryExprChild);
         if (result == null) result = caseExprSingle(unaryExprChild);
+        if (result == null) result = caseParenthesizedExprChild(unaryExprChild);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -502,6 +533,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(valueExpr);
         if (result == null) result = caseOrExprChild(valueExpr);
         if (result == null) result = caseExprSingle(valueExpr);
+        if (result == null) result = caseParenthesizedExprChild(valueExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -524,6 +556,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(pathExpr);
         if (result == null) result = caseOrExprChild(pathExpr);
         if (result == null) result = caseExprSingle(pathExpr);
+        if (result == null) result = caseParenthesizedExprChild(pathExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -547,6 +580,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(singlePathExpr);
         if (result == null) result = caseOrExprChild(singlePathExpr);
         if (result == null) result = caseExprSingle(singlePathExpr);
+        if (result == null) result = caseParenthesizedExprChild(singlePathExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -570,6 +604,7 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(doublePathExpr);
         if (result == null) result = caseOrExprChild(doublePathExpr);
         if (result == null) result = caseExprSingle(doublePathExpr);
+        if (result == null) result = caseParenthesizedExprChild(doublePathExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -593,6 +628,29 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseAndExprChild(relativePathExpr);
         if (result == null) result = caseOrExprChild(relativePathExpr);
         if (result == null) result = caseExprSingle(relativePathExpr);
+        if (result == null) result = caseParenthesizedExprChild(relativePathExpr);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case Xpath2Package.RELATIVE_PATH_EXPR_CHILD:
+      {
+        RelativePathExprChild relativePathExprChild = (RelativePathExprChild)theEObject;
+        T result = caseRelativePathExprChild(relativePathExprChild);
+        if (result == null) result = caseUnaryExprChild(relativePathExprChild);
+        if (result == null) result = caseCastExprChild(relativePathExprChild);
+        if (result == null) result = caseCastableExprChild(relativePathExprChild);
+        if (result == null) result = caseTreatExprChild(relativePathExprChild);
+        if (result == null) result = caseInstanceofExprChild(relativePathExprChild);
+        if (result == null) result = caseIntersectExceptExprChild(relativePathExprChild);
+        if (result == null) result = caseUnionExprChild(relativePathExprChild);
+        if (result == null) result = caseMultiplicativeExprChild(relativePathExprChild);
+        if (result == null) result = caseAdditiveExprChild(relativePathExprChild);
+        if (result == null) result = caseRangeExprChild(relativePathExprChild);
+        if (result == null) result = caseComparisonExprChild(relativePathExprChild);
+        if (result == null) result = caseAndExprChild(relativePathExprChild);
+        if (result == null) result = caseOrExprChild(relativePathExprChild);
+        if (result == null) result = caseExprSingle(relativePathExprChild);
+        if (result == null) result = caseParenthesizedExprChild(relativePathExprChild);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -600,6 +658,93 @@ public class Xpath2Switch<T> extends Switch<T> {
       {
         StepExpr stepExpr = (StepExpr)theEObject;
         T result = caseStepExpr(stepExpr);
+        if (result == null) result = caseRelativePathExprChild(stepExpr);
+        if (result == null) result = caseUnaryExprChild(stepExpr);
+        if (result == null) result = caseCastExprChild(stepExpr);
+        if (result == null) result = caseCastableExprChild(stepExpr);
+        if (result == null) result = caseTreatExprChild(stepExpr);
+        if (result == null) result = caseInstanceofExprChild(stepExpr);
+        if (result == null) result = caseIntersectExceptExprChild(stepExpr);
+        if (result == null) result = caseUnionExprChild(stepExpr);
+        if (result == null) result = caseMultiplicativeExprChild(stepExpr);
+        if (result == null) result = caseAdditiveExprChild(stepExpr);
+        if (result == null) result = caseRangeExprChild(stepExpr);
+        if (result == null) result = caseComparisonExprChild(stepExpr);
+        if (result == null) result = caseAndExprChild(stepExpr);
+        if (result == null) result = caseOrExprChild(stepExpr);
+        if (result == null) result = caseExprSingle(stepExpr);
+        if (result == null) result = caseParenthesizedExprChild(stepExpr);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case Xpath2Package.FILTER_EXPR:
+      {
+        FilterExpr filterExpr = (FilterExpr)theEObject;
+        T result = caseFilterExpr(filterExpr);
+        if (result == null) result = caseStepExpr(filterExpr);
+        if (result == null) result = caseRelativePathExprChild(filterExpr);
+        if (result == null) result = caseUnaryExprChild(filterExpr);
+        if (result == null) result = caseCastExprChild(filterExpr);
+        if (result == null) result = caseCastableExprChild(filterExpr);
+        if (result == null) result = caseTreatExprChild(filterExpr);
+        if (result == null) result = caseInstanceofExprChild(filterExpr);
+        if (result == null) result = caseIntersectExceptExprChild(filterExpr);
+        if (result == null) result = caseUnionExprChild(filterExpr);
+        if (result == null) result = caseMultiplicativeExprChild(filterExpr);
+        if (result == null) result = caseAdditiveExprChild(filterExpr);
+        if (result == null) result = caseRangeExprChild(filterExpr);
+        if (result == null) result = caseComparisonExprChild(filterExpr);
+        if (result == null) result = caseAndExprChild(filterExpr);
+        if (result == null) result = caseOrExprChild(filterExpr);
+        if (result == null) result = caseExprSingle(filterExpr);
+        if (result == null) result = caseParenthesizedExprChild(filterExpr);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case Xpath2Package.FILTER_EXPR_CHILD:
+      {
+        FilterExprChild filterExprChild = (FilterExprChild)theEObject;
+        T result = caseFilterExprChild(filterExprChild);
+        if (result == null) result = caseRelativePathExprChild(filterExprChild);
+        if (result == null) result = caseUnaryExprChild(filterExprChild);
+        if (result == null) result = caseCastExprChild(filterExprChild);
+        if (result == null) result = caseCastableExprChild(filterExprChild);
+        if (result == null) result = caseTreatExprChild(filterExprChild);
+        if (result == null) result = caseInstanceofExprChild(filterExprChild);
+        if (result == null) result = caseIntersectExceptExprChild(filterExprChild);
+        if (result == null) result = caseUnionExprChild(filterExprChild);
+        if (result == null) result = caseMultiplicativeExprChild(filterExprChild);
+        if (result == null) result = caseAdditiveExprChild(filterExprChild);
+        if (result == null) result = caseRangeExprChild(filterExprChild);
+        if (result == null) result = caseComparisonExprChild(filterExprChild);
+        if (result == null) result = caseAndExprChild(filterExprChild);
+        if (result == null) result = caseOrExprChild(filterExprChild);
+        if (result == null) result = caseExprSingle(filterExprChild);
+        if (result == null) result = caseParenthesizedExprChild(filterExprChild);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case Xpath2Package.AXIS_STEP:
+      {
+        AxisStep axisStep = (AxisStep)theEObject;
+        T result = caseAxisStep(axisStep);
+        if (result == null) result = caseStepExpr(axisStep);
+        if (result == null) result = caseRelativePathExprChild(axisStep);
+        if (result == null) result = caseUnaryExprChild(axisStep);
+        if (result == null) result = caseCastExprChild(axisStep);
+        if (result == null) result = caseCastableExprChild(axisStep);
+        if (result == null) result = caseTreatExprChild(axisStep);
+        if (result == null) result = caseInstanceofExprChild(axisStep);
+        if (result == null) result = caseIntersectExceptExprChild(axisStep);
+        if (result == null) result = caseUnionExprChild(axisStep);
+        if (result == null) result = caseMultiplicativeExprChild(axisStep);
+        if (result == null) result = caseAdditiveExprChild(axisStep);
+        if (result == null) result = caseRangeExprChild(axisStep);
+        if (result == null) result = caseComparisonExprChild(axisStep);
+        if (result == null) result = caseAndExprChild(axisStep);
+        if (result == null) result = caseOrExprChild(axisStep);
+        if (result == null) result = caseExprSingle(axisStep);
+        if (result == null) result = caseParenthesizedExprChild(axisStep);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -623,22 +768,6 @@ public class Xpath2Switch<T> extends Switch<T> {
         DoubleTailPathExpr doubleTailPathExpr = (DoubleTailPathExpr)theEObject;
         T result = caseDoubleTailPathExpr(doubleTailPathExpr);
         if (result == null) result = caseTailPathExpr(doubleTailPathExpr);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case Xpath2Package.FILTER_EXPR:
-      {
-        FilterExpr filterExpr = (FilterExpr)theEObject;
-        T result = caseFilterExpr(filterExpr);
-        if (result == null) result = caseStepExpr(filterExpr);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case Xpath2Package.AXIS_STEP:
-      {
-        AxisStep axisStep = (AxisStep)theEObject;
-        T result = caseAxisStep(axisStep);
-        if (result == null) result = caseStepExpr(axisStep);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -797,6 +926,23 @@ public class Xpath2Switch<T> extends Switch<T> {
       {
         PrimaryExpr primaryExpr = (PrimaryExpr)theEObject;
         T result = casePrimaryExpr(primaryExpr);
+        if (result == null) result = caseFilterExprChild(primaryExpr);
+        if (result == null) result = caseRelativePathExprChild(primaryExpr);
+        if (result == null) result = caseUnaryExprChild(primaryExpr);
+        if (result == null) result = caseCastExprChild(primaryExpr);
+        if (result == null) result = caseCastableExprChild(primaryExpr);
+        if (result == null) result = caseTreatExprChild(primaryExpr);
+        if (result == null) result = caseInstanceofExprChild(primaryExpr);
+        if (result == null) result = caseIntersectExceptExprChild(primaryExpr);
+        if (result == null) result = caseUnionExprChild(primaryExpr);
+        if (result == null) result = caseMultiplicativeExprChild(primaryExpr);
+        if (result == null) result = caseAdditiveExprChild(primaryExpr);
+        if (result == null) result = caseRangeExprChild(primaryExpr);
+        if (result == null) result = caseComparisonExprChild(primaryExpr);
+        if (result == null) result = caseAndExprChild(primaryExpr);
+        if (result == null) result = caseOrExprChild(primaryExpr);
+        if (result == null) result = caseExprSingle(primaryExpr);
+        if (result == null) result = caseParenthesizedExprChild(primaryExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -805,6 +951,23 @@ public class Xpath2Switch<T> extends Switch<T> {
         Literal literal = (Literal)theEObject;
         T result = caseLiteral(literal);
         if (result == null) result = casePrimaryExpr(literal);
+        if (result == null) result = caseFilterExprChild(literal);
+        if (result == null) result = caseRelativePathExprChild(literal);
+        if (result == null) result = caseUnaryExprChild(literal);
+        if (result == null) result = caseCastExprChild(literal);
+        if (result == null) result = caseCastableExprChild(literal);
+        if (result == null) result = caseTreatExprChild(literal);
+        if (result == null) result = caseInstanceofExprChild(literal);
+        if (result == null) result = caseIntersectExceptExprChild(literal);
+        if (result == null) result = caseUnionExprChild(literal);
+        if (result == null) result = caseMultiplicativeExprChild(literal);
+        if (result == null) result = caseAdditiveExprChild(literal);
+        if (result == null) result = caseRangeExprChild(literal);
+        if (result == null) result = caseComparisonExprChild(literal);
+        if (result == null) result = caseAndExprChild(literal);
+        if (result == null) result = caseOrExprChild(literal);
+        if (result == null) result = caseExprSingle(literal);
+        if (result == null) result = caseParenthesizedExprChild(literal);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -813,6 +976,23 @@ public class Xpath2Switch<T> extends Switch<T> {
         VarRef varRef = (VarRef)theEObject;
         T result = caseVarRef(varRef);
         if (result == null) result = casePrimaryExpr(varRef);
+        if (result == null) result = caseFilterExprChild(varRef);
+        if (result == null) result = caseRelativePathExprChild(varRef);
+        if (result == null) result = caseUnaryExprChild(varRef);
+        if (result == null) result = caseCastExprChild(varRef);
+        if (result == null) result = caseCastableExprChild(varRef);
+        if (result == null) result = caseTreatExprChild(varRef);
+        if (result == null) result = caseInstanceofExprChild(varRef);
+        if (result == null) result = caseIntersectExceptExprChild(varRef);
+        if (result == null) result = caseUnionExprChild(varRef);
+        if (result == null) result = caseMultiplicativeExprChild(varRef);
+        if (result == null) result = caseAdditiveExprChild(varRef);
+        if (result == null) result = caseRangeExprChild(varRef);
+        if (result == null) result = caseComparisonExprChild(varRef);
+        if (result == null) result = caseAndExprChild(varRef);
+        if (result == null) result = caseOrExprChild(varRef);
+        if (result == null) result = caseExprSingle(varRef);
+        if (result == null) result = caseParenthesizedExprChild(varRef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -820,6 +1000,7 @@ public class Xpath2Switch<T> extends Switch<T> {
       {
         VarName varName = (VarName)theEObject;
         T result = caseVarName(varName);
+        if (result == null) result = caseQName(varName);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -828,6 +1009,30 @@ public class Xpath2Switch<T> extends Switch<T> {
         ParenthesizedExpr parenthesizedExpr = (ParenthesizedExpr)theEObject;
         T result = caseParenthesizedExpr(parenthesizedExpr);
         if (result == null) result = casePrimaryExpr(parenthesizedExpr);
+        if (result == null) result = caseFilterExprChild(parenthesizedExpr);
+        if (result == null) result = caseRelativePathExprChild(parenthesizedExpr);
+        if (result == null) result = caseUnaryExprChild(parenthesizedExpr);
+        if (result == null) result = caseCastExprChild(parenthesizedExpr);
+        if (result == null) result = caseCastableExprChild(parenthesizedExpr);
+        if (result == null) result = caseTreatExprChild(parenthesizedExpr);
+        if (result == null) result = caseInstanceofExprChild(parenthesizedExpr);
+        if (result == null) result = caseIntersectExceptExprChild(parenthesizedExpr);
+        if (result == null) result = caseUnionExprChild(parenthesizedExpr);
+        if (result == null) result = caseMultiplicativeExprChild(parenthesizedExpr);
+        if (result == null) result = caseAdditiveExprChild(parenthesizedExpr);
+        if (result == null) result = caseRangeExprChild(parenthesizedExpr);
+        if (result == null) result = caseComparisonExprChild(parenthesizedExpr);
+        if (result == null) result = caseAndExprChild(parenthesizedExpr);
+        if (result == null) result = caseOrExprChild(parenthesizedExpr);
+        if (result == null) result = caseExprSingle(parenthesizedExpr);
+        if (result == null) result = caseParenthesizedExprChild(parenthesizedExpr);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case Xpath2Package.PARENTHESIZED_EXPR_CHILD:
+      {
+        ParenthesizedExprChild parenthesizedExprChild = (ParenthesizedExprChild)theEObject;
+        T result = caseParenthesizedExprChild(parenthesizedExprChild);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -836,6 +1041,23 @@ public class Xpath2Switch<T> extends Switch<T> {
         ContextItemExpr contextItemExpr = (ContextItemExpr)theEObject;
         T result = caseContextItemExpr(contextItemExpr);
         if (result == null) result = casePrimaryExpr(contextItemExpr);
+        if (result == null) result = caseFilterExprChild(contextItemExpr);
+        if (result == null) result = caseRelativePathExprChild(contextItemExpr);
+        if (result == null) result = caseUnaryExprChild(contextItemExpr);
+        if (result == null) result = caseCastExprChild(contextItemExpr);
+        if (result == null) result = caseCastableExprChild(contextItemExpr);
+        if (result == null) result = caseTreatExprChild(contextItemExpr);
+        if (result == null) result = caseInstanceofExprChild(contextItemExpr);
+        if (result == null) result = caseIntersectExceptExprChild(contextItemExpr);
+        if (result == null) result = caseUnionExprChild(contextItemExpr);
+        if (result == null) result = caseMultiplicativeExprChild(contextItemExpr);
+        if (result == null) result = caseAdditiveExprChild(contextItemExpr);
+        if (result == null) result = caseRangeExprChild(contextItemExpr);
+        if (result == null) result = caseComparisonExprChild(contextItemExpr);
+        if (result == null) result = caseAndExprChild(contextItemExpr);
+        if (result == null) result = caseOrExprChild(contextItemExpr);
+        if (result == null) result = caseExprSingle(contextItemExpr);
+        if (result == null) result = caseParenthesizedExprChild(contextItemExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -844,6 +1066,23 @@ public class Xpath2Switch<T> extends Switch<T> {
         FunctionCall functionCall = (FunctionCall)theEObject;
         T result = caseFunctionCall(functionCall);
         if (result == null) result = casePrimaryExpr(functionCall);
+        if (result == null) result = caseFilterExprChild(functionCall);
+        if (result == null) result = caseRelativePathExprChild(functionCall);
+        if (result == null) result = caseUnaryExprChild(functionCall);
+        if (result == null) result = caseCastExprChild(functionCall);
+        if (result == null) result = caseCastableExprChild(functionCall);
+        if (result == null) result = caseTreatExprChild(functionCall);
+        if (result == null) result = caseInstanceofExprChild(functionCall);
+        if (result == null) result = caseIntersectExceptExprChild(functionCall);
+        if (result == null) result = caseUnionExprChild(functionCall);
+        if (result == null) result = caseMultiplicativeExprChild(functionCall);
+        if (result == null) result = caseAdditiveExprChild(functionCall);
+        if (result == null) result = caseRangeExprChild(functionCall);
+        if (result == null) result = caseComparisonExprChild(functionCall);
+        if (result == null) result = caseAndExprChild(functionCall);
+        if (result == null) result = caseOrExprChild(functionCall);
+        if (result == null) result = caseExprSingle(functionCall);
+        if (result == null) result = caseParenthesizedExprChild(functionCall);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -853,6 +1092,23 @@ public class Xpath2Switch<T> extends Switch<T> {
         T result = caseNumericLiteral(numericLiteral);
         if (result == null) result = caseLiteral(numericLiteral);
         if (result == null) result = casePrimaryExpr(numericLiteral);
+        if (result == null) result = caseFilterExprChild(numericLiteral);
+        if (result == null) result = caseRelativePathExprChild(numericLiteral);
+        if (result == null) result = caseUnaryExprChild(numericLiteral);
+        if (result == null) result = caseCastExprChild(numericLiteral);
+        if (result == null) result = caseCastableExprChild(numericLiteral);
+        if (result == null) result = caseTreatExprChild(numericLiteral);
+        if (result == null) result = caseInstanceofExprChild(numericLiteral);
+        if (result == null) result = caseIntersectExceptExprChild(numericLiteral);
+        if (result == null) result = caseUnionExprChild(numericLiteral);
+        if (result == null) result = caseMultiplicativeExprChild(numericLiteral);
+        if (result == null) result = caseAdditiveExprChild(numericLiteral);
+        if (result == null) result = caseRangeExprChild(numericLiteral);
+        if (result == null) result = caseComparisonExprChild(numericLiteral);
+        if (result == null) result = caseAndExprChild(numericLiteral);
+        if (result == null) result = caseOrExprChild(numericLiteral);
+        if (result == null) result = caseExprSingle(numericLiteral);
+        if (result == null) result = caseParenthesizedExprChild(numericLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -862,6 +1118,23 @@ public class Xpath2Switch<T> extends Switch<T> {
         T result = caseStringLiteral(stringLiteral);
         if (result == null) result = caseLiteral(stringLiteral);
         if (result == null) result = casePrimaryExpr(stringLiteral);
+        if (result == null) result = caseFilterExprChild(stringLiteral);
+        if (result == null) result = caseRelativePathExprChild(stringLiteral);
+        if (result == null) result = caseUnaryExprChild(stringLiteral);
+        if (result == null) result = caseCastExprChild(stringLiteral);
+        if (result == null) result = caseCastableExprChild(stringLiteral);
+        if (result == null) result = caseTreatExprChild(stringLiteral);
+        if (result == null) result = caseInstanceofExprChild(stringLiteral);
+        if (result == null) result = caseIntersectExceptExprChild(stringLiteral);
+        if (result == null) result = caseUnionExprChild(stringLiteral);
+        if (result == null) result = caseMultiplicativeExprChild(stringLiteral);
+        if (result == null) result = caseAdditiveExprChild(stringLiteral);
+        if (result == null) result = caseRangeExprChild(stringLiteral);
+        if (result == null) result = caseComparisonExprChild(stringLiteral);
+        if (result == null) result = caseAndExprChild(stringLiteral);
+        if (result == null) result = caseOrExprChild(stringLiteral);
+        if (result == null) result = caseExprSingle(stringLiteral);
+        if (result == null) result = caseParenthesizedExprChild(stringLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -872,6 +1145,23 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseNumericLiteral(integerLiteral);
         if (result == null) result = caseLiteral(integerLiteral);
         if (result == null) result = casePrimaryExpr(integerLiteral);
+        if (result == null) result = caseFilterExprChild(integerLiteral);
+        if (result == null) result = caseRelativePathExprChild(integerLiteral);
+        if (result == null) result = caseUnaryExprChild(integerLiteral);
+        if (result == null) result = caseCastExprChild(integerLiteral);
+        if (result == null) result = caseCastableExprChild(integerLiteral);
+        if (result == null) result = caseTreatExprChild(integerLiteral);
+        if (result == null) result = caseInstanceofExprChild(integerLiteral);
+        if (result == null) result = caseIntersectExceptExprChild(integerLiteral);
+        if (result == null) result = caseUnionExprChild(integerLiteral);
+        if (result == null) result = caseMultiplicativeExprChild(integerLiteral);
+        if (result == null) result = caseAdditiveExprChild(integerLiteral);
+        if (result == null) result = caseRangeExprChild(integerLiteral);
+        if (result == null) result = caseComparisonExprChild(integerLiteral);
+        if (result == null) result = caseAndExprChild(integerLiteral);
+        if (result == null) result = caseOrExprChild(integerLiteral);
+        if (result == null) result = caseExprSingle(integerLiteral);
+        if (result == null) result = caseParenthesizedExprChild(integerLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -882,6 +1172,23 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseNumericLiteral(decimalLiteral);
         if (result == null) result = caseLiteral(decimalLiteral);
         if (result == null) result = casePrimaryExpr(decimalLiteral);
+        if (result == null) result = caseFilterExprChild(decimalLiteral);
+        if (result == null) result = caseRelativePathExprChild(decimalLiteral);
+        if (result == null) result = caseUnaryExprChild(decimalLiteral);
+        if (result == null) result = caseCastExprChild(decimalLiteral);
+        if (result == null) result = caseCastableExprChild(decimalLiteral);
+        if (result == null) result = caseTreatExprChild(decimalLiteral);
+        if (result == null) result = caseInstanceofExprChild(decimalLiteral);
+        if (result == null) result = caseIntersectExceptExprChild(decimalLiteral);
+        if (result == null) result = caseUnionExprChild(decimalLiteral);
+        if (result == null) result = caseMultiplicativeExprChild(decimalLiteral);
+        if (result == null) result = caseAdditiveExprChild(decimalLiteral);
+        if (result == null) result = caseRangeExprChild(decimalLiteral);
+        if (result == null) result = caseComparisonExprChild(decimalLiteral);
+        if (result == null) result = caseAndExprChild(decimalLiteral);
+        if (result == null) result = caseOrExprChild(decimalLiteral);
+        if (result == null) result = caseExprSingle(decimalLiteral);
+        if (result == null) result = caseParenthesizedExprChild(decimalLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -892,6 +1199,23 @@ public class Xpath2Switch<T> extends Switch<T> {
         if (result == null) result = caseNumericLiteral(doubleLiteral);
         if (result == null) result = caseLiteral(doubleLiteral);
         if (result == null) result = casePrimaryExpr(doubleLiteral);
+        if (result == null) result = caseFilterExprChild(doubleLiteral);
+        if (result == null) result = caseRelativePathExprChild(doubleLiteral);
+        if (result == null) result = caseUnaryExprChild(doubleLiteral);
+        if (result == null) result = caseCastExprChild(doubleLiteral);
+        if (result == null) result = caseCastableExprChild(doubleLiteral);
+        if (result == null) result = caseTreatExprChild(doubleLiteral);
+        if (result == null) result = caseInstanceofExprChild(doubleLiteral);
+        if (result == null) result = caseIntersectExceptExprChild(doubleLiteral);
+        if (result == null) result = caseUnionExprChild(doubleLiteral);
+        if (result == null) result = caseMultiplicativeExprChild(doubleLiteral);
+        if (result == null) result = caseAdditiveExprChild(doubleLiteral);
+        if (result == null) result = caseRangeExprChild(doubleLiteral);
+        if (result == null) result = caseComparisonExprChild(doubleLiteral);
+        if (result == null) result = caseAndExprChild(doubleLiteral);
+        if (result == null) result = caseOrExprChild(doubleLiteral);
+        if (result == null) result = caseExprSingle(doubleLiteral);
+        if (result == null) result = caseParenthesizedExprChild(doubleLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1236,17 +1560,17 @@ public class Xpath2Switch<T> extends Switch<T> {
   }
 
 	/**
-   * Returns the result of interpreting the object as an instance of '<em>Simple For Clause Iterator</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Iterator</em>'.
    * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Simple For Clause Iterator</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Iterator</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-	public T caseSimpleForClauseIterator(SimpleForClauseIterator object) {
+	public T caseIterator(Iterator object) {
     return null;
   }
 
@@ -1716,6 +2040,21 @@ public class Xpath2Switch<T> extends Switch<T> {
   }
 
 	/**
+   * Returns the result of interpreting the object as an instance of '<em>Relative Path Expr Child</em>'.
+   * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Relative Path Expr Child</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+	public T caseRelativePathExprChild(RelativePathExprChild object) {
+    return null;
+  }
+
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Step Expr</em>'.
    * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1727,6 +2066,51 @@ public class Xpath2Switch<T> extends Switch<T> {
    * @generated
    */
 	public T caseStepExpr(StepExpr object) {
+    return null;
+  }
+
+	/**
+   * Returns the result of interpreting the object as an instance of '<em>Filter Expr</em>'.
+   * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Filter Expr</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+	public T caseFilterExpr(FilterExpr object) {
+    return null;
+  }
+
+	/**
+   * Returns the result of interpreting the object as an instance of '<em>Filter Expr Child</em>'.
+   * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Filter Expr Child</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+	public T caseFilterExprChild(FilterExprChild object) {
+    return null;
+  }
+
+	/**
+   * Returns the result of interpreting the object as an instance of '<em>Axis Step</em>'.
+   * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Axis Step</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+	public T caseAxisStep(AxisStep object) {
     return null;
   }
 
@@ -1772,36 +2156,6 @@ public class Xpath2Switch<T> extends Switch<T> {
    * @generated
    */
 	public T caseDoubleTailPathExpr(DoubleTailPathExpr object) {
-    return null;
-  }
-
-	/**
-   * Returns the result of interpreting the object as an instance of '<em>Filter Expr</em>'.
-   * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Filter Expr</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-	public T caseFilterExpr(FilterExpr object) {
-    return null;
-  }
-
-	/**
-   * Returns the result of interpreting the object as an instance of '<em>Axis Step</em>'.
-   * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Axis Step</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-	public T caseAxisStep(AxisStep object) {
     return null;
   }
 
@@ -2147,6 +2501,21 @@ public class Xpath2Switch<T> extends Switch<T> {
    * @generated
    */
 	public T caseParenthesizedExpr(ParenthesizedExpr object) {
+    return null;
+  }
+
+	/**
+   * Returns the result of interpreting the object as an instance of '<em>Parenthesized Expr Child</em>'.
+   * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Parenthesized Expr Child</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+	public T caseParenthesizedExprChild(ParenthesizedExprChild object) {
     return null;
   }
 

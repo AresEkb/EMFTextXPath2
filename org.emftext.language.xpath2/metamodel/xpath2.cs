@@ -5,9 +5,17 @@ START Expr
 OPTIONS {
 	reloadGeneratorModel = "true";
 	generateCodeFromGeneratorModel = "true";
+	disableTokenSorting = "true";
 }
 
 TOKENS {
+	PRIORITIZE INTEGER_LITERAL;
+	PRIORITIZE DOUBLE_LITERAL;
+	PRIORITIZE DECIMAL_LITERAL;
+	PRIORITIZE COMMENT_CONTENTS;
+	PRIORITIZE NCNAME;
+	PRIORITIZE TEXT;
+
 	DEFINE FRAGMENT DIGITS $('0'..'9')+$; 
 	DEFINE INTEGER_LITERAL DIGITS;
 	DEFINE DECIMAL_LITERAL $('.'$ + DIGITS + $)|($ + DIGITS + $'.'('0'..'9')*)$; 
@@ -20,12 +28,12 @@ TOKENS {
 	
 	DEFINE FRAGMENT NAME_START_CHAR $':'|'A'..'Z'|'_'|'a'..'z'|'\u00C0'..'\u00D6'|'\u00D8'..'\u00F6'|'\u00F8'..'\u02FF'|'\u0370'..'\u037D'|'\u037F'..'\u1FFF'|'\u200C'..'\u200D'|'\u2070'..'\u218F'|'\u2C00'..'\u2FEF'|'\u3001'..'\uD7FF'|'\uF900'..'\uFDCF'|'\uFDF0'..'\uFFFD'|'\u10000'..'\uEFFFF'$;
 	DEFINE FRAGMENT NAME_CHAR NAME_START_CHAR + $|'-'|'.'|'0'..'9'|'\u00B7'|'\u0300'..'\u036F'|'\u203F'..'\u2040'$;
-	DEFINE FRAGMENT NAME NAME_START_CHAR + $($ + NAME_CHAR + $)*$;
+	DEFINE FRAGMENT NAME $($ + NAME_START_CHAR + $)($ + NAME_CHAR + $)*$;
 	// TODO: Should be Name - (Char* ':' Char*)	/* An XML Name, minus the ":" */
 	// TODO: '\u10000'..'\uEFFFF' is not supported
 	DEFINE FRAGMENT NCNAME_START_CHAR $'A'..'Z'|'_'|'a'..'z'|'\u00C0'..'\u00D6'|'\u00D8'..'\u00F6'|'\u00F8'..'\u02FF'|'\u0370'..'\u037D'|'\u037F'..'\u1FFF'|'\u200C'..'\u200D'|'\u2070'..'\u218F'|'\u2C00'..'\u2FEF'|'\u3001'..'\uD7FF'|'\uF900'..'\uFDCF'|'\uFDF0'..'\uFFFD'$;
 	DEFINE FRAGMENT NCNAME_CHAR NCNAME_START_CHAR + $|'-'|'.'|'0'..'9'|'\u00B7'|'\u0300'..'\u036F'|'\u203F'..'\u2040'$;
-	DEFINE NCNAME NCNAME_START_CHAR + $($ + NCNAME_CHAR + $)*$;
+	DEFINE NCNAME $($ + NCNAME_START_CHAR + $)($ + NCNAME_CHAR + $)*$;
 
 	// TODO: Should be (Char+ - (Char* ('(:' | ':)') Char*))
 	DEFINE COMMENT_CONTENTS CHAR + $+$;
@@ -35,22 +43,22 @@ RULES {
 	Expr ::= ownedExprSingle ("," ownedExprSingle)*;
 	ForExpr ::= ownedSimpleForClause "return" return;
 	SimpleForClause ::= "for" iterator ("," iterator)*;
-	SimpleForClauseIterator ::= "$" varName[] "in" list;
+	Iterator ::= "$" varName "in" list;
 	QuantifiedExpr ::= quantifier[some : "some", every : "every"] iterator ("," iterator)* "satisfies" satisfies;
 	IfExpr ::= "if" "(" condition ")" "then" then "else" else;
-	OrExpr ::= operand:OrExprChild ("or" operand:OrExprChild)*;
-	AndExpr ::= operand:AndExprChild ("and" operand:AndExprChild)*;
-	ComparisonExpr ::= left:ComparisonExprChild (operator right:ComparisonExprChild)?;
-	RangeExpr ::= from:RangeExprChild ("to" to:RangeExprChild)?;
-	AdditiveExpr ::= operand:AdditiveExprChild (operator[addition : "+", subtraction : "-"] operand:AdditiveExprChild)*;
-//	MultiplicativeExpr ::= operand:MultiplicativeExprChild (operator[multiplication : "*", div : "div", idiv : "idiv", mod : "mod"] operand:MultiplicativeExprChild)*;
-//	UnionExpr ::= operand:UnionExprChild (operation[union : "union", vertical_bar : "|"] operand:UnionExprChild)*;
-//	IntersectExceptExpr ::= operand:IntersectExceptExprChild (operator[intersect : "intersect", except : "except"] operand:IntersectExceptExprChild)*;
-//	InstanceofExpr ::= operand:InstanceofExprChild ("instance" "of" type)?;
-//	TreatExpr ::= operand:TreatExprChild ("treat" "as" type)?;
-//	CastableExpr ::= operand:CastableExprChild ("castable" "as" type)?;
-//	CastExpr ::= operand:CastExprChild ("cast" "as" type)?;
-//	UnaryExpr ::= operator[plus : "+", minus : "-"]* operand:UnaryExprChild;
+	OrExpr ::= operand:AndExpr ("or" operand:AndExpr)*;
+	AndExpr ::= operand:ComparisonExpr ("and" operand:ComparisonExpr)*;
+	ComparisonExpr ::= left:RangeExpr (operator right:RangeExpr)?;
+	RangeExpr ::= from:AdditiveExpr ("to" to:AdditiveExpr)?;
+	AdditiveExpr ::= operand:MultiplicativeExpr (operator[addition : "+", subtraction : "-"] operand:MultiplicativeExpr)*;
+	MultiplicativeExpr ::= operand:UnionExpr (operator[multiplication : "*", div : "div", idiv : "idiv", mod : "mod"] operand:UnionExpr)*;
+	UnionExpr ::= operand:IntersectExceptExpr (operation[union : "union", vertical_bar : "|"] operand:IntersectExceptExpr)*;
+	IntersectExceptExpr ::= operand:InstanceofExpr (operator[intersect : "intersect", except : "except"] operand:InstanceofExpr)*;
+	InstanceofExpr ::= operand:TreatExpr ("instance" "of" type)?;
+	TreatExpr ::= operand:CastableExpr ("treat" "as" type)?;
+	CastableExpr ::= operand:CastExpr ("castable" "as" type)?;
+	CastExpr ::= operand:UnaryExpr ("cast" "as" type)?;
+	UnaryExpr ::= operator[plus : "+", minus : "-"]* operand:ValueExpr;
 	GeneralComp ::= operator[eq : "=", ne : "!=", lt : "<", le : "<=", gt : ">", ge : ">="];
 	ValueComp ::= operator[eq : "eq", ne : "ne", lt : "lt", le : "le", gt : "gt", ge : "ge"];
 	NodeComp ::= operator[is : "is", precedes : "<<", follows : ">>"];
@@ -79,8 +87,8 @@ RULES {
 	FilterExpr ::= primaryExpr predicate*;
 	Predicate ::= "[" expr "]";
 	VarRef ::= "$" varName; 
-	VarName ::= name;
-	ParenthesizedExpr ::= "(" expr? ")";
+	VarName ::= (prefix[NCNAME] ":")? localPart[NCNAME];
+	ParenthesizedExpr ::= "(" expr:Expr? ")";
 	ContextItemExpr ::= ".";
 	FunctionCall ::= name "(" (arg ("," arg)*)? ")";
 	SingleType ::= type optional["?" : ""];

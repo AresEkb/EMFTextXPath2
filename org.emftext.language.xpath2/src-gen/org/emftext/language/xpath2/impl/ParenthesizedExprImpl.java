@@ -10,8 +10,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.emftext.language.xpath2.Expr;
 import org.emftext.language.xpath2.ParenthesizedExpr;
+import org.emftext.language.xpath2.ParenthesizedExprChild;
 import org.emftext.language.xpath2.Xpath2Package;
 
 /**
@@ -36,7 +36,7 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
    * @generated
    * @ordered
    */
-	protected Expr expr;
+	protected ParenthesizedExprChild expr;
 
 	/**
    * <!-- begin-user-doc -->
@@ -62,7 +62,7 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public Expr getExpr() {
+	public ParenthesizedExprChild getExpr() {
     return expr;
   }
 
@@ -71,8 +71,8 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetExpr(Expr newExpr, NotificationChain msgs) {
-    Expr oldExpr = expr;
+	public NotificationChain basicSetExpr(ParenthesizedExprChild newExpr, NotificationChain msgs) {
+    ParenthesizedExprChild oldExpr = expr;
     expr = newExpr;
     if (eNotificationRequired())
     {
@@ -87,7 +87,7 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public void setExpr(Expr newExpr) {
+	public void setExpr(ParenthesizedExprChild newExpr) {
     if (newExpr != expr)
     {
       NotificationChain msgs = null;
@@ -142,7 +142,7 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
     switch (featureID)
     {
       case Xpath2Package.PARENTHESIZED_EXPR__EXPR:
-        setExpr((Expr)newValue);
+        setExpr((ParenthesizedExprChild)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -158,7 +158,7 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
     switch (featureID)
     {
       case Xpath2Package.PARENTHESIZED_EXPR__EXPR:
-        setExpr((Expr)null);
+        setExpr((ParenthesizedExprChild)null);
         return;
     }
     super.eUnset(featureID);

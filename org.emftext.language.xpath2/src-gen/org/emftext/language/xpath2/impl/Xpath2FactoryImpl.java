@@ -66,7 +66,7 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
       case Xpath2Package.QUANTIFIED_EXPR: return createQuantifiedExpr();
       case Xpath2Package.IF_EXPR: return createIfExpr();
       case Xpath2Package.SIMPLE_FOR_CLAUSE: return createSimpleForClause();
-      case Xpath2Package.SIMPLE_FOR_CLAUSE_ITERATOR: return createSimpleForClauseIterator();
+      case Xpath2Package.ITERATOR: return createIterator();
       case Xpath2Package.OR_EXPR: return createOrExpr();
       case Xpath2Package.AND_EXPR: return createAndExpr();
       case Xpath2Package.COMPARISON_EXPR: return createComparisonExpr();
@@ -83,10 +83,10 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
       case Xpath2Package.SINGLE_PATH_EXPR: return createSinglePathExpr();
       case Xpath2Package.DOUBLE_PATH_EXPR: return createDoublePathExpr();
       case Xpath2Package.RELATIVE_PATH_EXPR: return createRelativePathExpr();
-      case Xpath2Package.SINGLE_TAIL_PATH_EXPR: return createSingleTailPathExpr();
-      case Xpath2Package.DOUBLE_TAIL_PATH_EXPR: return createDoubleTailPathExpr();
       case Xpath2Package.FILTER_EXPR: return createFilterExpr();
       case Xpath2Package.AXIS_STEP: return createAxisStep();
+      case Xpath2Package.SINGLE_TAIL_PATH_EXPR: return createSingleTailPathExpr();
+      case Xpath2Package.DOUBLE_TAIL_PATH_EXPR: return createDoubleTailPathExpr();
       case Xpath2Package.GENERAL_FORWARD_STEP: return createGeneralForwardStep();
       case Xpath2Package.ABBREV_FORWARD_STEP: return createAbbrevForwardStep();
       case Xpath2Package.FORWARD_AXIS: return createForwardAxis();
@@ -267,9 +267,9 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public SimpleForClauseIterator createSimpleForClauseIterator() {
-    SimpleForClauseIteratorImpl simpleForClauseIterator = new SimpleForClauseIteratorImpl();
-    return simpleForClauseIterator;
+	public Iterator createIterator() {
+    IteratorImpl iterator = new IteratorImpl();
+    return iterator;
   }
 
 	/**
@@ -437,26 +437,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public SingleTailPathExpr createSingleTailPathExpr() {
-    SingleTailPathExprImpl singleTailPathExpr = new SingleTailPathExprImpl();
-    return singleTailPathExpr;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public DoubleTailPathExpr createDoubleTailPathExpr() {
-    DoubleTailPathExprImpl doubleTailPathExpr = new DoubleTailPathExprImpl();
-    return doubleTailPathExpr;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
 	public FilterExpr createFilterExpr() {
     FilterExprImpl filterExpr = new FilterExprImpl();
     return filterExpr;
@@ -470,6 +450,26 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	public AxisStep createAxisStep() {
     AxisStepImpl axisStep = new AxisStepImpl();
     return axisStep;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public SingleTailPathExpr createSingleTailPathExpr() {
+    SingleTailPathExprImpl singleTailPathExpr = new SingleTailPathExprImpl();
+    return singleTailPathExpr;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public DoubleTailPathExpr createDoubleTailPathExpr() {
+    DoubleTailPathExprImpl doubleTailPathExpr = new DoubleTailPathExprImpl();
+    return doubleTailPathExpr;
   }
 
 	/**

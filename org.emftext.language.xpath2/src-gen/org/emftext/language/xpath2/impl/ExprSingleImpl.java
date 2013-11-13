@@ -4,8 +4,6 @@ package org.emftext.language.xpath2.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.emftext.language.xpath2.ExprSingle;
 import org.emftext.language.xpath2.Xpath2Package;
 
@@ -18,7 +16,7 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public abstract class ExprSingleImpl extends EObjectImpl implements ExprSingle {
+public abstract class ExprSingleImpl extends ParenthesizedExprChildImpl implements ExprSingle {
 	/**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

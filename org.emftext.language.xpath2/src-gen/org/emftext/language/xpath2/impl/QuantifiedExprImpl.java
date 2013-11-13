@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.emftext.language.xpath2.ExprSingle;
+import org.emftext.language.xpath2.Iterator;
 import org.emftext.language.xpath2.QuantifiedExpr;
 import org.emftext.language.xpath2.QuantifierKind;
-import org.emftext.language.xpath2.SimpleForClauseIterator;
 import org.emftext.language.xpath2.Xpath2Package;
 
 /**
@@ -67,7 +67,7 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
    * @generated
    * @ordered
    */
-	protected EList<SimpleForClauseIterator> iterator;
+	protected EList<Iterator> iterator;
 
 	/**
    * The cached value of the '{@link #getSatisfies() <em>Satisfies</em>}' containment reference.
@@ -124,10 +124,10 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EList<SimpleForClauseIterator> getIterator() {
+	public EList<Iterator> getIterator() {
     if (iterator == null)
     {
-      iterator = new EObjectContainmentEList<SimpleForClauseIterator>(SimpleForClauseIterator.class, this, Xpath2Package.QUANTIFIED_EXPR__ITERATOR);
+      iterator = new EObjectContainmentEList<Iterator>(Iterator.class, this, Xpath2Package.QUANTIFIED_EXPR__ITERATOR);
     }
     return iterator;
   }
@@ -228,7 +228,7 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
         return;
       case Xpath2Package.QUANTIFIED_EXPR__ITERATOR:
         getIterator().clear();
-        getIterator().addAll((Collection<? extends SimpleForClauseIterator>)newValue);
+        getIterator().addAll((Collection<? extends Iterator>)newValue);
         return;
       case Xpath2Package.QUANTIFIED_EXPR__SATISFIES:
         setSatisfies((ExprSingle)newValue);

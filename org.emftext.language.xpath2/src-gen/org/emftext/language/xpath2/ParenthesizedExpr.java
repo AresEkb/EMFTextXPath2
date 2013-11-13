@@ -29,12 +29,12 @@ public interface ParenthesizedExpr extends PrimaryExpr {
 	 * </p>
 	 * <!-- end-user-doc -->
    * @return the value of the '<em>Expr</em>' containment reference.
-   * @see #setExpr(Expr)
+   * @see #setExpr(ParenthesizedExprChild)
    * @see org.emftext.language.xpath2.Xpath2Package#getParenthesizedExpr_Expr()
    * @model containment="true"
    * @generated
    */
-	Expr getExpr();
+	ParenthesizedExprChild getExpr();
 
 	/**
    * Sets the value of the '{@link org.emftext.language.xpath2.ParenthesizedExpr#getExpr <em>Expr</em>}' containment reference.
@@ -44,6 +44,6 @@ public interface ParenthesizedExpr extends PrimaryExpr {
    * @see #getExpr()
    * @generated
    */
-	void setExpr(Expr value);
+	void setExpr(ParenthesizedExprChild value);
 
 } // ParenthesizedExpr

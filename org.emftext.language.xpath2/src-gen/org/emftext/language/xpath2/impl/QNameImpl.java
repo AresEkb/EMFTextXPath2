@@ -55,7 +55,7 @@ public class QNameImpl extends EObjectImpl implements QName {
    * @generated
    * @ordered
    */
-	protected static final String LOCAL_PART_EDEFAULT = null;
+	protected static final String LOCAL_PART_EDEFAULT = "";
 
 	/**
    * The cached value of the '{@link #getLocalPart() <em>Local Part</em>}' attribute.

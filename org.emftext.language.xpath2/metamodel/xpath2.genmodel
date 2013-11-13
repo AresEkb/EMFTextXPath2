@@ -87,9 +87,9 @@
     <genClasses ecoreClass="xpath2.ecore#//SimpleForClause">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//SimpleForClause/iterator"/>
     </genClasses>
-    <genClasses ecoreClass="xpath2.ecore#//SimpleForClauseIterator">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//SimpleForClauseIterator/varName"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//SimpleForClauseIterator/list"/>
+    <genClasses ecoreClass="xpath2.ecore#//Iterator">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//Iterator/varName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//Iterator/list"/>
     </genClasses>
     <genClasses ecoreClass="xpath2.ecore#//OrExpr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//OrExpr/operand"/>
@@ -167,20 +167,22 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//RelativePathExpr/head"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//RelativePathExpr/tail"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//RelativePathExprChild"/>
     <genClasses image="false" ecoreClass="xpath2.ecore#//StepExpr"/>
+    <genClasses ecoreClass="xpath2.ecore#//FilterExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//FilterExpr/primaryExpr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//FilterExpr/predicate"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//FilterExprChild"/>
+    <genClasses ecoreClass="xpath2.ecore#//AxisStep">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//AxisStep/step"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//AxisStep/predicate"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="xpath2.ecore#//TailPathExpr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//TailPathExpr/stepExpression"/>
     </genClasses>
     <genClasses ecoreClass="xpath2.ecore#//SingleTailPathExpr"/>
     <genClasses ecoreClass="xpath2.ecore#//DoubleTailPathExpr"/>
-    <genClasses ecoreClass="xpath2.ecore#//FilterExpr">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//FilterExpr/primaryExpr"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//FilterExpr/predicate"/>
-    </genClasses>
-    <genClasses ecoreClass="xpath2.ecore#//AxisStep">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//AxisStep/step"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//AxisStep/predicate"/>
-    </genClasses>
     <genClasses image="false" ecoreClass="xpath2.ecore#//DirectionalStep"/>
     <genClasses ecoreClass="xpath2.ecore#//ForwardStep"/>
     <genClasses ecoreClass="xpath2.ecore#//ReverseStep"/>
@@ -227,12 +229,11 @@
     <genClasses ecoreClass="xpath2.ecore#//VarRef">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//VarRef/varName"/>
     </genClasses>
-    <genClasses ecoreClass="xpath2.ecore#//VarName">
-      <genFeatures createChild="false" ecoreFeature="ecore:EReference xpath2.ecore#//VarName/name"/>
-    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//VarName" labelFeature="#//xpath2/QName/localPart"/>
     <genClasses ecoreClass="xpath2.ecore#//ParenthesizedExpr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//ParenthesizedExpr/expr"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//ParenthesizedExprChild"/>
     <genClasses ecoreClass="xpath2.ecore#//ContextItemExpr"/>
     <genClasses ecoreClass="xpath2.ecore#//FunctionCall">
       <genFeatures createChild="false" ecoreFeature="ecore:EReference xpath2.ecore#//FunctionCall/name"/>
@@ -324,7 +325,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//Comment/text"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//Comment/comment"/>
     </genClasses>
-    <genClasses ecoreClass="xpath2.ecore#//QName">
+    <genClasses ecoreClass="xpath2.ecore#//QName" labelFeature="#//xpath2/QName/localPart">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//QName/prefix"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpath2.ecore#//QName/localPart"/>
     </genClasses>

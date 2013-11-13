@@ -11,8 +11,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -33,7 +31,7 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class ExprImpl extends EObjectImpl implements Expr {
+public class ExprImpl extends ParenthesizedExprChildImpl implements Expr {
 	/**
    * The cached value of the '{@link #getOwnedExprSingle() <em>Owned Expr Single</em>}' containment reference list.
    * <!-- begin-user-doc -->

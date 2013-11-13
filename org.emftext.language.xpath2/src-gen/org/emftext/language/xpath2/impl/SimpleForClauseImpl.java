@@ -16,8 +16,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.emftext.language.xpath2.Iterator;
 import org.emftext.language.xpath2.SimpleForClause;
-import org.emftext.language.xpath2.SimpleForClauseIterator;
 import org.emftext.language.xpath2.Xpath2Package;
 
 /**
@@ -42,7 +42,7 @@ public class SimpleForClauseImpl extends EObjectImpl implements SimpleForClause 
    * @generated
    * @ordered
    */
-	protected EList<SimpleForClauseIterator> iterator;
+	protected EList<Iterator> iterator;
 
 	/**
    * <!-- begin-user-doc -->
@@ -68,10 +68,10 @@ public class SimpleForClauseImpl extends EObjectImpl implements SimpleForClause 
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EList<SimpleForClauseIterator> getIterator() {
+	public EList<Iterator> getIterator() {
     if (iterator == null)
     {
-      iterator = new EObjectContainmentEList<SimpleForClauseIterator>(SimpleForClauseIterator.class, this, Xpath2Package.SIMPLE_FOR_CLAUSE__ITERATOR);
+      iterator = new EObjectContainmentEList<Iterator>(Iterator.class, this, Xpath2Package.SIMPLE_FOR_CLAUSE__ITERATOR);
     }
     return iterator;
   }
@@ -118,7 +118,7 @@ public class SimpleForClauseImpl extends EObjectImpl implements SimpleForClause 
     {
       case Xpath2Package.SIMPLE_FOR_CLAUSE__ITERATOR:
         getIterator().clear();
-        getIterator().addAll((Collection<? extends SimpleForClauseIterator>)newValue);
+        getIterator().addAll((Collection<? extends Iterator>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

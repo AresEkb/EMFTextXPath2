@@ -8,13 +8,23 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.emftext.language.xpath2.OrExpr;
-import org.emftext.language.xpath2.OrExprChild;
+import org.emftext.language.xpath2.Expr;
+import org.emftext.language.xpath2.ExprSingle;
+import org.emftext.language.xpath2.ParenthesizedExpr;
 import org.emftext.language.xpath2.resource.xpath2.IXpath2OptionProvider;
 import org.emftext.language.xpath2.resource.xpath2.IXpath2Options;
 import org.emftext.language.xpath2.resource.xpath2.IXpath2ResourcePostProcessor;
 import org.emftext.language.xpath2.resource.xpath2.IXpath2ResourcePostProcessorProvider;
 import org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource;
+
+/*
+	<extension point="org.emftext.language.xpath2.resource.xpath2.default_load_options">
+		<provider
+			class="org.emftext.language.xpath2.resource.xpath2.post.PostProcessor"
+			id="org.emftext.language.xpath2.resource.xpath2.post.PostProcessor"> 
+  		</provider>
+  	</extension>
+ */
 
 public class PostProcessor implements IXpath2OptionProvider,
 		IXpath2ResourcePostProcessorProvider, IXpath2ResourcePostProcessor {
@@ -62,11 +72,11 @@ public class PostProcessor implements IXpath2OptionProvider,
 	}
 
 	private static EObject getSingleContained(EObject parent) {
-		if (!(parent instanceof OrExprChild)) {
+		if (!(parent instanceof Expr || parent instanceof ExprSingle)) {
 			return null;
 		}
 
-		if (parent instanceof OrExpr) {
+		if (parent instanceof ParenthesizedExpr) {
 			return null;
 		}
 
@@ -77,7 +87,7 @@ public class PostProcessor implements IXpath2OptionProvider,
 			}
 			singleContained = contained;
 		}
-		if (!(singleContained instanceof OrExprChild)) {
+		if (!(parent instanceof Expr || parent instanceof ExprSingle)) {
 			return null;
 		}
 

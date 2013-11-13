@@ -47,6 +47,42 @@ public class Xpath2TokenStyleInformationProvider {
 		if ("to".equals(tokenName)) {
 			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}
+		if ("div".equals(tokenName)) {
+			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
+		if ("idiv".equals(tokenName)) {
+			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
+		if ("mod".equals(tokenName)) {
+			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
+		if ("union".equals(tokenName)) {
+			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
+		if ("intersect".equals(tokenName)) {
+			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
+		if ("except".equals(tokenName)) {
+			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
+		if ("instance".equals(tokenName)) {
+			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
+		if ("of".equals(tokenName)) {
+			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
+		if ("treat".equals(tokenName)) {
+			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
+		if ("as".equals(tokenName)) {
+			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
+		if ("castable".equals(tokenName)) {
+			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
+		if ("cast".equals(tokenName)) {
+			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
+		}
 		if ("eq".equals(tokenName)) {
 			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}

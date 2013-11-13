@@ -4,25 +4,27 @@ package org.emftext.language.xpath2.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.emftext.language.xpath2.PrimaryExpr;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import org.emftext.language.xpath2.ParenthesizedExprChild;
 import org.emftext.language.xpath2.Xpath2Package;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Primary Expr</b></em>'.
+ * An implementation of the model object '<em><b>Parenthesized Expr Child</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public abstract class PrimaryExprImpl extends FilterExprChildImpl implements PrimaryExpr {
+public abstract class ParenthesizedExprChildImpl extends EObjectImpl implements ParenthesizedExprChild {
 	/**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
-	protected PrimaryExprImpl() {
+	protected ParenthesizedExprChildImpl() {
     super();
   }
 
@@ -33,7 +35,7 @@ public abstract class PrimaryExprImpl extends FilterExprChildImpl implements Pri
    */
 	@Override
 	protected EClass eStaticClass() {
-    return Xpath2Package.Literals.PRIMARY_EXPR;
+    return Xpath2Package.Literals.PARENTHESIZED_EXPR_CHILD;
   }
 
-} //PrimaryExprImpl
+} //ParenthesizedExprChildImpl

@@ -67,13 +67,13 @@ public interface Xpath2Factory extends EFactory {
 	SimpleForClause createSimpleForClause();
 
 	/**
-   * Returns a new object of class '<em>Simple For Clause Iterator</em>'.
+   * Returns a new object of class '<em>Iterator</em>'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Simple For Clause Iterator</em>'.
+   * @return a new object of class '<em>Iterator</em>'.
    * @generated
    */
-	SimpleForClauseIterator createSimpleForClauseIterator();
+	Iterator createIterator();
 
 	/**
    * Returns a new object of class '<em>Or Expr</em>'.
@@ -220,24 +220,6 @@ public interface Xpath2Factory extends EFactory {
 	RelativePathExpr createRelativePathExpr();
 
 	/**
-   * Returns a new object of class '<em>Single Tail Path Expr</em>'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Single Tail Path Expr</em>'.
-   * @generated
-   */
-	SingleTailPathExpr createSingleTailPathExpr();
-
-	/**
-   * Returns a new object of class '<em>Double Tail Path Expr</em>'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Double Tail Path Expr</em>'.
-   * @generated
-   */
-	DoubleTailPathExpr createDoubleTailPathExpr();
-
-	/**
    * Returns a new object of class '<em>Filter Expr</em>'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -254,6 +236,24 @@ public interface Xpath2Factory extends EFactory {
    * @generated
    */
 	AxisStep createAxisStep();
+
+	/**
+   * Returns a new object of class '<em>Single Tail Path Expr</em>'.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @return a new object of class '<em>Single Tail Path Expr</em>'.
+   * @generated
+   */
+	SingleTailPathExpr createSingleTailPathExpr();
+
+	/**
+   * Returns a new object of class '<em>Double Tail Path Expr</em>'.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @return a new object of class '<em>Double Tail Path Expr</em>'.
+   * @generated
+   */
+	DoubleTailPathExpr createDoubleTailPathExpr();
 
 	/**
    * Returns a new object of class '<em>General Forward Step</em>'.

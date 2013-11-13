@@ -4,8 +4,6 @@ package org.emftext.language.xpath2.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.emftext.language.xpath2.StepExpr;
 import org.emftext.language.xpath2.Xpath2Package;
 
@@ -18,7 +16,7 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public abstract class StepExprImpl extends EObjectImpl implements StepExpr {
+public abstract class StepExprImpl extends RelativePathExprChildImpl implements StepExpr {
 	/**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

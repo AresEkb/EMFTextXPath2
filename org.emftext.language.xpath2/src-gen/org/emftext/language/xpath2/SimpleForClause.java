@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface SimpleForClause extends EObject {
 	/**
    * Returns the value of the '<em><b>Iterator</b></em>' containment reference list.
-   * The list contents are of type {@link org.emftext.language.xpath2.SimpleForClauseIterator}.
+   * The list contents are of type {@link org.emftext.language.xpath2.Iterator}.
    * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Iterator</em>' containment reference list isn't clear,
@@ -37,6 +37,6 @@ public interface SimpleForClause extends EObject {
    * @model containment="true" required="true"
    * @generated
    */
-	EList<SimpleForClauseIterator> getIterator();
+	EList<Iterator> getIterator();
 
 } // SimpleForClause

@@ -50,6 +50,7 @@ public interface QName extends EObject {
 
 	/**
    * Returns the value of the '<em><b>Local Part</b></em>' attribute.
+   * The default value is <code>""</code>.
    * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Local Part</em>' attribute isn't clear,
@@ -59,7 +60,7 @@ public interface QName extends EObject {
    * @return the value of the '<em>Local Part</em>' attribute.
    * @see #setLocalPart(String)
    * @see org.emftext.language.xpath2.Xpath2Package#getQName_LocalPart()
-   * @model required="true"
+   * @model default="" required="true"
    * @generated
    */
 	String getLocalPart();
