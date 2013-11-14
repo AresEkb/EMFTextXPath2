@@ -28,50 +28,50 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class VarRefImpl extends PrimaryExprImpl implements VarRef {
-	/**
+    /**
    * The cached value of the '{@link #getVarName() <em>Var Name</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getVarName()
    * @generated
    * @ordered
    */
-	protected VarName varName;
+    protected VarName varName;
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected VarRefImpl() {
+    protected VarRefImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.VAR_REF;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public VarName getVarName() {
+    public VarName getVarName() {
     return varName;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetVarName(VarName newVarName, NotificationChain msgs) {
+    public NotificationChain basicSetVarName(VarName newVarName, NotificationChain msgs) {
     VarName oldVarName = varName;
     varName = newVarName;
     if (eNotificationRequired())
@@ -82,12 +82,12 @@ public class VarRefImpl extends PrimaryExprImpl implements VarRef {
     return msgs;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public void setVarName(VarName newVarName) {
+    public void setVarName(VarName newVarName) {
     if (newVarName != varName)
     {
       NotificationChain msgs = null;
@@ -102,13 +102,13 @@ public class VarRefImpl extends PrimaryExprImpl implements VarRef {
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.VAR_REF__VAR_NAME, newVarName, newVarName));
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.VAR_REF__VAR_NAME:
@@ -117,13 +117,13 @@ public class VarRefImpl extends PrimaryExprImpl implements VarRef {
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.VAR_REF__VAR_NAME:
@@ -132,13 +132,13 @@ public class VarRefImpl extends PrimaryExprImpl implements VarRef {
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.VAR_REF__VAR_NAME:
@@ -148,13 +148,13 @@ public class VarRefImpl extends PrimaryExprImpl implements VarRef {
     super.eSet(featureID, newValue);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.VAR_REF__VAR_NAME:
@@ -164,13 +164,13 @@ public class VarRefImpl extends PrimaryExprImpl implements VarRef {
     super.eUnset(featureID);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.VAR_REF__VAR_NAME:

@@ -30,91 +30,91 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class GeneralReverseStepImpl extends ReverseStepImpl implements GeneralReverseStep {
-	/**
+    /**
    * The default value of the '{@link #getAxis() <em>Axis</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getAxis()
    * @generated
    * @ordered
    */
-	protected static final ReverseAxisKind AXIS_EDEFAULT = ReverseAxisKind.PARENT;
+    protected static final ReverseAxisKind AXIS_EDEFAULT = ReverseAxisKind.PARENT;
 
-	/**
+    /**
    * The cached value of the '{@link #getAxis() <em>Axis</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getAxis()
    * @generated
    * @ordered
    */
-	protected ReverseAxisKind axis = AXIS_EDEFAULT;
+    protected ReverseAxisKind axis = AXIS_EDEFAULT;
 
-	/**
+    /**
    * The cached value of the '{@link #getNodeTest() <em>Node Test</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getNodeTest()
    * @generated
    * @ordered
    */
-	protected NodeTest nodeTest;
+    protected NodeTest nodeTest;
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected GeneralReverseStepImpl() {
+    protected GeneralReverseStepImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.GENERAL_REVERSE_STEP;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public ReverseAxisKind getAxis() {
+    public ReverseAxisKind getAxis() {
     return axis;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public void setAxis(ReverseAxisKind newAxis) {
+    public void setAxis(ReverseAxisKind newAxis) {
     ReverseAxisKind oldAxis = axis;
     axis = newAxis == null ? AXIS_EDEFAULT : newAxis;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.GENERAL_REVERSE_STEP__AXIS, oldAxis, axis));
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public NodeTest getNodeTest() {
+    public NodeTest getNodeTest() {
     return nodeTest;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetNodeTest(NodeTest newNodeTest, NotificationChain msgs) {
+    public NotificationChain basicSetNodeTest(NodeTest newNodeTest, NotificationChain msgs) {
     NodeTest oldNodeTest = nodeTest;
     nodeTest = newNodeTest;
     if (eNotificationRequired())
@@ -125,12 +125,12 @@ public class GeneralReverseStepImpl extends ReverseStepImpl implements GeneralRe
     return msgs;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public void setNodeTest(NodeTest newNodeTest) {
+    public void setNodeTest(NodeTest newNodeTest) {
     if (newNodeTest != nodeTest)
     {
       NotificationChain msgs = null;
@@ -145,13 +145,13 @@ public class GeneralReverseStepImpl extends ReverseStepImpl implements GeneralRe
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.GENERAL_REVERSE_STEP__NODE_TEST, newNodeTest, newNodeTest));
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.GENERAL_REVERSE_STEP__NODE_TEST:
@@ -160,13 +160,13 @@ public class GeneralReverseStepImpl extends ReverseStepImpl implements GeneralRe
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.GENERAL_REVERSE_STEP__AXIS:
@@ -177,13 +177,13 @@ public class GeneralReverseStepImpl extends ReverseStepImpl implements GeneralRe
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.GENERAL_REVERSE_STEP__AXIS:
@@ -196,13 +196,13 @@ public class GeneralReverseStepImpl extends ReverseStepImpl implements GeneralRe
     super.eSet(featureID, newValue);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.GENERAL_REVERSE_STEP__AXIS:
@@ -215,13 +215,13 @@ public class GeneralReverseStepImpl extends ReverseStepImpl implements GeneralRe
     super.eUnset(featureID);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.GENERAL_REVERSE_STEP__AXIS:
@@ -232,13 +232,13 @@ public class GeneralReverseStepImpl extends ReverseStepImpl implements GeneralRe
     return super.eIsSet(featureID);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+    @Override
+    public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

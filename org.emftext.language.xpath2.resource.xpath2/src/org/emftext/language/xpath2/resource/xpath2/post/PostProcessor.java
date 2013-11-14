@@ -76,7 +76,6 @@ public class PostProcessor implements IXpath2OptionProvider,
         if (!(parent instanceof Expr || parent instanceof ExprSingle)) {
             return null;
         }
-        // TODO: The logic could be more intellectual
         if (parent instanceof ParenthesizedExpr) {
             return null;
         }
@@ -88,19 +87,14 @@ public class PostProcessor implements IXpath2OptionProvider,
             }
             singleContained = contained;
         }
-        if (!(parent instanceof Expr || parent instanceof ExprSingle)) {
-            return null;
-        }
-        
+//        if (!(parent instanceof Expr || parent instanceof ExprSingle)) {
+//            return null;
+//        }
         
         EReference feature = parent.eContainmentFeature(); 
         if (feature != null && !feature.getEType().isInstance(singleContained)) {
             return null;
         }
-
-//        if (parent instanceof PathExpr && !(singleContained instanceof SelfStepExpr)) {
-//            return null;
-//        }
 
         return singleContained;
     }

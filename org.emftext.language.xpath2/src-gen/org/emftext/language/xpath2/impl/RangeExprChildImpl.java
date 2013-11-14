@@ -17,22 +17,22 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public abstract class RangeExprChildImpl extends ComparisonExprChildImpl implements RangeExprChild {
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected RangeExprChildImpl() {
+    protected RangeExprChildImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.RANGE_EXPR_CHILD;
   }
 

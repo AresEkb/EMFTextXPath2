@@ -17,22 +17,22 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public abstract class CastableExprChildImpl extends TreatExprChildImpl implements CastableExprChild {
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected CastableExprChildImpl() {
+    protected CastableExprChildImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.CASTABLE_EXPR_CHILD;
   }
 

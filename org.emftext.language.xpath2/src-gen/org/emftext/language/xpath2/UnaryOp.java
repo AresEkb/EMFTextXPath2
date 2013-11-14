@@ -18,84 +18,84 @@ import org.eclipse.emf.common.util.Enumerator;
  * @generated
  */
 public enum UnaryOp implements Enumerator {
-	/**
+    /**
    * The '<em><b>Plus</b></em>' literal object.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #PLUS_VALUE
    * @generated
    * @ordered
    */
-	PLUS(0, "plus", "plus"),
+    PLUS(0, "plus", "plus"),
 
-	/**
+    /**
    * The '<em><b>Minus</b></em>' literal object.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #MINUS_VALUE
    * @generated
    * @ordered
    */
-	MINUS(1, "minus", "minus");
+    MINUS(1, "minus", "minus");
 
-	/**
+    /**
    * The '<em><b>Plus</b></em>' literal value.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Plus</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>Plus</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
    * @see #PLUS
    * @model name="plus"
    * @generated
    * @ordered
    */
-	public static final int PLUS_VALUE = 0;
+    public static final int PLUS_VALUE = 0;
 
-	/**
+    /**
    * The '<em><b>Minus</b></em>' literal value.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Minus</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>Minus</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
    * @see #MINUS
    * @model name="minus"
    * @generated
    * @ordered
    */
-	public static final int MINUS_VALUE = 1;
+    public static final int MINUS_VALUE = 1;
 
-	/**
+    /**
    * An array of all the '<em><b>Unary Op</b></em>' enumerators.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	private static final UnaryOp[] VALUES_ARRAY =
-		new UnaryOp[]
+    private static final UnaryOp[] VALUES_ARRAY =
+        new UnaryOp[]
     {
       PLUS,
       MINUS,
     };
 
-	/**
+    /**
    * A public read-only list of all the '<em><b>Unary Op</b></em>' enumerators.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public static final List<UnaryOp> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+    public static final List<UnaryOp> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
-	/**
+    /**
    * Returns the '<em><b>Unary Op</b></em>' literal with the specified literal value.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public static UnaryOp get(String literal) {
+    public static UnaryOp get(String literal) {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
       UnaryOp result = VALUES_ARRAY[i];
@@ -107,13 +107,13 @@ public enum UnaryOp implements Enumerator {
     return null;
   }
 
-	/**
+    /**
    * Returns the '<em><b>Unary Op</b></em>' literal with the specified name.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public static UnaryOp getByName(String name) {
+    public static UnaryOp getByName(String name) {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
       UnaryOp result = VALUES_ARRAY[i];
@@ -125,13 +125,13 @@ public enum UnaryOp implements Enumerator {
     return null;
   }
 
-	/**
+    /**
    * Returns the '<em><b>Unary Op</b></em>' literal with the specified integer value.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public static UnaryOp get(int value) {
+    public static UnaryOp get(int value) {
     switch (value)
     {
       case PLUS_VALUE: return PLUS;
@@ -140,75 +140,75 @@ public enum UnaryOp implements Enumerator {
     return null;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	private final int value;
+    private final int value;
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	private final String name;
+    private final String name;
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	private final String literal;
+    private final String literal;
 
-	/**
+    /**
    * Only this class can construct instances.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	private UnaryOp(int value, String name, String literal) {
+    private UnaryOp(int value, String name, String literal) {
     this.value = value;
     this.name = name;
     this.literal = literal;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public int getValue() {
+    public int getValue() {
     return value;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public String getName() {
+    public String getName() {
     return name;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public String getLiteral() {
+    public String getLiteral() {
     return literal;
   }
 
-	/**
+    /**
    * Returns the literal value of the enumerator, which is its string representation.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+    @Override
+    public String toString() {
     return literal;
   }
-	
+    
 } //UnaryOp

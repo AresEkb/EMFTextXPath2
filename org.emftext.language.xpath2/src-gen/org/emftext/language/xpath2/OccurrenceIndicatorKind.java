@@ -18,114 +18,114 @@ import org.eclipse.emf.common.util.Enumerator;
  * @generated
  */
 public enum OccurrenceIndicatorKind implements Enumerator {
-	/**
+    /**
    * The '<em><b>Mandatory</b></em>' literal object.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #MANDATORY_VALUE
    * @generated
    * @ordered
    */
-	MANDATORY(0, "mandatory", "mandatory"),
+    MANDATORY(0, "mandatory", "mandatory"),
 
-	/**
+    /**
    * The '<em><b>Optional</b></em>' literal object.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #OPTIONAL_VALUE
    * @generated
    * @ordered
    */
-	OPTIONAL(1, "optional", "optional"),
+    OPTIONAL(1, "optional", "optional"),
 
-	/**
+    /**
    * The '<em><b>Star</b></em>' literal object.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #STAR_VALUE
    * @generated
    * @ordered
    */
-	STAR(2, "star", "star"),
+    STAR(2, "star", "star"),
 
-	/**
+    /**
    * The '<em><b>Plus</b></em>' literal object.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #PLUS_VALUE
    * @generated
    * @ordered
    */
-	PLUS(3, "plus", "plus");
+    PLUS(3, "plus", "plus");
 
-	/**
+    /**
    * The '<em><b>Mandatory</b></em>' literal value.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Mandatory</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>Mandatory</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
    * @see #MANDATORY
    * @model name="mandatory"
    * @generated
    * @ordered
    */
-	public static final int MANDATORY_VALUE = 0;
+    public static final int MANDATORY_VALUE = 0;
 
-	/**
+    /**
    * The '<em><b>Optional</b></em>' literal value.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Optional</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>Optional</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
    * @see #OPTIONAL
    * @model name="optional"
    * @generated
    * @ordered
    */
-	public static final int OPTIONAL_VALUE = 1;
+    public static final int OPTIONAL_VALUE = 1;
 
-	/**
+    /**
    * The '<em><b>Star</b></em>' literal value.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Star</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>Star</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
    * @see #STAR
    * @model name="star"
    * @generated
    * @ordered
    */
-	public static final int STAR_VALUE = 2;
+    public static final int STAR_VALUE = 2;
 
-	/**
+    /**
    * The '<em><b>Plus</b></em>' literal value.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Plus</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>Plus</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
    * @see #PLUS
    * @model name="plus"
    * @generated
    * @ordered
    */
-	public static final int PLUS_VALUE = 3;
+    public static final int PLUS_VALUE = 3;
 
-	/**
+    /**
    * An array of all the '<em><b>Occurrence Indicator Kind</b></em>' enumerators.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	private static final OccurrenceIndicatorKind[] VALUES_ARRAY =
-		new OccurrenceIndicatorKind[]
+    private static final OccurrenceIndicatorKind[] VALUES_ARRAY =
+        new OccurrenceIndicatorKind[]
     {
       MANDATORY,
       OPTIONAL,
@@ -133,21 +133,21 @@ public enum OccurrenceIndicatorKind implements Enumerator {
       PLUS,
     };
 
-	/**
+    /**
    * A public read-only list of all the '<em><b>Occurrence Indicator Kind</b></em>' enumerators.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public static final List<OccurrenceIndicatorKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+    public static final List<OccurrenceIndicatorKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
-	/**
+    /**
    * Returns the '<em><b>Occurrence Indicator Kind</b></em>' literal with the specified literal value.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public static OccurrenceIndicatorKind get(String literal) {
+    public static OccurrenceIndicatorKind get(String literal) {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
       OccurrenceIndicatorKind result = VALUES_ARRAY[i];
@@ -159,13 +159,13 @@ public enum OccurrenceIndicatorKind implements Enumerator {
     return null;
   }
 
-	/**
+    /**
    * Returns the '<em><b>Occurrence Indicator Kind</b></em>' literal with the specified name.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public static OccurrenceIndicatorKind getByName(String name) {
+    public static OccurrenceIndicatorKind getByName(String name) {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
       OccurrenceIndicatorKind result = VALUES_ARRAY[i];
@@ -177,13 +177,13 @@ public enum OccurrenceIndicatorKind implements Enumerator {
     return null;
   }
 
-	/**
+    /**
    * Returns the '<em><b>Occurrence Indicator Kind</b></em>' literal with the specified integer value.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public static OccurrenceIndicatorKind get(int value) {
+    public static OccurrenceIndicatorKind get(int value) {
     switch (value)
     {
       case MANDATORY_VALUE: return MANDATORY;
@@ -194,75 +194,75 @@ public enum OccurrenceIndicatorKind implements Enumerator {
     return null;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	private final int value;
+    private final int value;
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	private final String name;
+    private final String name;
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	private final String literal;
+    private final String literal;
 
-	/**
+    /**
    * Only this class can construct instances.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	private OccurrenceIndicatorKind(int value, String name, String literal) {
+    private OccurrenceIndicatorKind(int value, String name, String literal) {
     this.value = value;
     this.name = name;
     this.literal = literal;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public int getValue() {
+    public int getValue() {
     return value;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public String getName() {
+    public String getName() {
     return name;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public String getLiteral() {
+    public String getLiteral() {
     return literal;
   }
 
-	/**
+    /**
    * Returns the literal value of the enumerator, which is its string representation.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+    @Override
+    public String toString() {
     return literal;
   }
-	
+    
 } //OccurrenceIndicatorKind

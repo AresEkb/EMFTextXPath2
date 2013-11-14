@@ -154,7 +154,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" upperBound="-1"
         eType="#//Predicate" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FilterExprChild" abstract="true" eSuperTypes="#//SelfStepExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="AxisStep" eSuperTypes="#//StepExpr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1" eType="#//DirectionalStep"
         containment="true"/>

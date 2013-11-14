@@ -35,51 +35,51 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class IntersectExceptExprImpl extends UnionExprChildImpl implements IntersectExceptExpr {
-	/**
+    /**
    * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getOperand()
    * @generated
    * @ordered
    */
-	protected EList<IntersectExceptExprChild> operand;
+    protected EList<IntersectExceptExprChild> operand;
 
-	/**
+    /**
    * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getOperator()
    * @generated
    * @ordered
    */
-	protected EList<IntersectExceptOpKind> operator;
+    protected EList<IntersectExceptOpKind> operator;
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected IntersectExceptExprImpl() {
+    protected IntersectExceptExprImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.INTERSECT_EXCEPT_EXPR;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public EList<IntersectExceptExprChild> getOperand() {
+    public EList<IntersectExceptExprChild> getOperand() {
     if (operand == null)
     {
       operand = new EObjectContainmentEList<IntersectExceptExprChild>(IntersectExceptExprChild.class, this, Xpath2Package.INTERSECT_EXCEPT_EXPR__OPERAND);
@@ -87,12 +87,12 @@ public class IntersectExceptExprImpl extends UnionExprChildImpl implements Inter
     return operand;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public EList<IntersectExceptOpKind> getOperator() {
+    public EList<IntersectExceptOpKind> getOperator() {
     if (operator == null)
     {
       operator = new EDataTypeUniqueEList<IntersectExceptOpKind>(IntersectExceptOpKind.class, this, Xpath2Package.INTERSECT_EXCEPT_EXPR__OPERATOR);
@@ -100,13 +100,13 @@ public class IntersectExceptExprImpl extends UnionExprChildImpl implements Inter
     return operator;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.INTERSECT_EXCEPT_EXPR__OPERAND:
@@ -115,13 +115,13 @@ public class IntersectExceptExprImpl extends UnionExprChildImpl implements Inter
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.INTERSECT_EXCEPT_EXPR__OPERAND:
@@ -132,14 +132,14 @@ public class IntersectExceptExprImpl extends UnionExprChildImpl implements Inter
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.INTERSECT_EXCEPT_EXPR__OPERAND:
@@ -154,13 +154,13 @@ public class IntersectExceptExprImpl extends UnionExprChildImpl implements Inter
     super.eSet(featureID, newValue);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.INTERSECT_EXCEPT_EXPR__OPERAND:
@@ -173,13 +173,13 @@ public class IntersectExceptExprImpl extends UnionExprChildImpl implements Inter
     super.eUnset(featureID);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.INTERSECT_EXCEPT_EXPR__OPERAND:
@@ -190,13 +190,13 @@ public class IntersectExceptExprImpl extends UnionExprChildImpl implements Inter
     return super.eIsSet(featureID);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+    @Override
+    public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

@@ -5,6 +5,7 @@ package org.emftext.language.xpath2.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import org.emftext.language.xpath2.PathExprChild;
 import org.emftext.language.xpath2.Xpath2Package;
 
@@ -18,22 +19,22 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public abstract class PathExprChildImpl extends EObjectImpl implements PathExprChild {
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected PathExprChildImpl() {
+    protected PathExprChildImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.PATH_EXPR_CHILD;
   }
 

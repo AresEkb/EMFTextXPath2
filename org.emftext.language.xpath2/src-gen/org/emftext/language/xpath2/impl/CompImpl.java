@@ -19,22 +19,22 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public abstract class CompImpl extends EObjectImpl implements Comp {
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected CompImpl() {
+    protected CompImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.COMP;
   }
 

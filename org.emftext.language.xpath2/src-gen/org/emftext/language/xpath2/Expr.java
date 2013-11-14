@@ -21,20 +21,20 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Expr extends ParenthesizedExprChild {
-	/**
+    /**
    * Returns the value of the '<em><b>Expr</b></em>' containment reference list.
    * The list contents are of type {@link org.emftext.language.xpath2.ExprSingle}.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Expr</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Expr</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
    * @return the value of the '<em>Expr</em>' containment reference list.
    * @see org.emftext.language.xpath2.Xpath2Package#getExpr_Expr()
    * @model containment="true" required="true"
    * @generated
    */
-	EList<ExprSingle> getExpr();
+    EList<ExprSingle> getExpr();
 
 } // Expr

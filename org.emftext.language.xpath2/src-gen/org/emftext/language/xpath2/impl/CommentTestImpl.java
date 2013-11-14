@@ -17,22 +17,22 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class CommentTestImpl extends KindTestImpl implements CommentTest {
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected CommentTestImpl() {
+    protected CommentTestImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.COMMENT_TEST;
   }
 

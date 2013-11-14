@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.SelfStepExpr;
 import org.emftext.language.xpath2.SelfStepExprChild;
-import org.emftext.language.xpath2.StepExpr;
 import org.emftext.language.xpath2.Xpath2Package;
 
 /**
@@ -29,45 +28,45 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr {
-	/**
+    /**
    * The cached value of the '{@link #getStep() <em>Step</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getStep()
    * @generated
    * @ordered
    */
-	protected SelfStepExprChild step;
+    protected SelfStepExprChild step;
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected SelfStepExprImpl() {
+    protected SelfStepExprImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.SELF_STEP_EXPR;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public SelfStepExprChild getStep() {
+    public SelfStepExprChild getStep() {
     return step;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @generated
@@ -105,11 +104,11 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
 
     /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.SELF_STEP_EXPR__STEP:
@@ -118,13 +117,13 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.SELF_STEP_EXPR__STEP:
@@ -133,13 +132,13 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.SELF_STEP_EXPR__STEP:
@@ -149,13 +148,13 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
     super.eSet(featureID, newValue);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.SELF_STEP_EXPR__STEP:
@@ -165,13 +164,13 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
     super.eUnset(featureID);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.SELF_STEP_EXPR__STEP:

@@ -29,50 +29,50 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class AtomicTypeImpl extends EObjectImpl implements AtomicType {
-	/**
+    /**
    * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getName()
    * @generated
    * @ordered
    */
-	protected QName name;
+    protected QName name;
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected AtomicTypeImpl() {
+    protected AtomicTypeImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.ATOMIC_TYPE;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public QName getName() {
+    public QName getName() {
     return name;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetName(QName newName, NotificationChain msgs) {
+    public NotificationChain basicSetName(QName newName, NotificationChain msgs) {
     QName oldName = name;
     name = newName;
     if (eNotificationRequired())
@@ -83,12 +83,12 @@ public class AtomicTypeImpl extends EObjectImpl implements AtomicType {
     return msgs;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public void setName(QName newName) {
+    public void setName(QName newName) {
     if (newName != name)
     {
       NotificationChain msgs = null;
@@ -103,13 +103,13 @@ public class AtomicTypeImpl extends EObjectImpl implements AtomicType {
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ATOMIC_TYPE__NAME, newName, newName));
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.ATOMIC_TYPE__NAME:
@@ -118,13 +118,13 @@ public class AtomicTypeImpl extends EObjectImpl implements AtomicType {
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.ATOMIC_TYPE__NAME:
@@ -133,13 +133,13 @@ public class AtomicTypeImpl extends EObjectImpl implements AtomicType {
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.ATOMIC_TYPE__NAME:
@@ -149,13 +149,13 @@ public class AtomicTypeImpl extends EObjectImpl implements AtomicType {
     super.eSet(featureID, newValue);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.ATOMIC_TYPE__NAME:
@@ -165,13 +165,13 @@ public class AtomicTypeImpl extends EObjectImpl implements AtomicType {
     super.eUnset(featureID);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.ATOMIC_TYPE__NAME:

@@ -29,70 +29,70 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class WildcardElementTestImpl extends ElementTestImpl implements WildcardElementTest {
-	/**
+    /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-	protected QName type;
+    protected QName type;
 
-	/**
+    /**
    * The default value of the '{@link #isTypeIsOptional() <em>Type Is Optional</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #isTypeIsOptional()
    * @generated
    * @ordered
    */
-	protected static final boolean TYPE_IS_OPTIONAL_EDEFAULT = false;
+    protected static final boolean TYPE_IS_OPTIONAL_EDEFAULT = false;
 
-	/**
+    /**
    * The cached value of the '{@link #isTypeIsOptional() <em>Type Is Optional</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #isTypeIsOptional()
    * @generated
    * @ordered
    */
-	protected boolean typeIsOptional = TYPE_IS_OPTIONAL_EDEFAULT;
+    protected boolean typeIsOptional = TYPE_IS_OPTIONAL_EDEFAULT;
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected WildcardElementTestImpl() {
+    protected WildcardElementTestImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.WILDCARD_ELEMENT_TEST;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public QName getType() {
+    public QName getType() {
     return type;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetType(QName newType, NotificationChain msgs) {
+    public NotificationChain basicSetType(QName newType, NotificationChain msgs) {
     QName oldType = type;
     type = newType;
     if (eNotificationRequired())
@@ -103,12 +103,12 @@ public class WildcardElementTestImpl extends ElementTestImpl implements Wildcard
     return msgs;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public void setType(QName newType) {
+    public void setType(QName newType) {
     if (newType != type)
     {
       NotificationChain msgs = null;
@@ -123,34 +123,34 @@ public class WildcardElementTestImpl extends ElementTestImpl implements Wildcard
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.WILDCARD_ELEMENT_TEST__TYPE, newType, newType));
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public boolean isTypeIsOptional() {
+    public boolean isTypeIsOptional() {
     return typeIsOptional;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public void setTypeIsOptional(boolean newTypeIsOptional) {
+    public void setTypeIsOptional(boolean newTypeIsOptional) {
     boolean oldTypeIsOptional = typeIsOptional;
     typeIsOptional = newTypeIsOptional;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.WILDCARD_ELEMENT_TEST__TYPE_IS_OPTIONAL, oldTypeIsOptional, typeIsOptional));
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.WILDCARD_ELEMENT_TEST__TYPE:
@@ -159,13 +159,13 @@ public class WildcardElementTestImpl extends ElementTestImpl implements Wildcard
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.WILDCARD_ELEMENT_TEST__TYPE:
@@ -176,13 +176,13 @@ public class WildcardElementTestImpl extends ElementTestImpl implements Wildcard
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.WILDCARD_ELEMENT_TEST__TYPE:
@@ -195,13 +195,13 @@ public class WildcardElementTestImpl extends ElementTestImpl implements Wildcard
     super.eSet(featureID, newValue);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.WILDCARD_ELEMENT_TEST__TYPE:
@@ -214,13 +214,13 @@ public class WildcardElementTestImpl extends ElementTestImpl implements Wildcard
     super.eUnset(featureID);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.WILDCARD_ELEMENT_TEST__TYPE:
@@ -231,13 +231,13 @@ public class WildcardElementTestImpl extends ElementTestImpl implements Wildcard
     return super.eIsSet(featureID);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+    @Override
+    public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

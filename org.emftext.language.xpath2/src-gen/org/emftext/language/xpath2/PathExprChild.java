@@ -4,7 +4,6 @@ package org.emftext.language.xpath2;
 
 import org.eclipse.emf.ecore.EObject;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Path Expr Child</b></em>'.

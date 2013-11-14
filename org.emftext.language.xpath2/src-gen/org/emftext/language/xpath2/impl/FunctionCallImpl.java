@@ -37,60 +37,60 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall {
-	/**
+    /**
    * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getName()
    * @generated
    * @ordered
    */
-	protected QName name;
+    protected QName name;
 
-	/**
+    /**
    * The cached value of the '{@link #getArg() <em>Arg</em>}' containment reference list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getArg()
    * @generated
    * @ordered
    */
-	protected EList<ExprSingle> arg;
+    protected EList<ExprSingle> arg;
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected FunctionCallImpl() {
+    protected FunctionCallImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.FUNCTION_CALL;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public QName getName() {
+    public QName getName() {
     return name;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetName(QName newName, NotificationChain msgs) {
+    public NotificationChain basicSetName(QName newName, NotificationChain msgs) {
     QName oldName = name;
     name = newName;
     if (eNotificationRequired())
@@ -101,12 +101,12 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall {
     return msgs;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public void setName(QName newName) {
+    public void setName(QName newName) {
     if (newName != name)
     {
       NotificationChain msgs = null;
@@ -121,12 +121,12 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall {
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.FUNCTION_CALL__NAME, newName, newName));
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public EList<ExprSingle> getArg() {
+    public EList<ExprSingle> getArg() {
     if (arg == null)
     {
       arg = new EObjectContainmentEList<ExprSingle>(ExprSingle.class, this, Xpath2Package.FUNCTION_CALL__ARG);
@@ -134,13 +134,13 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall {
     return arg;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.FUNCTION_CALL__NAME:
@@ -151,13 +151,13 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall {
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.FUNCTION_CALL__NAME:
@@ -168,14 +168,14 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall {
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.FUNCTION_CALL__NAME:
@@ -189,13 +189,13 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall {
     super.eSet(featureID, newValue);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.FUNCTION_CALL__NAME:
@@ -208,13 +208,13 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall {
     super.eUnset(featureID);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.FUNCTION_CALL__NAME:

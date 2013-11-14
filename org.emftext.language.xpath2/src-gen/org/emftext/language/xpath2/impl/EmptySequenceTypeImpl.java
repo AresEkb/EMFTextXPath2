@@ -17,22 +17,22 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class EmptySequenceTypeImpl extends SequenceTypeImpl implements EmptySequenceType {
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected EmptySequenceTypeImpl() {
+    protected EmptySequenceTypeImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.EMPTY_SEQUENCE_TYPE;
   }
 

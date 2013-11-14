@@ -29,50 +29,50 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class PredicateImpl extends EObjectImpl implements Predicate {
-	/**
+    /**
    * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getExpr()
    * @generated
    * @ordered
    */
-	protected Expr expr;
+    protected Expr expr;
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected PredicateImpl() {
+    protected PredicateImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.PREDICATE;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public Expr getExpr() {
+    public Expr getExpr() {
     return expr;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetExpr(Expr newExpr, NotificationChain msgs) {
+    public NotificationChain basicSetExpr(Expr newExpr, NotificationChain msgs) {
     Expr oldExpr = expr;
     expr = newExpr;
     if (eNotificationRequired())
@@ -83,12 +83,12 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
     return msgs;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public void setExpr(Expr newExpr) {
+    public void setExpr(Expr newExpr) {
     if (newExpr != expr)
     {
       NotificationChain msgs = null;
@@ -103,13 +103,13 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.PREDICATE__EXPR, newExpr, newExpr));
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.PREDICATE__EXPR:
@@ -118,13 +118,13 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.PREDICATE__EXPR:
@@ -133,13 +133,13 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.PREDICATE__EXPR:
@@ -149,13 +149,13 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
     super.eSet(featureID, newValue);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.PREDICATE__EXPR:
@@ -165,13 +165,13 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
     super.eUnset(featureID);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.PREDICATE__EXPR:

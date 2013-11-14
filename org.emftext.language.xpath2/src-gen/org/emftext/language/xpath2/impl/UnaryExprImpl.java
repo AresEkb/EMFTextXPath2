@@ -36,60 +36,60 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
-	/**
+    /**
    * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getOperand()
    * @generated
    * @ordered
    */
-	protected UnaryExprChild operand;
+    protected UnaryExprChild operand;
 
-	/**
+    /**
    * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getOperator()
    * @generated
    * @ordered
    */
-	protected EList<UnaryOp> operator;
+    protected EList<UnaryOp> operator;
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected UnaryExprImpl() {
+    protected UnaryExprImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.UNARY_EXPR;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public UnaryExprChild getOperand() {
+    public UnaryExprChild getOperand() {
     return operand;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetOperand(UnaryExprChild newOperand, NotificationChain msgs) {
+    public NotificationChain basicSetOperand(UnaryExprChild newOperand, NotificationChain msgs) {
     UnaryExprChild oldOperand = operand;
     operand = newOperand;
     if (eNotificationRequired())
@@ -100,12 +100,12 @@ public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
     return msgs;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public void setOperand(UnaryExprChild newOperand) {
+    public void setOperand(UnaryExprChild newOperand) {
     if (newOperand != operand)
     {
       NotificationChain msgs = null;
@@ -120,12 +120,12 @@ public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.UNARY_EXPR__OPERAND, newOperand, newOperand));
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public EList<UnaryOp> getOperator() {
+    public EList<UnaryOp> getOperator() {
     if (operator == null)
     {
       operator = new EDataTypeUniqueEList<UnaryOp>(UnaryOp.class, this, Xpath2Package.UNARY_EXPR__OPERATOR);
@@ -133,13 +133,13 @@ public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
     return operator;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.UNARY_EXPR__OPERAND:
@@ -148,13 +148,13 @@ public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.UNARY_EXPR__OPERAND:
@@ -165,14 +165,14 @@ public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.UNARY_EXPR__OPERAND:
@@ -186,13 +186,13 @@ public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
     super.eSet(featureID, newValue);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.UNARY_EXPR__OPERAND:
@@ -205,13 +205,13 @@ public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
     super.eUnset(featureID);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.UNARY_EXPR__OPERAND:
@@ -222,13 +222,13 @@ public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
     return super.eIsSet(featureID);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+    @Override
+    public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

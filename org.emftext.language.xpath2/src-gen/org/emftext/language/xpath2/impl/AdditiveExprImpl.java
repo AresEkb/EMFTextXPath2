@@ -35,51 +35,51 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr {
-	/**
+    /**
    * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getOperand()
    * @generated
    * @ordered
    */
-	protected EList<AdditiveExprChild> operand;
+    protected EList<AdditiveExprChild> operand;
 
-	/**
+    /**
    * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getOperator()
    * @generated
    * @ordered
    */
-	protected EList<AdditiveOpKind> operator;
+    protected EList<AdditiveOpKind> operator;
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected AdditiveExprImpl() {
+    protected AdditiveExprImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.ADDITIVE_EXPR;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public EList<AdditiveExprChild> getOperand() {
+    public EList<AdditiveExprChild> getOperand() {
     if (operand == null)
     {
       operand = new EObjectContainmentEList<AdditiveExprChild>(AdditiveExprChild.class, this, Xpath2Package.ADDITIVE_EXPR__OPERAND);
@@ -87,12 +87,12 @@ public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr
     return operand;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public EList<AdditiveOpKind> getOperator() {
+    public EList<AdditiveOpKind> getOperator() {
     if (operator == null)
     {
       operator = new EDataTypeUniqueEList<AdditiveOpKind>(AdditiveOpKind.class, this, Xpath2Package.ADDITIVE_EXPR__OPERATOR);
@@ -100,13 +100,13 @@ public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr
     return operator;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.ADDITIVE_EXPR__OPERAND:
@@ -115,13 +115,13 @@ public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.ADDITIVE_EXPR__OPERAND:
@@ -132,14 +132,14 @@ public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.ADDITIVE_EXPR__OPERAND:
@@ -154,13 +154,13 @@ public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr
     super.eSet(featureID, newValue);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.ADDITIVE_EXPR__OPERAND:
@@ -173,13 +173,13 @@ public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr
     super.eUnset(featureID);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.ADDITIVE_EXPR__OPERAND:
@@ -190,13 +190,13 @@ public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr
     return super.eIsSet(featureID);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+    @Override
+    public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

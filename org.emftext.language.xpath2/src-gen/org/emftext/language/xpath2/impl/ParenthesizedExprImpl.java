@@ -28,50 +28,50 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class ParenthesizedExprImpl extends PrimaryExprImpl implements ParenthesizedExpr {
-	/**
+    /**
    * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getExpr()
    * @generated
    * @ordered
    */
-	protected ParenthesizedExprChild expr;
+    protected ParenthesizedExprChild expr;
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected ParenthesizedExprImpl() {
+    protected ParenthesizedExprImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.PARENTHESIZED_EXPR;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public ParenthesizedExprChild getExpr() {
+    public ParenthesizedExprChild getExpr() {
     return expr;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetExpr(ParenthesizedExprChild newExpr, NotificationChain msgs) {
+    public NotificationChain basicSetExpr(ParenthesizedExprChild newExpr, NotificationChain msgs) {
     ParenthesizedExprChild oldExpr = expr;
     expr = newExpr;
     if (eNotificationRequired())
@@ -82,12 +82,12 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
     return msgs;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public void setExpr(ParenthesizedExprChild newExpr) {
+    public void setExpr(ParenthesizedExprChild newExpr) {
     if (newExpr != expr)
     {
       NotificationChain msgs = null;
@@ -102,13 +102,13 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.PARENTHESIZED_EXPR__EXPR, newExpr, newExpr));
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.PARENTHESIZED_EXPR__EXPR:
@@ -117,13 +117,13 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.PARENTHESIZED_EXPR__EXPR:
@@ -132,13 +132,13 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.PARENTHESIZED_EXPR__EXPR:
@@ -148,13 +148,13 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
     super.eSet(featureID, newValue);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.PARENTHESIZED_EXPR__EXPR:
@@ -164,13 +164,13 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
     super.eUnset(featureID);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.PARENTHESIZED_EXPR__EXPR:

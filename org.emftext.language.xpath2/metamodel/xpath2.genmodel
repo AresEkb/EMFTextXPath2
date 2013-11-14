@@ -182,7 +182,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//FilterExpr/primaryExpr"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//FilterExpr/predicate"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="xpath2.ecore#//FilterExprChild"/>
     <genClasses ecoreClass="xpath2.ecore#//AxisStep">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//AxisStep/step"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//AxisStep/predicate"/>

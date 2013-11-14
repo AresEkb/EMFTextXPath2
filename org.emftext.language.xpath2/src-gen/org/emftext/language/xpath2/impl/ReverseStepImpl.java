@@ -17,22 +17,22 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public abstract class ReverseStepImpl extends DirectionalStepImpl implements ReverseStep {
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected ReverseStepImpl() {
+    protected ReverseStepImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.REVERSE_STEP;
   }
 

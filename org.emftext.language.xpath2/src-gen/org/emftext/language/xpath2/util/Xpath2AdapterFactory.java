@@ -20,37 +20,37 @@ import org.emftext.language.xpath2.*;
  * @generated
  */
 public class Xpath2AdapterFactory extends AdapterFactoryImpl {
-	/**
+    /**
    * The cached model package.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected static Xpath2Package modelPackage;
+    protected static Xpath2Package modelPackage;
 
-	/**
+    /**
    * Creates an instance of the adapter factory.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public Xpath2AdapterFactory() {
+    public Xpath2AdapterFactory() {
     if (modelPackage == null)
     {
       modelPackage = Xpath2Package.eINSTANCE;
     }
   }
 
-	/**
+    /**
    * Returns whether this factory is applicable for the type of the object.
    * <!-- begin-user-doc -->
-	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
-	 * <!-- end-user-doc -->
+     * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
+     * <!-- end-user-doc -->
    * @return whether this factory is applicable for the type of the object.
    * @generated
    */
-	@Override
-	public boolean isFactoryForType(Object object) {
+    @Override
+    public boolean isFactoryForType(Object object) {
     if (object == modelPackage)
     {
       return true;
@@ -62,14 +62,14 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
     return false;
   }
 
-	/**
+    /**
    * The switch that delegates to the <code>createXXX</code> methods.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected Xpath2Switch<Adapter> modelSwitch =
-		new Xpath2Switch<Adapter>()
+    protected Xpath2Switch<Adapter> modelSwitch =
+        new Xpath2Switch<Adapter>()
     {
       @Override
       public Adapter caseExpr(Expr object)
@@ -280,11 +280,6 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
       public Adapter caseFilterExpr(FilterExpr object)
       {
         return createFilterExprAdapter();
-      }
-      @Override
-      public Adapter caseFilterExprChild(FilterExprChild object)
-      {
-        return createFilterExprChildAdapter();
       }
       @Override
       public Adapter caseAxisStep(AxisStep object)
@@ -598,567 +593,567 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
       }
     };
 
-	/**
+    /**
    * Creates an adapter for the <code>target</code>.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @param target the object to adapt.
    * @return the adapter for the <code>target</code>.
    * @generated
    */
-	@Override
-	public Adapter createAdapter(Notifier target) {
+    @Override
+    public Adapter createAdapter(Notifier target) {
     return modelSwitch.doSwitch((EObject)target);
   }
 
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.Expr <em>Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.Expr
    * @generated
    */
-	public Adapter createExprAdapter() {
+    public Adapter createExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ExprSingle <em>Expr Single</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.ExprSingle
    * @generated
    */
-	public Adapter createExprSingleAdapter() {
+    public Adapter createExprSingleAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ForExpr <em>For Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.ForExpr
    * @generated
    */
-	public Adapter createForExprAdapter() {
+    public Adapter createForExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.QuantifiedExpr <em>Quantified Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.QuantifiedExpr
    * @generated
    */
-	public Adapter createQuantifiedExprAdapter() {
+    public Adapter createQuantifiedExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.IfExpr <em>If Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.IfExpr
    * @generated
    */
-	public Adapter createIfExprAdapter() {
+    public Adapter createIfExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.Iterator <em>Iterator</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.Iterator
    * @generated
    */
-	public Adapter createIteratorAdapter() {
+    public Adapter createIteratorAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.OrExpr <em>Or Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.OrExpr
    * @generated
    */
-	public Adapter createOrExprAdapter() {
+    public Adapter createOrExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.OrExprChild <em>Or Expr Child</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.OrExprChild
    * @generated
    */
-	public Adapter createOrExprChildAdapter() {
+    public Adapter createOrExprChildAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.AndExpr <em>And Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.AndExpr
    * @generated
    */
-	public Adapter createAndExprAdapter() {
+    public Adapter createAndExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.AndExprChild <em>And Expr Child</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.AndExprChild
    * @generated
    */
-	public Adapter createAndExprChildAdapter() {
+    public Adapter createAndExprChildAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ComparisonExpr <em>Comparison Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.ComparisonExpr
    * @generated
    */
-	public Adapter createComparisonExprAdapter() {
+    public Adapter createComparisonExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ComparisonExprChild <em>Comparison Expr Child</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.ComparisonExprChild
    * @generated
    */
-	public Adapter createComparisonExprChildAdapter() {
+    public Adapter createComparisonExprChildAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.RangeExpr <em>Range Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.RangeExpr
    * @generated
    */
-	public Adapter createRangeExprAdapter() {
+    public Adapter createRangeExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.RangeExprChild <em>Range Expr Child</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.RangeExprChild
    * @generated
    */
-	public Adapter createRangeExprChildAdapter() {
+    public Adapter createRangeExprChildAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.AdditiveExpr <em>Additive Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.AdditiveExpr
    * @generated
    */
-	public Adapter createAdditiveExprAdapter() {
+    public Adapter createAdditiveExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.AdditiveExprChild <em>Additive Expr Child</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.AdditiveExprChild
    * @generated
    */
-	public Adapter createAdditiveExprChildAdapter() {
+    public Adapter createAdditiveExprChildAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.MultiplicativeExpr <em>Multiplicative Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.MultiplicativeExpr
    * @generated
    */
-	public Adapter createMultiplicativeExprAdapter() {
+    public Adapter createMultiplicativeExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.MultiplicativeExprChild <em>Multiplicative Expr Child</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.MultiplicativeExprChild
    * @generated
    */
-	public Adapter createMultiplicativeExprChildAdapter() {
+    public Adapter createMultiplicativeExprChildAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.UnionExpr <em>Union Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.UnionExpr
    * @generated
    */
-	public Adapter createUnionExprAdapter() {
+    public Adapter createUnionExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.UnionExprChild <em>Union Expr Child</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.UnionExprChild
    * @generated
    */
-	public Adapter createUnionExprChildAdapter() {
+    public Adapter createUnionExprChildAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.IntersectExceptExpr <em>Intersect Except Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.IntersectExceptExpr
    * @generated
    */
-	public Adapter createIntersectExceptExprAdapter() {
+    public Adapter createIntersectExceptExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.IntersectExceptExprChild <em>Intersect Except Expr Child</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.IntersectExceptExprChild
    * @generated
    */
-	public Adapter createIntersectExceptExprChildAdapter() {
+    public Adapter createIntersectExceptExprChildAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.InstanceofExpr <em>Instanceof Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.InstanceofExpr
    * @generated
    */
-	public Adapter createInstanceofExprAdapter() {
+    public Adapter createInstanceofExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.InstanceofExprChild <em>Instanceof Expr Child</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.InstanceofExprChild
    * @generated
    */
-	public Adapter createInstanceofExprChildAdapter() {
+    public Adapter createInstanceofExprChildAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.TreatExpr <em>Treat Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.TreatExpr
    * @generated
    */
-	public Adapter createTreatExprAdapter() {
+    public Adapter createTreatExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.TreatExprChild <em>Treat Expr Child</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.TreatExprChild
    * @generated
    */
-	public Adapter createTreatExprChildAdapter() {
+    public Adapter createTreatExprChildAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.CastableExpr <em>Castable Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.CastableExpr
    * @generated
    */
-	public Adapter createCastableExprAdapter() {
+    public Adapter createCastableExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.CastableExprChild <em>Castable Expr Child</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.CastableExprChild
    * @generated
    */
-	public Adapter createCastableExprChildAdapter() {
+    public Adapter createCastableExprChildAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.CastExpr <em>Cast Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.CastExpr
    * @generated
    */
-	public Adapter createCastExprAdapter() {
+    public Adapter createCastExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.CastExprChild <em>Cast Expr Child</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.CastExprChild
    * @generated
    */
-	public Adapter createCastExprChildAdapter() {
+    public Adapter createCastExprChildAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.UnaryExpr <em>Unary Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.UnaryExpr
    * @generated
    */
-	public Adapter createUnaryExprAdapter() {
+    public Adapter createUnaryExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.UnaryExprChild <em>Unary Expr Child</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.UnaryExprChild
    * @generated
    */
-	public Adapter createUnaryExprChildAdapter() {
+    public Adapter createUnaryExprChildAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ValueExpr <em>Value Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.ValueExpr
    * @generated
    */
-	public Adapter createValueExprAdapter() {
+    public Adapter createValueExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.PathExpr <em>Path Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.PathExpr
    * @generated
    */
-	public Adapter createPathExprAdapter() {
+    public Adapter createPathExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.PathExprChild <em>Path Expr Child</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.PathExprChild
    * @generated
    */
-	public Adapter createPathExprChildAdapter() {
+    public Adapter createPathExprChildAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.RootStepExpr <em>Root Step Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.RootStepExpr
    * @generated
    */
-	public Adapter createRootStepExprAdapter() {
+    public Adapter createRootStepExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ChildStepExpr <em>Child Step Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.ChildStepExpr
    * @generated
    */
-	public Adapter createChildStepExprAdapter() {
+    public Adapter createChildStepExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.DescOrSelfStepExpr <em>Desc Or Self Step Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.DescOrSelfStepExpr
    * @generated
    */
-	public Adapter createDescOrSelfStepExprAdapter() {
+    public Adapter createDescOrSelfStepExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.SelfStepExpr <em>Self Step Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.SelfStepExpr
    * @generated
    */
-	public Adapter createSelfStepExprAdapter() {
+    public Adapter createSelfStepExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.SelfStepExprChild <em>Self Step Expr Child</em>}'.
    * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -1175,908 +1170,894 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
     /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.StepExpr <em>Step Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.StepExpr
    * @generated
    */
-	public Adapter createStepExprAdapter() {
+    public Adapter createStepExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.FilterExpr <em>Filter Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.FilterExpr
    * @generated
    */
-	public Adapter createFilterExprAdapter() {
+    public Adapter createFilterExprAdapter() {
     return null;
   }
 
-	/**
-   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.FilterExprChild <em>Filter Expr Child</em>}'.
-   * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.emftext.language.xpath2.FilterExprChild
-   * @generated
-   */
-	public Adapter createFilterExprChildAdapter() {
-    return null;
-  }
-
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.AxisStep <em>Axis Step</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.AxisStep
    * @generated
    */
-	public Adapter createAxisStepAdapter() {
+    public Adapter createAxisStepAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.DirectionalStep <em>Directional Step</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.DirectionalStep
    * @generated
    */
-	public Adapter createDirectionalStepAdapter() {
+    public Adapter createDirectionalStepAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ForwardStep <em>Forward Step</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.ForwardStep
    * @generated
    */
-	public Adapter createForwardStepAdapter() {
+    public Adapter createForwardStepAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ReverseStep <em>Reverse Step</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.ReverseStep
    * @generated
    */
-	public Adapter createReverseStepAdapter() {
+    public Adapter createReverseStepAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.GeneralForwardStep <em>General Forward Step</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.GeneralForwardStep
    * @generated
    */
-	public Adapter createGeneralForwardStepAdapter() {
+    public Adapter createGeneralForwardStepAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.AbbrevForwardStep <em>Abbrev Forward Step</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.AbbrevForwardStep
    * @generated
    */
-	public Adapter createAbbrevForwardStepAdapter() {
+    public Adapter createAbbrevForwardStepAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.GeneralReverseStep <em>General Reverse Step</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.GeneralReverseStep
    * @generated
    */
-	public Adapter createGeneralReverseStepAdapter() {
+    public Adapter createGeneralReverseStepAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.AbbrevReverseStep <em>Abbrev Reverse Step</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.AbbrevReverseStep
    * @generated
    */
-	public Adapter createAbbrevReverseStepAdapter() {
+    public Adapter createAbbrevReverseStepAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.NodeTest <em>Node Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.NodeTest
    * @generated
    */
-	public Adapter createNodeTestAdapter() {
+    public Adapter createNodeTestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.NodeKindTest <em>Node Kind Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.NodeKindTest
    * @generated
    */
-	public Adapter createNodeKindTestAdapter() {
+    public Adapter createNodeKindTestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.NameTest <em>Name Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.NameTest
    * @generated
    */
-	public Adapter createNameTestAdapter() {
+    public Adapter createNameTestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.QNameTest <em>QName Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.QNameTest
    * @generated
    */
-	public Adapter createQNameTestAdapter() {
+    public Adapter createQNameTestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.Wildcard <em>Wildcard</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.Wildcard
    * @generated
    */
-	public Adapter createWildcardAdapter() {
+    public Adapter createWildcardAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.AnyWildcard <em>Any Wildcard</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.AnyWildcard
    * @generated
    */
-	public Adapter createAnyWildcardAdapter() {
+    public Adapter createAnyWildcardAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.LocalNameWildcard <em>Local Name Wildcard</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.LocalNameWildcard
    * @generated
    */
-	public Adapter createLocalNameWildcardAdapter() {
+    public Adapter createLocalNameWildcardAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.NamespaceWildcard <em>Namespace Wildcard</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.NamespaceWildcard
    * @generated
    */
-	public Adapter createNamespaceWildcardAdapter() {
+    public Adapter createNamespaceWildcardAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.Predicate <em>Predicate</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.Predicate
    * @generated
    */
-	public Adapter createPredicateAdapter() {
+    public Adapter createPredicateAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.PrimaryExpr <em>Primary Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.PrimaryExpr
    * @generated
    */
-	public Adapter createPrimaryExprAdapter() {
+    public Adapter createPrimaryExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.Literal <em>Literal</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.Literal
    * @generated
    */
-	public Adapter createLiteralAdapter() {
+    public Adapter createLiteralAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.VarRef <em>Var Ref</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.VarRef
    * @generated
    */
-	public Adapter createVarRefAdapter() {
+    public Adapter createVarRefAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.VarName <em>Var Name</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.VarName
    * @generated
    */
-	public Adapter createVarNameAdapter() {
+    public Adapter createVarNameAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ParenthesizedExpr <em>Parenthesized Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.ParenthesizedExpr
    * @generated
    */
-	public Adapter createParenthesizedExprAdapter() {
+    public Adapter createParenthesizedExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ParenthesizedExprChild <em>Parenthesized Expr Child</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.ParenthesizedExprChild
    * @generated
    */
-	public Adapter createParenthesizedExprChildAdapter() {
+    public Adapter createParenthesizedExprChildAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ContextItemExpr <em>Context Item Expr</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.ContextItemExpr
    * @generated
    */
-	public Adapter createContextItemExprAdapter() {
+    public Adapter createContextItemExprAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.FunctionCall <em>Function Call</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.FunctionCall
    * @generated
    */
-	public Adapter createFunctionCallAdapter() {
+    public Adapter createFunctionCallAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.NumericLiteral <em>Numeric Literal</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.NumericLiteral
    * @generated
    */
-	public Adapter createNumericLiteralAdapter() {
+    public Adapter createNumericLiteralAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.StringLiteral <em>String Literal</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.StringLiteral
    * @generated
    */
-	public Adapter createStringLiteralAdapter() {
+    public Adapter createStringLiteralAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.IntegerLiteral <em>Integer Literal</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.IntegerLiteral
    * @generated
    */
-	public Adapter createIntegerLiteralAdapter() {
+    public Adapter createIntegerLiteralAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.DecimalLiteral <em>Decimal Literal</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.DecimalLiteral
    * @generated
    */
-	public Adapter createDecimalLiteralAdapter() {
+    public Adapter createDecimalLiteralAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.DoubleLiteral <em>Double Literal</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.DoubleLiteral
    * @generated
    */
-	public Adapter createDoubleLiteralAdapter() {
+    public Adapter createDoubleLiteralAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.Comp <em>Comp</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.Comp
    * @generated
    */
-	public Adapter createCompAdapter() {
+    public Adapter createCompAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.GeneralComp <em>General Comp</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.GeneralComp
    * @generated
    */
-	public Adapter createGeneralCompAdapter() {
+    public Adapter createGeneralCompAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ValueComp <em>Value Comp</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.ValueComp
    * @generated
    */
-	public Adapter createValueCompAdapter() {
+    public Adapter createValueCompAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.NodeComp <em>Node Comp</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.NodeComp
    * @generated
    */
-	public Adapter createNodeCompAdapter() {
+    public Adapter createNodeCompAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.SingleType <em>Single Type</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.SingleType
    * @generated
    */
-	public Adapter createSingleTypeAdapter() {
+    public Adapter createSingleTypeAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.AtomicType <em>Atomic Type</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.AtomicType
    * @generated
    */
-	public Adapter createAtomicTypeAdapter() {
+    public Adapter createAtomicTypeAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.SequenceType <em>Sequence Type</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.SequenceType
    * @generated
    */
-	public Adapter createSequenceTypeAdapter() {
+    public Adapter createSequenceTypeAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.EmptySequenceType <em>Empty Sequence Type</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.EmptySequenceType
    * @generated
    */
-	public Adapter createEmptySequenceTypeAdapter() {
+    public Adapter createEmptySequenceTypeAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ItemSequenceType <em>Item Sequence Type</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.ItemSequenceType
    * @generated
    */
-	public Adapter createItemSequenceTypeAdapter() {
+    public Adapter createItemSequenceTypeAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ItemType <em>Item Type</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.ItemType
    * @generated
    */
-	public Adapter createItemTypeAdapter() {
+    public Adapter createItemTypeAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ItemKindTest <em>Item Kind Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.ItemKindTest
    * @generated
    */
-	public Adapter createItemKindTestAdapter() {
+    public Adapter createItemKindTestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.AnyItemType <em>Any Item Type</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.AnyItemType
    * @generated
    */
-	public Adapter createAnyItemTypeAdapter() {
+    public Adapter createAnyItemTypeAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.AtomicItemType <em>Atomic Item Type</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.AtomicItemType
    * @generated
    */
-	public Adapter createAtomicItemTypeAdapter() {
+    public Adapter createAtomicItemTypeAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.KindTest <em>Kind Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.KindTest
    * @generated
    */
-	public Adapter createKindTestAdapter() {
+    public Adapter createKindTestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.DocumentTest <em>Document Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.DocumentTest
    * @generated
    */
-	public Adapter createDocumentTestAdapter() {
+    public Adapter createDocumentTestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ElementTest <em>Element Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.ElementTest
    * @generated
    */
-	public Adapter createElementTestAdapter() {
+    public Adapter createElementTestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.NameElementTest <em>Name Element Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.NameElementTest
    * @generated
    */
-	public Adapter createNameElementTestAdapter() {
+    public Adapter createNameElementTestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.WildcardElementTest <em>Wildcard Element Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.WildcardElementTest
    * @generated
    */
-	public Adapter createWildcardElementTestAdapter() {
+    public Adapter createWildcardElementTestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.AttributeTest <em>Attribute Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.AttributeTest
    * @generated
    */
-	public Adapter createAttributeTestAdapter() {
+    public Adapter createAttributeTestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.NameAttributeTest <em>Name Attribute Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.NameAttributeTest
    * @generated
    */
-	public Adapter createNameAttributeTestAdapter() {
+    public Adapter createNameAttributeTestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.WildcardAttributeTest <em>Wildcard Attribute Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.WildcardAttributeTest
    * @generated
    */
-	public Adapter createWildcardAttributeTestAdapter() {
+    public Adapter createWildcardAttributeTestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.SchemaElementTest <em>Schema Element Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.SchemaElementTest
    * @generated
    */
-	public Adapter createSchemaElementTestAdapter() {
+    public Adapter createSchemaElementTestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.SchemaAttributeTest <em>Schema Attribute Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.SchemaAttributeTest
    * @generated
    */
-	public Adapter createSchemaAttributeTestAdapter() {
+    public Adapter createSchemaAttributeTestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.PITest <em>PI Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.PITest
    * @generated
    */
-	public Adapter createPITestAdapter() {
+    public Adapter createPITestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.NCNamePITest <em>NC Name PI Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.NCNamePITest
    * @generated
    */
-	public Adapter createNCNamePITestAdapter() {
+    public Adapter createNCNamePITestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.StringLiteralPITest <em>String Literal PI Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.StringLiteralPITest
    * @generated
    */
-	public Adapter createStringLiteralPITestAdapter() {
+    public Adapter createStringLiteralPITestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.CommentTest <em>Comment Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.CommentTest
    * @generated
    */
-	public Adapter createCommentTestAdapter() {
+    public Adapter createCommentTestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.TextTest <em>Text Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.TextTest
    * @generated
    */
-	public Adapter createTextTestAdapter() {
+    public Adapter createTextTestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.AnyKindTest <em>Any Kind Test</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.AnyKindTest
    * @generated
    */
-	public Adapter createAnyKindTestAdapter() {
+    public Adapter createAnyKindTestAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.Comment <em>Comment</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.Comment
    * @generated
    */
-	public Adapter createCommentAdapter() {
+    public Adapter createCommentAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.QName <em>QName</em>}'.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.emftext.language.xpath2.QName
    * @generated
    */
-	public Adapter createQNameAdapter() {
+    public Adapter createQNameAdapter() {
     return null;
   }
 
-	/**
+    /**
    * Creates a new adapter for the default case.
    * <!-- begin-user-doc -->
-	 * This default implementation returns null.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null.
+     * <!-- end-user-doc -->
    * @return the new adapter.
    * @generated
    */
-	public Adapter createEObjectAdapter() {
+    public Adapter createEObjectAdapter() {
     return null;
   }
 

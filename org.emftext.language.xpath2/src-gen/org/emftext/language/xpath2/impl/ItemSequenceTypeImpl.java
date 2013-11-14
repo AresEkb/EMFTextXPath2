@@ -30,70 +30,70 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class ItemSequenceTypeImpl extends SequenceTypeImpl implements ItemSequenceType {
-	/**
+    /**
    * The cached value of the '{@link #getItemType() <em>Item Type</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getItemType()
    * @generated
    * @ordered
    */
-	protected ItemType itemType;
+    protected ItemType itemType;
 
-	/**
+    /**
    * The default value of the '{@link #getOccurrence() <em>Occurrence</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getOccurrence()
    * @generated
    * @ordered
    */
-	protected static final OccurrenceIndicatorKind OCCURRENCE_EDEFAULT = OccurrenceIndicatorKind.MANDATORY;
+    protected static final OccurrenceIndicatorKind OCCURRENCE_EDEFAULT = OccurrenceIndicatorKind.MANDATORY;
 
-	/**
+    /**
    * The cached value of the '{@link #getOccurrence() <em>Occurrence</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @see #getOccurrence()
    * @generated
    * @ordered
    */
-	protected OccurrenceIndicatorKind occurrence = OCCURRENCE_EDEFAULT;
+    protected OccurrenceIndicatorKind occurrence = OCCURRENCE_EDEFAULT;
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	protected ItemSequenceTypeImpl() {
+    protected ItemSequenceTypeImpl() {
     super();
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
     return Xpath2Package.Literals.ITEM_SEQUENCE_TYPE;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public ItemType getItemType() {
+    public ItemType getItemType() {
     return itemType;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetItemType(ItemType newItemType, NotificationChain msgs) {
+    public NotificationChain basicSetItemType(ItemType newItemType, NotificationChain msgs) {
     ItemType oldItemType = itemType;
     itemType = newItemType;
     if (eNotificationRequired())
@@ -104,12 +104,12 @@ public class ItemSequenceTypeImpl extends SequenceTypeImpl implements ItemSequen
     return msgs;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public void setItemType(ItemType newItemType) {
+    public void setItemType(ItemType newItemType) {
     if (newItemType != itemType)
     {
       NotificationChain msgs = null;
@@ -124,34 +124,34 @@ public class ItemSequenceTypeImpl extends SequenceTypeImpl implements ItemSequen
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE, newItemType, newItemType));
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public OccurrenceIndicatorKind getOccurrence() {
+    public OccurrenceIndicatorKind getOccurrence() {
     return occurrence;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public void setOccurrence(OccurrenceIndicatorKind newOccurrence) {
+    public void setOccurrence(OccurrenceIndicatorKind newOccurrence) {
     OccurrenceIndicatorKind oldOccurrence = occurrence;
     occurrence = newOccurrence == null ? OCCURRENCE_EDEFAULT : newOccurrence;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE, oldOccurrence, occurrence));
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE:
@@ -160,13 +160,13 @@ public class ItemSequenceTypeImpl extends SequenceTypeImpl implements ItemSequen
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE:
@@ -177,13 +177,13 @@ public class ItemSequenceTypeImpl extends SequenceTypeImpl implements ItemSequen
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE:
@@ -196,13 +196,13 @@ public class ItemSequenceTypeImpl extends SequenceTypeImpl implements ItemSequen
     super.eSet(featureID, newValue);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE:
@@ -215,13 +215,13 @@ public class ItemSequenceTypeImpl extends SequenceTypeImpl implements ItemSequen
     super.eUnset(featureID);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE:
@@ -232,13 +232,13 @@ public class ItemSequenceTypeImpl extends SequenceTypeImpl implements ItemSequen
     return super.eIsSet(featureID);
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+    @Override
+    public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

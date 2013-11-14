@@ -22,38 +22,38 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface IntersectExceptExpr extends UnionExprChild {
-	/**
+    /**
    * Returns the value of the '<em><b>Operand</b></em>' containment reference list.
    * The list contents are of type {@link org.emftext.language.xpath2.IntersectExceptExprChild}.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Operand</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Operand</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
    * @return the value of the '<em>Operand</em>' containment reference list.
    * @see org.emftext.language.xpath2.Xpath2Package#getIntersectExceptExpr_Operand()
    * @model containment="true" required="true"
    * @generated
    */
-	EList<IntersectExceptExprChild> getOperand();
+    EList<IntersectExceptExprChild> getOperand();
 
-	/**
+    /**
    * Returns the value of the '<em><b>Operator</b></em>' attribute list.
    * The list contents are of type {@link org.emftext.language.xpath2.IntersectExceptOpKind}.
    * The literals are from the enumeration {@link org.emftext.language.xpath2.IntersectExceptOpKind}.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Operator</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Operator</em>' attribute list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
    * @return the value of the '<em>Operator</em>' attribute list.
    * @see org.emftext.language.xpath2.IntersectExceptOpKind
    * @see org.emftext.language.xpath2.Xpath2Package#getIntersectExceptExpr_Operator()
    * @model
    * @generated
    */
-	EList<IntersectExceptOpKind> getOperator();
+    EList<IntersectExceptOpKind> getOperator();
 
 } // IntersectExceptExpr
