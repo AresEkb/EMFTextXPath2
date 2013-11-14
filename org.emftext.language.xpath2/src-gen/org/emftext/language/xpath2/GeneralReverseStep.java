@@ -22,30 +22,33 @@ package org.emftext.language.xpath2;
  */
 public interface GeneralReverseStep extends ReverseStep {
 	/**
-   * Returns the value of the '<em><b>Axis</b></em>' containment reference.
+   * Returns the value of the '<em><b>Axis</b></em>' attribute.
+   * The literals are from the enumeration {@link org.emftext.language.xpath2.ReverseAxisKind}.
    * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Axis</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Axis</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-   * @return the value of the '<em>Axis</em>' containment reference.
-   * @see #setAxis(ReverseAxis)
+   * @return the value of the '<em>Axis</em>' attribute.
+   * @see org.emftext.language.xpath2.ReverseAxisKind
+   * @see #setAxis(ReverseAxisKind)
    * @see org.emftext.language.xpath2.Xpath2Package#getGeneralReverseStep_Axis()
-   * @model containment="true" required="true"
+   * @model required="true"
    * @generated
    */
-	ReverseAxis getAxis();
+	ReverseAxisKind getAxis();
 
 	/**
-   * Sets the value of the '{@link org.emftext.language.xpath2.GeneralReverseStep#getAxis <em>Axis</em>}' containment reference.
+   * Sets the value of the '{@link org.emftext.language.xpath2.GeneralReverseStep#getAxis <em>Axis</em>}' attribute.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Axis</em>' containment reference.
+   * @param value the new value of the '<em>Axis</em>' attribute.
+   * @see org.emftext.language.xpath2.ReverseAxisKind
    * @see #getAxis()
    * @generated
    */
-	void setAxis(ReverseAxis value);
+	void setAxis(ReverseAxisKind value);
 
 	/**
    * Returns the value of the '<em><b>Node Test</b></em>' containment reference.

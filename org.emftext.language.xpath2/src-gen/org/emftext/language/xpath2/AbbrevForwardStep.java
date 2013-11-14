@@ -11,7 +11,7 @@ package org.emftext.language.xpath2;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.emftext.language.xpath2.AbbrevForwardStep#isAt <em>At</em>}</li>
+ *   <li>{@link org.emftext.language.xpath2.AbbrevForwardStep#getKind <em>Kind</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.AbbrevForwardStep#getNodeTest <em>Node Test</em>}</li>
  * </ul>
  * </p>
@@ -22,30 +22,33 @@ package org.emftext.language.xpath2;
  */
 public interface AbbrevForwardStep extends ForwardStep {
 	/**
-   * Returns the value of the '<em><b>At</b></em>' attribute.
+   * Returns the value of the '<em><b>Kind</b></em>' attribute.
+   * The literals are from the enumeration {@link org.emftext.language.xpath2.AbbrevForwardStepKind}.
    * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>At</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Kind</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-   * @return the value of the '<em>At</em>' attribute.
-   * @see #setAt(boolean)
-   * @see org.emftext.language.xpath2.Xpath2Package#getAbbrevForwardStep_At()
+   * @return the value of the '<em>Kind</em>' attribute.
+   * @see org.emftext.language.xpath2.AbbrevForwardStepKind
+   * @see #setKind(AbbrevForwardStepKind)
+   * @see org.emftext.language.xpath2.Xpath2Package#getAbbrevForwardStep_Kind()
    * @model required="true"
    * @generated
    */
-	boolean isAt();
+	AbbrevForwardStepKind getKind();
 
 	/**
-   * Sets the value of the '{@link org.emftext.language.xpath2.AbbrevForwardStep#isAt <em>At</em>}' attribute.
+   * Sets the value of the '{@link org.emftext.language.xpath2.AbbrevForwardStep#getKind <em>Kind</em>}' attribute.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @param value the new value of the '<em>At</em>' attribute.
-   * @see #isAt()
+   * @param value the new value of the '<em>Kind</em>' attribute.
+   * @see org.emftext.language.xpath2.AbbrevForwardStepKind
+   * @see #getKind()
    * @generated
    */
-	void setAt(boolean value);
+	void setKind(AbbrevForwardStepKind value);
 
 	/**
    * Returns the value of the '<em><b>Node Test</b></em>' containment reference.

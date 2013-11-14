@@ -10,40 +10,40 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.emftext.language.xpath2.RelativePathExpr;
-import org.emftext.language.xpath2.SinglePathExpr;
+import org.emftext.language.xpath2.ChildStepExpr;
+import org.emftext.language.xpath2.StepExpr;
 import org.emftext.language.xpath2.Xpath2Package;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Single Path Expr</b></em>'.
+ * An implementation of the model object '<em><b>Child Step Expr</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.emftext.language.xpath2.impl.SinglePathExprImpl#getRelativePathExpr <em>Relative Path Expr</em>}</li>
+ *   <li>{@link org.emftext.language.xpath2.impl.ChildStepExprImpl#getStep <em>Step</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class SinglePathExprImpl extends PathExprImpl implements SinglePathExpr {
+public class ChildStepExprImpl extends PathExprChildImpl implements ChildStepExpr {
 	/**
-   * The cached value of the '{@link #getRelativePathExpr() <em>Relative Path Expr</em>}' containment reference.
+   * The cached value of the '{@link #getStep() <em>Step</em>}' containment reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see #getRelativePathExpr()
+   * @see #getStep()
    * @generated
    * @ordered
    */
-	protected RelativePathExpr relativePathExpr;
+	protected StepExpr step;
 
 	/**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
-	protected SinglePathExprImpl() {
+	protected ChildStepExprImpl() {
     super();
   }
 
@@ -54,7 +54,7 @@ public class SinglePathExprImpl extends PathExprImpl implements SinglePathExpr {
    */
 	@Override
 	protected EClass eStaticClass() {
-    return Xpath2Package.Literals.SINGLE_PATH_EXPR;
+    return Xpath2Package.Literals.CHILD_STEP_EXPR;
   }
 
 	/**
@@ -62,8 +62,8 @@ public class SinglePathExprImpl extends PathExprImpl implements SinglePathExpr {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public RelativePathExpr getRelativePathExpr() {
-    return relativePathExpr;
+	public StepExpr getStep() {
+    return step;
   }
 
 	/**
@@ -71,12 +71,12 @@ public class SinglePathExprImpl extends PathExprImpl implements SinglePathExpr {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetRelativePathExpr(RelativePathExpr newRelativePathExpr, NotificationChain msgs) {
-    RelativePathExpr oldRelativePathExpr = relativePathExpr;
-    relativePathExpr = newRelativePathExpr;
+	public NotificationChain basicSetStep(StepExpr newStep, NotificationChain msgs) {
+    StepExpr oldStep = step;
+    step = newStep;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.SINGLE_PATH_EXPR__RELATIVE_PATH_EXPR, oldRelativePathExpr, newRelativePathExpr);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.CHILD_STEP_EXPR__STEP, oldStep, newStep);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -87,19 +87,19 @@ public class SinglePathExprImpl extends PathExprImpl implements SinglePathExpr {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public void setRelativePathExpr(RelativePathExpr newRelativePathExpr) {
-    if (newRelativePathExpr != relativePathExpr)
+	public void setStep(StepExpr newStep) {
+    if (newStep != step)
     {
       NotificationChain msgs = null;
-      if (relativePathExpr != null)
-        msgs = ((InternalEObject)relativePathExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.SINGLE_PATH_EXPR__RELATIVE_PATH_EXPR, null, msgs);
-      if (newRelativePathExpr != null)
-        msgs = ((InternalEObject)newRelativePathExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.SINGLE_PATH_EXPR__RELATIVE_PATH_EXPR, null, msgs);
-      msgs = basicSetRelativePathExpr(newRelativePathExpr, msgs);
+      if (step != null)
+        msgs = ((InternalEObject)step).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.CHILD_STEP_EXPR__STEP, null, msgs);
+      if (newStep != null)
+        msgs = ((InternalEObject)newStep).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.CHILD_STEP_EXPR__STEP, null, msgs);
+      msgs = basicSetStep(newStep, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.SINGLE_PATH_EXPR__RELATIVE_PATH_EXPR, newRelativePathExpr, newRelativePathExpr));
+      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.CHILD_STEP_EXPR__STEP, newStep, newStep));
   }
 
 	/**
@@ -111,8 +111,8 @@ public class SinglePathExprImpl extends PathExprImpl implements SinglePathExpr {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
-      case Xpath2Package.SINGLE_PATH_EXPR__RELATIVE_PATH_EXPR:
-        return basicSetRelativePathExpr(null, msgs);
+      case Xpath2Package.CHILD_STEP_EXPR__STEP:
+        return basicSetStep(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -126,8 +126,8 @@ public class SinglePathExprImpl extends PathExprImpl implements SinglePathExpr {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
-      case Xpath2Package.SINGLE_PATH_EXPR__RELATIVE_PATH_EXPR:
-        return getRelativePathExpr();
+      case Xpath2Package.CHILD_STEP_EXPR__STEP:
+        return getStep();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -141,8 +141,8 @@ public class SinglePathExprImpl extends PathExprImpl implements SinglePathExpr {
 	public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
-      case Xpath2Package.SINGLE_PATH_EXPR__RELATIVE_PATH_EXPR:
-        setRelativePathExpr((RelativePathExpr)newValue);
+      case Xpath2Package.CHILD_STEP_EXPR__STEP:
+        setStep((StepExpr)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -157,8 +157,8 @@ public class SinglePathExprImpl extends PathExprImpl implements SinglePathExpr {
 	public void eUnset(int featureID) {
     switch (featureID)
     {
-      case Xpath2Package.SINGLE_PATH_EXPR__RELATIVE_PATH_EXPR:
-        setRelativePathExpr((RelativePathExpr)null);
+      case Xpath2Package.CHILD_STEP_EXPR__STEP:
+        setStep((StepExpr)null);
         return;
     }
     super.eUnset(featureID);
@@ -173,10 +173,10 @@ public class SinglePathExprImpl extends PathExprImpl implements SinglePathExpr {
 	public boolean eIsSet(int featureID) {
     switch (featureID)
     {
-      case Xpath2Package.SINGLE_PATH_EXPR__RELATIVE_PATH_EXPR:
-        return relativePathExpr != null;
+      case Xpath2Package.CHILD_STEP_EXPR__STEP:
+        return step != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //SinglePathExprImpl
+} //ChildStepExprImpl

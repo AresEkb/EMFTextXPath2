@@ -65,7 +65,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
       case Xpath2Package.FOR_EXPR: return createForExpr();
       case Xpath2Package.QUANTIFIED_EXPR: return createQuantifiedExpr();
       case Xpath2Package.IF_EXPR: return createIfExpr();
-      case Xpath2Package.SIMPLE_FOR_CLAUSE: return createSimpleForClause();
       case Xpath2Package.ITERATOR: return createIterator();
       case Xpath2Package.OR_EXPR: return createOrExpr();
       case Xpath2Package.AND_EXPR: return createAndExpr();
@@ -80,19 +79,17 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
       case Xpath2Package.CASTABLE_EXPR: return createCastableExpr();
       case Xpath2Package.CAST_EXPR: return createCastExpr();
       case Xpath2Package.UNARY_EXPR: return createUnaryExpr();
-      case Xpath2Package.SINGLE_PATH_EXPR: return createSinglePathExpr();
-      case Xpath2Package.DOUBLE_PATH_EXPR: return createDoublePathExpr();
-      case Xpath2Package.RELATIVE_PATH_EXPR: return createRelativePathExpr();
+      case Xpath2Package.PATH_EXPR: return createPathExpr();
+      case Xpath2Package.ROOT_STEP_EXPR: return createRootStepExpr();
+      case Xpath2Package.CHILD_STEP_EXPR: return createChildStepExpr();
+      case Xpath2Package.DESC_OR_SELF_STEP_EXPR: return createDescOrSelfStepExpr();
+      case Xpath2Package.SELF_STEP_EXPR: return createSelfStepExpr();
       case Xpath2Package.FILTER_EXPR: return createFilterExpr();
       case Xpath2Package.AXIS_STEP: return createAxisStep();
-      case Xpath2Package.SINGLE_TAIL_PATH_EXPR: return createSingleTailPathExpr();
-      case Xpath2Package.DOUBLE_TAIL_PATH_EXPR: return createDoubleTailPathExpr();
       case Xpath2Package.GENERAL_FORWARD_STEP: return createGeneralForwardStep();
       case Xpath2Package.ABBREV_FORWARD_STEP: return createAbbrevForwardStep();
-      case Xpath2Package.FORWARD_AXIS: return createForwardAxis();
       case Xpath2Package.GENERAL_REVERSE_STEP: return createGeneralReverseStep();
       case Xpath2Package.ABBREV_REVERSE_STEP: return createAbbrevReverseStep();
-      case Xpath2Package.REVERSE_AXIS: return createReverseAxis();
       case Xpath2Package.NODE_KIND_TEST: return createNodeKindTest();
       case Xpath2Package.QNAME_TEST: return createQNameTest();
       case Xpath2Package.ANY_WILDCARD: return createAnyWildcard();
@@ -151,8 +148,12 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
     {
       case Xpath2Package.FORWARD_AXIS_KIND:
         return createForwardAxisKindFromString(eDataType, initialValue);
+      case Xpath2Package.ABBREV_FORWARD_STEP_KIND:
+        return createAbbrevForwardStepKindFromString(eDataType, initialValue);
       case Xpath2Package.REVERSE_AXIS_KIND:
         return createReverseAxisKindFromString(eDataType, initialValue);
+      case Xpath2Package.ABBREV_REVERSE_STEP_KIND:
+        return createAbbrevReverseStepKindFromString(eDataType, initialValue);
       case Xpath2Package.UNION_OP:
         return createUnionOpFromString(eDataType, initialValue);
       case Xpath2Package.ADDITIVE_OP_KIND:
@@ -187,8 +188,12 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
     {
       case Xpath2Package.FORWARD_AXIS_KIND:
         return convertForwardAxisKindToString(eDataType, instanceValue);
+      case Xpath2Package.ABBREV_FORWARD_STEP_KIND:
+        return convertAbbrevForwardStepKindToString(eDataType, instanceValue);
       case Xpath2Package.REVERSE_AXIS_KIND:
         return convertReverseAxisKindToString(eDataType, instanceValue);
+      case Xpath2Package.ABBREV_REVERSE_STEP_KIND:
+        return convertAbbrevReverseStepKindToString(eDataType, instanceValue);
       case Xpath2Package.UNION_OP:
         return convertUnionOpToString(eDataType, instanceValue);
       case Xpath2Package.ADDITIVE_OP_KIND:
@@ -250,16 +255,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	public IfExpr createIfExpr() {
     IfExprImpl ifExpr = new IfExprImpl();
     return ifExpr;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public SimpleForClause createSimpleForClause() {
-    SimpleForClauseImpl simpleForClause = new SimpleForClauseImpl();
-    return simpleForClause;
   }
 
 	/**
@@ -407,9 +402,9 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public SinglePathExpr createSinglePathExpr() {
-    SinglePathExprImpl singlePathExpr = new SinglePathExprImpl();
-    return singlePathExpr;
+	public PathExpr createPathExpr() {
+    PathExprImpl pathExpr = new PathExprImpl();
+    return pathExpr;
   }
 
 	/**
@@ -417,9 +412,9 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public DoublePathExpr createDoublePathExpr() {
-    DoublePathExprImpl doublePathExpr = new DoublePathExprImpl();
-    return doublePathExpr;
+	public RootStepExpr createRootStepExpr() {
+    RootStepExprImpl rootStepExpr = new RootStepExprImpl();
+    return rootStepExpr;
   }
 
 	/**
@@ -427,9 +422,29 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public RelativePathExpr createRelativePathExpr() {
-    RelativePathExprImpl relativePathExpr = new RelativePathExprImpl();
-    return relativePathExpr;
+	public ChildStepExpr createChildStepExpr() {
+    ChildStepExprImpl childStepExpr = new ChildStepExprImpl();
+    return childStepExpr;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public DescOrSelfStepExpr createDescOrSelfStepExpr() {
+    DescOrSelfStepExprImpl descOrSelfStepExpr = new DescOrSelfStepExprImpl();
+    return descOrSelfStepExpr;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public SelfStepExpr createSelfStepExpr() {
+    SelfStepExprImpl selfStepExpr = new SelfStepExprImpl();
+    return selfStepExpr;
   }
 
 	/**
@@ -457,26 +472,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public SingleTailPathExpr createSingleTailPathExpr() {
-    SingleTailPathExprImpl singleTailPathExpr = new SingleTailPathExprImpl();
-    return singleTailPathExpr;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public DoubleTailPathExpr createDoubleTailPathExpr() {
-    DoubleTailPathExprImpl doubleTailPathExpr = new DoubleTailPathExprImpl();
-    return doubleTailPathExpr;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
 	public GeneralForwardStep createGeneralForwardStep() {
     GeneralForwardStepImpl generalForwardStep = new GeneralForwardStepImpl();
     return generalForwardStep;
@@ -497,16 +492,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public ForwardAxis createForwardAxis() {
-    ForwardAxisImpl forwardAxis = new ForwardAxisImpl();
-    return forwardAxis;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
 	public GeneralReverseStep createGeneralReverseStep() {
     GeneralReverseStepImpl generalReverseStep = new GeneralReverseStepImpl();
     return generalReverseStep;
@@ -520,16 +505,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	public AbbrevReverseStep createAbbrevReverseStep() {
     AbbrevReverseStepImpl abbrevReverseStep = new AbbrevReverseStepImpl();
     return abbrevReverseStep;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public ReverseAxis createReverseAxis() {
-    ReverseAxisImpl reverseAxis = new ReverseAxisImpl();
-    return reverseAxis;
   }
 
 	/**
@@ -977,6 +952,26 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
 	 * <!-- end-user-doc -->
    * @generated
    */
+	public AbbrevForwardStepKind createAbbrevForwardStepKindFromString(EDataType eDataType, String initialValue) {
+    AbbrevForwardStepKind result = AbbrevForwardStepKind.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public String convertAbbrevForwardStepKindToString(EDataType eDataType, Object instanceValue) {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
 	public ReverseAxisKind createReverseAxisKindFromString(EDataType eDataType, String initialValue) {
     ReverseAxisKind result = ReverseAxisKind.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -989,6 +984,26 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
    * @generated
    */
 	public String convertReverseAxisKindToString(EDataType eDataType, Object instanceValue) {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public AbbrevReverseStepKind createAbbrevReverseStepKindFromString(EDataType eDataType, String initialValue) {
+    AbbrevReverseStepKind result = AbbrevReverseStepKind.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public String convertAbbrevReverseStepKindToString(EDataType eDataType, Object instanceValue) {
     return instanceValue == null ? null : instanceValue.toString();
   }
 

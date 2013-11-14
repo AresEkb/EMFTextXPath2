@@ -58,15 +58,6 @@ public interface Xpath2Factory extends EFactory {
 	IfExpr createIfExpr();
 
 	/**
-   * Returns a new object of class '<em>Simple For Clause</em>'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Simple For Clause</em>'.
-   * @generated
-   */
-	SimpleForClause createSimpleForClause();
-
-	/**
    * Returns a new object of class '<em>Iterator</em>'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -193,31 +184,49 @@ public interface Xpath2Factory extends EFactory {
 	UnaryExpr createUnaryExpr();
 
 	/**
-   * Returns a new object of class '<em>Single Path Expr</em>'.
+   * Returns a new object of class '<em>Path Expr</em>'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Single Path Expr</em>'.
+   * @return a new object of class '<em>Path Expr</em>'.
    * @generated
    */
-	SinglePathExpr createSinglePathExpr();
+	PathExpr createPathExpr();
 
 	/**
-   * Returns a new object of class '<em>Double Path Expr</em>'.
+   * Returns a new object of class '<em>Root Step Expr</em>'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Double Path Expr</em>'.
+   * @return a new object of class '<em>Root Step Expr</em>'.
    * @generated
    */
-	DoublePathExpr createDoublePathExpr();
+	RootStepExpr createRootStepExpr();
 
 	/**
-   * Returns a new object of class '<em>Relative Path Expr</em>'.
+   * Returns a new object of class '<em>Child Step Expr</em>'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Relative Path Expr</em>'.
+   * @return a new object of class '<em>Child Step Expr</em>'.
    * @generated
    */
-	RelativePathExpr createRelativePathExpr();
+	ChildStepExpr createChildStepExpr();
+
+	/**
+   * Returns a new object of class '<em>Desc Or Self Step Expr</em>'.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @return a new object of class '<em>Desc Or Self Step Expr</em>'.
+   * @generated
+   */
+	DescOrSelfStepExpr createDescOrSelfStepExpr();
+
+	/**
+   * Returns a new object of class '<em>Self Step Expr</em>'.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @return a new object of class '<em>Self Step Expr</em>'.
+   * @generated
+   */
+	SelfStepExpr createSelfStepExpr();
 
 	/**
    * Returns a new object of class '<em>Filter Expr</em>'.
@@ -238,24 +247,6 @@ public interface Xpath2Factory extends EFactory {
 	AxisStep createAxisStep();
 
 	/**
-   * Returns a new object of class '<em>Single Tail Path Expr</em>'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Single Tail Path Expr</em>'.
-   * @generated
-   */
-	SingleTailPathExpr createSingleTailPathExpr();
-
-	/**
-   * Returns a new object of class '<em>Double Tail Path Expr</em>'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Double Tail Path Expr</em>'.
-   * @generated
-   */
-	DoubleTailPathExpr createDoubleTailPathExpr();
-
-	/**
    * Returns a new object of class '<em>General Forward Step</em>'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -274,15 +265,6 @@ public interface Xpath2Factory extends EFactory {
 	AbbrevForwardStep createAbbrevForwardStep();
 
 	/**
-   * Returns a new object of class '<em>Forward Axis</em>'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Forward Axis</em>'.
-   * @generated
-   */
-	ForwardAxis createForwardAxis();
-
-	/**
    * Returns a new object of class '<em>General Reverse Step</em>'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -299,15 +281,6 @@ public interface Xpath2Factory extends EFactory {
    * @generated
    */
 	AbbrevReverseStep createAbbrevReverseStep();
-
-	/**
-   * Returns a new object of class '<em>Reverse Axis</em>'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return a new object of class '<em>Reverse Axis</em>'.
-   * @generated
-   */
-	ReverseAxis createReverseAxis();
 
 	/**
    * Returns a new object of class '<em>Node Kind Test</em>'.

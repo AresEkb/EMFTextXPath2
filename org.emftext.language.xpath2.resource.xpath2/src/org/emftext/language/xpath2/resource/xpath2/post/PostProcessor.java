@@ -8,9 +8,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.emftext.language.xpath2.ChildStepExpr;
+import org.emftext.language.xpath2.DescOrSelfStepExpr;
 import org.emftext.language.xpath2.Expr;
 import org.emftext.language.xpath2.ExprSingle;
 import org.emftext.language.xpath2.ParenthesizedExpr;
+import org.emftext.language.xpath2.RootStepExpr;
 import org.emftext.language.xpath2.resource.xpath2.IXpath2OptionProvider;
 import org.emftext.language.xpath2.resource.xpath2.IXpath2Options;
 import org.emftext.language.xpath2.resource.xpath2.IXpath2ResourcePostProcessor;
@@ -75,8 +78,17 @@ public class PostProcessor implements IXpath2OptionProvider,
 		if (!(parent instanceof Expr || parent instanceof ExprSingle)) {
 			return null;
 		}
-
+		// TODO: THe logic could be more intellectual
 		if (parent instanceof ParenthesizedExpr) {
+			return null;
+		}
+		if (parent instanceof RootStepExpr) {
+			return null;
+		}
+		if (parent instanceof ChildStepExpr) {
+			return null;
+		}
+		if (parent instanceof DescOrSelfStepExpr) {
 			return null;
 		}
 

@@ -1,7 +1,9 @@
+/**
+ */
 package org.emftext.language.xpath2.impl;
 
-
 import org.eclipse.emf.ecore.EClass;
+
 import org.emftext.language.xpath2.FilterExprChild;
 import org.emftext.language.xpath2.Xpath2Package;
 
@@ -14,26 +16,23 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public abstract class FilterExprChildImpl extends RelativePathExprChildImpl implements FilterExprChild
-{
-  /**
+public abstract class FilterExprChildImpl extends PathExprChildImpl implements FilterExprChild {
+	/**
    * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-  protected FilterExprChildImpl()
-  {
+	protected FilterExprChildImpl() {
     super();
   }
 
-  /**
+	/**
    * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  protected EClass eStaticClass()
-  {
+	@Override
+	protected EClass eStaticClass() {
     return Xpath2Package.Literals.FILTER_EXPR_CHILD;
   }
 

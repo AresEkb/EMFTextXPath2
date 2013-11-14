@@ -97,11 +97,6 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
         return createIfExprAdapter();
       }
       @Override
-      public Adapter caseSimpleForClause(SimpleForClause object)
-      {
-        return createSimpleForClauseAdapter();
-      }
-      @Override
       public Adapter caseIterator(Iterator object)
       {
         return createIteratorAdapter();
@@ -247,24 +242,29 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
         return createPathExprAdapter();
       }
       @Override
-      public Adapter caseSinglePathExpr(SinglePathExpr object)
+      public Adapter casePathExprChild(PathExprChild object)
       {
-        return createSinglePathExprAdapter();
+        return createPathExprChildAdapter();
       }
       @Override
-      public Adapter caseDoublePathExpr(DoublePathExpr object)
+      public Adapter caseRootStepExpr(RootStepExpr object)
       {
-        return createDoublePathExprAdapter();
+        return createRootStepExprAdapter();
       }
       @Override
-      public Adapter caseRelativePathExpr(RelativePathExpr object)
+      public Adapter caseChildStepExpr(ChildStepExpr object)
       {
-        return createRelativePathExprAdapter();
+        return createChildStepExprAdapter();
       }
       @Override
-      public Adapter caseRelativePathExprChild(RelativePathExprChild object)
+      public Adapter caseDescOrSelfStepExpr(DescOrSelfStepExpr object)
       {
-        return createRelativePathExprChildAdapter();
+        return createDescOrSelfStepExprAdapter();
+      }
+      @Override
+      public Adapter caseSelfStepExpr(SelfStepExpr object)
+      {
+        return createSelfStepExprAdapter();
       }
       @Override
       public Adapter caseStepExpr(StepExpr object)
@@ -285,21 +285,6 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
       public Adapter caseAxisStep(AxisStep object)
       {
         return createAxisStepAdapter();
-      }
-      @Override
-      public Adapter caseTailPathExpr(TailPathExpr object)
-      {
-        return createTailPathExprAdapter();
-      }
-      @Override
-      public Adapter caseSingleTailPathExpr(SingleTailPathExpr object)
-      {
-        return createSingleTailPathExprAdapter();
-      }
-      @Override
-      public Adapter caseDoubleTailPathExpr(DoubleTailPathExpr object)
-      {
-        return createDoubleTailPathExprAdapter();
       }
       @Override
       public Adapter caseDirectionalStep(DirectionalStep object)
@@ -327,11 +312,6 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
         return createAbbrevForwardStepAdapter();
       }
       @Override
-      public Adapter caseForwardAxis(ForwardAxis object)
-      {
-        return createForwardAxisAdapter();
-      }
-      @Override
       public Adapter caseGeneralReverseStep(GeneralReverseStep object)
       {
         return createGeneralReverseStepAdapter();
@@ -340,11 +320,6 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
       public Adapter caseAbbrevReverseStep(AbbrevReverseStep object)
       {
         return createAbbrevReverseStepAdapter();
-      }
-      @Override
-      public Adapter caseReverseAxis(ReverseAxis object)
-      {
-        return createReverseAxisAdapter();
       }
       @Override
       public Adapter caseNodeTest(NodeTest object)
@@ -699,20 +674,6 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
 	public Adapter createIfExprAdapter() {
-    return null;
-  }
-
-	/**
-   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.SimpleForClause <em>Simple For Clause</em>}'.
-   * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.emftext.language.xpath2.SimpleForClause
-   * @generated
-   */
-	public Adapter createSimpleForClauseAdapter() {
     return null;
   }
 
@@ -1123,58 +1084,72 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
   }
 
 	/**
-   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.SinglePathExpr <em>Single Path Expr</em>}'.
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.PathExprChild <em>Path Expr Child</em>}'.
    * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.emftext.language.xpath2.SinglePathExpr
+   * @see org.emftext.language.xpath2.PathExprChild
    * @generated
    */
-	public Adapter createSinglePathExprAdapter() {
+	public Adapter createPathExprChildAdapter() {
     return null;
   }
 
 	/**
-   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.DoublePathExpr <em>Double Path Expr</em>}'.
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.RootStepExpr <em>Root Step Expr</em>}'.
    * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.emftext.language.xpath2.DoublePathExpr
+   * @see org.emftext.language.xpath2.RootStepExpr
    * @generated
    */
-	public Adapter createDoublePathExprAdapter() {
+	public Adapter createRootStepExprAdapter() {
     return null;
   }
 
 	/**
-   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.RelativePathExpr <em>Relative Path Expr</em>}'.
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ChildStepExpr <em>Child Step Expr</em>}'.
    * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.emftext.language.xpath2.RelativePathExpr
+   * @see org.emftext.language.xpath2.ChildStepExpr
    * @generated
    */
-	public Adapter createRelativePathExprAdapter() {
+	public Adapter createChildStepExprAdapter() {
     return null;
   }
 
 	/**
-   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.RelativePathExprChild <em>Relative Path Expr Child</em>}'.
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.DescOrSelfStepExpr <em>Desc Or Self Step Expr</em>}'.
    * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.emftext.language.xpath2.RelativePathExprChild
+   * @see org.emftext.language.xpath2.DescOrSelfStepExpr
    * @generated
    */
-	public Adapter createRelativePathExprChildAdapter() {
+	public Adapter createDescOrSelfStepExprAdapter() {
+    return null;
+  }
+
+	/**
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.SelfStepExpr <em>Self Step Expr</em>}'.
+   * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.emftext.language.xpath2.SelfStepExpr
+   * @generated
+   */
+	public Adapter createSelfStepExprAdapter() {
     return null;
   }
 
@@ -1231,48 +1206,6 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
 	public Adapter createAxisStepAdapter() {
-    return null;
-  }
-
-	/**
-   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.TailPathExpr <em>Tail Path Expr</em>}'.
-   * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.emftext.language.xpath2.TailPathExpr
-   * @generated
-   */
-	public Adapter createTailPathExprAdapter() {
-    return null;
-  }
-
-	/**
-   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.SingleTailPathExpr <em>Single Tail Path Expr</em>}'.
-   * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.emftext.language.xpath2.SingleTailPathExpr
-   * @generated
-   */
-	public Adapter createSingleTailPathExprAdapter() {
-    return null;
-  }
-
-	/**
-   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.DoubleTailPathExpr <em>Double Tail Path Expr</em>}'.
-   * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.emftext.language.xpath2.DoubleTailPathExpr
-   * @generated
-   */
-	public Adapter createDoubleTailPathExprAdapter() {
     return null;
   }
 
@@ -1347,20 +1280,6 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
   }
 
 	/**
-   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ForwardAxis <em>Forward Axis</em>}'.
-   * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.emftext.language.xpath2.ForwardAxis
-   * @generated
-   */
-	public Adapter createForwardAxisAdapter() {
-    return null;
-  }
-
-	/**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.GeneralReverseStep <em>General Reverse Step</em>}'.
    * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1385,20 +1304,6 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
 	public Adapter createAbbrevReverseStepAdapter() {
-    return null;
-  }
-
-	/**
-   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ReverseAxis <em>Reverse Axis</em>}'.
-   * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.emftext.language.xpath2.ReverseAxis
-   * @generated
-   */
-	public Adapter createReverseAxisAdapter() {
     return null;
   }
 

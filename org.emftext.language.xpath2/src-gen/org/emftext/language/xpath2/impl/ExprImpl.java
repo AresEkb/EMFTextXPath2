@@ -25,7 +25,7 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.emftext.language.xpath2.impl.ExprImpl#getOwnedExprSingle <em>Owned Expr Single</em>}</li>
+ *   <li>{@link org.emftext.language.xpath2.impl.ExprImpl#getExpr <em>Expr</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,14 +33,14 @@ import org.emftext.language.xpath2.Xpath2Package;
  */
 public class ExprImpl extends ParenthesizedExprChildImpl implements Expr {
 	/**
-   * The cached value of the '{@link #getOwnedExprSingle() <em>Owned Expr Single</em>}' containment reference list.
+   * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference list.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see #getOwnedExprSingle()
+   * @see #getExpr()
    * @generated
    * @ordered
    */
-	protected EList<ExprSingle> ownedExprSingle;
+	protected EList<ExprSingle> expr;
 
 	/**
    * <!-- begin-user-doc -->
@@ -66,12 +66,12 @@ public class ExprImpl extends ParenthesizedExprChildImpl implements Expr {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EList<ExprSingle> getOwnedExprSingle() {
-    if (ownedExprSingle == null)
+	public EList<ExprSingle> getExpr() {
+    if (expr == null)
     {
-      ownedExprSingle = new EObjectContainmentEList<ExprSingle>(ExprSingle.class, this, Xpath2Package.EXPR__OWNED_EXPR_SINGLE);
+      expr = new EObjectContainmentEList<ExprSingle>(ExprSingle.class, this, Xpath2Package.EXPR__EXPR);
     }
-    return ownedExprSingle;
+    return expr;
   }
 
 	/**
@@ -83,8 +83,8 @@ public class ExprImpl extends ParenthesizedExprChildImpl implements Expr {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
-      case Xpath2Package.EXPR__OWNED_EXPR_SINGLE:
-        return ((InternalEList<?>)getOwnedExprSingle()).basicRemove(otherEnd, msgs);
+      case Xpath2Package.EXPR__EXPR:
+        return ((InternalEList<?>)getExpr()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -98,8 +98,8 @@ public class ExprImpl extends ParenthesizedExprChildImpl implements Expr {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
-      case Xpath2Package.EXPR__OWNED_EXPR_SINGLE:
-        return getOwnedExprSingle();
+      case Xpath2Package.EXPR__EXPR:
+        return getExpr();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -114,9 +114,9 @@ public class ExprImpl extends ParenthesizedExprChildImpl implements Expr {
 	public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
-      case Xpath2Package.EXPR__OWNED_EXPR_SINGLE:
-        getOwnedExprSingle().clear();
-        getOwnedExprSingle().addAll((Collection<? extends ExprSingle>)newValue);
+      case Xpath2Package.EXPR__EXPR:
+        getExpr().clear();
+        getExpr().addAll((Collection<? extends ExprSingle>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -131,8 +131,8 @@ public class ExprImpl extends ParenthesizedExprChildImpl implements Expr {
 	public void eUnset(int featureID) {
     switch (featureID)
     {
-      case Xpath2Package.EXPR__OWNED_EXPR_SINGLE:
-        getOwnedExprSingle().clear();
+      case Xpath2Package.EXPR__EXPR:
+        getExpr().clear();
         return;
     }
     super.eUnset(featureID);
@@ -147,8 +147,8 @@ public class ExprImpl extends ParenthesizedExprChildImpl implements Expr {
 	public boolean eIsSet(int featureID) {
     switch (featureID)
     {
-      case Xpath2Package.EXPR__OWNED_EXPR_SINGLE:
-        return ownedExprSingle != null && !ownedExprSingle.isEmpty();
+      case Xpath2Package.EXPR__EXPR:
+        return expr != null && !expr.isEmpty();
     }
     return super.eIsSet(featureID);
   }

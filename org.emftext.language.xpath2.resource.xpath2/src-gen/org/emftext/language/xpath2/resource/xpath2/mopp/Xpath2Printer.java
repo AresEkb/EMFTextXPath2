@@ -60,16 +60,12 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			print_org_emftext_language_xpath2_ForExpr((org.emftext.language.xpath2.ForExpr) element, globaltab, out);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.SimpleForClause) {
-			print_org_emftext_language_xpath2_SimpleForClause((org.emftext.language.xpath2.SimpleForClause) element, globaltab, out);
+		if (element instanceof org.emftext.language.xpath2.QuantifiedExpr) {
+			print_org_emftext_language_xpath2_QuantifiedExpr((org.emftext.language.xpath2.QuantifiedExpr) element, globaltab, out);
 			return;
 		}
 		if (element instanceof org.emftext.language.xpath2.Iterator) {
 			print_org_emftext_language_xpath2_Iterator((org.emftext.language.xpath2.Iterator) element, globaltab, out);
-			return;
-		}
-		if (element instanceof org.emftext.language.xpath2.QuantifiedExpr) {
-			print_org_emftext_language_xpath2_QuantifiedExpr((org.emftext.language.xpath2.QuantifiedExpr) element, globaltab, out);
 			return;
 		}
 		if (element instanceof org.emftext.language.xpath2.IfExpr) {
@@ -90,6 +86,18 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		}
 		if (element instanceof org.emftext.language.xpath2.RangeExpr) {
 			print_org_emftext_language_xpath2_RangeExpr((org.emftext.language.xpath2.RangeExpr) element, globaltab, out);
+			return;
+		}
+		if (element instanceof org.emftext.language.xpath2.GeneralComp) {
+			print_org_emftext_language_xpath2_GeneralComp((org.emftext.language.xpath2.GeneralComp) element, globaltab, out);
+			return;
+		}
+		if (element instanceof org.emftext.language.xpath2.ValueComp) {
+			print_org_emftext_language_xpath2_ValueComp((org.emftext.language.xpath2.ValueComp) element, globaltab, out);
+			return;
+		}
+		if (element instanceof org.emftext.language.xpath2.NodeComp) {
+			print_org_emftext_language_xpath2_NodeComp((org.emftext.language.xpath2.NodeComp) element, globaltab, out);
 			return;
 		}
 		if (element instanceof org.emftext.language.xpath2.AdditiveExpr) {
@@ -128,36 +136,24 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			print_org_emftext_language_xpath2_UnaryExpr((org.emftext.language.xpath2.UnaryExpr) element, globaltab, out);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.GeneralComp) {
-			print_org_emftext_language_xpath2_GeneralComp((org.emftext.language.xpath2.GeneralComp) element, globaltab, out);
+		if (element instanceof org.emftext.language.xpath2.PathExpr) {
+			print_org_emftext_language_xpath2_PathExpr((org.emftext.language.xpath2.PathExpr) element, globaltab, out);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.ValueComp) {
-			print_org_emftext_language_xpath2_ValueComp((org.emftext.language.xpath2.ValueComp) element, globaltab, out);
+		if (element instanceof org.emftext.language.xpath2.ChildStepExpr) {
+			print_org_emftext_language_xpath2_ChildStepExpr((org.emftext.language.xpath2.ChildStepExpr) element, globaltab, out);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.NodeComp) {
-			print_org_emftext_language_xpath2_NodeComp((org.emftext.language.xpath2.NodeComp) element, globaltab, out);
+		if (element instanceof org.emftext.language.xpath2.DescOrSelfStepExpr) {
+			print_org_emftext_language_xpath2_DescOrSelfStepExpr((org.emftext.language.xpath2.DescOrSelfStepExpr) element, globaltab, out);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.SinglePathExpr) {
-			print_org_emftext_language_xpath2_SinglePathExpr((org.emftext.language.xpath2.SinglePathExpr) element, globaltab, out);
+		if (element instanceof org.emftext.language.xpath2.RootStepExpr) {
+			print_org_emftext_language_xpath2_RootStepExpr((org.emftext.language.xpath2.RootStepExpr) element, globaltab, out);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.DoublePathExpr) {
-			print_org_emftext_language_xpath2_DoublePathExpr((org.emftext.language.xpath2.DoublePathExpr) element, globaltab, out);
-			return;
-		}
-		if (element instanceof org.emftext.language.xpath2.RelativePathExpr) {
-			print_org_emftext_language_xpath2_RelativePathExpr((org.emftext.language.xpath2.RelativePathExpr) element, globaltab, out);
-			return;
-		}
-		if (element instanceof org.emftext.language.xpath2.SingleTailPathExpr) {
-			print_org_emftext_language_xpath2_SingleTailPathExpr((org.emftext.language.xpath2.SingleTailPathExpr) element, globaltab, out);
-			return;
-		}
-		if (element instanceof org.emftext.language.xpath2.DoubleTailPathExpr) {
-			print_org_emftext_language_xpath2_DoubleTailPathExpr((org.emftext.language.xpath2.DoubleTailPathExpr) element, globaltab, out);
+		if (element instanceof org.emftext.language.xpath2.SelfStepExpr) {
+			print_org_emftext_language_xpath2_SelfStepExpr((org.emftext.language.xpath2.SelfStepExpr) element, globaltab, out);
 			return;
 		}
 		if (element instanceof org.emftext.language.xpath2.AxisStep) {
@@ -172,20 +168,12 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			print_org_emftext_language_xpath2_AbbrevForwardStep((org.emftext.language.xpath2.AbbrevForwardStep) element, globaltab, out);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.ForwardAxis) {
-			print_org_emftext_language_xpath2_ForwardAxis((org.emftext.language.xpath2.ForwardAxis) element, globaltab, out);
-			return;
-		}
 		if (element instanceof org.emftext.language.xpath2.GeneralReverseStep) {
 			print_org_emftext_language_xpath2_GeneralReverseStep((org.emftext.language.xpath2.GeneralReverseStep) element, globaltab, out);
 			return;
 		}
 		if (element instanceof org.emftext.language.xpath2.AbbrevReverseStep) {
 			print_org_emftext_language_xpath2_AbbrevReverseStep((org.emftext.language.xpath2.AbbrevReverseStep) element, globaltab, out);
-			return;
-		}
-		if (element instanceof org.emftext.language.xpath2.ReverseAxis) {
-			print_org_emftext_language_xpath2_ReverseAxis((org.emftext.language.xpath2.ReverseAxis) element, globaltab, out);
 			return;
 		}
 		if (element instanceof org.emftext.language.xpath2.NodeKindTest) {
@@ -403,8 +391,8 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.EXPR__OWNED_EXPR_SINGLE));
-		printCountingMap.put("ownedExprSingle", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.EXPR__EXPR));
+		printCountingMap.put("expr", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
 		// print collected hidden tokens
 		int count;
 		boolean iterate = true;
@@ -412,9 +400,9 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		java.io.PrintWriter out1 = null;
 		java.util.Map<String, Integer> printCountingMap1 = null;
 		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("ownedExprSingle");
+		count = printCountingMap.get("expr");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.EXPR__OWNED_EXPR_SINGLE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.EXPR__EXPR));
 			java.util.List<?> list = (java.util.List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -425,7 +413,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			if (o != null) {
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
-			printCountingMap.put("ownedExprSingle", count - 1);
+			printCountingMap.put("expr", count - 1);
 		}
 		// DEFINITION PART BEGINS (CompoundDefinition)
 		iterate = true;
@@ -453,9 +441,9 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		out.print(",");
 		out.print(" ");
 		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("ownedExprSingle");
+		count = printCountingMap.get("expr");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.EXPR__OWNED_EXPR_SINGLE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.EXPR__EXPR));
 			java.util.List<?> list = (java.util.List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -466,7 +454,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			if (o != null) {
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
-			printCountingMap.put("ownedExprSingle", count - 1);
+			printCountingMap.put("expr", count - 1);
 		}
 	}
 	
@@ -480,47 +468,10 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FOR_EXPR__OWNED_SIMPLE_FOR_CLAUSE));
-		printCountingMap.put("ownedSimpleForClause", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FOR_EXPR__ITERATOR));
+		printCountingMap.put("iterator", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
 		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FOR_EXPR__RETURN));
 		printCountingMap.put("return", temp == null ? 0 : 1);
-		// print collected hidden tokens
-		int count;
-		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("ownedSimpleForClause");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FOR_EXPR__OWNED_SIMPLE_FOR_CLAUSE));
-			if (o != null) {
-				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
-			}
-			printCountingMap.put("ownedSimpleForClause", count - 1);
-		}
-		// DEFINITION PART BEGINS (CsString)
-		out.print("return");
-		out.print(" ");
-		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("return");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FOR_EXPR__RETURN));
-			if (o != null) {
-				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
-			}
-			printCountingMap.put("return", count - 1);
-		}
-	}
-	
-	
-	public void print_org_emftext_language_xpath2_SimpleForClause(org.emftext.language.xpath2.SimpleForClause element, String outertab, java.io.PrintWriter out) {
-		String localtab = outertab;
-		// The printCountingMap contains a mapping from feature names to the number of
-		// remaining elements that still need to be printed. The map is initialized with
-		// the number of elements stored in each structural feature. For lists this is the
-		// list size. For non-multiple features it is either 1 (if the feature is set) or
-		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(1);
-		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SIMPLE_FOR_CLAUSE__ITERATOR));
-		printCountingMap.put("iterator", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
 		// print collected hidden tokens
 		int count;
 		boolean iterate = true;
@@ -533,7 +484,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("iterator");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SIMPLE_FOR_CLAUSE__ITERATOR));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FOR_EXPR__ITERATOR));
 			java.util.List<?> list = (java.util.List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -552,7 +503,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			sWriter = new java.io.StringWriter();
 			out1 = new java.io.PrintWriter(sWriter);
 			printCountingMap1 = new java.util.LinkedHashMap<String, Integer>(printCountingMap);
-			print_org_emftext_language_xpath2_SimpleForClause_0(element, localtab, out1, printCountingMap1);
+			print_org_emftext_language_xpath2_ForExpr_0(element, localtab, out1, printCountingMap1);
 			if (printCountingMap.equals(printCountingMap1)) {
 				iterate = false;
 				out1.close();
@@ -563,9 +514,21 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 				printCountingMap.putAll(printCountingMap1);
 			}
 		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("return");
+		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("return");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FOR_EXPR__RETURN));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("return", count - 1);
+		}
 	}
 	
-	public void print_org_emftext_language_xpath2_SimpleForClause_0(org.emftext.language.xpath2.SimpleForClause element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
+	public void print_org_emftext_language_xpath2_ForExpr_0(org.emftext.language.xpath2.ForExpr element, String outertab, java.io.PrintWriter out, java.util.Map<String, Integer> printCountingMap) {
 		String localtab = outertab;
 		int count;
 		// DEFINITION PART BEGINS (CsString)
@@ -574,7 +537,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("iterator");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SIMPLE_FOR_CLAUSE__ITERATOR));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FOR_EXPR__ITERATOR));
 			java.util.List<?> list = (java.util.List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -586,48 +549,6 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
 			printCountingMap.put("iterator", count - 1);
-		}
-	}
-	
-	
-	public void print_org_emftext_language_xpath2_Iterator(org.emftext.language.xpath2.Iterator element, String outertab, java.io.PrintWriter out) {
-		String localtab = outertab;
-		// The printCountingMap contains a mapping from feature names to the number of
-		// remaining elements that still need to be printed. The map is initialized with
-		// the number of elements stored in each structural feature. For lists this is the
-		// list size. For non-multiple features it is either 1 (if the feature is set) or
-		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(2);
-		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__VAR_NAME));
-		printCountingMap.put("varName", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__LIST));
-		printCountingMap.put("list", temp == null ? 0 : 1);
-		// print collected hidden tokens
-		int count;
-		// DEFINITION PART BEGINS (CsString)
-		out.print("$");
-		out.print(" ");
-		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("varName");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__VAR_NAME));
-			if (o != null) {
-				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
-			}
-			printCountingMap.put("varName", count - 1);
-		}
-		// DEFINITION PART BEGINS (CsString)
-		out.print("in");
-		out.print(" ");
-		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("list");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__LIST));
-			if (o != null) {
-				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
-			}
-			printCountingMap.put("list", count - 1);
 		}
 	}
 	
@@ -733,6 +654,48 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 	}
 	
 	
+	public void print_org_emftext_language_xpath2_Iterator(org.emftext.language.xpath2.Iterator element, String outertab, java.io.PrintWriter out) {
+		String localtab = outertab;
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(2);
+		Object temp;
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__VAR_NAME));
+		printCountingMap.put("varName", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__LIST));
+		printCountingMap.put("list", temp == null ? 0 : 1);
+		// print collected hidden tokens
+		int count;
+		// DEFINITION PART BEGINS (CsString)
+		out.print("$");
+		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("varName");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__VAR_NAME));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("varName", count - 1);
+		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("in");
+		out.print(" ");
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("list");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__LIST));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("list", count - 1);
+		}
+	}
+	
+	
 	public void print_org_emftext_language_xpath2_IfExpr(org.emftext.language.xpath2.IfExpr element, String outertab, java.io.PrintWriter out) {
 		String localtab = outertab;
 		// The printCountingMap contains a mapping from feature names to the number of
@@ -742,8 +705,8 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(3);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__CONDITION));
-		printCountingMap.put("condition", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__TEST));
+		printCountingMap.put("test", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__THEN));
 		printCountingMap.put("then", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__ELSE));
@@ -757,13 +720,13 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		out.print("(");
 		out.print(" ");
 		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("condition");
+		count = printCountingMap.get("test");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__CONDITION));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__TEST));
 			if (o != null) {
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
-			printCountingMap.put("condition", count - 1);
+			printCountingMap.put("test", count - 1);
 		}
 		// DEFINITION PART BEGINS (CsString)
 		out.print(")");
@@ -1073,6 +1036,75 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
 			printCountingMap.put("to", count - 1);
+		}
+	}
+	
+	
+	public void print_org_emftext_language_xpath2_GeneralComp(org.emftext.language.xpath2.GeneralComp element, String outertab, java.io.PrintWriter out) {
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(1);
+		Object temp;
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_COMP__OPERATOR));
+		printCountingMap.put("operator", temp == null ? 0 : 1);
+		// print collected hidden tokens
+		int count;
+		// DEFINITION PART BEGINS (EnumTerminal)
+		count = printCountingMap.get("operator");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_COMP__OPERATOR));
+			if (o != null) {
+			}
+			printCountingMap.put("operator", count - 1);
+		}
+	}
+	
+	
+	public void print_org_emftext_language_xpath2_ValueComp(org.emftext.language.xpath2.ValueComp element, String outertab, java.io.PrintWriter out) {
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(1);
+		Object temp;
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VALUE_COMP__OPERATOR));
+		printCountingMap.put("operator", temp == null ? 0 : 1);
+		// print collected hidden tokens
+		int count;
+		// DEFINITION PART BEGINS (EnumTerminal)
+		count = printCountingMap.get("operator");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VALUE_COMP__OPERATOR));
+			if (o != null) {
+			}
+			printCountingMap.put("operator", count - 1);
+		}
+	}
+	
+	
+	public void print_org_emftext_language_xpath2_NodeComp(org.emftext.language.xpath2.NodeComp element, String outertab, java.io.PrintWriter out) {
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(1);
+		Object temp;
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NODE_COMP__OPERATOR));
+		printCountingMap.put("operator", temp == null ? 0 : 1);
+		// print collected hidden tokens
+		int count;
+		// DEFINITION PART BEGINS (EnumTerminal)
+		count = printCountingMap.get("operator");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NODE_COMP__OPERATOR));
+			if (o != null) {
+			}
+			printCountingMap.put("operator", count - 1);
 		}
 	}
 	
@@ -1734,76 +1766,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 	}
 	
 	
-	public void print_org_emftext_language_xpath2_GeneralComp(org.emftext.language.xpath2.GeneralComp element, String outertab, java.io.PrintWriter out) {
-		// The printCountingMap contains a mapping from feature names to the number of
-		// remaining elements that still need to be printed. The map is initialized with
-		// the number of elements stored in each structural feature. For lists this is the
-		// list size. For non-multiple features it is either 1 (if the feature is set) or
-		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(1);
-		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_COMP__OPERATOR));
-		printCountingMap.put("operator", temp == null ? 0 : 1);
-		// print collected hidden tokens
-		int count;
-		// DEFINITION PART BEGINS (EnumTerminal)
-		count = printCountingMap.get("operator");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_COMP__OPERATOR));
-			if (o != null) {
-			}
-			printCountingMap.put("operator", count - 1);
-		}
-	}
-	
-	
-	public void print_org_emftext_language_xpath2_ValueComp(org.emftext.language.xpath2.ValueComp element, String outertab, java.io.PrintWriter out) {
-		// The printCountingMap contains a mapping from feature names to the number of
-		// remaining elements that still need to be printed. The map is initialized with
-		// the number of elements stored in each structural feature. For lists this is the
-		// list size. For non-multiple features it is either 1 (if the feature is set) or
-		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(1);
-		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VALUE_COMP__OPERATOR));
-		printCountingMap.put("operator", temp == null ? 0 : 1);
-		// print collected hidden tokens
-		int count;
-		// DEFINITION PART BEGINS (EnumTerminal)
-		count = printCountingMap.get("operator");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VALUE_COMP__OPERATOR));
-			if (o != null) {
-			}
-			printCountingMap.put("operator", count - 1);
-		}
-	}
-	
-	
-	public void print_org_emftext_language_xpath2_NodeComp(org.emftext.language.xpath2.NodeComp element, String outertab, java.io.PrintWriter out) {
-		// The printCountingMap contains a mapping from feature names to the number of
-		// remaining elements that still need to be printed. The map is initialized with
-		// the number of elements stored in each structural feature. For lists this is the
-		// list size. For non-multiple features it is either 1 (if the feature is set) or
-		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(1);
-		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NODE_COMP__OPERATOR));
-		printCountingMap.put("operator", temp == null ? 0 : 1);
-		// print collected hidden tokens
-		int count;
-		// DEFINITION PART BEGINS (EnumTerminal)
-		count = printCountingMap.get("operator");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NODE_COMP__OPERATOR));
-			if (o != null) {
-			}
-			printCountingMap.put("operator", count - 1);
-		}
-	}
-	
-	
-	public void print_org_emftext_language_xpath2_SinglePathExpr(org.emftext.language.xpath2.SinglePathExpr element, String outertab, java.io.PrintWriter out) {
+	public void print_org_emftext_language_xpath2_PathExpr(org.emftext.language.xpath2.PathExpr element, String outertab, java.io.PrintWriter out) {
 		String localtab = outertab;
 		// The printCountingMap contains a mapping from feature names to the number of
 		// remaining elements that still need to be printed. The map is initialized with
@@ -1812,81 +1775,30 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SINGLE_PATH_EXPR__RELATIVE_PATH_EXPR));
-		printCountingMap.put("relativePathExpr", temp == null ? 0 : 1);
-		// print collected hidden tokens
-		int count;
-		// DEFINITION PART BEGINS (CsString)
-		out.print("/");
-		out.print(" ");
-		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("relativePathExpr");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SINGLE_PATH_EXPR__RELATIVE_PATH_EXPR));
-			if (o != null) {
-				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
-			}
-			printCountingMap.put("relativePathExpr", count - 1);
-		}
-	}
-	
-	
-	public void print_org_emftext_language_xpath2_DoublePathExpr(org.emftext.language.xpath2.DoublePathExpr element, String outertab, java.io.PrintWriter out) {
-		String localtab = outertab;
-		// The printCountingMap contains a mapping from feature names to the number of
-		// remaining elements that still need to be printed. The map is initialized with
-		// the number of elements stored in each structural feature. For lists this is the
-		// list size. For non-multiple features it is either 1 (if the feature is set) or
-		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(1);
-		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DOUBLE_PATH_EXPR__RELATIVE_PATH_EXPR));
-		printCountingMap.put("relativePathExpr", temp == null ? 0 : 1);
-		// print collected hidden tokens
-		int count;
-		// DEFINITION PART BEGINS (CsString)
-		out.print("//");
-		out.print(" ");
-		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("relativePathExpr");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DOUBLE_PATH_EXPR__RELATIVE_PATH_EXPR));
-			if (o != null) {
-				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
-			}
-			printCountingMap.put("relativePathExpr", count - 1);
-		}
-	}
-	
-	
-	public void print_org_emftext_language_xpath2_RelativePathExpr(org.emftext.language.xpath2.RelativePathExpr element, String outertab, java.io.PrintWriter out) {
-		String localtab = outertab;
-		// The printCountingMap contains a mapping from feature names to the number of
-		// remaining elements that still need to be printed. The map is initialized with
-		// the number of elements stored in each structural feature. For lists this is the
-		// list size. For non-multiple features it is either 1 (if the feature is set) or
-		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(2);
-		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.RELATIVE_PATH_EXPR__HEAD));
-		printCountingMap.put("head", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.RELATIVE_PATH_EXPR__TAIL));
-		printCountingMap.put("tail", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.PATH_EXPR__STEP));
+		printCountingMap.put("step", temp == null ? 0 : ((java.util.Collection<?>) temp).size());
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("head");
+		count = printCountingMap.get("step");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.RELATIVE_PATH_EXPR__HEAD));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.PATH_EXPR__STEP));
+			java.util.List<?> list = (java.util.List<?>) o;
+			int index = list.size() - count;
+			if (index >= 0) {
+				o = list.get(index);
+			} else {
+				o = null;
+			}
 			if (o != null) {
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
-			printCountingMap.put("head", count - 1);
+			printCountingMap.put("step", count - 1);
 		}
 		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("tail");
+		count = printCountingMap.get("step");
 		if (count > 0) {
-			java.util.List<?> list = (java.util.List<?>)element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.RELATIVE_PATH_EXPR__TAIL));
+			java.util.List<?> list = (java.util.List<?>)element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.PATH_EXPR__STEP));
 			int index  = list.size() - count;
 			if (index < 0) {
 				index = 0;
@@ -1896,12 +1808,12 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 				Object o = it.next();
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
-			printCountingMap.put("tail", 0);
+			printCountingMap.put("step", 0);
 		}
 	}
 	
 	
-	public void print_org_emftext_language_xpath2_SingleTailPathExpr(org.emftext.language.xpath2.SingleTailPathExpr element, String outertab, java.io.PrintWriter out) {
+	public void print_org_emftext_language_xpath2_ChildStepExpr(org.emftext.language.xpath2.ChildStepExpr element, String outertab, java.io.PrintWriter out) {
 		String localtab = outertab;
 		// The printCountingMap contains a mapping from feature names to the number of
 		// remaining elements that still need to be printed. The map is initialized with
@@ -1910,26 +1822,26 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SINGLE_TAIL_PATH_EXPR__STEP_EXPRESSION));
-		printCountingMap.put("stepExpression", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.CHILD_STEP_EXPR__STEP));
+		printCountingMap.put("step", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (CsString)
 		out.print("/");
 		out.print(" ");
 		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("stepExpression");
+		count = printCountingMap.get("step");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SINGLE_TAIL_PATH_EXPR__STEP_EXPRESSION));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.CHILD_STEP_EXPR__STEP));
 			if (o != null) {
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
-			printCountingMap.put("stepExpression", count - 1);
+			printCountingMap.put("step", count - 1);
 		}
 	}
 	
 	
-	public void print_org_emftext_language_xpath2_DoubleTailPathExpr(org.emftext.language.xpath2.DoubleTailPathExpr element, String outertab, java.io.PrintWriter out) {
+	public void print_org_emftext_language_xpath2_DescOrSelfStepExpr(org.emftext.language.xpath2.DescOrSelfStepExpr element, String outertab, java.io.PrintWriter out) {
 		String localtab = outertab;
 		// The printCountingMap contains a mapping from feature names to the number of
 		// remaining elements that still need to be printed. The map is initialized with
@@ -1938,21 +1850,59 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DOUBLE_TAIL_PATH_EXPR__STEP_EXPRESSION));
-		printCountingMap.put("stepExpression", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP));
+		printCountingMap.put("step", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (CsString)
 		out.print("//");
 		out.print(" ");
 		// DEFINITION PART BEGINS (Containment)
-		count = printCountingMap.get("stepExpression");
+		count = printCountingMap.get("step");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DOUBLE_TAIL_PATH_EXPR__STEP_EXPRESSION));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP));
 			if (o != null) {
 				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
-			printCountingMap.put("stepExpression", count - 1);
+			printCountingMap.put("step", count - 1);
+		}
+	}
+	
+	
+	public void print_org_emftext_language_xpath2_RootStepExpr(org.emftext.language.xpath2.RootStepExpr element, String outertab, java.io.PrintWriter out) {
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		// print collected hidden tokens
+		// DEFINITION PART BEGINS (CsString)
+		out.print("/");
+		out.print(" ");
+	}
+	
+	
+	public void print_org_emftext_language_xpath2_SelfStepExpr(org.emftext.language.xpath2.SelfStepExpr element, String outertab, java.io.PrintWriter out) {
+		String localtab = outertab;
+		// The printCountingMap contains a mapping from feature names to the number of
+		// remaining elements that still need to be printed. The map is initialized with
+		// the number of elements stored in each structural feature. For lists this is the
+		// list size. For non-multiple features it is either 1 (if the feature is set) or
+		// 0 (if the feature is null).
+		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(1);
+		Object temp;
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SELF_STEP_EXPR__STEP));
+		printCountingMap.put("step", temp == null ? 0 : 1);
+		// print collected hidden tokens
+		int count;
+		// DEFINITION PART BEGINS (Containment)
+		count = printCountingMap.get("step");
+		if (count > 0) {
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SELF_STEP_EXPR__STEP));
+			if (o != null) {
+				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
+			}
+			printCountingMap.put("step", count - 1);
 		}
 	}
 	
@@ -2014,15 +1964,17 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		printCountingMap.put("nodeTest", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
-		// DEFINITION PART BEGINS (Containment)
+		// DEFINITION PART BEGINS (EnumTerminal)
 		count = printCountingMap.get("axis");
 		if (count > 0) {
 			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS));
 			if (o != null) {
-				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
 			printCountingMap.put("axis", count - 1);
 		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("::");
+		out.print(" ");
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("nodeTest");
 		if (count > 0) {
@@ -2044,19 +1996,19 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_FORWARD_STEP__AT));
-		printCountingMap.put("at", temp == null ? 0 : 1);
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_FORWARD_STEP__KIND));
+		printCountingMap.put("kind", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_FORWARD_STEP__NODE_TEST));
 		printCountingMap.put("nodeTest", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
-		// DEFINITION PART BEGINS (BooleanTerminal)
-		count = printCountingMap.get("at");
+		// DEFINITION PART BEGINS (EnumTerminal)
+		count = printCountingMap.get("kind");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_FORWARD_STEP__AT));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_FORWARD_STEP__KIND));
 			if (o != null) {
 			}
-			printCountingMap.put("at", count - 1);
+			printCountingMap.put("kind", count - 1);
 		}
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("nodeTest");
@@ -2067,32 +2019,6 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			}
 			printCountingMap.put("nodeTest", count - 1);
 		}
-	}
-	
-	
-	public void print_org_emftext_language_xpath2_ForwardAxis(org.emftext.language.xpath2.ForwardAxis element, String outertab, java.io.PrintWriter out) {
-		// The printCountingMap contains a mapping from feature names to the number of
-		// remaining elements that still need to be printed. The map is initialized with
-		// the number of elements stored in each structural feature. For lists this is the
-		// list size. For non-multiple features it is either 1 (if the feature is set) or
-		// 0 (if the feature is null).
-		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(1);
-		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FORWARD_AXIS__KIND));
-		printCountingMap.put("kind", temp == null ? 0 : 1);
-		// print collected hidden tokens
-		int count;
-		// DEFINITION PART BEGINS (EnumTerminal)
-		count = printCountingMap.get("kind");
-		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FORWARD_AXIS__KIND));
-			if (o != null) {
-			}
-			printCountingMap.put("kind", count - 1);
-		}
-		// DEFINITION PART BEGINS (CsString)
-		out.print("::");
-		out.print(" ");
 	}
 	
 	
@@ -2111,15 +2037,17 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		printCountingMap.put("nodeTest", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
-		// DEFINITION PART BEGINS (Containment)
+		// DEFINITION PART BEGINS (EnumTerminal)
 		count = printCountingMap.get("axis");
 		if (count > 0) {
 			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_REVERSE_STEP__AXIS));
 			if (o != null) {
-				doPrint((org.eclipse.emf.ecore.EObject) o, out, localtab);
 			}
 			printCountingMap.put("axis", count - 1);
 		}
+		// DEFINITION PART BEGINS (CsString)
+		out.print("::");
+		out.print(" ");
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("nodeTest");
 		if (count > 0) {
@@ -2138,36 +2066,20 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// the number of elements stored in each structural feature. For lists this is the
 		// list size. For non-multiple features it is either 1 (if the feature is set) or
 		// 0 (if the feature is null).
-		// print collected hidden tokens
-		// DEFINITION PART BEGINS (CsString)
-		out.print("..");
-		out.print(" ");
-	}
-	
-	
-	public void print_org_emftext_language_xpath2_ReverseAxis(org.emftext.language.xpath2.ReverseAxis element, String outertab, java.io.PrintWriter out) {
-		// The printCountingMap contains a mapping from feature names to the number of
-		// remaining elements that still need to be printed. The map is initialized with
-		// the number of elements stored in each structural feature. For lists this is the
-		// list size. For non-multiple features it is either 1 (if the feature is set) or
-		// 0 (if the feature is null).
 		java.util.Map<String, Integer> printCountingMap = new java.util.LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.REVERSE_AXIS__KIND));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_REVERSE_STEP__KIND));
 		printCountingMap.put("kind", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (EnumTerminal)
 		count = printCountingMap.get("kind");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.REVERSE_AXIS__KIND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_REVERSE_STEP__KIND));
 			if (o != null) {
 			}
 			printCountingMap.put("kind", count - 1);
 		}
-		// DEFINITION PART BEGINS (CsString)
-		out.print("::");
-		out.print(" ");
 	}
 	
 	

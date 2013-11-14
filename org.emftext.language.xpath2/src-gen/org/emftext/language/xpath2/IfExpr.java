@@ -11,7 +11,7 @@ package org.emftext.language.xpath2;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.emftext.language.xpath2.IfExpr#getCondition <em>Condition</em>}</li>
+ *   <li>{@link org.emftext.language.xpath2.IfExpr#getTest <em>Test</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.IfExpr#getThen <em>Then</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.IfExpr#getElse <em>Else</em>}</li>
  * </ul>
@@ -23,30 +23,30 @@ package org.emftext.language.xpath2;
  */
 public interface IfExpr extends ExprSingle {
 	/**
-   * Returns the value of the '<em><b>Condition</b></em>' containment reference.
+   * Returns the value of the '<em><b>Test</b></em>' containment reference.
    * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Condition</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Test</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-   * @return the value of the '<em>Condition</em>' containment reference.
-   * @see #setCondition(Expr)
-   * @see org.emftext.language.xpath2.Xpath2Package#getIfExpr_Condition()
+   * @return the value of the '<em>Test</em>' containment reference.
+   * @see #setTest(Expr)
+   * @see org.emftext.language.xpath2.Xpath2Package#getIfExpr_Test()
    * @model containment="true" required="true"
    * @generated
    */
-	Expr getCondition();
+	Expr getTest();
 
 	/**
-   * Sets the value of the '{@link org.emftext.language.xpath2.IfExpr#getCondition <em>Condition</em>}' containment reference.
+   * Sets the value of the '{@link org.emftext.language.xpath2.IfExpr#getTest <em>Test</em>}' containment reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Condition</em>' containment reference.
-   * @see #getCondition()
+   * @param value the new value of the '<em>Test</em>' containment reference.
+   * @see #getTest()
    * @generated
    */
-	void setCondition(Expr value);
+	void setTest(Expr value);
 
 	/**
    * Returns the value of the '<em><b>Then</b></em>' containment reference.

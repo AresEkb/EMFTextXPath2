@@ -12,7 +12,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.emftext.language.xpath2.Expr#getOwnedExprSingle <em>Owned Expr Single</em>}</li>
+ *   <li>{@link org.emftext.language.xpath2.Expr#getExpr <em>Expr</em>}</li>
  * </ul>
  * </p>
  *
@@ -22,19 +22,19 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Expr extends ParenthesizedExprChild {
 	/**
-   * Returns the value of the '<em><b>Owned Expr Single</b></em>' containment reference list.
+   * Returns the value of the '<em><b>Expr</b></em>' containment reference list.
    * The list contents are of type {@link org.emftext.language.xpath2.ExprSingle}.
    * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Expr Single</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Expr</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-   * @return the value of the '<em>Owned Expr Single</em>' containment reference list.
-   * @see org.emftext.language.xpath2.Xpath2Package#getExpr_OwnedExprSingle()
+   * @return the value of the '<em>Expr</em>' containment reference list.
+   * @see org.emftext.language.xpath2.Xpath2Package#getExpr_Expr()
    * @model containment="true" required="true"
    * @generated
    */
-	EList<ExprSingle> getOwnedExprSingle();
+	EList<ExprSingle> getExpr();
 
 } // Expr

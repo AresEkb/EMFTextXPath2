@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.AbbrevForwardStep;
+import org.emftext.language.xpath2.AbbrevForwardStepKind;
 import org.emftext.language.xpath2.NodeTest;
 import org.emftext.language.xpath2.Xpath2Package;
 
@@ -21,7 +22,7 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.emftext.language.xpath2.impl.AbbrevForwardStepImpl#isAt <em>At</em>}</li>
+ *   <li>{@link org.emftext.language.xpath2.impl.AbbrevForwardStepImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.AbbrevForwardStepImpl#getNodeTest <em>Node Test</em>}</li>
  * </ul>
  * </p>
@@ -30,24 +31,24 @@ import org.emftext.language.xpath2.Xpath2Package;
  */
 public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForwardStep {
 	/**
-   * The default value of the '{@link #isAt() <em>At</em>}' attribute.
+   * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see #isAt()
+   * @see #getKind()
    * @generated
    * @ordered
    */
-	protected static final boolean AT_EDEFAULT = false;
+	protected static final AbbrevForwardStepKind KIND_EDEFAULT = AbbrevForwardStepKind.CHILD;
 
 	/**
-   * The cached value of the '{@link #isAt() <em>At</em>}' attribute.
+   * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see #isAt()
+   * @see #getKind()
    * @generated
    * @ordered
    */
-	protected boolean at = AT_EDEFAULT;
+	protected AbbrevForwardStepKind kind = KIND_EDEFAULT;
 
 	/**
    * The cached value of the '{@link #getNodeTest() <em>Node Test</em>}' containment reference.
@@ -83,8 +84,8 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public boolean isAt() {
-    return at;
+	public AbbrevForwardStepKind getKind() {
+    return kind;
   }
 
 	/**
@@ -92,11 +93,11 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public void setAt(boolean newAt) {
-    boolean oldAt = at;
-    at = newAt;
+	public void setKind(AbbrevForwardStepKind newKind) {
+    AbbrevForwardStepKind oldKind = kind;
+    kind = newKind == null ? KIND_EDEFAULT : newKind;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ABBREV_FORWARD_STEP__AT, oldAt, at));
+      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ABBREV_FORWARD_STEP__KIND, oldKind, kind));
   }
 
 	/**
@@ -168,8 +169,8 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
-      case Xpath2Package.ABBREV_FORWARD_STEP__AT:
-        return isAt();
+      case Xpath2Package.ABBREV_FORWARD_STEP__KIND:
+        return getKind();
       case Xpath2Package.ABBREV_FORWARD_STEP__NODE_TEST:
         return getNodeTest();
     }
@@ -185,8 +186,8 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
 	public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
-      case Xpath2Package.ABBREV_FORWARD_STEP__AT:
-        setAt((Boolean)newValue);
+      case Xpath2Package.ABBREV_FORWARD_STEP__KIND:
+        setKind((AbbrevForwardStepKind)newValue);
         return;
       case Xpath2Package.ABBREV_FORWARD_STEP__NODE_TEST:
         setNodeTest((NodeTest)newValue);
@@ -204,8 +205,8 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
 	public void eUnset(int featureID) {
     switch (featureID)
     {
-      case Xpath2Package.ABBREV_FORWARD_STEP__AT:
-        setAt(AT_EDEFAULT);
+      case Xpath2Package.ABBREV_FORWARD_STEP__KIND:
+        setKind(KIND_EDEFAULT);
         return;
       case Xpath2Package.ABBREV_FORWARD_STEP__NODE_TEST:
         setNodeTest((NodeTest)null);
@@ -223,8 +224,8 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
 	public boolean eIsSet(int featureID) {
     switch (featureID)
     {
-      case Xpath2Package.ABBREV_FORWARD_STEP__AT:
-        return at != AT_EDEFAULT;
+      case Xpath2Package.ABBREV_FORWARD_STEP__KIND:
+        return kind != KIND_EDEFAULT;
       case Xpath2Package.ABBREV_FORWARD_STEP__NODE_TEST:
         return nodeTest != null;
     }
@@ -241,8 +242,8 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (at: ");
-    result.append(at);
+    result.append(" (kind: ");
+    result.append(kind);
     result.append(')');
     return result.toString();
   }

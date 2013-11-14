@@ -11,7 +11,9 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.emftext.language.xpath2.AbbrevForwardStep;
+import org.emftext.language.xpath2.AbbrevForwardStepKind;
 import org.emftext.language.xpath2.AbbrevReverseStep;
+import org.emftext.language.xpath2.AbbrevReverseStepKind;
 import org.emftext.language.xpath2.AdditiveExpr;
 import org.emftext.language.xpath2.AdditiveExprChild;
 import org.emftext.language.xpath2.AdditiveOpKind;
@@ -28,6 +30,7 @@ import org.emftext.language.xpath2.CastExpr;
 import org.emftext.language.xpath2.CastExprChild;
 import org.emftext.language.xpath2.CastableExpr;
 import org.emftext.language.xpath2.CastableExprChild;
+import org.emftext.language.xpath2.ChildStepExpr;
 import org.emftext.language.xpath2.Comment;
 import org.emftext.language.xpath2.CommentTest;
 import org.emftext.language.xpath2.Comp;
@@ -35,11 +38,10 @@ import org.emftext.language.xpath2.ComparisonExpr;
 import org.emftext.language.xpath2.ComparisonExprChild;
 import org.emftext.language.xpath2.ContextItemExpr;
 import org.emftext.language.xpath2.DecimalLiteral;
+import org.emftext.language.xpath2.DescOrSelfStepExpr;
 import org.emftext.language.xpath2.DirectionalStep;
 import org.emftext.language.xpath2.DocumentTest;
 import org.emftext.language.xpath2.DoubleLiteral;
-import org.emftext.language.xpath2.DoublePathExpr;
-import org.emftext.language.xpath2.DoubleTailPathExpr;
 import org.emftext.language.xpath2.ElementTest;
 import org.emftext.language.xpath2.EmptySequenceType;
 import org.emftext.language.xpath2.Expr;
@@ -47,7 +49,6 @@ import org.emftext.language.xpath2.ExprSingle;
 import org.emftext.language.xpath2.FilterExpr;
 import org.emftext.language.xpath2.FilterExprChild;
 import org.emftext.language.xpath2.ForExpr;
-import org.emftext.language.xpath2.ForwardAxis;
 import org.emftext.language.xpath2.ForwardAxisKind;
 import org.emftext.language.xpath2.ForwardStep;
 import org.emftext.language.xpath2.FunctionCall;
@@ -89,6 +90,7 @@ import org.emftext.language.xpath2.PITest;
 import org.emftext.language.xpath2.ParenthesizedExpr;
 import org.emftext.language.xpath2.ParenthesizedExprChild;
 import org.emftext.language.xpath2.PathExpr;
+import org.emftext.language.xpath2.PathExprChild;
 import org.emftext.language.xpath2.Predicate;
 import org.emftext.language.xpath2.PrimaryExpr;
 import org.emftext.language.xpath2.QName;
@@ -97,22 +99,17 @@ import org.emftext.language.xpath2.QuantifiedExpr;
 import org.emftext.language.xpath2.QuantifierKind;
 import org.emftext.language.xpath2.RangeExpr;
 import org.emftext.language.xpath2.RangeExprChild;
-import org.emftext.language.xpath2.RelativePathExpr;
-import org.emftext.language.xpath2.RelativePathExprChild;
-import org.emftext.language.xpath2.ReverseAxis;
 import org.emftext.language.xpath2.ReverseAxisKind;
 import org.emftext.language.xpath2.ReverseStep;
+import org.emftext.language.xpath2.RootStepExpr;
 import org.emftext.language.xpath2.SchemaAttributeTest;
 import org.emftext.language.xpath2.SchemaElementTest;
+import org.emftext.language.xpath2.SelfStepExpr;
 import org.emftext.language.xpath2.SequenceType;
-import org.emftext.language.xpath2.SimpleForClause;
-import org.emftext.language.xpath2.SinglePathExpr;
-import org.emftext.language.xpath2.SingleTailPathExpr;
 import org.emftext.language.xpath2.SingleType;
 import org.emftext.language.xpath2.StepExpr;
 import org.emftext.language.xpath2.StringLiteral;
 import org.emftext.language.xpath2.StringLiteralPITest;
-import org.emftext.language.xpath2.TailPathExpr;
 import org.emftext.language.xpath2.TextTest;
 import org.emftext.language.xpath2.TreatExpr;
 import org.emftext.language.xpath2.TreatExprChild;
@@ -173,13 +170,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
    * @generated
    */
 	private EClass ifExprEClass = null;
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	private EClass simpleForClauseEClass = null;
 
 	/**
    * <!-- begin-user-doc -->
@@ -389,28 +379,35 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	private EClass singlePathExprEClass = null;
+	private EClass pathExprChildEClass = null;
 
 	/**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
-	private EClass doublePathExprEClass = null;
+	private EClass rootStepExprEClass = null;
 
 	/**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
-	private EClass relativePathExprEClass = null;
+	private EClass childStepExprEClass = null;
 
 	/**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
-	private EClass relativePathExprChildEClass = null;
+	private EClass descOrSelfStepExprEClass = null;
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	private EClass selfStepExprEClass = null;
 
 	/**
    * <!-- begin-user-doc -->
@@ -439,27 +436,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
    * @generated
    */
 	private EClass axisStepEClass = null;
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	private EClass tailPathExprEClass = null;
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	private EClass singleTailPathExprEClass = null;
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	private EClass doubleTailPathExprEClass = null;
 
 	/**
    * <!-- begin-user-doc -->
@@ -501,13 +477,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	private EClass forwardAxisEClass = null;
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
 	private EClass generalReverseStepEClass = null;
 
 	/**
@@ -516,13 +485,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
    * @generated
    */
 	private EClass abbrevReverseStepEClass = null;
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	private EClass reverseAxisEClass = null;
 
 	/**
    * <!-- begin-user-doc -->
@@ -907,7 +869,21 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
+	private EEnum abbrevForwardStepKindEEnum = null;
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
 	private EEnum reverseAxisKindEEnum = null;
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	private EEnum abbrevReverseStepKindEEnum = null;
 
 	/**
    * <!-- begin-user-doc -->
@@ -1047,7 +1023,7 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getExpr_OwnedExprSingle() {
+	public EReference getExpr_Expr() {
     return (EReference)exprEClass.getEStructuralFeatures().get(0);
   }
 
@@ -1074,7 +1050,7 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getForExpr_OwnedSimpleForClause() {
+	public EReference getForExpr_Iterator() {
     return (EReference)forExprEClass.getEStructuralFeatures().get(0);
   }
 
@@ -1137,7 +1113,7 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getIfExpr_Condition() {
+	public EReference getIfExpr_Test() {
     return (EReference)ifExprEClass.getEStructuralFeatures().get(0);
   }
 
@@ -1157,24 +1133,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
    */
 	public EReference getIfExpr_Else() {
     return (EReference)ifExprEClass.getEStructuralFeatures().get(2);
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EClass getSimpleForClause() {
-    return simpleForClauseEClass;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EReference getSimpleForClause_Iterator() {
-    return (EReference)simpleForClauseEClass.getEStructuralFeatures().get(0);
   }
 
 	/**
@@ -1686,8 +1644,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EClass getSinglePathExpr() {
-    return singlePathExprEClass;
+	public EReference getPathExpr_Step() {
+    return (EReference)pathExprEClass.getEStructuralFeatures().get(0);
   }
 
 	/**
@@ -1695,8 +1653,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getSinglePathExpr_RelativePathExpr() {
-    return (EReference)singlePathExprEClass.getEStructuralFeatures().get(0);
+	public EClass getPathExprChild() {
+    return pathExprChildEClass;
   }
 
 	/**
@@ -1704,8 +1662,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EClass getDoublePathExpr() {
-    return doublePathExprEClass;
+	public EClass getRootStepExpr() {
+    return rootStepExprEClass;
   }
 
 	/**
@@ -1713,8 +1671,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getDoublePathExpr_RelativePathExpr() {
-    return (EReference)doublePathExprEClass.getEStructuralFeatures().get(0);
+	public EClass getChildStepExpr() {
+    return childStepExprEClass;
   }
 
 	/**
@@ -1722,8 +1680,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EClass getRelativePathExpr() {
-    return relativePathExprEClass;
+	public EReference getChildStepExpr_Step() {
+    return (EReference)childStepExprEClass.getEStructuralFeatures().get(0);
   }
 
 	/**
@@ -1731,8 +1689,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getRelativePathExpr_Head() {
-    return (EReference)relativePathExprEClass.getEStructuralFeatures().get(0);
+	public EClass getDescOrSelfStepExpr() {
+    return descOrSelfStepExprEClass;
   }
 
 	/**
@@ -1740,8 +1698,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getRelativePathExpr_Tail() {
-    return (EReference)relativePathExprEClass.getEStructuralFeatures().get(1);
+	public EReference getDescOrSelfStepExpr_Step() {
+    return (EReference)descOrSelfStepExprEClass.getEStructuralFeatures().get(0);
   }
 
 	/**
@@ -1749,8 +1707,17 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EClass getRelativePathExprChild() {
-    return relativePathExprChildEClass;
+	public EClass getSelfStepExpr() {
+    return selfStepExprEClass;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public EReference getSelfStepExpr_Step() {
+    return (EReference)selfStepExprEClass.getEStructuralFeatures().get(0);
   }
 
 	/**
@@ -1830,42 +1797,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EClass getTailPathExpr() {
-    return tailPathExprEClass;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EReference getTailPathExpr_StepExpression() {
-    return (EReference)tailPathExprEClass.getEStructuralFeatures().get(0);
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EClass getSingleTailPathExpr() {
-    return singleTailPathExprEClass;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EClass getDoubleTailPathExpr() {
-    return doubleTailPathExprEClass;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
 	public EClass getDirectionalStep() {
     return directionalStepEClass;
   }
@@ -1902,8 +1833,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getGeneralForwardStep_Axis() {
-    return (EReference)generalForwardStepEClass.getEStructuralFeatures().get(0);
+	public EAttribute getGeneralForwardStep_Axis() {
+    return (EAttribute)generalForwardStepEClass.getEStructuralFeatures().get(0);
   }
 
 	/**
@@ -1929,7 +1860,7 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EAttribute getAbbrevForwardStep_At() {
+	public EAttribute getAbbrevForwardStep_Kind() {
     return (EAttribute)abbrevForwardStepEClass.getEStructuralFeatures().get(0);
   }
 
@@ -1947,24 +1878,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EClass getForwardAxis() {
-    return forwardAxisEClass;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EAttribute getForwardAxis_Kind() {
-    return (EAttribute)forwardAxisEClass.getEStructuralFeatures().get(0);
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
 	public EClass getGeneralReverseStep() {
     return generalReverseStepEClass;
   }
@@ -1974,8 +1887,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EReference getGeneralReverseStep_Axis() {
-    return (EReference)generalReverseStepEClass.getEStructuralFeatures().get(0);
+	public EAttribute getGeneralReverseStep_Axis() {
+    return (EAttribute)generalReverseStepEClass.getEStructuralFeatures().get(0);
   }
 
 	/**
@@ -2001,17 +1914,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public EClass getReverseAxis() {
-    return reverseAxisEClass;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public EAttribute getReverseAxis_Kind() {
-    return (EAttribute)reverseAxisEClass.getEStructuralFeatures().get(0);
+	public EAttribute getAbbrevReverseStep_Kind() {
+    return (EAttribute)abbrevReverseStepEClass.getEStructuralFeatures().get(0);
   }
 
 	/**
@@ -2865,8 +2769,26 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	 * <!-- end-user-doc -->
    * @generated
    */
+	public EEnum getAbbrevForwardStepKind() {
+    return abbrevForwardStepKindEEnum;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
 	public EEnum getReverseAxisKind() {
     return reverseAxisKindEEnum;
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	public EEnum getAbbrevReverseStepKind() {
+    return abbrevReverseStepKindEEnum;
   }
 
 	/**
@@ -2979,12 +2901,12 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 
     // Create classes and their features
     exprEClass = createEClass(EXPR);
-    createEReference(exprEClass, EXPR__OWNED_EXPR_SINGLE);
+    createEReference(exprEClass, EXPR__EXPR);
 
     exprSingleEClass = createEClass(EXPR_SINGLE);
 
     forExprEClass = createEClass(FOR_EXPR);
-    createEReference(forExprEClass, FOR_EXPR__OWNED_SIMPLE_FOR_CLAUSE);
+    createEReference(forExprEClass, FOR_EXPR__ITERATOR);
     createEReference(forExprEClass, FOR_EXPR__RETURN);
 
     quantifiedExprEClass = createEClass(QUANTIFIED_EXPR);
@@ -2993,12 +2915,9 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     createEReference(quantifiedExprEClass, QUANTIFIED_EXPR__SATISFIES);
 
     ifExprEClass = createEClass(IF_EXPR);
-    createEReference(ifExprEClass, IF_EXPR__CONDITION);
+    createEReference(ifExprEClass, IF_EXPR__TEST);
     createEReference(ifExprEClass, IF_EXPR__THEN);
     createEReference(ifExprEClass, IF_EXPR__ELSE);
-
-    simpleForClauseEClass = createEClass(SIMPLE_FOR_CLAUSE);
-    createEReference(simpleForClauseEClass, SIMPLE_FOR_CLAUSE__ITERATOR);
 
     iteratorEClass = createEClass(ITERATOR);
     createEReference(iteratorEClass, ITERATOR__VAR_NAME);
@@ -3084,18 +3003,20 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     valueExprEClass = createEClass(VALUE_EXPR);
 
     pathExprEClass = createEClass(PATH_EXPR);
+    createEReference(pathExprEClass, PATH_EXPR__STEP);
 
-    singlePathExprEClass = createEClass(SINGLE_PATH_EXPR);
-    createEReference(singlePathExprEClass, SINGLE_PATH_EXPR__RELATIVE_PATH_EXPR);
+    pathExprChildEClass = createEClass(PATH_EXPR_CHILD);
 
-    doublePathExprEClass = createEClass(DOUBLE_PATH_EXPR);
-    createEReference(doublePathExprEClass, DOUBLE_PATH_EXPR__RELATIVE_PATH_EXPR);
+    rootStepExprEClass = createEClass(ROOT_STEP_EXPR);
 
-    relativePathExprEClass = createEClass(RELATIVE_PATH_EXPR);
-    createEReference(relativePathExprEClass, RELATIVE_PATH_EXPR__HEAD);
-    createEReference(relativePathExprEClass, RELATIVE_PATH_EXPR__TAIL);
+    childStepExprEClass = createEClass(CHILD_STEP_EXPR);
+    createEReference(childStepExprEClass, CHILD_STEP_EXPR__STEP);
 
-    relativePathExprChildEClass = createEClass(RELATIVE_PATH_EXPR_CHILD);
+    descOrSelfStepExprEClass = createEClass(DESC_OR_SELF_STEP_EXPR);
+    createEReference(descOrSelfStepExprEClass, DESC_OR_SELF_STEP_EXPR__STEP);
+
+    selfStepExprEClass = createEClass(SELF_STEP_EXPR);
+    createEReference(selfStepExprEClass, SELF_STEP_EXPR__STEP);
 
     stepExprEClass = createEClass(STEP_EXPR);
 
@@ -3109,13 +3030,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     createEReference(axisStepEClass, AXIS_STEP__STEP);
     createEReference(axisStepEClass, AXIS_STEP__PREDICATE);
 
-    tailPathExprEClass = createEClass(TAIL_PATH_EXPR);
-    createEReference(tailPathExprEClass, TAIL_PATH_EXPR__STEP_EXPRESSION);
-
-    singleTailPathExprEClass = createEClass(SINGLE_TAIL_PATH_EXPR);
-
-    doubleTailPathExprEClass = createEClass(DOUBLE_TAIL_PATH_EXPR);
-
     directionalStepEClass = createEClass(DIRECTIONAL_STEP);
 
     forwardStepEClass = createEClass(FORWARD_STEP);
@@ -3123,24 +3037,19 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     reverseStepEClass = createEClass(REVERSE_STEP);
 
     generalForwardStepEClass = createEClass(GENERAL_FORWARD_STEP);
-    createEReference(generalForwardStepEClass, GENERAL_FORWARD_STEP__AXIS);
+    createEAttribute(generalForwardStepEClass, GENERAL_FORWARD_STEP__AXIS);
     createEReference(generalForwardStepEClass, GENERAL_FORWARD_STEP__NODE_TEST);
 
     abbrevForwardStepEClass = createEClass(ABBREV_FORWARD_STEP);
-    createEAttribute(abbrevForwardStepEClass, ABBREV_FORWARD_STEP__AT);
+    createEAttribute(abbrevForwardStepEClass, ABBREV_FORWARD_STEP__KIND);
     createEReference(abbrevForwardStepEClass, ABBREV_FORWARD_STEP__NODE_TEST);
 
-    forwardAxisEClass = createEClass(FORWARD_AXIS);
-    createEAttribute(forwardAxisEClass, FORWARD_AXIS__KIND);
-
     generalReverseStepEClass = createEClass(GENERAL_REVERSE_STEP);
-    createEReference(generalReverseStepEClass, GENERAL_REVERSE_STEP__AXIS);
+    createEAttribute(generalReverseStepEClass, GENERAL_REVERSE_STEP__AXIS);
     createEReference(generalReverseStepEClass, GENERAL_REVERSE_STEP__NODE_TEST);
 
     abbrevReverseStepEClass = createEClass(ABBREV_REVERSE_STEP);
-
-    reverseAxisEClass = createEClass(REVERSE_AXIS);
-    createEAttribute(reverseAxisEClass, REVERSE_AXIS__KIND);
+    createEAttribute(abbrevReverseStepEClass, ABBREV_REVERSE_STEP__KIND);
 
     nodeTestEClass = createEClass(NODE_TEST);
 
@@ -3290,7 +3199,9 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 
     // Create enums
     forwardAxisKindEEnum = createEEnum(FORWARD_AXIS_KIND);
+    abbrevForwardStepKindEEnum = createEEnum(ABBREV_FORWARD_STEP_KIND);
     reverseAxisKindEEnum = createEEnum(REVERSE_AXIS_KIND);
+    abbrevReverseStepKindEEnum = createEEnum(ABBREV_REVERSE_STEP_KIND);
     unionOpEEnum = createEEnum(UNION_OP);
     additiveOpKindEEnum = createEEnum(ADDITIVE_OP_KIND);
     multiplicativeOpKindEEnum = createEEnum(MULTIPLICATIVE_OP_KIND);
@@ -3363,16 +3274,14 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     unaryExprChildEClass.getESuperTypes().add(this.getCastExprChild());
     valueExprEClass.getESuperTypes().add(this.getUnaryExprChild());
     pathExprEClass.getESuperTypes().add(this.getValueExpr());
-    singlePathExprEClass.getESuperTypes().add(this.getPathExpr());
-    doublePathExprEClass.getESuperTypes().add(this.getPathExpr());
-    relativePathExprEClass.getESuperTypes().add(this.getPathExpr());
-    relativePathExprChildEClass.getESuperTypes().add(this.getUnaryExprChild());
-    stepExprEClass.getESuperTypes().add(this.getRelativePathExprChild());
+    pathExprChildEClass.getESuperTypes().add(this.getUnaryExprChild());
+    rootStepExprEClass.getESuperTypes().add(this.getPathExprChild());
+    childStepExprEClass.getESuperTypes().add(this.getPathExprChild());
+    descOrSelfStepExprEClass.getESuperTypes().add(this.getPathExprChild());
+    selfStepExprEClass.getESuperTypes().add(this.getPathExprChild());
     filterExprEClass.getESuperTypes().add(this.getStepExpr());
-    filterExprChildEClass.getESuperTypes().add(this.getRelativePathExprChild());
+    filterExprChildEClass.getESuperTypes().add(this.getPathExprChild());
     axisStepEClass.getESuperTypes().add(this.getStepExpr());
-    singleTailPathExprEClass.getESuperTypes().add(this.getTailPathExpr());
-    doubleTailPathExprEClass.getESuperTypes().add(this.getTailPathExpr());
     forwardStepEClass.getESuperTypes().add(this.getDirectionalStep());
     reverseStepEClass.getESuperTypes().add(this.getDirectionalStep());
     generalForwardStepEClass.getESuperTypes().add(this.getForwardStep());
@@ -3424,12 +3333,12 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 
     // Initialize classes and features; add operations and parameters
     initEClass(exprEClass, Expr.class, "Expr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExpr_OwnedExprSingle(), this.getExprSingle(), null, "ownedExprSingle", null, 1, -1, Expr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExpr_Expr(), this.getExprSingle(), null, "expr", null, 1, -1, Expr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprSingleEClass, ExprSingle.class, "ExprSingle", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(forExprEClass, ForExpr.class, "ForExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getForExpr_OwnedSimpleForClause(), this.getSimpleForClause(), null, "ownedSimpleForClause", null, 1, 1, ForExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getForExpr_Iterator(), this.getIterator(), null, "iterator", null, 1, -1, ForExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getForExpr_Return(), this.getExprSingle(), null, "return", null, 1, 1, ForExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(quantifiedExprEClass, QuantifiedExpr.class, "QuantifiedExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3438,12 +3347,9 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     initEReference(getQuantifiedExpr_Satisfies(), this.getExprSingle(), null, "satisfies", null, 1, 1, QuantifiedExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(ifExprEClass, IfExpr.class, "IfExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getIfExpr_Condition(), this.getExpr(), null, "condition", null, 1, 1, IfExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIfExpr_Test(), this.getExpr(), null, "test", null, 1, 1, IfExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfExpr_Then(), this.getExprSingle(), null, "then", null, 1, 1, IfExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfExpr_Else(), this.getExprSingle(), null, "else", null, 1, 1, IfExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(simpleForClauseEClass, SimpleForClause.class, "SimpleForClause", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSimpleForClause_Iterator(), this.getIterator(), null, "iterator", null, 1, -1, SimpleForClause.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(iteratorEClass, Iterator.class, "Iterator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getIterator_VarName(), this.getVarName(), null, "varName", null, 1, 1, Iterator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3528,19 +3434,21 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 
     initEClass(valueExprEClass, ValueExpr.class, "ValueExpr", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(pathExprEClass, PathExpr.class, "PathExpr", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(pathExprEClass, PathExpr.class, "PathExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPathExpr_Step(), this.getPathExprChild(), null, "step", null, 1, -1, PathExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(singlePathExprEClass, SinglePathExpr.class, "SinglePathExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSinglePathExpr_RelativePathExpr(), this.getRelativePathExpr(), null, "relativePathExpr", null, 0, 1, SinglePathExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(pathExprChildEClass, PathExprChild.class, "PathExprChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(doublePathExprEClass, DoublePathExpr.class, "DoublePathExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDoublePathExpr_RelativePathExpr(), this.getRelativePathExpr(), null, "relativePathExpr", null, 1, 1, DoublePathExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(rootStepExprEClass, RootStepExpr.class, "RootStepExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(relativePathExprEClass, RelativePathExpr.class, "RelativePathExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRelativePathExpr_Head(), this.getStepExpr(), null, "head", null, 1, 1, RelativePathExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRelativePathExpr_Tail(), this.getTailPathExpr(), null, "tail", null, 0, -1, RelativePathExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(childStepExprEClass, ChildStepExpr.class, "ChildStepExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getChildStepExpr_Step(), this.getStepExpr(), null, "step", null, 1, 1, ChildStepExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(relativePathExprChildEClass, RelativePathExprChild.class, "RelativePathExprChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(descOrSelfStepExprEClass, DescOrSelfStepExpr.class, "DescOrSelfStepExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDescOrSelfStepExpr_Step(), this.getStepExpr(), null, "step", null, 1, 1, DescOrSelfStepExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(selfStepExprEClass, SelfStepExpr.class, "SelfStepExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSelfStepExpr_Step(), this.getStepExpr(), null, "step", null, 1, 1, SelfStepExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(stepExprEClass, StepExpr.class, "StepExpr", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3554,13 +3462,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     initEReference(getAxisStep_Step(), this.getDirectionalStep(), null, "step", null, 1, 1, AxisStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAxisStep_Predicate(), this.getPredicate(), null, "predicate", null, 0, -1, AxisStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(tailPathExprEClass, TailPathExpr.class, "TailPathExpr", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getTailPathExpr_StepExpression(), this.getStepExpr(), null, "stepExpression", null, 1, 1, TailPathExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(singleTailPathExprEClass, SingleTailPathExpr.class, "SingleTailPathExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(doubleTailPathExprEClass, DoubleTailPathExpr.class, "DoubleTailPathExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
     initEClass(directionalStepEClass, DirectionalStep.class, "DirectionalStep", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(forwardStepEClass, ForwardStep.class, "ForwardStep", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3568,24 +3469,19 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     initEClass(reverseStepEClass, ReverseStep.class, "ReverseStep", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(generalForwardStepEClass, GeneralForwardStep.class, "GeneralForwardStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getGeneralForwardStep_Axis(), this.getForwardAxis(), null, "axis", null, 1, 1, GeneralForwardStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getGeneralForwardStep_Axis(), this.getForwardAxisKind(), "axis", null, 1, 1, GeneralForwardStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGeneralForwardStep_NodeTest(), this.getNodeTest(), null, "nodeTest", null, 1, 1, GeneralForwardStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(abbrevForwardStepEClass, AbbrevForwardStep.class, "AbbrevForwardStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getAbbrevForwardStep_At(), ecorePackage.getEBoolean(), "at", null, 1, 1, AbbrevForwardStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAbbrevForwardStep_Kind(), this.getAbbrevForwardStepKind(), "kind", null, 1, 1, AbbrevForwardStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAbbrevForwardStep_NodeTest(), this.getNodeTest(), null, "nodeTest", null, 1, 1, AbbrevForwardStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(forwardAxisEClass, ForwardAxis.class, "ForwardAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getForwardAxis_Kind(), this.getForwardAxisKind(), "kind", null, 1, 1, ForwardAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(generalReverseStepEClass, GeneralReverseStep.class, "GeneralReverseStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getGeneralReverseStep_Axis(), this.getReverseAxis(), null, "axis", null, 1, 1, GeneralReverseStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getGeneralReverseStep_Axis(), this.getReverseAxisKind(), "axis", null, 1, 1, GeneralReverseStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGeneralReverseStep_NodeTest(), this.getNodeTest(), null, "nodeTest", null, 1, 1, GeneralReverseStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(abbrevReverseStepEClass, AbbrevReverseStep.class, "AbbrevReverseStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(reverseAxisEClass, ReverseAxis.class, "ReverseAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getReverseAxis_Kind(), this.getReverseAxisKind(), "kind", null, 1, 1, ReverseAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAbbrevReverseStep_Kind(), this.getAbbrevReverseStepKind(), "kind", null, 1, 1, AbbrevReverseStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(nodeTestEClass, NodeTest.class, "NodeTest", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3744,12 +3640,19 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     addEEnumLiteral(forwardAxisKindEEnum, ForwardAxisKind.FOLLOWING);
     addEEnumLiteral(forwardAxisKindEEnum, ForwardAxisKind.NAMESPACE);
 
+    initEEnum(abbrevForwardStepKindEEnum, AbbrevForwardStepKind.class, "AbbrevForwardStepKind");
+    addEEnumLiteral(abbrevForwardStepKindEEnum, AbbrevForwardStepKind.CHILD);
+    addEEnumLiteral(abbrevForwardStepKindEEnum, AbbrevForwardStepKind.ATTRIBUTE);
+
     initEEnum(reverseAxisKindEEnum, ReverseAxisKind.class, "ReverseAxisKind");
     addEEnumLiteral(reverseAxisKindEEnum, ReverseAxisKind.PARENT);
     addEEnumLiteral(reverseAxisKindEEnum, ReverseAxisKind.ANCESTOR);
     addEEnumLiteral(reverseAxisKindEEnum, ReverseAxisKind.PRECEDING_SIBLING);
     addEEnumLiteral(reverseAxisKindEEnum, ReverseAxisKind.PRECEDING);
     addEEnumLiteral(reverseAxisKindEEnum, ReverseAxisKind.ANCESTOR_OR_SELF);
+
+    initEEnum(abbrevReverseStepKindEEnum, AbbrevReverseStepKind.class, "AbbrevReverseStepKind");
+    addEEnumLiteral(abbrevReverseStepKindEEnum, AbbrevReverseStepKind.PARENT);
 
     initEEnum(unionOpEEnum, UnionOp.class, "UnionOp");
     addEEnumLiteral(unionOpEEnum, UnionOp.UNION);

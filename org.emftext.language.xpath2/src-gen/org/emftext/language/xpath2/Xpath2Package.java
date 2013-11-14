@@ -64,7 +64,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getParenthesizedExprChild()
    * @generated
    */
-	int PARENTHESIZED_EXPR_CHILD = 69;
+	int PARENTHESIZED_EXPR_CHILD = 64;
 
 	/**
    * The number of structural features of the '<em>Parenthesized Expr Child</em>' class.
@@ -86,13 +86,13 @@ public interface Xpath2Package extends EPackage {
 	int EXPR = 0;
 
 	/**
-   * The feature id for the '<em><b>Owned Expr Single</b></em>' containment reference list.
+   * The feature id for the '<em><b>Expr</b></em>' containment reference list.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int EXPR__OWNED_EXPR_SINGLE = PARENTHESIZED_EXPR_CHILD_FEATURE_COUNT + 0;
+	int EXPR__EXPR = PARENTHESIZED_EXPR_CHILD_FEATURE_COUNT + 0;
 
 	/**
    * The number of structural features of the '<em>Expr</em>' class.
@@ -133,13 +133,13 @@ public interface Xpath2Package extends EPackage {
 	int FOR_EXPR = 2;
 
 	/**
-   * The feature id for the '<em><b>Owned Simple For Clause</b></em>' containment reference.
+   * The feature id for the '<em><b>Iterator</b></em>' containment reference list.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int FOR_EXPR__OWNED_SIMPLE_FOR_CLAUSE = EXPR_SINGLE_FEATURE_COUNT + 0;
+	int FOR_EXPR__ITERATOR = EXPR_SINGLE_FEATURE_COUNT + 0;
 
 	/**
    * The feature id for the '<em><b>Return</b></em>' containment reference.
@@ -216,13 +216,13 @@ public interface Xpath2Package extends EPackage {
 	int IF_EXPR = 4;
 
 	/**
-   * The feature id for the '<em><b>Condition</b></em>' containment reference.
+   * The feature id for the '<em><b>Test</b></em>' containment reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int IF_EXPR__CONDITION = EXPR_SINGLE_FEATURE_COUNT + 0;
+	int IF_EXPR__TEST = EXPR_SINGLE_FEATURE_COUNT + 0;
 
 	/**
    * The feature id for the '<em><b>Then</b></em>' containment reference.
@@ -252,34 +252,6 @@ public interface Xpath2Package extends EPackage {
 	int IF_EXPR_FEATURE_COUNT = EXPR_SINGLE_FEATURE_COUNT + 3;
 
 	/**
-   * The meta object id for the '{@link org.emftext.language.xpath2.impl.SimpleForClauseImpl <em>Simple For Clause</em>}' class.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @see org.emftext.language.xpath2.impl.SimpleForClauseImpl
-   * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSimpleForClause()
-   * @generated
-   */
-	int SIMPLE_FOR_CLAUSE = 5;
-
-	/**
-   * The feature id for the '<em><b>Iterator</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int SIMPLE_FOR_CLAUSE__ITERATOR = 0;
-
-	/**
-   * The number of structural features of the '<em>Simple For Clause</em>' class.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int SIMPLE_FOR_CLAUSE_FEATURE_COUNT = 1;
-
-	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.impl.IteratorImpl <em>Iterator</em>}' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -287,7 +259,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getIterator()
    * @generated
    */
-	int ITERATOR = 6;
+	int ITERATOR = 5;
 
 	/**
    * The feature id for the '<em><b>Var Name</b></em>' containment reference.
@@ -324,7 +296,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getOrExpr()
    * @generated
    */
-	int OR_EXPR = 7;
+	int OR_EXPR = 6;
 
 	/**
    * The feature id for the '<em><b>Operand</b></em>' containment reference list.
@@ -352,7 +324,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getOrExprChild()
    * @generated
    */
-	int OR_EXPR_CHILD = 8;
+	int OR_EXPR_CHILD = 7;
 
 	/**
    * The number of structural features of the '<em>Or Expr Child</em>' class.
@@ -371,7 +343,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAndExpr()
    * @generated
    */
-	int AND_EXPR = 9;
+	int AND_EXPR = 8;
 
 	/**
    * The feature id for the '<em><b>Operand</b></em>' containment reference list.
@@ -399,7 +371,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAndExprChild()
    * @generated
    */
-	int AND_EXPR_CHILD = 10;
+	int AND_EXPR_CHILD = 9;
 
 	/**
    * The number of structural features of the '<em>And Expr Child</em>' class.
@@ -418,7 +390,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getComparisonExpr()
    * @generated
    */
-	int COMPARISON_EXPR = 11;
+	int COMPARISON_EXPR = 10;
 
 	/**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -464,7 +436,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getComparisonExprChild()
    * @generated
    */
-	int COMPARISON_EXPR_CHILD = 12;
+	int COMPARISON_EXPR_CHILD = 11;
 
 	/**
    * The number of structural features of the '<em>Comparison Expr Child</em>' class.
@@ -483,7 +455,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getRangeExpr()
    * @generated
    */
-	int RANGE_EXPR = 13;
+	int RANGE_EXPR = 12;
 
 	/**
    * The feature id for the '<em><b>From</b></em>' containment reference.
@@ -520,7 +492,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getRangeExprChild()
    * @generated
    */
-	int RANGE_EXPR_CHILD = 14;
+	int RANGE_EXPR_CHILD = 13;
 
 	/**
    * The number of structural features of the '<em>Range Expr Child</em>' class.
@@ -539,7 +511,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAdditiveExpr()
    * @generated
    */
-	int ADDITIVE_EXPR = 15;
+	int ADDITIVE_EXPR = 14;
 
 	/**
    * The feature id for the '<em><b>Operand</b></em>' containment reference list.
@@ -576,7 +548,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAdditiveExprChild()
    * @generated
    */
-	int ADDITIVE_EXPR_CHILD = 16;
+	int ADDITIVE_EXPR_CHILD = 15;
 
 	/**
    * The number of structural features of the '<em>Additive Expr Child</em>' class.
@@ -595,7 +567,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getMultiplicativeExpr()
    * @generated
    */
-	int MULTIPLICATIVE_EXPR = 17;
+	int MULTIPLICATIVE_EXPR = 16;
 
 	/**
    * The feature id for the '<em><b>Operand</b></em>' containment reference list.
@@ -632,7 +604,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getMultiplicativeExprChild()
    * @generated
    */
-	int MULTIPLICATIVE_EXPR_CHILD = 18;
+	int MULTIPLICATIVE_EXPR_CHILD = 17;
 
 	/**
    * The number of structural features of the '<em>Multiplicative Expr Child</em>' class.
@@ -651,7 +623,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getUnionExpr()
    * @generated
    */
-	int UNION_EXPR = 19;
+	int UNION_EXPR = 18;
 
 	/**
    * The feature id for the '<em><b>Operand</b></em>' containment reference list.
@@ -688,7 +660,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getUnionExprChild()
    * @generated
    */
-	int UNION_EXPR_CHILD = 20;
+	int UNION_EXPR_CHILD = 19;
 
 	/**
    * The number of structural features of the '<em>Union Expr Child</em>' class.
@@ -707,7 +679,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getIntersectExceptExpr()
    * @generated
    */
-	int INTERSECT_EXCEPT_EXPR = 21;
+	int INTERSECT_EXCEPT_EXPR = 20;
 
 	/**
    * The feature id for the '<em><b>Operand</b></em>' containment reference list.
@@ -744,7 +716,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getIntersectExceptExprChild()
    * @generated
    */
-	int INTERSECT_EXCEPT_EXPR_CHILD = 22;
+	int INTERSECT_EXCEPT_EXPR_CHILD = 21;
 
 	/**
    * The number of structural features of the '<em>Intersect Except Expr Child</em>' class.
@@ -763,7 +735,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getInstanceofExpr()
    * @generated
    */
-	int INSTANCEOF_EXPR = 23;
+	int INSTANCEOF_EXPR = 22;
 
 	/**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -800,7 +772,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getInstanceofExprChild()
    * @generated
    */
-	int INSTANCEOF_EXPR_CHILD = 24;
+	int INSTANCEOF_EXPR_CHILD = 23;
 
 	/**
    * The number of structural features of the '<em>Instanceof Expr Child</em>' class.
@@ -819,7 +791,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getTreatExpr()
    * @generated
    */
-	int TREAT_EXPR = 25;
+	int TREAT_EXPR = 24;
 
 	/**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -856,7 +828,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getTreatExprChild()
    * @generated
    */
-	int TREAT_EXPR_CHILD = 26;
+	int TREAT_EXPR_CHILD = 25;
 
 	/**
    * The number of structural features of the '<em>Treat Expr Child</em>' class.
@@ -875,7 +847,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getCastableExpr()
    * @generated
    */
-	int CASTABLE_EXPR = 27;
+	int CASTABLE_EXPR = 26;
 
 	/**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -912,7 +884,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getCastableExprChild()
    * @generated
    */
-	int CASTABLE_EXPR_CHILD = 28;
+	int CASTABLE_EXPR_CHILD = 27;
 
 	/**
    * The number of structural features of the '<em>Castable Expr Child</em>' class.
@@ -931,7 +903,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getCastExpr()
    * @generated
    */
-	int CAST_EXPR = 29;
+	int CAST_EXPR = 28;
 
 	/**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -968,7 +940,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getCastExprChild()
    * @generated
    */
-	int CAST_EXPR_CHILD = 30;
+	int CAST_EXPR_CHILD = 29;
 
 	/**
    * The number of structural features of the '<em>Cast Expr Child</em>' class.
@@ -987,7 +959,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getUnaryExpr()
    * @generated
    */
-	int UNARY_EXPR = 31;
+	int UNARY_EXPR = 30;
 
 	/**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1024,7 +996,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getUnaryExprChild()
    * @generated
    */
-	int UNARY_EXPR_CHILD = 32;
+	int UNARY_EXPR_CHILD = 31;
 
 	/**
    * The number of structural features of the '<em>Unary Expr Child</em>' class.
@@ -1043,7 +1015,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getValueExpr()
    * @generated
    */
-	int VALUE_EXPR = 33;
+	int VALUE_EXPR = 32;
 
 	/**
    * The number of structural features of the '<em>Value Expr</em>' class.
@@ -1062,7 +1034,16 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getPathExpr()
    * @generated
    */
-	int PATH_EXPR = 34;
+	int PATH_EXPR = 33;
+
+	/**
+   * The feature id for the '<em><b>Step</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+	int PATH_EXPR__STEP = VALUE_EXPR_FEATURE_COUNT + 0;
 
 	/**
    * The number of structural features of the '<em>Path Expr</em>' class.
@@ -1071,119 +1052,129 @@ public interface Xpath2Package extends EPackage {
    * @generated
    * @ordered
    */
-	int PATH_EXPR_FEATURE_COUNT = VALUE_EXPR_FEATURE_COUNT + 0;
+	int PATH_EXPR_FEATURE_COUNT = VALUE_EXPR_FEATURE_COUNT + 1;
 
 	/**
-   * The meta object id for the '{@link org.emftext.language.xpath2.impl.SinglePathExprImpl <em>Single Path Expr</em>}' class.
+   * The meta object id for the '{@link org.emftext.language.xpath2.impl.PathExprChildImpl <em>Path Expr Child</em>}' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see org.emftext.language.xpath2.impl.SinglePathExprImpl
-   * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSinglePathExpr()
+   * @see org.emftext.language.xpath2.impl.PathExprChildImpl
+   * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getPathExprChild()
    * @generated
    */
-	int SINGLE_PATH_EXPR = 35;
+	int PATH_EXPR_CHILD = 34;
 
 	/**
-   * The feature id for the '<em><b>Relative Path Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int SINGLE_PATH_EXPR__RELATIVE_PATH_EXPR = PATH_EXPR_FEATURE_COUNT + 0;
-
-	/**
-   * The number of structural features of the '<em>Single Path Expr</em>' class.
+   * The number of structural features of the '<em>Path Expr Child</em>' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int SINGLE_PATH_EXPR_FEATURE_COUNT = PATH_EXPR_FEATURE_COUNT + 1;
+	int PATH_EXPR_CHILD_FEATURE_COUNT = UNARY_EXPR_CHILD_FEATURE_COUNT + 0;
 
 	/**
-   * The meta object id for the '{@link org.emftext.language.xpath2.impl.DoublePathExprImpl <em>Double Path Expr</em>}' class.
+   * The meta object id for the '{@link org.emftext.language.xpath2.impl.RootStepExprImpl <em>Root Step Expr</em>}' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see org.emftext.language.xpath2.impl.DoublePathExprImpl
-   * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getDoublePathExpr()
+   * @see org.emftext.language.xpath2.impl.RootStepExprImpl
+   * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getRootStepExpr()
    * @generated
    */
-	int DOUBLE_PATH_EXPR = 36;
+	int ROOT_STEP_EXPR = 35;
 
 	/**
-   * The feature id for the '<em><b>Relative Path Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int DOUBLE_PATH_EXPR__RELATIVE_PATH_EXPR = PATH_EXPR_FEATURE_COUNT + 0;
-
-	/**
-   * The number of structural features of the '<em>Double Path Expr</em>' class.
+   * The number of structural features of the '<em>Root Step Expr</em>' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int DOUBLE_PATH_EXPR_FEATURE_COUNT = PATH_EXPR_FEATURE_COUNT + 1;
+	int ROOT_STEP_EXPR_FEATURE_COUNT = PATH_EXPR_CHILD_FEATURE_COUNT + 0;
 
 	/**
-   * The meta object id for the '{@link org.emftext.language.xpath2.impl.RelativePathExprImpl <em>Relative Path Expr</em>}' class.
+   * The meta object id for the '{@link org.emftext.language.xpath2.impl.ChildStepExprImpl <em>Child Step Expr</em>}' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see org.emftext.language.xpath2.impl.RelativePathExprImpl
-   * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getRelativePathExpr()
+   * @see org.emftext.language.xpath2.impl.ChildStepExprImpl
+   * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getChildStepExpr()
    * @generated
    */
-	int RELATIVE_PATH_EXPR = 37;
+	int CHILD_STEP_EXPR = 36;
 
 	/**
-   * The feature id for the '<em><b>Head</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int RELATIVE_PATH_EXPR__HEAD = PATH_EXPR_FEATURE_COUNT + 0;
-
-	/**
-   * The feature id for the '<em><b>Tail</b></em>' containment reference list.
+   * The feature id for the '<em><b>Step</b></em>' containment reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int RELATIVE_PATH_EXPR__TAIL = PATH_EXPR_FEATURE_COUNT + 1;
+	int CHILD_STEP_EXPR__STEP = PATH_EXPR_CHILD_FEATURE_COUNT + 0;
 
 	/**
-   * The number of structural features of the '<em>Relative Path Expr</em>' class.
+   * The number of structural features of the '<em>Child Step Expr</em>' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int RELATIVE_PATH_EXPR_FEATURE_COUNT = PATH_EXPR_FEATURE_COUNT + 2;
+	int CHILD_STEP_EXPR_FEATURE_COUNT = PATH_EXPR_CHILD_FEATURE_COUNT + 1;
 
 	/**
-   * The meta object id for the '{@link org.emftext.language.xpath2.impl.RelativePathExprChildImpl <em>Relative Path Expr Child</em>}' class.
+   * The meta object id for the '{@link org.emftext.language.xpath2.impl.DescOrSelfStepExprImpl <em>Desc Or Self Step Expr</em>}' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see org.emftext.language.xpath2.impl.RelativePathExprChildImpl
-   * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getRelativePathExprChild()
+   * @see org.emftext.language.xpath2.impl.DescOrSelfStepExprImpl
+   * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getDescOrSelfStepExpr()
    * @generated
    */
-	int RELATIVE_PATH_EXPR_CHILD = 38;
+	int DESC_OR_SELF_STEP_EXPR = 37;
 
 	/**
-   * The number of structural features of the '<em>Relative Path Expr Child</em>' class.
+   * The feature id for the '<em><b>Step</b></em>' containment reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int RELATIVE_PATH_EXPR_CHILD_FEATURE_COUNT = UNARY_EXPR_CHILD_FEATURE_COUNT + 0;
+	int DESC_OR_SELF_STEP_EXPR__STEP = PATH_EXPR_CHILD_FEATURE_COUNT + 0;
+
+	/**
+   * The number of structural features of the '<em>Desc Or Self Step Expr</em>' class.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+	int DESC_OR_SELF_STEP_EXPR_FEATURE_COUNT = PATH_EXPR_CHILD_FEATURE_COUNT + 1;
+
+	/**
+   * The meta object id for the '{@link org.emftext.language.xpath2.impl.SelfStepExprImpl <em>Self Step Expr</em>}' class.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @see org.emftext.language.xpath2.impl.SelfStepExprImpl
+   * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSelfStepExpr()
+   * @generated
+   */
+	int SELF_STEP_EXPR = 38;
+
+	/**
+   * The feature id for the '<em><b>Step</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+	int SELF_STEP_EXPR__STEP = PATH_EXPR_CHILD_FEATURE_COUNT + 0;
+
+	/**
+   * The number of structural features of the '<em>Self Step Expr</em>' class.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+	int SELF_STEP_EXPR_FEATURE_COUNT = PATH_EXPR_CHILD_FEATURE_COUNT + 1;
 
 	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.impl.StepExprImpl <em>Step Expr</em>}' class.
@@ -1202,7 +1193,7 @@ public interface Xpath2Package extends EPackage {
    * @generated
    * @ordered
    */
-	int STEP_EXPR_FEATURE_COUNT = RELATIVE_PATH_EXPR_CHILD_FEATURE_COUNT + 0;
+	int STEP_EXPR_FEATURE_COUNT = 0;
 
 	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.impl.FilterExprImpl <em>Filter Expr</em>}' class.
@@ -1258,7 +1249,7 @@ public interface Xpath2Package extends EPackage {
    * @generated
    * @ordered
    */
-	int FILTER_EXPR_CHILD_FEATURE_COUNT = RELATIVE_PATH_EXPR_CHILD_FEATURE_COUNT + 0;
+	int FILTER_EXPR_CHILD_FEATURE_COUNT = PATH_EXPR_CHILD_FEATURE_COUNT + 0;
 
 	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.impl.AxisStepImpl <em>Axis Step</em>}' class.
@@ -1298,90 +1289,6 @@ public interface Xpath2Package extends EPackage {
 	int AXIS_STEP_FEATURE_COUNT = STEP_EXPR_FEATURE_COUNT + 2;
 
 	/**
-   * The meta object id for the '{@link org.emftext.language.xpath2.impl.TailPathExprImpl <em>Tail Path Expr</em>}' class.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @see org.emftext.language.xpath2.impl.TailPathExprImpl
-   * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getTailPathExpr()
-   * @generated
-   */
-	int TAIL_PATH_EXPR = 43;
-
-	/**
-   * The feature id for the '<em><b>Step Expression</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int TAIL_PATH_EXPR__STEP_EXPRESSION = 0;
-
-	/**
-   * The number of structural features of the '<em>Tail Path Expr</em>' class.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int TAIL_PATH_EXPR_FEATURE_COUNT = 1;
-
-	/**
-   * The meta object id for the '{@link org.emftext.language.xpath2.impl.SingleTailPathExprImpl <em>Single Tail Path Expr</em>}' class.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @see org.emftext.language.xpath2.impl.SingleTailPathExprImpl
-   * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSingleTailPathExpr()
-   * @generated
-   */
-	int SINGLE_TAIL_PATH_EXPR = 44;
-
-	/**
-   * The feature id for the '<em><b>Step Expression</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int SINGLE_TAIL_PATH_EXPR__STEP_EXPRESSION = TAIL_PATH_EXPR__STEP_EXPRESSION;
-
-	/**
-   * The number of structural features of the '<em>Single Tail Path Expr</em>' class.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int SINGLE_TAIL_PATH_EXPR_FEATURE_COUNT = TAIL_PATH_EXPR_FEATURE_COUNT + 0;
-
-	/**
-   * The meta object id for the '{@link org.emftext.language.xpath2.impl.DoubleTailPathExprImpl <em>Double Tail Path Expr</em>}' class.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @see org.emftext.language.xpath2.impl.DoubleTailPathExprImpl
-   * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getDoubleTailPathExpr()
-   * @generated
-   */
-	int DOUBLE_TAIL_PATH_EXPR = 45;
-
-	/**
-   * The feature id for the '<em><b>Step Expression</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int DOUBLE_TAIL_PATH_EXPR__STEP_EXPRESSION = TAIL_PATH_EXPR__STEP_EXPRESSION;
-
-	/**
-   * The number of structural features of the '<em>Double Tail Path Expr</em>' class.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int DOUBLE_TAIL_PATH_EXPR_FEATURE_COUNT = TAIL_PATH_EXPR_FEATURE_COUNT + 0;
-
-	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.impl.DirectionalStepImpl <em>Directional Step</em>}' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1389,7 +1296,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getDirectionalStep()
    * @generated
    */
-	int DIRECTIONAL_STEP = 46;
+	int DIRECTIONAL_STEP = 43;
 
 	/**
    * The number of structural features of the '<em>Directional Step</em>' class.
@@ -1408,7 +1315,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getForwardStep()
    * @generated
    */
-	int FORWARD_STEP = 47;
+	int FORWARD_STEP = 44;
 
 	/**
    * The number of structural features of the '<em>Forward Step</em>' class.
@@ -1427,7 +1334,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getReverseStep()
    * @generated
    */
-	int REVERSE_STEP = 48;
+	int REVERSE_STEP = 45;
 
 	/**
    * The number of structural features of the '<em>Reverse Step</em>' class.
@@ -1446,10 +1353,10 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getGeneralForwardStep()
    * @generated
    */
-	int GENERAL_FORWARD_STEP = 49;
+	int GENERAL_FORWARD_STEP = 46;
 
 	/**
-   * The feature id for the '<em><b>Axis</b></em>' containment reference.
+   * The feature id for the '<em><b>Axis</b></em>' attribute.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -1483,16 +1390,16 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAbbrevForwardStep()
    * @generated
    */
-	int ABBREV_FORWARD_STEP = 50;
+	int ABBREV_FORWARD_STEP = 47;
 
 	/**
-   * The feature id for the '<em><b>At</b></em>' attribute.
+   * The feature id for the '<em><b>Kind</b></em>' attribute.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int ABBREV_FORWARD_STEP__AT = FORWARD_STEP_FEATURE_COUNT + 0;
+	int ABBREV_FORWARD_STEP__KIND = FORWARD_STEP_FEATURE_COUNT + 0;
 
 	/**
    * The feature id for the '<em><b>Node Test</b></em>' containment reference.
@@ -1513,34 +1420,6 @@ public interface Xpath2Package extends EPackage {
 	int ABBREV_FORWARD_STEP_FEATURE_COUNT = FORWARD_STEP_FEATURE_COUNT + 2;
 
 	/**
-   * The meta object id for the '{@link org.emftext.language.xpath2.impl.ForwardAxisImpl <em>Forward Axis</em>}' class.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @see org.emftext.language.xpath2.impl.ForwardAxisImpl
-   * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getForwardAxis()
-   * @generated
-   */
-	int FORWARD_AXIS = 51;
-
-	/**
-   * The feature id for the '<em><b>Kind</b></em>' attribute.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int FORWARD_AXIS__KIND = 0;
-
-	/**
-   * The number of structural features of the '<em>Forward Axis</em>' class.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int FORWARD_AXIS_FEATURE_COUNT = 1;
-
-	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.impl.GeneralReverseStepImpl <em>General Reverse Step</em>}' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1548,10 +1427,10 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getGeneralReverseStep()
    * @generated
    */
-	int GENERAL_REVERSE_STEP = 52;
+	int GENERAL_REVERSE_STEP = 48;
 
 	/**
-   * The feature id for the '<em><b>Axis</b></em>' containment reference.
+   * The feature id for the '<em><b>Axis</b></em>' attribute.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -1585,26 +1464,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAbbrevReverseStep()
    * @generated
    */
-	int ABBREV_REVERSE_STEP = 53;
-
-	/**
-   * The number of structural features of the '<em>Abbrev Reverse Step</em>' class.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-	int ABBREV_REVERSE_STEP_FEATURE_COUNT = REVERSE_STEP_FEATURE_COUNT + 0;
-
-	/**
-   * The meta object id for the '{@link org.emftext.language.xpath2.impl.ReverseAxisImpl <em>Reverse Axis</em>}' class.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @see org.emftext.language.xpath2.impl.ReverseAxisImpl
-   * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getReverseAxis()
-   * @generated
-   */
-	int REVERSE_AXIS = 54;
+	int ABBREV_REVERSE_STEP = 49;
 
 	/**
    * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -1613,16 +1473,16 @@ public interface Xpath2Package extends EPackage {
    * @generated
    * @ordered
    */
-	int REVERSE_AXIS__KIND = 0;
+	int ABBREV_REVERSE_STEP__KIND = REVERSE_STEP_FEATURE_COUNT + 0;
 
 	/**
-   * The number of structural features of the '<em>Reverse Axis</em>' class.
+   * The number of structural features of the '<em>Abbrev Reverse Step</em>' class.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-	int REVERSE_AXIS_FEATURE_COUNT = 1;
+	int ABBREV_REVERSE_STEP_FEATURE_COUNT = REVERSE_STEP_FEATURE_COUNT + 1;
 
 	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.impl.NodeTestImpl <em>Node Test</em>}' class.
@@ -1632,7 +1492,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNodeTest()
    * @generated
    */
-	int NODE_TEST = 55;
+	int NODE_TEST = 50;
 
 	/**
    * The number of structural features of the '<em>Node Test</em>' class.
@@ -1651,7 +1511,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNodeKindTest()
    * @generated
    */
-	int NODE_KIND_TEST = 56;
+	int NODE_KIND_TEST = 51;
 
 	/**
    * The feature id for the '<em><b>Test</b></em>' containment reference.
@@ -1679,7 +1539,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNameTest()
    * @generated
    */
-	int NAME_TEST = 57;
+	int NAME_TEST = 52;
 
 	/**
    * The number of structural features of the '<em>Name Test</em>' class.
@@ -1698,7 +1558,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getQNameTest()
    * @generated
    */
-	int QNAME_TEST = 58;
+	int QNAME_TEST = 53;
 
 	/**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -1726,7 +1586,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getWildcard()
    * @generated
    */
-	int WILDCARD = 59;
+	int WILDCARD = 54;
 
 	/**
    * The number of structural features of the '<em>Wildcard</em>' class.
@@ -1745,7 +1605,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAnyWildcard()
    * @generated
    */
-	int ANY_WILDCARD = 60;
+	int ANY_WILDCARD = 55;
 
 	/**
    * The number of structural features of the '<em>Any Wildcard</em>' class.
@@ -1764,7 +1624,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getLocalNameWildcard()
    * @generated
    */
-	int LOCAL_NAME_WILDCARD = 61;
+	int LOCAL_NAME_WILDCARD = 56;
 
 	/**
    * The feature id for the '<em><b>Namespace</b></em>' attribute.
@@ -1792,7 +1652,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNamespaceWildcard()
    * @generated
    */
-	int NAMESPACE_WILDCARD = 62;
+	int NAMESPACE_WILDCARD = 57;
 
 	/**
    * The feature id for the '<em><b>Local Name</b></em>' attribute.
@@ -1820,7 +1680,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getPredicate()
    * @generated
    */
-	int PREDICATE = 63;
+	int PREDICATE = 58;
 
 	/**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -1848,7 +1708,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getPrimaryExpr()
    * @generated
    */
-	int PRIMARY_EXPR = 64;
+	int PRIMARY_EXPR = 59;
 
 	/**
    * The number of structural features of the '<em>Primary Expr</em>' class.
@@ -1867,7 +1727,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getLiteral()
    * @generated
    */
-	int LITERAL = 65;
+	int LITERAL = 60;
 
 	/**
    * The number of structural features of the '<em>Literal</em>' class.
@@ -1886,7 +1746,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getVarRef()
    * @generated
    */
-	int VAR_REF = 66;
+	int VAR_REF = 61;
 
 	/**
    * The feature id for the '<em><b>Var Name</b></em>' containment reference.
@@ -1914,7 +1774,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getQName()
    * @generated
    */
-	int QNAME = 107;
+	int QNAME = 102;
 
 	/**
    * The feature id for the '<em><b>Prefix</b></em>' attribute.
@@ -1951,7 +1811,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getVarName()
    * @generated
    */
-	int VAR_NAME = 67;
+	int VAR_NAME = 62;
 
 	/**
    * The feature id for the '<em><b>Prefix</b></em>' attribute.
@@ -1988,7 +1848,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getParenthesizedExpr()
    * @generated
    */
-	int PARENTHESIZED_EXPR = 68;
+	int PARENTHESIZED_EXPR = 63;
 
 	/**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -2016,7 +1876,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getContextItemExpr()
    * @generated
    */
-	int CONTEXT_ITEM_EXPR = 70;
+	int CONTEXT_ITEM_EXPR = 65;
 
 	/**
    * The number of structural features of the '<em>Context Item Expr</em>' class.
@@ -2035,7 +1895,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getFunctionCall()
    * @generated
    */
-	int FUNCTION_CALL = 71;
+	int FUNCTION_CALL = 66;
 
 	/**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -2072,7 +1932,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNumericLiteral()
    * @generated
    */
-	int NUMERIC_LITERAL = 72;
+	int NUMERIC_LITERAL = 67;
 
 	/**
    * The number of structural features of the '<em>Numeric Literal</em>' class.
@@ -2091,7 +1951,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getStringLiteral()
    * @generated
    */
-	int STRING_LITERAL = 73;
+	int STRING_LITERAL = 68;
 
 	/**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2119,7 +1979,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getIntegerLiteral()
    * @generated
    */
-	int INTEGER_LITERAL = 74;
+	int INTEGER_LITERAL = 69;
 
 	/**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2147,7 +2007,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getDecimalLiteral()
    * @generated
    */
-	int DECIMAL_LITERAL = 75;
+	int DECIMAL_LITERAL = 70;
 
 	/**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2175,7 +2035,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getDoubleLiteral()
    * @generated
    */
-	int DOUBLE_LITERAL = 76;
+	int DOUBLE_LITERAL = 71;
 
 	/**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2203,7 +2063,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getComp()
    * @generated
    */
-	int COMP = 77;
+	int COMP = 72;
 
 	/**
    * The number of structural features of the '<em>Comp</em>' class.
@@ -2222,7 +2082,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getGeneralComp()
    * @generated
    */
-	int GENERAL_COMP = 78;
+	int GENERAL_COMP = 73;
 
 	/**
    * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -2250,7 +2110,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getValueComp()
    * @generated
    */
-	int VALUE_COMP = 79;
+	int VALUE_COMP = 74;
 
 	/**
    * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -2278,7 +2138,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNodeComp()
    * @generated
    */
-	int NODE_COMP = 80;
+	int NODE_COMP = 75;
 
 	/**
    * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -2306,7 +2166,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSingleType()
    * @generated
    */
-	int SINGLE_TYPE = 81;
+	int SINGLE_TYPE = 76;
 
 	/**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2343,7 +2203,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAtomicType()
    * @generated
    */
-	int ATOMIC_TYPE = 82;
+	int ATOMIC_TYPE = 77;
 
 	/**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -2371,7 +2231,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSequenceType()
    * @generated
    */
-	int SEQUENCE_TYPE = 83;
+	int SEQUENCE_TYPE = 78;
 
 	/**
    * The number of structural features of the '<em>Sequence Type</em>' class.
@@ -2390,7 +2250,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getEmptySequenceType()
    * @generated
    */
-	int EMPTY_SEQUENCE_TYPE = 84;
+	int EMPTY_SEQUENCE_TYPE = 79;
 
 	/**
    * The number of structural features of the '<em>Empty Sequence Type</em>' class.
@@ -2409,7 +2269,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getItemSequenceType()
    * @generated
    */
-	int ITEM_SEQUENCE_TYPE = 85;
+	int ITEM_SEQUENCE_TYPE = 80;
 
 	/**
    * The feature id for the '<em><b>Item Type</b></em>' containment reference.
@@ -2446,7 +2306,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getItemType()
    * @generated
    */
-	int ITEM_TYPE = 86;
+	int ITEM_TYPE = 81;
 
 	/**
    * The number of structural features of the '<em>Item Type</em>' class.
@@ -2465,7 +2325,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getItemKindTest()
    * @generated
    */
-	int ITEM_KIND_TEST = 87;
+	int ITEM_KIND_TEST = 82;
 
 	/**
    * The feature id for the '<em><b>Test</b></em>' containment reference.
@@ -2493,7 +2353,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAnyItemType()
    * @generated
    */
-	int ANY_ITEM_TYPE = 88;
+	int ANY_ITEM_TYPE = 83;
 
 	/**
    * The number of structural features of the '<em>Any Item Type</em>' class.
@@ -2512,7 +2372,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAtomicItemType()
    * @generated
    */
-	int ATOMIC_ITEM_TYPE = 89;
+	int ATOMIC_ITEM_TYPE = 84;
 
 	/**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2540,7 +2400,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getKindTest()
    * @generated
    */
-	int KIND_TEST = 90;
+	int KIND_TEST = 85;
 
 	/**
    * The number of structural features of the '<em>Kind Test</em>' class.
@@ -2559,7 +2419,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getDocumentTest()
    * @generated
    */
-	int DOCUMENT_TEST = 91;
+	int DOCUMENT_TEST = 86;
 
 	/**
    * The feature id for the '<em><b>Test</b></em>' containment reference.
@@ -2587,7 +2447,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getElementTest()
    * @generated
    */
-	int ELEMENT_TEST = 92;
+	int ELEMENT_TEST = 87;
 
 	/**
    * The number of structural features of the '<em>Element Test</em>' class.
@@ -2606,7 +2466,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNameElementTest()
    * @generated
    */
-	int NAME_ELEMENT_TEST = 93;
+	int NAME_ELEMENT_TEST = 88;
 
 	/**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -2652,7 +2512,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getWildcardElementTest()
    * @generated
    */
-	int WILDCARD_ELEMENT_TEST = 94;
+	int WILDCARD_ELEMENT_TEST = 89;
 
 	/**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2689,7 +2549,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAttributeTest()
    * @generated
    */
-	int ATTRIBUTE_TEST = 95;
+	int ATTRIBUTE_TEST = 90;
 
 	/**
    * The number of structural features of the '<em>Attribute Test</em>' class.
@@ -2708,7 +2568,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNameAttributeTest()
    * @generated
    */
-	int NAME_ATTRIBUTE_TEST = 96;
+	int NAME_ATTRIBUTE_TEST = 91;
 
 	/**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -2745,7 +2605,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getWildcardAttributeTest()
    * @generated
    */
-	int WILDCARD_ATTRIBUTE_TEST = 97;
+	int WILDCARD_ATTRIBUTE_TEST = 92;
 
 	/**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2773,7 +2633,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSchemaElementTest()
    * @generated
    */
-	int SCHEMA_ELEMENT_TEST = 98;
+	int SCHEMA_ELEMENT_TEST = 93;
 
 	/**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -2801,7 +2661,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSchemaAttributeTest()
    * @generated
    */
-	int SCHEMA_ATTRIBUTE_TEST = 99;
+	int SCHEMA_ATTRIBUTE_TEST = 94;
 
 	/**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -2829,7 +2689,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getPITest()
    * @generated
    */
-	int PI_TEST = 100;
+	int PI_TEST = 95;
 
 	/**
    * The number of structural features of the '<em>PI Test</em>' class.
@@ -2848,7 +2708,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNCNamePITest()
    * @generated
    */
-	int NC_NAME_PI_TEST = 101;
+	int NC_NAME_PI_TEST = 96;
 
 	/**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2876,7 +2736,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getStringLiteralPITest()
    * @generated
    */
-	int STRING_LITERAL_PI_TEST = 102;
+	int STRING_LITERAL_PI_TEST = 97;
 
 	/**
    * The feature id for the '<em><b>Literal</b></em>' reference.
@@ -2904,7 +2764,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getCommentTest()
    * @generated
    */
-	int COMMENT_TEST = 103;
+	int COMMENT_TEST = 98;
 
 	/**
    * The number of structural features of the '<em>Comment Test</em>' class.
@@ -2923,7 +2783,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getTextTest()
    * @generated
    */
-	int TEXT_TEST = 104;
+	int TEXT_TEST = 99;
 
 	/**
    * The number of structural features of the '<em>Text Test</em>' class.
@@ -2942,7 +2802,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAnyKindTest()
    * @generated
    */
-	int ANY_KIND_TEST = 105;
+	int ANY_KIND_TEST = 100;
 
 	/**
    * The number of structural features of the '<em>Any Kind Test</em>' class.
@@ -2961,7 +2821,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getComment()
    * @generated
    */
-	int COMMENT = 106;
+	int COMMENT = 101;
 
 	/**
    * The feature id for the '<em><b>Text</b></em>' attribute list.
@@ -2998,7 +2858,17 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getForwardAxisKind()
    * @generated
    */
-	int FORWARD_AXIS_KIND = 108;
+	int FORWARD_AXIS_KIND = 103;
+
+	/**
+   * The meta object id for the '{@link org.emftext.language.xpath2.AbbrevForwardStepKind <em>Abbrev Forward Step Kind</em>}' enum.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @see org.emftext.language.xpath2.AbbrevForwardStepKind
+   * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAbbrevForwardStepKind()
+   * @generated
+   */
+	int ABBREV_FORWARD_STEP_KIND = 104;
 
 	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.ReverseAxisKind <em>Reverse Axis Kind</em>}' enum.
@@ -3008,7 +2878,17 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getReverseAxisKind()
    * @generated
    */
-	int REVERSE_AXIS_KIND = 109;
+	int REVERSE_AXIS_KIND = 105;
+
+	/**
+   * The meta object id for the '{@link org.emftext.language.xpath2.AbbrevReverseStepKind <em>Abbrev Reverse Step Kind</em>}' enum.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @see org.emftext.language.xpath2.AbbrevReverseStepKind
+   * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAbbrevReverseStepKind()
+   * @generated
+   */
+	int ABBREV_REVERSE_STEP_KIND = 106;
 
 	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.UnionOp <em>Union Op</em>}' enum.
@@ -3018,7 +2898,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getUnionOp()
    * @generated
    */
-	int UNION_OP = 110;
+	int UNION_OP = 107;
 
 	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.AdditiveOpKind <em>Additive Op Kind</em>}' enum.
@@ -3028,7 +2908,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAdditiveOpKind()
    * @generated
    */
-	int ADDITIVE_OP_KIND = 111;
+	int ADDITIVE_OP_KIND = 108;
 
 	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.MultiplicativeOpKind <em>Multiplicative Op Kind</em>}' enum.
@@ -3038,7 +2918,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getMultiplicativeOpKind()
    * @generated
    */
-	int MULTIPLICATIVE_OP_KIND = 112;
+	int MULTIPLICATIVE_OP_KIND = 109;
 
 	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.QuantifierKind <em>Quantifier Kind</em>}' enum.
@@ -3048,7 +2928,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getQuantifierKind()
    * @generated
    */
-	int QUANTIFIER_KIND = 113;
+	int QUANTIFIER_KIND = 110;
 
 	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.IntersectExceptOpKind <em>Intersect Except Op Kind</em>}' enum.
@@ -3058,7 +2938,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getIntersectExceptOpKind()
    * @generated
    */
-	int INTERSECT_EXCEPT_OP_KIND = 114;
+	int INTERSECT_EXCEPT_OP_KIND = 111;
 
 	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.UnaryOp <em>Unary Op</em>}' enum.
@@ -3068,7 +2948,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getUnaryOp()
    * @generated
    */
-	int UNARY_OP = 115;
+	int UNARY_OP = 112;
 
 	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.GeneralCompKind <em>General Comp Kind</em>}' enum.
@@ -3078,7 +2958,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getGeneralCompKind()
    * @generated
    */
-	int GENERAL_COMP_KIND = 116;
+	int GENERAL_COMP_KIND = 113;
 
 	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.NodeCompKind <em>Node Comp Kind</em>}' enum.
@@ -3088,7 +2968,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNodeCompKind()
    * @generated
    */
-	int NODE_COMP_KIND = 117;
+	int NODE_COMP_KIND = 114;
 
 	/**
    * The meta object id for the '{@link org.emftext.language.xpath2.OccurrenceIndicatorKind <em>Occurrence Indicator Kind</em>}' enum.
@@ -3098,7 +2978,7 @@ public interface Xpath2Package extends EPackage {
    * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getOccurrenceIndicatorKind()
    * @generated
    */
-	int OCCURRENCE_INDICATOR_KIND = 118;
+	int OCCURRENCE_INDICATOR_KIND = 115;
 
 
 	/**
@@ -3112,15 +2992,15 @@ public interface Xpath2Package extends EPackage {
 	EClass getExpr();
 
 	/**
-   * Returns the meta object for the containment reference list '{@link org.emftext.language.xpath2.Expr#getOwnedExprSingle <em>Owned Expr Single</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.emftext.language.xpath2.Expr#getExpr <em>Expr</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Owned Expr Single</em>'.
-   * @see org.emftext.language.xpath2.Expr#getOwnedExprSingle()
+   * @return the meta object for the containment reference list '<em>Expr</em>'.
+   * @see org.emftext.language.xpath2.Expr#getExpr()
    * @see #getExpr()
    * @generated
    */
-	EReference getExpr_OwnedExprSingle();
+	EReference getExpr_Expr();
 
 	/**
    * Returns the meta object for class '{@link org.emftext.language.xpath2.ExprSingle <em>Expr Single</em>}'.
@@ -3143,15 +3023,15 @@ public interface Xpath2Package extends EPackage {
 	EClass getForExpr();
 
 	/**
-   * Returns the meta object for the containment reference '{@link org.emftext.language.xpath2.ForExpr#getOwnedSimpleForClause <em>Owned Simple For Clause</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.emftext.language.xpath2.ForExpr#getIterator <em>Iterator</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Owned Simple For Clause</em>'.
-   * @see org.emftext.language.xpath2.ForExpr#getOwnedSimpleForClause()
+   * @return the meta object for the containment reference list '<em>Iterator</em>'.
+   * @see org.emftext.language.xpath2.ForExpr#getIterator()
    * @see #getForExpr()
    * @generated
    */
-	EReference getForExpr_OwnedSimpleForClause();
+	EReference getForExpr_Iterator();
 
 	/**
    * Returns the meta object for the containment reference '{@link org.emftext.language.xpath2.ForExpr#getReturn <em>Return</em>}'.
@@ -3218,15 +3098,15 @@ public interface Xpath2Package extends EPackage {
 	EClass getIfExpr();
 
 	/**
-   * Returns the meta object for the containment reference '{@link org.emftext.language.xpath2.IfExpr#getCondition <em>Condition</em>}'.
+   * Returns the meta object for the containment reference '{@link org.emftext.language.xpath2.IfExpr#getTest <em>Test</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Condition</em>'.
-   * @see org.emftext.language.xpath2.IfExpr#getCondition()
+   * @return the meta object for the containment reference '<em>Test</em>'.
+   * @see org.emftext.language.xpath2.IfExpr#getTest()
    * @see #getIfExpr()
    * @generated
    */
-	EReference getIfExpr_Condition();
+	EReference getIfExpr_Test();
 
 	/**
    * Returns the meta object for the containment reference '{@link org.emftext.language.xpath2.IfExpr#getThen <em>Then</em>}'.
@@ -3249,27 +3129,6 @@ public interface Xpath2Package extends EPackage {
    * @generated
    */
 	EReference getIfExpr_Else();
-
-	/**
-   * Returns the meta object for class '{@link org.emftext.language.xpath2.SimpleForClause <em>Simple For Clause</em>}'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Simple For Clause</em>'.
-   * @see org.emftext.language.xpath2.SimpleForClause
-   * @generated
-   */
-	EClass getSimpleForClause();
-
-	/**
-   * Returns the meta object for the containment reference list '{@link org.emftext.language.xpath2.SimpleForClause#getIterator <em>Iterator</em>}'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Iterator</em>'.
-   * @see org.emftext.language.xpath2.SimpleForClause#getIterator()
-   * @see #getSimpleForClause()
-   * @generated
-   */
-	EReference getSimpleForClause_Iterator();
 
 	/**
    * Returns the meta object for class '{@link org.emftext.language.xpath2.Iterator <em>Iterator</em>}'.
@@ -3859,88 +3718,98 @@ public interface Xpath2Package extends EPackage {
 	EClass getPathExpr();
 
 	/**
-   * Returns the meta object for class '{@link org.emftext.language.xpath2.SinglePathExpr <em>Single Path Expr</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.emftext.language.xpath2.PathExpr#getStep <em>Step</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Single Path Expr</em>'.
-   * @see org.emftext.language.xpath2.SinglePathExpr
+   * @return the meta object for the containment reference list '<em>Step</em>'.
+   * @see org.emftext.language.xpath2.PathExpr#getStep()
+   * @see #getPathExpr()
    * @generated
    */
-	EClass getSinglePathExpr();
+	EReference getPathExpr_Step();
 
 	/**
-   * Returns the meta object for the containment reference '{@link org.emftext.language.xpath2.SinglePathExpr#getRelativePathExpr <em>Relative Path Expr</em>}'.
+   * Returns the meta object for class '{@link org.emftext.language.xpath2.PathExprChild <em>Path Expr Child</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Relative Path Expr</em>'.
-   * @see org.emftext.language.xpath2.SinglePathExpr#getRelativePathExpr()
-   * @see #getSinglePathExpr()
+   * @return the meta object for class '<em>Path Expr Child</em>'.
+   * @see org.emftext.language.xpath2.PathExprChild
    * @generated
    */
-	EReference getSinglePathExpr_RelativePathExpr();
+	EClass getPathExprChild();
 
 	/**
-   * Returns the meta object for class '{@link org.emftext.language.xpath2.DoublePathExpr <em>Double Path Expr</em>}'.
+   * Returns the meta object for class '{@link org.emftext.language.xpath2.RootStepExpr <em>Root Step Expr</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Double Path Expr</em>'.
-   * @see org.emftext.language.xpath2.DoublePathExpr
+   * @return the meta object for class '<em>Root Step Expr</em>'.
+   * @see org.emftext.language.xpath2.RootStepExpr
    * @generated
    */
-	EClass getDoublePathExpr();
+	EClass getRootStepExpr();
 
 	/**
-   * Returns the meta object for the containment reference '{@link org.emftext.language.xpath2.DoublePathExpr#getRelativePathExpr <em>Relative Path Expr</em>}'.
+   * Returns the meta object for class '{@link org.emftext.language.xpath2.ChildStepExpr <em>Child Step Expr</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Relative Path Expr</em>'.
-   * @see org.emftext.language.xpath2.DoublePathExpr#getRelativePathExpr()
-   * @see #getDoublePathExpr()
+   * @return the meta object for class '<em>Child Step Expr</em>'.
+   * @see org.emftext.language.xpath2.ChildStepExpr
    * @generated
    */
-	EReference getDoublePathExpr_RelativePathExpr();
+	EClass getChildStepExpr();
 
 	/**
-   * Returns the meta object for class '{@link org.emftext.language.xpath2.RelativePathExpr <em>Relative Path Expr</em>}'.
+   * Returns the meta object for the containment reference '{@link org.emftext.language.xpath2.ChildStepExpr#getStep <em>Step</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Relative Path Expr</em>'.
-   * @see org.emftext.language.xpath2.RelativePathExpr
+   * @return the meta object for the containment reference '<em>Step</em>'.
+   * @see org.emftext.language.xpath2.ChildStepExpr#getStep()
+   * @see #getChildStepExpr()
    * @generated
    */
-	EClass getRelativePathExpr();
+	EReference getChildStepExpr_Step();
 
 	/**
-   * Returns the meta object for the containment reference '{@link org.emftext.language.xpath2.RelativePathExpr#getHead <em>Head</em>}'.
+   * Returns the meta object for class '{@link org.emftext.language.xpath2.DescOrSelfStepExpr <em>Desc Or Self Step Expr</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Head</em>'.
-   * @see org.emftext.language.xpath2.RelativePathExpr#getHead()
-   * @see #getRelativePathExpr()
+   * @return the meta object for class '<em>Desc Or Self Step Expr</em>'.
+   * @see org.emftext.language.xpath2.DescOrSelfStepExpr
    * @generated
    */
-	EReference getRelativePathExpr_Head();
+	EClass getDescOrSelfStepExpr();
 
 	/**
-   * Returns the meta object for the containment reference list '{@link org.emftext.language.xpath2.RelativePathExpr#getTail <em>Tail</em>}'.
+   * Returns the meta object for the containment reference '{@link org.emftext.language.xpath2.DescOrSelfStepExpr#getStep <em>Step</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Tail</em>'.
-   * @see org.emftext.language.xpath2.RelativePathExpr#getTail()
-   * @see #getRelativePathExpr()
+   * @return the meta object for the containment reference '<em>Step</em>'.
+   * @see org.emftext.language.xpath2.DescOrSelfStepExpr#getStep()
+   * @see #getDescOrSelfStepExpr()
    * @generated
    */
-	EReference getRelativePathExpr_Tail();
+	EReference getDescOrSelfStepExpr_Step();
 
 	/**
-   * Returns the meta object for class '{@link org.emftext.language.xpath2.RelativePathExprChild <em>Relative Path Expr Child</em>}'.
+   * Returns the meta object for class '{@link org.emftext.language.xpath2.SelfStepExpr <em>Self Step Expr</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Relative Path Expr Child</em>'.
-   * @see org.emftext.language.xpath2.RelativePathExprChild
+   * @return the meta object for class '<em>Self Step Expr</em>'.
+   * @see org.emftext.language.xpath2.SelfStepExpr
    * @generated
    */
-	EClass getRelativePathExprChild();
+	EClass getSelfStepExpr();
+
+	/**
+   * Returns the meta object for the containment reference '{@link org.emftext.language.xpath2.SelfStepExpr#getStep <em>Step</em>}'.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Step</em>'.
+   * @see org.emftext.language.xpath2.SelfStepExpr#getStep()
+   * @see #getSelfStepExpr()
+   * @generated
+   */
+	EReference getSelfStepExpr_Step();
 
 	/**
    * Returns the meta object for class '{@link org.emftext.language.xpath2.StepExpr <em>Step Expr</em>}'.
@@ -4027,47 +3896,6 @@ public interface Xpath2Package extends EPackage {
 	EReference getAxisStep_Predicate();
 
 	/**
-   * Returns the meta object for class '{@link org.emftext.language.xpath2.TailPathExpr <em>Tail Path Expr</em>}'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Tail Path Expr</em>'.
-   * @see org.emftext.language.xpath2.TailPathExpr
-   * @generated
-   */
-	EClass getTailPathExpr();
-
-	/**
-   * Returns the meta object for the containment reference '{@link org.emftext.language.xpath2.TailPathExpr#getStepExpression <em>Step Expression</em>}'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Step Expression</em>'.
-   * @see org.emftext.language.xpath2.TailPathExpr#getStepExpression()
-   * @see #getTailPathExpr()
-   * @generated
-   */
-	EReference getTailPathExpr_StepExpression();
-
-	/**
-   * Returns the meta object for class '{@link org.emftext.language.xpath2.SingleTailPathExpr <em>Single Tail Path Expr</em>}'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Single Tail Path Expr</em>'.
-   * @see org.emftext.language.xpath2.SingleTailPathExpr
-   * @generated
-   */
-	EClass getSingleTailPathExpr();
-
-	/**
-   * Returns the meta object for class '{@link org.emftext.language.xpath2.DoubleTailPathExpr <em>Double Tail Path Expr</em>}'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Double Tail Path Expr</em>'.
-   * @see org.emftext.language.xpath2.DoubleTailPathExpr
-   * @generated
-   */
-	EClass getDoubleTailPathExpr();
-
-	/**
    * Returns the meta object for class '{@link org.emftext.language.xpath2.DirectionalStep <em>Directional Step</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4108,15 +3936,15 @@ public interface Xpath2Package extends EPackage {
 	EClass getGeneralForwardStep();
 
 	/**
-   * Returns the meta object for the containment reference '{@link org.emftext.language.xpath2.GeneralForwardStep#getAxis <em>Axis</em>}'.
+   * Returns the meta object for the attribute '{@link org.emftext.language.xpath2.GeneralForwardStep#getAxis <em>Axis</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Axis</em>'.
+   * @return the meta object for the attribute '<em>Axis</em>'.
    * @see org.emftext.language.xpath2.GeneralForwardStep#getAxis()
    * @see #getGeneralForwardStep()
    * @generated
    */
-	EReference getGeneralForwardStep_Axis();
+	EAttribute getGeneralForwardStep_Axis();
 
 	/**
    * Returns the meta object for the containment reference '{@link org.emftext.language.xpath2.GeneralForwardStep#getNodeTest <em>Node Test</em>}'.
@@ -4140,15 +3968,15 @@ public interface Xpath2Package extends EPackage {
 	EClass getAbbrevForwardStep();
 
 	/**
-   * Returns the meta object for the attribute '{@link org.emftext.language.xpath2.AbbrevForwardStep#isAt <em>At</em>}'.
+   * Returns the meta object for the attribute '{@link org.emftext.language.xpath2.AbbrevForwardStep#getKind <em>Kind</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>At</em>'.
-   * @see org.emftext.language.xpath2.AbbrevForwardStep#isAt()
+   * @return the meta object for the attribute '<em>Kind</em>'.
+   * @see org.emftext.language.xpath2.AbbrevForwardStep#getKind()
    * @see #getAbbrevForwardStep()
    * @generated
    */
-	EAttribute getAbbrevForwardStep_At();
+	EAttribute getAbbrevForwardStep_Kind();
 
 	/**
    * Returns the meta object for the containment reference '{@link org.emftext.language.xpath2.AbbrevForwardStep#getNodeTest <em>Node Test</em>}'.
@@ -4162,27 +3990,6 @@ public interface Xpath2Package extends EPackage {
 	EReference getAbbrevForwardStep_NodeTest();
 
 	/**
-   * Returns the meta object for class '{@link org.emftext.language.xpath2.ForwardAxis <em>Forward Axis</em>}'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Forward Axis</em>'.
-   * @see org.emftext.language.xpath2.ForwardAxis
-   * @generated
-   */
-	EClass getForwardAxis();
-
-	/**
-   * Returns the meta object for the attribute '{@link org.emftext.language.xpath2.ForwardAxis#getKind <em>Kind</em>}'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Kind</em>'.
-   * @see org.emftext.language.xpath2.ForwardAxis#getKind()
-   * @see #getForwardAxis()
-   * @generated
-   */
-	EAttribute getForwardAxis_Kind();
-
-	/**
    * Returns the meta object for class '{@link org.emftext.language.xpath2.GeneralReverseStep <em>General Reverse Step</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4193,15 +4000,15 @@ public interface Xpath2Package extends EPackage {
 	EClass getGeneralReverseStep();
 
 	/**
-   * Returns the meta object for the containment reference '{@link org.emftext.language.xpath2.GeneralReverseStep#getAxis <em>Axis</em>}'.
+   * Returns the meta object for the attribute '{@link org.emftext.language.xpath2.GeneralReverseStep#getAxis <em>Axis</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Axis</em>'.
+   * @return the meta object for the attribute '<em>Axis</em>'.
    * @see org.emftext.language.xpath2.GeneralReverseStep#getAxis()
    * @see #getGeneralReverseStep()
    * @generated
    */
-	EReference getGeneralReverseStep_Axis();
+	EAttribute getGeneralReverseStep_Axis();
 
 	/**
    * Returns the meta object for the containment reference '{@link org.emftext.language.xpath2.GeneralReverseStep#getNodeTest <em>Node Test</em>}'.
@@ -4225,25 +4032,15 @@ public interface Xpath2Package extends EPackage {
 	EClass getAbbrevReverseStep();
 
 	/**
-   * Returns the meta object for class '{@link org.emftext.language.xpath2.ReverseAxis <em>Reverse Axis</em>}'.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Reverse Axis</em>'.
-   * @see org.emftext.language.xpath2.ReverseAxis
-   * @generated
-   */
-	EClass getReverseAxis();
-
-	/**
-   * Returns the meta object for the attribute '{@link org.emftext.language.xpath2.ReverseAxis#getKind <em>Kind</em>}'.
+   * Returns the meta object for the attribute '{@link org.emftext.language.xpath2.AbbrevReverseStep#getKind <em>Kind</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Kind</em>'.
-   * @see org.emftext.language.xpath2.ReverseAxis#getKind()
-   * @see #getReverseAxis()
+   * @see org.emftext.language.xpath2.AbbrevReverseStep#getKind()
+   * @see #getAbbrevReverseStep()
    * @generated
    */
-	EAttribute getReverseAxis_Kind();
+	EAttribute getAbbrevReverseStep_Kind();
 
 	/**
    * Returns the meta object for class '{@link org.emftext.language.xpath2.NodeTest <em>Node Test</em>}'.
@@ -5226,6 +5023,16 @@ public interface Xpath2Package extends EPackage {
 	EEnum getForwardAxisKind();
 
 	/**
+   * Returns the meta object for enum '{@link org.emftext.language.xpath2.AbbrevForwardStepKind <em>Abbrev Forward Step Kind</em>}'.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Abbrev Forward Step Kind</em>'.
+   * @see org.emftext.language.xpath2.AbbrevForwardStepKind
+   * @generated
+   */
+	EEnum getAbbrevForwardStepKind();
+
+	/**
    * Returns the meta object for enum '{@link org.emftext.language.xpath2.ReverseAxisKind <em>Reverse Axis Kind</em>}'.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5234,6 +5041,16 @@ public interface Xpath2Package extends EPackage {
    * @generated
    */
 	EEnum getReverseAxisKind();
+
+	/**
+   * Returns the meta object for enum '{@link org.emftext.language.xpath2.AbbrevReverseStepKind <em>Abbrev Reverse Step Kind</em>}'.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Abbrev Reverse Step Kind</em>'.
+   * @see org.emftext.language.xpath2.AbbrevReverseStepKind
+   * @generated
+   */
+	EEnum getAbbrevReverseStepKind();
 
 	/**
    * Returns the meta object for enum '{@link org.emftext.language.xpath2.UnionOp <em>Union Op</em>}'.
@@ -5358,12 +5175,12 @@ public interface Xpath2Package extends EPackage {
 		EClass EXPR = eINSTANCE.getExpr();
 
 		/**
-     * The meta object literal for the '<em><b>Owned Expr Single</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Expr</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
      * @generated
      */
-		EReference EXPR__OWNED_EXPR_SINGLE = eINSTANCE.getExpr_OwnedExprSingle();
+		EReference EXPR__EXPR = eINSTANCE.getExpr_Expr();
 
 		/**
      * The meta object literal for the '{@link org.emftext.language.xpath2.impl.ExprSingleImpl <em>Expr Single</em>}' class.
@@ -5386,12 +5203,12 @@ public interface Xpath2Package extends EPackage {
 		EClass FOR_EXPR = eINSTANCE.getForExpr();
 
 		/**
-     * The meta object literal for the '<em><b>Owned Simple For Clause</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Iterator</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
      * @generated
      */
-		EReference FOR_EXPR__OWNED_SIMPLE_FOR_CLAUSE = eINSTANCE.getForExpr_OwnedSimpleForClause();
+		EReference FOR_EXPR__ITERATOR = eINSTANCE.getForExpr_Iterator();
 
 		/**
      * The meta object literal for the '<em><b>Return</b></em>' containment reference feature.
@@ -5446,12 +5263,12 @@ public interface Xpath2Package extends EPackage {
 		EClass IF_EXPR = eINSTANCE.getIfExpr();
 
 		/**
-     * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Test</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
      * @generated
      */
-		EReference IF_EXPR__CONDITION = eINSTANCE.getIfExpr_Condition();
+		EReference IF_EXPR__TEST = eINSTANCE.getIfExpr_Test();
 
 		/**
      * The meta object literal for the '<em><b>Then</b></em>' containment reference feature.
@@ -5468,24 +5285,6 @@ public interface Xpath2Package extends EPackage {
      * @generated
      */
 		EReference IF_EXPR__ELSE = eINSTANCE.getIfExpr_Else();
-
-		/**
-     * The meta object literal for the '{@link org.emftext.language.xpath2.impl.SimpleForClauseImpl <em>Simple For Clause</em>}' class.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @see org.emftext.language.xpath2.impl.SimpleForClauseImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSimpleForClause()
-     * @generated
-     */
-		EClass SIMPLE_FOR_CLAUSE = eINSTANCE.getSimpleForClause();
-
-		/**
-     * The meta object literal for the '<em><b>Iterator</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @generated
-     */
-		EReference SIMPLE_FOR_CLAUSE__ITERATOR = eINSTANCE.getSimpleForClause_Iterator();
 
 		/**
      * The meta object literal for the '{@link org.emftext.language.xpath2.impl.IteratorImpl <em>Iterator</em>}' class.
@@ -5994,76 +5793,86 @@ public interface Xpath2Package extends EPackage {
 		EClass PATH_EXPR = eINSTANCE.getPathExpr();
 
 		/**
-     * The meta object literal for the '{@link org.emftext.language.xpath2.impl.SinglePathExprImpl <em>Single Path Expr</em>}' class.
+     * The meta object literal for the '<em><b>Step</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-     * @see org.emftext.language.xpath2.impl.SinglePathExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSinglePathExpr()
      * @generated
      */
-		EClass SINGLE_PATH_EXPR = eINSTANCE.getSinglePathExpr();
+		EReference PATH_EXPR__STEP = eINSTANCE.getPathExpr_Step();
 
 		/**
-     * The meta object literal for the '<em><b>Relative Path Expr</b></em>' containment reference feature.
+     * The meta object literal for the '{@link org.emftext.language.xpath2.impl.PathExprChildImpl <em>Path Expr Child</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+     * @see org.emftext.language.xpath2.impl.PathExprChildImpl
+     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getPathExprChild()
      * @generated
      */
-		EReference SINGLE_PATH_EXPR__RELATIVE_PATH_EXPR = eINSTANCE.getSinglePathExpr_RelativePathExpr();
+		EClass PATH_EXPR_CHILD = eINSTANCE.getPathExprChild();
 
 		/**
-     * The meta object literal for the '{@link org.emftext.language.xpath2.impl.DoublePathExprImpl <em>Double Path Expr</em>}' class.
+     * The meta object literal for the '{@link org.emftext.language.xpath2.impl.RootStepExprImpl <em>Root Step Expr</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-     * @see org.emftext.language.xpath2.impl.DoublePathExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getDoublePathExpr()
+     * @see org.emftext.language.xpath2.impl.RootStepExprImpl
+     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getRootStepExpr()
      * @generated
      */
-		EClass DOUBLE_PATH_EXPR = eINSTANCE.getDoublePathExpr();
+		EClass ROOT_STEP_EXPR = eINSTANCE.getRootStepExpr();
 
 		/**
-     * The meta object literal for the '<em><b>Relative Path Expr</b></em>' containment reference feature.
+     * The meta object literal for the '{@link org.emftext.language.xpath2.impl.ChildStepExprImpl <em>Child Step Expr</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+     * @see org.emftext.language.xpath2.impl.ChildStepExprImpl
+     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getChildStepExpr()
      * @generated
      */
-		EReference DOUBLE_PATH_EXPR__RELATIVE_PATH_EXPR = eINSTANCE.getDoublePathExpr_RelativePathExpr();
+		EClass CHILD_STEP_EXPR = eINSTANCE.getChildStepExpr();
 
 		/**
-     * The meta object literal for the '{@link org.emftext.language.xpath2.impl.RelativePathExprImpl <em>Relative Path Expr</em>}' class.
+     * The meta object literal for the '<em><b>Step</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-     * @see org.emftext.language.xpath2.impl.RelativePathExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getRelativePathExpr()
      * @generated
      */
-		EClass RELATIVE_PATH_EXPR = eINSTANCE.getRelativePathExpr();
+		EReference CHILD_STEP_EXPR__STEP = eINSTANCE.getChildStepExpr_Step();
 
 		/**
-     * The meta object literal for the '<em><b>Head</b></em>' containment reference feature.
+     * The meta object literal for the '{@link org.emftext.language.xpath2.impl.DescOrSelfStepExprImpl <em>Desc Or Self Step Expr</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+     * @see org.emftext.language.xpath2.impl.DescOrSelfStepExprImpl
+     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getDescOrSelfStepExpr()
      * @generated
      */
-		EReference RELATIVE_PATH_EXPR__HEAD = eINSTANCE.getRelativePathExpr_Head();
+		EClass DESC_OR_SELF_STEP_EXPR = eINSTANCE.getDescOrSelfStepExpr();
 
 		/**
-     * The meta object literal for the '<em><b>Tail</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Step</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
      * @generated
      */
-		EReference RELATIVE_PATH_EXPR__TAIL = eINSTANCE.getRelativePathExpr_Tail();
+		EReference DESC_OR_SELF_STEP_EXPR__STEP = eINSTANCE.getDescOrSelfStepExpr_Step();
 
 		/**
-     * The meta object literal for the '{@link org.emftext.language.xpath2.impl.RelativePathExprChildImpl <em>Relative Path Expr Child</em>}' class.
+     * The meta object literal for the '{@link org.emftext.language.xpath2.impl.SelfStepExprImpl <em>Self Step Expr</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-     * @see org.emftext.language.xpath2.impl.RelativePathExprChildImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getRelativePathExprChild()
+     * @see org.emftext.language.xpath2.impl.SelfStepExprImpl
+     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSelfStepExpr()
      * @generated
      */
-		EClass RELATIVE_PATH_EXPR_CHILD = eINSTANCE.getRelativePathExprChild();
+		EClass SELF_STEP_EXPR = eINSTANCE.getSelfStepExpr();
+
+		/**
+     * The meta object literal for the '<em><b>Step</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+     * @generated
+     */
+		EReference SELF_STEP_EXPR__STEP = eINSTANCE.getSelfStepExpr_Step();
 
 		/**
      * The meta object literal for the '{@link org.emftext.language.xpath2.impl.StepExprImpl <em>Step Expr</em>}' class.
@@ -6138,44 +5947,6 @@ public interface Xpath2Package extends EPackage {
 		EReference AXIS_STEP__PREDICATE = eINSTANCE.getAxisStep_Predicate();
 
 		/**
-     * The meta object literal for the '{@link org.emftext.language.xpath2.impl.TailPathExprImpl <em>Tail Path Expr</em>}' class.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @see org.emftext.language.xpath2.impl.TailPathExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getTailPathExpr()
-     * @generated
-     */
-		EClass TAIL_PATH_EXPR = eINSTANCE.getTailPathExpr();
-
-		/**
-     * The meta object literal for the '<em><b>Step Expression</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @generated
-     */
-		EReference TAIL_PATH_EXPR__STEP_EXPRESSION = eINSTANCE.getTailPathExpr_StepExpression();
-
-		/**
-     * The meta object literal for the '{@link org.emftext.language.xpath2.impl.SingleTailPathExprImpl <em>Single Tail Path Expr</em>}' class.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @see org.emftext.language.xpath2.impl.SingleTailPathExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSingleTailPathExpr()
-     * @generated
-     */
-		EClass SINGLE_TAIL_PATH_EXPR = eINSTANCE.getSingleTailPathExpr();
-
-		/**
-     * The meta object literal for the '{@link org.emftext.language.xpath2.impl.DoubleTailPathExprImpl <em>Double Tail Path Expr</em>}' class.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @see org.emftext.language.xpath2.impl.DoubleTailPathExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getDoubleTailPathExpr()
-     * @generated
-     */
-		EClass DOUBLE_TAIL_PATH_EXPR = eINSTANCE.getDoubleTailPathExpr();
-
-		/**
      * The meta object literal for the '{@link org.emftext.language.xpath2.impl.DirectionalStepImpl <em>Directional Step</em>}' class.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6216,12 +5987,12 @@ public interface Xpath2Package extends EPackage {
 		EClass GENERAL_FORWARD_STEP = eINSTANCE.getGeneralForwardStep();
 
 		/**
-     * The meta object literal for the '<em><b>Axis</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Axis</b></em>' attribute feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
      * @generated
      */
-		EReference GENERAL_FORWARD_STEP__AXIS = eINSTANCE.getGeneralForwardStep_Axis();
+		EAttribute GENERAL_FORWARD_STEP__AXIS = eINSTANCE.getGeneralForwardStep_Axis();
 
 		/**
      * The meta object literal for the '<em><b>Node Test</b></em>' containment reference feature.
@@ -6242,12 +6013,12 @@ public interface Xpath2Package extends EPackage {
 		EClass ABBREV_FORWARD_STEP = eINSTANCE.getAbbrevForwardStep();
 
 		/**
-     * The meta object literal for the '<em><b>At</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
      * @generated
      */
-		EAttribute ABBREV_FORWARD_STEP__AT = eINSTANCE.getAbbrevForwardStep_At();
+		EAttribute ABBREV_FORWARD_STEP__KIND = eINSTANCE.getAbbrevForwardStep_Kind();
 
 		/**
      * The meta object literal for the '<em><b>Node Test</b></em>' containment reference feature.
@@ -6256,24 +6027,6 @@ public interface Xpath2Package extends EPackage {
      * @generated
      */
 		EReference ABBREV_FORWARD_STEP__NODE_TEST = eINSTANCE.getAbbrevForwardStep_NodeTest();
-
-		/**
-     * The meta object literal for the '{@link org.emftext.language.xpath2.impl.ForwardAxisImpl <em>Forward Axis</em>}' class.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @see org.emftext.language.xpath2.impl.ForwardAxisImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getForwardAxis()
-     * @generated
-     */
-		EClass FORWARD_AXIS = eINSTANCE.getForwardAxis();
-
-		/**
-     * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @generated
-     */
-		EAttribute FORWARD_AXIS__KIND = eINSTANCE.getForwardAxis_Kind();
 
 		/**
      * The meta object literal for the '{@link org.emftext.language.xpath2.impl.GeneralReverseStepImpl <em>General Reverse Step</em>}' class.
@@ -6286,12 +6039,12 @@ public interface Xpath2Package extends EPackage {
 		EClass GENERAL_REVERSE_STEP = eINSTANCE.getGeneralReverseStep();
 
 		/**
-     * The meta object literal for the '<em><b>Axis</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Axis</b></em>' attribute feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
      * @generated
      */
-		EReference GENERAL_REVERSE_STEP__AXIS = eINSTANCE.getGeneralReverseStep_Axis();
+		EAttribute GENERAL_REVERSE_STEP__AXIS = eINSTANCE.getGeneralReverseStep_Axis();
 
 		/**
      * The meta object literal for the '<em><b>Node Test</b></em>' containment reference feature.
@@ -6312,22 +6065,12 @@ public interface Xpath2Package extends EPackage {
 		EClass ABBREV_REVERSE_STEP = eINSTANCE.getAbbrevReverseStep();
 
 		/**
-     * The meta object literal for the '{@link org.emftext.language.xpath2.impl.ReverseAxisImpl <em>Reverse Axis</em>}' class.
-     * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-     * @see org.emftext.language.xpath2.impl.ReverseAxisImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getReverseAxis()
-     * @generated
-     */
-		EClass REVERSE_AXIS = eINSTANCE.getReverseAxis();
-
-		/**
      * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
      * @generated
      */
-		EAttribute REVERSE_AXIS__KIND = eINSTANCE.getReverseAxis_Kind();
+		EAttribute ABBREV_REVERSE_STEP__KIND = eINSTANCE.getAbbrevReverseStep_Kind();
 
 		/**
      * The meta object literal for the '{@link org.emftext.language.xpath2.impl.NodeTestImpl <em>Node Test</em>}' class.
@@ -7190,6 +6933,16 @@ public interface Xpath2Package extends EPackage {
 		EEnum FORWARD_AXIS_KIND = eINSTANCE.getForwardAxisKind();
 
 		/**
+     * The meta object literal for the '{@link org.emftext.language.xpath2.AbbrevForwardStepKind <em>Abbrev Forward Step Kind</em>}' enum.
+     * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+     * @see org.emftext.language.xpath2.AbbrevForwardStepKind
+     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAbbrevForwardStepKind()
+     * @generated
+     */
+		EEnum ABBREV_FORWARD_STEP_KIND = eINSTANCE.getAbbrevForwardStepKind();
+
+		/**
      * The meta object literal for the '{@link org.emftext.language.xpath2.ReverseAxisKind <em>Reverse Axis Kind</em>}' enum.
      * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7198,6 +6951,16 @@ public interface Xpath2Package extends EPackage {
      * @generated
      */
 		EEnum REVERSE_AXIS_KIND = eINSTANCE.getReverseAxisKind();
+
+		/**
+     * The meta object literal for the '{@link org.emftext.language.xpath2.AbbrevReverseStepKind <em>Abbrev Reverse Step Kind</em>}' enum.
+     * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+     * @see org.emftext.language.xpath2.AbbrevReverseStepKind
+     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAbbrevReverseStepKind()
+     * @generated
+     */
+		EEnum ABBREV_REVERSE_STEP_KIND = eINSTANCE.getAbbrevReverseStepKind();
 
 		/**
      * The meta object literal for the '{@link org.emftext.language.xpath2.UnionOp <em>Union Op</em>}' enum.

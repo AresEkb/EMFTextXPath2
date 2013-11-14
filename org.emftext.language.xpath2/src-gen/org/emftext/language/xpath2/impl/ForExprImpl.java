@@ -2,17 +2,24 @@
  */
 package org.emftext.language.xpath2.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.emftext.language.xpath2.ExprSingle;
 import org.emftext.language.xpath2.ForExpr;
-import org.emftext.language.xpath2.SimpleForClause;
+import org.emftext.language.xpath2.Iterator;
 import org.emftext.language.xpath2.Xpath2Package;
 
 /**
@@ -22,7 +29,7 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.emftext.language.xpath2.impl.ForExprImpl#getOwnedSimpleForClause <em>Owned Simple For Clause</em>}</li>
+ *   <li>{@link org.emftext.language.xpath2.impl.ForExprImpl#getIterator <em>Iterator</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.ForExprImpl#getReturn <em>Return</em>}</li>
  * </ul>
  * </p>
@@ -31,14 +38,14 @@ import org.emftext.language.xpath2.Xpath2Package;
  */
 public class ForExprImpl extends ExprSingleImpl implements ForExpr {
 	/**
-   * The cached value of the '{@link #getOwnedSimpleForClause() <em>Owned Simple For Clause</em>}' containment reference.
+   * The cached value of the '{@link #getIterator() <em>Iterator</em>}' containment reference list.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see #getOwnedSimpleForClause()
+   * @see #getIterator()
    * @generated
    * @ordered
    */
-	protected SimpleForClause ownedSimpleForClause;
+	protected EList<Iterator> iterator;
 
 	/**
    * The cached value of the '{@link #getReturn() <em>Return</em>}' containment reference.
@@ -74,44 +81,12 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public SimpleForClause getOwnedSimpleForClause() {
-    return ownedSimpleForClause;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public NotificationChain basicSetOwnedSimpleForClause(SimpleForClause newOwnedSimpleForClause, NotificationChain msgs) {
-    SimpleForClause oldOwnedSimpleForClause = ownedSimpleForClause;
-    ownedSimpleForClause = newOwnedSimpleForClause;
-    if (eNotificationRequired())
+	public EList<Iterator> getIterator() {
+    if (iterator == null)
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.FOR_EXPR__OWNED_SIMPLE_FOR_CLAUSE, oldOwnedSimpleForClause, newOwnedSimpleForClause);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      iterator = new EObjectContainmentEList<Iterator>(Iterator.class, this, Xpath2Package.FOR_EXPR__ITERATOR);
     }
-    return msgs;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public void setOwnedSimpleForClause(SimpleForClause newOwnedSimpleForClause) {
-    if (newOwnedSimpleForClause != ownedSimpleForClause)
-    {
-      NotificationChain msgs = null;
-      if (ownedSimpleForClause != null)
-        msgs = ((InternalEObject)ownedSimpleForClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.FOR_EXPR__OWNED_SIMPLE_FOR_CLAUSE, null, msgs);
-      if (newOwnedSimpleForClause != null)
-        msgs = ((InternalEObject)newOwnedSimpleForClause).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.FOR_EXPR__OWNED_SIMPLE_FOR_CLAUSE, null, msgs);
-      msgs = basicSetOwnedSimpleForClause(newOwnedSimpleForClause, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.FOR_EXPR__OWNED_SIMPLE_FOR_CLAUSE, newOwnedSimpleForClause, newOwnedSimpleForClause));
+    return iterator;
   }
 
 	/**
@@ -168,8 +143,8 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
-      case Xpath2Package.FOR_EXPR__OWNED_SIMPLE_FOR_CLAUSE:
-        return basicSetOwnedSimpleForClause(null, msgs);
+      case Xpath2Package.FOR_EXPR__ITERATOR:
+        return ((InternalEList<?>)getIterator()).basicRemove(otherEnd, msgs);
       case Xpath2Package.FOR_EXPR__RETURN:
         return basicSetReturn(null, msgs);
     }
@@ -185,8 +160,8 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
-      case Xpath2Package.FOR_EXPR__OWNED_SIMPLE_FOR_CLAUSE:
-        return getOwnedSimpleForClause();
+      case Xpath2Package.FOR_EXPR__ITERATOR:
+        return getIterator();
       case Xpath2Package.FOR_EXPR__RETURN:
         return getReturn();
     }
@@ -198,12 +173,14 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
 	 * <!-- end-user-doc -->
    * @generated
    */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
-      case Xpath2Package.FOR_EXPR__OWNED_SIMPLE_FOR_CLAUSE:
-        setOwnedSimpleForClause((SimpleForClause)newValue);
+      case Xpath2Package.FOR_EXPR__ITERATOR:
+        getIterator().clear();
+        getIterator().addAll((Collection<? extends Iterator>)newValue);
         return;
       case Xpath2Package.FOR_EXPR__RETURN:
         setReturn((ExprSingle)newValue);
@@ -221,8 +198,8 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
 	public void eUnset(int featureID) {
     switch (featureID)
     {
-      case Xpath2Package.FOR_EXPR__OWNED_SIMPLE_FOR_CLAUSE:
-        setOwnedSimpleForClause((SimpleForClause)null);
+      case Xpath2Package.FOR_EXPR__ITERATOR:
+        getIterator().clear();
         return;
       case Xpath2Package.FOR_EXPR__RETURN:
         setReturn((ExprSingle)null);
@@ -240,8 +217,8 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
 	public boolean eIsSet(int featureID) {
     switch (featureID)
     {
-      case Xpath2Package.FOR_EXPR__OWNED_SIMPLE_FOR_CLAUSE:
-        return ownedSimpleForClause != null;
+      case Xpath2Package.FOR_EXPR__ITERATOR:
+        return iterator != null && !iterator.isEmpty();
       case Xpath2Package.FOR_EXPR__RETURN:
         return return_ != null;
     }

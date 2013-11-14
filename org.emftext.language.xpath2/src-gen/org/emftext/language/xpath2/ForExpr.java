@@ -2,6 +2,7 @@
  */
 package org.emftext.language.xpath2;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -11,7 +12,7 @@ package org.emftext.language.xpath2;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.emftext.language.xpath2.ForExpr#getOwnedSimpleForClause <em>Owned Simple For Clause</em>}</li>
+ *   <li>{@link org.emftext.language.xpath2.ForExpr#getIterator <em>Iterator</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.ForExpr#getReturn <em>Return</em>}</li>
  * </ul>
  * </p>
@@ -22,30 +23,20 @@ package org.emftext.language.xpath2;
  */
 public interface ForExpr extends ExprSingle {
 	/**
-   * Returns the value of the '<em><b>Owned Simple For Clause</b></em>' containment reference.
+   * Returns the value of the '<em><b>Iterator</b></em>' containment reference list.
+   * The list contents are of type {@link org.emftext.language.xpath2.Iterator}.
    * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Simple For Clause</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Iterator</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-   * @return the value of the '<em>Owned Simple For Clause</em>' containment reference.
-   * @see #setOwnedSimpleForClause(SimpleForClause)
-   * @see org.emftext.language.xpath2.Xpath2Package#getForExpr_OwnedSimpleForClause()
+   * @return the value of the '<em>Iterator</em>' containment reference list.
+   * @see org.emftext.language.xpath2.Xpath2Package#getForExpr_Iterator()
    * @model containment="true" required="true"
    * @generated
    */
-	SimpleForClause getOwnedSimpleForClause();
-
-	/**
-   * Sets the value of the '{@link org.emftext.language.xpath2.ForExpr#getOwnedSimpleForClause <em>Owned Simple For Clause</em>}' containment reference.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Owned Simple For Clause</em>' containment reference.
-   * @see #getOwnedSimpleForClause()
-   * @generated
-   */
-	void setOwnedSimpleForClause(SimpleForClause value);
+	EList<Iterator> getIterator();
 
 	/**
    * Returns the value of the '<em><b>Return</b></em>' containment reference.

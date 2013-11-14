@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.GeneralReverseStep;
 import org.emftext.language.xpath2.NodeTest;
-import org.emftext.language.xpath2.ReverseAxis;
+import org.emftext.language.xpath2.ReverseAxisKind;
 import org.emftext.language.xpath2.Xpath2Package;
 
 /**
@@ -31,14 +31,24 @@ import org.emftext.language.xpath2.Xpath2Package;
  */
 public class GeneralReverseStepImpl extends ReverseStepImpl implements GeneralReverseStep {
 	/**
-   * The cached value of the '{@link #getAxis() <em>Axis</em>}' containment reference.
+   * The default value of the '{@link #getAxis() <em>Axis</em>}' attribute.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @see #getAxis()
    * @generated
    * @ordered
    */
-	protected ReverseAxis axis;
+	protected static final ReverseAxisKind AXIS_EDEFAULT = ReverseAxisKind.PARENT;
+
+	/**
+   * The cached value of the '{@link #getAxis() <em>Axis</em>}' attribute.
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @see #getAxis()
+   * @generated
+   * @ordered
+   */
+	protected ReverseAxisKind axis = AXIS_EDEFAULT;
 
 	/**
    * The cached value of the '{@link #getNodeTest() <em>Node Test</em>}' containment reference.
@@ -74,7 +84,7 @@ public class GeneralReverseStepImpl extends ReverseStepImpl implements GeneralRe
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public ReverseAxis getAxis() {
+	public ReverseAxisKind getAxis() {
     return axis;
   }
 
@@ -83,35 +93,11 @@ public class GeneralReverseStepImpl extends ReverseStepImpl implements GeneralRe
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetAxis(ReverseAxis newAxis, NotificationChain msgs) {
-    ReverseAxis oldAxis = axis;
-    axis = newAxis;
+	public void setAxis(ReverseAxisKind newAxis) {
+    ReverseAxisKind oldAxis = axis;
+    axis = newAxis == null ? AXIS_EDEFAULT : newAxis;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.GENERAL_REVERSE_STEP__AXIS, oldAxis, newAxis);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public void setAxis(ReverseAxis newAxis) {
-    if (newAxis != axis)
-    {
-      NotificationChain msgs = null;
-      if (axis != null)
-        msgs = ((InternalEObject)axis).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.GENERAL_REVERSE_STEP__AXIS, null, msgs);
-      if (newAxis != null)
-        msgs = ((InternalEObject)newAxis).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.GENERAL_REVERSE_STEP__AXIS, null, msgs);
-      msgs = basicSetAxis(newAxis, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.GENERAL_REVERSE_STEP__AXIS, newAxis, newAxis));
+      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.GENERAL_REVERSE_STEP__AXIS, oldAxis, axis));
   }
 
 	/**
@@ -168,8 +154,6 @@ public class GeneralReverseStepImpl extends ReverseStepImpl implements GeneralRe
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
-      case Xpath2Package.GENERAL_REVERSE_STEP__AXIS:
-        return basicSetAxis(null, msgs);
       case Xpath2Package.GENERAL_REVERSE_STEP__NODE_TEST:
         return basicSetNodeTest(null, msgs);
     }
@@ -203,7 +187,7 @@ public class GeneralReverseStepImpl extends ReverseStepImpl implements GeneralRe
     switch (featureID)
     {
       case Xpath2Package.GENERAL_REVERSE_STEP__AXIS:
-        setAxis((ReverseAxis)newValue);
+        setAxis((ReverseAxisKind)newValue);
         return;
       case Xpath2Package.GENERAL_REVERSE_STEP__NODE_TEST:
         setNodeTest((NodeTest)newValue);
@@ -222,7 +206,7 @@ public class GeneralReverseStepImpl extends ReverseStepImpl implements GeneralRe
     switch (featureID)
     {
       case Xpath2Package.GENERAL_REVERSE_STEP__AXIS:
-        setAxis((ReverseAxis)null);
+        setAxis(AXIS_EDEFAULT);
         return;
       case Xpath2Package.GENERAL_REVERSE_STEP__NODE_TEST:
         setNodeTest((NodeTest)null);
@@ -241,11 +225,27 @@ public class GeneralReverseStepImpl extends ReverseStepImpl implements GeneralRe
     switch (featureID)
     {
       case Xpath2Package.GENERAL_REVERSE_STEP__AXIS:
-        return axis != null;
+        return axis != AXIS_EDEFAULT;
       case Xpath2Package.GENERAL_REVERSE_STEP__NODE_TEST:
         return nodeTest != null;
     }
     return super.eIsSet(featureID);
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
+	@Override
+	public String toString() {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (axis: ");
+    result.append(axis);
+    result.append(')');
+    return result.toString();
   }
 
 } //GeneralReverseStepImpl

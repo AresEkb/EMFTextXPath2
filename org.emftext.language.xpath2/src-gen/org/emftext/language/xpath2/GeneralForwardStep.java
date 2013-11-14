@@ -22,30 +22,33 @@ package org.emftext.language.xpath2;
  */
 public interface GeneralForwardStep extends ForwardStep {
 	/**
-   * Returns the value of the '<em><b>Axis</b></em>' containment reference.
+   * Returns the value of the '<em><b>Axis</b></em>' attribute.
+   * The literals are from the enumeration {@link org.emftext.language.xpath2.ForwardAxisKind}.
    * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Axis</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Axis</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-   * @return the value of the '<em>Axis</em>' containment reference.
-   * @see #setAxis(ForwardAxis)
+   * @return the value of the '<em>Axis</em>' attribute.
+   * @see org.emftext.language.xpath2.ForwardAxisKind
+   * @see #setAxis(ForwardAxisKind)
    * @see org.emftext.language.xpath2.Xpath2Package#getGeneralForwardStep_Axis()
-   * @model containment="true" required="true"
+   * @model required="true"
    * @generated
    */
-	ForwardAxis getAxis();
+	ForwardAxisKind getAxis();
 
 	/**
-   * Sets the value of the '{@link org.emftext.language.xpath2.GeneralForwardStep#getAxis <em>Axis</em>}' containment reference.
+   * Sets the value of the '{@link org.emftext.language.xpath2.GeneralForwardStep#getAxis <em>Axis</em>}' attribute.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Axis</em>' containment reference.
+   * @param value the new value of the '<em>Axis</em>' attribute.
+   * @see org.emftext.language.xpath2.ForwardAxisKind
    * @see #getAxis()
    * @generated
    */
-	void setAxis(ForwardAxis value);
+	void setAxis(ForwardAxisKind value);
 
 	/**
    * Returns the value of the '<em><b>Node Test</b></em>' containment reference.

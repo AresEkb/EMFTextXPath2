@@ -2,13 +2,13 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="xpath2" nsURI="http://www.emftext.org/language/xpath2" nsPrefix="xpath2">
   <eClassifiers xsi:type="ecore:EClass" name="Expr" eSuperTypes="#//ParenthesizedExprChild">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExprSingle" lowerBound="1"
-        upperBound="-1" eType="#//ExprSingle" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" lowerBound="1" upperBound="-1"
+        eType="#//ExprSingle" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprSingle" abstract="true" eSuperTypes="#//ParenthesizedExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="ForExpr" eSuperTypes="#//ExprSingle">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSimpleForClause" lowerBound="1"
-        eType="#//SimpleForClause" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="iterator" lowerBound="1"
+        upperBound="-1" eType="#//Iterator" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="return" lowerBound="1"
         eType="#//ExprSingle" containment="true"/>
   </eClassifiers>
@@ -21,16 +21,12 @@
         eType="#//ExprSingle" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfExpr" eSuperTypes="#//ExprSingle">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
-        eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="test" lowerBound="1" eType="#//Expr"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="then" lowerBound="1" eType="#//ExprSingle"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="else" lowerBound="1" eType="#//ExprSingle"
         containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SimpleForClause">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="iterator" lowerBound="1"
-        upperBound="-1" eType="#//Iterator" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Iterator">
     <eStructuralFeatures xsi:type="ecore:EReference" name="varName" lowerBound="1"
@@ -132,59 +128,50 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnaryExprChild" abstract="true" eSuperTypes="#//CastExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="ValueExpr" abstract="true" eSuperTypes="#//UnaryExprChild"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PathExpr" abstract="true" eSuperTypes="#//ValueExpr"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SinglePathExpr" eSuperTypes="#//PathExpr">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="relativePathExpr" eType="#//RelativePathExpr"
+  <eClassifiers xsi:type="ecore:EClass" name="PathExpr" eSuperTypes="#//ValueExpr">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1" upperBound="-1"
+        eType="#//PathExprChild" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PathExprChild" abstract="true" eSuperTypes="#//UnaryExprChild"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RootStepExpr" eSuperTypes="#//PathExprChild"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ChildStepExpr" eSuperTypes="#//PathExprChild">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1" eType="#//StepExpr"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DoublePathExpr" eSuperTypes="#//PathExpr">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="relativePathExpr" lowerBound="1"
-        eType="#//RelativePathExpr" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RelativePathExpr" eSuperTypes="#//PathExpr">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="head" lowerBound="1" eType="#//StepExpr"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="tail" upperBound="-1" eType="#//TailPathExpr"
+  <eClassifiers xsi:type="ecore:EClass" name="DescOrSelfStepExpr" eSuperTypes="#//PathExprChild">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1" eType="#//StepExpr"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RelativePathExprChild" abstract="true"
-      eSuperTypes="#//UnaryExprChild"/>
-  <eClassifiers xsi:type="ecore:EClass" name="StepExpr" abstract="true" eSuperTypes="#//RelativePathExprChild"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SelfStepExpr" eSuperTypes="#//PathExprChild">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1" eType="#//StepExpr"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StepExpr" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="FilterExpr" eSuperTypes="#//StepExpr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="primaryExpr" lowerBound="1"
         eType="#//PrimaryExpr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" upperBound="-1"
         eType="#//Predicate" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FilterExprChild" abstract="true" eSuperTypes="#//RelativePathExprChild"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FilterExprChild" abstract="true" eSuperTypes="#//PathExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="AxisStep" eSuperTypes="#//StepExpr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1" eType="#//DirectionalStep"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" upperBound="-1"
         eType="#//Predicate" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TailPathExpr" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="stepExpression" lowerBound="1"
-        eType="#//StepExpr" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SingleTailPathExpr" eSuperTypes="#//TailPathExpr"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DoubleTailPathExpr" eSuperTypes="#//TailPathExpr"/>
   <eClassifiers xsi:type="ecore:EClass" name="DirectionalStep" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ForwardStep" abstract="true" eSuperTypes="#//DirectionalStep"/>
   <eClassifiers xsi:type="ecore:EClass" name="ReverseStep" abstract="true" eSuperTypes="#//DirectionalStep"/>
   <eClassifiers xsi:type="ecore:EClass" name="GeneralForwardStep" eSuperTypes="#//ForwardStep">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="axis" lowerBound="1" eType="#//ForwardAxis"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="axis" lowerBound="1" eType="#//ForwardAxisKind"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nodeTest" lowerBound="1"
         eType="#//NodeTest" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbbrevForwardStep" eSuperTypes="#//ForwardStep">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="at" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" lowerBound="1" eType="#//AbbrevForwardStepKind"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nodeTest" lowerBound="1"
         eType="#//NodeTest" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ForwardAxis">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" lowerBound="1" eType="#//ForwardAxisKind"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ForwardAxisKind">
     <eLiterals name="child"/>
@@ -196,15 +183,17 @@
     <eLiterals name="following" value="6"/>
     <eLiterals name="namespace" value="7"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AbbrevForwardStepKind">
+    <eLiterals name="child"/>
+    <eLiterals name="attribute" value="2"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GeneralReverseStep" eSuperTypes="#//ReverseStep">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="axis" lowerBound="1" eType="#//ReverseAxis"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="axis" lowerBound="1" eType="#//ReverseAxisKind"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nodeTest" lowerBound="1"
         eType="#//NodeTest" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AbbrevReverseStep" eSuperTypes="#//ReverseStep"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ReverseAxis">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" lowerBound="1" eType="#//ReverseAxisKind"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AbbrevReverseStep" eSuperTypes="#//ReverseStep">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" lowerBound="1" eType="#//AbbrevReverseStepKind"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ReverseAxisKind">
     <eLiterals name="parent"/>
@@ -212,6 +201,9 @@
     <eLiterals name="preceding_sibling" value="2"/>
     <eLiterals name="preceding" value="3"/>
     <eLiterals name="ancestor_or_self" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AbbrevReverseStepKind">
+    <eLiterals name="parent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NodeTest" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="NodeKindTest" eSuperTypes="#//NodeTest">

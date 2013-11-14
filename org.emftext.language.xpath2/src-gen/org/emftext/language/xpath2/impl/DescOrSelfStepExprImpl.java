@@ -9,42 +9,41 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.emftext.language.xpath2.DescOrSelfStepExpr;
 import org.emftext.language.xpath2.StepExpr;
-import org.emftext.language.xpath2.TailPathExpr;
 import org.emftext.language.xpath2.Xpath2Package;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Tail Path Expr</b></em>'.
+ * An implementation of the model object '<em><b>Desc Or Self Step Expr</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.emftext.language.xpath2.impl.TailPathExprImpl#getStepExpression <em>Step Expression</em>}</li>
+ *   <li>{@link org.emftext.language.xpath2.impl.DescOrSelfStepExprImpl#getStep <em>Step</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class TailPathExprImpl extends EObjectImpl implements TailPathExpr {
+public class DescOrSelfStepExprImpl extends PathExprChildImpl implements DescOrSelfStepExpr {
 	/**
-   * The cached value of the '{@link #getStepExpression() <em>Step Expression</em>}' containment reference.
+   * The cached value of the '{@link #getStep() <em>Step</em>}' containment reference.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-   * @see #getStepExpression()
+   * @see #getStep()
    * @generated
    * @ordered
    */
-	protected StepExpr stepExpression;
+	protected StepExpr step;
 
 	/**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
-	protected TailPathExprImpl() {
+	protected DescOrSelfStepExprImpl() {
     super();
   }
 
@@ -55,7 +54,7 @@ public abstract class TailPathExprImpl extends EObjectImpl implements TailPathEx
    */
 	@Override
 	protected EClass eStaticClass() {
-    return Xpath2Package.Literals.TAIL_PATH_EXPR;
+    return Xpath2Package.Literals.DESC_OR_SELF_STEP_EXPR;
   }
 
 	/**
@@ -63,8 +62,8 @@ public abstract class TailPathExprImpl extends EObjectImpl implements TailPathEx
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public StepExpr getStepExpression() {
-    return stepExpression;
+	public StepExpr getStep() {
+    return step;
   }
 
 	/**
@@ -72,12 +71,12 @@ public abstract class TailPathExprImpl extends EObjectImpl implements TailPathEx
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetStepExpression(StepExpr newStepExpression, NotificationChain msgs) {
-    StepExpr oldStepExpression = stepExpression;
-    stepExpression = newStepExpression;
+	public NotificationChain basicSetStep(StepExpr newStep, NotificationChain msgs) {
+    StepExpr oldStep = step;
+    step = newStep;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.TAIL_PATH_EXPR__STEP_EXPRESSION, oldStepExpression, newStepExpression);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP, oldStep, newStep);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -88,19 +87,19 @@ public abstract class TailPathExprImpl extends EObjectImpl implements TailPathEx
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public void setStepExpression(StepExpr newStepExpression) {
-    if (newStepExpression != stepExpression)
+	public void setStep(StepExpr newStep) {
+    if (newStep != step)
     {
       NotificationChain msgs = null;
-      if (stepExpression != null)
-        msgs = ((InternalEObject)stepExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.TAIL_PATH_EXPR__STEP_EXPRESSION, null, msgs);
-      if (newStepExpression != null)
-        msgs = ((InternalEObject)newStepExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.TAIL_PATH_EXPR__STEP_EXPRESSION, null, msgs);
-      msgs = basicSetStepExpression(newStepExpression, msgs);
+      if (step != null)
+        msgs = ((InternalEObject)step).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP, null, msgs);
+      if (newStep != null)
+        msgs = ((InternalEObject)newStep).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP, null, msgs);
+      msgs = basicSetStep(newStep, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.TAIL_PATH_EXPR__STEP_EXPRESSION, newStepExpression, newStepExpression));
+      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP, newStep, newStep));
   }
 
 	/**
@@ -112,8 +111,8 @@ public abstract class TailPathExprImpl extends EObjectImpl implements TailPathEx
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
-      case Xpath2Package.TAIL_PATH_EXPR__STEP_EXPRESSION:
-        return basicSetStepExpression(null, msgs);
+      case Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP:
+        return basicSetStep(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -127,8 +126,8 @@ public abstract class TailPathExprImpl extends EObjectImpl implements TailPathEx
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
-      case Xpath2Package.TAIL_PATH_EXPR__STEP_EXPRESSION:
-        return getStepExpression();
+      case Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP:
+        return getStep();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -142,8 +141,8 @@ public abstract class TailPathExprImpl extends EObjectImpl implements TailPathEx
 	public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
-      case Xpath2Package.TAIL_PATH_EXPR__STEP_EXPRESSION:
-        setStepExpression((StepExpr)newValue);
+      case Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP:
+        setStep((StepExpr)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -158,8 +157,8 @@ public abstract class TailPathExprImpl extends EObjectImpl implements TailPathEx
 	public void eUnset(int featureID) {
     switch (featureID)
     {
-      case Xpath2Package.TAIL_PATH_EXPR__STEP_EXPRESSION:
-        setStepExpression((StepExpr)null);
+      case Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP:
+        setStep((StepExpr)null);
         return;
     }
     super.eUnset(featureID);
@@ -174,10 +173,10 @@ public abstract class TailPathExprImpl extends EObjectImpl implements TailPathEx
 	public boolean eIsSet(int featureID) {
     switch (featureID)
     {
-      case Xpath2Package.TAIL_PATH_EXPR__STEP_EXPRESSION:
-        return stepExpression != null;
+      case Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP:
+        return step != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //TailPathExprImpl
+} //DescOrSelfStepExprImpl
