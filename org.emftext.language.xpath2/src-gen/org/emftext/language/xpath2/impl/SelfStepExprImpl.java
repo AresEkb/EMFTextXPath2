@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.SelfStepExpr;
+import org.emftext.language.xpath2.SelfStepExprChild;
 import org.emftext.language.xpath2.StepExpr;
 import org.emftext.language.xpath2.Xpath2Package;
 
@@ -36,7 +37,7 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
    * @generated
    * @ordered
    */
-	protected StepExpr step;
+	protected SelfStepExprChild step;
 
 	/**
    * <!-- begin-user-doc -->
@@ -62,17 +63,17 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public StepExpr getStep() {
+	public SelfStepExprChild getStep() {
     return step;
   }
 
 	/**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetStep(StepExpr newStep, NotificationChain msgs) {
-    StepExpr oldStep = step;
+    public NotificationChain basicSetStep(SelfStepExprChild newStep, NotificationChain msgs) {
+    SelfStepExprChild oldStep = step;
     step = newStep;
     if (eNotificationRequired())
     {
@@ -82,12 +83,12 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
     return msgs;
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
    * @generated
    */
-	public void setStep(StepExpr newStep) {
+    public void setStep(SelfStepExprChild newStep) {
     if (newStep != step)
     {
       NotificationChain msgs = null;
@@ -102,7 +103,7 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.SELF_STEP_EXPR__STEP, newStep, newStep));
   }
 
-	/**
+    /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -142,7 +143,7 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
     switch (featureID)
     {
       case Xpath2Package.SELF_STEP_EXPR__STEP:
-        setStep((StepExpr)newValue);
+        setStep((SelfStepExprChild)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -158,7 +159,7 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
     switch (featureID)
     {
       case Xpath2Package.SELF_STEP_EXPR__STEP:
-        setStep((StepExpr)null);
+        setStep((SelfStepExprChild)null);
         return;
     }
     super.eUnset(featureID);

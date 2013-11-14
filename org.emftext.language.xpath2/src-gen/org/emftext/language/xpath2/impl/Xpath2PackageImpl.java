@@ -105,6 +105,7 @@ import org.emftext.language.xpath2.RootStepExpr;
 import org.emftext.language.xpath2.SchemaAttributeTest;
 import org.emftext.language.xpath2.SchemaElementTest;
 import org.emftext.language.xpath2.SelfStepExpr;
+import org.emftext.language.xpath2.SelfStepExprChild;
 import org.emftext.language.xpath2.SequenceType;
 import org.emftext.language.xpath2.SingleType;
 import org.emftext.language.xpath2.StepExpr;
@@ -410,6 +411,13 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 	private EClass selfStepExprEClass = null;
 
 	/**
+   * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+   * @generated
+   */
+    private EClass selfStepExprChildEClass = null;
+
+    /**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
@@ -1722,6 +1730,15 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 
 	/**
    * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+   * @generated
+   */
+    public EClass getSelfStepExprChild() {
+    return selfStepExprChildEClass;
+  }
+
+    /**
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
@@ -3018,6 +3035,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     selfStepExprEClass = createEClass(SELF_STEP_EXPR);
     createEReference(selfStepExprEClass, SELF_STEP_EXPR__STEP);
 
+    selfStepExprChildEClass = createEClass(SELF_STEP_EXPR_CHILD);
+
     stepExprEClass = createEClass(STEP_EXPR);
 
     filterExprEClass = createEClass(FILTER_EXPR);
@@ -3274,13 +3293,14 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     unaryExprChildEClass.getESuperTypes().add(this.getCastExprChild());
     valueExprEClass.getESuperTypes().add(this.getUnaryExprChild());
     pathExprEClass.getESuperTypes().add(this.getValueExpr());
-    pathExprChildEClass.getESuperTypes().add(this.getUnaryExprChild());
     rootStepExprEClass.getESuperTypes().add(this.getPathExprChild());
     childStepExprEClass.getESuperTypes().add(this.getPathExprChild());
     descOrSelfStepExprEClass.getESuperTypes().add(this.getPathExprChild());
     selfStepExprEClass.getESuperTypes().add(this.getPathExprChild());
+    selfStepExprChildEClass.getESuperTypes().add(this.getPathExprChild());
+    stepExprEClass.getESuperTypes().add(this.getSelfStepExprChild());
     filterExprEClass.getESuperTypes().add(this.getStepExpr());
-    filterExprChildEClass.getESuperTypes().add(this.getPathExprChild());
+    filterExprChildEClass.getESuperTypes().add(this.getSelfStepExprChild());
     axisStepEClass.getESuperTypes().add(this.getStepExpr());
     forwardStepEClass.getESuperTypes().add(this.getDirectionalStep());
     reverseStepEClass.getESuperTypes().add(this.getDirectionalStep());
@@ -3295,7 +3315,7 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     anyWildcardEClass.getESuperTypes().add(this.getWildcard());
     localNameWildcardEClass.getESuperTypes().add(this.getWildcard());
     namespaceWildcardEClass.getESuperTypes().add(this.getWildcard());
-    primaryExprEClass.getESuperTypes().add(this.getFilterExprChild());
+    primaryExprEClass.getESuperTypes().add(this.getValueExpr());
     literalEClass.getESuperTypes().add(this.getPrimaryExpr());
     varRefEClass.getESuperTypes().add(this.getPrimaryExpr());
     varNameEClass.getESuperTypes().add(this.getQName());
@@ -3448,7 +3468,9 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     initEReference(getDescOrSelfStepExpr_Step(), this.getStepExpr(), null, "step", null, 1, 1, DescOrSelfStepExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(selfStepExprEClass, SelfStepExpr.class, "SelfStepExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSelfStepExpr_Step(), this.getStepExpr(), null, "step", null, 1, 1, SelfStepExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSelfStepExpr_Step(), this.getSelfStepExprChild(), null, "step", null, 1, 1, SelfStepExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(selfStepExprChildEClass, SelfStepExprChild.class, "SelfStepExprChild", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(stepExprEClass, StepExpr.class, "StepExpr", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

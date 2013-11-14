@@ -16,7 +16,7 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public abstract class PrimaryExprImpl extends FilterExprChildImpl implements PrimaryExpr {
+public abstract class PrimaryExprImpl extends ValueExprImpl implements PrimaryExpr {
 	/**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

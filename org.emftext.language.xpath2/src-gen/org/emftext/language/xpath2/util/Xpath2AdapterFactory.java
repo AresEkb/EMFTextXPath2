@@ -267,6 +267,11 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
         return createSelfStepExprAdapter();
       }
       @Override
+      public Adapter caseSelfStepExprChild(SelfStepExprChild object)
+      {
+        return createSelfStepExprChildAdapter();
+      }
+      @Override
       public Adapter caseStepExpr(StepExpr object)
       {
         return createStepExprAdapter();
@@ -1154,6 +1159,20 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
   }
 
 	/**
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.SelfStepExprChild <em>Self Step Expr Child</em>}'.
+   * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.emftext.language.xpath2.SelfStepExprChild
+   * @generated
+   */
+    public Adapter createSelfStepExprChildAdapter() {
+    return null;
+  }
+
+    /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.StepExpr <em>Step Expr</em>}'.
    * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;

@@ -18,7 +18,7 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public abstract class StepExprImpl extends EObjectImpl implements StepExpr {
+public abstract class StepExprImpl extends SelfStepExprChildImpl implements StepExpr {
 	/**
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

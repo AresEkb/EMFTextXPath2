@@ -176,6 +176,7 @@
     <genClasses ecoreClass="xpath2.ecore#//SelfStepExpr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//SelfStepExpr/step"/>
     </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//SelfStepExprChild"/>
     <genClasses image="false" ecoreClass="xpath2.ecore#//StepExpr"/>
     <genClasses ecoreClass="xpath2.ecore#//FilterExpr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//FilterExpr/primaryExpr"/>

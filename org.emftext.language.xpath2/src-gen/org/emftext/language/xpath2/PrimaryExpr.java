@@ -13,5 +13,5 @@ package org.emftext.language.xpath2;
  * @model abstract="true"
  * @generated
  */
-public interface PrimaryExpr extends FilterExprChild {
+public interface PrimaryExpr extends ValueExpr {
 } // PrimaryExpr

@@ -75,7 +75,6 @@ RULES {
 	UnaryExpr ::= operator[plus : "+", minus : "-"]* operand:ValueExpr;
 	
 	// Path Expressions
-	PathExpr ::= step step:ChildStepExpr,DescOrSelfStepExpr*;
 	ChildStepExpr ::= "/" step;
 	DescOrSelfStepExpr ::= "//" step;
 	RootStepExpr ::= "/";
@@ -95,7 +94,7 @@ RULES {
 	AnyWildcard ::= "*";
 	LocalNameWildcard ::= namespace[] ":" "*";
 	NamespaceWildcard ::= "*" ":" localName[];
-	FilterExpr ::= primaryExpr predicate*;
+	FilterExpr ::= primaryExpr:PrimaryExpr predicate*;
 	Predicate ::= "[" expr "]";
 	
 	// Primary Expressions
@@ -137,4 +136,7 @@ RULES {
 	// TODO: I don't understand where to place comments
 	//Comment ::= "(:" (text[COMMENT_CONTENTS] | comment)* ":)";
 	QName ::= (prefix[NCNAME] ":")? localPart[NCNAME];
+
+    // PathExpr must have lower priority than PrimaryExpr
+    PathExpr ::= step step:ChildStepExpr,DescOrSelfStepExpr*;
 }

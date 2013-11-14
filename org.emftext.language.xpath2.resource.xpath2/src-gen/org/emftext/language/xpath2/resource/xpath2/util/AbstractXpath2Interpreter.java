@@ -184,42 +184,6 @@ public class AbstractXpath2Interpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
-		if (object instanceof org.emftext.language.xpath2.RootStepExpr) {
-			result = interprete_org_emftext_language_xpath2_RootStepExpr((org.emftext.language.xpath2.RootStepExpr) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof org.emftext.language.xpath2.ChildStepExpr) {
-			result = interprete_org_emftext_language_xpath2_ChildStepExpr((org.emftext.language.xpath2.ChildStepExpr) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof org.emftext.language.xpath2.DescOrSelfStepExpr) {
-			result = interprete_org_emftext_language_xpath2_DescOrSelfStepExpr((org.emftext.language.xpath2.DescOrSelfStepExpr) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof org.emftext.language.xpath2.SelfStepExpr) {
-			result = interprete_org_emftext_language_xpath2_SelfStepExpr((org.emftext.language.xpath2.SelfStepExpr) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof org.emftext.language.xpath2.FilterExprChild) {
-			result = interprete_org_emftext_language_xpath2_FilterExprChild((org.emftext.language.xpath2.FilterExprChild) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof org.emftext.language.xpath2.PathExprChild) {
-			result = interprete_org_emftext_language_xpath2_PathExprChild((org.emftext.language.xpath2.PathExprChild) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
 		if (object instanceof org.emftext.language.xpath2.UnaryExprChild) {
 			result = interprete_org_emftext_language_xpath2_UnaryExprChild((org.emftext.language.xpath2.UnaryExprChild) object, context);
 		}
@@ -298,6 +262,30 @@ public class AbstractXpath2Interpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof org.emftext.language.xpath2.RootStepExpr) {
+			result = interprete_org_emftext_language_xpath2_RootStepExpr((org.emftext.language.xpath2.RootStepExpr) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof org.emftext.language.xpath2.ChildStepExpr) {
+			result = interprete_org_emftext_language_xpath2_ChildStepExpr((org.emftext.language.xpath2.ChildStepExpr) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof org.emftext.language.xpath2.DescOrSelfStepExpr) {
+			result = interprete_org_emftext_language_xpath2_DescOrSelfStepExpr((org.emftext.language.xpath2.DescOrSelfStepExpr) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof org.emftext.language.xpath2.SelfStepExpr) {
+			result = interprete_org_emftext_language_xpath2_SelfStepExpr((org.emftext.language.xpath2.SelfStepExpr) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof org.emftext.language.xpath2.FilterExpr) {
 			result = interprete_org_emftext_language_xpath2_FilterExpr((org.emftext.language.xpath2.FilterExpr) object, context);
 		}
@@ -312,6 +300,24 @@ public class AbstractXpath2Interpreter<ResultType, ContextType> {
 		}
 		if (object instanceof org.emftext.language.xpath2.StepExpr) {
 			result = interprete_org_emftext_language_xpath2_StepExpr((org.emftext.language.xpath2.StepExpr) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof org.emftext.language.xpath2.FilterExprChild) {
+			result = interprete_org_emftext_language_xpath2_FilterExprChild((org.emftext.language.xpath2.FilterExprChild) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof org.emftext.language.xpath2.SelfStepExprChild) {
+			result = interprete_org_emftext_language_xpath2_SelfStepExprChild((org.emftext.language.xpath2.SelfStepExprChild) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
+		if (object instanceof org.emftext.language.xpath2.PathExprChild) {
+			result = interprete_org_emftext_language_xpath2_PathExprChild((org.emftext.language.xpath2.PathExprChild) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -412,20 +418,26 @@ public class AbstractXpath2Interpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof org.emftext.language.xpath2.IntegerLiteral) {
+			result = interprete_org_emftext_language_xpath2_IntegerLiteral((org.emftext.language.xpath2.IntegerLiteral) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof org.emftext.language.xpath2.DecimalLiteral) {
 			result = interprete_org_emftext_language_xpath2_DecimalLiteral((org.emftext.language.xpath2.DecimalLiteral) object, context);
 		}
 		if (result != null) {
 			return result;
 		}
-		if (object instanceof org.emftext.language.xpath2.NumericLiteral) {
-			result = interprete_org_emftext_language_xpath2_NumericLiteral((org.emftext.language.xpath2.NumericLiteral) object, context);
+		if (object instanceof org.emftext.language.xpath2.DoubleLiteral) {
+			result = interprete_org_emftext_language_xpath2_DoubleLiteral((org.emftext.language.xpath2.DoubleLiteral) object, context);
 		}
 		if (result != null) {
 			return result;
 		}
-		if (object instanceof org.emftext.language.xpath2.StringLiteral) {
-			result = interprete_org_emftext_language_xpath2_StringLiteral((org.emftext.language.xpath2.StringLiteral) object, context);
+		if (object instanceof org.emftext.language.xpath2.NumericLiteral) {
+			result = interprete_org_emftext_language_xpath2_NumericLiteral((org.emftext.language.xpath2.NumericLiteral) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -472,14 +484,8 @@ public class AbstractXpath2Interpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
-		if (object instanceof org.emftext.language.xpath2.IntegerLiteral) {
-			result = interprete_org_emftext_language_xpath2_IntegerLiteral((org.emftext.language.xpath2.IntegerLiteral) object, context);
-		}
-		if (result != null) {
-			return result;
-		}
-		if (object instanceof org.emftext.language.xpath2.DoubleLiteral) {
-			result = interprete_org_emftext_language_xpath2_DoubleLiteral((org.emftext.language.xpath2.DoubleLiteral) object, context);
+		if (object instanceof org.emftext.language.xpath2.StringLiteral) {
+			result = interprete_org_emftext_language_xpath2_StringLiteral((org.emftext.language.xpath2.StringLiteral) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -832,6 +838,10 @@ public class AbstractXpath2Interpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_org_emftext_language_xpath2_SelfStepExpr(org.emftext.language.xpath2.SelfStepExpr selfStepExpr, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_org_emftext_language_xpath2_SelfStepExprChild(org.emftext.language.xpath2.SelfStepExprChild selfStepExprChild, ContextType context) {
 		return null;
 	}
 	
