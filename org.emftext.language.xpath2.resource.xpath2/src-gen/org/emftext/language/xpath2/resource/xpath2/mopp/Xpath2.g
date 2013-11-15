@@ -297,6 +297,12 @@ options {
 			if (type.getInstanceClass() == org.emftext.language.xpath2.UnaryExpr.class) {
 				return parse_org_emftext_language_xpath2_UnaryExpr();
 			}
+			if (type.getInstanceClass() == org.emftext.language.xpath2.FunctionCall.class) {
+				return parse_org_emftext_language_xpath2_FunctionCall();
+			}
+			if (type.getInstanceClass() == org.emftext.language.xpath2.PathExpr.class) {
+				return parse_org_emftext_language_xpath2_PathExpr();
+			}
 			if (type.getInstanceClass() == org.emftext.language.xpath2.ChildStepExpr.class) {
 				return parse_org_emftext_language_xpath2_ChildStepExpr();
 			}
@@ -356,9 +362,6 @@ options {
 			}
 			if (type.getInstanceClass() == org.emftext.language.xpath2.ContextItemExpr.class) {
 				return parse_org_emftext_language_xpath2_ContextItemExpr();
-			}
-			if (type.getInstanceClass() == org.emftext.language.xpath2.FunctionCall.class) {
-				return parse_org_emftext_language_xpath2_FunctionCall();
 			}
 			if (type.getInstanceClass() == org.emftext.language.xpath2.SingleType.class) {
 				return parse_org_emftext_language_xpath2_SingleType();
@@ -440,9 +443,6 @@ options {
 			}
 			if (type.getInstanceClass() == org.emftext.language.xpath2.QName.class) {
 				return parse_org_emftext_language_xpath2_QName();
-			}
-			if (type.getInstanceClass() == org.emftext.language.xpath2.PathExpr.class) {
-				return parse_org_emftext_language_xpath2_PathExpr();
 			}
 		}
 		throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2UnexpectedContentTypeException(typeObject);
@@ -745,7 +745,7 @@ parse_org_emftext_language_xpath2_Expr returns [org.emftext.language.xpath2.Expr
 }
 :
 	(
-		a0_0 = parse_org_emftext_language_xpath2_ExprSingle		{
+		a0_0 = parse_org_emftext_language_xpath2_IfExpr		{
 			if (terminateParsing) {
 				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
 			}
@@ -762,6 +762,63 @@ parse_org_emftext_language_xpath2_Expr returns [org.emftext.language.xpath2.Expr
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_0_0_0_0, a0_0, true);
 				copyLocalizationInfos(a0_0, element);
+			}
+		}
+		|		a0_1 = parse_org_emftext_language_xpath2_ForExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createExpr();
+				startIncompleteElement(element);
+			}
+			if (a0_1 != null) {
+				if (a0_1 != null) {
+					Object value = a0_1;
+					addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.EXPR__EXPR, value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_0_0_0_0, a0_1, true);
+				copyLocalizationInfos(a0_1, element);
+			}
+		}
+		|		a0_2 = parse_org_emftext_language_xpath2_QuantifiedExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createExpr();
+				startIncompleteElement(element);
+			}
+			if (a0_2 != null) {
+				if (a0_2 != null) {
+					Object value = a0_2;
+					addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.EXPR__EXPR, value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_0_0_0_0, a0_2, true);
+				copyLocalizationInfos(a0_2, element);
+			}
+		}
+		|		a0_3 = parse_org_emftext_language_xpath2_OrExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createExpr();
+				startIncompleteElement(element);
+			}
+			if (a0_3 != null) {
+				if (a0_3 != null) {
+					Object value = a0_3;
+					addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.EXPR__EXPR, value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_0_0_0_0, a0_3, true);
+				copyLocalizationInfos(a0_3, element);
 			}
 		}
 	)
@@ -811,7 +868,7 @@ parse_org_emftext_language_xpath2_Expr returns [org.emftext.language.xpath2.Expr
 			}
 			
 			(
-				a2_0 = parse_org_emftext_language_xpath2_ExprSingle				{
+				a2_0 = parse_org_emftext_language_xpath2_IfExpr				{
 					if (terminateParsing) {
 						throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
 					}
@@ -828,6 +885,63 @@ parse_org_emftext_language_xpath2_Expr returns [org.emftext.language.xpath2.Expr
 						collectHiddenTokens(element);
 						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_0_0_0_1_0_0_1, a2_0, true);
 						copyLocalizationInfos(a2_0, element);
+					}
+				}
+				|				a2_1 = parse_org_emftext_language_xpath2_ForExpr				{
+					if (terminateParsing) {
+						throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+					}
+					if (element == null) {
+						element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createExpr();
+						startIncompleteElement(element);
+					}
+					if (a2_1 != null) {
+						if (a2_1 != null) {
+							Object value = a2_1;
+							addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.EXPR__EXPR, value);
+							completedElement(value, true);
+						}
+						collectHiddenTokens(element);
+						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_0_0_0_1_0_0_1, a2_1, true);
+						copyLocalizationInfos(a2_1, element);
+					}
+				}
+				|				a2_2 = parse_org_emftext_language_xpath2_QuantifiedExpr				{
+					if (terminateParsing) {
+						throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+					}
+					if (element == null) {
+						element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createExpr();
+						startIncompleteElement(element);
+					}
+					if (a2_2 != null) {
+						if (a2_2 != null) {
+							Object value = a2_2;
+							addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.EXPR__EXPR, value);
+							completedElement(value, true);
+						}
+						collectHiddenTokens(element);
+						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_0_0_0_1_0_0_1, a2_2, true);
+						copyLocalizationInfos(a2_2, element);
+					}
+				}
+				|				a2_3 = parse_org_emftext_language_xpath2_OrExpr				{
+					if (terminateParsing) {
+						throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+					}
+					if (element == null) {
+						element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createExpr();
+						startIncompleteElement(element);
+					}
+					if (a2_3 != null) {
+						if (a2_3 != null) {
+							Object value = a2_3;
+							addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.EXPR__EXPR, value);
+							completedElement(value, true);
+						}
+						collectHiddenTokens(element);
+						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_0_0_0_1_0_0_1, a2_3, true);
+						copyLocalizationInfos(a2_3, element);
 					}
 				}
 			)
@@ -1168,7 +1282,7 @@ parse_org_emftext_language_xpath2_QuantifiedExpr returns [org.emftext.language.x
 	}
 	
 	(
-		a8_0 = parse_org_emftext_language_xpath2_ExprSingle		{
+		a8_0 = parse_org_emftext_language_xpath2_IfExpr		{
 			if (terminateParsing) {
 				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
 			}
@@ -1185,6 +1299,63 @@ parse_org_emftext_language_xpath2_QuantifiedExpr returns [org.emftext.language.x
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_2_0_0_4, a8_0, true);
 				copyLocalizationInfos(a8_0, element);
+			}
+		}
+		|		a8_1 = parse_org_emftext_language_xpath2_ForExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createQuantifiedExpr();
+				startIncompleteElement(element);
+			}
+			if (a8_1 != null) {
+				if (a8_1 != null) {
+					Object value = a8_1;
+					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QUANTIFIED_EXPR__SATISFIES), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_2_0_0_4, a8_1, true);
+				copyLocalizationInfos(a8_1, element);
+			}
+		}
+		|		a8_2 = parse_org_emftext_language_xpath2_QuantifiedExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createQuantifiedExpr();
+				startIncompleteElement(element);
+			}
+			if (a8_2 != null) {
+				if (a8_2 != null) {
+					Object value = a8_2;
+					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QUANTIFIED_EXPR__SATISFIES), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_2_0_0_4, a8_2, true);
+				copyLocalizationInfos(a8_2, element);
+			}
+		}
+		|		a8_3 = parse_org_emftext_language_xpath2_OrExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createQuantifiedExpr();
+				startIncompleteElement(element);
+			}
+			if (a8_3 != null) {
+				if (a8_3 != null) {
+					Object value = a8_3;
+					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QUANTIFIED_EXPR__SATISFIES), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_2_0_0_4, a8_3, true);
+				copyLocalizationInfos(a8_3, element);
 			}
 		}
 	)
@@ -1281,7 +1452,7 @@ parse_org_emftext_language_xpath2_Iterator returns [org.emftext.language.xpath2.
 	}
 	
 	(
-		a3_0 = parse_org_emftext_language_xpath2_ExprSingle		{
+		a3_0 = parse_org_emftext_language_xpath2_IfExpr		{
 			if (terminateParsing) {
 				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
 			}
@@ -1298,6 +1469,63 @@ parse_org_emftext_language_xpath2_Iterator returns [org.emftext.language.xpath2.
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_3_0_0_3, a3_0, true);
 				copyLocalizationInfos(a3_0, element);
+			}
+		}
+		|		a3_1 = parse_org_emftext_language_xpath2_ForExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createIterator();
+				startIncompleteElement(element);
+			}
+			if (a3_1 != null) {
+				if (a3_1 != null) {
+					Object value = a3_1;
+					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__LIST), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_3_0_0_3, a3_1, true);
+				copyLocalizationInfos(a3_1, element);
+			}
+		}
+		|		a3_2 = parse_org_emftext_language_xpath2_QuantifiedExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createIterator();
+				startIncompleteElement(element);
+			}
+			if (a3_2 != null) {
+				if (a3_2 != null) {
+					Object value = a3_2;
+					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__LIST), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_3_0_0_3, a3_2, true);
+				copyLocalizationInfos(a3_2, element);
+			}
+		}
+		|		a3_3 = parse_org_emftext_language_xpath2_OrExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createIterator();
+				startIncompleteElement(element);
+			}
+			if (a3_3 != null) {
+				if (a3_3 != null) {
+					Object value = a3_3;
+					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__LIST), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_3_0_0_3, a3_3, true);
+				copyLocalizationInfos(a3_3, element);
 			}
 		}
 	)
@@ -1384,6 +1612,82 @@ parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.If
 				copyLocalizationInfos(a2_0, element);
 			}
 		}
+		|		a2_1 = parse_org_emftext_language_xpath2_IfExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createIfExpr();
+				startIncompleteElement(element);
+			}
+			if (a2_1 != null) {
+				if (a2_1 != null) {
+					Object value = a2_1;
+					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__TEST), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_2, a2_1, true);
+				copyLocalizationInfos(a2_1, element);
+			}
+		}
+		|		a2_2 = parse_org_emftext_language_xpath2_ForExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createIfExpr();
+				startIncompleteElement(element);
+			}
+			if (a2_2 != null) {
+				if (a2_2 != null) {
+					Object value = a2_2;
+					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__TEST), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_2, a2_2, true);
+				copyLocalizationInfos(a2_2, element);
+			}
+		}
+		|		a2_3 = parse_org_emftext_language_xpath2_QuantifiedExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createIfExpr();
+				startIncompleteElement(element);
+			}
+			if (a2_3 != null) {
+				if (a2_3 != null) {
+					Object value = a2_3;
+					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__TEST), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_2, a2_3, true);
+				copyLocalizationInfos(a2_3, element);
+			}
+		}
+		|		a2_4 = parse_org_emftext_language_xpath2_OrExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createIfExpr();
+				startIncompleteElement(element);
+			}
+			if (a2_4 != null) {
+				if (a2_4 != null) {
+					Object value = a2_4;
+					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__TEST), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_2, a2_4, true);
+				copyLocalizationInfos(a2_4, element);
+			}
+		}
 	)
 	{
 		// expected elements (follow set)
@@ -1440,7 +1744,7 @@ parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.If
 	}
 	
 	(
-		a5_0 = parse_org_emftext_language_xpath2_ExprSingle		{
+		a5_0 = parse_org_emftext_language_xpath2_IfExpr		{
 			if (terminateParsing) {
 				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
 			}
@@ -1457,6 +1761,63 @@ parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.If
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_5, a5_0, true);
 				copyLocalizationInfos(a5_0, element);
+			}
+		}
+		|		a5_1 = parse_org_emftext_language_xpath2_ForExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createIfExpr();
+				startIncompleteElement(element);
+			}
+			if (a5_1 != null) {
+				if (a5_1 != null) {
+					Object value = a5_1;
+					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__THEN), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_5, a5_1, true);
+				copyLocalizationInfos(a5_1, element);
+			}
+		}
+		|		a5_2 = parse_org_emftext_language_xpath2_QuantifiedExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createIfExpr();
+				startIncompleteElement(element);
+			}
+			if (a5_2 != null) {
+				if (a5_2 != null) {
+					Object value = a5_2;
+					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__THEN), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_5, a5_2, true);
+				copyLocalizationInfos(a5_2, element);
+			}
+		}
+		|		a5_3 = parse_org_emftext_language_xpath2_OrExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createIfExpr();
+				startIncompleteElement(element);
+			}
+			if (a5_3 != null) {
+				if (a5_3 != null) {
+					Object value = a5_3;
+					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__THEN), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_5, a5_3, true);
+				copyLocalizationInfos(a5_3, element);
 			}
 		}
 	)
@@ -1501,7 +1862,7 @@ parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.If
 	}
 	
 	(
-		a7_0 = parse_org_emftext_language_xpath2_ExprSingle		{
+		a7_0 = parse_org_emftext_language_xpath2_IfExpr		{
 			if (terminateParsing) {
 				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
 			}
@@ -1518,6 +1879,63 @@ parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.If
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_7, a7_0, true);
 				copyLocalizationInfos(a7_0, element);
+			}
+		}
+		|		a7_1 = parse_org_emftext_language_xpath2_ForExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createIfExpr();
+				startIncompleteElement(element);
+			}
+			if (a7_1 != null) {
+				if (a7_1 != null) {
+					Object value = a7_1;
+					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__ELSE), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_7, a7_1, true);
+				copyLocalizationInfos(a7_1, element);
+			}
+		}
+		|		a7_2 = parse_org_emftext_language_xpath2_QuantifiedExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createIfExpr();
+				startIncompleteElement(element);
+			}
+			if (a7_2 != null) {
+				if (a7_2 != null) {
+					Object value = a7_2;
+					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__ELSE), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_7, a7_2, true);
+				copyLocalizationInfos(a7_2, element);
+			}
+		}
+		|		a7_3 = parse_org_emftext_language_xpath2_OrExpr		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createIfExpr();
+				startIncompleteElement(element);
+			}
+			if (a7_3 != null) {
+				if (a7_3 != null) {
+					Object value = a7_3;
+					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__ELSE), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_7, a7_3, true);
+				copyLocalizationInfos(a7_3, element);
 			}
 		}
 	)
@@ -3731,6 +4149,453 @@ parse_org_emftext_language_xpath2_UnaryExpr returns [org.emftext.language.xpath2
 	
 ;
 
+parse_org_emftext_language_xpath2_FunctionCall returns [org.emftext.language.xpath2.FunctionCall element = null]
+@init{
+}
+:
+	(
+		a0_0 = parse_org_emftext_language_xpath2_QName		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createFunctionCall();
+				startIncompleteElement(element);
+			}
+			if (a0_0 != null) {
+				if (a0_0 != null) {
+					Object value = a0_0;
+					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__NAME), value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_21_0_0_0, a0_0, true);
+				copyLocalizationInfos(a0_0, element);
+			}
+		}
+	)
+	{
+		// expected elements (follow set)
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1029]);
+	}
+	
+	a1 = '(' {
+		if (element == null) {
+			element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createFunctionCall();
+			startIncompleteElement(element);
+		}
+		collectHiddenTokens(element);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_21_0_0_1, null, true);
+		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+	}
+	{
+		// expected elements (follow set)
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1030]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1031]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1032]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1033]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1034]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1035]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1036]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1037]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1038]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1039]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1040]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1041]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1042]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1043]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1044]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1045]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1046]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1047]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1048]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1049]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1050]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1051]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1052]);
+	}
+	
+	(
+		(
+			(
+				a2_0 = parse_org_emftext_language_xpath2_IfExpr				{
+					if (terminateParsing) {
+						throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+					}
+					if (element == null) {
+						element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createFunctionCall();
+						startIncompleteElement(element);
+					}
+					if (a2_0 != null) {
+						if (a2_0 != null) {
+							Object value = a2_0;
+							addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__ARG, value);
+							completedElement(value, true);
+						}
+						collectHiddenTokens(element);
+						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_21_0_0_2_0_0_0, a2_0, true);
+						copyLocalizationInfos(a2_0, element);
+					}
+				}
+				|				a2_1 = parse_org_emftext_language_xpath2_ForExpr				{
+					if (terminateParsing) {
+						throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+					}
+					if (element == null) {
+						element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createFunctionCall();
+						startIncompleteElement(element);
+					}
+					if (a2_1 != null) {
+						if (a2_1 != null) {
+							Object value = a2_1;
+							addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__ARG, value);
+							completedElement(value, true);
+						}
+						collectHiddenTokens(element);
+						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_21_0_0_2_0_0_0, a2_1, true);
+						copyLocalizationInfos(a2_1, element);
+					}
+				}
+				|				a2_2 = parse_org_emftext_language_xpath2_QuantifiedExpr				{
+					if (terminateParsing) {
+						throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+					}
+					if (element == null) {
+						element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createFunctionCall();
+						startIncompleteElement(element);
+					}
+					if (a2_2 != null) {
+						if (a2_2 != null) {
+							Object value = a2_2;
+							addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__ARG, value);
+							completedElement(value, true);
+						}
+						collectHiddenTokens(element);
+						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_21_0_0_2_0_0_0, a2_2, true);
+						copyLocalizationInfos(a2_2, element);
+					}
+				}
+				|				a2_3 = parse_org_emftext_language_xpath2_OrExpr				{
+					if (terminateParsing) {
+						throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+					}
+					if (element == null) {
+						element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createFunctionCall();
+						startIncompleteElement(element);
+					}
+					if (a2_3 != null) {
+						if (a2_3 != null) {
+							Object value = a2_3;
+							addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__ARG, value);
+							completedElement(value, true);
+						}
+						collectHiddenTokens(element);
+						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_21_0_0_2_0_0_0, a2_3, true);
+						copyLocalizationInfos(a2_3, element);
+					}
+				}
+			)
+			{
+				// expected elements (follow set)
+				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1053]);
+				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1054]);
+			}
+			
+			(
+				(
+					a3 = ',' {
+						if (element == null) {
+							element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createFunctionCall();
+							startIncompleteElement(element);
+						}
+						collectHiddenTokens(element);
+						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_21_0_0_2_0_0_1_0_0_0, null, true);
+						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+					}
+					{
+						// expected elements (follow set)
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1055]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1056]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1057]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1058]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1059]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1060]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1061]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1062]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1063]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1064]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1065]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1066]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1067]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1068]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1069]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1070]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1071]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1072]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1073]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1074]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1075]);
+						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1076]);
+					}
+					
+					(
+						a4_0 = parse_org_emftext_language_xpath2_IfExpr						{
+							if (terminateParsing) {
+								throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+							}
+							if (element == null) {
+								element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createFunctionCall();
+								startIncompleteElement(element);
+							}
+							if (a4_0 != null) {
+								if (a4_0 != null) {
+									Object value = a4_0;
+									addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__ARG, value);
+									completedElement(value, true);
+								}
+								collectHiddenTokens(element);
+								retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_21_0_0_2_0_0_1_0_0_1, a4_0, true);
+								copyLocalizationInfos(a4_0, element);
+							}
+						}
+						|						a4_1 = parse_org_emftext_language_xpath2_ForExpr						{
+							if (terminateParsing) {
+								throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+							}
+							if (element == null) {
+								element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createFunctionCall();
+								startIncompleteElement(element);
+							}
+							if (a4_1 != null) {
+								if (a4_1 != null) {
+									Object value = a4_1;
+									addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__ARG, value);
+									completedElement(value, true);
+								}
+								collectHiddenTokens(element);
+								retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_21_0_0_2_0_0_1_0_0_1, a4_1, true);
+								copyLocalizationInfos(a4_1, element);
+							}
+						}
+						|						a4_2 = parse_org_emftext_language_xpath2_QuantifiedExpr						{
+							if (terminateParsing) {
+								throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+							}
+							if (element == null) {
+								element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createFunctionCall();
+								startIncompleteElement(element);
+							}
+							if (a4_2 != null) {
+								if (a4_2 != null) {
+									Object value = a4_2;
+									addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__ARG, value);
+									completedElement(value, true);
+								}
+								collectHiddenTokens(element);
+								retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_21_0_0_2_0_0_1_0_0_1, a4_2, true);
+								copyLocalizationInfos(a4_2, element);
+							}
+						}
+						|						a4_3 = parse_org_emftext_language_xpath2_OrExpr						{
+							if (terminateParsing) {
+								throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+							}
+							if (element == null) {
+								element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createFunctionCall();
+								startIncompleteElement(element);
+							}
+							if (a4_3 != null) {
+								if (a4_3 != null) {
+									Object value = a4_3;
+									addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__ARG, value);
+									completedElement(value, true);
+								}
+								collectHiddenTokens(element);
+								retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_21_0_0_2_0_0_1_0_0_1, a4_3, true);
+								copyLocalizationInfos(a4_3, element);
+							}
+						}
+					)
+					{
+						// expected elements (follow set)
+						addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1077]);
+						addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1078]);
+					}
+					
+				)
+				
+			)*			{
+				// expected elements (follow set)
+				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1079]);
+				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1080]);
+			}
+			
+		)
+		
+	)?	{
+		// expected elements (follow set)
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1081]);
+	}
+	
+	a5 = ')' {
+		if (element == null) {
+			element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createFunctionCall();
+			startIncompleteElement(element);
+		}
+		collectHiddenTokens(element);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_21_0_0_3, null, true);
+		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+	}
+	{
+		// expected elements (follow set)
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1082]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1083]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1084]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1085]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1086]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1087]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1088]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1089]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1090]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1091]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1092]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1093]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1094]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1095]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1096]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1097]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1098]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1099]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1100]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1101]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1102]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1103]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1104]);
+	}
+	
+;
+
+parse_org_emftext_language_xpath2_PathExpr returns [org.emftext.language.xpath2.PathExpr element = null]
+@init{
+}
+:
+	(
+		a0_0 = parse_org_emftext_language_xpath2_PathExprChild		{
+			if (terminateParsing) {
+				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+			}
+			if (element == null) {
+				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createPathExpr();
+				startIncompleteElement(element);
+			}
+			if (a0_0 != null) {
+				if (a0_0 != null) {
+					Object value = a0_0;
+					addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.PATH_EXPR__STEP, value);
+					completedElement(value, true);
+				}
+				collectHiddenTokens(element);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_22_0_0_0, a0_0, true);
+				copyLocalizationInfos(a0_0, element);
+			}
+		}
+	)
+	{
+		// expected elements (follow set)
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1105]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1106]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1107]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1108]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1109]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1110]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1111]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1112]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1113]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1114]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1115]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1116]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1117]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1118]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1119]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1120]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1121]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1122]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1123]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1124]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1125]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1126]);
+	}
+	
+	(
+		(
+			a1_0 = parse_org_emftext_language_xpath2_ChildStepExpr			{
+				if (terminateParsing) {
+					throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+				}
+				if (element == null) {
+					element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createPathExpr();
+					startIncompleteElement(element);
+				}
+				if (a1_0 != null) {
+					if (a1_0 != null) {
+						Object value = a1_0;
+						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.PATH_EXPR__STEP, value);
+						completedElement(value, true);
+					}
+					collectHiddenTokens(element);
+					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_22_0_0_1, a1_0, true);
+					copyLocalizationInfos(a1_0, element);
+				}
+			}
+			|			a1_1 = parse_org_emftext_language_xpath2_DescOrSelfStepExpr			{
+				if (terminateParsing) {
+					throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
+				}
+				if (element == null) {
+					element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createPathExpr();
+					startIncompleteElement(element);
+				}
+				if (a1_1 != null) {
+					if (a1_1 != null) {
+						Object value = a1_1;
+						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.PATH_EXPR__STEP, value);
+						completedElement(value, true);
+					}
+					collectHiddenTokens(element);
+					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_22_0_0_1, a1_1, true);
+					copyLocalizationInfos(a1_1, element);
+				}
+			}
+		)
+		
+	)*	{
+		// expected elements (follow set)
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1127]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1128]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1129]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1130]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1131]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1132]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1133]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1134]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1135]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1136]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1137]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1138]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1139]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1140]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1141]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1142]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1143]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1144]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1145]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1146]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1147]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1148]);
+	}
+	
+;
+
 parse_org_emftext_language_xpath2_ChildStepExpr returns [org.emftext.language.xpath2.ChildStepExpr element = null]
 @init{
 }
@@ -3741,26 +4606,26 @@ parse_org_emftext_language_xpath2_ChildStepExpr returns [org.emftext.language.xp
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_21_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_23_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1029]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1030]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1031]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1032]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1033]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1034]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1035]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1036]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1037]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1038]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1039]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1040]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1041]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1042]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1043]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1149]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1150]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1151]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1152]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1153]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1154]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1155]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1156]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1157]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1158]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1159]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1160]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1161]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1162]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1163]);
 	}
 	
 	(
@@ -3779,35 +4644,35 @@ parse_org_emftext_language_xpath2_ChildStepExpr returns [org.emftext.language.xp
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_21_0_0_1, a1_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_23_0_0_1, a1_0, true);
 				copyLocalizationInfos(a1_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1044]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1045]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1046]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1047]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1048]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1049]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1050]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1051]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1052]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1053]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1054]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1055]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1056]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1057]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1058]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1059]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1060]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1061]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1062]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1063]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1064]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1065]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1164]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1165]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1166]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1167]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1168]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1169]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1170]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1171]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1172]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1173]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1174]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1175]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1176]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1177]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1178]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1179]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1180]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1181]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1182]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1183]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1184]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1185]);
 	}
 	
 ;
@@ -3822,26 +4687,26 @@ parse_org_emftext_language_xpath2_DescOrSelfStepExpr returns [org.emftext.langua
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_22_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_24_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1066]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1067]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1068]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1069]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1070]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1071]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1072]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1073]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1074]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1075]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1076]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1077]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1078]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1079]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1080]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1186]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1187]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1188]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1189]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1190]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1191]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1192]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1193]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1194]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1195]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1196]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1197]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1198]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1199]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1200]);
 	}
 	
 	(
@@ -3860,35 +4725,35 @@ parse_org_emftext_language_xpath2_DescOrSelfStepExpr returns [org.emftext.langua
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_22_0_0_1, a1_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_24_0_0_1, a1_0, true);
 				copyLocalizationInfos(a1_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1081]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1082]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1083]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1084]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1085]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1086]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1087]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1088]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1089]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1090]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1091]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1092]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1093]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1094]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1095]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1096]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1097]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1098]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1099]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1100]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1101]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1102]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1201]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1202]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1203]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1204]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1205]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1206]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1207]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1208]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1209]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1210]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1211]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1212]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1213]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1214]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1215]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1216]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1217]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1218]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1219]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1220]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1221]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1222]);
 	}
 	
 ;
@@ -3903,33 +4768,33 @@ parse_org_emftext_language_xpath2_RootStepExpr returns [org.emftext.language.xpa
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_23_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_25_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1103]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1104]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1105]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1106]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1107]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1108]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1109]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1110]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1111]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1112]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1113]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1114]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1115]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1116]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1117]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1118]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1119]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1120]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1121]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1122]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1123]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1124]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1223]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1224]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1225]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1226]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1227]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1228]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1229]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1230]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1231]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1232]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1233]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1234]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1235]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1236]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1237]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1238]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1239]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1240]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1241]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1242]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1243]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1244]);
 	}
 	
 ;
@@ -3954,35 +4819,35 @@ parse_org_emftext_language_xpath2_SelfStepExpr returns [org.emftext.language.xpa
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_24_0_0_0, a0_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_26_0_0_0, a0_0, true);
 				copyLocalizationInfos(a0_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1125]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1126]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1127]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1128]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1129]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1130]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1131]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1132]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1133]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1134]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1135]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1136]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1137]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1138]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1139]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1140]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1141]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1142]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1143]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1144]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1145]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1146]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1245]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1246]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1247]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1248]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1249]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1250]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1251]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1252]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1253]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1254]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1255]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1256]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1257]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1258]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1259]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1260]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1261]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1262]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1263]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1264]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1265]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1266]);
 	}
 	
 ;
@@ -4007,36 +4872,36 @@ parse_org_emftext_language_xpath2_AxisStep returns [org.emftext.language.xpath2.
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_25_0_0_0, a0_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_27_0_0_0, a0_0, true);
 				copyLocalizationInfos(a0_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1147]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1148]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1149]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1150]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1151]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1152]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1153]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1154]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1155]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1156]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1157]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1158]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1159]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1160]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1161]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1162]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1163]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1164]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1165]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1166]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1167]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1168]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1169]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1267]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1268]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1269]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1270]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1271]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1272]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1273]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1274]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1275]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1276]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1277]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1278]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1279]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1280]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1281]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1282]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1283]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1284]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1285]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1286]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1287]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1288]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1289]);
 	}
 	
 	(
@@ -4056,7 +4921,7 @@ parse_org_emftext_language_xpath2_AxisStep returns [org.emftext.language.xpath2.
 						completedElement(value, true);
 					}
 					collectHiddenTokens(element);
-					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_25_0_0_1, a1_0, true);
+					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_27_0_0_1, a1_0, true);
 					copyLocalizationInfos(a1_0, element);
 				}
 			}
@@ -4064,29 +4929,29 @@ parse_org_emftext_language_xpath2_AxisStep returns [org.emftext.language.xpath2.
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1170]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1171]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1172]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1173]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1174]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1175]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1176]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1177]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1178]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1179]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1180]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1181]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1182]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1183]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1184]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1185]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1186]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1187]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1188]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1189]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1190]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1191]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1192]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1290]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1291]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1292]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1293]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1294]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1295]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1296]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1297]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1298]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1299]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1300]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1301]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1302]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1303]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1304]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1305]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1306]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1307]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1308]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1309]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1310]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1311]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1312]);
 	}
 	
 ;
@@ -4103,7 +4968,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_26_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.CHILD_VALUE).getInstance();
@@ -4116,7 +4981,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_26_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.DESCENDANT_VALUE).getInstance();
@@ -4129,7 +4994,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_26_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.ATTRIBUTE_VALUE).getInstance();
@@ -4142,7 +5007,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_26_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.SELF_VALUE).getInstance();
@@ -4155,7 +5020,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_26_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.DESCENDANT_OR_SELF_VALUE).getInstance();
@@ -4168,7 +5033,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_26_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.FOLLOWING_SIBLING_VALUE).getInstance();
@@ -4181,7 +5046,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_26_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.FOLLOWING_VALUE).getInstance();
@@ -4194,7 +5059,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_26_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a7, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.NAMESPACE_VALUE).getInstance();
@@ -4205,7 +5070,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1193]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1313]);
 	}
 	
 	a10 = '::' {
@@ -4214,33 +5079,33 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_26_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a10, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1194]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1195]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1196]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1197]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1198]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1199]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1200]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1201]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1202]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1203]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1204]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1205]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1206]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1207]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1208]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1209]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1210]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1211]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1212]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1213]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1214]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1215]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1314]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1315]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1316]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1317]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1318]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1319]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1320]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1321]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1322]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1323]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1324]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1325]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1326]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1327]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1328]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1329]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1330]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1331]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1332]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1333]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1334]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1335]);
 	}
 	
 	(
@@ -4259,36 +5124,36 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_26_0_0_2, a11_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_2, a11_0, true);
 				copyLocalizationInfos(a11_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1216]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1217]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1218]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1219]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1220]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1221]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1222]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1223]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1224]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1225]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1226]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1227]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1228]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1229]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1230]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1231]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1232]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1233]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1234]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1235]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1236]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1237]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1238]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1336]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1337]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1338]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1339]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1340]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1341]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1342]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1343]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1344]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1345]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1346]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1347]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1348]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1349]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1350]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1351]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1352]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1353]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1354]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1355]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1356]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1357]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1358]);
 	}
 	
 ;
@@ -4308,7 +5173,7 @@ parse_org_emftext_language_xpath2_AbbrevForwardStep returns [org.emftext.languag
 					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_FORWARD_STEP__KIND), value);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_27_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_29_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStepKind().getEEnumLiteral(org.emftext.language.xpath2.AbbrevForwardStepKind.ATTRIBUTE_VALUE).getInstance();
@@ -4318,28 +5183,28 @@ parse_org_emftext_language_xpath2_AbbrevForwardStep returns [org.emftext.languag
 		)?	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1239]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1240]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1241]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1242]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1243]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1244]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1245]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1246]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1247]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1248]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1249]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1250]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1251]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1252]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1253]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1254]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1255]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1256]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1257]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1258]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1259]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1260]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1359]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1360]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1361]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1362]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1363]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1364]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1365]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1366]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1367]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1368]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1369]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1370]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1371]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1372]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1373]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1374]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1375]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1376]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1377]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1378]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1379]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1380]);
 	}
 	
 	(
@@ -4361,36 +5226,36 @@ parse_org_emftext_language_xpath2_AbbrevForwardStep returns [org.emftext.languag
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_27_0_0_1, a3_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_29_0_0_1, a3_0, true);
 				copyLocalizationInfos(a3_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1261]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1262]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1263]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1264]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1265]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1266]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1267]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1268]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1269]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1270]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1271]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1272]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1273]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1274]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1275]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1276]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1277]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1278]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1279]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1280]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1281]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1282]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1283]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1381]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1382]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1383]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1384]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1385]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1386]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1387]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1388]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1389]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1390]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1391]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1392]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1393]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1394]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1395]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1396]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1397]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1398]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1399]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1400]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1401]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1402]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1403]);
 	}
 	
 ;
@@ -4407,7 +5272,7 @@ parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.langua
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getReverseAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ReverseAxisKind.PARENT_VALUE).getInstance();
@@ -4420,7 +5285,7 @@ parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.langua
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getReverseAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ReverseAxisKind.ANCESTOR_VALUE).getInstance();
@@ -4433,7 +5298,7 @@ parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.langua
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getReverseAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ReverseAxisKind.PRECEDING_SIBLING_VALUE).getInstance();
@@ -4446,7 +5311,7 @@ parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.langua
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getReverseAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ReverseAxisKind.PRECEDING_VALUE).getInstance();
@@ -4459,7 +5324,7 @@ parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.langua
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getReverseAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ReverseAxisKind.ANCESTOR_OR_SELF_VALUE).getInstance();
@@ -4470,7 +5335,7 @@ parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.langua
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1284]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1404]);
 	}
 	
 	a7 = '::' {
@@ -4479,33 +5344,33 @@ parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.langua
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a7, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1285]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1286]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1287]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1288]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1289]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1290]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1291]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1292]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1293]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1294]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1295]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1296]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1297]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1298]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1299]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1300]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1301]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1302]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1303]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1304]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1305]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1306]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1405]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1406]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1407]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1408]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1409]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1410]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1411]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1412]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1413]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1414]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1415]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1416]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1417]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1418]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1419]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1420]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1421]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1422]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1423]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1424]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1425]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1426]);
 	}
 	
 	(
@@ -4524,36 +5389,36 @@ parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.langua
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_2, a8_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_2, a8_0, true);
 				copyLocalizationInfos(a8_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1307]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1308]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1309]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1310]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1311]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1312]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1313]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1314]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1315]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1316]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1317]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1318]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1319]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1320]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1321]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1322]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1323]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1324]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1325]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1326]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1327]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1328]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1329]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1427]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1428]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1429]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1430]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1431]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1432]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1433]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1434]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1435]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1436]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1437]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1438]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1439]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1440]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1441]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1442]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1443]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1444]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1445]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1446]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1447]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1448]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1449]);
 	}
 	
 ;
@@ -4570,7 +5435,7 @@ parse_org_emftext_language_xpath2_AbbrevReverseStep returns [org.emftext.languag
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_29_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_31_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevReverseStepKind().getEEnumLiteral(org.emftext.language.xpath2.AbbrevReverseStepKind.PARENT_VALUE).getInstance();
@@ -4581,29 +5446,29 @@ parse_org_emftext_language_xpath2_AbbrevReverseStep returns [org.emftext.languag
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1330]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1331]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1332]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1333]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1334]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1335]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1336]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1337]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1338]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1339]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1340]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1341]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1342]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1343]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1344]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1345]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1346]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1347]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1348]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1349]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1350]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1351]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1352]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1450]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1451]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1452]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1453]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1454]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1455]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1456]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1457]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1458]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1459]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1460]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1461]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1462]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1463]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1464]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1465]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1466]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1467]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1468]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1469]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1470]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1471]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1472]);
 	}
 	
 ;
@@ -4628,36 +5493,36 @@ parse_org_emftext_language_xpath2_NodeKindTest returns [org.emftext.language.xpa
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_0, a0_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_32_0_0_0, a0_0, true);
 				copyLocalizationInfos(a0_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1353]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1354]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1355]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1356]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1357]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1358]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1359]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1360]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1361]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1362]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1363]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1364]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1365]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1366]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1367]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1368]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1369]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1370]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1371]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1372]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1373]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1374]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1375]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1473]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1474]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1475]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1476]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1477]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1478]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1479]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1480]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1481]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1482]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1483]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1484]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1485]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1486]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1487]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1488]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1489]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1490]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1491]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1492]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1493]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1494]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1495]);
 	}
 	
 ;
@@ -4682,36 +5547,36 @@ parse_org_emftext_language_xpath2_QNameTest returns [org.emftext.language.xpath2
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_31_0_0_0, a0_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_33_0_0_0, a0_0, true);
 				copyLocalizationInfos(a0_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1376]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1377]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1378]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1379]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1380]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1381]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1382]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1383]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1384]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1385]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1386]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1387]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1388]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1389]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1390]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1391]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1392]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1393]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1394]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1395]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1396]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1397]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1398]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1496]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1497]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1498]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1499]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1500]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1501]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1502]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1503]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1504]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1505]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1506]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1507]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1508]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1509]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1510]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1511]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1512]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1513]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1514]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1515]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1516]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1517]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1518]);
 	}
 	
 ;
@@ -4726,34 +5591,34 @@ parse_org_emftext_language_xpath2_AnyWildcard returns [org.emftext.language.xpat
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_32_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_34_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1399]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1400]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1401]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1402]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1403]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1404]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1405]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1406]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1407]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1408]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1409]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1410]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1411]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1412]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1413]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1414]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1415]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1416]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1417]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1418]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1419]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1420]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1421]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1519]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1520]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1521]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1522]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1523]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1524]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1525]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1526]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1527]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1528]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1529]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1530]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1531]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1532]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1533]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1534]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1535]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1536]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1537]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1538]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1539]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1540]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1541]);
 	}
 	
 ;
@@ -4763,7 +5628,7 @@ parse_org_emftext_language_xpath2_LocalNameWildcard returns [org.emftext.languag
 }
 :
 	(
-		a0 = TEXT		
+		a0 = NCNAME		
 		{
 			if (terminateParsing) {
 				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
@@ -4773,7 +5638,7 @@ parse_org_emftext_language_xpath2_LocalNameWildcard returns [org.emftext.languag
 				startIncompleteElement(element);
 			}
 			if (a0 != null) {
-				org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
+				org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("NCNAME");
 				tokenResolver.setOptions(getOptions());
 				org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolveResult result = getFreshTokenResolveResult();
 				tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.LOCAL_NAME_WILDCARD__NAMESPACE), result);
@@ -4788,14 +5653,14 @@ parse_org_emftext_language_xpath2_LocalNameWildcard returns [org.emftext.languag
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_33_0_0_0, resolved, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_35_0_0_0, resolved, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1422]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1542]);
 	}
 	
 	a1 = ':' {
@@ -4804,12 +5669,12 @@ parse_org_emftext_language_xpath2_LocalNameWildcard returns [org.emftext.languag
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_33_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_35_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1423]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1543]);
 	}
 	
 	a2 = '*' {
@@ -4818,34 +5683,34 @@ parse_org_emftext_language_xpath2_LocalNameWildcard returns [org.emftext.languag
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_33_0_0_2, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_35_0_0_2, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1424]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1425]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1426]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1427]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1428]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1429]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1430]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1431]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1432]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1433]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1434]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1435]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1436]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1437]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1438]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1439]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1440]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1441]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1442]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1443]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1444]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1445]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1446]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1544]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1545]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1546]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1547]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1548]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1549]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1550]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1551]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1552]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1553]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1554]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1555]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1556]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1557]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1558]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1559]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1560]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1561]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1562]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1563]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1564]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1565]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1566]);
 	}
 	
 ;
@@ -4860,12 +5725,12 @@ parse_org_emftext_language_xpath2_NamespaceWildcard returns [org.emftext.languag
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_34_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_36_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1447]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1567]);
 	}
 	
 	a1 = ':' {
@@ -4874,16 +5739,16 @@ parse_org_emftext_language_xpath2_NamespaceWildcard returns [org.emftext.languag
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_34_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_36_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1448]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1568]);
 	}
 	
 	(
-		a2 = TEXT		
+		a2 = NCNAME		
 		{
 			if (terminateParsing) {
 				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
@@ -4893,7 +5758,7 @@ parse_org_emftext_language_xpath2_NamespaceWildcard returns [org.emftext.languag
 				startIncompleteElement(element);
 			}
 			if (a2 != null) {
-				org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("TEXT");
+				org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver tokenResolver = tokenResolverFactory.createTokenResolver("NCNAME");
 				tokenResolver.setOptions(getOptions());
 				org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolveResult result = getFreshTokenResolveResult();
 				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAMESPACE_WILDCARD__LOCAL_NAME), result);
@@ -4908,36 +5773,36 @@ parse_org_emftext_language_xpath2_NamespaceWildcard returns [org.emftext.languag
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_34_0_0_2, resolved, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_36_0_0_2, resolved, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1449]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1450]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1451]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1452]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1453]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1454]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1455]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1456]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1457]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1458]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1459]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1460]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1461]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1462]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1463]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1464]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1465]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1466]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1467]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1468]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1469]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1470]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1471]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1569]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1570]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1571]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1572]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1573]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1574]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1575]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1576]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1577]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1578]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1579]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1580]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1581]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1582]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1583]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1584]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1585]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1586]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1587]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1588]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1589]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1590]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1591]);
 	}
 	
 ;
@@ -4962,36 +5827,36 @@ parse_org_emftext_language_xpath2_FilterExpr returns [org.emftext.language.xpath
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_35_0_0_0, a0_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_37_0_0_0, a0_0, true);
 				copyLocalizationInfos(a0_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1472]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1473]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1474]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1475]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1476]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1477]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1478]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1479]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1480]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1481]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1482]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1483]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1484]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1485]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1486]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1487]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1488]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1489]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1490]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1491]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1492]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1493]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1494]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1592]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1593]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1594]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1595]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1596]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1597]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1598]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1599]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1600]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1601]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1602]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1603]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1604]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1605]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1606]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1607]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1608]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1609]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1610]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1611]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1612]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1613]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1614]);
 	}
 	
 	(
@@ -5011,7 +5876,7 @@ parse_org_emftext_language_xpath2_FilterExpr returns [org.emftext.language.xpath
 						completedElement(value, true);
 					}
 					collectHiddenTokens(element);
-					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_35_0_0_1, a1_0, true);
+					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_37_0_0_1, a1_0, true);
 					copyLocalizationInfos(a1_0, element);
 				}
 			}
@@ -5019,29 +5884,29 @@ parse_org_emftext_language_xpath2_FilterExpr returns [org.emftext.language.xpath
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1495]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1496]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1497]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1498]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1499]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1500]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1501]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1502]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1503]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1504]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1505]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1506]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1507]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1508]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1509]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1510]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1511]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1512]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1513]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1514]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1515]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1516]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1517]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1615]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1616]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1617]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1618]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1619]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1620]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1621]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1622]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1623]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1624]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1625]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1626]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1627]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1628]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1629]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1630]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1631]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1632]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1633]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1634]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1635]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1636]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1637]);
 	}
 	
 ;
@@ -5056,33 +5921,33 @@ parse_org_emftext_language_xpath2_Predicate returns [org.emftext.language.xpath2
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_36_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_38_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1518]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1519]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1520]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1521]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1522]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1523]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1524]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1525]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1526]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1527]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1528]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1529]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1530]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1531]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1532]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1533]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1534]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1535]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1536]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1537]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1538]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1539]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1638]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1639]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1640]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1641]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1642]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1643]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1644]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1645]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1646]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1647]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1648]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1649]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1650]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1651]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1652]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1653]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1654]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1655]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1656]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1657]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1658]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1659]);
 	}
 	
 	(
@@ -5101,14 +5966,14 @@ parse_org_emftext_language_xpath2_Predicate returns [org.emftext.language.xpath2
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_36_0_0_1, a1_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_38_0_0_1, a1_0, true);
 				copyLocalizationInfos(a1_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1540]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1660]);
 	}
 	
 	a2 = ']' {
@@ -5117,34 +5982,34 @@ parse_org_emftext_language_xpath2_Predicate returns [org.emftext.language.xpath2
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_36_0_0_2, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_38_0_0_2, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1541]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1542]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1543]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1544]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1545]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1546]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1547]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1548]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1549]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1550]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1551]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1552]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1553]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1554]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1555]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1556]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1557]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1558]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1559]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1560]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1561]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1562]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1563]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1661]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1662]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1663]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1664]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1665]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1666]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1667]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1668]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1669]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1670]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1671]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1672]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1673]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1674]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1675]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1676]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1677]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1678]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1679]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1680]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1681]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1682]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1683]);
 	}
 	
 ;
@@ -5159,13 +6024,13 @@ parse_org_emftext_language_xpath2_VarRef returns [org.emftext.language.xpath2.Va
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_37_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_39_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getVarRef(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1564]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getVarRef(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1565]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getVarRef(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1684]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getVarRef(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1685]);
 	}
 	
 	(
@@ -5184,36 +6049,36 @@ parse_org_emftext_language_xpath2_VarRef returns [org.emftext.language.xpath2.Va
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_37_0_0_1, a1_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_39_0_0_1, a1_0, true);
 				copyLocalizationInfos(a1_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1566]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1567]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1568]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1569]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1570]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1571]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1572]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1573]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1574]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1575]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1576]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1577]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1578]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1579]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1580]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1581]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1582]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1583]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1584]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1585]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1586]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1587]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1588]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1686]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1687]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1688]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1689]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1690]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1691]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1692]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1693]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1694]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1695]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1696]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1697]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1698]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1699]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1700]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1701]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1702]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1703]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1704]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1705]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1706]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1707]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1708]);
 	}
 	
 ;
@@ -5250,14 +6115,14 @@ parse_org_emftext_language_xpath2_VarName returns [org.emftext.language.xpath2.V
 							completedElement(value, false);
 						}
 						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_38_0_0_0_0_0_0, resolved, true);
+						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_40_0_0_0_0_0_0, resolved, true);
 						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
 					}
 				}
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1589]);
+				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1709]);
 			}
 			
 			a1 = ':' {
@@ -5266,19 +6131,19 @@ parse_org_emftext_language_xpath2_VarName returns [org.emftext.language.xpath2.V
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_38_0_0_0_0_0_1, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_40_0_0_0_0_0_1, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1590]);
+				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1710]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1591]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1711]);
 	}
 	
 	(
@@ -5307,48 +6172,47 @@ parse_org_emftext_language_xpath2_VarName returns [org.emftext.language.xpath2.V
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_38_0_0_1, resolved, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_40_0_0_1, resolved, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1592]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1593]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1594]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1595]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1596]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1597]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1598]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1599]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1600]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1601]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1602]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1603]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1604]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1605]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1606]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1607]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1608]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1609]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1610]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1611]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1612]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1613]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1614]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1615]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1616]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1617]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1618]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1619]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1620]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1621]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1622]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1623]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1624]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1625]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1626]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1712]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1713]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1714]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1715]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1716]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1717]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1718]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1719]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1720]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1721]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1722]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1723]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1724]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1725]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1726]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1727]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1728]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1729]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1730]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1731]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1732]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1733]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1734]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1735]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1736]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1737]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1738]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1739]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1740]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1741]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1742]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1743]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1744]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1745]);
 	}
 	
 ;
@@ -5363,34 +6227,34 @@ parse_org_emftext_language_xpath2_ParenthesizedExpr returns [org.emftext.languag
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_39_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_41_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1627]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1628]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1629]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1630]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1631]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1632]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1633]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1634]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1635]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1636]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1637]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1638]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1639]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1640]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1641]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1642]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1643]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1644]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1645]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1646]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1647]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1648]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1649]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1746]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1747]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1748]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1749]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1750]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1751]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1752]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1753]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1754]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1755]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1756]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1757]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1758]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1759]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1760]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1761]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1762]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1763]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1764]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1765]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1766]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1767]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1768]);
 	}
 	
 	(
@@ -5410,7 +6274,7 @@ parse_org_emftext_language_xpath2_ParenthesizedExpr returns [org.emftext.languag
 						completedElement(value, true);
 					}
 					collectHiddenTokens(element);
-					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_39_0_0_1, a1_0, true);
+					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_41_0_0_1, a1_0, true);
 					copyLocalizationInfos(a1_0, element);
 				}
 			}
@@ -5418,7 +6282,7 @@ parse_org_emftext_language_xpath2_ParenthesizedExpr returns [org.emftext.languag
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1650]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1769]);
 	}
 	
 	a2 = ')' {
@@ -5427,34 +6291,34 @@ parse_org_emftext_language_xpath2_ParenthesizedExpr returns [org.emftext.languag
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_39_0_0_2, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_41_0_0_2, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1651]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1652]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1653]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1654]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1655]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1656]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1657]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1658]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1659]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1660]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1661]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1662]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1663]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1664]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1665]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1666]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1667]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1668]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1669]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1670]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1671]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1672]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1673]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1770]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1771]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1772]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1773]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1774]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1775]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1776]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1777]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1778]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1779]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1780]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1781]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1782]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1783]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1784]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1785]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1786]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1787]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1788]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1789]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1790]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1791]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1792]);
 	}
 	
 ;
@@ -5469,246 +6333,34 @@ parse_org_emftext_language_xpath2_ContextItemExpr returns [org.emftext.language.
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_40_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_42_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1674]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1675]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1676]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1677]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1678]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1679]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1680]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1681]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1682]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1683]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1684]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1685]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1686]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1687]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1688]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1689]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1690]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1691]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1692]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1693]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1694]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1695]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1696]);
-	}
-	
-;
-
-parse_org_emftext_language_xpath2_FunctionCall returns [org.emftext.language.xpath2.FunctionCall element = null]
-@init{
-}
-:
-	(
-		a0_0 = parse_org_emftext_language_xpath2_QName		{
-			if (terminateParsing) {
-				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
-			}
-			if (element == null) {
-				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createFunctionCall();
-				startIncompleteElement(element);
-			}
-			if (a0_0 != null) {
-				if (a0_0 != null) {
-					Object value = a0_0;
-					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__NAME), value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_41_0_0_0, a0_0, true);
-				copyLocalizationInfos(a0_0, element);
-			}
-		}
-	)
-	{
-		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1697]);
-	}
-	
-	a1 = '(' {
-		if (element == null) {
-			element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createFunctionCall();
-			startIncompleteElement(element);
-		}
-		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_41_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
-	}
-	{
-		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1698]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1699]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1700]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1701]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1702]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1703]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1704]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1705]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1706]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1707]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1708]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1709]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1710]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1711]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1712]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1713]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1714]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1715]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1716]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1717]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1718]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1719]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1720]);
-	}
-	
-	(
-		(
-			(
-				a2_0 = parse_org_emftext_language_xpath2_ExprSingle				{
-					if (terminateParsing) {
-						throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
-					}
-					if (element == null) {
-						element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createFunctionCall();
-						startIncompleteElement(element);
-					}
-					if (a2_0 != null) {
-						if (a2_0 != null) {
-							Object value = a2_0;
-							addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__ARG, value);
-							completedElement(value, true);
-						}
-						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_41_0_0_2_0_0_0, a2_0, true);
-						copyLocalizationInfos(a2_0, element);
-					}
-				}
-			)
-			{
-				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1721]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1722]);
-			}
-			
-			(
-				(
-					a3 = ',' {
-						if (element == null) {
-							element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createFunctionCall();
-							startIncompleteElement(element);
-						}
-						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_41_0_0_2_0_0_1_0_0_0, null, true);
-						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
-					}
-					{
-						// expected elements (follow set)
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1723]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1724]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1725]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1726]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1727]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1728]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1729]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1730]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1731]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1732]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1733]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1734]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1735]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1736]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1737]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1738]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1739]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1740]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1741]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1742]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1743]);
-						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1744]);
-					}
-					
-					(
-						a4_0 = parse_org_emftext_language_xpath2_ExprSingle						{
-							if (terminateParsing) {
-								throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
-							}
-							if (element == null) {
-								element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createFunctionCall();
-								startIncompleteElement(element);
-							}
-							if (a4_0 != null) {
-								if (a4_0 != null) {
-									Object value = a4_0;
-									addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__ARG, value);
-									completedElement(value, true);
-								}
-								collectHiddenTokens(element);
-								retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_41_0_0_2_0_0_1_0_0_1, a4_0, true);
-								copyLocalizationInfos(a4_0, element);
-							}
-						}
-					)
-					{
-						// expected elements (follow set)
-						addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1745]);
-						addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1746]);
-					}
-					
-				)
-				
-			)*			{
-				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1747]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1748]);
-			}
-			
-		)
-		
-	)?	{
-		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1749]);
-	}
-	
-	a5 = ')' {
-		if (element == null) {
-			element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createFunctionCall();
-			startIncompleteElement(element);
-		}
-		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_41_0_0_3, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
-	}
-	{
-		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1750]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1751]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1752]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1753]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1754]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1755]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1756]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1757]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1758]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1759]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1760]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1761]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1762]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1763]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1764]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1765]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1766]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1767]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1768]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1769]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1770]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1771]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1772]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1793]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1794]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1795]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1796]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1797]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1798]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1799]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1800]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1801]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1802]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1803]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1804]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1805]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1806]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1807]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1808]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1809]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1810]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1811]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1812]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1813]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1814]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1815]);
 	}
 	
 ;
@@ -5738,32 +6390,32 @@ parse_org_emftext_language_xpath2_SingleType returns [org.emftext.language.xpath
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_42_0_0_0, a0_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_43_0_0_0, a0_0, true);
 				copyLocalizationInfos(a0_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1773]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1774]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1775]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1776]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1777]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1778]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1779]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1780]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1781]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1782]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1783]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1784]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1785]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1786]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1787]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1788]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1789]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1790]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1791]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1816]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1817]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1818]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1819]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1820]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1821]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1822]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1823]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1824]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1825]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1826]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1827]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1828]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1829]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1830]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1831]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1832]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1833]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1834]);
 	}
 	
 	(
@@ -5779,7 +6431,7 @@ parse_org_emftext_language_xpath2_SingleType returns [org.emftext.language.xpath
 					}
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_42_0_0_1, true, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_43_0_0_1, true, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 				// set value of boolean attribute
 				Object value = true;
@@ -5789,24 +6441,24 @@ parse_org_emftext_language_xpath2_SingleType returns [org.emftext.language.xpath
 		)?	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1792]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1793]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1794]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1795]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1796]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1797]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1798]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1799]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1800]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1801]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1802]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1803]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1804]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1805]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1806]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1807]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1808]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1809]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1835]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1836]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1837]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1838]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1839]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1840]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1841]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1842]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1843]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1844]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1845]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1846]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1847]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1848]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1849]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1850]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1851]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1852]);
 	}
 	
 ;
@@ -5821,12 +6473,12 @@ parse_org_emftext_language_xpath2_EmptySequenceType returns [org.emftext.languag
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_43_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_44_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1810]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1853]);
 	}
 	
 	a1 = '(' {
@@ -5835,12 +6487,12 @@ parse_org_emftext_language_xpath2_EmptySequenceType returns [org.emftext.languag
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_43_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_44_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1811]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1854]);
 	}
 	
 	a2 = ')' {
@@ -5849,27 +6501,27 @@ parse_org_emftext_language_xpath2_EmptySequenceType returns [org.emftext.languag
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_43_0_0_2, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_44_0_0_2, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1812]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1813]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1814]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1815]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1816]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1817]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1818]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1819]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1820]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1821]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1822]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1823]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1824]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1825]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1826]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1827]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1855]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1856]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1857]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1858]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1859]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1860]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1861]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1862]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1863]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1864]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1865]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1866]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1867]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1868]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1869]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1870]);
 	}
 	
 ;
@@ -5897,14 +6549,14 @@ parse_org_emftext_language_xpath2_ItemSequenceType returns [org.emftext.language
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_44_0_0_0, a0_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_45_0_0_0, a0_0, true);
 				copyLocalizationInfos(a0_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1828]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1871]);
 	}
 	
 	(
@@ -5918,7 +6570,7 @@ parse_org_emftext_language_xpath2_ItemSequenceType returns [org.emftext.language
 					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE), value);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_44_0_0_1, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_45_0_0_1, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getOccurrenceIndicatorKind().getEEnumLiteral(org.emftext.language.xpath2.OccurrenceIndicatorKind.OPTIONAL_VALUE).getInstance();
@@ -5934,7 +6586,7 @@ parse_org_emftext_language_xpath2_ItemSequenceType returns [org.emftext.language
 					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE), value);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_44_0_0_1, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_45_0_0_1, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getOccurrenceIndicatorKind().getEEnumLiteral(org.emftext.language.xpath2.OccurrenceIndicatorKind.STAR_VALUE).getInstance();
@@ -5950,7 +6602,7 @@ parse_org_emftext_language_xpath2_ItemSequenceType returns [org.emftext.language
 					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE), value);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_44_0_0_1, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_45_0_0_1, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getOccurrenceIndicatorKind().getEEnumLiteral(org.emftext.language.xpath2.OccurrenceIndicatorKind.PLUS_VALUE).getInstance();
@@ -5960,22 +6612,22 @@ parse_org_emftext_language_xpath2_ItemSequenceType returns [org.emftext.language
 		)?	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1829]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1830]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1831]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1832]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1833]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1834]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1835]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1836]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1837]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1838]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1839]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1840]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1841]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1842]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1843]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1844]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1872]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1873]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1874]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1875]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1876]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1877]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1878]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1879]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1880]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1881]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1882]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1883]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1884]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1885]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1886]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1887]);
 	}
 	
 ;
@@ -6000,14 +6652,14 @@ parse_org_emftext_language_xpath2_ItemKindTest returns [org.emftext.language.xpa
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_45_0_0_0, a0_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_46_0_0_0, a0_0, true);
 				copyLocalizationInfos(a0_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1845]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1888]);
 	}
 	
 ;
@@ -6022,12 +6674,12 @@ parse_org_emftext_language_xpath2_AnyItemType returns [org.emftext.language.xpat
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_46_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_47_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1846]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1889]);
 	}
 	
 	a1 = '(' {
@@ -6036,12 +6688,12 @@ parse_org_emftext_language_xpath2_AnyItemType returns [org.emftext.language.xpat
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_46_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_47_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1847]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1890]);
 	}
 	
 	a2 = ')' {
@@ -6050,12 +6702,12 @@ parse_org_emftext_language_xpath2_AnyItemType returns [org.emftext.language.xpat
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_46_0_0_2, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_47_0_0_2, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1848]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1891]);
 	}
 	
 ;
@@ -6080,14 +6732,14 @@ parse_org_emftext_language_xpath2_AtomicItemType returns [org.emftext.language.x
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_47_0_0_0, a0_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_48_0_0_0, a0_0, true);
 				copyLocalizationInfos(a0_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1849]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1892]);
 	}
 	
 ;
@@ -6112,33 +6764,33 @@ parse_org_emftext_language_xpath2_AtomicType returns [org.emftext.language.xpath
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_48_0_0_0, a0_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_49_0_0_0, a0_0, true);
 				copyLocalizationInfos(a0_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1850]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1851]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1852]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1853]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1854]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1855]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1856]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1857]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1858]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1859]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1860]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1861]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1862]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1863]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1864]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1865]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1866]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1867]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1868]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1869]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1893]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1894]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1895]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1896]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1897]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1898]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1899]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1900]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1901]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1902]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1903]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1904]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1905]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1906]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1907]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1908]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1909]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1910]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1911]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1912]);
 	}
 	
 ;
@@ -6153,12 +6805,12 @@ parse_org_emftext_language_xpath2_AnyKindTest returns [org.emftext.language.xpat
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_49_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_50_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1870]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1913]);
 	}
 	
 	a1 = '(' {
@@ -6167,12 +6819,12 @@ parse_org_emftext_language_xpath2_AnyKindTest returns [org.emftext.language.xpat
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_49_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_50_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1871]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1914]);
 	}
 	
 	a2 = ')' {
@@ -6181,35 +6833,35 @@ parse_org_emftext_language_xpath2_AnyKindTest returns [org.emftext.language.xpat
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_49_0_0_2, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_50_0_0_2, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1872]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1873]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1874]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1875]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1876]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1877]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1878]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1879]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1880]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1881]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1882]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1883]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1884]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1885]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1886]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1887]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1888]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1889]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1890]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1891]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1892]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1893]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1894]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1895]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1915]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1916]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1917]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1918]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1919]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1920]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1921]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1922]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1923]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1924]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1925]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1926]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1927]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1928]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1929]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1930]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1931]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1932]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1933]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1934]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1935]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1936]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1937]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1938]);
 	}
 	
 ;
@@ -6224,12 +6876,12 @@ parse_org_emftext_language_xpath2_DocumentTest returns [org.emftext.language.xpa
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_50_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_51_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1896]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1939]);
 	}
 	
 	a1 = '(' {
@@ -6238,16 +6890,16 @@ parse_org_emftext_language_xpath2_DocumentTest returns [org.emftext.language.xpa
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_50_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_51_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDocumentTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1897]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDocumentTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1898]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDocumentTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1899]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDocumentTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1900]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1901]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDocumentTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1940]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDocumentTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1941]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDocumentTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1942]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDocumentTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1943]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1944]);
 	}
 	
 	(
@@ -6268,7 +6920,7 @@ parse_org_emftext_language_xpath2_DocumentTest returns [org.emftext.language.xpa
 							completedElement(value, true);
 						}
 						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_50_0_0_2_0_0_0, a2_0, true);
+						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_51_0_0_2_0_0_0, a2_0, true);
 						copyLocalizationInfos(a2_0, element);
 					}
 				}
@@ -6287,21 +6939,21 @@ parse_org_emftext_language_xpath2_DocumentTest returns [org.emftext.language.xpa
 							completedElement(value, true);
 						}
 						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_50_0_0_2_0_0_0, a2_1, true);
+						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_51_0_0_2_0_0_0, a2_1, true);
 						copyLocalizationInfos(a2_1, element);
 					}
 				}
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1902]);
+				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1945]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1903]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1946]);
 	}
 	
 	a3 = ')' {
@@ -6310,35 +6962,35 @@ parse_org_emftext_language_xpath2_DocumentTest returns [org.emftext.language.xpa
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_50_0_0_3, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_51_0_0_3, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1904]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1905]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1906]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1907]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1908]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1909]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1910]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1911]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1912]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1913]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1914]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1915]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1916]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1917]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1918]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1919]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1920]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1921]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1922]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1923]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1924]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1925]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1926]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1927]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1947]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1948]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1949]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1950]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1951]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1952]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1953]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1954]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1955]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1956]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1957]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1958]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1959]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1960]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1961]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1962]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1963]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1964]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1965]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1966]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1967]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1968]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1969]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1970]);
 	}
 	
 ;
@@ -6353,12 +7005,12 @@ parse_org_emftext_language_xpath2_TextTest returns [org.emftext.language.xpath2.
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_51_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_52_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1928]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1971]);
 	}
 	
 	a1 = '(' {
@@ -6367,12 +7019,12 @@ parse_org_emftext_language_xpath2_TextTest returns [org.emftext.language.xpath2.
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_51_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_52_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1929]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1972]);
 	}
 	
 	a2 = ')' {
@@ -6381,35 +7033,35 @@ parse_org_emftext_language_xpath2_TextTest returns [org.emftext.language.xpath2.
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_51_0_0_2, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_52_0_0_2, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1930]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1931]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1932]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1933]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1934]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1935]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1936]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1937]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1938]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1939]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1940]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1941]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1942]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1943]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1944]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1945]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1946]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1947]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1948]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1949]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1950]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1951]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1952]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1953]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1973]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1974]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1975]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1976]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1977]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1978]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1979]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1980]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1981]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1982]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1983]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1984]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1985]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1986]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1987]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1988]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1989]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1990]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1991]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1992]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1993]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1994]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1995]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1996]);
 	}
 	
 ;
@@ -6424,12 +7076,12 @@ parse_org_emftext_language_xpath2_CommentTest returns [org.emftext.language.xpat
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_52_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_53_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1954]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1997]);
 	}
 	
 	a1 = '(' {
@@ -6438,12 +7090,12 @@ parse_org_emftext_language_xpath2_CommentTest returns [org.emftext.language.xpat
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_52_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_53_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1955]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1998]);
 	}
 	
 	a2 = ')' {
@@ -6452,35 +7104,35 @@ parse_org_emftext_language_xpath2_CommentTest returns [org.emftext.language.xpat
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_52_0_0_2, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_53_0_0_2, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1956]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1957]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1958]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1959]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1960]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1961]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1962]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1963]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1964]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1965]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1966]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1967]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1968]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1969]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1970]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1971]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1972]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1973]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1974]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1975]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1976]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1977]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1978]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1979]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1999]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2000]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2001]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2002]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2003]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2004]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2005]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2006]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2007]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2008]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2009]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2010]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2011]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2012]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2013]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2014]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2015]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2016]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2017]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2018]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2019]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2020]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2021]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2022]);
 	}
 	
 ;
@@ -6495,12 +7147,12 @@ parse_org_emftext_language_xpath2_PITest returns [org.emftext.language.xpath2.PI
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_53_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_54_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1980]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2023]);
 	}
 	
 	a1 = '(' {
@@ -6509,12 +7161,12 @@ parse_org_emftext_language_xpath2_PITest returns [org.emftext.language.xpath2.PI
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_53_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_54_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1981]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2024]);
 	}
 	
 	a2 = ')' {
@@ -6523,35 +7175,35 @@ parse_org_emftext_language_xpath2_PITest returns [org.emftext.language.xpath2.PI
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_53_0_0_2, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_54_0_0_2, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1982]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1983]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1984]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1985]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1986]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1987]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1988]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1989]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1990]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1991]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1992]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1993]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1994]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1995]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1996]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1997]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1998]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1999]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2000]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2001]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2002]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2003]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2004]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2005]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2025]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2026]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2027]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2028]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2029]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2030]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2031]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2032]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2033]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2034]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2035]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2036]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2037]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2038]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2039]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2040]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2041]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2042]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2043]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2044]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2045]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2046]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2047]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2048]);
 	}
 	
 	|//derived choice rules for sub-classes: 
@@ -6571,12 +7223,12 @@ parse_org_emftext_language_xpath2_NCNamePITest returns [org.emftext.language.xpa
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_54_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_55_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2006]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2049]);
 	}
 	
 	a1 = '(' {
@@ -6585,12 +7237,12 @@ parse_org_emftext_language_xpath2_NCNamePITest returns [org.emftext.language.xpa
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_54_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_55_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2007]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2050]);
 	}
 	
 	(
@@ -6619,14 +7271,14 @@ parse_org_emftext_language_xpath2_NCNamePITest returns [org.emftext.language.xpa
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_54_0_0_2, resolved, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_55_0_0_2, resolved, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2008]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2051]);
 	}
 	
 	a3 = ')' {
@@ -6635,35 +7287,35 @@ parse_org_emftext_language_xpath2_NCNamePITest returns [org.emftext.language.xpa
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_54_0_0_3, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_55_0_0_3, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2009]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2010]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2011]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2012]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2013]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2014]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2015]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2016]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2017]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2018]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2019]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2020]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2021]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2022]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2023]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2024]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2025]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2026]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2027]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2028]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2029]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2030]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2031]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2032]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2052]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2053]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2054]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2055]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2056]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2057]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2058]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2059]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2060]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2061]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2062]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2063]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2064]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2065]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2066]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2067]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2068]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2069]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2070]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2071]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2072]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2073]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2074]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2075]);
 	}
 	
 ;
@@ -6678,12 +7330,12 @@ parse_org_emftext_language_xpath2_StringLiteralPITest returns [org.emftext.langu
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_55_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_56_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2033]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2076]);
 	}
 	
 	a1 = '(' {
@@ -6692,12 +7344,12 @@ parse_org_emftext_language_xpath2_StringLiteralPITest returns [org.emftext.langu
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_55_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_56_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2034]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2077]);
 	}
 	
 	(
@@ -6729,7 +7381,7 @@ parse_org_emftext_language_xpath2_StringLiteralPITest returns [org.emftext.langu
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_55_0_0_2, proxy, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_56_0_0_2, proxy, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, proxy);
 			}
@@ -6737,7 +7389,7 @@ parse_org_emftext_language_xpath2_StringLiteralPITest returns [org.emftext.langu
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2035]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2078]);
 	}
 	
 	a3 = ')' {
@@ -6746,35 +7398,35 @@ parse_org_emftext_language_xpath2_StringLiteralPITest returns [org.emftext.langu
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_55_0_0_3, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_56_0_0_3, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2036]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2037]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2038]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2039]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2040]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2041]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2042]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2043]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2044]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2045]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2046]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2047]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2048]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2049]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2050]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2051]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2052]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2053]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2054]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2055]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2056]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2057]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2058]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2059]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2079]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2080]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2081]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2082]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2083]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2084]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2085]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2086]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2087]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2088]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2089]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2090]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2091]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2092]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2093]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2094]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2095]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2096]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2097]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2098]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2099]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2100]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2101]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2102]);
 	}
 	
 ;
@@ -6789,12 +7441,12 @@ parse_org_emftext_language_xpath2_AttributeTest returns [org.emftext.language.xp
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_56_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2060]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2103]);
 	}
 	
 	a1 = '(' {
@@ -6803,12 +7455,12 @@ parse_org_emftext_language_xpath2_AttributeTest returns [org.emftext.language.xp
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_56_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2061]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2104]);
 	}
 	
 	a2 = ')' {
@@ -6817,35 +7469,35 @@ parse_org_emftext_language_xpath2_AttributeTest returns [org.emftext.language.xp
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_56_0_0_2, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_2, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2062]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2063]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2064]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2065]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2066]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2067]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2068]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2069]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2070]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2071]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2072]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2073]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2074]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2075]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2076]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2077]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2078]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2079]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2080]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2081]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2082]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2083]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2084]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2085]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2105]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2106]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2107]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2108]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2109]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2110]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2111]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2112]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2113]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2114]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2115]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2116]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2117]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2118]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2119]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2120]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2121]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2122]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2123]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2124]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2125]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2126]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2127]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2128]);
 	}
 	
 	|//derived choice rules for sub-classes: 
@@ -6865,12 +7517,12 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2086]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2129]);
 	}
 	
 	a1 = '(' {
@@ -6879,12 +7531,12 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2087]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2130]);
 	}
 	
 	a2 = '*' {
@@ -6893,13 +7545,13 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_2, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_2, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2088]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2089]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2131]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2132]);
 	}
 	
 	(
@@ -6910,15 +7562,15 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_3_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_3_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getWildcardAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2090]);
-				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getWildcardAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2091]);
-				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getWildcardAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2092]);
-				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getWildcardAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2093]);
+				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getWildcardAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2133]);
+				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getWildcardAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2134]);
+				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getWildcardAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2135]);
+				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getWildcardAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2136]);
 			}
 			
 			(
@@ -6937,21 +7589,21 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 							completedElement(value, true);
 						}
 						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_3_0_0_1, a4_0, true);
+						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_3_0_0_1, a4_0, true);
 						copyLocalizationInfos(a4_0, element);
 					}
 				}
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2094]);
+				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2137]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2095]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2138]);
 	}
 	
 	a5 = ')' {
@@ -6960,35 +7612,35 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_4, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_4, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2096]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2097]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2098]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2099]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2100]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2101]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2102]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2103]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2104]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2105]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2106]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2107]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2108]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2109]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2110]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2111]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2112]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2113]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2114]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2115]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2116]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2117]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2118]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2119]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2139]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2140]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2141]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2142]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2143]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2144]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2145]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2146]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2147]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2148]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2149]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2150]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2151]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2152]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2153]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2154]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2155]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2156]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2157]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2158]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2159]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2160]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2161]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2162]);
 	}
 	
 ;
@@ -7003,12 +7655,12 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2120]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2163]);
 	}
 	
 	a1 = '(' {
@@ -7017,15 +7669,15 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2121]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2122]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2123]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2124]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2164]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2165]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2166]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2167]);
 	}
 	
 	(
@@ -7044,15 +7696,15 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_2, a2_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_2, a2_0, true);
 				copyLocalizationInfos(a2_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2125]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2126]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2168]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2169]);
 	}
 	
 	(
@@ -7063,15 +7715,15 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_3_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_3_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2127]);
-				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2128]);
-				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2129]);
-				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2130]);
+				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2170]);
+				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2171]);
+				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2172]);
+				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2173]);
 			}
 			
 			(
@@ -7090,21 +7742,21 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 							completedElement(value, true);
 						}
 						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_3_0_0_1, a4_0, true);
+						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_3_0_0_1, a4_0, true);
 						copyLocalizationInfos(a4_0, element);
 					}
 				}
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2131]);
+				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2174]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2132]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2175]);
 	}
 	
 	a5 = ')' {
@@ -7113,35 +7765,35 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_4, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_4, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2133]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2134]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2135]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2136]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2137]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2138]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2139]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2140]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2141]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2142]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2143]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2144]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2145]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2146]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2147]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2148]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2149]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2150]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2151]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2152]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2153]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2154]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2155]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2156]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2176]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2177]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2178]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2179]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2180]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2181]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2182]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2183]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2184]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2185]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2186]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2187]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2188]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2189]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2190]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2191]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2192]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2193]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2194]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2195]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2196]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2197]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2198]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2199]);
 	}
 	
 ;
@@ -7156,12 +7808,12 @@ parse_org_emftext_language_xpath2_SchemaAttributeTest returns [org.emftext.langu
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_60_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2157]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2200]);
 	}
 	
 	a1 = '(' {
@@ -7170,15 +7822,15 @@ parse_org_emftext_language_xpath2_SchemaAttributeTest returns [org.emftext.langu
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_60_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getSchemaAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2158]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getSchemaAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2159]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getSchemaAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2160]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getSchemaAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2161]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getSchemaAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2201]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getSchemaAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2202]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getSchemaAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2203]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getSchemaAttributeTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2204]);
 	}
 	
 	(
@@ -7197,14 +7849,14 @@ parse_org_emftext_language_xpath2_SchemaAttributeTest returns [org.emftext.langu
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_2, a2_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_60_0_0_2, a2_0, true);
 				copyLocalizationInfos(a2_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2162]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2205]);
 	}
 	
 	a3 = ')' {
@@ -7213,35 +7865,35 @@ parse_org_emftext_language_xpath2_SchemaAttributeTest returns [org.emftext.langu
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_3, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_60_0_0_3, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2163]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2164]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2165]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2166]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2167]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2168]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2169]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2170]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2171]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2172]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2173]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2174]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2175]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2176]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2177]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2178]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2179]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2180]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2181]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2182]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2183]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2184]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2185]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2186]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2206]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2207]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2208]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2209]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2210]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2211]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2212]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2213]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2214]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2215]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2216]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2217]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2218]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2219]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2220]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2221]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2222]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2223]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2224]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2225]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2226]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2227]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2228]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2229]);
 	}
 	
 ;
@@ -7256,12 +7908,12 @@ parse_org_emftext_language_xpath2_ElementTest returns [org.emftext.language.xpat
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_60_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2187]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2230]);
 	}
 	
 	a1 = '(' {
@@ -7270,12 +7922,12 @@ parse_org_emftext_language_xpath2_ElementTest returns [org.emftext.language.xpat
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_60_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2188]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2231]);
 	}
 	
 	a2 = ')' {
@@ -7284,36 +7936,36 @@ parse_org_emftext_language_xpath2_ElementTest returns [org.emftext.language.xpat
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_60_0_0_2, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_2, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2189]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2190]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2191]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2192]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2193]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2194]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2195]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2196]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2197]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2198]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2199]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2200]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2201]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2202]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2203]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2204]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2205]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2206]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2207]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2208]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2209]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2210]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2211]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2212]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2213]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2232]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2233]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2234]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2235]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2236]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2237]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2238]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2239]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2240]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2241]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2242]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2243]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2244]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2245]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2246]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2247]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2248]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2249]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2250]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2251]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2252]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2253]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2254]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2255]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2256]);
 	}
 	
 	|//derived choice rules for sub-classes: 
@@ -7338,12 +7990,12 @@ parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.langu
 			}
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2214]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2257]);
 	}
 	
 	a1 = '(' {
@@ -7357,12 +8009,12 @@ parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.langu
 			}
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2215]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2258]);
 	}
 	
 	a2 = '*' {
@@ -7376,13 +8028,13 @@ parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.langu
 			}
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_2, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_2, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2216]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2217]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2259]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2260]);
 	}
 	
 	(
@@ -7398,15 +8050,15 @@ parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.langu
 					}
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_3_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_3_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getWildcardElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2218]);
-				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getWildcardElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2219]);
-				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getWildcardElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2220]);
-				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getWildcardElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2221]);
+				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getWildcardElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2261]);
+				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getWildcardElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2262]);
+				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getWildcardElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2263]);
+				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getWildcardElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2264]);
 			}
 			
 			(
@@ -7430,49 +8082,51 @@ parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.langu
 							completedElement(value, true);
 						}
 						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_3_0_0_1, a4_0, true);
+						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_3_0_0_1, a4_0, true);
 						copyLocalizationInfos(a4_0, element);
 					}
 				}
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2222]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2223]);
+				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2265]);
+				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2266]);
 			}
 			
 			(
 				(
-					a5 = '?' {
-						if (element == null) {
-							element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createWildcardElementTest();
-							startIncompleteElement(element);
-							// initialize boolean attribute
-							{
-								Object value = false;
-								element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.WILDCARD_ELEMENT_TEST__TYPE_IS_OPTIONAL), value);
+					(
+						a5 = '?' {
+							if (element == null) {
+								element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createWildcardElementTest();
+								startIncompleteElement(element);
+								// initialize boolean attribute
+								{
+									Object value = false;
+									element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.WILDCARD_ELEMENT_TEST__TYPE_IS_OPTIONAL), value);
+								}
 							}
+							collectHiddenTokens(element);
+							retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_3_0_0_2, true, true);
+							copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+							// set value of boolean attribute
+							Object value = true;
+							element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.WILDCARD_ELEMENT_TEST__TYPE_IS_OPTIONAL), value);
+							completedElement(value, false);
 						}
-						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_3_0_0_2, true, true);
-						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
-						// set value of boolean attribute
-						Object value = true;
-						element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.WILDCARD_ELEMENT_TEST__TYPE_IS_OPTIONAL), value);
-						completedElement(value, false);
-					}
+					)
 				)
-			)
-			{
+				
+			)?			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2224]);
+				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2267]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2225]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2268]);
 	}
 	
 	a8 = ')' {
@@ -7486,36 +8140,36 @@ parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.langu
 			}
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_4, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_4, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a8, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2226]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2227]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2228]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2229]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2230]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2231]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2232]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2233]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2234]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2235]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2236]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2237]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2238]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2239]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2240]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2241]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2242]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2243]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2244]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2245]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2246]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2247]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2248]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2249]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2250]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2269]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2270]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2271]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2272]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2273]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2274]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2275]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2276]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2277]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2278]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2279]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2280]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2281]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2282]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2283]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2284]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2285]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2286]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2287]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2288]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2289]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2290]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2291]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2292]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2293]);
 	}
 	
 ;
@@ -7535,12 +8189,12 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 			}
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2251]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2294]);
 	}
 	
 	a1 = '(' {
@@ -7554,15 +8208,15 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 			}
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2252]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2253]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2254]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2255]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2295]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2296]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2297]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2298]);
 	}
 	
 	(
@@ -7586,15 +8240,15 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_2, a2_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_2, a2_0, true);
 				copyLocalizationInfos(a2_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2256]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2257]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2299]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2300]);
 	}
 	
 	(
@@ -7610,15 +8264,15 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 					}
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_3_0_0_0, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_3_0_0_0, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2258]);
-				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2259]);
-				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2260]);
-				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2261]);
+				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2301]);
+				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2302]);
+				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2303]);
+				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2304]);
 			}
 			
 			(
@@ -7642,49 +8296,51 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 							completedElement(value, true);
 						}
 						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_3_0_0_1, a4_0, true);
+						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_3_0_0_1, a4_0, true);
 						copyLocalizationInfos(a4_0, element);
 					}
 				}
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2262]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2263]);
+				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2305]);
+				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2306]);
 			}
 			
 			(
 				(
-					a5 = '?' {
-						if (element == null) {
-							element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createNameElementTest();
-							startIncompleteElement(element);
-							// initialize boolean attribute
-							{
-								Object value = false;
-								element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ELEMENT_TEST__TYPE_IS_OPTIONAL), value);
+					(
+						a5 = '?' {
+							if (element == null) {
+								element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createNameElementTest();
+								startIncompleteElement(element);
+								// initialize boolean attribute
+								{
+									Object value = false;
+									element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ELEMENT_TEST__TYPE_IS_OPTIONAL), value);
+								}
 							}
+							collectHiddenTokens(element);
+							retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_3_0_0_2, true, true);
+							copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+							// set value of boolean attribute
+							Object value = true;
+							element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ELEMENT_TEST__TYPE_IS_OPTIONAL), value);
+							completedElement(value, false);
 						}
-						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_3_0_0_2, true, true);
-						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
-						// set value of boolean attribute
-						Object value = true;
-						element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ELEMENT_TEST__TYPE_IS_OPTIONAL), value);
-						completedElement(value, false);
-					}
+					)
 				)
-			)
-			{
+				
+			)?			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2264]);
+				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2307]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2265]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2308]);
 	}
 	
 	a8 = ')' {
@@ -7698,36 +8354,36 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 			}
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_4, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_4, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a8, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2266]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2267]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2268]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2269]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2270]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2271]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2272]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2273]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2274]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2275]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2276]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2277]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2278]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2279]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2280]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2281]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2282]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2283]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2284]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2285]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2286]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2287]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2288]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2289]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2290]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2309]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2310]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2311]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2312]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2313]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2314]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2315]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2316]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2317]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2318]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2319]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2320]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2321]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2322]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2323]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2324]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2325]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2326]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2327]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2328]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2329]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2330]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2331]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2332]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2333]);
 	}
 	
 ;
@@ -7742,12 +8398,12 @@ parse_org_emftext_language_xpath2_SchemaElementTest returns [org.emftext.languag
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_0, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_64_0_0_0, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2291]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2334]);
 	}
 	
 	a1 = '(' {
@@ -7756,15 +8412,15 @@ parse_org_emftext_language_xpath2_SchemaElementTest returns [org.emftext.languag
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_1, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_64_0_0_1, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getSchemaElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2292]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getSchemaElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2293]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getSchemaElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2294]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getSchemaElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2295]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getSchemaElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2335]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getSchemaElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2336]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getSchemaElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2337]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getSchemaElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2338]);
 	}
 	
 	(
@@ -7783,14 +8439,14 @@ parse_org_emftext_language_xpath2_SchemaElementTest returns [org.emftext.languag
 					completedElement(value, true);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_2, a2_0, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_64_0_0_2, a2_0, true);
 				copyLocalizationInfos(a2_0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2296]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2339]);
 	}
 	
 	a3 = ')' {
@@ -7799,36 +8455,36 @@ parse_org_emftext_language_xpath2_SchemaElementTest returns [org.emftext.languag
 			startIncompleteElement(element);
 		}
 		collectHiddenTokens(element);
-		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_3, null, true);
+		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_64_0_0_3, null, true);
 		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2297]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2298]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2299]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2300]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2301]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2302]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2303]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2304]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2305]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2306]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2307]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2308]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2309]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2310]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2311]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2312]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2313]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2314]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2315]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2316]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2317]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2318]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2319]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2320]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2321]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2340]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2341]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2342]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2343]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2344]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2345]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2346]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2347]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2348]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2349]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2350]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2351]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2352]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2353]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2354]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2355]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2356]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2357]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2358]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2359]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2360]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2361]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2362]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2363]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2364]);
 	}
 	
 ;
@@ -7863,36 +8519,36 @@ parse_org_emftext_language_xpath2_IntegerLiteral returns [org.emftext.language.x
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_64_0_0_0, resolved, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_65_0_0_0, resolved, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2322]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2323]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2324]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2325]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2326]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2327]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2328]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2329]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2330]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2331]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2332]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2333]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2334]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2335]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2336]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2337]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2338]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2339]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2340]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2341]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2342]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2343]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2344]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2365]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2366]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2367]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2368]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2369]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2370]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2371]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2372]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2373]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2374]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2375]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2376]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2377]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2378]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2379]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2380]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2381]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2382]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2383]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2384]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2385]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2386]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2387]);
 	}
 	
 ;
@@ -7927,36 +8583,36 @@ parse_org_emftext_language_xpath2_DecimalLiteral returns [org.emftext.language.x
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_65_0_0_0, resolved, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_66_0_0_0, resolved, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2345]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2346]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2347]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2348]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2349]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2350]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2351]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2352]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2353]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2354]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2355]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2356]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2357]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2358]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2359]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2360]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2361]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2362]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2363]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2364]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2365]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2366]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2367]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2388]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2389]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2390]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2391]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2392]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2393]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2394]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2395]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2396]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2397]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2398]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2399]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2400]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2401]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2402]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2403]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2404]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2405]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2406]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2407]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2408]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2409]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2410]);
 	}
 	
 ;
@@ -7991,36 +8647,36 @@ parse_org_emftext_language_xpath2_DoubleLiteral returns [org.emftext.language.xp
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_66_0_0_0, resolved, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_67_0_0_0, resolved, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2368]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2369]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2370]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2371]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2372]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2373]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2374]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2375]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2376]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2377]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2378]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2379]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2380]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2381]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2382]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2383]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2384]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2385]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2386]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2387]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2388]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2389]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2390]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2411]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2412]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2413]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2414]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2415]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2416]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2417]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2418]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2419]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2420]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2421]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2422]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2423]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2424]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2425]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2426]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2427]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2428]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2429]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2430]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2431]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2432]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2433]);
 	}
 	
 ;
@@ -8055,36 +8711,36 @@ parse_org_emftext_language_xpath2_StringLiteral returns [org.emftext.language.xp
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_67_0_0_0, resolved, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_68_0_0_0, resolved, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2391]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2392]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2393]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2394]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2395]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2396]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2397]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2398]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2399]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2400]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2401]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2402]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2403]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2404]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2405]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2406]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2407]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2408]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2409]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2410]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2411]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2412]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2413]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2434]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2435]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2436]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2437]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2438]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2439]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2440]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2441]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2442]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2443]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2444]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2445]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2446]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2447]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2448]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2449]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2450]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2451]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2452]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2453]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2454]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2455]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2456]);
 	}
 	
 ;
@@ -8121,14 +8777,14 @@ parse_org_emftext_language_xpath2_QName returns [org.emftext.language.xpath2.QNa
 							completedElement(value, false);
 						}
 						collectHiddenTokens(element);
-						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_68_0_0_0_0_0_0, resolved, true);
+						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_69_0_0_0_0_0_0, resolved, true);
 						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
 					}
 				}
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2414]);
+				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2457]);
 			}
 			
 			a1 = ':' {
@@ -8137,19 +8793,19 @@ parse_org_emftext_language_xpath2_QName returns [org.emftext.language.xpath2.QNa
 					startIncompleteElement(element);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_68_0_0_0_0_0_1, null, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_69_0_0_0_0_0_1, null, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2415]);
+				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2458]);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2416]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2459]);
 	}
 	
 	(
@@ -8178,157 +8834,33 @@ parse_org_emftext_language_xpath2_QName returns [org.emftext.language.xpath2.QNa
 					completedElement(value, false);
 				}
 				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_68_0_0_1, resolved, true);
+				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_69_0_0_1, resolved, true);
 				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
 			}
 		}
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2417]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2418]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2419]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2420]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2421]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2422]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2423]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2424]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2425]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2426]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2427]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2428]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2429]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2430]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2431]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2432]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2433]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2434]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2435]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2436]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2437]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2438]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2439]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2440]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2441]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2442]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2443]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2444]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2445]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2446]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2447]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2448]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2449]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2450]);
-	}
-	
-	|//derived choice rules for sub-classes: 
-	
-	c0 = parse_org_emftext_language_xpath2_VarName{ element = c0; /* this is a subclass or primitive expression choice */ }
-	
-;
-
-parse_org_emftext_language_xpath2_PathExpr returns [org.emftext.language.xpath2.PathExpr element = null]
-@init{
-}
-:
-	(
-		a0_0 = parse_org_emftext_language_xpath2_PathExprChild		{
-			if (terminateParsing) {
-				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
-			}
-			if (element == null) {
-				element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createPathExpr();
-				startIncompleteElement(element);
-			}
-			if (a0_0 != null) {
-				if (a0_0 != null) {
-					Object value = a0_0;
-					addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.PATH_EXPR__STEP, value);
-					completedElement(value, true);
-				}
-				collectHiddenTokens(element);
-				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_69_0_0_0, a0_0, true);
-				copyLocalizationInfos(a0_0, element);
-			}
-		}
-	)
-	{
-		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2451]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2452]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2453]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2454]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2455]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2456]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2457]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2458]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2459]);
 		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2460]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2461]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAxisStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2461]);
 		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2462]);
 		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2463]);
 		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2464]);
 		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2465]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2466]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2467]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2468]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2469]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2470]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2466]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2467]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2468]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2469]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2470]);
 		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2471]);
 		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2472]);
-	}
-	
-	(
-		(
-			a1_0 = parse_org_emftext_language_xpath2_ChildStepExpr			{
-				if (terminateParsing) {
-					throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
-				}
-				if (element == null) {
-					element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createPathExpr();
-					startIncompleteElement(element);
-				}
-				if (a1_0 != null) {
-					if (a1_0 != null) {
-						Object value = a1_0;
-						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.PATH_EXPR__STEP, value);
-						completedElement(value, true);
-					}
-					collectHiddenTokens(element);
-					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_69_0_0_1, a1_0, true);
-					copyLocalizationInfos(a1_0, element);
-				}
-			}
-			|			a1_1 = parse_org_emftext_language_xpath2_DescOrSelfStepExpr			{
-				if (terminateParsing) {
-					throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
-				}
-				if (element == null) {
-					element = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createPathExpr();
-					startIncompleteElement(element);
-				}
-				if (a1_1 != null) {
-					if (a1_1 != null) {
-						Object value = a1_1;
-						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.PATH_EXPR__STEP, value);
-						completedElement(value, true);
-					}
-					collectHiddenTokens(element);
-					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_69_0_0_1, a1_1, true);
-					copyLocalizationInfos(a1_1, element);
-				}
-			}
-		)
-		
-	)*	{
-		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2473]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2474]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2473]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2474]);
 		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2475]);
 		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2476]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2477]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2478]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2479]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2477]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2478]);
+		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2479]);
 		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2480]);
 		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2481]);
 		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2482]);
@@ -8339,12 +8871,14 @@ parse_org_emftext_language_xpath2_PathExpr returns [org.emftext.language.xpath2.
 		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2487]);
 		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2488]);
 		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2489]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2490]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2491]);
-		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2492]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2493]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2494]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2490]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2491]);
+		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2492]);
 	}
+	
+	|//derived choice rules for sub-classes: 
+	
+	c0 = parse_org_emftext_language_xpath2_VarName{ element = c0; /* this is a subclass or primitive expression choice */ }
 	
 ;
 
@@ -8366,15 +8900,21 @@ parse_org_emftext_language_xpath2_ExprSingle returns [org.emftext.language.xpath
 	|	c13 = parse_org_emftext_language_xpath2_CastableExpr{ element = c13; /* this is a subclass or primitive expression choice */ }
 	|	c14 = parse_org_emftext_language_xpath2_CastExpr{ element = c14; /* this is a subclass or primitive expression choice */ }
 	|	c15 = parse_org_emftext_language_xpath2_UnaryExpr{ element = c15; /* this is a subclass or primitive expression choice */ }
-	|	c16 = parse_org_emftext_language_xpath2_VarRef{ element = c16; /* this is a subclass or primitive expression choice */ }
-	|	c17 = parse_org_emftext_language_xpath2_ParenthesizedExpr{ element = c17; /* this is a subclass or primitive expression choice */ }
-	|	c18 = parse_org_emftext_language_xpath2_ContextItemExpr{ element = c18; /* this is a subclass or primitive expression choice */ }
-	|	c19 = parse_org_emftext_language_xpath2_FunctionCall{ element = c19; /* this is a subclass or primitive expression choice */ }
-	|	c20 = parse_org_emftext_language_xpath2_IntegerLiteral{ element = c20; /* this is a subclass or primitive expression choice */ }
-	|	c21 = parse_org_emftext_language_xpath2_DecimalLiteral{ element = c21; /* this is a subclass or primitive expression choice */ }
-	|	c22 = parse_org_emftext_language_xpath2_DoubleLiteral{ element = c22; /* this is a subclass or primitive expression choice */ }
-	|	c23 = parse_org_emftext_language_xpath2_StringLiteral{ element = c23; /* this is a subclass or primitive expression choice */ }
-	|	c24 = parse_org_emftext_language_xpath2_PathExpr{ element = c24; /* this is a subclass or primitive expression choice */ }
+	|	c16 = parse_org_emftext_language_xpath2_FunctionCall{ element = c16; /* this is a subclass or primitive expression choice */ }
+	|	c17 = parse_org_emftext_language_xpath2_PathExpr{ element = c17; /* this is a subclass or primitive expression choice */ }
+	|	c18 = parse_org_emftext_language_xpath2_ChildStepExpr{ element = c18; /* this is a subclass or primitive expression choice */ }
+	|	c19 = parse_org_emftext_language_xpath2_DescOrSelfStepExpr{ element = c19; /* this is a subclass or primitive expression choice */ }
+	|	c20 = parse_org_emftext_language_xpath2_RootStepExpr{ element = c20; /* this is a subclass or primitive expression choice */ }
+	|	c21 = parse_org_emftext_language_xpath2_SelfStepExpr{ element = c21; /* this is a subclass or primitive expression choice */ }
+	|	c22 = parse_org_emftext_language_xpath2_AxisStep{ element = c22; /* this is a subclass or primitive expression choice */ }
+	|	c23 = parse_org_emftext_language_xpath2_FilterExpr{ element = c23; /* this is a subclass or primitive expression choice */ }
+	|	c24 = parse_org_emftext_language_xpath2_VarRef{ element = c24; /* this is a subclass or primitive expression choice */ }
+	|	c25 = parse_org_emftext_language_xpath2_ParenthesizedExpr{ element = c25; /* this is a subclass or primitive expression choice */ }
+	|	c26 = parse_org_emftext_language_xpath2_ContextItemExpr{ element = c26; /* this is a subclass or primitive expression choice */ }
+	|	c27 = parse_org_emftext_language_xpath2_IntegerLiteral{ element = c27; /* this is a subclass or primitive expression choice */ }
+	|	c28 = parse_org_emftext_language_xpath2_DecimalLiteral{ element = c28; /* this is a subclass or primitive expression choice */ }
+	|	c29 = parse_org_emftext_language_xpath2_DoubleLiteral{ element = c29; /* this is a subclass or primitive expression choice */ }
+	|	c30 = parse_org_emftext_language_xpath2_StringLiteral{ element = c30; /* this is a subclass or primitive expression choice */ }
 	
 ;
 
@@ -8395,15 +8935,26 @@ parse_org_emftext_language_xpath2_SequenceType returns [org.emftext.language.xpa
 
 parse_org_emftext_language_xpath2_ValueExpr returns [org.emftext.language.xpath2.ValueExpr element = null]
 :
-	c0 = parse_org_emftext_language_xpath2_VarRef{ element = c0; /* this is a subclass or primitive expression choice */ }
-	|	c1 = parse_org_emftext_language_xpath2_ParenthesizedExpr{ element = c1; /* this is a subclass or primitive expression choice */ }
-	|	c2 = parse_org_emftext_language_xpath2_ContextItemExpr{ element = c2; /* this is a subclass or primitive expression choice */ }
-	|	c3 = parse_org_emftext_language_xpath2_FunctionCall{ element = c3; /* this is a subclass or primitive expression choice */ }
-	|	c4 = parse_org_emftext_language_xpath2_IntegerLiteral{ element = c4; /* this is a subclass or primitive expression choice */ }
-	|	c5 = parse_org_emftext_language_xpath2_DecimalLiteral{ element = c5; /* this is a subclass or primitive expression choice */ }
-	|	c6 = parse_org_emftext_language_xpath2_DoubleLiteral{ element = c6; /* this is a subclass or primitive expression choice */ }
-	|	c7 = parse_org_emftext_language_xpath2_StringLiteral{ element = c7; /* this is a subclass or primitive expression choice */ }
-	|	c8 = parse_org_emftext_language_xpath2_PathExpr{ element = c8; /* this is a subclass or primitive expression choice */ }
+	c0 = parse_org_emftext_language_xpath2_PathExpr{ element = c0; /* this is a subclass or primitive expression choice */ }
+	
+;
+
+parse_org_emftext_language_xpath2_PathExprChild returns [org.emftext.language.xpath2.PathExprChild element = null]
+:
+	c0 = parse_org_emftext_language_xpath2_FunctionCall{ element = c0; /* this is a subclass or primitive expression choice */ }
+	|	c1 = parse_org_emftext_language_xpath2_ChildStepExpr{ element = c1; /* this is a subclass or primitive expression choice */ }
+	|	c2 = parse_org_emftext_language_xpath2_DescOrSelfStepExpr{ element = c2; /* this is a subclass or primitive expression choice */ }
+	|	c3 = parse_org_emftext_language_xpath2_RootStepExpr{ element = c3; /* this is a subclass or primitive expression choice */ }
+	|	c4 = parse_org_emftext_language_xpath2_SelfStepExpr{ element = c4; /* this is a subclass or primitive expression choice */ }
+	|	c5 = parse_org_emftext_language_xpath2_AxisStep{ element = c5; /* this is a subclass or primitive expression choice */ }
+	|	c6 = parse_org_emftext_language_xpath2_FilterExpr{ element = c6; /* this is a subclass or primitive expression choice */ }
+	|	c7 = parse_org_emftext_language_xpath2_VarRef{ element = c7; /* this is a subclass or primitive expression choice */ }
+	|	c8 = parse_org_emftext_language_xpath2_ParenthesizedExpr{ element = c8; /* this is a subclass or primitive expression choice */ }
+	|	c9 = parse_org_emftext_language_xpath2_ContextItemExpr{ element = c9; /* this is a subclass or primitive expression choice */ }
+	|	c10 = parse_org_emftext_language_xpath2_IntegerLiteral{ element = c10; /* this is a subclass or primitive expression choice */ }
+	|	c11 = parse_org_emftext_language_xpath2_DecimalLiteral{ element = c11; /* this is a subclass or primitive expression choice */ }
+	|	c12 = parse_org_emftext_language_xpath2_DoubleLiteral{ element = c12; /* this is a subclass or primitive expression choice */ }
+	|	c13 = parse_org_emftext_language_xpath2_StringLiteral{ element = c13; /* this is a subclass or primitive expression choice */ }
 	
 ;
 
@@ -8416,8 +8967,16 @@ parse_org_emftext_language_xpath2_StepExpr returns [org.emftext.language.xpath2.
 
 parse_org_emftext_language_xpath2_SelfStepExprChild returns [org.emftext.language.xpath2.SelfStepExprChild element = null]
 :
-	c0 = parse_org_emftext_language_xpath2_AxisStep{ element = c0; /* this is a subclass or primitive expression choice */ }
-	|	c1 = parse_org_emftext_language_xpath2_FilterExpr{ element = c1; /* this is a subclass or primitive expression choice */ }
+	c0 = parse_org_emftext_language_xpath2_FunctionCall{ element = c0; /* this is a subclass or primitive expression choice */ }
+	|	c1 = parse_org_emftext_language_xpath2_AxisStep{ element = c1; /* this is a subclass or primitive expression choice */ }
+	|	c2 = parse_org_emftext_language_xpath2_FilterExpr{ element = c2; /* this is a subclass or primitive expression choice */ }
+	|	c3 = parse_org_emftext_language_xpath2_VarRef{ element = c3; /* this is a subclass or primitive expression choice */ }
+	|	c4 = parse_org_emftext_language_xpath2_ParenthesizedExpr{ element = c4; /* this is a subclass or primitive expression choice */ }
+	|	c5 = parse_org_emftext_language_xpath2_ContextItemExpr{ element = c5; /* this is a subclass or primitive expression choice */ }
+	|	c6 = parse_org_emftext_language_xpath2_IntegerLiteral{ element = c6; /* this is a subclass or primitive expression choice */ }
+	|	c7 = parse_org_emftext_language_xpath2_DecimalLiteral{ element = c7; /* this is a subclass or primitive expression choice */ }
+	|	c8 = parse_org_emftext_language_xpath2_DoubleLiteral{ element = c8; /* this is a subclass or primitive expression choice */ }
+	|	c9 = parse_org_emftext_language_xpath2_StringLiteral{ element = c9; /* this is a subclass or primitive expression choice */ }
 	
 ;
 
@@ -8462,10 +9021,10 @@ parse_org_emftext_language_xpath2_KindTest returns [org.emftext.language.xpath2.
 
 parse_org_emftext_language_xpath2_PrimaryExpr returns [org.emftext.language.xpath2.PrimaryExpr element = null]
 :
-	c0 = parse_org_emftext_language_xpath2_VarRef{ element = c0; /* this is a subclass or primitive expression choice */ }
-	|	c1 = parse_org_emftext_language_xpath2_ParenthesizedExpr{ element = c1; /* this is a subclass or primitive expression choice */ }
-	|	c2 = parse_org_emftext_language_xpath2_ContextItemExpr{ element = c2; /* this is a subclass or primitive expression choice */ }
-	|	c3 = parse_org_emftext_language_xpath2_FunctionCall{ element = c3; /* this is a subclass or primitive expression choice */ }
+	c0 = parse_org_emftext_language_xpath2_FunctionCall{ element = c0; /* this is a subclass or primitive expression choice */ }
+	|	c1 = parse_org_emftext_language_xpath2_VarRef{ element = c1; /* this is a subclass or primitive expression choice */ }
+	|	c2 = parse_org_emftext_language_xpath2_ParenthesizedExpr{ element = c2; /* this is a subclass or primitive expression choice */ }
+	|	c3 = parse_org_emftext_language_xpath2_ContextItemExpr{ element = c3; /* this is a subclass or primitive expression choice */ }
 	|	c4 = parse_org_emftext_language_xpath2_IntegerLiteral{ element = c4; /* this is a subclass or primitive expression choice */ }
 	|	c5 = parse_org_emftext_language_xpath2_DecimalLiteral{ element = c5; /* this is a subclass or primitive expression choice */ }
 	|	c6 = parse_org_emftext_language_xpath2_DoubleLiteral{ element = c6; /* this is a subclass or primitive expression choice */ }
@@ -8481,17 +9040,6 @@ parse_org_emftext_language_xpath2_ItemType returns [org.emftext.language.xpath2.
 	
 ;
 
-parse_org_emftext_language_xpath2_PathExprChild returns [org.emftext.language.xpath2.PathExprChild element = null]
-:
-	c0 = parse_org_emftext_language_xpath2_ChildStepExpr{ element = c0; /* this is a subclass or primitive expression choice */ }
-	|	c1 = parse_org_emftext_language_xpath2_DescOrSelfStepExpr{ element = c1; /* this is a subclass or primitive expression choice */ }
-	|	c2 = parse_org_emftext_language_xpath2_RootStepExpr{ element = c2; /* this is a subclass or primitive expression choice */ }
-	|	c3 = parse_org_emftext_language_xpath2_SelfStepExpr{ element = c3; /* this is a subclass or primitive expression choice */ }
-	|	c4 = parse_org_emftext_language_xpath2_AxisStep{ element = c4; /* this is a subclass or primitive expression choice */ }
-	|	c5 = parse_org_emftext_language_xpath2_FilterExpr{ element = c5; /* this is a subclass or primitive expression choice */ }
-	
-;
-
 INTEGER_LITERAL:
 	(('0'..'9')+)
 ;
@@ -8501,25 +9049,14 @@ DECIMAL_LITERAL:
 DOUBLE_LITERAL:
 	(('.'('0'..'9')+)|(('0'..'9')+('.'('0'..'9')*)?)('e'|'E')('+'|'-')?('0'..'9')+)
 ;
-COMMENT_CONTENTS:
-	('\u0009'|'\u000A'|'\u000D'|'\u0020'..'\uD7FF'|'\uE000'..'\uFFFD'+)
-	{ _channel = 99; }
-;
 NCNAME:
 	(('A'..'Z'|'_'|'a'..'z'|'\u00C0'..'\u00D6'|'\u00D8'..'\u00F6'|'\u00F8'..'\u02FF'|'\u0370'..'\u037D'|'\u037F'..'\u1FFF'|'\u200C'..'\u200D'|'\u2070'..'\u218F'|'\u2C00'..'\u2FEF'|'\u3001'..'\uD7FF'|'\uF900'..'\uFDCF'|'\uFDF0'..'\uFFFD')('A'..'Z'|'_'|'a'..'z'|'\u00C0'..'\u00D6'|'\u00D8'..'\u00F6'|'\u00F8'..'\u02FF'|'\u0370'..'\u037D'|'\u037F'..'\u1FFF'|'\u200C'..'\u200D'|'\u2070'..'\u218F'|'\u2C00'..'\u2FEF'|'\u3001'..'\uD7FF'|'\uF900'..'\uFDCF'|'\uFDF0'..'\uFFFD'|'-'|'.'|'0'..'9'|'\u00B7'|'\u0300'..'\u036F'|'\u203F'..'\u2040')*)
-;
-TEXT:
-	(('A'..'Z' | 'a'..'z' | '0'..'9' | '_' | '-' )+)
 ;
 STRING_LITERAL:
 	(('\"')('\"\"'|~('\"'))*('\"')|('\'')('\'\''|~('\''))*('\''))
 ;
 WHITESPACE:
-	((' ' | '\t' | '\f'))
-	{ _channel = 99; }
-;
-LINEBREAK:
-	(('\r\n' | '\r' | '\n'))
+	((' '|'\t'|'\f'|'\r'|'\n')+)
 	{ _channel = 99; }
 ;
 

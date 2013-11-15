@@ -229,15 +229,6 @@ public interface Xpath2Factory extends EFactory {
     SelfStepExpr createSelfStepExpr();
 
     /**
-   * Returns a new object of class '<em>Self Step Expr Child</em>'.
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @return a new object of class '<em>Self Step Expr Child</em>'.
-   * @generated
-   */
-    SelfStepExprChild createSelfStepExprChild();
-
-    /**
    * Returns a new object of class '<em>Filter Expr</em>'.
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

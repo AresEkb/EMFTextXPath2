@@ -72,6 +72,11 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
         new Xpath2Switch<Adapter>()
     {
       @Override
+      public Adapter caseAnyExpr(AnyExpr object)
+      {
+        return createAnyExprAdapter();
+      }
+      @Override
       public Adapter caseExpr(Expr object)
       {
         return createExprAdapter();
@@ -280,6 +285,11 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
       public Adapter caseFilterExpr(FilterExpr object)
       {
         return createFilterExprAdapter();
+      }
+      @Override
+      public Adapter caseFilterExprChild(FilterExprChild object)
+      {
+        return createFilterExprChildAdapter();
       }
       @Override
       public Adapter caseAxisStep(AxisStep object)
@@ -606,6 +616,20 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
     return modelSwitch.doSwitch((EObject)target);
   }
 
+
+    /**
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.AnyExpr <em>Any Expr</em>}'.
+   * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.emftext.language.xpath2.AnyExpr
+   * @generated
+   */
+    public Adapter createAnyExprAdapter() {
+    return null;
+  }
 
     /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.Expr <em>Expr</em>}'.
@@ -1192,6 +1216,20 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
     public Adapter createFilterExprAdapter() {
+    return null;
+  }
+
+    /**
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.FilterExprChild <em>Filter Expr Child</em>}'.
+   * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.emftext.language.xpath2.FilterExprChild
+   * @generated
+   */
+    public Adapter createFilterExprChildAdapter() {
     return null;
   }
 

@@ -31,6 +31,8 @@ public class Xpath2SyntaxCoverageInformationProvider {
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getCastableExpr(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getCastExpr(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getUnaryExpr(),
+			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(),
+			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getRootStepExpr(),
@@ -51,7 +53,6 @@ public class Xpath2SyntaxCoverageInformationProvider {
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getVarName(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getContextItemExpr(),
-			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getSingleType(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getEmptySequenceType(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getItemSequenceType(),
@@ -79,7 +80,6 @@ public class Xpath2SyntaxCoverageInformationProvider {
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDoubleLiteral(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getStringLiteral(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getQName(),
-			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPathExpr(),
 		};
 	}
 	

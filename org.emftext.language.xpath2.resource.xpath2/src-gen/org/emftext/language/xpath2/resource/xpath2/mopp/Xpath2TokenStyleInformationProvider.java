@@ -11,6 +11,24 @@ public class Xpath2TokenStyleInformationProvider {
 	public static String TASK_ITEM_TOKEN_NAME = "TASK_ITEM";
 	
 	public org.emftext.language.xpath2.resource.xpath2.IXpath2TokenStyle getDefaultTokenStyle(String tokenName) {
+		if ("$".equals(tokenName)) {
+			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0xDA, 0x00, 0x00}, null, false, false, false, false);
+		}
+		if ("INTEGER_LITERAL".equals(tokenName)) {
+			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x25, 0x18, 0xB5}, null, false, false, false, false);
+		}
+		if ("DECIMAL_LITERAL".equals(tokenName)) {
+			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x25, 0x18, 0xB5}, null, false, false, false, false);
+		}
+		if ("DOUBLE_LITERAL".equals(tokenName)) {
+			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x25, 0x18, 0xB5}, null, false, false, false, false);
+		}
+		if ("STRING_LITERAL".equals(tokenName)) {
+			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x25, 0x18, 0xB5}, null, false, false, false, false);
+		}
+		if ("NCNAME".equals(tokenName)) {
+			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x00, 0x80, 0x2A}, null, false, false, false, false);
+		}
 		if ("for".equals(tokenName)) {
 			return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(new int[] {0x80, 0x00, 0x55}, null, true, false, false, false);
 		}

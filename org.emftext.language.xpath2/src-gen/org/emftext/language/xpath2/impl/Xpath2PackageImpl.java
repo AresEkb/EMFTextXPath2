@@ -19,6 +19,7 @@ import org.emftext.language.xpath2.AdditiveExprChild;
 import org.emftext.language.xpath2.AdditiveOpKind;
 import org.emftext.language.xpath2.AndExpr;
 import org.emftext.language.xpath2.AndExprChild;
+import org.emftext.language.xpath2.AnyExpr;
 import org.emftext.language.xpath2.AnyItemType;
 import org.emftext.language.xpath2.AnyKindTest;
 import org.emftext.language.xpath2.AnyWildcard;
@@ -47,6 +48,7 @@ import org.emftext.language.xpath2.EmptySequenceType;
 import org.emftext.language.xpath2.Expr;
 import org.emftext.language.xpath2.ExprSingle;
 import org.emftext.language.xpath2.FilterExpr;
+import org.emftext.language.xpath2.FilterExprChild;
 import org.emftext.language.xpath2.ForExpr;
 import org.emftext.language.xpath2.ForwardAxisKind;
 import org.emftext.language.xpath2.ForwardStep;
@@ -136,6 +138,13 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
+    /**
+   * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+   * @generated
+   */
+    private EClass anyExprEClass = null;
+
     /**
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -429,6 +438,13 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
    * @generated
    */
     private EClass filterExprEClass = null;
+
+    /**
+   * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+   * @generated
+   */
+    private EClass filterExprChildEClass = null;
 
     /**
    * <!-- begin-user-doc -->
@@ -1007,6 +1023,15 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     // Update the registry and return the package
     EPackage.Registry.INSTANCE.put(Xpath2Package.eNS_URI, theXpath2Package);
     return theXpath2Package;
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+   * @generated
+   */
+    public EClass getAnyExpr() {
+    return anyExprEClass;
   }
 
     /**
@@ -1763,6 +1788,15 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
    */
     public EReference getFilterExpr_Predicate() {
     return (EReference)filterExprEClass.getEStructuralFeatures().get(1);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+   * @generated
+   */
+    public EClass getFilterExprChild() {
+    return filterExprChildEClass;
   }
 
     /**
@@ -2900,6 +2934,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     isCreated = true;
 
     // Create classes and their features
+    anyExprEClass = createEClass(ANY_EXPR);
+
     exprEClass = createEClass(EXPR);
     createEReference(exprEClass, EXPR__EXPR);
 
@@ -3025,6 +3061,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     filterExprEClass = createEClass(FILTER_EXPR);
     createEReference(filterExprEClass, FILTER_EXPR__PRIMARY_EXPR);
     createEReference(filterExprEClass, FILTER_EXPR__PREDICATE);
+
+    filterExprChildEClass = createEClass(FILTER_EXPR_CHILD);
 
     axisStepEClass = createEClass(AXIS_STEP);
     createEReference(axisStepEClass, AXIS_STEP__STEP);
@@ -3241,8 +3279,9 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    exprEClass.getESuperTypes().add(this.getParenthesizedExprChild());
-    exprSingleEClass.getESuperTypes().add(this.getParenthesizedExprChild());
+    anyExprEClass.getESuperTypes().add(this.getParenthesizedExprChild());
+    exprEClass.getESuperTypes().add(this.getAnyExpr());
+    exprSingleEClass.getESuperTypes().add(this.getAnyExpr());
     forExprEClass.getESuperTypes().add(this.getExprSingle());
     quantifiedExprEClass.getESuperTypes().add(this.getExprSingle());
     ifExprEClass.getESuperTypes().add(this.getExprSingle());
@@ -3274,6 +3313,7 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     unaryExprChildEClass.getESuperTypes().add(this.getCastExprChild());
     valueExprEClass.getESuperTypes().add(this.getUnaryExprChild());
     pathExprEClass.getESuperTypes().add(this.getValueExpr());
+    pathExprChildEClass.getESuperTypes().add(this.getUnaryExprChild());
     rootStepExprEClass.getESuperTypes().add(this.getPathExprChild());
     childStepExprEClass.getESuperTypes().add(this.getPathExprChild());
     descOrSelfStepExprEClass.getESuperTypes().add(this.getPathExprChild());
@@ -3281,6 +3321,7 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     selfStepExprChildEClass.getESuperTypes().add(this.getPathExprChild());
     stepExprEClass.getESuperTypes().add(this.getSelfStepExprChild());
     filterExprEClass.getESuperTypes().add(this.getStepExpr());
+    filterExprChildEClass.getESuperTypes().add(this.getSelfStepExprChild());
     axisStepEClass.getESuperTypes().add(this.getStepExpr());
     forwardStepEClass.getESuperTypes().add(this.getDirectionalStep());
     reverseStepEClass.getESuperTypes().add(this.getDirectionalStep());
@@ -3295,7 +3336,7 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     anyWildcardEClass.getESuperTypes().add(this.getWildcard());
     localNameWildcardEClass.getESuperTypes().add(this.getWildcard());
     namespaceWildcardEClass.getESuperTypes().add(this.getWildcard());
-    primaryExprEClass.getESuperTypes().add(this.getValueExpr());
+    primaryExprEClass.getESuperTypes().add(this.getFilterExprChild());
     literalEClass.getESuperTypes().add(this.getPrimaryExpr());
     varRefEClass.getESuperTypes().add(this.getPrimaryExpr());
     varNameEClass.getESuperTypes().add(this.getQName());
@@ -3332,6 +3373,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     anyKindTestEClass.getESuperTypes().add(this.getKindTest());
 
     // Initialize classes and features; add operations and parameters
+    initEClass(anyExprEClass, AnyExpr.class, "AnyExpr", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(exprEClass, Expr.class, "Expr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExpr_Expr(), this.getExprSingle(), null, "expr", null, 1, -1, Expr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -3347,7 +3390,7 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     initEReference(getQuantifiedExpr_Satisfies(), this.getExprSingle(), null, "satisfies", null, 1, 1, QuantifiedExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(ifExprEClass, IfExpr.class, "IfExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getIfExpr_Test(), this.getExpr(), null, "test", null, 1, 1, IfExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIfExpr_Test(), this.getAnyExpr(), null, "test", null, 1, 1, IfExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfExpr_Then(), this.getExprSingle(), null, "then", null, 1, 1, IfExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfExpr_Else(), this.getExprSingle(), null, "else", null, 1, 1, IfExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -3450,13 +3493,15 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     initEClass(selfStepExprEClass, SelfStepExpr.class, "SelfStepExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSelfStepExpr_Step(), this.getSelfStepExprChild(), null, "step", null, 1, 1, SelfStepExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(selfStepExprChildEClass, SelfStepExprChild.class, "SelfStepExprChild", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(selfStepExprChildEClass, SelfStepExprChild.class, "SelfStepExprChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(stepExprEClass, StepExpr.class, "StepExpr", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(filterExprEClass, FilterExpr.class, "FilterExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getFilterExpr_PrimaryExpr(), this.getPrimaryExpr(), null, "primaryExpr", null, 1, 1, FilterExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFilterExpr_PrimaryExpr(), this.getFilterExprChild(), null, "primaryExpr", null, 1, 1, FilterExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFilterExpr_Predicate(), this.getPredicate(), null, "predicate", null, 0, -1, FilterExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(filterExprChildEClass, FilterExprChild.class, "FilterExprChild", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(axisStepEClass, AxisStep.class, "AxisStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAxisStep_Step(), this.getDirectionalStep(), null, "step", null, 1, 1, AxisStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3504,7 +3549,7 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     initEAttribute(getNamespaceWildcard_LocalName(), ecorePackage.getEString(), "localName", null, 1, 1, NamespaceWildcard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(predicateEClass, Predicate.class, "Predicate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPredicate_Expr(), this.getExpr(), null, "expr", null, 1, 1, Predicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPredicate_Expr(), this.getAnyExpr(), null, "expr", null, 1, 1, Predicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(primaryExprEClass, PrimaryExpr.class, "PrimaryExpr", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

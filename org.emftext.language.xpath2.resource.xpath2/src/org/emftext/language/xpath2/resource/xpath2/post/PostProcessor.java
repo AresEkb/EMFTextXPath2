@@ -9,9 +9,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.emftext.language.xpath2.Expr;
-import org.emftext.language.xpath2.ExprSingle;
+import org.emftext.language.xpath2.AnyExpr;
 import org.emftext.language.xpath2.ParenthesizedExpr;
+import org.emftext.language.xpath2.PathExpr;
+import org.emftext.language.xpath2.StepExpr;
 import org.emftext.language.xpath2.resource.xpath2.IXpath2OptionProvider;
 import org.emftext.language.xpath2.resource.xpath2.IXpath2Options;
 import org.emftext.language.xpath2.resource.xpath2.IXpath2ResourcePostProcessor;
@@ -22,13 +23,13 @@ import org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource;
     <extension point="org.emftext.language.xpath2.resource.xpath2.default_load_options">
         <provider
             class="org.emftext.language.xpath2.resource.xpath2.post.PostProcessor"
-            id="org.emftext.language.xpath2.resource.xpath2.post.PostProcessor"> 
+            id="org.emftext.language.xpath2.resource.xpath2.post.PostProcessor">
         </provider>
     </extension>
  */
 
 public class PostProcessor implements IXpath2OptionProvider,
-        IXpath2ResourcePostProcessorProvider, IXpath2ResourcePostProcessor {
+IXpath2ResourcePostProcessorProvider, IXpath2ResourcePostProcessor {
 
     @Override
     public void process(Xpath2Resource resource) {
@@ -58,11 +59,19 @@ public class PostProcessor implements IXpath2OptionProvider,
         for (EObject child : new BasicEList<EObject>(parentList)) {
             EObject singleContained = getSingleContained(child);
             EObject next = singleContained;
+            EObject path = null;
             while (next != null) {
                 next = getSingleContained(singleContained);
                 if (next != null) {
                     singleContained = next;
+                    if (singleContained instanceof PathExpr) {
+                        path = singleContained;
+                    }
                 }
+            }
+            // StepExpr must be contained in PathExpr
+            if (singleContained instanceof StepExpr) {
+                singleContained = path;
             }
             if (singleContained != null) {
                 EcoreUtil.replace(child, singleContained);
@@ -73,7 +82,7 @@ public class PostProcessor implements IXpath2OptionProvider,
     }
 
     private static EObject getSingleContained(EObject parent) {
-        if (!(parent instanceof Expr || parent instanceof ExprSingle)) {
+        if (!(parent instanceof AnyExpr)) {
             return null;
         }
         if (parent instanceof ParenthesizedExpr) {
@@ -87,11 +96,8 @@ public class PostProcessor implements IXpath2OptionProvider,
             }
             singleContained = contained;
         }
-//        if (!(parent instanceof Expr || parent instanceof ExprSingle)) {
-//            return null;
-//        }
-        
-        EReference feature = parent.eContainmentFeature(); 
+
+        EReference feature = parent.eContainmentFeature();
         if (feature != null && !feature.getEType().isInstance(singleContained)) {
             return null;
         }

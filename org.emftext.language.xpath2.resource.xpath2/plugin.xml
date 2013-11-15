@@ -74,7 +74,7 @@
     <extension point="org.emftext.language.xpath2.resource.xpath2.default_load_options">
         <provider
             class="org.emftext.language.xpath2.resource.xpath2.post.PostProcessor"
-            id="org.emftext.language.xpath2.resource.xpath2.post.PostProcessor"> 
+            id="org.emftext.language.xpath2.resource.xpath2.post.PostProcessor">
         </provider>
     </extension>
 	

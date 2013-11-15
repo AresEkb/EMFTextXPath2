@@ -75,6 +75,7 @@
       <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//OccurrenceIndicatorKind/star"/>
       <genEnumLiterals ecoreEnumLiteral="xpath2.ecore#//OccurrenceIndicatorKind/plus"/>
     </genEnums>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//AnyExpr"/>
     <genClasses ecoreClass="xpath2.ecore#//Expr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//Expr/expr"/>
     </genClasses>
@@ -182,6 +183,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//FilterExpr/primaryExpr"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//FilterExpr/predicate"/>
     </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//FilterExprChild"/>
     <genClasses ecoreClass="xpath2.ecore#//AxisStep">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//AxisStep/step"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//AxisStep/predicate"/>

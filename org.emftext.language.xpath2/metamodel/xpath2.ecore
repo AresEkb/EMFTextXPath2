@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="xpath2" nsURI="http://www.emftext.org/language/xpath2" nsPrefix="xpath2">
-  <eClassifiers xsi:type="ecore:EClass" name="Expr" eSuperTypes="#//ParenthesizedExprChild">
+  <eClassifiers xsi:type="ecore:EClass" name="AnyExpr" abstract="true" eSuperTypes="#//ParenthesizedExprChild"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Expr" eSuperTypes="#//AnyExpr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" lowerBound="1" upperBound="-1"
         eType="#//ExprSingle" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprSingle" abstract="true" eSuperTypes="#//ParenthesizedExprChild"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExprSingle" abstract="true" eSuperTypes="#//AnyExpr"/>
   <eClassifiers xsi:type="ecore:EClass" name="ForExpr" eSuperTypes="#//ExprSingle">
     <eStructuralFeatures xsi:type="ecore:EReference" name="iterator" lowerBound="1"
         upperBound="-1" eType="#//Iterator" containment="true"/>
@@ -21,7 +22,7 @@
         eType="#//ExprSingle" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfExpr" eSuperTypes="#//ExprSingle">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="test" lowerBound="1" eType="#//Expr"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="test" lowerBound="1" eType="#//AnyExpr"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="then" lowerBound="1" eType="#//ExprSingle"
         containment="true"/>
@@ -132,7 +133,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1" upperBound="-1"
         eType="#//PathExprChild" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PathExprChild" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PathExprChild" abstract="true" eSuperTypes="#//UnaryExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="RootStepExpr" eSuperTypes="#//PathExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="ChildStepExpr" eSuperTypes="#//PathExprChild">
     <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1" eType="#//StepExpr"
@@ -146,14 +147,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1" eType="#//SelfStepExprChild"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SelfStepExprChild" eSuperTypes="#//PathExprChild"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SelfStepExprChild" abstract="true" eSuperTypes="#//PathExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="StepExpr" abstract="true" eSuperTypes="#//SelfStepExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="FilterExpr" eSuperTypes="#//StepExpr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="primaryExpr" lowerBound="1"
-        eType="#//PrimaryExpr" containment="true"/>
+        eType="#//FilterExprChild" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" upperBound="-1"
         eType="#//Predicate" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FilterExprChild" abstract="true" eSuperTypes="#//SelfStepExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="AxisStep" eSuperTypes="#//StepExpr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1" eType="#//DirectionalStep"
         containment="true"/>
@@ -226,10 +228,10 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Predicate">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" lowerBound="1" eType="#//Expr"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" lowerBound="1" eType="#//AnyExpr"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PrimaryExpr" abstract="true" eSuperTypes="#//ValueExpr"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimaryExpr" abstract="true" eSuperTypes="#//FilterExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="Literal" abstract="true" eSuperTypes="#//PrimaryExpr"/>
   <eClassifiers xsi:type="ecore:EClass" name="VarRef" eSuperTypes="#//PrimaryExpr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="varName" lowerBound="1"

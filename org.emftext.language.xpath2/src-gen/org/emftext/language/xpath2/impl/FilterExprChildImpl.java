@@ -4,25 +4,25 @@ package org.emftext.language.xpath2.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.emftext.language.xpath2.ExprSingle;
+import org.emftext.language.xpath2.FilterExprChild;
 import org.emftext.language.xpath2.Xpath2Package;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Expr Single</b></em>'.
+ * An implementation of the model object '<em><b>Filter Expr Child</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public abstract class ExprSingleImpl extends AnyExprImpl implements ExprSingle {
+public abstract class FilterExprChildImpl extends SelfStepExprChildImpl implements FilterExprChild {
     /**
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @generated
    */
-    protected ExprSingleImpl() {
+    protected FilterExprChildImpl() {
     super();
   }
 
@@ -33,7 +33,7 @@ public abstract class ExprSingleImpl extends AnyExprImpl implements ExprSingle {
    */
     @Override
     protected EClass eStaticClass() {
-    return Xpath2Package.Literals.EXPR_SINGLE;
+    return Xpath2Package.Literals.FILTER_EXPR_CHILD;
   }
 
-} //ExprSingleImpl
+} //FilterExprChildImpl

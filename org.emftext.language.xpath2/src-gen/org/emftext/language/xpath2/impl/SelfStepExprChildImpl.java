@@ -16,7 +16,7 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class SelfStepExprChildImpl extends PathExprChildImpl implements SelfStepExprChild {
+public abstract class SelfStepExprChildImpl extends PathExprChildImpl implements SelfStepExprChild {
     /**
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

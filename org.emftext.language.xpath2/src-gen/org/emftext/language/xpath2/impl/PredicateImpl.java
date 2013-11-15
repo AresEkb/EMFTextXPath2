@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import org.emftext.language.xpath2.Expr;
+import org.emftext.language.xpath2.AnyExpr;
 import org.emftext.language.xpath2.Predicate;
 import org.emftext.language.xpath2.Xpath2Package;
 
@@ -37,7 +37,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
    * @generated
    * @ordered
    */
-    protected Expr expr;
+    protected AnyExpr expr;
 
     /**
    * <!-- begin-user-doc -->
@@ -63,7 +63,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
      * <!-- end-user-doc -->
    * @generated
    */
-    public Expr getExpr() {
+    public AnyExpr getExpr() {
     return expr;
   }
 
@@ -72,8 +72,8 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
      * <!-- end-user-doc -->
    * @generated
    */
-    public NotificationChain basicSetExpr(Expr newExpr, NotificationChain msgs) {
-    Expr oldExpr = expr;
+    public NotificationChain basicSetExpr(AnyExpr newExpr, NotificationChain msgs) {
+    AnyExpr oldExpr = expr;
     expr = newExpr;
     if (eNotificationRequired())
     {
@@ -88,7 +88,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
      * <!-- end-user-doc -->
    * @generated
    */
-    public void setExpr(Expr newExpr) {
+    public void setExpr(AnyExpr newExpr) {
     if (newExpr != expr)
     {
       NotificationChain msgs = null;
@@ -143,7 +143,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
     switch (featureID)
     {
       case Xpath2Package.PREDICATE__EXPR:
-        setExpr((Expr)newValue);
+        setExpr((AnyExpr)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -159,7 +159,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
     switch (featureID)
     {
       case Xpath2Package.PREDICATE__EXPR:
-        setExpr((Expr)null);
+        setExpr((AnyExpr)null);
         return;
     }
     super.eUnset(featureID);

@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.emftext.language.xpath2.Expr;
+import org.emftext.language.xpath2.AnyExpr;
 import org.emftext.language.xpath2.ExprSingle;
 import org.emftext.language.xpath2.IfExpr;
 import org.emftext.language.xpath2.Xpath2Package;
@@ -39,7 +39,7 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
    * @generated
    * @ordered
    */
-    protected Expr test;
+    protected AnyExpr test;
 
     /**
    * The cached value of the '{@link #getThen() <em>Then</em>}' containment reference.
@@ -85,7 +85,7 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
      * <!-- end-user-doc -->
    * @generated
    */
-    public Expr getTest() {
+    public AnyExpr getTest() {
     return test;
   }
 
@@ -94,8 +94,8 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
      * <!-- end-user-doc -->
    * @generated
    */
-    public NotificationChain basicSetTest(Expr newTest, NotificationChain msgs) {
-    Expr oldTest = test;
+    public NotificationChain basicSetTest(AnyExpr newTest, NotificationChain msgs) {
+    AnyExpr oldTest = test;
     test = newTest;
     if (eNotificationRequired())
     {
@@ -110,7 +110,7 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
      * <!-- end-user-doc -->
    * @generated
    */
-    public void setTest(Expr newTest) {
+    public void setTest(AnyExpr newTest) {
     if (newTest != test)
     {
       NotificationChain msgs = null;
@@ -263,7 +263,7 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
     switch (featureID)
     {
       case Xpath2Package.IF_EXPR__TEST:
-        setTest((Expr)newValue);
+        setTest((AnyExpr)newValue);
         return;
       case Xpath2Package.IF_EXPR__THEN:
         setThen((ExprSingle)newValue);
@@ -285,7 +285,7 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
     switch (featureID)
     {
       case Xpath2Package.IF_EXPR__TEST:
-        setTest((Expr)null);
+        setTest((AnyExpr)null);
         return;
       case Xpath2Package.IF_EXPR__THEN:
         setThen((ExprSingle)null);

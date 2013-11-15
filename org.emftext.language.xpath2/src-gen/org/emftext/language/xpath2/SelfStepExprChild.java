@@ -10,7 +10,7 @@ package org.emftext.language.xpath2;
  *
  *
  * @see org.emftext.language.xpath2.Xpath2Package#getSelfStepExprChild()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface SelfStepExprChild extends PathExprChild {

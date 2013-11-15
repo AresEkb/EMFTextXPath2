@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.emftext.language.xpath2.FilterExpr;
+import org.emftext.language.xpath2.FilterExprChild;
 import org.emftext.language.xpath2.Predicate;
-import org.emftext.language.xpath2.PrimaryExpr;
 import org.emftext.language.xpath2.Xpath2Package;
 
 /**
@@ -45,7 +45,7 @@ public class FilterExprImpl extends StepExprImpl implements FilterExpr {
    * @generated
    * @ordered
    */
-    protected PrimaryExpr primaryExpr;
+    protected FilterExprChild primaryExpr;
 
     /**
    * The cached value of the '{@link #getPredicate() <em>Predicate</em>}' containment reference list.
@@ -81,7 +81,7 @@ public class FilterExprImpl extends StepExprImpl implements FilterExpr {
      * <!-- end-user-doc -->
    * @generated
    */
-    public PrimaryExpr getPrimaryExpr() {
+    public FilterExprChild getPrimaryExpr() {
     return primaryExpr;
   }
 
@@ -90,8 +90,8 @@ public class FilterExprImpl extends StepExprImpl implements FilterExpr {
      * <!-- end-user-doc -->
    * @generated
    */
-    public NotificationChain basicSetPrimaryExpr(PrimaryExpr newPrimaryExpr, NotificationChain msgs) {
-    PrimaryExpr oldPrimaryExpr = primaryExpr;
+    public NotificationChain basicSetPrimaryExpr(FilterExprChild newPrimaryExpr, NotificationChain msgs) {
+    FilterExprChild oldPrimaryExpr = primaryExpr;
     primaryExpr = newPrimaryExpr;
     if (eNotificationRequired())
     {
@@ -106,7 +106,7 @@ public class FilterExprImpl extends StepExprImpl implements FilterExpr {
      * <!-- end-user-doc -->
    * @generated
    */
-    public void setPrimaryExpr(PrimaryExpr newPrimaryExpr) {
+    public void setPrimaryExpr(FilterExprChild newPrimaryExpr) {
     if (newPrimaryExpr != primaryExpr)
     {
       NotificationChain msgs = null;
@@ -179,7 +179,7 @@ public class FilterExprImpl extends StepExprImpl implements FilterExpr {
     switch (featureID)
     {
       case Xpath2Package.FILTER_EXPR__PRIMARY_EXPR:
-        setPrimaryExpr((PrimaryExpr)newValue);
+        setPrimaryExpr((FilterExprChild)newValue);
         return;
       case Xpath2Package.FILTER_EXPR__PREDICATE:
         getPredicate().clear();
@@ -199,7 +199,7 @@ public class FilterExprImpl extends StepExprImpl implements FilterExpr {
     switch (featureID)
     {
       case Xpath2Package.FILTER_EXPR__PRIMARY_EXPR:
-        setPrimaryExpr((PrimaryExpr)null);
+        setPrimaryExpr((FilterExprChild)null);
         return;
       case Xpath2Package.FILTER_EXPR__PREDICATE:
         getPredicate().clear();

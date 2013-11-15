@@ -31,7 +31,7 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class ExprImpl extends ParenthesizedExprChildImpl implements Expr {
+public class ExprImpl extends AnyExprImpl implements Expr {
     /**
    * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference list.
    * <!-- begin-user-doc -->

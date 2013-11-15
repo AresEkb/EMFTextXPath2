@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Expr extends ParenthesizedExprChild {
+public interface Expr extends AnyExpr {
     /**
    * Returns the value of the '<em><b>Expr</b></em>' containment reference list.
    * The list contents are of type {@link org.emftext.language.xpath2.ExprSingle}.

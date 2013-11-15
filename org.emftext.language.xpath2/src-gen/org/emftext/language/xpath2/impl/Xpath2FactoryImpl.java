@@ -84,7 +84,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
       case Xpath2Package.CHILD_STEP_EXPR: return createChildStepExpr();
       case Xpath2Package.DESC_OR_SELF_STEP_EXPR: return createDescOrSelfStepExpr();
       case Xpath2Package.SELF_STEP_EXPR: return createSelfStepExpr();
-      case Xpath2Package.SELF_STEP_EXPR_CHILD: return createSelfStepExprChild();
       case Xpath2Package.FILTER_EXPR: return createFilterExpr();
       case Xpath2Package.AXIS_STEP: return createAxisStep();
       case Xpath2Package.GENERAL_FORWARD_STEP: return createGeneralForwardStep();
@@ -446,16 +445,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
     public SelfStepExpr createSelfStepExpr() {
     SelfStepExprImpl selfStepExpr = new SelfStepExprImpl();
     return selfStepExpr;
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    public SelfStepExprChild createSelfStepExprChild() {
-    SelfStepExprChildImpl selfStepExprChild = new SelfStepExprChildImpl();
-    return selfStepExprChild;
   }
 
     /**

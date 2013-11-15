@@ -31,12 +31,12 @@ public interface IfExpr extends ExprSingle {
      * </p>
      * <!-- end-user-doc -->
    * @return the value of the '<em>Test</em>' containment reference.
-   * @see #setTest(Expr)
+   * @see #setTest(AnyExpr)
    * @see org.emftext.language.xpath2.Xpath2Package#getIfExpr_Test()
    * @model containment="true" required="true"
    * @generated
    */
-    Expr getTest();
+    AnyExpr getTest();
 
     /**
    * Sets the value of the '{@link org.emftext.language.xpath2.IfExpr#getTest <em>Test</em>}' containment reference.
@@ -46,7 +46,7 @@ public interface IfExpr extends ExprSingle {
    * @see #getTest()
    * @generated
    */
-    void setTest(Expr value);
+    void setTest(AnyExpr value);
 
     /**
    * Returns the value of the '<em><b>Then</b></em>' containment reference.

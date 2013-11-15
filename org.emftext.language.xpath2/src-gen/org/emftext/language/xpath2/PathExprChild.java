@@ -2,7 +2,6 @@
  */
 package org.emftext.language.xpath2;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,5 +13,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface PathExprChild extends EObject {
+public interface PathExprChild extends UnaryExprChild {
 } // PathExprChild

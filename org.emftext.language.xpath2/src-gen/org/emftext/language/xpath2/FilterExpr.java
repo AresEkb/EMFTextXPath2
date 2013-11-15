@@ -31,12 +31,12 @@ public interface FilterExpr extends StepExpr {
      * </p>
      * <!-- end-user-doc -->
    * @return the value of the '<em>Primary Expr</em>' containment reference.
-   * @see #setPrimaryExpr(PrimaryExpr)
+   * @see #setPrimaryExpr(FilterExprChild)
    * @see org.emftext.language.xpath2.Xpath2Package#getFilterExpr_PrimaryExpr()
    * @model containment="true" required="true"
    * @generated
    */
-    PrimaryExpr getPrimaryExpr();
+    FilterExprChild getPrimaryExpr();
 
     /**
    * Sets the value of the '{@link org.emftext.language.xpath2.FilterExpr#getPrimaryExpr <em>Primary Expr</em>}' containment reference.
@@ -46,7 +46,7 @@ public interface FilterExpr extends StepExpr {
    * @see #getPrimaryExpr()
    * @generated
    */
-    void setPrimaryExpr(PrimaryExpr value);
+    void setPrimaryExpr(FilterExprChild value);
 
     /**
    * Returns the value of the '<em><b>Predicate</b></em>' containment reference list.

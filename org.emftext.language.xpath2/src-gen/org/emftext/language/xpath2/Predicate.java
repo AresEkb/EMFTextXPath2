@@ -30,12 +30,12 @@ public interface Predicate extends EObject {
      * </p>
      * <!-- end-user-doc -->
    * @return the value of the '<em>Expr</em>' containment reference.
-   * @see #setExpr(Expr)
+   * @see #setExpr(AnyExpr)
    * @see org.emftext.language.xpath2.Xpath2Package#getPredicate_Expr()
    * @model containment="true" required="true"
    * @generated
    */
-    Expr getExpr();
+    AnyExpr getExpr();
 
     /**
    * Sets the value of the '{@link org.emftext.language.xpath2.Predicate#getExpr <em>Expr</em>}' containment reference.
@@ -45,6 +45,6 @@ public interface Predicate extends EObject {
    * @see #getExpr()
    * @generated
    */
-    void setExpr(Expr value);
+    void setExpr(AnyExpr value);
 
 } // Predicate
