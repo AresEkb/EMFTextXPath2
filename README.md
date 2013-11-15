@@ -5,6 +5,7 @@ An implementation of XPath 2.0 metamodel (http://www.w3.org/TR/xpath20/).
 
 Test suite based on the specification:
 
+<pre>
 fn:doc(fn:document-uri($Nq)),
 ($x div $y) + xs:decimal($z),
 fn:error(xs:QName("app:err057"), "Unexpected value", fn:string($v)),
@@ -94,3 +95,4 @@ if ($x castable as hatsize)
    else $x cast as xs:string,
 xs:decimal($floatvalue * 0.2E-5),
 $myaddress treat as element(*, USAddress)
+</pre>
