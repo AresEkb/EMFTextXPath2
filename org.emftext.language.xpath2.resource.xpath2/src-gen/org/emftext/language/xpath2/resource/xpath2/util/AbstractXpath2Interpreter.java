@@ -538,6 +538,12 @@ public class AbstractXpath2Interpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
+		if (object instanceof org.emftext.language.xpath2.OptionalAtomicType) {
+			result = interprete_org_emftext_language_xpath2_OptionalAtomicType((org.emftext.language.xpath2.OptionalAtomicType) object, context);
+		}
+		if (result != null) {
+			return result;
+		}
 		if (object instanceof org.emftext.language.xpath2.EmptySequenceType) {
 			result = interprete_org_emftext_language_xpath2_EmptySequenceType((org.emftext.language.xpath2.EmptySequenceType) object, context);
 		}
@@ -1008,6 +1014,10 @@ public class AbstractXpath2Interpreter<ResultType, ContextType> {
 	}
 	
 	public ResultType interprete_org_emftext_language_xpath2_AtomicType(org.emftext.language.xpath2.AtomicType atomicType, ContextType context) {
+		return null;
+	}
+	
+	public ResultType interprete_org_emftext_language_xpath2_OptionalAtomicType(org.emftext.language.xpath2.OptionalAtomicType optionalAtomicType, ContextType context) {
 		return null;
 	}
 	

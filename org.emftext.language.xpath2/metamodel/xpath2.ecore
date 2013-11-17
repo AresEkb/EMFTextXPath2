@@ -321,9 +321,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="optional" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AtomicType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="name" lowerBound="1" eType="#//QName"
-        containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AtomicType" eSuperTypes="#//QName"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OptionalAtomicType" eSuperTypes="#//QName">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="optional" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SequenceType" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="EmptySequenceType" eSuperTypes="#//SequenceType"/>
@@ -352,14 +353,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="NameElementTest" eSuperTypes="#//ElementTest">
     <eStructuralFeatures xsi:type="ecore:EReference" name="name" lowerBound="1" eType="#//QName"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//QName"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//OptionalAtomicType"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeIsOptional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WildcardElementTest" eSuperTypes="#//ElementTest">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//QName"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//OptionalAtomicType"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeIsOptional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttributeTest" eSuperTypes="#//KindTest"/>
   <eClassifiers xsi:type="ecore:EClass" name="NameAttributeTest" eSuperTypes="#//AttributeTest">
@@ -403,8 +402,8 @@
         eType="#//Comment" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QName">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="localPart" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""/>
   </eClassifiers>
 </ecore:EPackage>

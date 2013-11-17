@@ -60,6 +60,7 @@ public class Xpath2SyntaxCoverageInformationProvider {
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAnyItemType(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAtomicItemType(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAtomicType(),
+			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getOptionalAtomicType(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAnyKindTest(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDocumentTest(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getTextTest(),

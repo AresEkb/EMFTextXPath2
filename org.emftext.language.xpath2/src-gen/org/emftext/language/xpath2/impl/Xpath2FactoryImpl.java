@@ -110,6 +110,7 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
       case Xpath2Package.NODE_COMP: return createNodeComp();
       case Xpath2Package.SINGLE_TYPE: return createSingleType();
       case Xpath2Package.ATOMIC_TYPE: return createAtomicType();
+      case Xpath2Package.OPTIONAL_ATOMIC_TYPE: return createOptionalAtomicType();
       case Xpath2Package.EMPTY_SEQUENCE_TYPE: return createEmptySequenceType();
       case Xpath2Package.ITEM_SEQUENCE_TYPE: return createItemSequenceType();
       case Xpath2Package.ITEM_KIND_TEST: return createItemKindTest();
@@ -705,6 +706,16 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
     public AtomicType createAtomicType() {
     AtomicTypeImpl atomicType = new AtomicTypeImpl();
     return atomicType;
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+   * @generated
+   */
+    public OptionalAtomicType createOptionalAtomicType() {
+    OptionalAtomicTypeImpl optionalAtomicType = new OptionalAtomicTypeImpl();
+    return optionalAtomicType;
   }
 
     /**

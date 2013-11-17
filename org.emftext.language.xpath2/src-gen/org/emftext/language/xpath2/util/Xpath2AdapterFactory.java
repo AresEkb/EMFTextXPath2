@@ -472,6 +472,11 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
         return createAtomicTypeAdapter();
       }
       @Override
+      public Adapter caseOptionalAtomicType(OptionalAtomicType object)
+      {
+        return createOptionalAtomicTypeAdapter();
+      }
+      @Override
       public Adapter caseSequenceType(SequenceType object)
       {
         return createSequenceTypeAdapter();
@@ -1734,6 +1739,20 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
     public Adapter createAtomicTypeAdapter() {
+    return null;
+  }
+
+    /**
+   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.OptionalAtomicType <em>Optional Atomic Type</em>}'.
+   * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.emftext.language.xpath2.OptionalAtomicType
+   * @generated
+   */
+    public Adapter createOptionalAtomicTypeAdapter() {
     return null;
   }
 

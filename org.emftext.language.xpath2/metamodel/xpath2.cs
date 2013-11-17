@@ -7,6 +7,7 @@ OPTIONS {
     generateCodeFromGeneratorModel = "true";
     usePredefinedTokens = "false";
     disableTokenSorting = "true";
+    overridePluginXML = "false";
 }
 
 TOKENS {
@@ -29,11 +30,10 @@ TOKENS {
 //    DEFINE FRAGMENT NAME_START_CHAR $':'|'A'..'Z'|'_'|'a'..'z'|'\u00C0'..'\u00D6'|'\u00D8'..'\u00F6'|'\u00F8'..'\u02FF'|'\u0370'..'\u037D'|'\u037F'..'\u1FFF'|'\u200C'..'\u200D'|'\u2070'..'\u218F'|'\u2C00'..'\u2FEF'|'\u3001'..'\uD7FF'|'\uF900'..'\uFDCF'|'\uFDF0'..'\uFFFD'|'\u10000'..'\uEFFFF'$;
 //    DEFINE FRAGMENT NAME_CHAR NAME_START_CHAR + $|'-'|'.'|'0'..'9'|'\u00B7'|'\u0300'..'\u036F'|'\u203F'..'\u2040'$;
 //    DEFINE NAME $($ + NAME_START_CHAR + $)($ + NAME_CHAR + $)*$;
-    // TODO: Should be Name - (Char* ':' Char*)	/* An XML Name, minus the ":" */
+    // TODO: Should be Name - (Char* ':' Char*) /* An XML Name, minus the ":" */
     // TODO: '\u10000'..'\uEFFFF' is not supported
     DEFINE FRAGMENT NCNAME_START_CHAR $'A'..'Z'|'_'|'a'..'z'|'\u00C0'..'\u00D6'|'\u00D8'..'\u00F6'|'\u00F8'..'\u02FF'|'\u0370'..'\u037D'|'\u037F'..'\u1FFF'|'\u200C'..'\u200D'|'\u2070'..'\u218F'|'\u2C00'..'\u2FEF'|'\u3001'..'\uD7FF'|'\uF900'..'\uFDCF'|'\uFDF0'..'\uFFFD'$;
     DEFINE FRAGMENT NCNAME_CHAR NCNAME_START_CHAR + $|'-'|'.'|'0'..'9'|'\u00B7'|'\u0300'..'\u036F'|'\u203F'..'\u2040'$;
-    // TODO: It's very strange but it doesn't match single-character names
     DEFINE NCNAME $($ + NCNAME_START_CHAR + $)($ + NCNAME_CHAR + $)*$;
 
     // TODO: Should be (Char+ - (Char* ('(:' | ':)') Char*))
@@ -63,19 +63,19 @@ RULES {
 
     // Sequence Expressions, Comparison Expressions, Logical Expressions
     Expr ::= expr:IfExpr,ForExpr,QuantifiedExpr,OrExpr
-        ("," expr:IfExpr,ForExpr,QuantifiedExpr,OrExpr)*;
-    ForExpr ::= "for" iterator ("," iterator)* "return" return;
-    QuantifiedExpr ::= quantifier[some : "some", every : "every"]
-        iterator ("," iterator)*
-        "satisfies" satisfies:IfExpr,ForExpr,QuantifiedExpr,OrExpr;
-    Iterator ::= "$" varName "in" list:IfExpr,ForExpr,QuantifiedExpr,OrExpr;
-    IfExpr ::= "if" "(" test:Expr,IfExpr,ForExpr,QuantifiedExpr,OrExpr ")"
-        "then" then:IfExpr,ForExpr,QuantifiedExpr,OrExpr
-        "else" else:IfExpr,ForExpr,QuantifiedExpr,OrExpr;
-    OrExpr ::= operand:AndExpr ("or" operand:AndExpr)*;
-    AndExpr ::= operand:ComparisonExpr ("and" operand:ComparisonExpr)*;
-    ComparisonExpr ::= left:RangeExpr (operator right:RangeExpr)?;
-    RangeExpr ::= from:AdditiveExpr ("to" to:AdditiveExpr)?;
+        ("," !0 expr:IfExpr,ForExpr,QuantifiedExpr,OrExpr)*;
+    ForExpr ::= "for" #1 iterator ("," #1 iterator)* #1 "return" #1 return;
+    QuantifiedExpr ::= quantifier[some : "some", every : "every"] #1
+        iterator ("," #1 iterator)*
+        "satisfies" #1 satisfies:IfExpr,ForExpr,QuantifiedExpr,OrExpr;
+    Iterator ::= "$" varName #1 "in" #1 list:IfExpr,ForExpr,QuantifiedExpr,OrExpr;
+    IfExpr ::= "if" #1 "(" test:Expr,IfExpr,ForExpr,QuantifiedExpr,OrExpr ")"
+        #1 "then" #1 then:IfExpr,ForExpr,QuantifiedExpr,OrExpr
+        #1 "else" #1 else:IfExpr,ForExpr,QuantifiedExpr,OrExpr;
+    OrExpr ::= operand:AndExpr (#1 "or" #1 operand:AndExpr)*;
+    AndExpr ::= operand:ComparisonExpr (#1 "and" #1 operand:ComparisonExpr)*;
+    ComparisonExpr ::= left:RangeExpr (#1 operator #1 right:RangeExpr)?;
+    RangeExpr ::= from:AdditiveExpr (#1 "to" #1 to:AdditiveExpr)?;
     GeneralComp ::= operator[eq : "=", ne : "!=", lt : "<", le : "<=",
         gt : ">", ge : ">="];
     ValueComp ::= operator[eq : "eq", ne : "ne", lt : "lt", le : "le",
@@ -84,24 +84,24 @@ RULES {
 
     // Sequence Expressions, Arithmetic Expressions
     AdditiveExpr ::= operand:MultiplicativeExpr
-        (operator[addition : "+", subtraction : "-"] operand:MultiplicativeExpr)*;
+        (#1 operator[addition : "+", subtraction : "-"] #1 operand:MultiplicativeExpr)*;
     MultiplicativeExpr ::= operand:UnionExpr
-        (operator[multiplication : "*", div : "div", idiv : "idiv", mod : "mod"] operand:UnionExpr)*;
+        (#1 operator[multiplication : "*", div : "div", idiv : "idiv", mod : "mod"] #1 operand:UnionExpr)*;
     UnionExpr ::= operand:IntersectExceptExpr
-        (operation[union : "union", vertical_bar : "|"] operand:IntersectExceptExpr)*;
+        (#1 operation[union : "union", vertical_bar : "|"] #1 operand:IntersectExceptExpr)*;
     IntersectExceptExpr ::= operand:InstanceofExpr
-        (operator[intersect : "intersect", except : "except"] operand:InstanceofExpr)*;
+        (#1 operator[intersect : "intersect", except : "except"] #1 operand:InstanceofExpr)*;
 
     // Expressions on SequenceTypes
-    InstanceofExpr ::= operand:TreatExpr ("instance" "of" type)?;
-    TreatExpr ::= operand:CastableExpr ("treat" "as" type)?;
-    CastableExpr ::= operand:CastExpr ("castable" "as" type)?;
-    CastExpr ::= operand:UnaryExpr ("cast" "as" type)?;
+    InstanceofExpr ::= operand:TreatExpr (#1 "instance" "of" type)?;
+    TreatExpr ::= operand:CastableExpr (#1 "treat" "as" type)?;
+    CastableExpr ::= operand:CastExpr (#1 "castable" "as" type)?;
+    CastExpr ::= operand:UnaryExpr (#1 "cast" "as" type)?;
     UnaryExpr ::= operator[plus : "+", minus : "-"]* operand:ValueExpr;
 
     // FunctionCall must have higher priority than PathExpr
     FunctionCall ::= name "(" (arg:IfExpr,ForExpr,QuantifiedExpr,OrExpr
-        ("," arg:IfExpr,ForExpr,QuantifiedExpr,OrExpr)*)? ")";
+        ("," #1 arg:IfExpr,ForExpr,QuantifiedExpr,OrExpr)*)? ")";
 
     // Path Expressions
     PathExpr ::= step step:ChildStepExpr,DescOrSelfStepExpr*;
@@ -130,7 +130,7 @@ RULES {
 
     // Primary Expressions
     VarRef ::= "$" varName; 
-    VarName ::= (prefix[NCNAME] ":")? localPart[NCNAME];
+    VarName ::= (prefix[NCNAME] ":")? name[NCNAME];
     ParenthesizedExpr ::= "(" expr:Expr? ")";
     ContextItemExpr ::= ".";
 
@@ -142,21 +142,22 @@ RULES {
     ItemKindTest ::= test;
     AnyItemType ::= "item" "(" ")";
     AtomicItemType ::= type;
-    AtomicType ::= name;
+    AtomicType ::= (prefix[NCNAME] ":")? name[NCNAME];
+    OptionalAtomicType ::= (prefix[NCNAME] ":")? name[NCNAME] optional["?" : ""];
     AnyKindTest ::= "node" "(" ")";
-    DocumentTest ::= "document-node" "(" (test:ElementTest,SchemaElementTest)? ")";
+    DocumentTest ::= "document-node" "(" test:ElementTest,SchemaElementTest? ")";
     TextTest ::= "text" "(" ")";
     CommentTest ::= "comment" "(" ")";
     PITest ::= "processing-instruction" "("  ")";
     NCNamePITest ::= "processing-instruction" "(" name[NCNAME] ")";
     StringLiteralPITest ::= "processing-instruction" "(" literal[STRING_LITERAL] ")";
     AttributeTest ::= "attribute" "("  ")";
-    WildcardAttributeTest ::= "attribute" "(" "*" ("," type)? ")";
-    NameAttributeTest ::= "attribute" "(" name ("," type)? ")";
+    WildcardAttributeTest ::= "attribute" "(" "*" ("," #1 type)? ")";
+    NameAttributeTest ::= "attribute" "(" name ("," #1 type)? ")";
     SchemaAttributeTest ::= "schema-attribute" "(" name ")";
     ElementTest ::= "element" "("  ")";
-    WildcardElementTest ::= "element" "(" "*" ("," type typeIsOptional["?" : ""]?)? ")";
-    NameElementTest ::= "element" "(" name ("," type typeIsOptional["?" : ""]?)? ")";
+    WildcardElementTest ::= "element" "(" "*" ("," #1 type)? ")";
+    NameElementTest ::= "element" "(" name ("," #1 type)? ")";
     SchemaElementTest ::= "schema-element" "(" name ")";
 
     // Literals
@@ -166,5 +167,5 @@ RULES {
     StringLiteral ::= value[STRING_LITERAL];
     // TODO: I don't understand where to place comments
     //Comment ::= "(:" (text[COMMENT_CONTENTS] | comment)* ":)";
-    QName ::= (prefix[NCNAME] ":")? localPart[NCNAME];
+    QName ::= (prefix[NCNAME] ":")? name[NCNAME];
 }

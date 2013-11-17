@@ -85,6 +85,7 @@ import org.emftext.language.xpath2.NodeKindTest;
 import org.emftext.language.xpath2.NodeTest;
 import org.emftext.language.xpath2.NumericLiteral;
 import org.emftext.language.xpath2.OccurrenceIndicatorKind;
+import org.emftext.language.xpath2.OptionalAtomicType;
 import org.emftext.language.xpath2.OrExpr;
 import org.emftext.language.xpath2.OrExprChild;
 import org.emftext.language.xpath2.PITest;
@@ -697,6 +698,13 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
    * @generated
    */
     private EClass atomicTypeEClass = null;
+
+    /**
+   * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+   * @generated
+   */
+    private EClass optionalAtomicTypeEClass = null;
 
     /**
    * <!-- begin-user-doc -->
@@ -2371,8 +2379,17 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
      * <!-- end-user-doc -->
    * @generated
    */
-    public EReference getAtomicType_Name() {
-    return (EReference)atomicTypeEClass.getEStructuralFeatures().get(0);
+    public EClass getOptionalAtomicType() {
+    return optionalAtomicTypeEClass;
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+   * @generated
+   */
+    public EAttribute getOptionalAtomicType_Optional() {
+    return (EAttribute)optionalAtomicTypeEClass.getEStructuralFeatures().get(0);
   }
 
     /**
@@ -2542,15 +2559,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
      * <!-- end-user-doc -->
    * @generated
    */
-    public EAttribute getNameElementTest_TypeIsOptional() {
-    return (EAttribute)nameElementTestEClass.getEStructuralFeatures().get(2);
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
     public EClass getWildcardElementTest() {
     return wildcardElementTestEClass;
   }
@@ -2562,15 +2570,6 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
    */
     public EReference getWildcardElementTest_Type() {
     return (EReference)wildcardElementTestEClass.getEStructuralFeatures().get(0);
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    public EAttribute getWildcardElementTest_TypeIsOptional() {
-    return (EAttribute)wildcardElementTestEClass.getEStructuralFeatures().get(1);
   }
 
     /**
@@ -2776,7 +2775,7 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
      * <!-- end-user-doc -->
    * @generated
    */
-    public EAttribute getQName_Prefix() {
+    public EAttribute getQName_Name() {
     return (EAttribute)qNameEClass.getEStructuralFeatures().get(0);
   }
 
@@ -2785,7 +2784,7 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
      * <!-- end-user-doc -->
    * @generated
    */
-    public EAttribute getQName_LocalPart() {
+    public EAttribute getQName_Prefix() {
     return (EAttribute)qNameEClass.getEStructuralFeatures().get(1);
   }
 
@@ -3162,7 +3161,9 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     createEAttribute(singleTypeEClass, SINGLE_TYPE__OPTIONAL);
 
     atomicTypeEClass = createEClass(ATOMIC_TYPE);
-    createEReference(atomicTypeEClass, ATOMIC_TYPE__NAME);
+
+    optionalAtomicTypeEClass = createEClass(OPTIONAL_ATOMIC_TYPE);
+    createEAttribute(optionalAtomicTypeEClass, OPTIONAL_ATOMIC_TYPE__OPTIONAL);
 
     sequenceTypeEClass = createEClass(SEQUENCE_TYPE);
 
@@ -3192,11 +3193,9 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     nameElementTestEClass = createEClass(NAME_ELEMENT_TEST);
     createEReference(nameElementTestEClass, NAME_ELEMENT_TEST__NAME);
     createEReference(nameElementTestEClass, NAME_ELEMENT_TEST__TYPE);
-    createEAttribute(nameElementTestEClass, NAME_ELEMENT_TEST__TYPE_IS_OPTIONAL);
 
     wildcardElementTestEClass = createEClass(WILDCARD_ELEMENT_TEST);
     createEReference(wildcardElementTestEClass, WILDCARD_ELEMENT_TEST__TYPE);
-    createEAttribute(wildcardElementTestEClass, WILDCARD_ELEMENT_TEST__TYPE_IS_OPTIONAL);
 
     attributeTestEClass = createEClass(ATTRIBUTE_TEST);
 
@@ -3232,8 +3231,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     createEReference(commentEClass, COMMENT__COMMENT);
 
     qNameEClass = createEClass(QNAME);
+    createEAttribute(qNameEClass, QNAME__NAME);
     createEAttribute(qNameEClass, QNAME__PREFIX);
-    createEAttribute(qNameEClass, QNAME__LOCAL_PART);
 
     // Create enums
     forwardAxisKindEEnum = createEEnum(FORWARD_AXIS_KIND);
@@ -3351,6 +3350,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     generalCompEClass.getESuperTypes().add(this.getComp());
     valueCompEClass.getESuperTypes().add(this.getComp());
     nodeCompEClass.getESuperTypes().add(this.getComp());
+    atomicTypeEClass.getESuperTypes().add(this.getQName());
+    optionalAtomicTypeEClass.getESuperTypes().add(this.getQName());
     emptySequenceTypeEClass.getESuperTypes().add(this.getSequenceType());
     itemSequenceTypeEClass.getESuperTypes().add(this.getSequenceType());
     itemKindTestEClass.getESuperTypes().add(this.getItemType());
@@ -3601,7 +3602,9 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     initEAttribute(getSingleType_Optional(), ecorePackage.getEBoolean(), "optional", null, 1, 1, SingleType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(atomicTypeEClass, AtomicType.class, "AtomicType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAtomicType_Name(), this.getQName(), null, "name", null, 1, 1, AtomicType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(optionalAtomicTypeEClass, OptionalAtomicType.class, "OptionalAtomicType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getOptionalAtomicType_Optional(), ecorePackage.getEBoolean(), "optional", null, 1, 1, OptionalAtomicType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(sequenceTypeEClass, SequenceType.class, "SequenceType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3630,12 +3633,10 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
 
     initEClass(nameElementTestEClass, NameElementTest.class, "NameElementTest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNameElementTest_Name(), this.getQName(), null, "name", null, 1, 1, NameElementTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getNameElementTest_Type(), this.getQName(), null, "type", null, 0, 1, NameElementTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getNameElementTest_TypeIsOptional(), ecorePackage.getEBoolean(), "typeIsOptional", null, 0, 1, NameElementTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNameElementTest_Type(), this.getOptionalAtomicType(), null, "type", null, 0, 1, NameElementTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(wildcardElementTestEClass, WildcardElementTest.class, "WildcardElementTest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getWildcardElementTest_Type(), this.getQName(), null, "type", null, 0, 1, WildcardElementTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getWildcardElementTest_TypeIsOptional(), ecorePackage.getEBoolean(), "typeIsOptional", null, 0, 1, WildcardElementTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getWildcardElementTest_Type(), this.getOptionalAtomicType(), null, "type", null, 0, 1, WildcardElementTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attributeTestEClass, AttributeTest.class, "AttributeTest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3671,8 +3672,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     initEReference(getComment_Comment(), this.getComment(), null, "comment", null, 0, -1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(qNameEClass, QName.class, "QName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getQName_Name(), ecorePackage.getEString(), "name", "", 1, 1, QName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getQName_Prefix(), ecorePackage.getEString(), "prefix", null, 0, 1, QName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getQName_LocalPart(), ecorePackage.getEString(), "localPart", "", 1, 1, QName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(forwardAxisKindEEnum, ForwardAxisKind.class, "ForwardAxisKind");

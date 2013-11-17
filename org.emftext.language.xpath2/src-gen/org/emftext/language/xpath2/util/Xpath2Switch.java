@@ -1337,6 +1337,15 @@ public class Xpath2Switch<T> extends Switch<T> {
       {
         AtomicType atomicType = (AtomicType)theEObject;
         T result = caseAtomicType(atomicType);
+        if (result == null) result = caseQName(atomicType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case Xpath2Package.OPTIONAL_ATOMIC_TYPE:
+      {
+        OptionalAtomicType optionalAtomicType = (OptionalAtomicType)theEObject;
+        T result = caseOptionalAtomicType(optionalAtomicType);
+        if (result == null) result = caseQName(optionalAtomicType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2742,6 +2751,21 @@ public class Xpath2Switch<T> extends Switch<T> {
    * @generated
    */
     public T caseAtomicType(AtomicType object) {
+    return null;
+  }
+
+    /**
+   * Returns the result of interpreting the object as an instance of '<em>Optional Atomic Type</em>'.
+   * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Optional Atomic Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+    public T caseOptionalAtomicType(OptionalAtomicType object) {
     return null;
   }
 

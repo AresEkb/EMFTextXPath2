@@ -12,7 +12,6 @@ package org.emftext.language.xpath2;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.WildcardElementTest#getType <em>Type</em>}</li>
- *   <li>{@link org.emftext.language.xpath2.WildcardElementTest#isTypeIsOptional <em>Type Is Optional</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,12 +29,12 @@ public interface WildcardElementTest extends ElementTest {
      * </p>
      * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' containment reference.
-   * @see #setType(QName)
+   * @see #setType(OptionalAtomicType)
    * @see org.emftext.language.xpath2.Xpath2Package#getWildcardElementTest_Type()
    * @model containment="true"
    * @generated
    */
-    QName getType();
+    OptionalAtomicType getType();
 
     /**
    * Sets the value of the '{@link org.emftext.language.xpath2.WildcardElementTest#getType <em>Type</em>}' containment reference.
@@ -45,32 +44,6 @@ public interface WildcardElementTest extends ElementTest {
    * @see #getType()
    * @generated
    */
-    void setType(QName value);
-
-    /**
-   * Returns the value of the '<em><b>Type Is Optional</b></em>' attribute.
-   * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Type Is Optional</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-   * @return the value of the '<em>Type Is Optional</em>' attribute.
-   * @see #setTypeIsOptional(boolean)
-   * @see org.emftext.language.xpath2.Xpath2Package#getWildcardElementTest_TypeIsOptional()
-   * @model
-   * @generated
-   */
-    boolean isTypeIsOptional();
-
-    /**
-   * Sets the value of the '{@link org.emftext.language.xpath2.WildcardElementTest#isTypeIsOptional <em>Type Is Optional</em>}' attribute.
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type Is Optional</em>' attribute.
-   * @see #isTypeIsOptional()
-   * @generated
-   */
-    void setTypeIsOptional(boolean value);
+    void setType(OptionalAtomicType value);
 
 } // WildcardElementTest

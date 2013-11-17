@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.NameElementTest;
+import org.emftext.language.xpath2.OptionalAtomicType;
 import org.emftext.language.xpath2.QName;
 import org.emftext.language.xpath2.Xpath2Package;
 
@@ -23,7 +24,6 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.NameElementTestImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.NameElementTestImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.emftext.language.xpath2.impl.NameElementTestImpl#isTypeIsOptional <em>Type Is Optional</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,27 +48,7 @@ public class NameElementTestImpl extends ElementTestImpl implements NameElementT
    * @generated
    * @ordered
    */
-    protected QName type;
-
-    /**
-   * The default value of the '{@link #isTypeIsOptional() <em>Type Is Optional</em>}' attribute.
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @see #isTypeIsOptional()
-   * @generated
-   * @ordered
-   */
-    protected static final boolean TYPE_IS_OPTIONAL_EDEFAULT = false;
-
-    /**
-   * The cached value of the '{@link #isTypeIsOptional() <em>Type Is Optional</em>}' attribute.
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @see #isTypeIsOptional()
-   * @generated
-   * @ordered
-   */
-    protected boolean typeIsOptional = TYPE_IS_OPTIONAL_EDEFAULT;
+    protected OptionalAtomicType type;
 
     /**
    * <!-- begin-user-doc -->
@@ -139,7 +119,7 @@ public class NameElementTestImpl extends ElementTestImpl implements NameElementT
      * <!-- end-user-doc -->
    * @generated
    */
-    public QName getType() {
+    public OptionalAtomicType getType() {
     return type;
   }
 
@@ -148,8 +128,8 @@ public class NameElementTestImpl extends ElementTestImpl implements NameElementT
      * <!-- end-user-doc -->
    * @generated
    */
-    public NotificationChain basicSetType(QName newType, NotificationChain msgs) {
-    QName oldType = type;
+    public NotificationChain basicSetType(OptionalAtomicType newType, NotificationChain msgs) {
+    OptionalAtomicType oldType = type;
     type = newType;
     if (eNotificationRequired())
     {
@@ -164,7 +144,7 @@ public class NameElementTestImpl extends ElementTestImpl implements NameElementT
      * <!-- end-user-doc -->
    * @generated
    */
-    public void setType(QName newType) {
+    public void setType(OptionalAtomicType newType) {
     if (newType != type)
     {
       NotificationChain msgs = null;
@@ -177,27 +157,6 @@ public class NameElementTestImpl extends ElementTestImpl implements NameElementT
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.NAME_ELEMENT_TEST__TYPE, newType, newType));
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    public boolean isTypeIsOptional() {
-    return typeIsOptional;
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    public void setTypeIsOptional(boolean newTypeIsOptional) {
-    boolean oldTypeIsOptional = typeIsOptional;
-    typeIsOptional = newTypeIsOptional;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.NAME_ELEMENT_TEST__TYPE_IS_OPTIONAL, oldTypeIsOptional, typeIsOptional));
   }
 
     /**
@@ -230,8 +189,6 @@ public class NameElementTestImpl extends ElementTestImpl implements NameElementT
         return getName();
       case Xpath2Package.NAME_ELEMENT_TEST__TYPE:
         return getType();
-      case Xpath2Package.NAME_ELEMENT_TEST__TYPE_IS_OPTIONAL:
-        return isTypeIsOptional();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -249,10 +206,7 @@ public class NameElementTestImpl extends ElementTestImpl implements NameElementT
         setName((QName)newValue);
         return;
       case Xpath2Package.NAME_ELEMENT_TEST__TYPE:
-        setType((QName)newValue);
-        return;
-      case Xpath2Package.NAME_ELEMENT_TEST__TYPE_IS_OPTIONAL:
-        setTypeIsOptional((Boolean)newValue);
+        setType((OptionalAtomicType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -271,10 +225,7 @@ public class NameElementTestImpl extends ElementTestImpl implements NameElementT
         setName((QName)null);
         return;
       case Xpath2Package.NAME_ELEMENT_TEST__TYPE:
-        setType((QName)null);
-        return;
-      case Xpath2Package.NAME_ELEMENT_TEST__TYPE_IS_OPTIONAL:
-        setTypeIsOptional(TYPE_IS_OPTIONAL_EDEFAULT);
+        setType((OptionalAtomicType)null);
         return;
     }
     super.eUnset(featureID);
@@ -293,26 +244,8 @@ public class NameElementTestImpl extends ElementTestImpl implements NameElementT
         return name != null;
       case Xpath2Package.NAME_ELEMENT_TEST__TYPE:
         return type != null;
-      case Xpath2Package.NAME_ELEMENT_TEST__TYPE_IS_OPTIONAL:
-        return typeIsOptional != TYPE_IS_OPTIONAL_EDEFAULT;
     }
     return super.eIsSet(featureID);
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    @Override
-    public String toString() {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (typeIsOptional: ");
-    result.append(typeIsOptional);
-    result.append(')');
-    return result.toString();
   }
 
 } //NameElementTestImpl

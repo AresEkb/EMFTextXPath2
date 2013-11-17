@@ -463,6 +463,15 @@ public interface Xpath2Factory extends EFactory {
     AtomicType createAtomicType();
 
     /**
+   * Returns a new object of class '<em>Optional Atomic Type</em>'.
+   * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+   * @return a new object of class '<em>Optional Atomic Type</em>'.
+   * @generated
+   */
+    OptionalAtomicType createOptionalAtomicType();
+
+    /**
    * Returns a new object of class '<em>Empty Sequence Type</em>'.
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
