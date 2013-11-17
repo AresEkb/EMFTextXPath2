@@ -8,6 +8,7 @@ OPTIONS {
     usePredefinedTokens = "false";
     disableTokenSorting = "true";
     overridePluginXML = "false";
+    ignoreTypeRestrictionsForPrinting = "true";
 }
 
 TOKENS {

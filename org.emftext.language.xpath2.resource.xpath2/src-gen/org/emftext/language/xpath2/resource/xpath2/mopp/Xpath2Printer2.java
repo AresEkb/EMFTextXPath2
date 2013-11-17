@@ -76,33 +76,7 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 			if (totalValuesToPrint == null) {
 				return 0;
 			}
-			if (feature instanceof org.eclipse.emf.ecore.EAttribute) {
-				// for attributes we do not need to check the type, since the CS languages does
-				// not allow type restrictions for attributes.
-				return totalValuesToPrint.size() - printedIndices.size();
-			} else if (feature instanceof org.eclipse.emf.ecore.EReference) {
-				org.eclipse.emf.ecore.EReference reference = (org.eclipse.emf.ecore.EReference) feature;
-				if (!reference.isContainment()) {
-					// for non-containment references we also do not need to check the type, since the
-					// CS languages does not allow type restrictions for these either.
-					return totalValuesToPrint.size() - printedIndices.size();
-				}
-			}
-			// now we're left with containment references for which we check the type of the
-			// objects to print
-			java.util.List<Class<?>> allowedTypes = getAllowedTypes(terminal);
-			java.util.Set<Integer> indicesWithCorrectType = new java.util.LinkedHashSet<Integer>();
-			int index = 0;
-			for (Object valueToPrint : totalValuesToPrint) {
-				for (Class<?> allowedType : allowedTypes) {
-					if (allowedType.isInstance(valueToPrint)) {
-						indicesWithCorrectType.add(index);
-					}
-				}
-				index++;
-			}
-			indicesWithCorrectType.removeAll(printedIndices);
-			return indicesWithCorrectType.size();
+			return totalValuesToPrint.size() - printedIndices.size();
 		}
 		
 		public int getNextIndexToPrint(String featureName) {
@@ -598,10 +572,9 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 	}
 	
 	private int findElementWithCorrectType(org.eclipse.emf.ecore.EObject eObject, org.eclipse.emf.ecore.EStructuralFeature feature, java.util.Set<Integer> indicesToPrint, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment containment) {
-		// By default the type restrictions that are defined in the CS definition are
-		// considered when printing models. You can change this behavior by setting the
-		// 'ignoreTypeRestrictionsForPrinting' option to true.
-		boolean ignoreTypeRestrictions = false;
+		// Since the 'ignoreTypeRestrictionsForPrinting' option is set to true, the type
+		// restrictions are not considered when printing models.
+		boolean ignoreTypeRestrictions = true;
 		org.eclipse.emf.ecore.EClass[] allowedTypes = containment.getAllowedTypes();
 		Object value = eObject.eGet(feature);
 		if (value instanceof java.util.List<?>) {
