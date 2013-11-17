@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -95,7 +96,7 @@ public class UnionExprImpl extends MultiplicativeExprChildImpl implements UnionE
     public EList<UnionOp> getOperation() {
     if (operation == null)
     {
-      operation = new EDataTypeUniqueEList<UnionOp>(UnionOp.class, this, Xpath2Package.UNION_EXPR__OPERATION);
+      operation = new EDataTypeEList<UnionOp>(UnionOp.class, this, Xpath2Package.UNION_EXPR__OPERATION);
     }
     return operation;
   }

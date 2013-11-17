@@ -61,7 +61,7 @@ public interface UnaryExpr extends CastExprChild {
    * @return the value of the '<em>Operator</em>' attribute list.
    * @see org.emftext.language.xpath2.UnaryOp
    * @see org.emftext.language.xpath2.Xpath2Package#getUnaryExpr_Operator()
-   * @model
+   * @model unique="false"
    * @generated
    */
     EList<UnaryOp> getOperator();

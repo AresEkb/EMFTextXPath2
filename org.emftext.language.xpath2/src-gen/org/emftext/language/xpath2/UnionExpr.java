@@ -51,7 +51,7 @@ public interface UnionExpr extends MultiplicativeExprChild {
    * @return the value of the '<em>Operation</em>' attribute list.
    * @see org.emftext.language.xpath2.UnionOp
    * @see org.emftext.language.xpath2.Xpath2Package#getUnionExpr_Operation()
-   * @model
+   * @model unique="false"
    * @generated
    */
     EList<UnionOp> getOperation();

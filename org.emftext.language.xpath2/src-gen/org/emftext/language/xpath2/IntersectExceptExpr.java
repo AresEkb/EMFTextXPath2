@@ -51,7 +51,7 @@ public interface IntersectExceptExpr extends UnionExprChild {
    * @return the value of the '<em>Operator</em>' attribute list.
    * @see org.emftext.language.xpath2.IntersectExceptOpKind
    * @see org.emftext.language.xpath2.Xpath2Package#getIntersectExceptExpr_Operator()
-   * @model
+   * @model unique="false"
    * @generated
    */
     EList<IntersectExceptOpKind> getOperator();

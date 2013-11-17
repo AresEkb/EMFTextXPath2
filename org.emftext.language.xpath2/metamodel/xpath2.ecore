@@ -65,30 +65,30 @@
   <eClassifiers xsi:type="ecore:EClass" name="AdditiveExpr" eSuperTypes="#//RangeExprChild">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operand" lowerBound="1"
         upperBound="-1" eType="#//AdditiveExprChild" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" upperBound="-1"
-        eType="#//AdditiveOpKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" unique="false"
+        upperBound="-1" eType="#//AdditiveOpKind"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AdditiveExprChild" abstract="true" eSuperTypes="#//RangeExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="MultiplicativeExpr" eSuperTypes="#//AdditiveExprChild">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operand" lowerBound="1"
         upperBound="-1" eType="#//MultiplicativeExprChild" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" upperBound="-1"
-        eType="#//MultiplicativeOpKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" unique="false"
+        upperBound="-1" eType="#//MultiplicativeOpKind"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MultiplicativeExprChild" abstract="true"
       eSuperTypes="#//AdditiveExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="UnionExpr" eSuperTypes="#//MultiplicativeExprChild">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operand" lowerBound="1"
         upperBound="-1" eType="#//UnionExprChild" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operation" upperBound="-1"
-        eType="#//UnionOp"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operation" unique="false"
+        upperBound="-1" eType="#//UnionOp"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnionExprChild" abstract="true" eSuperTypes="#//MultiplicativeExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="IntersectExceptExpr" eSuperTypes="#//UnionExprChild">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operand" lowerBound="1"
         upperBound="-1" eType="#//IntersectExceptExprChild" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" upperBound="-1"
-        eType="#//IntersectExceptOpKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" unique="false"
+        upperBound="-1" eType="#//IntersectExceptOpKind"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntersectExceptExprChild" abstract="true"
       eSuperTypes="#//UnionExprChild"/>
@@ -124,8 +124,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="UnaryExpr" eSuperTypes="#//CastExprChild">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operand" lowerBound="1"
         eType="#//UnaryExprChild" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" upperBound="-1"
-        eType="#//UnaryOp"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" unique="false"
+        upperBound="-1" eType="#//UnaryOp"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnaryExprChild" abstract="true" eSuperTypes="#//CastExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="ValueExpr" abstract="true" eSuperTypes="#//UnaryExprChild"/>

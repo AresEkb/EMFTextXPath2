@@ -51,7 +51,7 @@ public interface AdditiveExpr extends RangeExprChild {
    * @return the value of the '<em>Operator</em>' attribute list.
    * @see org.emftext.language.xpath2.AdditiveOpKind
    * @see org.emftext.language.xpath2.Xpath2Package#getAdditiveExpr_Operator()
-   * @model
+   * @model unique="false"
    * @generated
    */
     EList<AdditiveOpKind> getOperator();

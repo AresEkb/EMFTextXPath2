@@ -51,7 +51,7 @@ public interface MultiplicativeExpr extends AdditiveExprChild {
    * @return the value of the '<em>Operator</em>' attribute list.
    * @see org.emftext.language.xpath2.MultiplicativeOpKind
    * @see org.emftext.language.xpath2.Xpath2Package#getMultiplicativeExpr_Operator()
-   * @model
+   * @model unique="false"
    * @generated
    */
     EList<MultiplicativeOpKind> getOperator();

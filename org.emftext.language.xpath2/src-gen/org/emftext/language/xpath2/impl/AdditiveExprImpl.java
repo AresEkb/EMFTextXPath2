@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -95,7 +96,7 @@ public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr
     public EList<AdditiveOpKind> getOperator() {
     if (operator == null)
     {
-      operator = new EDataTypeUniqueEList<AdditiveOpKind>(AdditiveOpKind.class, this, Xpath2Package.ADDITIVE_EXPR__OPERATOR);
+      operator = new EDataTypeEList<AdditiveOpKind>(AdditiveOpKind.class, this, Xpath2Package.ADDITIVE_EXPR__OPERATOR);
     }
     return operator;
   }

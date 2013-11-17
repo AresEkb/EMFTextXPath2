@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 import org.emftext.language.xpath2.UnaryExpr;
@@ -128,7 +129,7 @@ public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
     public EList<UnaryOp> getOperator() {
     if (operator == null)
     {
-      operator = new EDataTypeUniqueEList<UnaryOp>(UnaryOp.class, this, Xpath2Package.UNARY_EXPR__OPERATOR);
+      operator = new EDataTypeEList<UnaryOp>(UnaryOp.class, this, Xpath2Package.UNARY_EXPR__OPERATOR);
     }
     return operator;
   }
