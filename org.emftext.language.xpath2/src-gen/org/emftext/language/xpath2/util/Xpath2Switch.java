@@ -1,4 +1,12 @@
 /**
+ * Copyright (c) 2013 Denis Nikiforov.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.util;
 
@@ -23,49 +31,49 @@ import org.emftext.language.xpath2.*;
  * @generated
  */
 public class Xpath2Switch<T> extends Switch<T> {
-    /**
+	/**
    * The cached model package
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    protected static Xpath2Package modelPackage;
+	protected static Xpath2Package modelPackage;
 
-    /**
+	/**
    * Creates an instance of the switch.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public Xpath2Switch() {
+	public Xpath2Switch() {
     if (modelPackage == null)
     {
       modelPackage = Xpath2Package.eINSTANCE;
     }
   }
 
-    /**
+	/**
    * Checks whether this is a switch for the given package.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @parameter ePackage the package in question.
    * @return whether this is a switch for the given package.
    * @generated
    */
-    @Override
-    protected boolean isSwitchFor(EPackage ePackage) {
+	@Override
+	protected boolean isSwitchFor(EPackage ePackage) {
     return ePackage == modelPackage;
   }
 
-    /**
+	/**
    * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
-    @Override
-    protected T doSwitch(int classifierID, EObject theEObject) {
+	@Override
+	protected T doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID)
     {
       case Xpath2Package.ANY_EXPR:
@@ -1554,1609 +1562,1609 @@ public class Xpath2Switch<T> extends Switch<T> {
     }
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Any Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Any Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseAnyExpr(AnyExpr object) {
+	public T caseAnyExpr(AnyExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseExpr(Expr object) {
+	public T caseExpr(Expr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Expr Single</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Expr Single</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseExprSingle(ExprSingle object) {
+	public T caseExprSingle(ExprSingle object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>For Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>For Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseForExpr(ForExpr object) {
+	public T caseForExpr(ForExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Quantified Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Quantified Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseQuantifiedExpr(QuantifiedExpr object) {
+	public T caseQuantifiedExpr(QuantifiedExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>If Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>If Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseIfExpr(IfExpr object) {
+	public T caseIfExpr(IfExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Iterator</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Iterator</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseIterator(Iterator object) {
+	public T caseIterator(Iterator object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Or Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Or Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseOrExpr(OrExpr object) {
+	public T caseOrExpr(OrExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Or Expr Child</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Or Expr Child</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseOrExprChild(OrExprChild object) {
+	public T caseOrExprChild(OrExprChild object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>And Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>And Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseAndExpr(AndExpr object) {
+	public T caseAndExpr(AndExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>And Expr Child</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>And Expr Child</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseAndExprChild(AndExprChild object) {
+	public T caseAndExprChild(AndExprChild object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Comparison Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Comparison Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseComparisonExpr(ComparisonExpr object) {
+	public T caseComparisonExpr(ComparisonExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Comparison Expr Child</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Comparison Expr Child</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseComparisonExprChild(ComparisonExprChild object) {
+	public T caseComparisonExprChild(ComparisonExprChild object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Range Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Range Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseRangeExpr(RangeExpr object) {
+	public T caseRangeExpr(RangeExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Range Expr Child</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Range Expr Child</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseRangeExprChild(RangeExprChild object) {
+	public T caseRangeExprChild(RangeExprChild object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Additive Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Additive Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseAdditiveExpr(AdditiveExpr object) {
+	public T caseAdditiveExpr(AdditiveExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Additive Expr Child</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Additive Expr Child</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseAdditiveExprChild(AdditiveExprChild object) {
+	public T caseAdditiveExprChild(AdditiveExprChild object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Multiplicative Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Multiplicative Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseMultiplicativeExpr(MultiplicativeExpr object) {
+	public T caseMultiplicativeExpr(MultiplicativeExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Multiplicative Expr Child</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Multiplicative Expr Child</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseMultiplicativeExprChild(MultiplicativeExprChild object) {
+	public T caseMultiplicativeExprChild(MultiplicativeExprChild object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Union Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Union Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseUnionExpr(UnionExpr object) {
+	public T caseUnionExpr(UnionExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Union Expr Child</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Union Expr Child</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseUnionExprChild(UnionExprChild object) {
+	public T caseUnionExprChild(UnionExprChild object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Intersect Except Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Intersect Except Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseIntersectExceptExpr(IntersectExceptExpr object) {
+	public T caseIntersectExceptExpr(IntersectExceptExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Intersect Except Expr Child</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Intersect Except Expr Child</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseIntersectExceptExprChild(IntersectExceptExprChild object) {
+	public T caseIntersectExceptExprChild(IntersectExceptExprChild object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Instanceof Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Instanceof Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseInstanceofExpr(InstanceofExpr object) {
+	public T caseInstanceofExpr(InstanceofExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Instanceof Expr Child</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Instanceof Expr Child</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseInstanceofExprChild(InstanceofExprChild object) {
+	public T caseInstanceofExprChild(InstanceofExprChild object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Treat Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Treat Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseTreatExpr(TreatExpr object) {
+	public T caseTreatExpr(TreatExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Treat Expr Child</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Treat Expr Child</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseTreatExprChild(TreatExprChild object) {
+	public T caseTreatExprChild(TreatExprChild object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Castable Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Castable Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseCastableExpr(CastableExpr object) {
+	public T caseCastableExpr(CastableExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Castable Expr Child</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Castable Expr Child</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseCastableExprChild(CastableExprChild object) {
+	public T caseCastableExprChild(CastableExprChild object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Cast Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Cast Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseCastExpr(CastExpr object) {
+	public T caseCastExpr(CastExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Cast Expr Child</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Cast Expr Child</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseCastExprChild(CastExprChild object) {
+	public T caseCastExprChild(CastExprChild object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Unary Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Unary Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseUnaryExpr(UnaryExpr object) {
+	public T caseUnaryExpr(UnaryExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Unary Expr Child</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Unary Expr Child</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseUnaryExprChild(UnaryExprChild object) {
+	public T caseUnaryExprChild(UnaryExprChild object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Value Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Value Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseValueExpr(ValueExpr object) {
+	public T caseValueExpr(ValueExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Path Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Path Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T casePathExpr(PathExpr object) {
+	public T casePathExpr(PathExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Path Expr Child</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Path Expr Child</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T casePathExprChild(PathExprChild object) {
+	public T casePathExprChild(PathExprChild object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Root Step Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Root Step Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseRootStepExpr(RootStepExpr object) {
+	public T caseRootStepExpr(RootStepExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Child Step Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Child Step Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseChildStepExpr(ChildStepExpr object) {
+	public T caseChildStepExpr(ChildStepExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Desc Or Self Step Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Desc Or Self Step Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseDescOrSelfStepExpr(DescOrSelfStepExpr object) {
+	public T caseDescOrSelfStepExpr(DescOrSelfStepExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Self Step Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Self Step Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseSelfStepExpr(SelfStepExpr object) {
+	public T caseSelfStepExpr(SelfStepExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Self Step Expr Child</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Self Step Expr Child</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseSelfStepExprChild(SelfStepExprChild object) {
+	public T caseSelfStepExprChild(SelfStepExprChild object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Step Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Step Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseStepExpr(StepExpr object) {
+	public T caseStepExpr(StepExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Filter Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Filter Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseFilterExpr(FilterExpr object) {
+	public T caseFilterExpr(FilterExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Filter Expr Child</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Filter Expr Child</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseFilterExprChild(FilterExprChild object) {
+	public T caseFilterExprChild(FilterExprChild object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Axis Step</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Axis Step</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseAxisStep(AxisStep object) {
+	public T caseAxisStep(AxisStep object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Directional Step</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Directional Step</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseDirectionalStep(DirectionalStep object) {
+	public T caseDirectionalStep(DirectionalStep object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Forward Step</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Forward Step</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseForwardStep(ForwardStep object) {
+	public T caseForwardStep(ForwardStep object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Reverse Step</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Reverse Step</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseReverseStep(ReverseStep object) {
+	public T caseReverseStep(ReverseStep object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>General Forward Step</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>General Forward Step</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseGeneralForwardStep(GeneralForwardStep object) {
+	public T caseGeneralForwardStep(GeneralForwardStep object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Abbrev Forward Step</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Abbrev Forward Step</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseAbbrevForwardStep(AbbrevForwardStep object) {
+	public T caseAbbrevForwardStep(AbbrevForwardStep object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>General Reverse Step</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>General Reverse Step</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseGeneralReverseStep(GeneralReverseStep object) {
+	public T caseGeneralReverseStep(GeneralReverseStep object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Abbrev Reverse Step</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Abbrev Reverse Step</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseAbbrevReverseStep(AbbrevReverseStep object) {
+	public T caseAbbrevReverseStep(AbbrevReverseStep object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Node Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Node Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseNodeTest(NodeTest object) {
+	public T caseNodeTest(NodeTest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Node Kind Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Node Kind Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseNodeKindTest(NodeKindTest object) {
+	public T caseNodeKindTest(NodeKindTest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Name Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Name Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseNameTest(NameTest object) {
+	public T caseNameTest(NameTest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>QName Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>QName Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseQNameTest(QNameTest object) {
+	public T caseQNameTest(QNameTest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Wildcard</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Wildcard</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseWildcard(Wildcard object) {
+	public T caseWildcard(Wildcard object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Any Wildcard</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Any Wildcard</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseAnyWildcard(AnyWildcard object) {
+	public T caseAnyWildcard(AnyWildcard object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Local Name Wildcard</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Local Name Wildcard</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseLocalNameWildcard(LocalNameWildcard object) {
+	public T caseLocalNameWildcard(LocalNameWildcard object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Namespace Wildcard</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Namespace Wildcard</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseNamespaceWildcard(NamespaceWildcard object) {
+	public T caseNamespaceWildcard(NamespaceWildcard object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Predicate</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Predicate</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T casePredicate(Predicate object) {
+	public T casePredicate(Predicate object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Primary Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Primary Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T casePrimaryExpr(PrimaryExpr object) {
+	public T casePrimaryExpr(PrimaryExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Literal</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Literal</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseLiteral(Literal object) {
+	public T caseLiteral(Literal object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Var Ref</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Var Ref</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseVarRef(VarRef object) {
+	public T caseVarRef(VarRef object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Var Name</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Var Name</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseVarName(VarName object) {
+	public T caseVarName(VarName object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Parenthesized Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Parenthesized Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseParenthesizedExpr(ParenthesizedExpr object) {
+	public T caseParenthesizedExpr(ParenthesizedExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Parenthesized Expr Child</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Parenthesized Expr Child</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseParenthesizedExprChild(ParenthesizedExprChild object) {
+	public T caseParenthesizedExprChild(ParenthesizedExprChild object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Context Item Expr</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Context Item Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseContextItemExpr(ContextItemExpr object) {
+	public T caseContextItemExpr(ContextItemExpr object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Function Call</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Function Call</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseFunctionCall(FunctionCall object) {
+	public T caseFunctionCall(FunctionCall object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Numeric Literal</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Numeric Literal</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseNumericLiteral(NumericLiteral object) {
+	public T caseNumericLiteral(NumericLiteral object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>String Literal</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>String Literal</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseStringLiteral(StringLiteral object) {
+	public T caseStringLiteral(StringLiteral object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Integer Literal</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Integer Literal</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseIntegerLiteral(IntegerLiteral object) {
+	public T caseIntegerLiteral(IntegerLiteral object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Decimal Literal</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Decimal Literal</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseDecimalLiteral(DecimalLiteral object) {
+	public T caseDecimalLiteral(DecimalLiteral object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Double Literal</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Double Literal</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseDoubleLiteral(DoubleLiteral object) {
+	public T caseDoubleLiteral(DoubleLiteral object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Comp</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Comp</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseComp(Comp object) {
+	public T caseComp(Comp object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>General Comp</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>General Comp</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseGeneralComp(GeneralComp object) {
+	public T caseGeneralComp(GeneralComp object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Value Comp</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Value Comp</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseValueComp(ValueComp object) {
+	public T caseValueComp(ValueComp object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Node Comp</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Node Comp</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseNodeComp(NodeComp object) {
+	public T caseNodeComp(NodeComp object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Single Type</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Single Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseSingleType(SingleType object) {
+	public T caseSingleType(SingleType object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Atomic Type</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Atomic Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseAtomicType(AtomicType object) {
+	public T caseAtomicType(AtomicType object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Optional Atomic Type</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Optional Atomic Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseOptionalAtomicType(OptionalAtomicType object) {
+	public T caseOptionalAtomicType(OptionalAtomicType object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Sequence Type</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Sequence Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseSequenceType(SequenceType object) {
+	public T caseSequenceType(SequenceType object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Empty Sequence Type</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Empty Sequence Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseEmptySequenceType(EmptySequenceType object) {
+	public T caseEmptySequenceType(EmptySequenceType object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Item Sequence Type</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Item Sequence Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseItemSequenceType(ItemSequenceType object) {
+	public T caseItemSequenceType(ItemSequenceType object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Item Type</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Item Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseItemType(ItemType object) {
+	public T caseItemType(ItemType object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Item Kind Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Item Kind Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseItemKindTest(ItemKindTest object) {
+	public T caseItemKindTest(ItemKindTest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Any Item Type</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Any Item Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseAnyItemType(AnyItemType object) {
+	public T caseAnyItemType(AnyItemType object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Atomic Item Type</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Atomic Item Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseAtomicItemType(AtomicItemType object) {
+	public T caseAtomicItemType(AtomicItemType object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Kind Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Kind Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseKindTest(KindTest object) {
+	public T caseKindTest(KindTest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Document Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Document Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseDocumentTest(DocumentTest object) {
+	public T caseDocumentTest(DocumentTest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Element Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Element Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseElementTest(ElementTest object) {
+	public T caseElementTest(ElementTest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Name Element Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Name Element Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseNameElementTest(NameElementTest object) {
+	public T caseNameElementTest(NameElementTest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Wildcard Element Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Wildcard Element Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseWildcardElementTest(WildcardElementTest object) {
+	public T caseWildcardElementTest(WildcardElementTest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Attribute Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Attribute Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseAttributeTest(AttributeTest object) {
+	public T caseAttributeTest(AttributeTest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Name Attribute Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Name Attribute Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseNameAttributeTest(NameAttributeTest object) {
+	public T caseNameAttributeTest(NameAttributeTest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Wildcard Attribute Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Wildcard Attribute Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseWildcardAttributeTest(WildcardAttributeTest object) {
+	public T caseWildcardAttributeTest(WildcardAttributeTest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Schema Element Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Schema Element Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseSchemaElementTest(SchemaElementTest object) {
+	public T caseSchemaElementTest(SchemaElementTest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Schema Attribute Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Schema Attribute Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseSchemaAttributeTest(SchemaAttributeTest object) {
+	public T caseSchemaAttributeTest(SchemaAttributeTest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>PI Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>PI Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T casePITest(PITest object) {
+	public T casePITest(PITest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>NC Name PI Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>NC Name PI Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseNCNamePITest(NCNamePITest object) {
+	public T caseNCNamePITest(NCNamePITest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>String Literal PI Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>String Literal PI Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseStringLiteralPITest(StringLiteralPITest object) {
+	public T caseStringLiteralPITest(StringLiteralPITest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Comment Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Comment Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseCommentTest(CommentTest object) {
+	public T caseCommentTest(CommentTest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Text Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Text Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseTextTest(TextTest object) {
+	public T caseTextTest(TextTest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Any Kind Test</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Any Kind Test</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseAnyKindTest(AnyKindTest object) {
+	public T caseAnyKindTest(AnyKindTest object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>Comment</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Comment</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseComment(Comment object) {
+	public T caseComment(Comment object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>QName</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>QName</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-    public T caseQName(QName object) {
+	public T caseQName(QName object) {
     return null;
   }
 
-    /**
+	/**
    * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
    * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch, but this is the last case anyway.
-     * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch, but this is the last case anyway.
+	 * <!-- end-user-doc -->
    * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject)
    * @generated
    */
-    @Override
-    public T defaultCase(EObject object) {
+	@Override
+	public T defaultCase(EObject object) {
     return null;
   }
 

@@ -1,3 +1,13 @@
+/**
+ * Copyright (c) 2013 Denis Nikiforov.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Denis Nikiforov - initial API and implementation
+ */
 package org.emftext.language.xpath2.resource.xpath2.post;
 
 import java.util.Collections;
@@ -18,15 +28,6 @@ import org.emftext.language.xpath2.resource.xpath2.IXpath2Options;
 import org.emftext.language.xpath2.resource.xpath2.IXpath2ResourcePostProcessor;
 import org.emftext.language.xpath2.resource.xpath2.IXpath2ResourcePostProcessorProvider;
 import org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource;
-
-/*
-    <extension point="org.emftext.language.xpath2.resource.xpath2.default_load_options">
-        <provider
-            class="org.emftext.language.xpath2.resource.xpath2.post.PostProcessor"
-            id="org.emftext.language.xpath2.resource.xpath2.post.PostProcessor">
-        </provider>
-    </extension>
- */
 
 public class PostProcessor implements IXpath2OptionProvider,
 IXpath2ResourcePostProcessorProvider, IXpath2ResourcePostProcessor {

@@ -1,4 +1,12 @@
 /**
+ * Copyright (c) 2013 Denis Nikiforov.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.impl;
 
@@ -35,51 +43,51 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class CommentImpl extends EObjectImpl implements Comment {
-    /**
+	/**
    * The cached value of the '{@link #getText() <em>Text</em>}' attribute list.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getText()
    * @generated
    * @ordered
    */
-    protected EList<String> text;
+	protected EList<String> text;
 
-    /**
+	/**
    * The cached value of the '{@link #getComment() <em>Comment</em>}' containment reference list.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getComment()
    * @generated
    * @ordered
    */
-    protected EList<Comment> comment;
+	protected EList<Comment> comment;
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    protected CommentImpl() {
+	protected CommentImpl() {
     super();
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
     return Xpath2Package.Literals.COMMENT;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public EList<String> getText() {
+	public EList<String> getText() {
     if (text == null)
     {
       text = new EDataTypeUniqueEList<String>(String.class, this, Xpath2Package.COMMENT__TEXT);
@@ -87,12 +95,12 @@ public class CommentImpl extends EObjectImpl implements Comment {
     return text;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public EList<Comment> getComment() {
+	public EList<Comment> getComment() {
     if (comment == null)
     {
       comment = new EObjectContainmentEList<Comment>(Comment.class, this, Xpath2Package.COMMENT__COMMENT);
@@ -100,13 +108,13 @@ public class CommentImpl extends EObjectImpl implements Comment {
     return comment;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.COMMENT__COMMENT:
@@ -115,13 +123,13 @@ public class CommentImpl extends EObjectImpl implements Comment {
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.COMMENT__TEXT:
@@ -132,14 +140,14 @@ public class CommentImpl extends EObjectImpl implements Comment {
     return super.eGet(featureID, resolve, coreType);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void eSet(int featureID, Object newValue) {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.COMMENT__TEXT:
@@ -154,13 +162,13 @@ public class CommentImpl extends EObjectImpl implements Comment {
     super.eSet(featureID, newValue);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public void eUnset(int featureID) {
+	@Override
+	public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.COMMENT__TEXT:
@@ -173,13 +181,13 @@ public class CommentImpl extends EObjectImpl implements Comment {
     super.eUnset(featureID);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public boolean eIsSet(int featureID) {
+	@Override
+	public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.COMMENT__TEXT:
@@ -190,13 +198,13 @@ public class CommentImpl extends EObjectImpl implements Comment {
     return super.eIsSet(featureID);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public String toString() {
+	@Override
+	public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

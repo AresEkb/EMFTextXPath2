@@ -1,4 +1,12 @@
 /**
+ * Copyright (c) 2013 Denis Nikiforov.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.impl;
 
@@ -12,7 +20,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -36,51 +43,51 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class MultiplicativeExprImpl extends AdditiveExprChildImpl implements MultiplicativeExpr {
-    /**
+	/**
    * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference list.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getOperand()
    * @generated
    * @ordered
    */
-    protected EList<MultiplicativeExprChild> operand;
+	protected EList<MultiplicativeExprChild> operand;
 
-    /**
+	/**
    * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute list.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getOperator()
    * @generated
    * @ordered
    */
-    protected EList<MultiplicativeOpKind> operator;
+	protected EList<MultiplicativeOpKind> operator;
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    protected MultiplicativeExprImpl() {
+	protected MultiplicativeExprImpl() {
     super();
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
     return Xpath2Package.Literals.MULTIPLICATIVE_EXPR;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public EList<MultiplicativeExprChild> getOperand() {
+	public EList<MultiplicativeExprChild> getOperand() {
     if (operand == null)
     {
       operand = new EObjectContainmentEList<MultiplicativeExprChild>(MultiplicativeExprChild.class, this, Xpath2Package.MULTIPLICATIVE_EXPR__OPERAND);
@@ -88,12 +95,12 @@ public class MultiplicativeExprImpl extends AdditiveExprChildImpl implements Mul
     return operand;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public EList<MultiplicativeOpKind> getOperator() {
+	public EList<MultiplicativeOpKind> getOperator() {
     if (operator == null)
     {
       operator = new EDataTypeEList<MultiplicativeOpKind>(MultiplicativeOpKind.class, this, Xpath2Package.MULTIPLICATIVE_EXPR__OPERATOR);
@@ -101,13 +108,13 @@ public class MultiplicativeExprImpl extends AdditiveExprChildImpl implements Mul
     return operator;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.MULTIPLICATIVE_EXPR__OPERAND:
@@ -116,13 +123,13 @@ public class MultiplicativeExprImpl extends AdditiveExprChildImpl implements Mul
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.MULTIPLICATIVE_EXPR__OPERAND:
@@ -133,14 +140,14 @@ public class MultiplicativeExprImpl extends AdditiveExprChildImpl implements Mul
     return super.eGet(featureID, resolve, coreType);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void eSet(int featureID, Object newValue) {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.MULTIPLICATIVE_EXPR__OPERAND:
@@ -155,13 +162,13 @@ public class MultiplicativeExprImpl extends AdditiveExprChildImpl implements Mul
     super.eSet(featureID, newValue);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public void eUnset(int featureID) {
+	@Override
+	public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.MULTIPLICATIVE_EXPR__OPERAND:
@@ -174,13 +181,13 @@ public class MultiplicativeExprImpl extends AdditiveExprChildImpl implements Mul
     super.eUnset(featureID);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public boolean eIsSet(int featureID) {
+	@Override
+	public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.MULTIPLICATIVE_EXPR__OPERAND:
@@ -191,13 +198,13 @@ public class MultiplicativeExprImpl extends AdditiveExprChildImpl implements Mul
     return super.eIsSet(featureID);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public String toString() {
+	@Override
+	public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

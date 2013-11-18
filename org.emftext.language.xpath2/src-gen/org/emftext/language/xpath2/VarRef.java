@@ -1,4 +1,12 @@
 /**
+ * Copyright (c) 2013 Denis Nikiforov.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2;
 
@@ -20,30 +28,30 @@ package org.emftext.language.xpath2;
  * @generated
  */
 public interface VarRef extends PrimaryExpr {
-    /**
+	/**
    * Returns the value of the '<em><b>Var Name</b></em>' containment reference.
    * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Var Name</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Var Name</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
    * @return the value of the '<em>Var Name</em>' containment reference.
    * @see #setVarName(VarName)
    * @see org.emftext.language.xpath2.Xpath2Package#getVarRef_VarName()
    * @model containment="true" required="true"
    * @generated
    */
-    VarName getVarName();
+	VarName getVarName();
 
-    /**
+	/**
    * Sets the value of the '{@link org.emftext.language.xpath2.VarRef#getVarName <em>Var Name</em>}' containment reference.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @param value the new value of the '<em>Var Name</em>' containment reference.
    * @see #getVarName()
    * @generated
    */
-    void setVarName(VarName value);
+	void setVarName(VarName value);
 
 } // VarRef

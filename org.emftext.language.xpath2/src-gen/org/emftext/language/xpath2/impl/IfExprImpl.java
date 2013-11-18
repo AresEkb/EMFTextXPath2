@@ -1,4 +1,12 @@
 /**
+ * Copyright (c) 2013 Denis Nikiforov.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.impl;
 
@@ -31,70 +39,70 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class IfExprImpl extends ExprSingleImpl implements IfExpr {
-    /**
+	/**
    * The cached value of the '{@link #getTest() <em>Test</em>}' containment reference.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getTest()
    * @generated
    * @ordered
    */
-    protected AnyExpr test;
+	protected AnyExpr test;
 
-    /**
+	/**
    * The cached value of the '{@link #getThen() <em>Then</em>}' containment reference.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getThen()
    * @generated
    * @ordered
    */
-    protected ExprSingle then;
+	protected ExprSingle then;
 
-    /**
+	/**
    * The cached value of the '{@link #getElse() <em>Else</em>}' containment reference.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getElse()
    * @generated
    * @ordered
    */
-    protected ExprSingle else_;
+	protected ExprSingle else_;
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    protected IfExprImpl() {
+	protected IfExprImpl() {
     super();
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
     return Xpath2Package.Literals.IF_EXPR;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public AnyExpr getTest() {
+	public AnyExpr getTest() {
     return test;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public NotificationChain basicSetTest(AnyExpr newTest, NotificationChain msgs) {
+	public NotificationChain basicSetTest(AnyExpr newTest, NotificationChain msgs) {
     AnyExpr oldTest = test;
     test = newTest;
     if (eNotificationRequired())
@@ -105,12 +113,12 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
     return msgs;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public void setTest(AnyExpr newTest) {
+	public void setTest(AnyExpr newTest) {
     if (newTest != test)
     {
       NotificationChain msgs = null;
@@ -125,21 +133,21 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.IF_EXPR__TEST, newTest, newTest));
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public ExprSingle getThen() {
+	public ExprSingle getThen() {
     return then;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public NotificationChain basicSetThen(ExprSingle newThen, NotificationChain msgs) {
+	public NotificationChain basicSetThen(ExprSingle newThen, NotificationChain msgs) {
     ExprSingle oldThen = then;
     then = newThen;
     if (eNotificationRequired())
@@ -150,12 +158,12 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
     return msgs;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public void setThen(ExprSingle newThen) {
+	public void setThen(ExprSingle newThen) {
     if (newThen != then)
     {
       NotificationChain msgs = null;
@@ -170,21 +178,21 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.IF_EXPR__THEN, newThen, newThen));
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public ExprSingle getElse() {
+	public ExprSingle getElse() {
     return else_;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public NotificationChain basicSetElse(ExprSingle newElse, NotificationChain msgs) {
+	public NotificationChain basicSetElse(ExprSingle newElse, NotificationChain msgs) {
     ExprSingle oldElse = else_;
     else_ = newElse;
     if (eNotificationRequired())
@@ -195,12 +203,12 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
     return msgs;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public void setElse(ExprSingle newElse) {
+	public void setElse(ExprSingle newElse) {
     if (newElse != else_)
     {
       NotificationChain msgs = null;
@@ -215,13 +223,13 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.IF_EXPR__ELSE, newElse, newElse));
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.IF_EXPR__TEST:
@@ -234,13 +242,13 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.IF_EXPR__TEST:
@@ -253,13 +261,13 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
     return super.eGet(featureID, resolve, coreType);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public void eSet(int featureID, Object newValue) {
+	@Override
+	public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.IF_EXPR__TEST:
@@ -275,13 +283,13 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
     super.eSet(featureID, newValue);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public void eUnset(int featureID) {
+	@Override
+	public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.IF_EXPR__TEST:
@@ -297,13 +305,13 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
     super.eUnset(featureID);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public boolean eIsSet(int featureID) {
+	@Override
+	public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.IF_EXPR__TEST:

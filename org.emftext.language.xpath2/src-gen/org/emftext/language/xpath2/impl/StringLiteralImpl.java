@@ -1,4 +1,12 @@
 /**
+ * Copyright (c) 2013 Denis Nikiforov.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.impl;
 
@@ -25,73 +33,73 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class StringLiteralImpl extends LiteralImpl implements StringLiteral {
-    /**
+	/**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getValue()
    * @generated
    * @ordered
    */
-    protected static final String VALUE_EDEFAULT = null;
+	protected static final String VALUE_EDEFAULT = null;
 
-    /**
+	/**
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getValue()
    * @generated
    * @ordered
    */
-    protected String value = VALUE_EDEFAULT;
+	protected String value = VALUE_EDEFAULT;
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    protected StringLiteralImpl() {
+	protected StringLiteralImpl() {
     super();
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
     return Xpath2Package.Literals.STRING_LITERAL;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public String getValue() {
+	public String getValue() {
     return value;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public void setValue(String newValue) {
+	public void setValue(String newValue) {
     String oldValue = value;
     value = newValue;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.STRING_LITERAL__VALUE, oldValue, value));
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.STRING_LITERAL__VALUE:
@@ -100,13 +108,13 @@ public class StringLiteralImpl extends LiteralImpl implements StringLiteral {
     return super.eGet(featureID, resolve, coreType);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public void eSet(int featureID, Object newValue) {
+	@Override
+	public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.STRING_LITERAL__VALUE:
@@ -116,13 +124,13 @@ public class StringLiteralImpl extends LiteralImpl implements StringLiteral {
     super.eSet(featureID, newValue);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public void eUnset(int featureID) {
+	@Override
+	public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.STRING_LITERAL__VALUE:
@@ -132,13 +140,13 @@ public class StringLiteralImpl extends LiteralImpl implements StringLiteral {
     super.eUnset(featureID);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public boolean eIsSet(int featureID) {
+	@Override
+	public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.STRING_LITERAL__VALUE:
@@ -147,13 +155,13 @@ public class StringLiteralImpl extends LiteralImpl implements StringLiteral {
     return super.eIsSet(featureID);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public String toString() {
+	@Override
+	public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

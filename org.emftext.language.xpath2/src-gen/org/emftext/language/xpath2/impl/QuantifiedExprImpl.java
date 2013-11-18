@@ -1,4 +1,12 @@
 /**
+ * Copyright (c) 2013 Denis Nikiforov.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.impl;
 
@@ -39,92 +47,92 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr {
-    /**
+	/**
    * The default value of the '{@link #getQuantifier() <em>Quantifier</em>}' attribute.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getQuantifier()
    * @generated
    * @ordered
    */
-    protected static final QuantifierKind QUANTIFIER_EDEFAULT = QuantifierKind.SOME;
+	protected static final QuantifierKind QUANTIFIER_EDEFAULT = QuantifierKind.SOME;
 
-    /**
+	/**
    * The cached value of the '{@link #getQuantifier() <em>Quantifier</em>}' attribute.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getQuantifier()
    * @generated
    * @ordered
    */
-    protected QuantifierKind quantifier = QUANTIFIER_EDEFAULT;
+	protected QuantifierKind quantifier = QUANTIFIER_EDEFAULT;
 
-    /**
+	/**
    * The cached value of the '{@link #getIterator() <em>Iterator</em>}' containment reference list.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getIterator()
    * @generated
    * @ordered
    */
-    protected EList<Iterator> iterator;
+	protected EList<Iterator> iterator;
 
-    /**
+	/**
    * The cached value of the '{@link #getSatisfies() <em>Satisfies</em>}' containment reference.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getSatisfies()
    * @generated
    * @ordered
    */
-    protected ExprSingle satisfies;
+	protected ExprSingle satisfies;
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    protected QuantifiedExprImpl() {
+	protected QuantifiedExprImpl() {
     super();
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
     return Xpath2Package.Literals.QUANTIFIED_EXPR;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public QuantifierKind getQuantifier() {
+	public QuantifierKind getQuantifier() {
     return quantifier;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public void setQuantifier(QuantifierKind newQuantifier) {
+	public void setQuantifier(QuantifierKind newQuantifier) {
     QuantifierKind oldQuantifier = quantifier;
     quantifier = newQuantifier == null ? QUANTIFIER_EDEFAULT : newQuantifier;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.QUANTIFIED_EXPR__QUANTIFIER, oldQuantifier, quantifier));
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public EList<Iterator> getIterator() {
+	public EList<Iterator> getIterator() {
     if (iterator == null)
     {
       iterator = new EObjectContainmentEList<Iterator>(Iterator.class, this, Xpath2Package.QUANTIFIED_EXPR__ITERATOR);
@@ -132,21 +140,21 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
     return iterator;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public ExprSingle getSatisfies() {
+	public ExprSingle getSatisfies() {
     return satisfies;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public NotificationChain basicSetSatisfies(ExprSingle newSatisfies, NotificationChain msgs) {
+	public NotificationChain basicSetSatisfies(ExprSingle newSatisfies, NotificationChain msgs) {
     ExprSingle oldSatisfies = satisfies;
     satisfies = newSatisfies;
     if (eNotificationRequired())
@@ -157,12 +165,12 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
     return msgs;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public void setSatisfies(ExprSingle newSatisfies) {
+	public void setSatisfies(ExprSingle newSatisfies) {
     if (newSatisfies != satisfies)
     {
       NotificationChain msgs = null;
@@ -177,13 +185,13 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.QUANTIFIED_EXPR__SATISFIES, newSatisfies, newSatisfies));
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.QUANTIFIED_EXPR__ITERATOR:
@@ -194,13 +202,13 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.QUANTIFIED_EXPR__QUANTIFIER:
@@ -213,14 +221,14 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
     return super.eGet(featureID, resolve, coreType);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void eSet(int featureID, Object newValue) {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.QUANTIFIED_EXPR__QUANTIFIER:
@@ -237,13 +245,13 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
     super.eSet(featureID, newValue);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public void eUnset(int featureID) {
+	@Override
+	public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.QUANTIFIED_EXPR__QUANTIFIER:
@@ -259,13 +267,13 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
     super.eUnset(featureID);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public boolean eIsSet(int featureID) {
+	@Override
+	public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.QUANTIFIED_EXPR__QUANTIFIER:
@@ -278,13 +286,13 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
     return super.eIsSet(featureID);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public String toString() {
+	@Override
+	public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

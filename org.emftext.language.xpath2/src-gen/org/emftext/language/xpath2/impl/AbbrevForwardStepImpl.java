@@ -1,4 +1,12 @@
 /**
+ * Copyright (c) 2013 Denis Nikiforov.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.impl;
 
@@ -30,91 +38,91 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForwardStep {
-    /**
+	/**
    * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getKind()
    * @generated
    * @ordered
    */
-    protected static final AbbrevForwardStepKind KIND_EDEFAULT = AbbrevForwardStepKind.CHILD;
+	protected static final AbbrevForwardStepKind KIND_EDEFAULT = AbbrevForwardStepKind.CHILD;
 
-    /**
+	/**
    * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getKind()
    * @generated
    * @ordered
    */
-    protected AbbrevForwardStepKind kind = KIND_EDEFAULT;
+	protected AbbrevForwardStepKind kind = KIND_EDEFAULT;
 
-    /**
+	/**
    * The cached value of the '{@link #getNodeTest() <em>Node Test</em>}' containment reference.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getNodeTest()
    * @generated
    * @ordered
    */
-    protected NodeTest nodeTest;
+	protected NodeTest nodeTest;
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    protected AbbrevForwardStepImpl() {
+	protected AbbrevForwardStepImpl() {
     super();
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
     return Xpath2Package.Literals.ABBREV_FORWARD_STEP;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public AbbrevForwardStepKind getKind() {
+	public AbbrevForwardStepKind getKind() {
     return kind;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public void setKind(AbbrevForwardStepKind newKind) {
+	public void setKind(AbbrevForwardStepKind newKind) {
     AbbrevForwardStepKind oldKind = kind;
     kind = newKind == null ? KIND_EDEFAULT : newKind;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ABBREV_FORWARD_STEP__KIND, oldKind, kind));
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public NodeTest getNodeTest() {
+	public NodeTest getNodeTest() {
     return nodeTest;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public NotificationChain basicSetNodeTest(NodeTest newNodeTest, NotificationChain msgs) {
+	public NotificationChain basicSetNodeTest(NodeTest newNodeTest, NotificationChain msgs) {
     NodeTest oldNodeTest = nodeTest;
     nodeTest = newNodeTest;
     if (eNotificationRequired())
@@ -125,12 +133,12 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
     return msgs;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public void setNodeTest(NodeTest newNodeTest) {
+	public void setNodeTest(NodeTest newNodeTest) {
     if (newNodeTest != nodeTest)
     {
       NotificationChain msgs = null;
@@ -145,13 +153,13 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ABBREV_FORWARD_STEP__NODE_TEST, newNodeTest, newNodeTest));
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.ABBREV_FORWARD_STEP__NODE_TEST:
@@ -160,13 +168,13 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.ABBREV_FORWARD_STEP__KIND:
@@ -177,13 +185,13 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
     return super.eGet(featureID, resolve, coreType);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public void eSet(int featureID, Object newValue) {
+	@Override
+	public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.ABBREV_FORWARD_STEP__KIND:
@@ -196,13 +204,13 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
     super.eSet(featureID, newValue);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public void eUnset(int featureID) {
+	@Override
+	public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.ABBREV_FORWARD_STEP__KIND:
@@ -215,13 +223,13 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
     super.eUnset(featureID);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public boolean eIsSet(int featureID) {
+	@Override
+	public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.ABBREV_FORWARD_STEP__KIND:
@@ -232,13 +240,13 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
     return super.eIsSet(featureID);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public String toString() {
+	@Override
+	public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

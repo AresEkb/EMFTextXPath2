@@ -3,6 +3,9 @@ EMFTextXPath2
 
 An implementation of XPath 2.0 metamodel (http://www.w3.org/TR/xpath20/).
 
+Overview
+--------
+
 Test suite based on the specification:
 
 <pre>
@@ -95,4 +98,18 @@ if ($x castable as hatsize)
    else $x cast as xs:string,
 xs:decimal($floatvalue * 0.2E-5),
 $myaddress treat as element(*, USAddress)
+</pre>
+
+License
+-------
+
+<pre>
+Copyright (c) 2013 Denis Nikiforov.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+   Denis Nikiforov - initial API and implementation
 </pre>

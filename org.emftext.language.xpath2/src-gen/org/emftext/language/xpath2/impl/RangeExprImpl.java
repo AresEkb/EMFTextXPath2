@@ -1,4 +1,12 @@
 /**
+ * Copyright (c) 2013 Denis Nikiforov.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.impl;
 
@@ -29,60 +37,60 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class RangeExprImpl extends ComparisonExprChildImpl implements RangeExpr {
-    /**
+	/**
    * The cached value of the '{@link #getFrom() <em>From</em>}' containment reference.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getFrom()
    * @generated
    * @ordered
    */
-    protected RangeExprChild from;
+	protected RangeExprChild from;
 
-    /**
+	/**
    * The cached value of the '{@link #getTo() <em>To</em>}' containment reference.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getTo()
    * @generated
    * @ordered
    */
-    protected RangeExprChild to;
+	protected RangeExprChild to;
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    protected RangeExprImpl() {
+	protected RangeExprImpl() {
     super();
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
     return Xpath2Package.Literals.RANGE_EXPR;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public RangeExprChild getFrom() {
+	public RangeExprChild getFrom() {
     return from;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public NotificationChain basicSetFrom(RangeExprChild newFrom, NotificationChain msgs) {
+	public NotificationChain basicSetFrom(RangeExprChild newFrom, NotificationChain msgs) {
     RangeExprChild oldFrom = from;
     from = newFrom;
     if (eNotificationRequired())
@@ -93,12 +101,12 @@ public class RangeExprImpl extends ComparisonExprChildImpl implements RangeExpr 
     return msgs;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public void setFrom(RangeExprChild newFrom) {
+	public void setFrom(RangeExprChild newFrom) {
     if (newFrom != from)
     {
       NotificationChain msgs = null;
@@ -113,21 +121,21 @@ public class RangeExprImpl extends ComparisonExprChildImpl implements RangeExpr 
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.RANGE_EXPR__FROM, newFrom, newFrom));
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public RangeExprChild getTo() {
+	public RangeExprChild getTo() {
     return to;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public NotificationChain basicSetTo(RangeExprChild newTo, NotificationChain msgs) {
+	public NotificationChain basicSetTo(RangeExprChild newTo, NotificationChain msgs) {
     RangeExprChild oldTo = to;
     to = newTo;
     if (eNotificationRequired())
@@ -138,12 +146,12 @@ public class RangeExprImpl extends ComparisonExprChildImpl implements RangeExpr 
     return msgs;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public void setTo(RangeExprChild newTo) {
+	public void setTo(RangeExprChild newTo) {
     if (newTo != to)
     {
       NotificationChain msgs = null;
@@ -158,13 +166,13 @@ public class RangeExprImpl extends ComparisonExprChildImpl implements RangeExpr 
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.RANGE_EXPR__TO, newTo, newTo));
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.RANGE_EXPR__FROM:
@@ -175,13 +183,13 @@ public class RangeExprImpl extends ComparisonExprChildImpl implements RangeExpr 
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.RANGE_EXPR__FROM:
@@ -192,13 +200,13 @@ public class RangeExprImpl extends ComparisonExprChildImpl implements RangeExpr 
     return super.eGet(featureID, resolve, coreType);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public void eSet(int featureID, Object newValue) {
+	@Override
+	public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.RANGE_EXPR__FROM:
@@ -211,13 +219,13 @@ public class RangeExprImpl extends ComparisonExprChildImpl implements RangeExpr 
     super.eSet(featureID, newValue);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public void eUnset(int featureID) {
+	@Override
+	public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.RANGE_EXPR__FROM:
@@ -230,13 +238,13 @@ public class RangeExprImpl extends ComparisonExprChildImpl implements RangeExpr 
     super.eUnset(featureID);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public boolean eIsSet(int featureID) {
+	@Override
+	public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.RANGE_EXPR__FROM:

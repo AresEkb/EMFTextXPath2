@@ -1,4 +1,12 @@
 /**
+ * Copyright (c) 2013 Denis Nikiforov.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.impl;
 
@@ -30,70 +38,70 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class SingleTypeImpl extends EObjectImpl implements SingleType {
-    /**
+	/**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-    protected AtomicType type;
+	protected AtomicType type;
 
-    /**
+	/**
    * The default value of the '{@link #isOptional() <em>Optional</em>}' attribute.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #isOptional()
    * @generated
    * @ordered
    */
-    protected static final boolean OPTIONAL_EDEFAULT = false;
+	protected static final boolean OPTIONAL_EDEFAULT = false;
 
-    /**
+	/**
    * The cached value of the '{@link #isOptional() <em>Optional</em>}' attribute.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #isOptional()
    * @generated
    * @ordered
    */
-    protected boolean optional = OPTIONAL_EDEFAULT;
+	protected boolean optional = OPTIONAL_EDEFAULT;
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    protected SingleTypeImpl() {
+	protected SingleTypeImpl() {
     super();
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
     return Xpath2Package.Literals.SINGLE_TYPE;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public AtomicType getType() {
+	public AtomicType getType() {
     return type;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public NotificationChain basicSetType(AtomicType newType, NotificationChain msgs) {
+	public NotificationChain basicSetType(AtomicType newType, NotificationChain msgs) {
     AtomicType oldType = type;
     type = newType;
     if (eNotificationRequired())
@@ -104,12 +112,12 @@ public class SingleTypeImpl extends EObjectImpl implements SingleType {
     return msgs;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public void setType(AtomicType newType) {
+	public void setType(AtomicType newType) {
     if (newType != type)
     {
       NotificationChain msgs = null;
@@ -124,34 +132,34 @@ public class SingleTypeImpl extends EObjectImpl implements SingleType {
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.SINGLE_TYPE__TYPE, newType, newType));
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public boolean isOptional() {
+	public boolean isOptional() {
     return optional;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public void setOptional(boolean newOptional) {
+	public void setOptional(boolean newOptional) {
     boolean oldOptional = optional;
     optional = newOptional;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.SINGLE_TYPE__OPTIONAL, oldOptional, optional));
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.SINGLE_TYPE__TYPE:
@@ -160,13 +168,13 @@ public class SingleTypeImpl extends EObjectImpl implements SingleType {
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.SINGLE_TYPE__TYPE:
@@ -177,13 +185,13 @@ public class SingleTypeImpl extends EObjectImpl implements SingleType {
     return super.eGet(featureID, resolve, coreType);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public void eSet(int featureID, Object newValue) {
+	@Override
+	public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.SINGLE_TYPE__TYPE:
@@ -196,13 +204,13 @@ public class SingleTypeImpl extends EObjectImpl implements SingleType {
     super.eSet(featureID, newValue);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public void eUnset(int featureID) {
+	@Override
+	public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.SINGLE_TYPE__TYPE:
@@ -215,13 +223,13 @@ public class SingleTypeImpl extends EObjectImpl implements SingleType {
     super.eUnset(featureID);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public boolean eIsSet(int featureID) {
+	@Override
+	public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.SINGLE_TYPE__TYPE:
@@ -232,13 +240,13 @@ public class SingleTypeImpl extends EObjectImpl implements SingleType {
     return super.eIsSet(featureID);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public String toString() {
+	@Override
+	public String toString() {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

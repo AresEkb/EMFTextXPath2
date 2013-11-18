@@ -1,4 +1,12 @@
 /**
+ * Copyright (c) 2013 Denis Nikiforov.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.impl;
 
@@ -28,50 +36,50 @@ import org.emftext.language.xpath2.Xpath2Package;
  * @generated
  */
 public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr {
-    /**
+	/**
    * The cached value of the '{@link #getStep() <em>Step</em>}' containment reference.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #getStep()
    * @generated
    * @ordered
    */
-    protected SelfStepExprChild step;
+	protected SelfStepExprChild step;
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    protected SelfStepExprImpl() {
+	protected SelfStepExprImpl() {
     super();
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
     return Xpath2Package.Literals.SELF_STEP_EXPR;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public SelfStepExprChild getStep() {
+	public SelfStepExprChild getStep() {
     return step;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public NotificationChain basicSetStep(SelfStepExprChild newStep, NotificationChain msgs) {
+	public NotificationChain basicSetStep(SelfStepExprChild newStep, NotificationChain msgs) {
     SelfStepExprChild oldStep = step;
     step = newStep;
     if (eNotificationRequired())
@@ -82,12 +90,12 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
     return msgs;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public void setStep(SelfStepExprChild newStep) {
+	public void setStep(SelfStepExprChild newStep) {
     if (newStep != step)
     {
       NotificationChain msgs = null;
@@ -102,13 +110,13 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.SELF_STEP_EXPR__STEP, newStep, newStep));
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID)
     {
       case Xpath2Package.SELF_STEP_EXPR__STEP:
@@ -117,13 +125,13 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID)
     {
       case Xpath2Package.SELF_STEP_EXPR__STEP:
@@ -132,13 +140,13 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
     return super.eGet(featureID, resolve, coreType);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public void eSet(int featureID, Object newValue) {
+	@Override
+	public void eSet(int featureID, Object newValue) {
     switch (featureID)
     {
       case Xpath2Package.SELF_STEP_EXPR__STEP:
@@ -148,13 +156,13 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
     super.eSet(featureID, newValue);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public void eUnset(int featureID) {
+	@Override
+	public void eUnset(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.SELF_STEP_EXPR__STEP:
@@ -164,13 +172,13 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
     super.eUnset(featureID);
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public boolean eIsSet(int featureID) {
+	@Override
+	public boolean eIsSet(int featureID) {
     switch (featureID)
     {
       case Xpath2Package.SELF_STEP_EXPR__STEP:

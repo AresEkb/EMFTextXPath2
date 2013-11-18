@@ -1,4 +1,12 @@
 /**
+ * Copyright (c) 2013 Denis Nikiforov.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2;
 
@@ -18,84 +26,84 @@ import org.eclipse.emf.common.util.Enumerator;
  * @generated
  */
 public enum AdditiveOpKind implements Enumerator {
-    /**
+	/**
    * The '<em><b>Addition</b></em>' literal object.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #ADDITION_VALUE
    * @generated
    * @ordered
    */
-    ADDITION(0, "addition", "addition"),
+	ADDITION(0, "addition", "addition"),
 
-    /**
+	/**
    * The '<em><b>Subtraction</b></em>' literal object.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @see #SUBTRACTION_VALUE
    * @generated
    * @ordered
    */
-    SUBTRACTION(1, "subtraction", "subtraction");
+	SUBTRACTION(1, "subtraction", "subtraction");
 
-    /**
+	/**
    * The '<em><b>Addition</b></em>' literal value.
    * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of '<em><b>Addition</b></em>' literal object isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Addition</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
    * @see #ADDITION
    * @model name="addition"
    * @generated
    * @ordered
    */
-    public static final int ADDITION_VALUE = 0;
+	public static final int ADDITION_VALUE = 0;
 
-    /**
+	/**
    * The '<em><b>Subtraction</b></em>' literal value.
    * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of '<em><b>Subtraction</b></em>' literal object isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Subtraction</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
    * @see #SUBTRACTION
    * @model name="subtraction"
    * @generated
    * @ordered
    */
-    public static final int SUBTRACTION_VALUE = 1;
+	public static final int SUBTRACTION_VALUE = 1;
 
-    /**
+	/**
    * An array of all the '<em><b>Additive Op Kind</b></em>' enumerators.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    private static final AdditiveOpKind[] VALUES_ARRAY =
-        new AdditiveOpKind[]
+	private static final AdditiveOpKind[] VALUES_ARRAY =
+		new AdditiveOpKind[]
     {
       ADDITION,
       SUBTRACTION,
     };
 
-    /**
+	/**
    * A public read-only list of all the '<em><b>Additive Op Kind</b></em>' enumerators.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public static final List<AdditiveOpKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<AdditiveOpKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
-    /**
+	/**
    * Returns the '<em><b>Additive Op Kind</b></em>' literal with the specified literal value.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public static AdditiveOpKind get(String literal) {
+	public static AdditiveOpKind get(String literal) {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
       AdditiveOpKind result = VALUES_ARRAY[i];
@@ -107,13 +115,13 @@ public enum AdditiveOpKind implements Enumerator {
     return null;
   }
 
-    /**
+	/**
    * Returns the '<em><b>Additive Op Kind</b></em>' literal with the specified name.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public static AdditiveOpKind getByName(String name) {
+	public static AdditiveOpKind getByName(String name) {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
       AdditiveOpKind result = VALUES_ARRAY[i];
@@ -125,13 +133,13 @@ public enum AdditiveOpKind implements Enumerator {
     return null;
   }
 
-    /**
+	/**
    * Returns the '<em><b>Additive Op Kind</b></em>' literal with the specified integer value.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public static AdditiveOpKind get(int value) {
+	public static AdditiveOpKind get(int value) {
     switch (value)
     {
       case ADDITION_VALUE: return ADDITION;
@@ -140,75 +148,75 @@ public enum AdditiveOpKind implements Enumerator {
     return null;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    private final int value;
+	private final int value;
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    private final String name;
+	private final String name;
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    private final String literal;
+	private final String literal;
 
-    /**
+	/**
    * Only this class can construct instances.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    private AdditiveOpKind(int value, String name, String literal) {
+	private AdditiveOpKind(int value, String name, String literal) {
     this.value = value;
     this.name = name;
     this.literal = literal;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public int getValue() {
+	public int getValue() {
     return value;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public String getName() {
+	public String getName() {
     return name;
   }
 
-    /**
+	/**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    public String getLiteral() {
+	public String getLiteral() {
     return literal;
   }
 
-    /**
+	/**
    * Returns the literal value of the enumerator, which is its string representation.
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public String toString() {
+	@Override
+	public String toString() {
     return literal;
   }
-    
+	
 } //AdditiveOpKind
