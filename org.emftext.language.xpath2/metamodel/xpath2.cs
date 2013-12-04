@@ -19,6 +19,7 @@ OPTIONS {
     overridePluginXML = "false";
     ignoreTypeRestrictionsForPrinting = "true";
     licenceHeader = "licenceHeader.txt";
+    editorName = "EMFText XPath 2.0 Editor";
 }
 
 TOKENS {

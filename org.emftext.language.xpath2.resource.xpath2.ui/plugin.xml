@@ -7,7 +7,7 @@
 	</extension>
 	
 	<extension point="org.eclipse.ui.editors">
-		<editor class="org.emftext.language.xpath2.resource.xpath2.ui.Xpath2Editor" contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor" extensions="xpath2" icon="icons/editor_icon.gif" id="org.emftext.language.xpath2.resource.xpath2.ui.Xpath2Editor" name="EMFText xpath2 Editor">
+		<editor class="org.emftext.language.xpath2.resource.xpath2.ui.Xpath2Editor" contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor" extensions="xpath2" icon="icons/editor_icon.gif" id="org.emftext.language.xpath2.resource.xpath2.ui.Xpath2Editor" name="EMFText XPath 2.0 Editor">
 			<contentTypeBinding contentTypeId="org.emftext.language.xpath2.resource.xpath2">
 			</contentTypeBinding>
 		</editor>
