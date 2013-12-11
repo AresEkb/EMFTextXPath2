@@ -24,23 +24,26 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class ContextItemExprImpl extends PrimaryExprImpl implements ContextItemExpr {
-	/**
+public class ContextItemExprImpl extends PrimaryExprImpl implements ContextItemExpr
+{
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected ContextItemExprImpl() {
+  protected ContextItemExprImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.CONTEXT_ITEM_EXPR;
   }
 

@@ -24,23 +24,26 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class AnyItemTypeImpl extends ItemTypeImpl implements AnyItemType {
-	/**
+public class AnyItemTypeImpl extends ItemTypeImpl implements AnyItemType
+{
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected AnyItemTypeImpl() {
+  protected AnyItemTypeImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.ANY_ITEM_TYPE;
   }
 

@@ -28,16 +28,17 @@ package org.emftext.language.xpath2;
  * @model
  * @generated
  */
-public interface GeneralForwardStep extends ForwardStep {
-	/**
+public interface GeneralForwardStep extends ForwardStep
+{
+  /**
    * Returns the value of the '<em><b>Axis</b></em>' attribute.
    * The literals are from the enumeration {@link org.emftext.language.xpath2.ForwardAxisKind}.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Axis</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Axis</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
    * @return the value of the '<em>Axis</em>' attribute.
    * @see org.emftext.language.xpath2.ForwardAxisKind
    * @see #setAxis(ForwardAxisKind)
@@ -45,43 +46,43 @@ public interface GeneralForwardStep extends ForwardStep {
    * @model required="true"
    * @generated
    */
-	ForwardAxisKind getAxis();
+  ForwardAxisKind getAxis();
 
-	/**
+  /**
    * Sets the value of the '{@link org.emftext.language.xpath2.GeneralForwardStep#getAxis <em>Axis</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @param value the new value of the '<em>Axis</em>' attribute.
    * @see org.emftext.language.xpath2.ForwardAxisKind
    * @see #getAxis()
    * @generated
    */
-	void setAxis(ForwardAxisKind value);
+  void setAxis(ForwardAxisKind value);
 
-	/**
+  /**
    * Returns the value of the '<em><b>Node Test</b></em>' containment reference.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Node Test</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Node Test</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
    * @return the value of the '<em>Node Test</em>' containment reference.
    * @see #setNodeTest(NodeTest)
    * @see org.emftext.language.xpath2.Xpath2Package#getGeneralForwardStep_NodeTest()
    * @model containment="true" required="true"
    * @generated
    */
-	NodeTest getNodeTest();
+  NodeTest getNodeTest();
 
-	/**
+  /**
    * Sets the value of the '{@link org.emftext.language.xpath2.GeneralForwardStep#getNodeTest <em>Node Test</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @param value the new value of the '<em>Node Test</em>' containment reference.
    * @see #getNodeTest()
    * @generated
    */
-	void setNodeTest(NodeTest value);
+  void setNodeTest(NodeTest value);
 
 } // GeneralForwardStep

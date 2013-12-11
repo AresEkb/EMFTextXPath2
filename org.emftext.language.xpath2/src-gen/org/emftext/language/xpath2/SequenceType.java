@@ -22,5 +22,6 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface SequenceType extends EObject {
+public interface SequenceType extends EObject
+{
 } // SequenceType

@@ -44,52 +44,56 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class ForExprImpl extends ExprSingleImpl implements ForExpr {
-	/**
+public class ForExprImpl extends ExprSingleImpl implements ForExpr
+{
+  /**
    * The cached value of the '{@link #getIterator() <em>Iterator</em>}' containment reference list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getIterator()
    * @generated
    * @ordered
    */
-	protected EList<Iterator> iterator;
+  protected EList<Iterator> iterator;
 
-	/**
+  /**
    * The cached value of the '{@link #getReturn() <em>Return</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getReturn()
    * @generated
    * @ordered
    */
-	protected ExprSingle return_;
+  protected ExprSingle return_;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected ForExprImpl() {
+  protected ForExprImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.FOR_EXPR;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EList<Iterator> getIterator() {
+  public EList<Iterator> getIterator()
+  {
     if (iterator == null)
     {
       iterator = new EObjectContainmentEList<Iterator>(Iterator.class, this, Xpath2Package.FOR_EXPR__ITERATOR);
@@ -97,21 +101,23 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
     return iterator;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public ExprSingle getReturn() {
+  public ExprSingle getReturn()
+  {
     return return_;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetReturn(ExprSingle newReturn, NotificationChain msgs) {
+  public NotificationChain basicSetReturn(ExprSingle newReturn, NotificationChain msgs)
+  {
     ExprSingle oldReturn = return_;
     return_ = newReturn;
     if (eNotificationRequired())
@@ -122,12 +128,13 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
     return msgs;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setReturn(ExprSingle newReturn) {
+  public void setReturn(ExprSingle newReturn)
+  {
     if (newReturn != return_)
     {
       NotificationChain msgs = null;
@@ -142,13 +149,14 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.FOR_EXPR__RETURN, newReturn, newReturn));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
     switch (featureID)
     {
       case Xpath2Package.FOR_EXPR__ITERATOR:
@@ -159,13 +167,14 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
     switch (featureID)
     {
       case Xpath2Package.FOR_EXPR__ITERATOR:
@@ -176,14 +185,15 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @SuppressWarnings("unchecked")
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
     switch (featureID)
     {
       case Xpath2Package.FOR_EXPR__ITERATOR:
@@ -197,13 +207,14 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.FOR_EXPR__ITERATOR:
@@ -216,13 +227,14 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.FOR_EXPR__ITERATOR:

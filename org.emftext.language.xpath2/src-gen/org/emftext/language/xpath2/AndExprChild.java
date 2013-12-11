@@ -21,5 +21,6 @@ package org.emftext.language.xpath2;
  * @model abstract="true"
  * @generated
  */
-public interface AndExprChild extends OrExprChild {
+public interface AndExprChild extends OrExprChild
+{
 } // AndExprChild

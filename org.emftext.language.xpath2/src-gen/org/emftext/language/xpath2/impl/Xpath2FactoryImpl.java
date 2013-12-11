@@ -27,14 +27,16 @@ import org.emftext.language.xpath2.*;
  * <!-- end-user-doc -->
  * @generated
  */
-public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
-	/**
+public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory
+{
+  /**
    * Creates the default factory implementation.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public static Xpath2Factory init() {
+  public static Xpath2Factory init()
+  {
     try
     {
       Xpath2Factory theXpath2Factory = (Xpath2Factory)EPackage.Registry.INSTANCE.getEFactory(Xpath2Package.eNS_URI);
@@ -50,23 +52,25 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
     return new Xpath2FactoryImpl();
   }
 
-	/**
+  /**
    * Creates an instance of the factory.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Xpath2FactoryImpl() {
+  public Xpath2FactoryImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public EObject create(EClass eClass) {
+  @Override
+  public EObject create(EClass eClass)
+  {
     switch (eClass.getClassifierID())
     {
       case Xpath2Package.EXPR: return createExpr();
@@ -93,7 +97,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
       case Xpath2Package.DESC_OR_SELF_STEP_EXPR: return createDescOrSelfStepExpr();
       case Xpath2Package.SELF_STEP_EXPR: return createSelfStepExpr();
       case Xpath2Package.FILTER_EXPR: return createFilterExpr();
-      case Xpath2Package.AXIS_STEP: return createAxisStep();
       case Xpath2Package.GENERAL_FORWARD_STEP: return createGeneralForwardStep();
       case Xpath2Package.ABBREV_FORWARD_STEP: return createAbbrevForwardStep();
       case Xpath2Package.GENERAL_REVERSE_STEP: return createGeneralReverseStep();
@@ -146,13 +149,14 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
     }
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue)
+  {
     switch (eDataType.getClassifierID())
     {
       case Xpath2Package.FORWARD_AXIS_KIND:
@@ -186,13 +190,14 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
     }
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue)
+  {
     switch (eDataType.getClassifierID())
     {
       case Xpath2Package.FORWARD_AXIS_KIND:
@@ -226,1003 +231,1092 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
     }
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Expr createExpr() {
+  public Expr createExpr()
+  {
     ExprImpl expr = new ExprImpl();
     return expr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public ForExpr createForExpr() {
+  public ForExpr createForExpr()
+  {
     ForExprImpl forExpr = new ForExprImpl();
     return forExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public QuantifiedExpr createQuantifiedExpr() {
+  public QuantifiedExpr createQuantifiedExpr()
+  {
     QuantifiedExprImpl quantifiedExpr = new QuantifiedExprImpl();
     return quantifiedExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public IfExpr createIfExpr() {
+  public IfExpr createIfExpr()
+  {
     IfExprImpl ifExpr = new IfExprImpl();
     return ifExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Iterator createIterator() {
+  public Iterator createIterator()
+  {
     IteratorImpl iterator = new IteratorImpl();
     return iterator;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public OrExpr createOrExpr() {
+  public OrExpr createOrExpr()
+  {
     OrExprImpl orExpr = new OrExprImpl();
     return orExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public AndExpr createAndExpr() {
+  public AndExpr createAndExpr()
+  {
     AndExprImpl andExpr = new AndExprImpl();
     return andExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public ComparisonExpr createComparisonExpr() {
+  public ComparisonExpr createComparisonExpr()
+  {
     ComparisonExprImpl comparisonExpr = new ComparisonExprImpl();
     return comparisonExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public RangeExpr createRangeExpr() {
+  public RangeExpr createRangeExpr()
+  {
     RangeExprImpl rangeExpr = new RangeExprImpl();
     return rangeExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public AdditiveExpr createAdditiveExpr() {
+  public AdditiveExpr createAdditiveExpr()
+  {
     AdditiveExprImpl additiveExpr = new AdditiveExprImpl();
     return additiveExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public MultiplicativeExpr createMultiplicativeExpr() {
+  public MultiplicativeExpr createMultiplicativeExpr()
+  {
     MultiplicativeExprImpl multiplicativeExpr = new MultiplicativeExprImpl();
     return multiplicativeExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public UnionExpr createUnionExpr() {
+  public UnionExpr createUnionExpr()
+  {
     UnionExprImpl unionExpr = new UnionExprImpl();
     return unionExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public IntersectExceptExpr createIntersectExceptExpr() {
+  public IntersectExceptExpr createIntersectExceptExpr()
+  {
     IntersectExceptExprImpl intersectExceptExpr = new IntersectExceptExprImpl();
     return intersectExceptExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public InstanceofExpr createInstanceofExpr() {
+  public InstanceofExpr createInstanceofExpr()
+  {
     InstanceofExprImpl instanceofExpr = new InstanceofExprImpl();
     return instanceofExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public TreatExpr createTreatExpr() {
+  public TreatExpr createTreatExpr()
+  {
     TreatExprImpl treatExpr = new TreatExprImpl();
     return treatExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public CastableExpr createCastableExpr() {
+  public CastableExpr createCastableExpr()
+  {
     CastableExprImpl castableExpr = new CastableExprImpl();
     return castableExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public CastExpr createCastExpr() {
+  public CastExpr createCastExpr()
+  {
     CastExprImpl castExpr = new CastExprImpl();
     return castExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public UnaryExpr createUnaryExpr() {
+  public UnaryExpr createUnaryExpr()
+  {
     UnaryExprImpl unaryExpr = new UnaryExprImpl();
     return unaryExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public PathExpr createPathExpr() {
+  public PathExpr createPathExpr()
+  {
     PathExprImpl pathExpr = new PathExprImpl();
     return pathExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public RootStepExpr createRootStepExpr() {
+  public RootStepExpr createRootStepExpr()
+  {
     RootStepExprImpl rootStepExpr = new RootStepExprImpl();
     return rootStepExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public ChildStepExpr createChildStepExpr() {
+  public ChildStepExpr createChildStepExpr()
+  {
     ChildStepExprImpl childStepExpr = new ChildStepExprImpl();
     return childStepExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public DescOrSelfStepExpr createDescOrSelfStepExpr() {
+  public DescOrSelfStepExpr createDescOrSelfStepExpr()
+  {
     DescOrSelfStepExprImpl descOrSelfStepExpr = new DescOrSelfStepExprImpl();
     return descOrSelfStepExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public SelfStepExpr createSelfStepExpr() {
+  public SelfStepExpr createSelfStepExpr()
+  {
     SelfStepExprImpl selfStepExpr = new SelfStepExprImpl();
     return selfStepExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public FilterExpr createFilterExpr() {
+  public FilterExpr createFilterExpr()
+  {
     FilterExprImpl filterExpr = new FilterExprImpl();
     return filterExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public AxisStep createAxisStep() {
-    AxisStepImpl axisStep = new AxisStepImpl();
-    return axisStep;
-  }
-
-	/**
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	public GeneralForwardStep createGeneralForwardStep() {
+  public GeneralForwardStep createGeneralForwardStep()
+  {
     GeneralForwardStepImpl generalForwardStep = new GeneralForwardStepImpl();
     return generalForwardStep;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public AbbrevForwardStep createAbbrevForwardStep() {
+  public AbbrevForwardStep createAbbrevForwardStep()
+  {
     AbbrevForwardStepImpl abbrevForwardStep = new AbbrevForwardStepImpl();
     return abbrevForwardStep;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public GeneralReverseStep createGeneralReverseStep() {
+  public GeneralReverseStep createGeneralReverseStep()
+  {
     GeneralReverseStepImpl generalReverseStep = new GeneralReverseStepImpl();
     return generalReverseStep;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public AbbrevReverseStep createAbbrevReverseStep() {
+  public AbbrevReverseStep createAbbrevReverseStep()
+  {
     AbbrevReverseStepImpl abbrevReverseStep = new AbbrevReverseStepImpl();
     return abbrevReverseStep;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NodeKindTest createNodeKindTest() {
+  public NodeKindTest createNodeKindTest()
+  {
     NodeKindTestImpl nodeKindTest = new NodeKindTestImpl();
     return nodeKindTest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public QNameTest createQNameTest() {
+  public QNameTest createQNameTest()
+  {
     QNameTestImpl qNameTest = new QNameTestImpl();
     return qNameTest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public AnyWildcard createAnyWildcard() {
+  public AnyWildcard createAnyWildcard()
+  {
     AnyWildcardImpl anyWildcard = new AnyWildcardImpl();
     return anyWildcard;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public LocalNameWildcard createLocalNameWildcard() {
+  public LocalNameWildcard createLocalNameWildcard()
+  {
     LocalNameWildcardImpl localNameWildcard = new LocalNameWildcardImpl();
     return localNameWildcard;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NamespaceWildcard createNamespaceWildcard() {
+  public NamespaceWildcard createNamespaceWildcard()
+  {
     NamespaceWildcardImpl namespaceWildcard = new NamespaceWildcardImpl();
     return namespaceWildcard;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Predicate createPredicate() {
+  public Predicate createPredicate()
+  {
     PredicateImpl predicate = new PredicateImpl();
     return predicate;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public VarRef createVarRef() {
+  public VarRef createVarRef()
+  {
     VarRefImpl varRef = new VarRefImpl();
     return varRef;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public VarName createVarName() {
+  public VarName createVarName()
+  {
     VarNameImpl varName = new VarNameImpl();
     return varName;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public ParenthesizedExpr createParenthesizedExpr() {
+  public ParenthesizedExpr createParenthesizedExpr()
+  {
     ParenthesizedExprImpl parenthesizedExpr = new ParenthesizedExprImpl();
     return parenthesizedExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public ContextItemExpr createContextItemExpr() {
+  public ContextItemExpr createContextItemExpr()
+  {
     ContextItemExprImpl contextItemExpr = new ContextItemExprImpl();
     return contextItemExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public FunctionCall createFunctionCall() {
+  public FunctionCall createFunctionCall()
+  {
     FunctionCallImpl functionCall = new FunctionCallImpl();
     return functionCall;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public StringLiteral createStringLiteral() {
+  public StringLiteral createStringLiteral()
+  {
     StringLiteralImpl stringLiteral = new StringLiteralImpl();
     return stringLiteral;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public IntegerLiteral createIntegerLiteral() {
+  public IntegerLiteral createIntegerLiteral()
+  {
     IntegerLiteralImpl integerLiteral = new IntegerLiteralImpl();
     return integerLiteral;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public DecimalLiteral createDecimalLiteral() {
+  public DecimalLiteral createDecimalLiteral()
+  {
     DecimalLiteralImpl decimalLiteral = new DecimalLiteralImpl();
     return decimalLiteral;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public DoubleLiteral createDoubleLiteral() {
+  public DoubleLiteral createDoubleLiteral()
+  {
     DoubleLiteralImpl doubleLiteral = new DoubleLiteralImpl();
     return doubleLiteral;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public GeneralComp createGeneralComp() {
+  public GeneralComp createGeneralComp()
+  {
     GeneralCompImpl generalComp = new GeneralCompImpl();
     return generalComp;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public ValueComp createValueComp() {
+  public ValueComp createValueComp()
+  {
     ValueCompImpl valueComp = new ValueCompImpl();
     return valueComp;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NodeComp createNodeComp() {
+  public NodeComp createNodeComp()
+  {
     NodeCompImpl nodeComp = new NodeCompImpl();
     return nodeComp;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public SingleType createSingleType() {
+  public SingleType createSingleType()
+  {
     SingleTypeImpl singleType = new SingleTypeImpl();
     return singleType;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public AtomicType createAtomicType() {
+  public AtomicType createAtomicType()
+  {
     AtomicTypeImpl atomicType = new AtomicTypeImpl();
     return atomicType;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public OptionalAtomicType createOptionalAtomicType() {
+  public OptionalAtomicType createOptionalAtomicType()
+  {
     OptionalAtomicTypeImpl optionalAtomicType = new OptionalAtomicTypeImpl();
     return optionalAtomicType;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EmptySequenceType createEmptySequenceType() {
+  public EmptySequenceType createEmptySequenceType()
+  {
     EmptySequenceTypeImpl emptySequenceType = new EmptySequenceTypeImpl();
     return emptySequenceType;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public ItemSequenceType createItemSequenceType() {
+  public ItemSequenceType createItemSequenceType()
+  {
     ItemSequenceTypeImpl itemSequenceType = new ItemSequenceTypeImpl();
     return itemSequenceType;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public ItemKindTest createItemKindTest() {
+  public ItemKindTest createItemKindTest()
+  {
     ItemKindTestImpl itemKindTest = new ItemKindTestImpl();
     return itemKindTest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public AnyItemType createAnyItemType() {
+  public AnyItemType createAnyItemType()
+  {
     AnyItemTypeImpl anyItemType = new AnyItemTypeImpl();
     return anyItemType;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public AtomicItemType createAtomicItemType() {
+  public AtomicItemType createAtomicItemType()
+  {
     AtomicItemTypeImpl atomicItemType = new AtomicItemTypeImpl();
     return atomicItemType;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public DocumentTest createDocumentTest() {
+  public DocumentTest createDocumentTest()
+  {
     DocumentTestImpl documentTest = new DocumentTestImpl();
     return documentTest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public ElementTest createElementTest() {
+  public ElementTest createElementTest()
+  {
     ElementTestImpl elementTest = new ElementTestImpl();
     return elementTest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NameElementTest createNameElementTest() {
+  public NameElementTest createNameElementTest()
+  {
     NameElementTestImpl nameElementTest = new NameElementTestImpl();
     return nameElementTest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public WildcardElementTest createWildcardElementTest() {
+  public WildcardElementTest createWildcardElementTest()
+  {
     WildcardElementTestImpl wildcardElementTest = new WildcardElementTestImpl();
     return wildcardElementTest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public AttributeTest createAttributeTest() {
+  public AttributeTest createAttributeTest()
+  {
     AttributeTestImpl attributeTest = new AttributeTestImpl();
     return attributeTest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NameAttributeTest createNameAttributeTest() {
+  public NameAttributeTest createNameAttributeTest()
+  {
     NameAttributeTestImpl nameAttributeTest = new NameAttributeTestImpl();
     return nameAttributeTest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public WildcardAttributeTest createWildcardAttributeTest() {
+  public WildcardAttributeTest createWildcardAttributeTest()
+  {
     WildcardAttributeTestImpl wildcardAttributeTest = new WildcardAttributeTestImpl();
     return wildcardAttributeTest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public SchemaElementTest createSchemaElementTest() {
+  public SchemaElementTest createSchemaElementTest()
+  {
     SchemaElementTestImpl schemaElementTest = new SchemaElementTestImpl();
     return schemaElementTest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public SchemaAttributeTest createSchemaAttributeTest() {
+  public SchemaAttributeTest createSchemaAttributeTest()
+  {
     SchemaAttributeTestImpl schemaAttributeTest = new SchemaAttributeTestImpl();
     return schemaAttributeTest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public PITest createPITest() {
+  public PITest createPITest()
+  {
     PITestImpl piTest = new PITestImpl();
     return piTest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NCNamePITest createNCNamePITest() {
+  public NCNamePITest createNCNamePITest()
+  {
     NCNamePITestImpl ncNamePITest = new NCNamePITestImpl();
     return ncNamePITest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public StringLiteralPITest createStringLiteralPITest() {
+  public StringLiteralPITest createStringLiteralPITest()
+  {
     StringLiteralPITestImpl stringLiteralPITest = new StringLiteralPITestImpl();
     return stringLiteralPITest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public CommentTest createCommentTest() {
+  public CommentTest createCommentTest()
+  {
     CommentTestImpl commentTest = new CommentTestImpl();
     return commentTest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public TextTest createTextTest() {
+  public TextTest createTextTest()
+  {
     TextTestImpl textTest = new TextTestImpl();
     return textTest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public AnyKindTest createAnyKindTest() {
+  public AnyKindTest createAnyKindTest()
+  {
     AnyKindTestImpl anyKindTest = new AnyKindTestImpl();
     return anyKindTest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Comment createComment() {
+  public Comment createComment()
+  {
     CommentImpl comment = new CommentImpl();
     return comment;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public QName createQName() {
+  public QName createQName()
+  {
     QNameImpl qName = new QNameImpl();
     return qName;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public ForwardAxisKind createForwardAxisKindFromString(EDataType eDataType, String initialValue) {
+  public ForwardAxisKind createForwardAxisKindFromString(EDataType eDataType, String initialValue)
+  {
     ForwardAxisKind result = ForwardAxisKind.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertForwardAxisKindToString(EDataType eDataType, Object instanceValue) {
+  public String convertForwardAxisKindToString(EDataType eDataType, Object instanceValue)
+  {
     return instanceValue == null ? null : instanceValue.toString();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public AbbrevForwardStepKind createAbbrevForwardStepKindFromString(EDataType eDataType, String initialValue) {
+  public AbbrevForwardStepKind createAbbrevForwardStepKindFromString(EDataType eDataType, String initialValue)
+  {
     AbbrevForwardStepKind result = AbbrevForwardStepKind.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertAbbrevForwardStepKindToString(EDataType eDataType, Object instanceValue) {
+  public String convertAbbrevForwardStepKindToString(EDataType eDataType, Object instanceValue)
+  {
     return instanceValue == null ? null : instanceValue.toString();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public ReverseAxisKind createReverseAxisKindFromString(EDataType eDataType, String initialValue) {
+  public ReverseAxisKind createReverseAxisKindFromString(EDataType eDataType, String initialValue)
+  {
     ReverseAxisKind result = ReverseAxisKind.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertReverseAxisKindToString(EDataType eDataType, Object instanceValue) {
+  public String convertReverseAxisKindToString(EDataType eDataType, Object instanceValue)
+  {
     return instanceValue == null ? null : instanceValue.toString();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public AbbrevReverseStepKind createAbbrevReverseStepKindFromString(EDataType eDataType, String initialValue) {
+  public AbbrevReverseStepKind createAbbrevReverseStepKindFromString(EDataType eDataType, String initialValue)
+  {
     AbbrevReverseStepKind result = AbbrevReverseStepKind.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertAbbrevReverseStepKindToString(EDataType eDataType, Object instanceValue) {
+  public String convertAbbrevReverseStepKindToString(EDataType eDataType, Object instanceValue)
+  {
     return instanceValue == null ? null : instanceValue.toString();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public UnionOp createUnionOpFromString(EDataType eDataType, String initialValue) {
+  public UnionOp createUnionOpFromString(EDataType eDataType, String initialValue)
+  {
     UnionOp result = UnionOp.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertUnionOpToString(EDataType eDataType, Object instanceValue) {
+  public String convertUnionOpToString(EDataType eDataType, Object instanceValue)
+  {
     return instanceValue == null ? null : instanceValue.toString();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public AdditiveOpKind createAdditiveOpKindFromString(EDataType eDataType, String initialValue) {
+  public AdditiveOpKind createAdditiveOpKindFromString(EDataType eDataType, String initialValue)
+  {
     AdditiveOpKind result = AdditiveOpKind.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertAdditiveOpKindToString(EDataType eDataType, Object instanceValue) {
+  public String convertAdditiveOpKindToString(EDataType eDataType, Object instanceValue)
+  {
     return instanceValue == null ? null : instanceValue.toString();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public MultiplicativeOpKind createMultiplicativeOpKindFromString(EDataType eDataType, String initialValue) {
+  public MultiplicativeOpKind createMultiplicativeOpKindFromString(EDataType eDataType, String initialValue)
+  {
     MultiplicativeOpKind result = MultiplicativeOpKind.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertMultiplicativeOpKindToString(EDataType eDataType, Object instanceValue) {
+  public String convertMultiplicativeOpKindToString(EDataType eDataType, Object instanceValue)
+  {
     return instanceValue == null ? null : instanceValue.toString();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public QuantifierKind createQuantifierKindFromString(EDataType eDataType, String initialValue) {
+  public QuantifierKind createQuantifierKindFromString(EDataType eDataType, String initialValue)
+  {
     QuantifierKind result = QuantifierKind.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertQuantifierKindToString(EDataType eDataType, Object instanceValue) {
+  public String convertQuantifierKindToString(EDataType eDataType, Object instanceValue)
+  {
     return instanceValue == null ? null : instanceValue.toString();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public IntersectExceptOpKind createIntersectExceptOpKindFromString(EDataType eDataType, String initialValue) {
+  public IntersectExceptOpKind createIntersectExceptOpKindFromString(EDataType eDataType, String initialValue)
+  {
     IntersectExceptOpKind result = IntersectExceptOpKind.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertIntersectExceptOpKindToString(EDataType eDataType, Object instanceValue) {
+  public String convertIntersectExceptOpKindToString(EDataType eDataType, Object instanceValue)
+  {
     return instanceValue == null ? null : instanceValue.toString();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public UnaryOp createUnaryOpFromString(EDataType eDataType, String initialValue) {
+  public UnaryOp createUnaryOpFromString(EDataType eDataType, String initialValue)
+  {
     UnaryOp result = UnaryOp.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertUnaryOpToString(EDataType eDataType, Object instanceValue) {
+  public String convertUnaryOpToString(EDataType eDataType, Object instanceValue)
+  {
     return instanceValue == null ? null : instanceValue.toString();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public GeneralCompKind createGeneralCompKindFromString(EDataType eDataType, String initialValue) {
+  public GeneralCompKind createGeneralCompKindFromString(EDataType eDataType, String initialValue)
+  {
     GeneralCompKind result = GeneralCompKind.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertGeneralCompKindToString(EDataType eDataType, Object instanceValue) {
+  public String convertGeneralCompKindToString(EDataType eDataType, Object instanceValue)
+  {
     return instanceValue == null ? null : instanceValue.toString();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NodeCompKind createNodeCompKindFromString(EDataType eDataType, String initialValue) {
+  public NodeCompKind createNodeCompKindFromString(EDataType eDataType, String initialValue)
+  {
     NodeCompKind result = NodeCompKind.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertNodeCompKindToString(EDataType eDataType, Object instanceValue) {
+  public String convertNodeCompKindToString(EDataType eDataType, Object instanceValue)
+  {
     return instanceValue == null ? null : instanceValue.toString();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public OccurrenceIndicatorKind createOccurrenceIndicatorKindFromString(EDataType eDataType, String initialValue) {
+  public OccurrenceIndicatorKind createOccurrenceIndicatorKindFromString(EDataType eDataType, String initialValue)
+  {
     OccurrenceIndicatorKind result = OccurrenceIndicatorKind.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String convertOccurrenceIndicatorKindToString(EDataType eDataType, Object instanceValue) {
+  public String convertOccurrenceIndicatorKindToString(EDataType eDataType, Object instanceValue)
+  {
     return instanceValue == null ? null : instanceValue.toString();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Xpath2Package getXpath2Package() {
+  public Xpath2Package getXpath2Package()
+  {
     return (Xpath2Package)getEPackage();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @deprecated
    * @generated
    */
-	@Deprecated
-	public static Xpath2Package getPackage() {
+  @Deprecated
+  public static Xpath2Package getPackage()
+  {
     return Xpath2Package.eINSTANCE;
   }
 

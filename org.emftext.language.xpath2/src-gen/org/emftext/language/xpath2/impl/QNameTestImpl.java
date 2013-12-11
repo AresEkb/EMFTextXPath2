@@ -35,51 +35,56 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class QNameTestImpl extends NameTestImpl implements QNameTest {
-	/**
+public class QNameTestImpl extends NameTestImpl implements QNameTest
+{
+  /**
    * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getName()
    * @generated
    * @ordered
    */
-	protected QName name;
+  protected QName name;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected QNameTestImpl() {
+  protected QNameTestImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.QNAME_TEST;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public QName getName() {
+  public QName getName()
+  {
     return name;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetName(QName newName, NotificationChain msgs) {
+  public NotificationChain basicSetName(QName newName, NotificationChain msgs)
+  {
     QName oldName = name;
     name = newName;
     if (eNotificationRequired())
@@ -90,12 +95,13 @@ public class QNameTestImpl extends NameTestImpl implements QNameTest {
     return msgs;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setName(QName newName) {
+  public void setName(QName newName)
+  {
     if (newName != name)
     {
       NotificationChain msgs = null;
@@ -110,13 +116,14 @@ public class QNameTestImpl extends NameTestImpl implements QNameTest {
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.QNAME_TEST__NAME, newName, newName));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
     switch (featureID)
     {
       case Xpath2Package.QNAME_TEST__NAME:
@@ -125,13 +132,14 @@ public class QNameTestImpl extends NameTestImpl implements QNameTest {
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
     switch (featureID)
     {
       case Xpath2Package.QNAME_TEST__NAME:
@@ -140,13 +148,14 @@ public class QNameTestImpl extends NameTestImpl implements QNameTest {
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
     switch (featureID)
     {
       case Xpath2Package.QNAME_TEST__NAME:
@@ -156,13 +165,14 @@ public class QNameTestImpl extends NameTestImpl implements QNameTest {
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.QNAME_TEST__NAME:
@@ -172,13 +182,14 @@ public class QNameTestImpl extends NameTestImpl implements QNameTest {
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.QNAME_TEST__NAME:

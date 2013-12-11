@@ -21,5 +21,6 @@ package org.emftext.language.xpath2;
  * @model abstract="true"
  * @generated
  */
-public interface ExprSingle extends AnyExpr {
+public interface ExprSingle extends AnyExpr
+{
 } // ExprSingle

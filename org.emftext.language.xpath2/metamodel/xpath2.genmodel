@@ -186,10 +186,8 @@
     </genClasses>
     <genClasses ecoreClass="xpath2.ecore#//FilterExprChild"/>
     <genClasses ecoreClass="xpath2.ecore#//AxisStep">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//AxisStep/step"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//AxisStep/predicate"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="xpath2.ecore#//DirectionalStep"/>
     <genClasses ecoreClass="xpath2.ecore#//ForwardStep"/>
     <genClasses ecoreClass="xpath2.ecore#//ReverseStep"/>
     <genClasses ecoreClass="xpath2.ecore#//GeneralForwardStep">

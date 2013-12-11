@@ -24,23 +24,26 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public abstract class AnyExprImpl extends ParenthesizedExprChildImpl implements AnyExpr {
-	/**
+public abstract class AnyExprImpl extends ParenthesizedExprChildImpl implements AnyExpr
+{
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected AnyExprImpl() {
+  protected AnyExprImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.ANY_EXPR;
   }
 

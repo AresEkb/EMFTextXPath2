@@ -38,71 +38,76 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonExpr {
-	/**
+public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonExpr
+{
+  /**
    * The cached value of the '{@link #getLeft() <em>Left</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getLeft()
    * @generated
    * @ordered
    */
-	protected ComparisonExprChild left;
+  protected ComparisonExprChild left;
 
-	/**
+  /**
    * The cached value of the '{@link #getOperator() <em>Operator</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getOperator()
    * @generated
    * @ordered
    */
-	protected Comp operator;
+  protected Comp operator;
 
-	/**
+  /**
    * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getRight()
    * @generated
    * @ordered
    */
-	protected ComparisonExprChild right;
+  protected ComparisonExprChild right;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected ComparisonExprImpl() {
+  protected ComparisonExprImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.COMPARISON_EXPR;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public ComparisonExprChild getLeft() {
+  public ComparisonExprChild getLeft()
+  {
     return left;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetLeft(ComparisonExprChild newLeft, NotificationChain msgs) {
+  public NotificationChain basicSetLeft(ComparisonExprChild newLeft, NotificationChain msgs)
+  {
     ComparisonExprChild oldLeft = left;
     left = newLeft;
     if (eNotificationRequired())
@@ -113,12 +118,13 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
     return msgs;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setLeft(ComparisonExprChild newLeft) {
+  public void setLeft(ComparisonExprChild newLeft)
+  {
     if (newLeft != left)
     {
       NotificationChain msgs = null;
@@ -133,21 +139,23 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.COMPARISON_EXPR__LEFT, newLeft, newLeft));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public Comp getOperator() {
+  public Comp getOperator()
+  {
     return operator;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetOperator(Comp newOperator, NotificationChain msgs) {
+  public NotificationChain basicSetOperator(Comp newOperator, NotificationChain msgs)
+  {
     Comp oldOperator = operator;
     operator = newOperator;
     if (eNotificationRequired())
@@ -158,12 +166,13 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
     return msgs;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setOperator(Comp newOperator) {
+  public void setOperator(Comp newOperator)
+  {
     if (newOperator != operator)
     {
       NotificationChain msgs = null;
@@ -178,21 +187,23 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.COMPARISON_EXPR__OPERATOR, newOperator, newOperator));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public ComparisonExprChild getRight() {
+  public ComparisonExprChild getRight()
+  {
     return right;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetRight(ComparisonExprChild newRight, NotificationChain msgs) {
+  public NotificationChain basicSetRight(ComparisonExprChild newRight, NotificationChain msgs)
+  {
     ComparisonExprChild oldRight = right;
     right = newRight;
     if (eNotificationRequired())
@@ -203,12 +214,13 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
     return msgs;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setRight(ComparisonExprChild newRight) {
+  public void setRight(ComparisonExprChild newRight)
+  {
     if (newRight != right)
     {
       NotificationChain msgs = null;
@@ -223,13 +235,14 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.COMPARISON_EXPR__RIGHT, newRight, newRight));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
     switch (featureID)
     {
       case Xpath2Package.COMPARISON_EXPR__LEFT:
@@ -242,13 +255,14 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
     switch (featureID)
     {
       case Xpath2Package.COMPARISON_EXPR__LEFT:
@@ -261,13 +275,14 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
     switch (featureID)
     {
       case Xpath2Package.COMPARISON_EXPR__LEFT:
@@ -283,13 +298,14 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.COMPARISON_EXPR__LEFT:
@@ -305,13 +321,14 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.COMPARISON_EXPR__LEFT:

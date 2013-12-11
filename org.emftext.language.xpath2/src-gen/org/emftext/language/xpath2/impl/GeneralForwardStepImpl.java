@@ -37,92 +37,99 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class GeneralForwardStepImpl extends ForwardStepImpl implements GeneralForwardStep {
-	/**
+public class GeneralForwardStepImpl extends ForwardStepImpl implements GeneralForwardStep
+{
+  /**
    * The default value of the '{@link #getAxis() <em>Axis</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getAxis()
    * @generated
    * @ordered
    */
-	protected static final ForwardAxisKind AXIS_EDEFAULT = ForwardAxisKind.CHILD;
+  protected static final ForwardAxisKind AXIS_EDEFAULT = ForwardAxisKind.CHILD;
 
-	/**
+  /**
    * The cached value of the '{@link #getAxis() <em>Axis</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getAxis()
    * @generated
    * @ordered
    */
-	protected ForwardAxisKind axis = AXIS_EDEFAULT;
+  protected ForwardAxisKind axis = AXIS_EDEFAULT;
 
-	/**
+  /**
    * The cached value of the '{@link #getNodeTest() <em>Node Test</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getNodeTest()
    * @generated
    * @ordered
    */
-	protected NodeTest nodeTest;
+  protected NodeTest nodeTest;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected GeneralForwardStepImpl() {
+  protected GeneralForwardStepImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.GENERAL_FORWARD_STEP;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public ForwardAxisKind getAxis() {
+  public ForwardAxisKind getAxis()
+  {
     return axis;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setAxis(ForwardAxisKind newAxis) {
+  public void setAxis(ForwardAxisKind newAxis)
+  {
     ForwardAxisKind oldAxis = axis;
     axis = newAxis == null ? AXIS_EDEFAULT : newAxis;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.GENERAL_FORWARD_STEP__AXIS, oldAxis, axis));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NodeTest getNodeTest() {
+  public NodeTest getNodeTest()
+  {
     return nodeTest;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetNodeTest(NodeTest newNodeTest, NotificationChain msgs) {
+  public NotificationChain basicSetNodeTest(NodeTest newNodeTest, NotificationChain msgs)
+  {
     NodeTest oldNodeTest = nodeTest;
     nodeTest = newNodeTest;
     if (eNotificationRequired())
@@ -133,12 +140,13 @@ public class GeneralForwardStepImpl extends ForwardStepImpl implements GeneralFo
     return msgs;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setNodeTest(NodeTest newNodeTest) {
+  public void setNodeTest(NodeTest newNodeTest)
+  {
     if (newNodeTest != nodeTest)
     {
       NotificationChain msgs = null;
@@ -153,13 +161,14 @@ public class GeneralForwardStepImpl extends ForwardStepImpl implements GeneralFo
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.GENERAL_FORWARD_STEP__NODE_TEST, newNodeTest, newNodeTest));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
     switch (featureID)
     {
       case Xpath2Package.GENERAL_FORWARD_STEP__NODE_TEST:
@@ -168,13 +177,14 @@ public class GeneralForwardStepImpl extends ForwardStepImpl implements GeneralFo
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
     switch (featureID)
     {
       case Xpath2Package.GENERAL_FORWARD_STEP__AXIS:
@@ -185,13 +195,14 @@ public class GeneralForwardStepImpl extends ForwardStepImpl implements GeneralFo
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
     switch (featureID)
     {
       case Xpath2Package.GENERAL_FORWARD_STEP__AXIS:
@@ -204,13 +215,14 @@ public class GeneralForwardStepImpl extends ForwardStepImpl implements GeneralFo
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.GENERAL_FORWARD_STEP__AXIS:
@@ -223,13 +235,14 @@ public class GeneralForwardStepImpl extends ForwardStepImpl implements GeneralFo
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.GENERAL_FORWARD_STEP__AXIS:
@@ -240,13 +253,14 @@ public class GeneralForwardStepImpl extends ForwardStepImpl implements GeneralFo
     return super.eIsSet(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+  @Override
+  public String toString()
+  {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

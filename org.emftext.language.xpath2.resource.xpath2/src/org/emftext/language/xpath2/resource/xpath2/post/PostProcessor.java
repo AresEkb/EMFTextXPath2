@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.emftext.language.xpath2.AnyExpr;
+import org.emftext.language.xpath2.AxisStep;
 import org.emftext.language.xpath2.ParenthesizedExpr;
 import org.emftext.language.xpath2.PathExpr;
-import org.emftext.language.xpath2.StepExpr;
 import org.emftext.language.xpath2.resource.xpath2.IXpath2OptionProvider;
 import org.emftext.language.xpath2.resource.xpath2.IXpath2Options;
 import org.emftext.language.xpath2.resource.xpath2.IXpath2ResourcePostProcessor;
@@ -70,8 +70,8 @@ IXpath2ResourcePostProcessorProvider, IXpath2ResourcePostProcessor {
                     }
                 }
             }
-            // StepExpr must be contained in PathExpr
-            if (singleContained instanceof StepExpr) {
+            // AxisStep must be contained in PathExpr
+            if (AxisStep.class.isInstance(singleContained)) {
                 singleContained = path;
             }
             if (singleContained != null) {

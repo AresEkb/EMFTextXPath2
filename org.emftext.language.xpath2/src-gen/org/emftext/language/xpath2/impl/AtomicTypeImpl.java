@@ -24,23 +24,26 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class AtomicTypeImpl extends QNameImpl implements AtomicType {
-	/**
+public class AtomicTypeImpl extends QNameImpl implements AtomicType
+{
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected AtomicTypeImpl() {
+  protected AtomicTypeImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.ATOMIC_TYPE;
   }
 

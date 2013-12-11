@@ -24,23 +24,26 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public abstract class ComparisonExprChildImpl extends AndExprChildImpl implements ComparisonExprChild {
-	/**
+public abstract class ComparisonExprChildImpl extends AndExprChildImpl implements ComparisonExprChild
+{
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected ComparisonExprChildImpl() {
+  protected ComparisonExprChildImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.COMPARISON_EXPR_CHILD;
   }
 

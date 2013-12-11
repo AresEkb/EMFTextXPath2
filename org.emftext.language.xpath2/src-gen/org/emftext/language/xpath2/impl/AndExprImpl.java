@@ -39,42 +39,46 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class AndExprImpl extends OrExprChildImpl implements AndExpr {
-	/**
+public class AndExprImpl extends OrExprChildImpl implements AndExpr
+{
+  /**
    * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getOperand()
    * @generated
    * @ordered
    */
-	protected EList<AndExprChild> operand;
+  protected EList<AndExprChild> operand;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected AndExprImpl() {
+  protected AndExprImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.AND_EXPR;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EList<AndExprChild> getOperand() {
+  public EList<AndExprChild> getOperand()
+  {
     if (operand == null)
     {
       operand = new EObjectContainmentEList<AndExprChild>(AndExprChild.class, this, Xpath2Package.AND_EXPR__OPERAND);
@@ -82,13 +86,14 @@ public class AndExprImpl extends OrExprChildImpl implements AndExpr {
     return operand;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
     switch (featureID)
     {
       case Xpath2Package.AND_EXPR__OPERAND:
@@ -97,13 +102,14 @@ public class AndExprImpl extends OrExprChildImpl implements AndExpr {
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
     switch (featureID)
     {
       case Xpath2Package.AND_EXPR__OPERAND:
@@ -112,14 +118,15 @@ public class AndExprImpl extends OrExprChildImpl implements AndExpr {
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @SuppressWarnings("unchecked")
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
     switch (featureID)
     {
       case Xpath2Package.AND_EXPR__OPERAND:
@@ -130,13 +137,14 @@ public class AndExprImpl extends OrExprChildImpl implements AndExpr {
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.AND_EXPR__OPERAND:
@@ -146,13 +154,14 @@ public class AndExprImpl extends OrExprChildImpl implements AndExpr {
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.AND_EXPR__OPERAND:

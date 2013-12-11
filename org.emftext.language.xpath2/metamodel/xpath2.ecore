@@ -156,15 +156,12 @@
         eType="#//Predicate" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FilterExprChild" abstract="true" eSuperTypes="#//SelfStepExprChild"/>
-  <eClassifiers xsi:type="ecore:EClass" name="AxisStep" eSuperTypes="#//StepExpr">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1" eType="#//DirectionalStep"
-        containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AxisStep" abstract="true" eSuperTypes="#//StepExpr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" upperBound="-1"
         eType="#//Predicate" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DirectionalStep" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ForwardStep" abstract="true" eSuperTypes="#//DirectionalStep"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ReverseStep" abstract="true" eSuperTypes="#//DirectionalStep"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ForwardStep" abstract="true" eSuperTypes="#//AxisStep"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ReverseStep" abstract="true" eSuperTypes="#//AxisStep"/>
   <eClassifiers xsi:type="ecore:EClass" name="GeneralForwardStep" eSuperTypes="#//ForwardStep">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="axis" lowerBound="1" eType="#//ForwardAxisKind"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nodeTest" lowerBound="1"

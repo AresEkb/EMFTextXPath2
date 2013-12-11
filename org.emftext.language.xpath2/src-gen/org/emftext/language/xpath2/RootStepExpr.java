@@ -21,5 +21,6 @@ package org.emftext.language.xpath2;
  * @model
  * @generated
  */
-public interface RootStepExpr extends PathExprChild {
+public interface RootStepExpr extends PathExprChild
+{
 } // RootStepExpr

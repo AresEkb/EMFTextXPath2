@@ -35,51 +35,56 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class NodeKindTestImpl extends NodeTestImpl implements NodeKindTest {
-	/**
+public class NodeKindTestImpl extends NodeTestImpl implements NodeKindTest
+{
+  /**
    * The cached value of the '{@link #getTest() <em>Test</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getTest()
    * @generated
    * @ordered
    */
-	protected KindTest test;
+  protected KindTest test;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected NodeKindTestImpl() {
+  protected NodeKindTestImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.NODE_KIND_TEST;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public KindTest getTest() {
+  public KindTest getTest()
+  {
     return test;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetTest(KindTest newTest, NotificationChain msgs) {
+  public NotificationChain basicSetTest(KindTest newTest, NotificationChain msgs)
+  {
     KindTest oldTest = test;
     test = newTest;
     if (eNotificationRequired())
@@ -90,12 +95,13 @@ public class NodeKindTestImpl extends NodeTestImpl implements NodeKindTest {
     return msgs;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setTest(KindTest newTest) {
+  public void setTest(KindTest newTest)
+  {
     if (newTest != test)
     {
       NotificationChain msgs = null;
@@ -110,13 +116,14 @@ public class NodeKindTestImpl extends NodeTestImpl implements NodeKindTest {
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.NODE_KIND_TEST__TEST, newTest, newTest));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
     switch (featureID)
     {
       case Xpath2Package.NODE_KIND_TEST__TEST:
@@ -125,13 +132,14 @@ public class NodeKindTestImpl extends NodeTestImpl implements NodeKindTest {
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
     switch (featureID)
     {
       case Xpath2Package.NODE_KIND_TEST__TEST:
@@ -140,13 +148,14 @@ public class NodeKindTestImpl extends NodeTestImpl implements NodeKindTest {
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
     switch (featureID)
     {
       case Xpath2Package.NODE_KIND_TEST__TEST:
@@ -156,13 +165,14 @@ public class NodeKindTestImpl extends NodeTestImpl implements NodeKindTest {
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.NODE_KIND_TEST__TEST:
@@ -172,13 +182,14 @@ public class NodeKindTestImpl extends NodeTestImpl implements NodeKindTest {
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.NODE_KIND_TEST__TEST:

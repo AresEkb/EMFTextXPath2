@@ -35,51 +35,56 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class DescOrSelfStepExprImpl extends PathExprChildImpl implements DescOrSelfStepExpr {
-	/**
+public class DescOrSelfStepExprImpl extends PathExprChildImpl implements DescOrSelfStepExpr
+{
+  /**
    * The cached value of the '{@link #getStep() <em>Step</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getStep()
    * @generated
    * @ordered
    */
-	protected StepExpr step;
+  protected StepExpr step;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected DescOrSelfStepExprImpl() {
+  protected DescOrSelfStepExprImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.DESC_OR_SELF_STEP_EXPR;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public StepExpr getStep() {
+  public StepExpr getStep()
+  {
     return step;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetStep(StepExpr newStep, NotificationChain msgs) {
+  public NotificationChain basicSetStep(StepExpr newStep, NotificationChain msgs)
+  {
     StepExpr oldStep = step;
     step = newStep;
     if (eNotificationRequired())
@@ -90,12 +95,13 @@ public class DescOrSelfStepExprImpl extends PathExprChildImpl implements DescOrS
     return msgs;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setStep(StepExpr newStep) {
+  public void setStep(StepExpr newStep)
+  {
     if (newStep != step)
     {
       NotificationChain msgs = null;
@@ -110,13 +116,14 @@ public class DescOrSelfStepExprImpl extends PathExprChildImpl implements DescOrS
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP, newStep, newStep));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
     switch (featureID)
     {
       case Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP:
@@ -125,13 +132,14 @@ public class DescOrSelfStepExprImpl extends PathExprChildImpl implements DescOrS
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
     switch (featureID)
     {
       case Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP:
@@ -140,13 +148,14 @@ public class DescOrSelfStepExprImpl extends PathExprChildImpl implements DescOrS
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
     switch (featureID)
     {
       case Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP:
@@ -156,13 +165,14 @@ public class DescOrSelfStepExprImpl extends PathExprChildImpl implements DescOrS
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP:
@@ -172,13 +182,14 @@ public class DescOrSelfStepExprImpl extends PathExprChildImpl implements DescOrS
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP:

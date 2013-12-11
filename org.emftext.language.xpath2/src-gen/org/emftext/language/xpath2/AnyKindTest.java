@@ -21,5 +21,6 @@ package org.emftext.language.xpath2;
  * @model
  * @generated
  */
-public interface AnyKindTest extends KindTest {
+public interface AnyKindTest extends KindTest
+{
 } // AnyKindTest

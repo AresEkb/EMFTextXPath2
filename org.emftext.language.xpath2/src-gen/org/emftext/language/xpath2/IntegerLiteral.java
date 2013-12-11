@@ -27,31 +27,32 @@ package org.emftext.language.xpath2;
  * @model
  * @generated
  */
-public interface IntegerLiteral extends NumericLiteral {
-	/**
+public interface IntegerLiteral extends NumericLiteral
+{
+  /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Value</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' attribute.
    * @see #setValue(int)
    * @see org.emftext.language.xpath2.Xpath2Package#getIntegerLiteral_Value()
    * @model required="true"
    * @generated
    */
-	int getValue();
+  int getValue();
 
-	/**
+  /**
    * Sets the value of the '{@link org.emftext.language.xpath2.IntegerLiteral#getValue <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @param value the new value of the '<em>Value</em>' attribute.
    * @see #getValue()
    * @generated
    */
-	void setValue(int value);
+  void setValue(int value);
 
 } // IntegerLiteral

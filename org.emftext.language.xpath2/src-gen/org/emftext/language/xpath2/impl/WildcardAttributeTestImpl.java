@@ -35,51 +35,56 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class WildcardAttributeTestImpl extends AttributeTestImpl implements WildcardAttributeTest {
-	/**
+public class WildcardAttributeTestImpl extends AttributeTestImpl implements WildcardAttributeTest
+{
+  /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-	protected QName type;
+  protected QName type;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected WildcardAttributeTestImpl() {
+  protected WildcardAttributeTestImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.WILDCARD_ATTRIBUTE_TEST;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public QName getType() {
+  public QName getType()
+  {
     return type;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetType(QName newType, NotificationChain msgs) {
+  public NotificationChain basicSetType(QName newType, NotificationChain msgs)
+  {
     QName oldType = type;
     type = newType;
     if (eNotificationRequired())
@@ -90,12 +95,13 @@ public class WildcardAttributeTestImpl extends AttributeTestImpl implements Wild
     return msgs;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setType(QName newType) {
+  public void setType(QName newType)
+  {
     if (newType != type)
     {
       NotificationChain msgs = null;
@@ -110,13 +116,14 @@ public class WildcardAttributeTestImpl extends AttributeTestImpl implements Wild
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE, newType, newType));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
     switch (featureID)
     {
       case Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE:
@@ -125,13 +132,14 @@ public class WildcardAttributeTestImpl extends AttributeTestImpl implements Wild
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
     switch (featureID)
     {
       case Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE:
@@ -140,13 +148,14 @@ public class WildcardAttributeTestImpl extends AttributeTestImpl implements Wild
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
     switch (featureID)
     {
       case Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE:
@@ -156,13 +165,14 @@ public class WildcardAttributeTestImpl extends AttributeTestImpl implements Wild
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE:
@@ -172,13 +182,14 @@ public class WildcardAttributeTestImpl extends AttributeTestImpl implements Wild
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE:

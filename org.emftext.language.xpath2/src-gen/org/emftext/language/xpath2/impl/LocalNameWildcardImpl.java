@@ -32,74 +32,80 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class LocalNameWildcardImpl extends WildcardImpl implements LocalNameWildcard {
-	/**
+public class LocalNameWildcardImpl extends WildcardImpl implements LocalNameWildcard
+{
+  /**
    * The default value of the '{@link #getNamespace() <em>Namespace</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getNamespace()
    * @generated
    * @ordered
    */
-	protected static final String NAMESPACE_EDEFAULT = null;
+  protected static final String NAMESPACE_EDEFAULT = null;
 
-	/**
+  /**
    * The cached value of the '{@link #getNamespace() <em>Namespace</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getNamespace()
    * @generated
    * @ordered
    */
-	protected String namespace = NAMESPACE_EDEFAULT;
+  protected String namespace = NAMESPACE_EDEFAULT;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected LocalNameWildcardImpl() {
+  protected LocalNameWildcardImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.LOCAL_NAME_WILDCARD;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String getNamespace() {
+  public String getNamespace()
+  {
     return namespace;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setNamespace(String newNamespace) {
+  public void setNamespace(String newNamespace)
+  {
     String oldNamespace = namespace;
     namespace = newNamespace;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.LOCAL_NAME_WILDCARD__NAMESPACE, oldNamespace, namespace));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
     switch (featureID)
     {
       case Xpath2Package.LOCAL_NAME_WILDCARD__NAMESPACE:
@@ -108,13 +114,14 @@ public class LocalNameWildcardImpl extends WildcardImpl implements LocalNameWild
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
     switch (featureID)
     {
       case Xpath2Package.LOCAL_NAME_WILDCARD__NAMESPACE:
@@ -124,13 +131,14 @@ public class LocalNameWildcardImpl extends WildcardImpl implements LocalNameWild
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.LOCAL_NAME_WILDCARD__NAMESPACE:
@@ -140,13 +148,14 @@ public class LocalNameWildcardImpl extends WildcardImpl implements LocalNameWild
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.LOCAL_NAME_WILDCARD__NAMESPACE:
@@ -155,13 +164,14 @@ public class LocalNameWildcardImpl extends WildcardImpl implements LocalNameWild
     return super.eIsSet(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+  @Override
+  public String toString()
+  {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

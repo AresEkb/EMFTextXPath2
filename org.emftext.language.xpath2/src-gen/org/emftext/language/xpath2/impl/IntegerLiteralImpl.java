@@ -32,74 +32,80 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class IntegerLiteralImpl extends NumericLiteralImpl implements IntegerLiteral {
-	/**
+public class IntegerLiteralImpl extends NumericLiteralImpl implements IntegerLiteral
+{
+  /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getValue()
    * @generated
    * @ordered
    */
-	protected static final int VALUE_EDEFAULT = 0;
+  protected static final int VALUE_EDEFAULT = 0;
 
-	/**
+  /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getValue()
    * @generated
    * @ordered
    */
-	protected int value = VALUE_EDEFAULT;
+  protected int value = VALUE_EDEFAULT;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected IntegerLiteralImpl() {
+  protected IntegerLiteralImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.INTEGER_LITERAL;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public int getValue() {
+  public int getValue()
+  {
     return value;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setValue(int newValue) {
+  public void setValue(int newValue)
+  {
     int oldValue = value;
     value = newValue;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.INTEGER_LITERAL__VALUE, oldValue, value));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
     switch (featureID)
     {
       case Xpath2Package.INTEGER_LITERAL__VALUE:
@@ -108,13 +114,14 @@ public class IntegerLiteralImpl extends NumericLiteralImpl implements IntegerLit
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
     switch (featureID)
     {
       case Xpath2Package.INTEGER_LITERAL__VALUE:
@@ -124,13 +131,14 @@ public class IntegerLiteralImpl extends NumericLiteralImpl implements IntegerLit
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.INTEGER_LITERAL__VALUE:
@@ -140,13 +148,14 @@ public class IntegerLiteralImpl extends NumericLiteralImpl implements IntegerLit
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.INTEGER_LITERAL__VALUE:
@@ -155,13 +164,14 @@ public class IntegerLiteralImpl extends NumericLiteralImpl implements IntegerLit
     return super.eIsSet(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+  @Override
+  public String toString()
+  {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

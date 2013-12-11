@@ -36,61 +36,66 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttributeTest {
-	/**
+public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttributeTest
+{
+  /**
    * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getName()
    * @generated
    * @ordered
    */
-	protected QName name;
+  protected QName name;
 
-	/**
+  /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-	protected QName type;
+  protected QName type;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected NameAttributeTestImpl() {
+  protected NameAttributeTestImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.NAME_ATTRIBUTE_TEST;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public QName getName() {
+  public QName getName()
+  {
     return name;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetName(QName newName, NotificationChain msgs) {
+  public NotificationChain basicSetName(QName newName, NotificationChain msgs)
+  {
     QName oldName = name;
     name = newName;
     if (eNotificationRequired())
@@ -101,12 +106,13 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
     return msgs;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setName(QName newName) {
+  public void setName(QName newName)
+  {
     if (newName != name)
     {
       NotificationChain msgs = null;
@@ -121,21 +127,23 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.NAME_ATTRIBUTE_TEST__NAME, newName, newName));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public QName getType() {
+  public QName getType()
+  {
     return type;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetType(QName newType, NotificationChain msgs) {
+  public NotificationChain basicSetType(QName newType, NotificationChain msgs)
+  {
     QName oldType = type;
     type = newType;
     if (eNotificationRequired())
@@ -146,12 +154,13 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
     return msgs;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setType(QName newType) {
+  public void setType(QName newType)
+  {
     if (newType != type)
     {
       NotificationChain msgs = null;
@@ -166,13 +175,14 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE, newType, newType));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
     switch (featureID)
     {
       case Xpath2Package.NAME_ATTRIBUTE_TEST__NAME:
@@ -183,13 +193,14 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
     switch (featureID)
     {
       case Xpath2Package.NAME_ATTRIBUTE_TEST__NAME:
@@ -200,13 +211,14 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
     switch (featureID)
     {
       case Xpath2Package.NAME_ATTRIBUTE_TEST__NAME:
@@ -219,13 +231,14 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.NAME_ATTRIBUTE_TEST__NAME:
@@ -238,13 +251,14 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.NAME_ATTRIBUTE_TEST__NAME:

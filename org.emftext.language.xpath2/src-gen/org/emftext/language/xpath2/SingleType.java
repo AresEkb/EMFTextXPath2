@@ -29,57 +29,58 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface SingleType extends EObject {
-	/**
+public interface SingleType extends EObject
+{
+  /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Type</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Type</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' containment reference.
    * @see #setType(AtomicType)
    * @see org.emftext.language.xpath2.Xpath2Package#getSingleType_Type()
    * @model containment="true" required="true"
    * @generated
    */
-	AtomicType getType();
+  AtomicType getType();
 
-	/**
+  /**
    * Sets the value of the '{@link org.emftext.language.xpath2.SingleType#getType <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @param value the new value of the '<em>Type</em>' containment reference.
    * @see #getType()
    * @generated
    */
-	void setType(AtomicType value);
+  void setType(AtomicType value);
 
-	/**
+  /**
    * Returns the value of the '<em><b>Optional</b></em>' attribute.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Optional</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Optional</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
    * @return the value of the '<em>Optional</em>' attribute.
    * @see #setOptional(boolean)
    * @see org.emftext.language.xpath2.Xpath2Package#getSingleType_Optional()
    * @model required="true"
    * @generated
    */
-	boolean isOptional();
+  boolean isOptional();
 
-	/**
+  /**
    * Sets the value of the '{@link org.emftext.language.xpath2.SingleType#isOptional <em>Optional</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @param value the new value of the '<em>Optional</em>' attribute.
    * @see #isOptional()
    * @generated
    */
-	void setOptional(boolean value);
+  void setOptional(boolean value);
 
 } // SingleType

@@ -44,61 +44,66 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class FilterExprImpl extends StepExprImpl implements FilterExpr {
-	/**
+public class FilterExprImpl extends StepExprImpl implements FilterExpr
+{
+  /**
    * The cached value of the '{@link #getPrimaryExpr() <em>Primary Expr</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getPrimaryExpr()
    * @generated
    * @ordered
    */
-	protected FilterExprChild primaryExpr;
+  protected FilterExprChild primaryExpr;
 
-	/**
+  /**
    * The cached value of the '{@link #getPredicate() <em>Predicate</em>}' containment reference list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getPredicate()
    * @generated
    * @ordered
    */
-	protected EList<Predicate> predicate;
+  protected EList<Predicate> predicate;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected FilterExprImpl() {
+  protected FilterExprImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.FILTER_EXPR;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public FilterExprChild getPrimaryExpr() {
+  public FilterExprChild getPrimaryExpr()
+  {
     return primaryExpr;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetPrimaryExpr(FilterExprChild newPrimaryExpr, NotificationChain msgs) {
+  public NotificationChain basicSetPrimaryExpr(FilterExprChild newPrimaryExpr, NotificationChain msgs)
+  {
     FilterExprChild oldPrimaryExpr = primaryExpr;
     primaryExpr = newPrimaryExpr;
     if (eNotificationRequired())
@@ -109,12 +114,13 @@ public class FilterExprImpl extends StepExprImpl implements FilterExpr {
     return msgs;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setPrimaryExpr(FilterExprChild newPrimaryExpr) {
+  public void setPrimaryExpr(FilterExprChild newPrimaryExpr)
+  {
     if (newPrimaryExpr != primaryExpr)
     {
       NotificationChain msgs = null;
@@ -129,12 +135,13 @@ public class FilterExprImpl extends StepExprImpl implements FilterExpr {
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.FILTER_EXPR__PRIMARY_EXPR, newPrimaryExpr, newPrimaryExpr));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EList<Predicate> getPredicate() {
+  public EList<Predicate> getPredicate()
+  {
     if (predicate == null)
     {
       predicate = new EObjectContainmentEList<Predicate>(Predicate.class, this, Xpath2Package.FILTER_EXPR__PREDICATE);
@@ -142,13 +149,14 @@ public class FilterExprImpl extends StepExprImpl implements FilterExpr {
     return predicate;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
     switch (featureID)
     {
       case Xpath2Package.FILTER_EXPR__PRIMARY_EXPR:
@@ -159,13 +167,14 @@ public class FilterExprImpl extends StepExprImpl implements FilterExpr {
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
     switch (featureID)
     {
       case Xpath2Package.FILTER_EXPR__PRIMARY_EXPR:
@@ -176,14 +185,15 @@ public class FilterExprImpl extends StepExprImpl implements FilterExpr {
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @SuppressWarnings("unchecked")
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
     switch (featureID)
     {
       case Xpath2Package.FILTER_EXPR__PRIMARY_EXPR:
@@ -197,13 +207,14 @@ public class FilterExprImpl extends StepExprImpl implements FilterExpr {
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.FILTER_EXPR__PRIMARY_EXPR:
@@ -216,13 +227,14 @@ public class FilterExprImpl extends StepExprImpl implements FilterExpr {
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.FILTER_EXPR__PRIMARY_EXPR:

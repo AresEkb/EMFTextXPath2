@@ -42,52 +42,56 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class UnionExprImpl extends MultiplicativeExprChildImpl implements UnionExpr {
-	/**
+public class UnionExprImpl extends MultiplicativeExprChildImpl implements UnionExpr
+{
+  /**
    * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getOperand()
    * @generated
    * @ordered
    */
-	protected EList<UnionExprChild> operand;
+  protected EList<UnionExprChild> operand;
 
-	/**
+  /**
    * The cached value of the '{@link #getOperation() <em>Operation</em>}' attribute list.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getOperation()
    * @generated
    * @ordered
    */
-	protected EList<UnionOp> operation;
+  protected EList<UnionOp> operation;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected UnionExprImpl() {
+  protected UnionExprImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.UNION_EXPR;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EList<UnionExprChild> getOperand() {
+  public EList<UnionExprChild> getOperand()
+  {
     if (operand == null)
     {
       operand = new EObjectContainmentEList<UnionExprChild>(UnionExprChild.class, this, Xpath2Package.UNION_EXPR__OPERAND);
@@ -95,12 +99,13 @@ public class UnionExprImpl extends MultiplicativeExprChildImpl implements UnionE
     return operand;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public EList<UnionOp> getOperation() {
+  public EList<UnionOp> getOperation()
+  {
     if (operation == null)
     {
       operation = new EDataTypeEList<UnionOp>(UnionOp.class, this, Xpath2Package.UNION_EXPR__OPERATION);
@@ -108,13 +113,14 @@ public class UnionExprImpl extends MultiplicativeExprChildImpl implements UnionE
     return operation;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
     switch (featureID)
     {
       case Xpath2Package.UNION_EXPR__OPERAND:
@@ -123,13 +129,14 @@ public class UnionExprImpl extends MultiplicativeExprChildImpl implements UnionE
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
     switch (featureID)
     {
       case Xpath2Package.UNION_EXPR__OPERAND:
@@ -140,14 +147,15 @@ public class UnionExprImpl extends MultiplicativeExprChildImpl implements UnionE
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @SuppressWarnings("unchecked")
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
     switch (featureID)
     {
       case Xpath2Package.UNION_EXPR__OPERAND:
@@ -162,13 +170,14 @@ public class UnionExprImpl extends MultiplicativeExprChildImpl implements UnionE
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.UNION_EXPR__OPERAND:
@@ -181,13 +190,14 @@ public class UnionExprImpl extends MultiplicativeExprChildImpl implements UnionE
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.UNION_EXPR__OPERAND:
@@ -198,13 +208,14 @@ public class UnionExprImpl extends MultiplicativeExprChildImpl implements UnionE
     return super.eIsSet(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+  @Override
+  public String toString()
+  {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

@@ -24,23 +24,26 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public abstract class FilterExprChildImpl extends SelfStepExprChildImpl implements FilterExprChild {
-	/**
+public abstract class FilterExprChildImpl extends SelfStepExprChildImpl implements FilterExprChild
+{
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected FilterExprChildImpl() {
+  protected FilterExprChildImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.FILTER_EXPR_CHILD;
   }
 

@@ -38,61 +38,66 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class IteratorImpl extends EObjectImpl implements Iterator {
-	/**
+public class IteratorImpl extends EObjectImpl implements Iterator
+{
+  /**
    * The cached value of the '{@link #getVarName() <em>Var Name</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getVarName()
    * @generated
    * @ordered
    */
-	protected VarName varName;
+  protected VarName varName;
 
-	/**
+  /**
    * The cached value of the '{@link #getList() <em>List</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getList()
    * @generated
    * @ordered
    */
-	protected ExprSingle list;
+  protected ExprSingle list;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected IteratorImpl() {
+  protected IteratorImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.ITERATOR;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public VarName getVarName() {
+  public VarName getVarName()
+  {
     return varName;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetVarName(VarName newVarName, NotificationChain msgs) {
+  public NotificationChain basicSetVarName(VarName newVarName, NotificationChain msgs)
+  {
     VarName oldVarName = varName;
     varName = newVarName;
     if (eNotificationRequired())
@@ -103,12 +108,13 @@ public class IteratorImpl extends EObjectImpl implements Iterator {
     return msgs;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setVarName(VarName newVarName) {
+  public void setVarName(VarName newVarName)
+  {
     if (newVarName != varName)
     {
       NotificationChain msgs = null;
@@ -123,21 +129,23 @@ public class IteratorImpl extends EObjectImpl implements Iterator {
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ITERATOR__VAR_NAME, newVarName, newVarName));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public ExprSingle getList() {
+  public ExprSingle getList()
+  {
     return list;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetList(ExprSingle newList, NotificationChain msgs) {
+  public NotificationChain basicSetList(ExprSingle newList, NotificationChain msgs)
+  {
     ExprSingle oldList = list;
     list = newList;
     if (eNotificationRequired())
@@ -148,12 +156,13 @@ public class IteratorImpl extends EObjectImpl implements Iterator {
     return msgs;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setList(ExprSingle newList) {
+  public void setList(ExprSingle newList)
+  {
     if (newList != list)
     {
       NotificationChain msgs = null;
@@ -168,13 +177,14 @@ public class IteratorImpl extends EObjectImpl implements Iterator {
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ITERATOR__LIST, newList, newList));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
     switch (featureID)
     {
       case Xpath2Package.ITERATOR__VAR_NAME:
@@ -185,13 +195,14 @@ public class IteratorImpl extends EObjectImpl implements Iterator {
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
     switch (featureID)
     {
       case Xpath2Package.ITERATOR__VAR_NAME:
@@ -202,13 +213,14 @@ public class IteratorImpl extends EObjectImpl implements Iterator {
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
     switch (featureID)
     {
       case Xpath2Package.ITERATOR__VAR_NAME:
@@ -221,13 +233,14 @@ public class IteratorImpl extends EObjectImpl implements Iterator {
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.ITERATOR__VAR_NAME:
@@ -240,13 +253,14 @@ public class IteratorImpl extends EObjectImpl implements Iterator {
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.ITERATOR__VAR_NAME:

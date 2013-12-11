@@ -33,74 +33,80 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class GeneralCompImpl extends CompImpl implements GeneralComp {
-	/**
+public class GeneralCompImpl extends CompImpl implements GeneralComp
+{
+  /**
    * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getOperator()
    * @generated
    * @ordered
    */
-	protected static final GeneralCompKind OPERATOR_EDEFAULT = GeneralCompKind.EQ;
+  protected static final GeneralCompKind OPERATOR_EDEFAULT = GeneralCompKind.EQ;
 
-	/**
+  /**
    * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getOperator()
    * @generated
    * @ordered
    */
-	protected GeneralCompKind operator = OPERATOR_EDEFAULT;
+  protected GeneralCompKind operator = OPERATOR_EDEFAULT;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected GeneralCompImpl() {
+  protected GeneralCompImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.GENERAL_COMP;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public GeneralCompKind getOperator() {
+  public GeneralCompKind getOperator()
+  {
     return operator;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setOperator(GeneralCompKind newOperator) {
+  public void setOperator(GeneralCompKind newOperator)
+  {
     GeneralCompKind oldOperator = operator;
     operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.GENERAL_COMP__OPERATOR, oldOperator, operator));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
     switch (featureID)
     {
       case Xpath2Package.GENERAL_COMP__OPERATOR:
@@ -109,13 +115,14 @@ public class GeneralCompImpl extends CompImpl implements GeneralComp {
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
     switch (featureID)
     {
       case Xpath2Package.GENERAL_COMP__OPERATOR:
@@ -125,13 +132,14 @@ public class GeneralCompImpl extends CompImpl implements GeneralComp {
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.GENERAL_COMP__OPERATOR:
@@ -141,13 +149,14 @@ public class GeneralCompImpl extends CompImpl implements GeneralComp {
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.GENERAL_COMP__OPERATOR:
@@ -156,13 +165,14 @@ public class GeneralCompImpl extends CompImpl implements GeneralComp {
     return super.eIsSet(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+  @Override
+  public String toString()
+  {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

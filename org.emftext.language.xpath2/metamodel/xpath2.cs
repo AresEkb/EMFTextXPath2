@@ -111,6 +111,8 @@ RULES {
     CastExpr ::= operand:UnaryExpr (#1 "cast" "as" type)?;
     UnaryExpr ::= operator[plus : "+", minus : "-"]* operand:ValueExpr;
 
+    // FilterExpr must have higher priority than FunctionCall
+    FilterExpr ::= primaryExpr:PrimaryExpr predicate*;
     // FunctionCall must have higher priority than PathExpr
     FunctionCall ::= name "(" (arg:IfExpr,ForExpr,QuantifiedExpr,OrExpr
         ("," #1 arg:IfExpr,ForExpr,QuantifiedExpr,OrExpr)*)? ")";
@@ -121,23 +123,21 @@ RULES {
     DescOrSelfStepExpr ::= "//" step;
     RootStepExpr ::= "/";
     SelfStepExpr ::= step;
-    AxisStep ::= step predicate*;
     GeneralForwardStep ::= axis[
         child : "child", descendant : "descendant", attribute : "attribute",
         self : "self", descendant_or_self : "descendant-or-self",
         following_sibling : "following-sibling", following : "following",
-        namespace : "namespace"] "::" nodeTest;
-    AbbrevForwardStep ::= kind[child : "", attribute : "@"] nodeTest;
+        namespace : "namespace"] "::" nodeTest predicate*;
+    AbbrevForwardStep ::= kind[child : "", attribute : "@"] nodeTest predicate*;
     GeneralReverseStep ::= axis[parent : "parent", ancestor : "ancestor",
         preceding_sibling : "preceding-sibling", preceding : "preceding",
-        ancestor_or_self : "ancestor-or-self"] "::" nodeTest;
-    AbbrevReverseStep ::= kind[parent : ".."];
+        ancestor_or_self : "ancestor-or-self"] "::" nodeTest predicate*;
+    AbbrevReverseStep ::= kind[parent : ".."] predicate*;
     NodeKindTest ::= test;
     QNameTest ::= name;
     AnyWildcard ::= "*";
     LocalNameWildcard ::= namespace[NCNAME] ":" "*";
     NamespaceWildcard ::= "*" ":" localName[NCNAME];
-    FilterExpr ::= primaryExpr:PrimaryExpr predicate*;
     Predicate ::= "[" expr:Expr "]";
 
     // Primary Expressions

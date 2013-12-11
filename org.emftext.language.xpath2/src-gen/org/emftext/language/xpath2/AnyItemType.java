@@ -21,5 +21,6 @@ package org.emftext.language.xpath2;
  * @model
  * @generated
  */
-public interface AnyItemType extends ItemType {
+public interface AnyItemType extends ItemType
+{
 } // AnyItemType

@@ -24,23 +24,26 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public abstract class IntersectExceptExprChildImpl extends UnionExprChildImpl implements IntersectExceptExprChild {
-	/**
+public abstract class IntersectExceptExprChildImpl extends UnionExprChildImpl implements IntersectExceptExprChild
+{
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected IntersectExceptExprChildImpl() {
+  protected IntersectExceptExprChildImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.INTERSECT_EXCEPT_EXPR_CHILD;
   }
 

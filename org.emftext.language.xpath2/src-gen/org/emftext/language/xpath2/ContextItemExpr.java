@@ -21,5 +21,6 @@ package org.emftext.language.xpath2;
  * @model
  * @generated
  */
-public interface ContextItemExpr extends PrimaryExpr {
+public interface ContextItemExpr extends PrimaryExpr
+{
 } // ContextItemExpr

@@ -25,140 +25,141 @@ import org.eclipse.emf.common.util.Enumerator;
  * @model
  * @generated
  */
-public enum ReverseAxisKind implements Enumerator {
-	/**
+public enum ReverseAxisKind implements Enumerator
+{
+  /**
    * The '<em><b>Parent</b></em>' literal object.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #PARENT_VALUE
    * @generated
    * @ordered
    */
-	PARENT(0, "parent", "parent"),
+  PARENT(0, "parent", "parent"),
 
-	/**
+  /**
    * The '<em><b>Ancestor</b></em>' literal object.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #ANCESTOR_VALUE
    * @generated
    * @ordered
    */
-	ANCESTOR(1, "ancestor", "ancestor"),
+  ANCESTOR(1, "ancestor", "ancestor"),
 
-	/**
+  /**
    * The '<em><b>Preceding sibling</b></em>' literal object.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #PRECEDING_SIBLING_VALUE
    * @generated
    * @ordered
    */
-	PRECEDING_SIBLING(2, "preceding_sibling", "preceding_sibling"),
+  PRECEDING_SIBLING(2, "preceding_sibling", "preceding_sibling"),
 
-	/**
+  /**
    * The '<em><b>Preceding</b></em>' literal object.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #PRECEDING_VALUE
    * @generated
    * @ordered
    */
-	PRECEDING(3, "preceding", "preceding"),
+  PRECEDING(3, "preceding", "preceding"),
 
-	/**
+  /**
    * The '<em><b>Ancestor or self</b></em>' literal object.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #ANCESTOR_OR_SELF_VALUE
    * @generated
    * @ordered
    */
-	ANCESTOR_OR_SELF(4, "ancestor_or_self", "ancestor_or_self");
+  ANCESTOR_OR_SELF(4, "ancestor_or_self", "ancestor_or_self");
 
-	/**
+  /**
    * The '<em><b>Parent</b></em>' literal value.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Parent</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>Parent</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
    * @see #PARENT
    * @model name="parent"
    * @generated
    * @ordered
    */
-	public static final int PARENT_VALUE = 0;
+  public static final int PARENT_VALUE = 0;
 
-	/**
+  /**
    * The '<em><b>Ancestor</b></em>' literal value.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Ancestor</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>Ancestor</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
    * @see #ANCESTOR
    * @model name="ancestor"
    * @generated
    * @ordered
    */
-	public static final int ANCESTOR_VALUE = 1;
+  public static final int ANCESTOR_VALUE = 1;
 
-	/**
+  /**
    * The '<em><b>Preceding sibling</b></em>' literal value.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Preceding sibling</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>Preceding sibling</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
    * @see #PRECEDING_SIBLING
    * @model name="preceding_sibling"
    * @generated
    * @ordered
    */
-	public static final int PRECEDING_SIBLING_VALUE = 2;
+  public static final int PRECEDING_SIBLING_VALUE = 2;
 
-	/**
+  /**
    * The '<em><b>Preceding</b></em>' literal value.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Preceding</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>Preceding</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
    * @see #PRECEDING
    * @model name="preceding"
    * @generated
    * @ordered
    */
-	public static final int PRECEDING_VALUE = 3;
+  public static final int PRECEDING_VALUE = 3;
 
-	/**
+  /**
    * The '<em><b>Ancestor or self</b></em>' literal value.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Ancestor or self</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>Ancestor or self</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
    * @see #ANCESTOR_OR_SELF
    * @model name="ancestor_or_self"
    * @generated
    * @ordered
    */
-	public static final int ANCESTOR_OR_SELF_VALUE = 4;
+  public static final int ANCESTOR_OR_SELF_VALUE = 4;
 
-	/**
+  /**
    * An array of all the '<em><b>Reverse Axis Kind</b></em>' enumerators.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private static final ReverseAxisKind[] VALUES_ARRAY =
-		new ReverseAxisKind[]
+  private static final ReverseAxisKind[] VALUES_ARRAY =
+    new ReverseAxisKind[]
     {
       PARENT,
       ANCESTOR,
@@ -167,21 +168,22 @@ public enum ReverseAxisKind implements Enumerator {
       ANCESTOR_OR_SELF,
     };
 
-	/**
+  /**
    * A public read-only list of all the '<em><b>Reverse Axis Kind</b></em>' enumerators.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public static final List<ReverseAxisKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+  public static final List<ReverseAxisKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
-	/**
+  /**
    * Returns the '<em><b>Reverse Axis Kind</b></em>' literal with the specified literal value.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public static ReverseAxisKind get(String literal) {
+  public static ReverseAxisKind get(String literal)
+  {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
       ReverseAxisKind result = VALUES_ARRAY[i];
@@ -193,13 +195,14 @@ public enum ReverseAxisKind implements Enumerator {
     return null;
   }
 
-	/**
+  /**
    * Returns the '<em><b>Reverse Axis Kind</b></em>' literal with the specified name.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public static ReverseAxisKind getByName(String name) {
+  public static ReverseAxisKind getByName(String name)
+  {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
       ReverseAxisKind result = VALUES_ARRAY[i];
@@ -211,13 +214,14 @@ public enum ReverseAxisKind implements Enumerator {
     return null;
   }
 
-	/**
+  /**
    * Returns the '<em><b>Reverse Axis Kind</b></em>' literal with the specified integer value.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public static ReverseAxisKind get(int value) {
+  public static ReverseAxisKind get(int value)
+  {
     switch (value)
     {
       case PARENT_VALUE: return PARENT;
@@ -229,75 +233,80 @@ public enum ReverseAxisKind implements Enumerator {
     return null;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private final int value;
+  private final int value;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private final String name;
+  private final String name;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private final String literal;
+  private final String literal;
 
-	/**
+  /**
    * Only this class can construct instances.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private ReverseAxisKind(int value, String name, String literal) {
+  private ReverseAxisKind(int value, String name, String literal)
+  {
     this.value = value;
     this.name = name;
     this.literal = literal;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public int getValue() {
+  public int getValue()
+  {
     return value;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String getName() {
+  public String getName()
+  {
     return name;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String getLiteral() {
+  public String getLiteral()
+  {
     return literal;
   }
 
-	/**
+  /**
    * Returns the literal value of the enumerator, which is its string representation.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+  @Override
+  public String toString()
+  {
     return literal;
   }
-	
+  
 } //ReverseAxisKind

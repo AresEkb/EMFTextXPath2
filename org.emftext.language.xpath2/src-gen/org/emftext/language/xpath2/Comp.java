@@ -22,5 +22,6 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface Comp extends EObject {
+public interface Comp extends EObject
+{
 } // Comp

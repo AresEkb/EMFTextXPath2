@@ -21,5 +21,6 @@ package org.emftext.language.xpath2;
  * @model
  * @generated
  */
-public interface AnyWildcard extends Wildcard {
+public interface AnyWildcard extends Wildcard
+{
 } // AnyWildcard

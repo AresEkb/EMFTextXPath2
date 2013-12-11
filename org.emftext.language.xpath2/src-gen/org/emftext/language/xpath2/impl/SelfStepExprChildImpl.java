@@ -24,23 +24,26 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public abstract class SelfStepExprChildImpl extends PathExprChildImpl implements SelfStepExprChild {
-	/**
+public abstract class SelfStepExprChildImpl extends PathExprChildImpl implements SelfStepExprChild
+{
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected SelfStepExprChildImpl() {
+  protected SelfStepExprChildImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.SELF_STEP_EXPR_CHILD;
   }
 

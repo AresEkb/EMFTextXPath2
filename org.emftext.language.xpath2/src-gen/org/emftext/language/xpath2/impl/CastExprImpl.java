@@ -37,61 +37,66 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class CastExprImpl extends CastableExprChildImpl implements CastExpr {
-	/**
+public class CastExprImpl extends CastableExprChildImpl implements CastExpr
+{
+  /**
    * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getOperand()
    * @generated
    * @ordered
    */
-	protected CastExprChild operand;
+  protected CastExprChild operand;
 
-	/**
+  /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-	protected SingleType type;
+  protected SingleType type;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected CastExprImpl() {
+  protected CastExprImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.CAST_EXPR;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public CastExprChild getOperand() {
+  public CastExprChild getOperand()
+  {
     return operand;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetOperand(CastExprChild newOperand, NotificationChain msgs) {
+  public NotificationChain basicSetOperand(CastExprChild newOperand, NotificationChain msgs)
+  {
     CastExprChild oldOperand = operand;
     operand = newOperand;
     if (eNotificationRequired())
@@ -102,12 +107,13 @@ public class CastExprImpl extends CastableExprChildImpl implements CastExpr {
     return msgs;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setOperand(CastExprChild newOperand) {
+  public void setOperand(CastExprChild newOperand)
+  {
     if (newOperand != operand)
     {
       NotificationChain msgs = null;
@@ -122,21 +128,23 @@ public class CastExprImpl extends CastableExprChildImpl implements CastExpr {
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.CAST_EXPR__OPERAND, newOperand, newOperand));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public SingleType getType() {
+  public SingleType getType()
+  {
     return type;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public NotificationChain basicSetType(SingleType newType, NotificationChain msgs) {
+  public NotificationChain basicSetType(SingleType newType, NotificationChain msgs)
+  {
     SingleType oldType = type;
     type = newType;
     if (eNotificationRequired())
@@ -147,12 +155,13 @@ public class CastExprImpl extends CastableExprChildImpl implements CastExpr {
     return msgs;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setType(SingleType newType) {
+  public void setType(SingleType newType)
+  {
     if (newType != type)
     {
       NotificationChain msgs = null;
@@ -167,13 +176,14 @@ public class CastExprImpl extends CastableExprChildImpl implements CastExpr {
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.CAST_EXPR__TYPE, newType, newType));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
     switch (featureID)
     {
       case Xpath2Package.CAST_EXPR__OPERAND:
@@ -184,13 +194,14 @@ public class CastExprImpl extends CastableExprChildImpl implements CastExpr {
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
     switch (featureID)
     {
       case Xpath2Package.CAST_EXPR__OPERAND:
@@ -201,13 +212,14 @@ public class CastExprImpl extends CastableExprChildImpl implements CastExpr {
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
     switch (featureID)
     {
       case Xpath2Package.CAST_EXPR__OPERAND:
@@ -220,13 +232,14 @@ public class CastExprImpl extends CastableExprChildImpl implements CastExpr {
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.CAST_EXPR__OPERAND:
@@ -239,13 +252,14 @@ public class CastExprImpl extends CastableExprChildImpl implements CastExpr {
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.CAST_EXPR__OPERAND:

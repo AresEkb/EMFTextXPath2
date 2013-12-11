@@ -26,23 +26,26 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public abstract class SequenceTypeImpl extends EObjectImpl implements SequenceType {
-	/**
+public abstract class SequenceTypeImpl extends EObjectImpl implements SequenceType
+{
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected SequenceTypeImpl() {
+  protected SequenceTypeImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.SEQUENCE_TYPE;
   }
 

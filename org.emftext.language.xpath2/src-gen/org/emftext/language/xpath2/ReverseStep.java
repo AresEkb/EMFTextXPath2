@@ -21,5 +21,6 @@ package org.emftext.language.xpath2;
  * @model abstract="true"
  * @generated
  */
-public interface ReverseStep extends DirectionalStep {
+public interface ReverseStep extends AxisStep
+{
 } // ReverseStep

@@ -25,85 +25,87 @@ import org.eclipse.emf.common.util.Enumerator;
  * @model
  * @generated
  */
-public enum QuantifierKind implements Enumerator {
-	/**
+public enum QuantifierKind implements Enumerator
+{
+  /**
    * The '<em><b>Some</b></em>' literal object.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #SOME_VALUE
    * @generated
    * @ordered
    */
-	SOME(0, "some", "some"),
+  SOME(0, "some", "some"),
 
-	/**
+  /**
    * The '<em><b>Every</b></em>' literal object.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #EVERY_VALUE
    * @generated
    * @ordered
    */
-	EVERY(1, "every", "every");
+  EVERY(1, "every", "every");
 
-	/**
+  /**
    * The '<em><b>Some</b></em>' literal value.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Some</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>Some</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
    * @see #SOME
    * @model name="some"
    * @generated
    * @ordered
    */
-	public static final int SOME_VALUE = 0;
+  public static final int SOME_VALUE = 0;
 
-	/**
+  /**
    * The '<em><b>Every</b></em>' literal value.
    * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Every</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>Every</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
    * @see #EVERY
    * @model name="every"
    * @generated
    * @ordered
    */
-	public static final int EVERY_VALUE = 1;
+  public static final int EVERY_VALUE = 1;
 
-	/**
+  /**
    * An array of all the '<em><b>Quantifier Kind</b></em>' enumerators.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private static final QuantifierKind[] VALUES_ARRAY =
-		new QuantifierKind[]
+  private static final QuantifierKind[] VALUES_ARRAY =
+    new QuantifierKind[]
     {
       SOME,
       EVERY,
     };
 
-	/**
+  /**
    * A public read-only list of all the '<em><b>Quantifier Kind</b></em>' enumerators.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public static final List<QuantifierKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+  public static final List<QuantifierKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
-	/**
+  /**
    * Returns the '<em><b>Quantifier Kind</b></em>' literal with the specified literal value.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public static QuantifierKind get(String literal) {
+  public static QuantifierKind get(String literal)
+  {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
       QuantifierKind result = VALUES_ARRAY[i];
@@ -115,13 +117,14 @@ public enum QuantifierKind implements Enumerator {
     return null;
   }
 
-	/**
+  /**
    * Returns the '<em><b>Quantifier Kind</b></em>' literal with the specified name.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public static QuantifierKind getByName(String name) {
+  public static QuantifierKind getByName(String name)
+  {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
       QuantifierKind result = VALUES_ARRAY[i];
@@ -133,13 +136,14 @@ public enum QuantifierKind implements Enumerator {
     return null;
   }
 
-	/**
+  /**
    * Returns the '<em><b>Quantifier Kind</b></em>' literal with the specified integer value.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public static QuantifierKind get(int value) {
+  public static QuantifierKind get(int value)
+  {
     switch (value)
     {
       case SOME_VALUE: return SOME;
@@ -148,75 +152,80 @@ public enum QuantifierKind implements Enumerator {
     return null;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private final int value;
+  private final int value;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private final String name;
+  private final String name;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private final String literal;
+  private final String literal;
 
-	/**
+  /**
    * Only this class can construct instances.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	private QuantifierKind(int value, String name, String literal) {
+  private QuantifierKind(int value, String name, String literal)
+  {
     this.value = value;
     this.name = name;
     this.literal = literal;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public int getValue() {
+  public int getValue()
+  {
     return value;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String getName() {
+  public String getName()
+  {
     return name;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public String getLiteral() {
+  public String getLiteral()
+  {
     return literal;
   }
 
-	/**
+  /**
    * Returns the literal value of the enumerator, which is its string representation.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+  @Override
+  public String toString()
+  {
     return literal;
   }
-	
+  
 } //QuantifierKind

@@ -32,74 +32,80 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class OptionalAtomicTypeImpl extends QNameImpl implements OptionalAtomicType {
-	/**
+public class OptionalAtomicTypeImpl extends QNameImpl implements OptionalAtomicType
+{
+  /**
    * The default value of the '{@link #isOptional() <em>Optional</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #isOptional()
    * @generated
    * @ordered
    */
-	protected static final boolean OPTIONAL_EDEFAULT = false;
+  protected static final boolean OPTIONAL_EDEFAULT = false;
 
-	/**
+  /**
    * The cached value of the '{@link #isOptional() <em>Optional</em>}' attribute.
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @see #isOptional()
    * @generated
    * @ordered
    */
-	protected boolean optional = OPTIONAL_EDEFAULT;
+  protected boolean optional = OPTIONAL_EDEFAULT;
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	protected OptionalAtomicTypeImpl() {
+  protected OptionalAtomicTypeImpl()
+  {
     super();
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	protected EClass eStaticClass() {
+  @Override
+  protected EClass eStaticClass()
+  {
     return Xpath2Package.Literals.OPTIONAL_ATOMIC_TYPE;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public boolean isOptional() {
+  public boolean isOptional()
+  {
     return optional;
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	public void setOptional(boolean newOptional) {
+  public void setOptional(boolean newOptional)
+  {
     boolean oldOptional = optional;
     optional = newOptional;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL, oldOptional, optional));
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
     switch (featureID)
     {
       case Xpath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL:
@@ -108,13 +114,14 @@ public class OptionalAtomicTypeImpl extends QNameImpl implements OptionalAtomicT
     return super.eGet(featureID, resolve, coreType);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
     switch (featureID)
     {
       case Xpath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL:
@@ -124,13 +131,14 @@ public class OptionalAtomicTypeImpl extends QNameImpl implements OptionalAtomicT
     super.eSet(featureID, newValue);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public void eUnset(int featureID) {
+  @Override
+  public void eUnset(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL:
@@ -140,13 +148,14 @@ public class OptionalAtomicTypeImpl extends QNameImpl implements OptionalAtomicT
     super.eUnset(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public boolean eIsSet(int featureID) {
+  @Override
+  public boolean eIsSet(int featureID)
+  {
     switch (featureID)
     {
       case Xpath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL:
@@ -155,13 +164,14 @@ public class OptionalAtomicTypeImpl extends QNameImpl implements OptionalAtomicT
     return super.eIsSet(featureID);
   }
 
-	/**
+  /**
    * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-	@Override
-	public String toString() {
+  @Override
+  public String toString()
+  {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());

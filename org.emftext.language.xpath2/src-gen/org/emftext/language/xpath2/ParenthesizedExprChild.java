@@ -22,5 +22,6 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface ParenthesizedExprChild extends EObject {
+public interface ParenthesizedExprChild extends EObject
+{
 } // ParenthesizedExprChild

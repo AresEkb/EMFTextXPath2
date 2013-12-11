@@ -21,5 +21,6 @@ package org.emftext.language.xpath2;
  * @model
  * @generated
  */
-public interface AtomicType extends QName {
+public interface AtomicType extends QName
+{
 } // AtomicType
