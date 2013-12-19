@@ -10,6 +10,8 @@
  */
 package org.emftext.language.xpath2;
 
+import javax.xml.namespace.QName;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -32,30 +34,30 @@ import org.eclipse.emf.ecore.EObject;
 public interface Iterator extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Var Name</b></em>' containment reference.
+   * Returns the value of the '<em><b>Var Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Var Name</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Var Name</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Var Name</em>' containment reference.
-   * @see #setVarName(VarName)
+   * @return the value of the '<em>Var Name</em>' attribute.
+   * @see #setVarName(QName)
    * @see org.emftext.language.xpath2.Xpath2Package#getIterator_VarName()
-   * @model containment="true" required="true"
+   * @model dataType="org.eclipse.emf.ecore.xml.type.QName" required="true"
    * @generated
    */
-  VarName getVarName();
+  QName getVarName();
 
   /**
-   * Sets the value of the '{@link org.emftext.language.xpath2.Iterator#getVarName <em>Var Name</em>}' containment reference.
+   * Sets the value of the '{@link org.emftext.language.xpath2.Iterator#getVarName <em>Var Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Var Name</em>' containment reference.
+   * @param value the new value of the '<em>Var Name</em>' attribute.
    * @see #getVarName()
    * @generated
    */
-  void setVarName(VarName value);
+  void setVarName(QName value);
 
   /**
    * Returns the value of the '<em><b>List</b></em>' containment reference.

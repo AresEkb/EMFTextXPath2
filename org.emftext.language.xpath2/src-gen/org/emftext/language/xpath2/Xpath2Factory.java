@@ -346,15 +346,6 @@ public interface Xpath2Factory extends EFactory
   VarRef createVarRef();
 
   /**
-   * Returns a new object of class '<em>Var Name</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Var Name</em>'.
-   * @generated
-   */
-  VarName createVarName();
-
-  /**
    * Returns a new object of class '<em>Parenthesized Expr</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -659,15 +650,6 @@ public interface Xpath2Factory extends EFactory
    * @generated
    */
   Comment createComment();
-
-  /**
-   * Returns a new object of class '<em>QName</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>QName</em>'.
-   * @generated
-   */
-  QName createQName();
 
   /**
    * Returns the package supported by this factory.

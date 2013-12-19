@@ -12,6 +12,8 @@ package org.emftext.language.xpath2.impl;
 
 import java.util.Collection;
 
+import javax.xml.namespace.QName;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -27,7 +29,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.emftext.language.xpath2.ExprSingle;
 import org.emftext.language.xpath2.FunctionCall;
-import org.emftext.language.xpath2.QName;
 import org.emftext.language.xpath2.Xpath2Package;
 
 /**
@@ -47,14 +48,24 @@ import org.emftext.language.xpath2.Xpath2Package;
 public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall
 {
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getName()
    * @generated
    * @ordered
    */
-  protected QName name;
+  protected static final QName NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected QName name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getArg() <em>Arg</em>}' containment reference list.
@@ -102,37 +113,12 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetName(QName newName, NotificationChain msgs)
+  public void setName(QName newName)
   {
     QName oldName = name;
     name = newName;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.FUNCTION_CALL__NAME, oldName, newName);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(QName newName)
-  {
-    if (newName != name)
-    {
-      NotificationChain msgs = null;
-      if (name != null)
-        msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.FUNCTION_CALL__NAME, null, msgs);
-      if (newName != null)
-        msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.FUNCTION_CALL__NAME, null, msgs);
-      msgs = basicSetName(newName, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.FUNCTION_CALL__NAME, newName, newName));
+      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.FUNCTION_CALL__NAME, oldName, name));
   }
 
   /**
@@ -159,8 +145,6 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall
   {
     switch (featureID)
     {
-      case Xpath2Package.FUNCTION_CALL__NAME:
-        return basicSetName(null, msgs);
       case Xpath2Package.FUNCTION_CALL__ARG:
         return ((InternalEList<?>)getArg()).basicRemove(otherEnd, msgs);
     }
@@ -218,7 +202,7 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall
     switch (featureID)
     {
       case Xpath2Package.FUNCTION_CALL__NAME:
-        setName((QName)null);
+        setName(NAME_EDEFAULT);
         return;
       case Xpath2Package.FUNCTION_CALL__ARG:
         getArg().clear();
@@ -238,11 +222,28 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall
     switch (featureID)
     {
       case Xpath2Package.FUNCTION_CALL__NAME:
-        return name != null;
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case Xpath2Package.FUNCTION_CALL__ARG:
         return arg != null && !arg.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(')');
+    return result.toString();
   }
 
 } //FunctionCallImpl

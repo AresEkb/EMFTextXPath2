@@ -53,7 +53,6 @@ public class Xpath2SyntaxCoverageInformationProvider {
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNamespaceWildcard(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getVarRef(),
-			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getVarName(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getParenthesizedExpr(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getContextItemExpr(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getSingleType(),
@@ -83,7 +82,6 @@ public class Xpath2SyntaxCoverageInformationProvider {
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDecimalLiteral(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDoubleLiteral(),
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getStringLiteral(),
-			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getQName(),
 		};
 	}
 	

@@ -108,7 +108,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory
       case Xpath2Package.NAMESPACE_WILDCARD: return createNamespaceWildcard();
       case Xpath2Package.PREDICATE: return createPredicate();
       case Xpath2Package.VAR_REF: return createVarRef();
-      case Xpath2Package.VAR_NAME: return createVarName();
       case Xpath2Package.PARENTHESIZED_EXPR: return createParenthesizedExpr();
       case Xpath2Package.CONTEXT_ITEM_EXPR: return createContextItemExpr();
       case Xpath2Package.FUNCTION_CALL: return createFunctionCall();
@@ -143,7 +142,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory
       case Xpath2Package.TEXT_TEST: return createTextTest();
       case Xpath2Package.ANY_KIND_TEST: return createAnyKindTest();
       case Xpath2Package.COMMENT: return createComment();
-      case Xpath2Package.QNAME: return createQName();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -621,17 +619,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory
    * <!-- end-user-doc -->
    * @generated
    */
-  public VarName createVarName()
-  {
-    VarNameImpl varName = new VarNameImpl();
-    return varName;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public ParenthesizedExpr createParenthesizedExpr()
   {
     ParenthesizedExprImpl parenthesizedExpr = new ParenthesizedExprImpl();
@@ -999,17 +986,6 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory
   {
     CommentImpl comment = new CommentImpl();
     return comment;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public QName createQName()
-  {
-    QNameImpl qName = new QNameImpl();
-    return qName;
   }
 
   /**

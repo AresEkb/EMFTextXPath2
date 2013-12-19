@@ -10,16 +10,15 @@
  */
 package org.emftext.language.xpath2.impl;
 
+import javax.xml.namespace.QName;
+
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.NameAttributeTest;
-import org.emftext.language.xpath2.QName;
 import org.emftext.language.xpath2.Xpath2Package;
 
 /**
@@ -39,24 +38,44 @@ import org.emftext.language.xpath2.Xpath2Package;
 public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttributeTest
 {
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getName()
    * @generated
    * @ordered
    */
-  protected QName name;
+  protected static final QName NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected QName name = NAME_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected QName type;
+  protected static final QName TYPE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected QName type = TYPE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -94,37 +113,12 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetName(QName newName, NotificationChain msgs)
+  public void setName(QName newName)
   {
     QName oldName = name;
     name = newName;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.NAME_ATTRIBUTE_TEST__NAME, oldName, newName);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(QName newName)
-  {
-    if (newName != name)
-    {
-      NotificationChain msgs = null;
-      if (name != null)
-        msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.NAME_ATTRIBUTE_TEST__NAME, null, msgs);
-      if (newName != null)
-        msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.NAME_ATTRIBUTE_TEST__NAME, null, msgs);
-      msgs = basicSetName(newName, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.NAME_ATTRIBUTE_TEST__NAME, newName, newName));
+      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.NAME_ATTRIBUTE_TEST__NAME, oldName, name));
   }
 
   /**
@@ -142,55 +136,12 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(QName newType, NotificationChain msgs)
+  public void setType(QName newType)
   {
     QName oldType = type;
     type = newType;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE, oldType, newType);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setType(QName newType)
-  {
-    if (newType != type)
-    {
-      NotificationChain msgs = null;
-      if (type != null)
-        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE, null, msgs);
-      if (newType != null)
-        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE, null, msgs);
-      msgs = basicSetType(newType, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE, newType, newType));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case Xpath2Package.NAME_ATTRIBUTE_TEST__NAME:
-        return basicSetName(null, msgs);
-      case Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE:
-        return basicSetType(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
+      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE, oldType, type));
   }
 
   /**
@@ -242,10 +193,10 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
     switch (featureID)
     {
       case Xpath2Package.NAME_ATTRIBUTE_TEST__NAME:
-        setName((QName)null);
+        setName(NAME_EDEFAULT);
         return;
       case Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE:
-        setType((QName)null);
+        setType(TYPE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -262,11 +213,30 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
     switch (featureID)
     {
       case Xpath2Package.NAME_ATTRIBUTE_TEST__NAME:
-        return name != null;
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE:
-        return type != null;
+        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(", type: ");
+    result.append(type);
+    result.append(')');
+    return result.toString();
   }
 
 } //NameAttributeTestImpl

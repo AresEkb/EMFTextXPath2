@@ -30,6 +30,7 @@ public class Xpath2TokenResolverFactory implements org.emftext.language.xpath2.r
 		registerTokenResolver("INTEGER_LITERAL", new org.emftext.language.xpath2.resource.xpath2.analysis.Xpath2INTEGER_LITERALTokenResolver());
 		registerTokenResolver("DECIMAL_LITERAL", new org.emftext.language.xpath2.resource.xpath2.analysis.Xpath2DECIMAL_LITERALTokenResolver());
 		registerTokenResolver("DOUBLE_LITERAL", new org.emftext.language.xpath2.resource.xpath2.analysis.Xpath2DOUBLE_LITERALTokenResolver());
+		registerTokenResolver("QNAME", new org.emftext.language.xpath2.resource.xpath2.analysis.Xpath2QNAMETokenResolver());
 		registerTokenResolver("NCNAME", new org.emftext.language.xpath2.resource.xpath2.analysis.Xpath2NCNAMETokenResolver());
 		registerTokenResolver("STRING_LITERAL", new org.emftext.language.xpath2.resource.xpath2.analysis.Xpath2STRING_LITERALTokenResolver());
 	}

@@ -27,6 +27,7 @@ TOKENS {
     PRIORITIZE DECIMAL_LITERAL;
     PRIORITIZE DOUBLE_LITERAL;
 //    PRIORITIZE COMMENT_CONTENTS;
+    PRIORITIZE QNAME;
     PRIORITIZE NCNAME;
 
     DEFINE FRAGMENT DIGITS $('0'..'9')+$; 
@@ -47,6 +48,8 @@ TOKENS {
     DEFINE FRAGMENT NCNAME_START_CHAR $'A'..'Z'|'_'|'a'..'z'|'\u00C0'..'\u00D6'|'\u00D8'..'\u00F6'|'\u00F8'..'\u02FF'|'\u0370'..'\u037D'|'\u037F'..'\u1FFF'|'\u200C'..'\u200D'|'\u2070'..'\u218F'|'\u2C00'..'\u2FEF'|'\u3001'..'\uD7FF'|'\uF900'..'\uFDCF'|'\uFDF0'..'\uFFFD'$;
     DEFINE FRAGMENT NCNAME_CHAR NCNAME_START_CHAR + $|'-'|'.'|'0'..'9'|'\u00B7'|'\u0300'..'\u036F'|'\u203F'..'\u2040'$;
     DEFINE NCNAME $($ + NCNAME_START_CHAR + $)($ + NCNAME_CHAR + $)*$;
+
+    DEFINE QNAME NCNAME + $':'$ + NCNAME;
 
     // TODO: Should be (Char+ - (Char* ('(:' | ':)') Char*))
 //    DEFINE COMMENT_CONTENTS CHAR + $+$;
@@ -70,17 +73,21 @@ RULES {
     // There are a lot of type restrictions in the rules. Without them parser
     // will be too complex and won't generated.
 
+    // There are a lot of choices like (name[QNAME] | name[NCNAME]).
+    // Printer needs them to choose a right resolver Xpath2QNAMETokenResolver
+
     // TODO: Implement http://www.w3.org/TR/xpath20/#parse-note-leading-lone-slash
     // TODO: Sometimes model isn't fully updated in a outline window
 
     // Sequence Expressions, Comparison Expressions, Logical Expressions
     Expr ::= expr:IfExpr,ForExpr,QuantifiedExpr,OrExpr
-        ("," !0 expr:IfExpr,ForExpr,QuantifiedExpr,OrExpr)*;
+        ("," expr:IfExpr,ForExpr,QuantifiedExpr,OrExpr)*;
     ForExpr ::= "for" #1 iterator ("," #1 iterator)* #1 "return" #1 return;
     QuantifiedExpr ::= quantifier[some : "some", every : "every"] #1
         iterator ("," #1 iterator)*
         "satisfies" #1 satisfies:IfExpr,ForExpr,QuantifiedExpr,OrExpr;
-    Iterator ::= "$" varName #1 "in" #1 list:IfExpr,ForExpr,QuantifiedExpr,OrExpr;
+    @SuppressWarnings(explicitSyntaxChoice)
+    Iterator ::= "$" (varName[QNAME] | varName[NCNAME]) #1 "in" #1 list:IfExpr,ForExpr,QuantifiedExpr,OrExpr;
     IfExpr ::= "if" #1 "(" test:Expr,IfExpr,ForExpr,QuantifiedExpr,OrExpr ")"
         #1 "then" #1 then:IfExpr,ForExpr,QuantifiedExpr,OrExpr
         #1 "else" #1 else:IfExpr,ForExpr,QuantifiedExpr,OrExpr;
@@ -114,7 +121,8 @@ RULES {
     // FilterExpr must have higher priority than FunctionCall
     FilterExpr ::= primaryExpr:PrimaryExpr predicate*;
     // FunctionCall must have higher priority than PathExpr
-    FunctionCall ::= name "(" (arg:IfExpr,ForExpr,QuantifiedExpr,OrExpr
+    @SuppressWarnings(explicitSyntaxChoice)
+    FunctionCall ::= (name[QNAME] | name[NCNAME]) "(" (arg:IfExpr,ForExpr,QuantifiedExpr,OrExpr
         ("," #1 arg:IfExpr,ForExpr,QuantifiedExpr,OrExpr)*)? ")";
 
     // Path Expressions
@@ -134,15 +142,16 @@ RULES {
         ancestor_or_self : "ancestor-or-self"] "::" nodeTest predicate*;
     AbbrevReverseStep ::= kind[parent : ".."] predicate*;
     NodeKindTest ::= test;
-    QNameTest ::= name;
+    @SuppressWarnings(explicitSyntaxChoice)
+    QNameTest ::= (name[QNAME] | name[NCNAME]);
     AnyWildcard ::= "*";
     LocalNameWildcard ::= namespace[NCNAME] ":" "*";
     NamespaceWildcard ::= "*" ":" localName[NCNAME];
     Predicate ::= "[" expr:Expr "]";
 
     // Primary Expressions
-    VarRef ::= "$" varName; 
-    VarName ::= (prefix[NCNAME] ":")? name[NCNAME];
+    @SuppressWarnings(explicitSyntaxChoice)
+    VarRef ::= "$" (varName[QNAME] | varName[NCNAME]); 
     ParenthesizedExpr ::= "(" expr:Expr? ")";
     ContextItemExpr ::= ".";
 
@@ -154,8 +163,10 @@ RULES {
     ItemKindTest ::= test;
     AnyItemType ::= "item" "(" ")";
     AtomicItemType ::= type;
-    AtomicType ::= (prefix[NCNAME] ":")? name[NCNAME];
-    OptionalAtomicType ::= (prefix[NCNAME] ":")? name[NCNAME] optional["?" : ""];
+    @SuppressWarnings(explicitSyntaxChoice)
+    AtomicType ::= (name[QNAME] | name[NCNAME]);
+    @SuppressWarnings(explicitSyntaxChoice)
+    OptionalAtomicType ::= (name[QNAME] | name[NCNAME]) optional["?" : ""];
     AnyKindTest ::= "node" "(" ")";
     DocumentTest ::= "document-node" "(" test:ElementTest,SchemaElementTest? ")";
     TextTest ::= "text" "(" ")";
@@ -164,13 +175,18 @@ RULES {
     NCNamePITest ::= "processing-instruction" "(" name[NCNAME] ")";
     StringLiteralPITest ::= "processing-instruction" "(" literal[STRING_LITERAL] ")";
     AttributeTest ::= "attribute" "("  ")";
-    WildcardAttributeTest ::= "attribute" "(" "*" ("," #1 type)? ")";
-    NameAttributeTest ::= "attribute" "(" name ("," #1 type)? ")";
-    SchemaAttributeTest ::= "schema-attribute" "(" name ")";
+    @SuppressWarnings(explicitSyntaxChoice)
+    WildcardAttributeTest ::= "attribute" "(" "*" ("," #1 (type[QNAME] | type[NCNAME]))? ")";
+    @SuppressWarnings(explicitSyntaxChoice)
+    NameAttributeTest ::= "attribute" "(" (name[QNAME] | name[NCNAME]) ("," #1 (type[QNAME] | type[NCNAME]))? ")";
+    @SuppressWarnings(explicitSyntaxChoice)
+    SchemaAttributeTest ::= "schema-attribute" "(" (name[QNAME] | name[NCNAME]) ")";
     ElementTest ::= "element" "("  ")";
     WildcardElementTest ::= "element" "(" "*" ("," #1 type)? ")";
-    NameElementTest ::= "element" "(" name ("," #1 type)? ")";
-    SchemaElementTest ::= "schema-element" "(" name ")";
+    @SuppressWarnings(explicitSyntaxChoice)
+    NameElementTest ::= "element" "(" (name[QNAME] | name[NCNAME]) ("," #1 type)? ")";
+    @SuppressWarnings(explicitSyntaxChoice)
+    SchemaElementTest ::= "schema-element" "(" (name[QNAME] | name[NCNAME]) ")";
 
     // Literals
     IntegerLiteral ::= value[INTEGER_LITERAL];
@@ -179,5 +195,5 @@ RULES {
     StringLiteral ::= value[STRING_LITERAL];
     // TODO: I don't understand where to place comments
     //Comment ::= "(:" (text[COMMENT_CONTENTS] | comment)* ":)";
-    QName ::= (prefix[NCNAME] ":")? name[NCNAME];
+    //QName ::= (prefix[NCNAME] ":")? name[NCNAME];
 }

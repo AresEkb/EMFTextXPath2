@@ -398,11 +398,6 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl
         return createVarRefAdapter();
       }
       @Override
-      public Adapter caseVarName(VarName object)
-      {
-        return createVarNameAdapter();
-      }
-      @Override
       public Adapter caseParenthesizedExpr(ParenthesizedExpr object)
       {
         return createParenthesizedExprAdapter();
@@ -601,11 +596,6 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl
       public Adapter caseComment(Comment object)
       {
         return createCommentAdapter();
-      }
-      @Override
-      public Adapter caseQName(QName object)
-      {
-        return createQNameAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -1575,21 +1565,6 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.VarName <em>Var Name</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.emftext.language.xpath2.VarName
-   * @generated
-   */
-  public Adapter createVarNameAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.ParenthesizedExpr <em>Parenthesized Expr</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -2185,21 +2160,6 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createCommentAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.emftext.language.xpath2.QName <em>QName</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.emftext.language.xpath2.QName
-   * @generated
-   */
-  public Adapter createQNameAdapter()
   {
     return null;
   }

@@ -326,128 +326,120 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_38, foundFormattingElements);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.VarName) {
+		if (element instanceof org.emftext.language.xpath2.ParenthesizedExpr) {
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_39, foundFormattingElements);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.ParenthesizedExpr) {
+		if (element instanceof org.emftext.language.xpath2.ContextItemExpr) {
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_40, foundFormattingElements);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.ContextItemExpr) {
+		if (element instanceof org.emftext.language.xpath2.SingleType) {
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_41, foundFormattingElements);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.SingleType) {
+		if (element instanceof org.emftext.language.xpath2.EmptySequenceType) {
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_42, foundFormattingElements);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.EmptySequenceType) {
+		if (element instanceof org.emftext.language.xpath2.ItemSequenceType) {
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_43, foundFormattingElements);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.ItemSequenceType) {
+		if (element instanceof org.emftext.language.xpath2.ItemKindTest) {
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_44, foundFormattingElements);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.ItemKindTest) {
+		if (element instanceof org.emftext.language.xpath2.AnyItemType) {
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_45, foundFormattingElements);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.AnyItemType) {
+		if (element instanceof org.emftext.language.xpath2.AtomicItemType) {
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_46, foundFormattingElements);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.AtomicItemType) {
+		if (element instanceof org.emftext.language.xpath2.AtomicType) {
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_47, foundFormattingElements);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.AtomicType) {
+		if (element instanceof org.emftext.language.xpath2.OptionalAtomicType) {
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_48, foundFormattingElements);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.OptionalAtomicType) {
+		if (element instanceof org.emftext.language.xpath2.AnyKindTest) {
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_49, foundFormattingElements);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.AnyKindTest) {
+		if (element instanceof org.emftext.language.xpath2.DocumentTest) {
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_50, foundFormattingElements);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.DocumentTest) {
+		if (element instanceof org.emftext.language.xpath2.TextTest) {
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_51, foundFormattingElements);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.TextTest) {
+		if (element instanceof org.emftext.language.xpath2.CommentTest) {
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_52, foundFormattingElements);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.CommentTest) {
-			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_53, foundFormattingElements);
-			return;
-		}
 		if (element instanceof org.emftext.language.xpath2.NCNamePITest) {
-			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_55, foundFormattingElements);
-			return;
-		}
-		if (element instanceof org.emftext.language.xpath2.StringLiteralPITest) {
-			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_56, foundFormattingElements);
-			return;
-		}
-		if (element instanceof org.emftext.language.xpath2.WildcardAttributeTest) {
-			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58, foundFormattingElements);
-			return;
-		}
-		if (element instanceof org.emftext.language.xpath2.NameAttributeTest) {
-			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59, foundFormattingElements);
-			return;
-		}
-		if (element instanceof org.emftext.language.xpath2.SchemaAttributeTest) {
-			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_60, foundFormattingElements);
-			return;
-		}
-		if (element instanceof org.emftext.language.xpath2.WildcardElementTest) {
-			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62, foundFormattingElements);
-			return;
-		}
-		if (element instanceof org.emftext.language.xpath2.NameElementTest) {
-			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63, foundFormattingElements);
-			return;
-		}
-		if (element instanceof org.emftext.language.xpath2.SchemaElementTest) {
-			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_64, foundFormattingElements);
-			return;
-		}
-		if (element instanceof org.emftext.language.xpath2.IntegerLiteral) {
-			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_65, foundFormattingElements);
-			return;
-		}
-		if (element instanceof org.emftext.language.xpath2.DecimalLiteral) {
-			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_66, foundFormattingElements);
-			return;
-		}
-		if (element instanceof org.emftext.language.xpath2.DoubleLiteral) {
-			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_67, foundFormattingElements);
-			return;
-		}
-		if (element instanceof org.emftext.language.xpath2.StringLiteral) {
-			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_68, foundFormattingElements);
-			return;
-		}
-		if (element instanceof org.emftext.language.xpath2.QName) {
-			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_69, foundFormattingElements);
-			return;
-		}
-		if (element instanceof org.emftext.language.xpath2.PITest) {
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_54, foundFormattingElements);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.AttributeTest) {
+		if (element instanceof org.emftext.language.xpath2.StringLiteralPITest) {
+			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_55, foundFormattingElements);
+			return;
+		}
+		if (element instanceof org.emftext.language.xpath2.WildcardAttributeTest) {
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57, foundFormattingElements);
 			return;
 		}
-		if (element instanceof org.emftext.language.xpath2.ElementTest) {
+		if (element instanceof org.emftext.language.xpath2.NameAttributeTest) {
+			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58, foundFormattingElements);
+			return;
+		}
+		if (element instanceof org.emftext.language.xpath2.SchemaAttributeTest) {
+			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59, foundFormattingElements);
+			return;
+		}
+		if (element instanceof org.emftext.language.xpath2.WildcardElementTest) {
 			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61, foundFormattingElements);
+			return;
+		}
+		if (element instanceof org.emftext.language.xpath2.NameElementTest) {
+			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62, foundFormattingElements);
+			return;
+		}
+		if (element instanceof org.emftext.language.xpath2.SchemaElementTest) {
+			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63, foundFormattingElements);
+			return;
+		}
+		if (element instanceof org.emftext.language.xpath2.IntegerLiteral) {
+			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_64, foundFormattingElements);
+			return;
+		}
+		if (element instanceof org.emftext.language.xpath2.DecimalLiteral) {
+			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_65, foundFormattingElements);
+			return;
+		}
+		if (element instanceof org.emftext.language.xpath2.DoubleLiteral) {
+			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_66, foundFormattingElements);
+			return;
+		}
+		if (element instanceof org.emftext.language.xpath2.StringLiteral) {
+			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_67, foundFormattingElements);
+			return;
+		}
+		if (element instanceof org.emftext.language.xpath2.PITest) {
+			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_53, foundFormattingElements);
+			return;
+		}
+		if (element instanceof org.emftext.language.xpath2.AttributeTest) {
+			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_56, foundFormattingElements);
+			return;
+		}
+		if (element instanceof org.emftext.language.xpath2.ElementTest) {
+			printInternal(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_60, foundFormattingElements);
 			return;
 		}
 		

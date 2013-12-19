@@ -1175,14 +1175,6 @@ public class Xpath2Switch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case Xpath2Package.VAR_NAME:
-      {
-        VarName varName = (VarName)theEObject;
-        T result = caseVarName(varName);
-        if (result == null) result = caseQName(varName);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case Xpath2Package.PARENTHESIZED_EXPR:
       {
         ParenthesizedExpr parenthesizedExpr = (ParenthesizedExpr)theEObject;
@@ -1456,7 +1448,6 @@ public class Xpath2Switch<T> extends Switch<T>
       {
         AtomicType atomicType = (AtomicType)theEObject;
         T result = caseAtomicType(atomicType);
-        if (result == null) result = caseQName(atomicType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1464,7 +1455,6 @@ public class Xpath2Switch<T> extends Switch<T>
       {
         OptionalAtomicType optionalAtomicType = (OptionalAtomicType)theEObject;
         T result = caseOptionalAtomicType(optionalAtomicType);
-        if (result == null) result = caseQName(optionalAtomicType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1659,13 +1649,6 @@ public class Xpath2Switch<T> extends Switch<T>
       {
         Comment comment = (Comment)theEObject;
         T result = caseComment(comment);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case Xpath2Package.QNAME:
-      {
-        QName qName = (QName)theEObject;
-        T result = caseQName(qName);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -2682,22 +2665,6 @@ public class Xpath2Switch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Var Name</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Var Name</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseVarName(VarName object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Parenthesized Expr</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -3333,22 +3300,6 @@ public class Xpath2Switch<T> extends Switch<T>
    * @generated
    */
   public T caseComment(Comment object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>QName</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>QName</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseQName(QName object)
   {
     return null;
   }

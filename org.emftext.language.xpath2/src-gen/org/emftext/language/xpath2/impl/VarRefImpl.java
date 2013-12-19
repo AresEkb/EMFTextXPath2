@@ -10,15 +10,14 @@
  */
 package org.emftext.language.xpath2.impl;
 
+import javax.xml.namespace.QName;
+
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.emftext.language.xpath2.VarName;
 import org.emftext.language.xpath2.VarRef;
 import org.emftext.language.xpath2.Xpath2Package;
 
@@ -38,14 +37,24 @@ import org.emftext.language.xpath2.Xpath2Package;
 public class VarRefImpl extends PrimaryExprImpl implements VarRef
 {
   /**
-   * The cached value of the '{@link #getVarName() <em>Var Name</em>}' containment reference.
+   * The default value of the '{@link #getVarName() <em>Var Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getVarName()
    * @generated
    * @ordered
    */
-  protected VarName varName;
+  protected static final QName VAR_NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getVarName() <em>Var Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getVarName()
+   * @generated
+   * @ordered
+   */
+  protected QName varName = VAR_NAME_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -73,7 +82,7 @@ public class VarRefImpl extends PrimaryExprImpl implements VarRef
    * <!-- end-user-doc -->
    * @generated
    */
-  public VarName getVarName()
+  public QName getVarName()
   {
     return varName;
   }
@@ -83,53 +92,12 @@ public class VarRefImpl extends PrimaryExprImpl implements VarRef
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetVarName(VarName newVarName, NotificationChain msgs)
+  public void setVarName(QName newVarName)
   {
-    VarName oldVarName = varName;
+    QName oldVarName = varName;
     varName = newVarName;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.VAR_REF__VAR_NAME, oldVarName, newVarName);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setVarName(VarName newVarName)
-  {
-    if (newVarName != varName)
-    {
-      NotificationChain msgs = null;
-      if (varName != null)
-        msgs = ((InternalEObject)varName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.VAR_REF__VAR_NAME, null, msgs);
-      if (newVarName != null)
-        msgs = ((InternalEObject)newVarName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.VAR_REF__VAR_NAME, null, msgs);
-      msgs = basicSetVarName(newVarName, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.VAR_REF__VAR_NAME, newVarName, newVarName));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case Xpath2Package.VAR_REF__VAR_NAME:
-        return basicSetVarName(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
+      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.VAR_REF__VAR_NAME, oldVarName, varName));
   }
 
   /**
@@ -159,7 +127,7 @@ public class VarRefImpl extends PrimaryExprImpl implements VarRef
     switch (featureID)
     {
       case Xpath2Package.VAR_REF__VAR_NAME:
-        setVarName((VarName)newValue);
+        setVarName((QName)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -176,7 +144,7 @@ public class VarRefImpl extends PrimaryExprImpl implements VarRef
     switch (featureID)
     {
       case Xpath2Package.VAR_REF__VAR_NAME:
-        setVarName((VarName)null);
+        setVarName(VAR_NAME_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -193,9 +161,26 @@ public class VarRefImpl extends PrimaryExprImpl implements VarRef
     switch (featureID)
     {
       case Xpath2Package.VAR_REF__VAR_NAME:
-        return varName != null;
+        return VAR_NAME_EDEFAULT == null ? varName != null : !VAR_NAME_EDEFAULT.equals(varName);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (varName: ");
+    result.append(varName);
+    result.append(')');
+    return result.toString();
   }
 
 } //VarRefImpl

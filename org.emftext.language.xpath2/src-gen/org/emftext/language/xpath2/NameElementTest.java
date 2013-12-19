@@ -10,6 +10,7 @@
  */
 package org.emftext.language.xpath2;
 
+import javax.xml.namespace.QName;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,26 +32,26 @@ package org.emftext.language.xpath2;
 public interface NameElementTest extends ElementTest
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' containment reference.
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Name</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' containment reference.
+   * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(QName)
    * @see org.emftext.language.xpath2.Xpath2Package#getNameElementTest_Name()
-   * @model containment="true" required="true"
+   * @model dataType="org.eclipse.emf.ecore.xml.type.QName" required="true"
    * @generated
    */
   QName getName();
 
   /**
-   * Sets the value of the '{@link org.emftext.language.xpath2.NameElementTest#getName <em>Name</em>}' containment reference.
+   * Sets the value of the '{@link org.emftext.language.xpath2.NameElementTest#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' containment reference.
+   * @param value the new value of the '<em>Name</em>' attribute.
    * @see #getName()
    * @generated
    */

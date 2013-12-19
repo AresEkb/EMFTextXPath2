@@ -10,6 +10,8 @@
  */
 package org.emftext.language.xpath2.impl;
 
+import javax.xml.namespace.QName;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -21,7 +23,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.emftext.language.xpath2.ExprSingle;
 import org.emftext.language.xpath2.Iterator;
-import org.emftext.language.xpath2.VarName;
 import org.emftext.language.xpath2.Xpath2Package;
 
 /**
@@ -41,14 +42,24 @@ import org.emftext.language.xpath2.Xpath2Package;
 public class IteratorImpl extends EObjectImpl implements Iterator
 {
   /**
-   * The cached value of the '{@link #getVarName() <em>Var Name</em>}' containment reference.
+   * The default value of the '{@link #getVarName() <em>Var Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getVarName()
    * @generated
    * @ordered
    */
-  protected VarName varName;
+  protected static final QName VAR_NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getVarName() <em>Var Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getVarName()
+   * @generated
+   * @ordered
+   */
+  protected QName varName = VAR_NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getList() <em>List</em>}' containment reference.
@@ -86,7 +97,7 @@ public class IteratorImpl extends EObjectImpl implements Iterator
    * <!-- end-user-doc -->
    * @generated
    */
-  public VarName getVarName()
+  public QName getVarName()
   {
     return varName;
   }
@@ -96,37 +107,12 @@ public class IteratorImpl extends EObjectImpl implements Iterator
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetVarName(VarName newVarName, NotificationChain msgs)
+  public void setVarName(QName newVarName)
   {
-    VarName oldVarName = varName;
+    QName oldVarName = varName;
     varName = newVarName;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.ITERATOR__VAR_NAME, oldVarName, newVarName);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setVarName(VarName newVarName)
-  {
-    if (newVarName != varName)
-    {
-      NotificationChain msgs = null;
-      if (varName != null)
-        msgs = ((InternalEObject)varName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.ITERATOR__VAR_NAME, null, msgs);
-      if (newVarName != null)
-        msgs = ((InternalEObject)newVarName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.ITERATOR__VAR_NAME, null, msgs);
-      msgs = basicSetVarName(newVarName, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ITERATOR__VAR_NAME, newVarName, newVarName));
+      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ITERATOR__VAR_NAME, oldVarName, varName));
   }
 
   /**
@@ -187,8 +173,6 @@ public class IteratorImpl extends EObjectImpl implements Iterator
   {
     switch (featureID)
     {
-      case Xpath2Package.ITERATOR__VAR_NAME:
-        return basicSetVarName(null, msgs);
       case Xpath2Package.ITERATOR__LIST:
         return basicSetList(null, msgs);
     }
@@ -224,7 +208,7 @@ public class IteratorImpl extends EObjectImpl implements Iterator
     switch (featureID)
     {
       case Xpath2Package.ITERATOR__VAR_NAME:
-        setVarName((VarName)newValue);
+        setVarName((QName)newValue);
         return;
       case Xpath2Package.ITERATOR__LIST:
         setList((ExprSingle)newValue);
@@ -244,7 +228,7 @@ public class IteratorImpl extends EObjectImpl implements Iterator
     switch (featureID)
     {
       case Xpath2Package.ITERATOR__VAR_NAME:
-        setVarName((VarName)null);
+        setVarName(VAR_NAME_EDEFAULT);
         return;
       case Xpath2Package.ITERATOR__LIST:
         setList((ExprSingle)null);
@@ -264,11 +248,28 @@ public class IteratorImpl extends EObjectImpl implements Iterator
     switch (featureID)
     {
       case Xpath2Package.ITERATOR__VAR_NAME:
-        return varName != null;
+        return VAR_NAME_EDEFAULT == null ? varName != null : !VAR_NAME_EDEFAULT.equals(varName);
       case Xpath2Package.ITERATOR__LIST:
         return list != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (varName: ");
+    result.append(varName);
+    result.append(')');
+    return result.toString();
   }
 
 } //IteratorImpl
