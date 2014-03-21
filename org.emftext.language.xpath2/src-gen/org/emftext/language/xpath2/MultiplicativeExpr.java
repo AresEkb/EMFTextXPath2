@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -29,40 +29,39 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface MultiplicativeExpr extends AdditiveExprChild
-{
-  /**
-   * Returns the value of the '<em><b>Operand</b></em>' containment reference list.
-   * The list contents are of type {@link org.emftext.language.xpath2.MultiplicativeExprChild}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Operand</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Operand</em>' containment reference list.
-   * @see org.emftext.language.xpath2.Xpath2Package#getMultiplicativeExpr_Operand()
-   * @model containment="true" required="true"
-   * @generated
-   */
-  EList<MultiplicativeExprChild> getOperand();
+public interface MultiplicativeExpr extends AdditiveExprChild {
+    /**
+     * Returns the value of the '<em><b>Operand</b></em>' containment reference list.
+     * The list contents are of type {@link org.emftext.language.xpath2.MultiplicativeExprChild}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Operand</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Operand</em>' containment reference list.
+     * @see org.emftext.language.xpath2.Xpath2Package#getMultiplicativeExpr_Operand()
+     * @model containment="true" required="true"
+     * @generated
+     */
+    EList<MultiplicativeExprChild> getOperand();
 
-  /**
-   * Returns the value of the '<em><b>Operator</b></em>' attribute list.
-   * The list contents are of type {@link org.emftext.language.xpath2.MultiplicativeOpKind}.
-   * The literals are from the enumeration {@link org.emftext.language.xpath2.MultiplicativeOpKind}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Operator</em>' attribute list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Operator</em>' attribute list.
-   * @see org.emftext.language.xpath2.MultiplicativeOpKind
-   * @see org.emftext.language.xpath2.Xpath2Package#getMultiplicativeExpr_Operator()
-   * @model unique="false"
-   * @generated
-   */
-  EList<MultiplicativeOpKind> getOperator();
+    /**
+     * Returns the value of the '<em><b>Operator</b></em>' attribute list.
+     * The list contents are of type {@link org.emftext.language.xpath2.MultiplicativeOpKind}.
+     * The literals are from the enumeration {@link org.emftext.language.xpath2.MultiplicativeOpKind}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Operator</em>' attribute list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Operator</em>' attribute list.
+     * @see org.emftext.language.xpath2.MultiplicativeOpKind
+     * @see org.emftext.language.xpath2.Xpath2Package#getMultiplicativeExpr_Operator()
+     * @model unique="false"
+     * @generated
+     */
+    EList<MultiplicativeOpKind> getOperator();
 
 } // MultiplicativeExpr

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,12 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+
 public class Xpath2NewFileContentProvider {
 	
 	public org.emftext.language.xpath2.resource.xpath2.IXpath2MetaInformation getMetaInformation() {
@@ -17,14 +23,14 @@ public class Xpath2NewFileContentProvider {
 	}
 	
 	public String getNewFileContent(String newFileName) {
-		return getExampleContent(new org.eclipse.emf.ecore.EClass[] {
+		return getExampleContent(new EClass[] {
 			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getExpr(),
 		}, getMetaInformation().getClassesWithSyntax(), newFileName);
 	}
 	
-	protected String getExampleContent(org.eclipse.emf.ecore.EClass[] startClasses, org.eclipse.emf.ecore.EClass[] allClassesWithSyntax, String newFileName) {
+	protected String getExampleContent(EClass[] startClasses, EClass[] allClassesWithSyntax, String newFileName) {
 		String content = "";
-		for (org.eclipse.emf.ecore.EClass next : startClasses) {
+		for (EClass next : startClasses) {
 			content = getExampleContent(next, allClassesWithSyntax, newFileName);
 			if (content.trim().length() > 0) {
 				break;
@@ -33,26 +39,26 @@ public class Xpath2NewFileContentProvider {
 		return content;
 	}
 	
-	protected String getExampleContent(org.eclipse.emf.ecore.EClass eClass, org.eclipse.emf.ecore.EClass[] allClassesWithSyntax, String newFileName) {
+	protected String getExampleContent(EClass eClass, EClass[] allClassesWithSyntax, String newFileName) {
 		// create a minimal model
-		org.eclipse.emf.ecore.EObject root = new org.emftext.language.xpath2.resource.xpath2.util.Xpath2MinimalModelHelper().getMinimalModel(eClass, allClassesWithSyntax, newFileName);
+		EObject root = new org.emftext.language.xpath2.resource.xpath2.util.Xpath2MinimalModelHelper().getMinimalModel(eClass, allClassesWithSyntax, newFileName);
 		if (root == null) {
 			// could not create a minimal model. returning an empty document is the best we
 			// can do.
 			return "";
 		}
 		// use printer to get text for model
-		java.io.ByteArrayOutputStream buffer = new java.io.ByteArrayOutputStream();
+		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 		org.emftext.language.xpath2.resource.xpath2.IXpath2TextPrinter printer = getPrinter(buffer);
 		try {
 			printer.print(root);
-		} catch (java.io.IOException e) {
+		} catch (IOException e) {
 			new org.emftext.language.xpath2.resource.xpath2.util.Xpath2RuntimeUtil().logError("Exception while generating example content.", e);
 		}
 		return buffer.toString();
 	}
 	
-	public org.emftext.language.xpath2.resource.xpath2.IXpath2TextPrinter getPrinter(java.io.OutputStream outputStream) {
+	public org.emftext.language.xpath2.resource.xpath2.IXpath2TextPrinter getPrinter(OutputStream outputStream) {
 		return getMetaInformation().createPrinter(outputStream, new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource());
 	}
 	

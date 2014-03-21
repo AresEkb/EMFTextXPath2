@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,15 +10,24 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.util;
 
-public class Xpath2CopiedEObjectInternalEList extends org.emftext.language.xpath2.resource.xpath2.util.Xpath2CopiedEList<org.eclipse.emf.ecore.EObject> implements org.eclipse.emf.ecore.util.InternalEList<org.eclipse.emf.ecore.EObject> {
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
+public class Xpath2CopiedEObjectInternalEList extends org.emftext.language.xpath2.resource.xpath2.util.Xpath2CopiedEList<EObject> implements InternalEList<EObject> {
 	
-	private org.eclipse.emf.ecore.util.InternalEList<org.eclipse.emf.ecore.EObject> original;
-	private org.eclipse.emf.ecore.util.InternalEList<org.eclipse.emf.ecore.EObject> copy;
+	private InternalEList<EObject> original;
+	private InternalEList<EObject> copy;
 	
-	public Xpath2CopiedEObjectInternalEList(org.eclipse.emf.ecore.util.InternalEList<org.eclipse.emf.ecore.EObject> original) {
+	public Xpath2CopiedEObjectInternalEList(InternalEList<EObject> original) {
 		super(original);
 		this.original = original;
-		this.copy = new org.eclipse.emf.ecore.util.BasicInternalEList<org.eclipse.emf.ecore.EObject>(org.eclipse.emf.ecore.EObject.class);
+		this.copy = new BasicInternalEList<EObject>(EObject.class);
 		this.copy.addAll(this.original);
 	}
 	
@@ -26,11 +35,11 @@ public class Xpath2CopiedEObjectInternalEList extends org.emftext.language.xpath
 		return copy.basicContains(object);
 	}
 	
-	public boolean basicContainsAll(java.util.Collection<?> collection) {
+	public boolean basicContainsAll(Collection<?> collection) {
 		return copy.basicContainsAll(collection);
 	}
 	
-	public org.eclipse.emf.ecore.EObject basicGet(int index) {
+	public EObject basicGet(int index) {
 		return copy.basicGet(index);
 	}
 	
@@ -38,7 +47,7 @@ public class Xpath2CopiedEObjectInternalEList extends org.emftext.language.xpath
 		return copy.basicIndexOf(object);
 	}
 	
-	public java.util.Iterator<org.eclipse.emf.ecore.EObject> basicIterator() {
+	public Iterator<EObject> basicIterator() {
 		return copy.basicIterator();
 	}
 	
@@ -46,15 +55,15 @@ public class Xpath2CopiedEObjectInternalEList extends org.emftext.language.xpath
 		return copy.basicLastIndexOf(object);
 	}
 	
-	public java.util.List<org.eclipse.emf.ecore.EObject> basicList() {
+	public List<EObject> basicList() {
 		return copy.basicList();
 	}
 	
-	public java.util.ListIterator<org.eclipse.emf.ecore.EObject> basicListIterator() {
+	public ListIterator<EObject> basicListIterator() {
 		return copy.basicListIterator();
 	}
 	
-	public java.util.ListIterator<org.eclipse.emf.ecore.EObject> basicListIterator(int index) {
+	public ListIterator<EObject> basicListIterator(int index) {
 		return copy.basicListIterator(index);
 	}
 	
@@ -74,38 +83,38 @@ public class Xpath2CopiedEObjectInternalEList extends org.emftext.language.xpath
 		return copy.hashCode();
 	}
 	
-	public boolean addAllUnique(java.util.Collection<? extends org.eclipse.emf.ecore.EObject> collection) {
+	public boolean addAllUnique(Collection<? extends EObject> collection) {
 		copy.addAllUnique(collection);
 		return original.addAllUnique(collection);
 	}
 	
-	public boolean addAllUnique(int index, java.util.Collection<? extends org.eclipse.emf.ecore.EObject> collection) {
+	public boolean addAllUnique(int index, Collection<? extends EObject> collection) {
 		copy.addAllUnique(index, collection);
 		return original.addAllUnique(index, collection);
 	}
 	
-	public void addUnique(org.eclipse.emf.ecore.EObject object) {
+	public void addUnique(EObject object) {
 		copy.addUnique(object);
 		original.addUnique(object);
 	}
 	
-	public void addUnique(int index, org.eclipse.emf.ecore.EObject object) {
+	public void addUnique(int index, EObject object) {
 		copy.addUnique(index, object);
 		original.addUnique(index, object);
 	}
 	
-	public org.eclipse.emf.common.notify.NotificationChain basicAdd(org.eclipse.emf.ecore.EObject object, org.eclipse.emf.common.notify.NotificationChain notifications) {
+	public NotificationChain basicAdd(EObject object, NotificationChain notifications) {
 		copy.basicAdd(object, notifications);
 		return original.basicAdd(object, notifications);
 	}
 	
-	public org.eclipse.emf.common.notify.NotificationChain basicRemove(Object object,
-	org.eclipse.emf.common.notify.NotificationChain notifications) {
+	public NotificationChain basicRemove(Object object,
+	NotificationChain notifications) {
 		copy.basicRemove(object, notifications);
 		return original.basicRemove(object, notifications);
 	}
 	
-	public org.eclipse.emf.ecore.EObject setUnique(int index, org.eclipse.emf.ecore.EObject object) {
+	public EObject setUnique(int index, EObject object) {
 		copy.setUnique(index, object);
 		return original.setUnique(index, object);
 	}

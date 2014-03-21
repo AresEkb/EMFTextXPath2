@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,10 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.grammar;
 
+import java.util.Map;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 /**
  * A class to represent an enumeration terminal in the grammar.
  */
@@ -17,9 +21,9 @@ public class Xpath2EnumerationTerminal extends org.emftext.language.xpath2.resou
 	
 	private java.util.Map<String, String> mapping = new java.util.LinkedHashMap<String, String>();
 	
-	public Xpath2EnumerationTerminal(org.eclipse.emf.ecore.EStructuralFeature attribute, String[] literalMappings, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality cardinality, int mandatoryOccurrencesAfter) {
+	public Xpath2EnumerationTerminal(EStructuralFeature attribute, String[] literalMappings, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality cardinality, int mandatoryOccurrencesAfter) {
 		super(attribute, cardinality, mandatoryOccurrencesAfter);
-		assert attribute instanceof org.eclipse.emf.ecore.EAttribute;
+		assert attribute instanceof EAttribute;
 		assert literalMappings.length % 2 == 0;
 		for (int i = 0; i < literalMappings.length; i += 2) {
 			String literalName = literalMappings[i];
@@ -28,12 +32,12 @@ public class Xpath2EnumerationTerminal extends org.emftext.language.xpath2.resou
 		}
 	}
 	
-	public java.util.Map<String, String> getLiteralMapping() {
+	public Map<String, String> getLiteralMapping() {
 		return this.mapping;
 	}
 	
-	public org.eclipse.emf.ecore.EAttribute getAttribute() {
-		return (org.eclipse.emf.ecore.EAttribute) getFeature();
+	public EAttribute getAttribute() {
+		return (EAttribute) getFeature();
 	}
 	
 	public String getText(String literalName) {

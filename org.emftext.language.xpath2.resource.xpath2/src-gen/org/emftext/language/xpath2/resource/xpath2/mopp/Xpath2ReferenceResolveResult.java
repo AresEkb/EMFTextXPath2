@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,13 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import org.eclipse.emf.common.util.URI;
 
 /**
  * A basic implementation of the
@@ -20,10 +27,10 @@ package org.emftext.language.xpath2.resource.xpath2.mopp;
  */
 public class Xpath2ReferenceResolveResult<ReferenceType> implements org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult<ReferenceType> {
 	
-	private java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<ReferenceType>> mappings;
+	private Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<ReferenceType>> mappings;
 	private String errorMessage;
 	private boolean resolveFuzzy;
-	private java.util.Set<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> quickFixes;
+	private Set<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> quickFixes;
 	
 	public Xpath2ReferenceResolveResult(boolean resolveFuzzy) {
 		super();
@@ -34,21 +41,21 @@ public class Xpath2ReferenceResolveResult<ReferenceType> implements org.emftext.
 		return errorMessage;
 	}
 	
-	public java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> getQuickFixes() {
+	public Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> getQuickFixes() {
 		if (quickFixes == null) {
-			quickFixes = new java.util.LinkedHashSet<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix>();
+			quickFixes = new LinkedHashSet<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix>();
 		}
-		return java.util.Collections.unmodifiableSet(quickFixes);
+		return Collections.unmodifiableSet(quickFixes);
 	}
 	
 	public void addQuickFix(org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix quickFix) {
 		if (quickFixes == null) {
-			quickFixes = new java.util.LinkedHashSet<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix>();
+			quickFixes = new LinkedHashSet<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix>();
 		}
 		quickFixes.add(quickFix);
 	}
 	
-	public java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<ReferenceType>> getMappings() {
+	public Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<ReferenceType>> getMappings() {
 		return mappings;
 	}
 	
@@ -77,19 +84,19 @@ public class Xpath2ReferenceResolveResult<ReferenceType> implements org.emftext.
 	
 	public void addMapping(String identifier, ReferenceType target, String warning) {
 		if (mappings == null) {
-			mappings = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<ReferenceType>>(1);
+			mappings = new ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<ReferenceType>>(1);
 		}
 		mappings.add(new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ElementMapping<ReferenceType>(identifier, target, warning));
 		errorMessage = null;
 	}
 	
-	public void addMapping(String identifier, org.eclipse.emf.common.util.URI uri) {
+	public void addMapping(String identifier, URI uri) {
 		addMapping(identifier, uri, null);
 	}
 	
-	public void addMapping(String identifier, org.eclipse.emf.common.util.URI uri, String warning) {
+	public void addMapping(String identifier, URI uri, String warning) {
 		if (mappings == null) {
-			mappings = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<ReferenceType>>(1);
+			mappings = new ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<ReferenceType>>(1);
 		}
 		mappings.add(new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2URIMapping<ReferenceType>(identifier, uri, warning));
 	}

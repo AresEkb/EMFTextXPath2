@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,8 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.grammar;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 /**
  * A class to represent placeholders in a grammar.
  */
@@ -17,7 +19,7 @@ public class Xpath2Placeholder extends org.emftext.language.xpath2.resource.xpat
 	
 	private final String tokenName;
 	
-	public Xpath2Placeholder(org.eclipse.emf.ecore.EStructuralFeature feature, String tokenName, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality cardinality, int mandatoryOccurencesAfter) {
+	public Xpath2Placeholder(EStructuralFeature feature, String tokenName, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality cardinality, int mandatoryOccurencesAfter) {
 		super(feature, cardinality, mandatoryOccurencesAfter);
 		this.tokenName = tokenName;
 	}

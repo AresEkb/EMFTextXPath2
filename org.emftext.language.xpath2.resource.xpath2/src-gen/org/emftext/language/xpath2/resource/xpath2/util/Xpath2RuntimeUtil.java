@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,8 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2.util;
+
+import org.eclipse.core.runtime.Platform;
 
 /**
  * This utility class provides methods to obtain information about the current
@@ -24,6 +26,21 @@ public class Xpath2RuntimeUtil {
 	public boolean isEclipsePlatformAvailable() {
 		try {
 			Class.forName("org.eclipse.core.runtime.Platform");
+			return true;
+		} catch (ClassNotFoundException cnfe) {
+		}
+		return false;
+	}
+	
+	/**
+	 * Checks whether the class
+	 * <code>org.eclipse.emf.validation.internal.EMFModelValidationPlugin</code> is
+	 * available on the classpath. This can be used to determine if Eclipse is
+	 * available in the current runtime environment.
+	 */
+	public boolean isEMFValidationAvailable() {
+		try {
+			Class.forName("org.eclipse.emf.validation.internal.EMFModelValidationPlugin");
 			return true;
 		} catch (ClassNotFoundException cnfe) {
 		}
@@ -67,7 +84,7 @@ public class Xpath2RuntimeUtil {
 		if (!isEclipsePlatformAvailable()) {
 			return false;
 		}
-		return org.eclipse.core.runtime.Platform.isRunning();
+		return Platform.isRunning();
 	}
 	
 }

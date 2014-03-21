@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,8 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2;
+
+import java.util.Map;
 
 /**
  * Implementors of this interface can provide options that are used when resources
@@ -20,6 +22,6 @@ public interface IXpath2OptionProvider {
 	 * Returns a map of options. The keys are the names of the options, the values are
 	 * arbitrary objects that provide additional information or logic for the option.
 	 */
-	public java.util.Map<?,?> getOptions();
+	public Map<?,?> getOptions();
 	
 }

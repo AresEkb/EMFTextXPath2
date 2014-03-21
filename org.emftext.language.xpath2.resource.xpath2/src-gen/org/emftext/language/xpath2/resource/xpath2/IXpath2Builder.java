@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,10 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.URI;
 
 /**
  * An interface for builders that can be used to perform operations when resources
@@ -23,16 +27,16 @@ public interface IXpath2Builder {
 	 * loaded. If this method returns false, the build() method will not be invoked
 	 * for the resource located at the given URI.
 	 */
-	public boolean isBuildingNeeded(org.eclipse.emf.common.util.URI uri);
+	public boolean isBuildingNeeded(URI uri);
 	
 	/**
 	 * Builds the given resource.
 	 */
-	public org.eclipse.core.runtime.IStatus build(org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource resource, org.eclipse.core.runtime.IProgressMonitor monitor);
+	public IStatus build(org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource resource, IProgressMonitor monitor);
 	
 	/**
 	 * Handles the deletion of the given resource.
 	 */
-	public org.eclipse.core.runtime.IStatus handleDeletion(org.eclipse.emf.common.util.URI uri, org.eclipse.core.runtime.IProgressMonitor monitor);
+	public IStatus handleDeletion(URI uri, IProgressMonitor monitor);
 	
 }

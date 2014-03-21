@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,22 +10,27 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
+import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import org.eclipse.emf.ecore.EClass;
+
 /**
  * Abstract super class for all expected elements. Provides methods to add
  * followers.
  */
 public abstract class Xpath2AbstractExpectedElement implements org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement {
 	
-	private org.eclipse.emf.ecore.EClass ruleMetaclass;
+	private EClass ruleMetaclass;
 	
-	private java.util.Set<org.emftext.language.xpath2.resource.xpath2.util.Xpath2Pair<org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[]>> followers = new java.util.LinkedHashSet<org.emftext.language.xpath2.resource.xpath2.util.Xpath2Pair<org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[]>>();
+	private Set<org.emftext.language.xpath2.resource.xpath2.util.Xpath2Pair<org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[]>> followers = new LinkedHashSet<org.emftext.language.xpath2.resource.xpath2.util.Xpath2Pair<org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[]>>();
 	
-	public Xpath2AbstractExpectedElement(org.eclipse.emf.ecore.EClass ruleMetaclass) {
+	public Xpath2AbstractExpectedElement(EClass ruleMetaclass) {
 		super();
 		this.ruleMetaclass = ruleMetaclass;
 	}
 	
-	public org.eclipse.emf.ecore.EClass getRuleMetaclass() {
+	public EClass getRuleMetaclass() {
 		return ruleMetaclass;
 	}
 	
@@ -33,7 +38,7 @@ public abstract class Xpath2AbstractExpectedElement implements org.emftext.langu
 		followers.add(new org.emftext.language.xpath2.resource.xpath2.util.Xpath2Pair<org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[]>(follower, path));
 	}
 	
-	public java.util.Collection<org.emftext.language.xpath2.resource.xpath2.util.Xpath2Pair<org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[]>> getFollowers() {
+	public Collection<org.emftext.language.xpath2.resource.xpath2.util.Xpath2Pair<org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[]>> getFollowers() {
 		return followers;
 	}
 	

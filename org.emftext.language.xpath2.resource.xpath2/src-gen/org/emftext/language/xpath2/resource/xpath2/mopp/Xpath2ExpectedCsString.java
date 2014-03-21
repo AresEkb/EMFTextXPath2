@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,9 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
+
+import java.util.Collections;
+import java.util.Set;
 
 /**
  * A representation for a range in a document where a keyword (i.e., a static
@@ -34,8 +37,8 @@ public class Xpath2ExpectedCsString extends org.emftext.language.xpath2.resource
 		return keyword;
 	}
 	
-	public java.util.Set<String> getTokenNames() {
-		return java.util.Collections.singleton("'" + getValue() + "'");
+	public Set<String> getTokenNames() {
+		return Collections.singleton("'" + getValue() + "'");
 	}
 	
 	public String toString() {
@@ -49,7 +52,7 @@ public class Xpath2ExpectedCsString extends org.emftext.language.xpath2.resource
 		return false;
 	}
 	
-	@Override	
+	@Override
 	public int hashCode() {
 		return getValue().hashCode();
 	}

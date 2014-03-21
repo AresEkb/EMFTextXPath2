@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,12 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Collection;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.resource.Resource.Factory;
 
 public class Xpath2MetaInformation implements org.emftext.language.xpath2.resource.xpath2.IXpath2MetaInformation {
 	
@@ -24,19 +30,19 @@ public class Xpath2MetaInformation implements org.emftext.language.xpath2.resour
 		return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2AntlrScanner(new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Lexer());
 	}
 	
-	public org.emftext.language.xpath2.resource.xpath2.IXpath2TextParser createParser(java.io.InputStream inputStream, String encoding) {
+	public org.emftext.language.xpath2.resource.xpath2.IXpath2TextParser createParser(InputStream inputStream, String encoding) {
 		return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Parser().createInstance(inputStream, encoding);
 	}
 	
-	public org.emftext.language.xpath2.resource.xpath2.IXpath2TextPrinter createPrinter(java.io.OutputStream outputStream, org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource) {
+	public org.emftext.language.xpath2.resource.xpath2.IXpath2TextPrinter createPrinter(OutputStream outputStream, org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource) {
 		return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Printer2(outputStream, resource);
 	}
 	
-	public org.eclipse.emf.ecore.EClass[] getClassesWithSyntax() {
+	public EClass[] getClassesWithSyntax() {
 		return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxCoverageInformationProvider().getClassesWithSyntax();
 	}
 	
-	public org.eclipse.emf.ecore.EClass[] getStartSymbols() {
+	public EClass[] getStartSymbols() {
 		return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxCoverageInformationProvider().getStartSymbols();
 	}
 	
@@ -60,15 +66,15 @@ public class Xpath2MetaInformation implements org.emftext.language.xpath2.resour
 		return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyleInformationProvider().getDefaultTokenStyle(tokenName);
 	}
 	
-	public java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2BracketPair> getBracketPairs() {
+	public Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2BracketPair> getBracketPairs() {
 		return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2BracketInformationProvider().getBracketPairs();
 	}
 	
-	public org.eclipse.emf.ecore.EClass[] getFoldableClasses() {
+	public EClass[] getFoldableClasses() {
 		return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2FoldingInformationProvider().getFoldableClasses();
 	}
 	
-	public org.eclipse.emf.ecore.resource.Resource.Factory createResourceFactory() {
+	public Factory createResourceFactory() {
 		return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ResourceFactory();
 	}
 	
@@ -77,7 +83,10 @@ public class Xpath2MetaInformation implements org.emftext.language.xpath2.resour
 	}
 	
 	public void registerResourceFactory() {
-		org.eclipse.emf.ecore.resource.Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(getSyntaxName(), new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ResourceFactory());
+		// if no resource factory registered, register delegator
+		if (Factory.Registry.INSTANCE.getExtensionToFactoryMap().get(getSyntaxName()) == null) {
+			Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(getSyntaxName(), new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ResourceFactoryDelegator());
+		}
 	}
 	
 	/**

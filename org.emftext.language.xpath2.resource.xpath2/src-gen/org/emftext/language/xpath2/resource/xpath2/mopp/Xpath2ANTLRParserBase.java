@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,26 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
-public abstract class Xpath2ANTLRParserBase extends org.antlr.runtime3_4_0.Parser implements org.emftext.language.xpath2.resource.xpath2.IXpath2TextParser {
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import org.antlr.runtime3_4_0.CommonToken;
+import org.antlr.runtime3_4_0.Parser;
+import org.antlr.runtime3_4_0.RecognizerSharedState;
+import org.antlr.runtime3_4_0.Token;
+import org.antlr.runtime3_4_0.TokenStream;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+public abstract class Xpath2ANTLRParserBase extends Parser implements org.emftext.language.xpath2.resource.xpath2.IXpath2TextParser {
 	
 	/**
 	 * The index of the last token that was handled by retrieveLayoutInformation().
@@ -20,20 +39,20 @@ public abstract class Xpath2ANTLRParserBase extends org.antlr.runtime3_4_0.Parse
 	/**
 	 * A collection to store all anonymous tokens.
 	 */
-	protected java.util.List<org.antlr.runtime3_4_0.CommonToken> anonymousTokens = new java.util.ArrayList<org.antlr.runtime3_4_0.CommonToken>();
+	protected java.util.List<CommonToken> anonymousTokens = new java.util.ArrayList<CommonToken>();
 	
 	/**
 	 * A collection that is filled with commands to be executed after parsing. This
 	 * collection is cleared before parsing starts and returned as part of the parse
 	 * result object.
 	 */
-	protected java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>> postParseCommands;
+	protected Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>> postParseCommands;
 	
 	/**
 	 * A copy of the options that were used to load the text resource. This map is
 	 * filled when the parser is created.
 	 */
-	private java.util.Map<?, ?> options;
+	private Map<?, ?> options;
 	
 	/**
 	 * A flag that indicates whether this parser runs in a special mode where the
@@ -68,15 +87,15 @@ public abstract class Xpath2ANTLRParserBase extends org.antlr.runtime3_4_0.Parse
 	
 	protected org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation metaInformation = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation();
 	
-	public Xpath2ANTLRParserBase(org.antlr.runtime3_4_0.TokenStream input) {
+	public Xpath2ANTLRParserBase(TokenStream input) {
 		super(input);
 	}
 	
-	public Xpath2ANTLRParserBase(org.antlr.runtime3_4_0.TokenStream input, org.antlr.runtime3_4_0.RecognizerSharedState state) {
+	public Xpath2ANTLRParserBase(TokenStream input, RecognizerSharedState state) {
 		super(input, state);
 	}
 	
-	protected void retrieveLayoutInformation(org.eclipse.emf.ecore.EObject element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement syntaxElement, Object object, boolean ignoreTokensAfterLastVisibleToken) {
+	protected void retrieveLayoutInformation(EObject element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement syntaxElement, Object object, boolean ignoreTokensAfterLastVisibleToken) {
 		if (disableLayoutRecording || element == null) {
 			return;
 		}
@@ -93,7 +112,7 @@ public abstract class Xpath2ANTLRParserBase extends org.antlr.runtime3_4_0.Parse
 		}
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformationAdapter layoutInformationAdapter = getLayoutInformationAdapter(element);
 		StringBuilder anonymousText = new StringBuilder();
-		for (org.antlr.runtime3_4_0.CommonToken anonymousToken : anonymousTokens) {
+		for (CommonToken anonymousToken : anonymousTokens) {
 			anonymousText.append(anonymousToken.getText());
 		}
 		int currentPos = getTokenStream().index();
@@ -103,7 +122,7 @@ public abstract class Xpath2ANTLRParserBase extends org.antlr.runtime3_4_0.Parse
 		int endPos = currentPos - 1;
 		if (ignoreTokensAfterLastVisibleToken) {
 			for (; endPos >= this.lastPosition2; endPos--) {
-				org.antlr.runtime3_4_0.Token token = getTokenStream().get(endPos);
+				Token token = getTokenStream().get(endPos);
 				int _channel = token.getChannel();
 				if (_channel != 99) {
 					break;
@@ -113,11 +132,11 @@ public abstract class Xpath2ANTLRParserBase extends org.antlr.runtime3_4_0.Parse
 		StringBuilder hiddenTokenText = new StringBuilder();
 		hiddenTokenText.append(anonymousText);
 		StringBuilder visibleTokenText = new StringBuilder();
-		org.antlr.runtime3_4_0.CommonToken firstToken = null;
+		CommonToken firstToken = null;
 		for (int pos = this.lastPosition2; pos <= endPos; pos++) {
-			org.antlr.runtime3_4_0.Token token = getTokenStream().get(pos);
+			Token token = getTokenStream().get(pos);
 			if (firstToken == null) {
-				firstToken = (org.antlr.runtime3_4_0.CommonToken) token;
+				firstToken = (CommonToken) token;
 			}
 			if (anonymousTokens.contains(token)) {
 				continue;
@@ -138,8 +157,8 @@ public abstract class Xpath2ANTLRParserBase extends org.antlr.runtime3_4_0.Parse
 		anonymousTokens.clear();
 	}
 	
-	protected org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformationAdapter getLayoutInformationAdapter(org.eclipse.emf.ecore.EObject element) {
-		for (org.eclipse.emf.common.notify.Adapter adapter : element.eAdapters()) {
+	protected org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformationAdapter getLayoutInformationAdapter(EObject element) {
+		for (Adapter adapter : element.eAdapters()) {
 			if (adapter instanceof org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformationAdapter) {
 				return (org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformationAdapter) adapter;
 			}
@@ -149,7 +168,7 @@ public abstract class Xpath2ANTLRParserBase extends org.antlr.runtime3_4_0.Parse
 		return newAdapter;
 	}
 	
-	protected <ContainerType extends org.eclipse.emf.ecore.EObject, ReferenceType extends org.eclipse.emf.ecore.EObject> void registerContextDependentProxy(final org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContextDependentURIFragmentFactory<ContainerType, ReferenceType> factory, final ContainerType container, final org.eclipse.emf.ecore.EReference reference, final String id, final org.eclipse.emf.ecore.EObject proxy) {
+	protected <ContainerType extends EObject, ReferenceType extends EObject> void registerContextDependentProxy(final org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContextDependentURIFragmentFactory<ContainerType, ReferenceType> factory, final ContainerType container, final EReference reference, final String id, final EObject proxy) {
 		final int position;
 		if (reference.isMany()) {
 			position = ((java.util.List<?>) container.eGet(reference)).size();
@@ -169,50 +188,29 @@ public abstract class Xpath2ANTLRParserBase extends org.antlr.runtime3_4_0.Parse
 		});
 	}
 	
-	protected String formatTokenName(int tokenType)  {
-		String tokenName = "<unknown>";
-		if (tokenType < 0) {
-			tokenName = "EOF";
-		} else {
-			if (tokenType < 0) {
-				return tokenName;
-			}
-			tokenName = getTokenNames()[tokenType];
-			tokenName = org.emftext.language.xpath2.resource.xpath2.util.Xpath2StringUtil.formatTokenName(tokenName);
-		}
-		return tokenName;
-	}
-	
-	protected java.util.Map<?,?> getOptions() {
+	protected Map<?,?> getOptions() {
 		return options;
 	}
 	
-	public void setOptions(java.util.Map<?,?> options) {
+	public void setOptions(Map<?,?> options) {
 		this.options = options;
-		if (this.options == null) {
-			return;
-		}
-		if (this.options.containsKey(org.emftext.language.xpath2.resource.xpath2.IXpath2Options.DISABLE_LOCATION_MAP)) {
-			this.disableLocationMap = true;
-		}
-		if (this.options.containsKey(org.emftext.language.xpath2.resource.xpath2.IXpath2Options.DISABLE_LAYOUT_INFORMATION_RECORDING)) {
-			this.disableLayoutRecording = true;
-		}
+		this.disableLocationMap = !isLocationMapEnabled();
+		this.disableLayoutRecording = !isLayoutInformationRecordingEnabled();
 	}
 	
 	/**
 	 * Creates a dynamic Java proxy that mimics the interface of the given class.
 	 */
-	@SuppressWarnings("unchecked")	
+	@SuppressWarnings("unchecked")
 	public <T> T createDynamicProxy(Class<T> clazz) {
-		Object proxy = java.lang.reflect.Proxy.newProxyInstance(this.getClass().getClassLoader(), new Class<?>[]{clazz, org.eclipse.emf.ecore.EObject.class, org.eclipse.emf.ecore.InternalEObject.class}, new java.lang.reflect.InvocationHandler() {
+		Object proxy = Proxy.newProxyInstance(this.getClass().getClassLoader(), new Class<?>[]{clazz, EObject.class, InternalEObject.class}, new InvocationHandler() {
 			
-			private org.eclipse.emf.ecore.EObject dummyObject = new org.eclipse.emf.ecore.impl.EObjectImpl() {};
+			private EObject dummyObject = new EObjectImpl() {};
 			
-			public Object invoke(Object object, java.lang.reflect.Method method, Object[] args) throws Throwable {
+			public Object invoke(Object object, Method method, Object[] args) throws Throwable {
 				// search in dummyObject for the requested method
-				java.lang.reflect.Method[] methodsInDummy = dummyObject.getClass().getMethods();
-				for (java.lang.reflect.Method methodInDummy : methodsInDummy) {
+				Method[] methodsInDummy = dummyObject.getClass().getMethods();
+				for (Method methodInDummy : methodsInDummy) {
 					boolean matches = true;
 					if (methodInDummy.getName().equals(method.getName())) {
 						Class<?>[] parameterTypes = method.getParameterTypes();
@@ -245,34 +243,36 @@ public abstract class Xpath2ANTLRParserBase extends org.antlr.runtime3_4_0.Parse
 		terminateParsing = true;
 	}
 	
-	protected void addMapEntry(org.eclipse.emf.ecore.EObject element, org.eclipse.emf.ecore.EStructuralFeature structuralFeature, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2DummyEObject dummy) {
+	protected void addMapEntry(EObject element, EStructuralFeature structuralFeature, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2DummyEObject dummy) {
 		Object value = element.eGet(structuralFeature);
 		Object mapKey = dummy.getValueByName("key");
 		Object mapValue = dummy.getValueByName("value");
-		if (value instanceof org.eclipse.emf.common.util.EMap<?, ?>) {
-			org.eclipse.emf.common.util.EMap<Object, Object> valueMap = org.emftext.language.xpath2.resource.xpath2.util.Xpath2MapUtil.castToEMap(value);
+		if (value instanceof EMap<?, ?>) {
+			EMap<Object, Object> valueMap = org.emftext.language.xpath2.resource.xpath2.util.Xpath2MapUtil.castToEMap(value);
 			if (mapKey != null && mapValue != null) {
 				valueMap.put(mapKey, mapValue);
 			}
 		}
 	}
 	
-	@SuppressWarnings("unchecked")	
-	public boolean addObjectToList(org.eclipse.emf.ecore.EObject container, int featureID, Object object) {
+	@SuppressWarnings("unchecked")
+	
+	public boolean addObjectToList(EObject container, int featureID, Object object) {
 		return ((java.util.List<Object>) container.eGet(container.eClass().getEStructuralFeature(featureID))).add(object);
 	}
 	
-	@SuppressWarnings("unchecked")	
-	public boolean addObjectToList(org.eclipse.emf.ecore.EObject container, org.eclipse.emf.ecore.EStructuralFeature feature, Object object) {
+	@SuppressWarnings("unchecked")
+	
+	public boolean addObjectToList(EObject container, EStructuralFeature feature, Object object) {
 		return ((java.util.List<Object>) container.eGet(feature)).add(object);
 	}
 	
-	protected org.eclipse.emf.ecore.EObject apply(org.eclipse.emf.ecore.EObject target, java.util.List<org.eclipse.emf.ecore.EObject> dummyEObjects) {
-		org.eclipse.emf.ecore.EObject currentTarget = target;
-		for (org.eclipse.emf.ecore.EObject object : dummyEObjects) {
+	protected EObject apply(EObject target, List<EObject> dummyEObjects) {
+		EObject currentTarget = target;
+		for (EObject object : dummyEObjects) {
 			assert(object instanceof org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2DummyEObject);
 			org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2DummyEObject dummy = (org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2DummyEObject) object;
-			org.eclipse.emf.ecore.EObject newEObject = dummy.applyTo(currentTarget);
+			EObject newEObject = dummy.applyTo(currentTarget);
 			currentTarget = newEObject;
 		}
 		return currentTarget;
@@ -287,6 +287,22 @@ public abstract class Xpath2ANTLRParserBase extends org.antlr.runtime3_4_0.Parse
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ReferenceResolverSwitch resolverSwitch = (org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ReferenceResolverSwitch) metaInformation.getReferenceResolverSwitch();
 		resolverSwitch.setOptions(options);
 		return resolverSwitch;
+	}
+	
+	public boolean isLayoutInformationRecordingEnabled() {
+		if (options == null) {
+			return true;
+		}
+		Object value = options.get(org.emftext.language.xpath2.resource.xpath2.IXpath2Options.DISABLE_LAYOUT_INFORMATION_RECORDING);
+		return value == null || Boolean.FALSE.equals(value);
+	}
+	
+	public boolean isLocationMapEnabled() {
+		if (options == null) {
+			return true;
+		}
+		Object value = options.get(org.emftext.language.xpath2.resource.xpath2.IXpath2Options.DISABLE_LOCATION_MAP);
+		return value == null || Boolean.FALSE.equals(value);
 	}
 	
 }

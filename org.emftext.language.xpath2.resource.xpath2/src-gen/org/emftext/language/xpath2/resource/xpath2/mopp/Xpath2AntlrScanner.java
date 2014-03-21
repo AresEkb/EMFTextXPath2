@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,11 +10,15 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
+import org.antlr.runtime3_4_0.ANTLRStringStream;
+import org.antlr.runtime3_4_0.Lexer;
+import org.antlr.runtime3_4_0.Token;
+
 public class Xpath2AntlrScanner implements org.emftext.language.xpath2.resource.xpath2.IXpath2TextScanner {
 	
-	private org.antlr.runtime3_4_0.Lexer antlrLexer;
+	private Lexer antlrLexer;
 	
-	public Xpath2AntlrScanner(org.antlr.runtime3_4_0.Lexer antlrLexer) {
+	public Xpath2AntlrScanner(Lexer antlrLexer) {
 		this.antlrLexer = antlrLexer;
 	}
 	
@@ -22,7 +26,7 @@ public class Xpath2AntlrScanner implements org.emftext.language.xpath2.resource.
 		if (antlrLexer.getCharStream() == null) {
 			return null;
 		}
-		final org.antlr.runtime3_4_0.Token current = antlrLexer.nextToken();
+		final Token current = antlrLexer.nextToken();
 		if (current == null || current.getType() < 0) {
 			return null;
 		}
@@ -31,7 +35,7 @@ public class Xpath2AntlrScanner implements org.emftext.language.xpath2.resource.
 	}
 	
 	public void setText(String text) {
-		antlrLexer.setCharStream(new org.antlr.runtime3_4_0.ANTLRStringStream(text));
+		antlrLexer.setCharStream(new ANTLRStringStream(text));
 	}
 	
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,7 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2;
+
 
 /**
  * A list of constants that contains the keys for some options that are built into
@@ -73,6 +74,13 @@ public interface IXpath2Options {
 	public final String DISABLE_LAYOUT_INFORMATION_RECORDING = "DISABLE_LAYOUT_INFORMATION_RECORDING";
 	
 	/**
+	 * The key for the option to disable EMF validation when loading resources. If
+	 * this option is set to <code>true</code>, the EMF validation framework is not
+	 * invoked.
+	 */
+	public final String DISABLE_EMF_VALIDATION = "DISABLE_EMF_VALIDATION";
+	
+	/**
 	 * The key for the option to set the encoding to use when loading or saving
 	 * resources. This is equivalent to the same option specified in class
 	 * <code>org.eclipse.emf.ecore.xmi.XMLResource</code>.
@@ -80,5 +88,13 @@ public interface IXpath2Options {
 	 * @see org.eclipse.emf.ecore.xmi.XMLResource
 	 */
 	public final String OPTION_ENCODING = "ENCODING";
+	
+	/**
+	 * The key for the option to set the line delimiter character sequence that is
+	 * used when printing models. By default, platform line breaks are used. Note that
+	 * these characters are only used when the resource does not contain layout
+	 * information, but the syntax contains line break printing instructions.
+	 */
+	public final String LINE_DELIMITER_FOR_PRINTING = "LINE_DELIMITER_FOR_PRINTING";
 	
 }

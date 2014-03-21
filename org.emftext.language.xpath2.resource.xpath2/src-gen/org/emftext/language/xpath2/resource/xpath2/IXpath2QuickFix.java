@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,9 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2;
+
+import java.util.Collection;
+import org.eclipse.emf.ecore.EObject;
 
 public interface IXpath2QuickFix {
 	
@@ -38,7 +41,7 @@ public interface IXpath2QuickFix {
 	 * Returns a collection of objects the fix refers to. This collection is used to
 	 * check whether the fix is can still be applied even after a workbench restart.
 	 */
-	public java.util.Collection<org.eclipse.emf.ecore.EObject> getContextObjects();
+	public Collection<EObject> getContextObjects();
 	
 	/**
 	 * Returns a string representation of the context in which this quick fix can be

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,10 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * A representation for a range in a document where a boolean attribute is
@@ -34,7 +38,7 @@ public class Xpath2ExpectedBooleanTerminal extends org.emftext.language.xpath2.r
 		return booleanTerminal;
 	}
 	
-	private org.eclipse.emf.ecore.EStructuralFeature getFeature() {
+	private EStructuralFeature getFeature() {
 		return booleanTerminal.getFeature();
 	}
 	
@@ -49,14 +53,14 @@ public class Xpath2ExpectedBooleanTerminal extends org.emftext.language.xpath2.r
 		return false;
 	}
 	
-	@Override	
+	@Override
 	public int hashCode() {
 		return getFeature().hashCode();
 	}
 	
-	public java.util.Set<String> getTokenNames() {
+	public Set<String> getTokenNames() {
 		// BooleanTerminals are associated with two or one token(s)
-		java.util.Set<String> tokenNames = new java.util.LinkedHashSet<String>(2);
+		Set<String> tokenNames = new LinkedHashSet<String>(2);
 		String trueLiteral = booleanTerminal.getTrueLiteral();
 		if (!"".equals(trueLiteral)) {
 			tokenNames.add("'" + trueLiteral + "'");

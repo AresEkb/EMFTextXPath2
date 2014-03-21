@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -35,167 +35,149 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr
-{
-  /**
-   * The cached value of the '{@link #getStep() <em>Step</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getStep()
-   * @generated
-   * @ordered
-   */
-  protected SelfStepExprChild step;
+public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr {
+    /**
+     * The cached value of the '{@link #getStep() <em>Step</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getStep()
+     * @generated
+     * @ordered
+     */
+    protected SelfStepExprChild step;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected SelfStepExprImpl()
-  {
-    super();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return Xpath2Package.Literals.SELF_STEP_EXPR;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public SelfStepExprChild getStep()
-  {
-    return step;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetStep(SelfStepExprChild newStep, NotificationChain msgs)
-  {
-    SelfStepExprChild oldStep = step;
-    step = newStep;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.SELF_STEP_EXPR__STEP, oldStep, newStep);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected SelfStepExprImpl() {
+        super();
     }
-    return msgs;
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setStep(SelfStepExprChild newStep)
-  {
-    if (newStep != step)
-    {
-      NotificationChain msgs = null;
-      if (step != null)
-        msgs = ((InternalEObject)step).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.SELF_STEP_EXPR__STEP, null, msgs);
-      if (newStep != null)
-        msgs = ((InternalEObject)newStep).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.SELF_STEP_EXPR__STEP, null, msgs);
-      msgs = basicSetStep(newStep, msgs);
-      if (msgs != null) msgs.dispatch();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return Xpath2Package.Literals.SELF_STEP_EXPR;
     }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.SELF_STEP_EXPR__STEP, newStep, newStep));
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case Xpath2Package.SELF_STEP_EXPR__STEP:
-        return basicSetStep(null, msgs);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SelfStepExprChild getStep() {
+        return step;
     }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case Xpath2Package.SELF_STEP_EXPR__STEP:
-        return getStep();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetStep(SelfStepExprChild newStep, NotificationChain msgs) {
+        SelfStepExprChild oldStep = step;
+        step = newStep;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.SELF_STEP_EXPR__STEP, oldStep, newStep);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
-    return super.eGet(featureID, resolve, coreType);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case Xpath2Package.SELF_STEP_EXPR__STEP:
-        setStep((SelfStepExprChild)newValue);
-        return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setStep(SelfStepExprChild newStep) {
+        if (newStep != step) {
+            NotificationChain msgs = null;
+            if (step != null)
+                msgs = ((InternalEObject)step).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.SELF_STEP_EXPR__STEP, null, msgs);
+            if (newStep != null)
+                msgs = ((InternalEObject)newStep).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.SELF_STEP_EXPR__STEP, null, msgs);
+            msgs = basicSetStep(newStep, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.SELF_STEP_EXPR__STEP, newStep, newStep));
     }
-    super.eSet(featureID, newValue);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case Xpath2Package.SELF_STEP_EXPR__STEP:
-        setStep((SelfStepExprChild)null);
-        return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case Xpath2Package.SELF_STEP_EXPR__STEP:
+                return basicSetStep(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
     }
-    super.eUnset(featureID);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case Xpath2Package.SELF_STEP_EXPR__STEP:
-        return step != null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case Xpath2Package.SELF_STEP_EXPR__STEP:
+                return getStep();
+        }
+        return super.eGet(featureID, resolve, coreType);
     }
-    return super.eIsSet(featureID);
-  }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case Xpath2Package.SELF_STEP_EXPR__STEP:
+                setStep((SelfStepExprChild)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case Xpath2Package.SELF_STEP_EXPR__STEP:
+                setStep((SelfStepExprChild)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case Xpath2Package.SELF_STEP_EXPR__STEP:
+                return step != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //SelfStepExprImpl

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,9 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * A basic interface to convert parsed tokens to the attribute type in the meta
@@ -30,7 +33,7 @@ public interface IXpath2TokenResolver extends org.emftext.language.xpath2.resour
 	 * @param result the result of resolving the lexem, can be used to add processing
 	 * errors
 	 */
-	public void resolve(String lexem, org.eclipse.emf.ecore.EStructuralFeature feature, org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolveResult result);
+	public void resolve(String lexem, EStructuralFeature feature, org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolveResult result);
 	
 	/**
 	 * Converts an Object (the value of an attribute) to a string which can be
@@ -42,6 +45,6 @@ public interface IXpath2TokenResolver extends org.emftext.language.xpath2.resour
 	 * 
 	 * @return the String representation or null if a problem occurred
 	 */
-	public String deResolve(Object value, org.eclipse.emf.ecore.EStructuralFeature feature, org.eclipse.emf.ecore.EObject container);
+	public String deResolve(Object value, EStructuralFeature feature, EObject container);
 	
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,12 +10,17 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.util;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+
 
 public class Xpath2StreamUtil {
 	
 	private final static int IO_BUFFER_SIZE = 4 * 1024;
 	
-	public static void copy(java.io.InputStream in, java.io.OutputStream out) throws java.io.IOException {
+	public static void copy(InputStream in, OutputStream out) throws IOException {
 		byte[] b = new byte[IO_BUFFER_SIZE];
 		int read;
 		while ((read = in.read(b)) != -1) {
@@ -24,13 +29,23 @@ public class Xpath2StreamUtil {
 		out.flush();
 	}
 	
-	public static String getContent(java.io.InputStream inputStream) throws java.io.IOException {
+	public static String getContent(InputStream inputStream) throws IOException {
+		InputStreamReader reader = new InputStreamReader(inputStream);
+		return getContent(reader);
+	}
+	
+	public static String getContent(InputStream inputStream, String charset) throws IOException {
+		InputStreamReader reader = new InputStreamReader(inputStream, charset);
+		return getContent(reader);
+	}
+	
+	public static String getContent(InputStreamReader reader) throws IOException {
 		StringBuffer content = new StringBuffer();
-		java.io.InputStreamReader reader = new java.io.InputStreamReader(inputStream);
 		int next = -1;
 		while ((next = reader.read()) >= 0) {
 			content.append((char) next);
 		}
 		return content.toString();
 	}
+	
 }

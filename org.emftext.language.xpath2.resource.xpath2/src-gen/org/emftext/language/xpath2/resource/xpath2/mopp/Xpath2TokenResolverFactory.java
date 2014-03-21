@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,9 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * The Xpath2TokenResolverFactory class provides access to all generated token
@@ -20,13 +23,13 @@ package org.emftext.language.xpath2.resource.xpath2.mopp;
  */
 public class Xpath2TokenResolverFactory implements org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolverFactory {
 	
-	private java.util.Map<String, org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver> tokenName2TokenResolver;
-	private java.util.Map<String, org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver> featureName2CollectInTokenResolver;
+	private Map<String, org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver> tokenName2TokenResolver;
+	private Map<String, org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver> featureName2CollectInTokenResolver;
 	private static org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver defaultResolver = new org.emftext.language.xpath2.resource.xpath2.analysis.Xpath2DefaultTokenResolver();
 	
 	public Xpath2TokenResolverFactory() {
-		tokenName2TokenResolver = new java.util.LinkedHashMap<String, org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver>();
-		featureName2CollectInTokenResolver = new java.util.LinkedHashMap<String, org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver>();
+		tokenName2TokenResolver = new LinkedHashMap<String, org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver>();
+		featureName2CollectInTokenResolver = new LinkedHashMap<String, org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver>();
 		registerTokenResolver("INTEGER_LITERAL", new org.emftext.language.xpath2.resource.xpath2.analysis.Xpath2INTEGER_LITERALTokenResolver());
 		registerTokenResolver("DECIMAL_LITERAL", new org.emftext.language.xpath2.resource.xpath2.analysis.Xpath2DECIMAL_LITERALTokenResolver());
 		registerTokenResolver("DOUBLE_LITERAL", new org.emftext.language.xpath2.resource.xpath2.analysis.Xpath2DOUBLE_LITERALTokenResolver());
@@ -55,7 +58,7 @@ public class Xpath2TokenResolverFactory implements org.emftext.language.xpath2.r
 		return tokenName2TokenResolver.remove(tokenName);
 	}
 	
-	private org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver internalCreateResolver(java.util.Map<String, org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver> resolverMap, String key) {
+	private org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver internalCreateResolver(Map<String, org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver> resolverMap, String key) {
 		if (resolverMap.containsKey(key)){
 			return resolverMap.get(key);
 		} else {
@@ -63,7 +66,7 @@ public class Xpath2TokenResolverFactory implements org.emftext.language.xpath2.r
 		}
 	}
 	
-	private boolean internalRegisterTokenResolver(java.util.Map<String, org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver> resolverMap, String key, org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver) {
+	private boolean internalRegisterTokenResolver(Map<String, org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver> resolverMap, String key, org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver) {
 		if (!resolverMap.containsKey(key)) {
 			resolverMap.put(key,resolver);
 			return true;

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,16 +10,37 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
-public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.ResourceImpl implements org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource {
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList.ManyInverse;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
+
+public class Xpath2Resource extends ResourceImpl implements org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource {
 	
 	public class ElementBasedTextDiagnostic implements org.emftext.language.xpath2.resource.xpath2.IXpath2TextDiagnostic {
 		
 		private final org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap locationMap;
-		private final org.eclipse.emf.common.util.URI uri;
-		private final org.eclipse.emf.ecore.EObject element;
+		private final URI uri;
+		private final EObject element;
 		private final org.emftext.language.xpath2.resource.xpath2.IXpath2Problem problem;
 		
-		public ElementBasedTextDiagnostic(org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap locationMap, org.eclipse.emf.common.util.URI uri, org.emftext.language.xpath2.resource.xpath2.IXpath2Problem problem, org.eclipse.emf.ecore.EObject element) {
+		public ElementBasedTextDiagnostic(org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap locationMap, URI uri, org.emftext.language.xpath2.resource.xpath2.IXpath2Problem problem, EObject element) {
 			super();
 			this.uri = uri;
 			this.locationMap = locationMap;
@@ -55,11 +76,11 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 			return Math.max(0, locationMap.getLine(element));
 		}
 		
-		public org.eclipse.emf.ecore.EObject getElement() {
+		public EObject getElement() {
 			return element;
 		}
 		
-		public boolean wasCausedBy(org.eclipse.emf.ecore.EObject element) {
+		public boolean wasCausedBy(EObject element) {
 			if (this.element == null) {
 				return false;
 			}
@@ -73,7 +94,7 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 	
 	public class PositionBasedTextDiagnostic implements org.emftext.language.xpath2.resource.xpath2.IXpath2TextDiagnostic {
 		
-		private final org.eclipse.emf.common.util.URI uri;
+		private final URI uri;
 		
 		private int column;
 		private int line;
@@ -81,8 +102,7 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		private int charEnd;
 		private org.emftext.language.xpath2.resource.xpath2.IXpath2Problem problem;
 		
-		public PositionBasedTextDiagnostic(org.eclipse.emf.common.util.URI uri, org.emftext.language.xpath2.resource.xpath2.IXpath2Problem problem, int column, int line, int charStart, int charEnd) {
-			
+		public PositionBasedTextDiagnostic(URI uri, org.emftext.language.xpath2.resource.xpath2.IXpath2Problem problem, int column, int line, int charStart, int charEnd) {
 			super();
 			this.uri = uri;
 			this.column = column;
@@ -120,7 +140,7 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 			return problem.getMessage();
 		}
 		
-		public boolean wasCausedBy(org.eclipse.emf.ecore.EObject element) {
+		public boolean wasCausedBy(EObject element) {
 			return false;
 		}
 		
@@ -135,9 +155,9 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 	private org.emftext.language.xpath2.resource.xpath2.IXpath2TextParser parser;
 	private org.emftext.language.xpath2.resource.xpath2.util.Xpath2LayoutUtil layoutUtil = new org.emftext.language.xpath2.resource.xpath2.util.Xpath2LayoutUtil();
 	private org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MarkerHelper markerHelper;
-	private java.util.Map<String, org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment<? extends org.eclipse.emf.ecore.EObject>> internalURIFragmentMap = new java.util.LinkedHashMap<String, org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment<? extends org.eclipse.emf.ecore.EObject>>();
-	private java.util.Map<String, org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> quickFixMap = new java.util.LinkedHashMap<String, org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix>();
-	private java.util.Map<?, ?> loadOptions;
+	private Map<String, org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment<? extends EObject>> internalURIFragmentMap = new LinkedHashMap<String, org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment<? extends EObject>>();
+	private Map<String, org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> quickFixMap = new LinkedHashMap<String, org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix>();
+	private Map<?, ?> loadOptions;
 	
 	/**
 	 * If a post-processor is currently running, this field holds a reference to it.
@@ -153,9 +173,17 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 	private Object terminateReloadLock = new Object();
 	private Object loadingLock = new Object();
 	private boolean delayNotifications = false;
-	private java.util.List<org.eclipse.emf.common.notify.Notification> delayedNotifications = new java.util.ArrayList<org.eclipse.emf.common.notify.Notification>();
-	private java.io.InputStream latestReloadInputStream = null;
-	private java.util.Map<?, ?> latestReloadOptions = null;
+	private List<Notification> delayedNotifications = new ArrayList<Notification>();
+	private InputStream latestReloadInputStream = null;
+	private Map<?, ?> latestReloadOptions = null;
+	
+	/**
+	 * This flag indicates whether this resource is currently reloaded. The flag is
+	 * set and unset in the reload() method and used to decide what kinds of
+	 * constraints (live or batch) need to be evaluated. This decision is made in
+	 * runValidators().
+	 */
+	private boolean isReloading = false;
 	private org.emftext.language.xpath2.resource.xpath2.util.Xpath2InterruptibleEcoreResolver interruptibleResolver;
 	
 	protected org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation metaInformation = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation();
@@ -165,12 +193,12 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		resetLocationMap();
 	}
 	
-	public Xpath2Resource(org.eclipse.emf.common.util.URI uri) {
+	public Xpath2Resource(URI uri) {
 		super(uri);
 		resetLocationMap();
 	}
 	
-	protected void doLoad(java.io.InputStream inputStream, java.util.Map<?,?> options) throws java.io.IOException {
+	protected void doLoad(InputStream inputStream, Map<?,?> options) throws IOException {
 		synchronized (loadingLock) {
 			if (processTerminationRequested()) {
 				return;
@@ -179,7 +207,7 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 			delayNotifications = true;
 			resetLocationMap();
 			String encoding = getEncoding(options);
-			java.io.InputStream actualInputStream = inputStream;
+			InputStream actualInputStream = inputStream;
 			Object inputStreamPreProcessorProvider = null;
 			if (options != null) {
 				inputStreamPreProcessorProvider = options.get(org.emftext.language.xpath2.resource.xpath2.IXpath2Options.INPUT_STREAM_PREPROCESSOR_PROVIDER);
@@ -192,6 +220,8 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 				}
 			}
 			
+			// We store the parser instance in a field instead of a local variable, because we
+			// may need to terminate the parser from another thread.
 			parser = getMetaInformation().createParser(actualInputStream, encoding);
 			parser.setOptions(options);
 			org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolverSwitch referenceResolverSwitch = getReferenceResolverSwitch();
@@ -206,11 +236,18 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 			}
 			
 			clearState();
-			getContentsInternal().clear();
-			org.eclipse.emf.ecore.EObject root = null;
+			unloadAndClearContents();
+			// We must set the load options again since they are deleted by the unload()
+			// method.
+			this.loadOptions = options;
+			EObject root = null;
 			if (result != null) {
 				root = result.getRoot();
 				if (root != null) {
+					org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap newLocationMap = result.getLocationMap();
+					if (newLocationMap != null) {
+						this.locationMap = newLocationMap;
+					}
 					if (isLayoutInformationRecordingEnabled()) {
 						layoutUtil.transferAllLayoutInformationToModel(root);
 					}
@@ -220,7 +257,7 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 					}
 					getContentsInternal().add(root);
 				}
-				java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>> commands = result.getPostParseCommands();
+				Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>> commands = result.getPostParseCommands();
 				if (commands != null) {
 					for (org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>  command : commands) {
 						command.execute(this);
@@ -240,6 +277,20 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		}
 	}
 	
+	protected void unloadAndClearContents() {
+		List<EObject> contentsInternal = getContentsInternal();
+		// unload the root objects
+		for (EObject eObject : contentsInternal) {
+			if (eObject instanceof InternalEObject) {
+				unloaded((InternalEObject) eObject);
+			}
+		}
+		// unload all children using the super class method
+		unload();
+		// now we can clear the contents
+		contentsInternal.clear();
+	}
+	
 	protected boolean processTerminationRequested() {
 		if (terminateReload) {
 			delayNotifications = false;
@@ -248,29 +299,32 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		}
 		return false;
 	}
+	
 	protected void notifyDelayed() {
 		delayNotifications = false;
-		for (org.eclipse.emf.common.notify.Notification delayedNotification : delayedNotifications) {
+		for (Notification delayedNotification : delayedNotifications) {
 			super.eNotify(delayedNotification);
 		}
 		delayedNotifications.clear();
 	}
-	public void eNotify(org.eclipse.emf.common.notify.Notification notification) {
+	
+	public void eNotify(Notification notification) {
 		if (delayNotifications) {
 			delayedNotifications.add(notification);
 		} else {
 			super.eNotify(notification);
 		}
 	}
+	
 	/**
 	 * Reloads the contents of this resource from the given stream.
 	 */
-	public void reload(java.io.InputStream inputStream, java.util.Map<?,?> options) throws java.io.IOException {
+	public void reload(InputStream inputStream, Map<?,?> options) throws IOException {
 		synchronized (terminateReloadLock) {
 			latestReloadInputStream = inputStream;
 			latestReloadOptions = options;
 			if (terminateReload == true) {
-				// //reload already requested
+				// reload already requested
 			}
 			terminateReload = true;
 		}
@@ -280,12 +334,16 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 				terminateReload = false;
 			}
 			isLoaded = false;
-			java.util.Map<Object, Object> loadOptions = addDefaultLoadOptions(latestReloadOptions);
+			Map<Object, Object> loadOptions = addDefaultLoadOptions(latestReloadOptions);
 			try {
+				// Set isReloading flag to allow other method to differentiate between loading and
+				// reloading.
+				this.isReloading = true;
 				doLoad(latestReloadInputStream, loadOptions);
 			} catch (org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException tpe) {
 				// do nothing - the resource is left unchanged if this exception is thrown
 			}
+			this.isReloading = false;
 			resolveAfterParsing();
 			isLoaded = true;
 		}
@@ -313,12 +371,13 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		}
 	}
 	
-	protected void doSave(java.io.OutputStream outputStream, java.util.Map<?,?> options) throws java.io.IOException {
+	protected void doSave(OutputStream outputStream, Map<?,?> options) throws IOException {
 		org.emftext.language.xpath2.resource.xpath2.IXpath2TextPrinter printer = getMetaInformation().createPrinter(outputStream, this);
 		org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolverSwitch referenceResolverSwitch = getReferenceResolverSwitch();
 		printer.setEncoding(getEncoding(options));
+		printer.setOptions(options);
 		referenceResolverSwitch.setOptions(options);
-		for (org.eclipse.emf.ecore.EObject root : getContentsInternal()) {
+		for (EObject root : getContentsInternal()) {
 			if (isLayoutInformationRecordingEnabled()) {
 				layoutUtil.transferAllLayoutInformationFromModel(root);
 			}
@@ -333,7 +392,7 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		return "xpath2";
 	}
 	
-	public String getEncoding(java.util.Map<?, ?> options) {
+	public String getEncoding(Map<?, ?> options) {
 		String encoding = null;
 		if (new org.emftext.language.xpath2.resource.xpath2.util.Xpath2RuntimeUtil().isEclipsePlatformAvailable()) {
 			encoding = new org.emftext.language.xpath2.resource.xpath2.util.Xpath2EclipseProxy().getPlatformResourceEncoding(uri);
@@ -362,30 +421,28 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 	 * Clears the location map by replacing it with a new instance.
 	 */
 	protected void resetLocationMap() {
-		if (isLocationMapEnabled()) {
-			locationMap = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LocationMap();
-		} else {
-			locationMap = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2DevNullLocationMap();
-		}
+		// Although, the location map is obtained from the parser after every parse run,
+		// we initialize it here to avoid null pointer exceptions.
+		locationMap = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LocationMap();
 	}
 	
-	public void addURIFragment(String internalURIFragment, org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment<? extends org.eclipse.emf.ecore.EObject> uriFragment) {
+	public void addURIFragment(String internalURIFragment, org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment<? extends EObject> uriFragment) {
 		internalURIFragmentMap.put(internalURIFragment, uriFragment);
 	}
 	
-	public <ContainerType extends org.eclipse.emf.ecore.EObject, ReferenceType extends org.eclipse.emf.ecore.EObject> void registerContextDependentProxy(org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragmentFactory<ContainerType, ReferenceType> factory, ContainerType container, org.eclipse.emf.ecore.EReference reference, String id, org.eclipse.emf.ecore.EObject proxyElement, int position) {
-		org.eclipse.emf.ecore.InternalEObject proxy = (org.eclipse.emf.ecore.InternalEObject) proxyElement;
+	public <ContainerType extends EObject, ReferenceType extends EObject> void registerContextDependentProxy(org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragmentFactory<ContainerType, ReferenceType> factory, ContainerType container, EReference reference, String id, EObject proxyElement, int position) {
+		InternalEObject proxy = (InternalEObject) proxyElement;
 		String internalURIFragment = org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment.INTERNAL_URI_FRAGMENT_PREFIX + (proxyCounter++) + "_" + id;
 		org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment<?> uriFragment = factory.create(id, container, reference, position, proxy);
 		proxy.eSetProxyURI(getURI().appendFragment(internalURIFragment));
 		addURIFragment(internalURIFragment, uriFragment);
 	}
 	
-	public org.eclipse.emf.ecore.EObject getEObject(String id) {
+	public EObject getEObject(String id) {
 		if (internalURIFragmentMap.containsKey(id)) {
-			org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment<? extends org.eclipse.emf.ecore.EObject> uriFragment = internalURIFragmentMap.get(id);
+			org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment<? extends EObject> uriFragment = internalURIFragmentMap.get(id);
 			boolean wasResolvedBefore = uriFragment.isResolved();
-			org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult<? extends org.eclipse.emf.ecore.EObject> result = null;
+			org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult<? extends EObject> result = null;
 			// catch and report all Exceptions that occur during proxy resolving
 			try {
 				result = uriFragment.resolve();
@@ -404,15 +461,15 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 			} else if (!result.wasResolved()) {
 				return null;
 			} else {
-				org.eclipse.emf.ecore.EObject proxy = uriFragment.getProxy();
+				EObject proxy = uriFragment.getProxy();
 				// remove an error that might have been added by an earlier attempt
 				removeDiagnostics(proxy, getErrors());
 				// remove old warnings and attach new
 				removeDiagnostics(proxy, getWarnings());
 				attachResolveWarnings(result, proxy);
-				org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<? extends org.eclipse.emf.ecore.EObject> mapping = result.getMappings().iterator().next();
-				org.eclipse.emf.ecore.EObject resultElement = getResultElement(uriFragment, mapping, proxy, result.getErrorMessage());
-				org.eclipse.emf.ecore.EObject container = uriFragment.getContainer();
+				org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<? extends EObject> mapping = result.getMappings().iterator().next();
+				EObject resultElement = getResultElement(uriFragment, mapping, proxy, result.getErrorMessage());
+				EObject container = uriFragment.getContainer();
 				replaceProxyInLayoutAdapters(container, proxy, resultElement);
 				return resultElement;
 			}
@@ -421,8 +478,8 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		}
 	}
 	
-	protected void replaceProxyInLayoutAdapters(org.eclipse.emf.ecore.EObject container, org.eclipse.emf.ecore.EObject proxy, org.eclipse.emf.ecore.EObject target) {
-		for (org.eclipse.emf.common.notify.Adapter adapter : container.eAdapters()) {
+	protected void replaceProxyInLayoutAdapters(EObject container, EObject proxy, EObject target) {
+		for (Adapter adapter : container.eAdapters()) {
 			if (adapter instanceof org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformationAdapter) {
 				org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformationAdapter layoutInformationAdapter = (org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformationAdapter) adapter;
 				layoutInformationAdapter.replaceProxy(proxy, target);
@@ -430,11 +487,11 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		}
 	}
 	
-	protected org.eclipse.emf.ecore.EObject getResultElement(org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment<? extends org.eclipse.emf.ecore.EObject> uriFragment, org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<? extends org.eclipse.emf.ecore.EObject> mapping, org.eclipse.emf.ecore.EObject proxy, final String errorMessage) {
+	protected EObject getResultElement(org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment<? extends EObject> uriFragment, org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<? extends EObject> mapping, EObject proxy, final String errorMessage) {
 		if (mapping instanceof org.emftext.language.xpath2.resource.xpath2.IXpath2URIMapping<?>) {
-			org.eclipse.emf.common.util.URI uri = ((org.emftext.language.xpath2.resource.xpath2.IXpath2URIMapping<? extends org.eclipse.emf.ecore.EObject>)mapping).getTargetIdentifier();
+			URI uri = ((org.emftext.language.xpath2.resource.xpath2.IXpath2URIMapping<? extends EObject>)mapping).getTargetIdentifier();
 			if (uri != null) {
-				org.eclipse.emf.ecore.EObject result = null;
+				EObject result = null;
 				try {
 					result = this.getResourceSet().getEObject(uri, true);
 				} catch (Exception e) {
@@ -453,12 +510,12 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 			}
 			return null;
 		} else if (mapping instanceof org.emftext.language.xpath2.resource.xpath2.IXpath2ElementMapping<?>) {
-			org.eclipse.emf.ecore.EObject element = ((org.emftext.language.xpath2.resource.xpath2.IXpath2ElementMapping<? extends org.eclipse.emf.ecore.EObject>)mapping).getTargetElement();
-			org.eclipse.emf.ecore.EReference reference = uriFragment.getReference();
-			org.eclipse.emf.ecore.EReference oppositeReference = uriFragment.getReference().getEOpposite();
+			EObject element = ((org.emftext.language.xpath2.resource.xpath2.IXpath2ElementMapping<? extends EObject>)mapping).getTargetElement();
+			EReference reference = uriFragment.getReference();
+			EReference oppositeReference = uriFragment.getReference().getEOpposite();
 			if (!uriFragment.getReference().isContainment() && oppositeReference != null) {
 				if (reference.isMany()) {
-					org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList.ManyInverse<org.eclipse.emf.ecore.EObject> list = org.emftext.language.xpath2.resource.xpath2.util.Xpath2CastUtil.cast(element.eGet(oppositeReference, false));										// avoids duplicate entries in the reference caused by adding to the
+					ManyInverse<EObject> list = org.emftext.language.xpath2.resource.xpath2.util.Xpath2CastUtil.cast(element.eGet(oppositeReference, false));										// avoids duplicate entries in the reference caused by adding to the
 					// oppositeReference
 					list.basicAdd(uriFragment.getContainer(),null);
 				} else {
@@ -472,9 +529,9 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		}
 	}
 	
-	protected void removeDiagnostics(org.eclipse.emf.ecore.EObject cause, java.util.List<org.eclipse.emf.ecore.resource.Resource.Diagnostic> diagnostics) {
+	protected void removeDiagnostics(EObject cause, List<Diagnostic> diagnostics) {
 		// remove all errors/warnings from this resource
-		for (org.eclipse.emf.ecore.resource.Resource.Diagnostic errorCand : new org.eclipse.emf.common.util.BasicEList<org.eclipse.emf.ecore.resource.Resource.Diagnostic>(diagnostics)) {
+		for (Diagnostic errorCand : new BasicEList<Diagnostic>(diagnostics)) {
 			if (errorCand instanceof org.emftext.language.xpath2.resource.xpath2.IXpath2TextDiagnostic) {
 				if (((org.emftext.language.xpath2.resource.xpath2.IXpath2TextDiagnostic) errorCand).wasCausedBy(cause)) {
 					diagnostics.remove(errorCand);
@@ -484,7 +541,7 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		}
 	}
 	
-	protected void attachResolveError(org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult<?> result, org.eclipse.emf.ecore.EObject proxy) {
+	protected void attachResolveError(org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult<?> result, EObject proxy) {
 		// attach errors to this resource
 		assert result != null;
 		final String errorMessage = result.getErrorMessage();
@@ -495,11 +552,11 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		}
 	}
 	
-	protected void attachResolveWarnings(org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult<? extends org.eclipse.emf.ecore.EObject> result, org.eclipse.emf.ecore.EObject proxy) {
+	protected void attachResolveWarnings(org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult<? extends EObject> result, EObject proxy) {
 		assert result != null;
 		assert result.wasResolved();
 		if (result.wasResolved()) {
-			for (org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<? extends org.eclipse.emf.ecore.EObject> mapping : result.getMappings()) {
+			for (org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<? extends EObject> mapping : result.getMappings()) {
 				final String warningMessage = mapping.getWarning();
 				if (warningMessage == null) {
 					continue;
@@ -522,7 +579,7 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 	/**
 	 * Runs all post processors to process this resource.
 	 */
-	protected boolean runPostProcessors(java.util.Map<?, ?> loadOptions) {
+	protected boolean runPostProcessors(Map<?, ?> loadOptions) {
 		unmark(org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemType.ANALYSIS_PROBLEM);
 		if (processTerminationRequested()) {
 			return false;
@@ -538,7 +595,7 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		if (resourcePostProcessorProvider != null) {
 			if (resourcePostProcessorProvider instanceof org.emftext.language.xpath2.resource.xpath2.IXpath2ResourcePostProcessorProvider) {
 				runPostProcessor(((org.emftext.language.xpath2.resource.xpath2.IXpath2ResourcePostProcessorProvider) resourcePostProcessorProvider).getResourcePostProcessor());
-			} else if (resourcePostProcessorProvider instanceof java.util.Collection<?>) {
+			} else if (resourcePostProcessorProvider instanceof Collection<?>) {
 				java.util.Collection<?> resourcePostProcessorProviderCollection = (java.util.Collection<?>) resourcePostProcessorProvider;
 				for (Object processorProvider : resourcePostProcessorProviderCollection) {
 					if (processTerminationRequested()) {
@@ -568,8 +625,8 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		this.runningPostProcessor = null;
 	}
 	
-	public void load(java.util.Map<?, ?> options) throws java.io.IOException {
-		java.util.Map<Object, Object> loadOptions = addDefaultLoadOptions(options);
+	public void load(Map<?, ?> options) throws IOException {
+		Map<Object, Object> loadOptions = addDefaultLoadOptions(options);
 		super.load(loadOptions);
 		resolveAfterParsing();
 	}
@@ -580,10 +637,10 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		interruptibleResolver = null;
 	}
 	
-	public void setURI(org.eclipse.emf.common.util.URI uri) {
+	public void setURI(URI uri) {
 		// because of the context dependent proxy resolving it is essential to resolve all
 		// proxies before the URI is changed which can cause loss of object identities
-		org.eclipse.emf.ecore.util.EcoreUtil.resolveAll(this);
+		EcoreUtil.resolveAll(this);
 		super.setURI(uri);
 	}
 	
@@ -595,7 +652,7 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		return locationMap;
 	}
 	
-	public void addProblem(org.emftext.language.xpath2.resource.xpath2.IXpath2Problem problem, org.eclipse.emf.ecore.EObject element) {
+	public void addProblem(org.emftext.language.xpath2.resource.xpath2.IXpath2Problem problem, EObject element) {
 		ElementBasedTextDiagnostic diagnostic = new ElementBasedTextDiagnostic(locationMap, getURI(), problem, element);
 		getDiagnostics(problem.getSeverity()).add(diagnostic);
 		mark(diagnostic);
@@ -610,7 +667,7 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 	}
 	
 	protected void addQuickFixesToQuickFixMap(org.emftext.language.xpath2.resource.xpath2.IXpath2Problem problem) {
-		java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> quickFixes = problem.getQuickFixes();
+		Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> quickFixes = problem.getQuickFixes();
 		if (quickFixes != null) {
 			for (org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix quickFix : quickFixes) {
 				if (quickFix != null) {
@@ -620,25 +677,25 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		}
 	}
 	
-	@Deprecated	
-	public void addError(String message, org.eclipse.emf.ecore.EObject cause) {
+	@Deprecated
+	public void addError(String message, EObject cause) {
 		addError(message, org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemType.UNKNOWN, cause);
 	}
 	
-	public void addError(String message, org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemType type, org.eclipse.emf.ecore.EObject cause) {
+	public void addError(String message, org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemType type, EObject cause) {
 		addProblem(new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Problem(message, type, org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemSeverity.ERROR), cause);
 	}
 	
-	@Deprecated	
-	public void addWarning(String message, org.eclipse.emf.ecore.EObject cause) {
+	@Deprecated
+	public void addWarning(String message, EObject cause) {
 		addWarning(message, org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemType.UNKNOWN, cause);
 	}
 	
-	public void addWarning(String message, org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemType type, org.eclipse.emf.ecore.EObject cause) {
+	public void addWarning(String message, org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemType type, EObject cause) {
 		addProblem(new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Problem(message, type, org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemSeverity.WARNING), cause);
 	}
 	
-	protected java.util.List<org.eclipse.emf.ecore.resource.Resource.Diagnostic> getDiagnostics(org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemSeverity severity) {
+	protected List<Diagnostic> getDiagnostics(org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemSeverity severity) {
 		if (severity == org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemSeverity.ERROR) {
 			return getErrors();
 		} else {
@@ -646,8 +703,8 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		}
 	}
 	
-	protected java.util.Map<Object, Object> addDefaultLoadOptions(java.util.Map<?, ?> loadOptions) {
-		java.util.Map<Object, Object> loadOptionsCopy = org.emftext.language.xpath2.resource.xpath2.util.Xpath2MapUtil.copySafelyToObjectToObjectMap(loadOptions);
+	protected Map<Object, Object> addDefaultLoadOptions(Map<?, ?> loadOptions) {
+		Map<Object, Object> loadOptionsCopy = org.emftext.language.xpath2.resource.xpath2.util.Xpath2MapUtil.copySafelyToObjectToObjectMap(loadOptions);
 		// first add static option provider
 		loadOptionsCopy.putAll(new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2OptionProvider().getOptions());
 		
@@ -668,9 +725,19 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		internalURIFragmentMap.clear();
 		getErrors().clear();
 		getWarnings().clear();
+		// Remove temporary markers
 		unmark(org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemType.UNKNOWN);
 		unmark(org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemType.SYNTAX_ERROR);
 		unmark(org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemType.UNRESOLVED_REFERENCE);
+		unmark(org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemType.LIVE_CONSTRAINT_PROBLEM);
+		// If the resource is reloaded, we do not remove the problems that were detected
+		// by batch constraints. This ensures that we can see the problems while typing.
+		// The problems might get out dated because of the ongoing modifications, but they
+		// will be updated (i.e., deleted and recreated) the next time the resource is
+		// saved (and loaded again).
+		if (!isReloading) {
+			unmark(org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemType.BATCH_CONSTRAINT_PROBLEM);
+		}
 		proxyCounter = 0;
 		resolverSwitch = null;
 	}
@@ -681,22 +748,22 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 	 * sure that clients which obtain a reference to the list of contents do not
 	 * interfere when changing the list.
 	 */
-	public org.eclipse.emf.common.util.EList<org.eclipse.emf.ecore.EObject> getContents() {
+	public EList<EObject> getContents() {
 		if (terminateReload) {
 			// the contents' state is currently unclear
-			return new org.eclipse.emf.common.util.BasicEList<org.eclipse.emf.ecore.EObject>();
+			return new BasicEList<EObject>();
 		}
-		return new org.emftext.language.xpath2.resource.xpath2.util.Xpath2CopiedEObjectInternalEList((org.eclipse.emf.ecore.util.InternalEList<org.eclipse.emf.ecore.EObject>) super.getContents());
+		return new org.emftext.language.xpath2.resource.xpath2.util.Xpath2CopiedEObjectInternalEList((InternalEList<EObject>) super.getContents());
 	}
 	
 	/**
 	 * Returns the raw contents of this resource. In contrast to getContents(), this
 	 * methods does not return a copy of the content list, but the original list.
 	 */
-	public org.eclipse.emf.common.util.EList<org.eclipse.emf.ecore.EObject> getContentsInternal() {
+	public EList<EObject> getContentsInternal() {
 		if (terminateReload) {
 			// the contents' state is currently unclear
-			return new org.eclipse.emf.common.util.BasicEList<org.eclipse.emf.ecore.EObject>();
+			return new BasicEList<EObject>();
 		}
 		return super.getContents();
 	}
@@ -704,31 +771,48 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 	/**
 	 * Returns all warnings that are associated with this resource.
 	 */
-	public org.eclipse.emf.common.util.EList<org.eclipse.emf.ecore.resource.Resource.Diagnostic> getWarnings() {
+	public EList<Diagnostic> getWarnings() {
 		if (terminateReload) {
 			// the contents' state is currently unclear
-			return new org.eclipse.emf.common.util.BasicEList<org.eclipse.emf.ecore.resource.Resource.Diagnostic>();
+			return new BasicEList<Diagnostic>();
 		}
-		return new org.emftext.language.xpath2.resource.xpath2.util.Xpath2CopiedEList<org.eclipse.emf.ecore.resource.Resource.Diagnostic>(super.getWarnings());
+		return new org.emftext.language.xpath2.resource.xpath2.util.Xpath2CopiedEList<Diagnostic>(super.getWarnings());
 	}
 	
 	/**
 	 * Returns all errors that are associated with this resource.
 	 */
-	public org.eclipse.emf.common.util.EList<org.eclipse.emf.ecore.resource.Resource.Diagnostic> getErrors() {
+	public EList<Diagnostic> getErrors() {
 		if (terminateReload) {
 			// the contents' state is currently unclear
-			return new org.eclipse.emf.common.util.BasicEList<org.eclipse.emf.ecore.resource.Resource.Diagnostic>();
+			return new BasicEList<Diagnostic>();
 		}
-		return new org.emftext.language.xpath2.resource.xpath2.util.Xpath2CopiedEList<org.eclipse.emf.ecore.resource.Resource.Diagnostic>(super.getErrors());
+		return new org.emftext.language.xpath2.resource.xpath2.util.Xpath2CopiedEList<Diagnostic>(super.getErrors());
 	}
 	
-	protected void runValidators(org.eclipse.emf.ecore.EObject root) {
+	/**
+	 * Returns true if errors are associated with this resource.
+	 */
+	public boolean hasErrors() {
+		// We use the method of the super class to avoid copying the list of errors which
+		// is done by getErrors() in this class. Creating a copy is not required to check
+		// whether the list of errors is empty and moreover it did cause race conditions
+		// in the editor that led to ArrayIndexOutOfBoundsExceptions while copying the
+		// error list.
+		return !super.getErrors().isEmpty();
+	}
+	
+	protected void runValidators(EObject root) {
 		// checking constraints provided by EMF validator classes was disabled by option
 		// 'disableEValidators'.
 		
 		if (new org.emftext.language.xpath2.resource.xpath2.util.Xpath2RuntimeUtil().isEclipsePlatformAvailable()) {
-			new org.emftext.language.xpath2.resource.xpath2.util.Xpath2EclipseProxy().checkEMFValidationConstraints(this, root);
+			if (loadOptions == null || !Boolean.TRUE.equals(loadOptions.get(org.emftext.language.xpath2.resource.xpath2.IXpath2Options.DISABLE_EMF_VALIDATION))) {
+				// We do only evaluate batch constraints when the resource is loaded for the first
+				// time. If the resource is reloaded, only live constraints are evaluated.
+				boolean includeBatchConstraints = !this.isReloading;
+				new org.emftext.language.xpath2.resource.xpath2.util.Xpath2EclipseProxy().checkEMFValidationConstraints(this, root, includeBatchConstraints);
+			}
 		}
 	}
 	
@@ -743,7 +827,7 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		}
 	}
 	
-	protected void unmark(org.eclipse.emf.ecore.EObject cause) {
+	protected void unmark(EObject cause) {
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MarkerHelper markerHelper = getMarkerHelper();
 		if (markerHelper != null) {
 			markerHelper.unmark(this, cause);
@@ -771,21 +855,24 @@ public class Xpath2Resource extends org.eclipse.emf.ecore.resource.impl.Resource
 		if (loadOptions == null) {
 			return true;
 		}
-		return !loadOptions.containsKey(org.emftext.language.xpath2.resource.xpath2.IXpath2Options.DISABLE_CREATING_MARKERS_FOR_PROBLEMS);
+		Object value = loadOptions.get(org.emftext.language.xpath2.resource.xpath2.IXpath2Options.DISABLE_CREATING_MARKERS_FOR_PROBLEMS);
+		return value == null || Boolean.FALSE.equals(value);
 	}
 	
-	protected boolean isLocationMapEnabled() {
+	public boolean isLocationMapEnabled() {
 		if (loadOptions == null) {
 			return true;
 		}
-		return !loadOptions.containsKey(org.emftext.language.xpath2.resource.xpath2.IXpath2Options.DISABLE_LOCATION_MAP);
+		Object value = loadOptions.get(org.emftext.language.xpath2.resource.xpath2.IXpath2Options.DISABLE_LOCATION_MAP);
+		return value == null || Boolean.FALSE.equals(value);
 	}
 	
-	protected boolean isLayoutInformationRecordingEnabled() {
+	public boolean isLayoutInformationRecordingEnabled() {
 		if (loadOptions == null) {
 			return true;
 		}
-		return !loadOptions.containsKey(org.emftext.language.xpath2.resource.xpath2.IXpath2Options.DISABLE_LAYOUT_INFORMATION_RECORDING);
+		Object value = loadOptions.get(org.emftext.language.xpath2.resource.xpath2.IXpath2Options.DISABLE_LAYOUT_INFORMATION_RECORDING);
+		return value == null || Boolean.FALSE.equals(value);
 	}
 	
 }

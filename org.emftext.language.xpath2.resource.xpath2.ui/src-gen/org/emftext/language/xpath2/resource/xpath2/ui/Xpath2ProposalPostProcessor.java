@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,12 +10,14 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.ui;
 
+import java.util.List;
+
 /**
  * A class which can be overridden to customize code completion proposals.
  */
 public class Xpath2ProposalPostProcessor {
 	
-	public java.util.List<org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal> process(java.util.List<org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal> proposals) {
+	public List<org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal> process(List<org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal> proposals) {
 		// the default implementation does returns the proposals as they are
 		return proposals;
 	}

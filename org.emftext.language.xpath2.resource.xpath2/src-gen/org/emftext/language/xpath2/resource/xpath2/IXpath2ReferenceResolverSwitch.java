@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,9 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * A IXpath2ReferenceResolverSwitch holds references to multiple other reference
@@ -25,5 +28,5 @@ public interface IXpath2ReferenceResolverSwitch extends org.emftext.language.xpa
 	 * @param reference The reference that points to the target of the reference.
 	 * @param result an object to store the result of the resolve operation.
 	 */
-	public void resolveFuzzy(String identifier, org.eclipse.emf.ecore.EObject container, org.eclipse.emf.ecore.EReference reference, int position, org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult<org.eclipse.emf.ecore.EObject> result);
+	public void resolveFuzzy(String identifier, EObject container, EReference reference, int position, org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult<EObject> result);
 }

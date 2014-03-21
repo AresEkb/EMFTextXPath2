@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,13 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
 /**
  * Standard implementation of <code>IContextDependentURIFragment</code>.
  * 
@@ -18,18 +25,18 @@ package org.emftext.language.xpath2.resource.xpath2.mopp;
  * @param <ReferenceType> the type of the reference which shall be resolved by
  * this fragment.
  */
-public abstract class Xpath2ContextDependentURIFragment<ContainerType extends org.eclipse.emf.ecore.EObject, ReferenceType extends org.eclipse.emf.ecore.EObject> implements org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment<ReferenceType> {
+public abstract class Xpath2ContextDependentURIFragment<ContainerType extends EObject, ReferenceType extends EObject> implements org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment<ReferenceType> {
 	
 	protected String identifier;
 	protected ContainerType container;
-	protected org.eclipse.emf.ecore.EReference reference;
+	protected EReference reference;
 	protected int positionInReference;
-	protected org.eclipse.emf.ecore.EObject proxy;
+	protected EObject proxy;
 	protected org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult<ReferenceType> result;
 	
 	private boolean resolving;
 	
-	public Xpath2ContextDependentURIFragment(String identifier, ContainerType container, org.eclipse.emf.ecore.EReference reference, int positionInReference, org.eclipse.emf.ecore.EObject proxy) {
+	public Xpath2ContextDependentURIFragment(String identifier, ContainerType container, EReference reference, int positionInReference, EObject proxy) {
 		this.identifier = identifier;
 		this.container = container;
 		this.reference = reference;
@@ -68,9 +75,9 @@ public abstract class Xpath2ContextDependentURIFragment<ContainerType extends or
 	public abstract org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolver<ContainerType, ReferenceType> getResolver();
 	
 	private void handleMultipleResults() {
-		org.eclipse.emf.common.util.EList<org.eclipse.emf.ecore.EObject> list = null;
+		EList<EObject> list = null;
 		Object temp = container.eGet(reference);
-		if (temp instanceof org.eclipse.emf.common.util.EList<?>) {
+		if (temp instanceof EList<?>) {
 			list = org.emftext.language.xpath2.resource.xpath2.util.Xpath2CastUtil.cast(temp);
 		}
 		
@@ -86,16 +93,16 @@ public abstract class Xpath2ContextDependentURIFragment<ContainerType extends or
 		}
 	}
 	
-	private void addResultToList(org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<ReferenceType> mapping, org.eclipse.emf.ecore.EObject proxy, org.eclipse.emf.common.util.EList<org.eclipse.emf.ecore.EObject> list) {
-		org.eclipse.emf.ecore.EObject target = null;
+	private void addResultToList(org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<ReferenceType> mapping, EObject proxy, EList<EObject> list) {
+		EObject target = null;
 		int proxyPosition = list.indexOf(proxy);
 		
 		if (mapping instanceof org.emftext.language.xpath2.resource.xpath2.IXpath2ElementMapping<?>) {
 			target = ((org.emftext.language.xpath2.resource.xpath2.IXpath2ElementMapping<ReferenceType>) mapping).getTargetElement();
 		} else if (mapping instanceof org.emftext.language.xpath2.resource.xpath2.IXpath2URIMapping<?>) {
-			target = org.eclipse.emf.ecore.util.EcoreUtil.copy(proxy);
-			org.eclipse.emf.common.util.URI uri = ((org.emftext.language.xpath2.resource.xpath2.IXpath2URIMapping<ReferenceType>) mapping).getTargetIdentifier();
-			((org.eclipse.emf.ecore.InternalEObject) target).eSetProxyURI(uri);
+			target = EcoreUtil.copy(proxy);
+			URI uri = ((org.emftext.language.xpath2.resource.xpath2.IXpath2URIMapping<ReferenceType>) mapping).getTargetIdentifier();
+			((InternalEObject) target).eSetProxyURI(uri);
 		} else {
 			assert false;
 		}
@@ -127,7 +134,7 @@ public abstract class Xpath2ContextDependentURIFragment<ContainerType extends or
 		return container;
 	}
 	
-	public org.eclipse.emf.ecore.EReference getReference() {
+	public EReference getReference() {
 		return reference;
 	}
 	
@@ -135,7 +142,7 @@ public abstract class Xpath2ContextDependentURIFragment<ContainerType extends or
 		return positionInReference;
 	}
 	
-	public org.eclipse.emf.ecore.EObject getProxy() {
+	public EObject getProxy() {
 		return proxy;
 	}
 	

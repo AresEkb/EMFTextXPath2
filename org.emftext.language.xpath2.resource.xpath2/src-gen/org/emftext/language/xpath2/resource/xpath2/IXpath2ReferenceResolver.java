@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,9 @@
  */
 package org.emftext.language.xpath2.resource.xpath2;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+
 /**
  * A reference resolver tries to resolve a reference to one or many model elements
  * (EObjects). It is called by the EMF proxy resolution mechanism.
@@ -19,7 +22,7 @@ package org.emftext.language.xpath2.resource.xpath2;
  * @param <ReferenceType> the type of the reference that is resolved by this
  * resolver
  */
-public interface IXpath2ReferenceResolver<ContainerType extends org.eclipse.emf.ecore.EObject, ReferenceType extends org.eclipse.emf.ecore.EObject> extends org.emftext.language.xpath2.resource.xpath2.IXpath2Configurable {
+public interface IXpath2ReferenceResolver<ContainerType extends EObject, ReferenceType extends EObject> extends org.emftext.language.xpath2.resource.xpath2.IXpath2Configurable {
 	
 	/**
 	 * Attempts to resolve a reference string.
@@ -34,7 +37,7 @@ public interface IXpath2ReferenceResolver<ContainerType extends org.eclipse.emf.
 	 * @param result an object that can be used to store the result of the resolve
 	 * operation.
 	 */
-	public void resolve(String identifier, ContainerType container, org.eclipse.emf.ecore.EReference reference, int position, boolean resolveFuzzy, org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult<ReferenceType> result);
+	public void resolve(String identifier, ContainerType container, EReference reference, int position, boolean resolveFuzzy, org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult<ReferenceType> result);
 	
 	/**
 	 * Reverse of the resolve operation: constructs a String representing the given
@@ -46,6 +49,6 @@ public interface IXpath2ReferenceResolver<ContainerType extends org.eclipse.emf.
 	 * 
 	 * @return The identification string for the reference
 	 */
-	public String deResolve(ReferenceType element, ContainerType container, org.eclipse.emf.ecore.EReference reference);
+	public String deResolve(ReferenceType element, ContainerType container, EReference reference);
 	
 }

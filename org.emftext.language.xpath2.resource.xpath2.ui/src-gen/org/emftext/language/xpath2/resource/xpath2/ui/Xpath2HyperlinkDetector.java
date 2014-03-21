@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,11 +10,22 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.ui;
 
+import java.util.List;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.IRegion;
+import org.eclipse.jface.text.ITextViewer;
+import org.eclipse.jface.text.Region;
+import org.eclipse.jface.text.hyperlink.IHyperlink;
+import org.eclipse.jface.text.hyperlink.IHyperlinkDetector;
+
 /**
  * A hyperlink detector returns hyperlink if the token, where the mouse cursor
  * hovers, is a proxy.
  */
-public class Xpath2HyperlinkDetector implements org.eclipse.jface.text.hyperlink.IHyperlinkDetector {
+public class Xpath2HyperlinkDetector implements IHyperlinkDetector {
 	
 	private org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource textResource;
 	
@@ -23,17 +34,17 @@ public class Xpath2HyperlinkDetector implements org.eclipse.jface.text.hyperlink
 	 * 
 	 * @param resource the resource to use for calculating the locations.
 	 */
-	public Xpath2HyperlinkDetector(org.eclipse.emf.ecore.resource.Resource resource) {
+	public Xpath2HyperlinkDetector(Resource resource) {
 		textResource = (org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource) resource;
 	}
 	
-	public org.eclipse.jface.text.hyperlink.IHyperlink[] detectHyperlinks(org.eclipse.jface.text.ITextViewer textViewer, org.eclipse.jface.text.IRegion region, boolean canShowMultipleHyperlinks) {
+	public IHyperlink[] detectHyperlinks(ITextViewer textViewer, IRegion region, boolean canShowMultipleHyperlinks) {
 		org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap locationMap = textResource.getLocationMap();
-		java.util.List<org.eclipse.emf.ecore.EObject> elementsAtOffset = locationMap.getElementsAt(region.getOffset());
-		org.eclipse.emf.ecore.EObject resolvedEObject = null;
-		for (org.eclipse.emf.ecore.EObject eObject : elementsAtOffset) {
+		List<EObject> elementsAtOffset = locationMap.getElementsAt(region.getOffset());
+		EObject resolvedEObject = null;
+		for (EObject eObject : elementsAtOffset) {
 			if (eObject.eIsProxy()) {
-				resolvedEObject = org.eclipse.emf.ecore.util.EcoreUtil.resolve(eObject, textResource);
+				resolvedEObject = EcoreUtil.resolve(eObject, textResource);
 				if (resolvedEObject == eObject) {
 					continue;
 				}
@@ -42,13 +53,13 @@ public class Xpath2HyperlinkDetector implements org.eclipse.jface.text.hyperlink
 				String text = null;
 				try {
 					text = textViewer.getDocument().get(offset, length);
-				} catch (org.eclipse.jface.text.BadLocationException e) {
+				} catch (BadLocationException e) {
 				}
-				// we skipt elements that are not contained in a resource, because we cannot jump
+				// we skip elements that are not contained in a resource, because we cannot jump
 				// to them anyway
 				if (resolvedEObject.eResource() != null) {
-					org.eclipse.jface.text.hyperlink.IHyperlink hyperlink = new org.emftext.language.xpath2.resource.xpath2.ui.Xpath2Hyperlink(new org.eclipse.jface.text.Region(offset, length), resolvedEObject, text);
-					return new org.eclipse.jface.text.hyperlink.IHyperlink[] { hyperlink };
+					IHyperlink hyperlink = new org.emftext.language.xpath2.resource.xpath2.ui.Xpath2Hyperlink(new Region(offset, length), resolvedEObject, text);
+					return new IHyperlink[] {hyperlink};
 				}
 			}
 		}

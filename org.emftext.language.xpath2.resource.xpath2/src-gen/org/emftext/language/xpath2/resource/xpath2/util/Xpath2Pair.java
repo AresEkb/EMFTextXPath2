@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,7 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2.util;
+
 
 /**
  * A typed pair of objects.
@@ -34,7 +35,7 @@ public class Xpath2Pair<T1, T2> {
 		return right;
 	}
 	
-	@Override	
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -43,7 +44,7 @@ public class Xpath2Pair<T1, T2> {
 		return result;
 	}
 	
-	@Override	
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;

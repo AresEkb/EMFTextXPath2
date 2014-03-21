@@ -1,6 +1,26 @@
 // $ANTLR 3.4
 
 	package org.emftext.language.xpath2.resource.xpath2.mopp;
+	
+	import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import org.antlr.runtime3_4_0.ANTLRInputStream;
+import org.antlr.runtime3_4_0.BitSet;
+import org.antlr.runtime3_4_0.CommonToken;
+import org.antlr.runtime3_4_0.CommonTokenStream;
+import org.antlr.runtime3_4_0.IntStream;
+import org.antlr.runtime3_4_0.Lexer;
+import org.antlr.runtime3_4_0.RecognitionException;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 
 
 import org.antlr.runtime3_4_0.*;
@@ -149,18 +169,18 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     	 * This list is only filled if <code>rememberExpectedElements</code> is set to
     	 * true.
     	 */
-    	private java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> expectedElements = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal>();
+    	private List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> expectedElements = new ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal>();
     	
     	private int mismatchedTokenRecoveryTries = 0;
     	/**
     	 * A helper list to allow a lexer to pass errors to its parser
     	 */
-    	protected java.util.List<org.antlr.runtime3_4_0.RecognitionException> lexerExceptions = java.util.Collections.synchronizedList(new java.util.ArrayList<org.antlr.runtime3_4_0.RecognitionException>());
+    	protected List<RecognitionException> lexerExceptions = Collections.synchronizedList(new ArrayList<RecognitionException>());
     	
     	/**
     	 * Another helper list to allow a lexer to pass positions of errors to its parser
     	 */
-    	protected java.util.List<Integer> lexerExceptionsPosition = java.util.Collections.synchronizedList(new java.util.ArrayList<Integer>());
+    	protected List<Integer> lexerExceptionPositions = Collections.synchronizedList(new ArrayList<Integer>());
     	
     	/**
     	 * A stack for incomplete objects. This stack is used filled when the parser is
@@ -168,7 +188,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     	 * pushed on the stack. Once the element was parser completely it is popped from
     	 * the stack.
     	 */
-    	java.util.List<org.eclipse.emf.ecore.EObject> incompleteObjects = new java.util.ArrayList<org.eclipse.emf.ecore.EObject>();
+    	java.util.List<EObject> incompleteObjects = new java.util.ArrayList<EObject>();
     	
     	private int stopIncludingHiddenTokens;
     	private int stopExcludingHiddenTokens;
@@ -188,6 +208,15 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     	 */
     	private int lastStartIncludingHidden;
     	
+    	private org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap locationMap;
+    	
+    	private org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxErrorMessageConverter syntaxErrorMessageConverter = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxErrorMessageConverter(tokenNames);
+    	
+    	@Override
+    	public void reportError(RecognitionException re) {
+    		addErrorToResource(syntaxErrorMessageConverter.translateParseError(re));
+    	}
+    	
     	protected void addErrorToResource(final String errorMessage, final int column, final int line, final int startIndex, final int stopIndex) {
     		postParseCommands.add(new org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>() {
     			public boolean execute(org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource) {
@@ -205,7 +234,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     					public String getMessage() {
     						return errorMessage;
     					}
-    					public java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> getQuickFixes() {
+    					public Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> getQuickFixes() {
     						return null;
     					}
     				}, column, line, startIndex, stopIndex);
@@ -214,7 +243,14 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     		});
     	}
     	
-    	public void addExpectedElement(org.eclipse.emf.ecore.EClass eClass, int[] ids) {
+    	protected void addErrorToResource(org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LocalizedMessage message) {
+    		if (message == null) {
+    			return;
+    		}
+    		addErrorToResource(message.getMessage(), message.getColumn(), message.getLine(), message.getCharStart(), message.getCharEnd());
+    	}
+    	
+    	public void addExpectedElement(EClass eClass, int[] ids) {
     		if (!this.rememberExpectedElements) {
     			return;
     		}
@@ -226,7 +262,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     			containmentFeatures[i - 2] = org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FollowSetProvider.LINKS[ids[i]];
     		}
     		org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2ContainmentTrace containmentTrace = new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2ContainmentTrace(eClass, containmentFeatures);
-    		org.eclipse.emf.ecore.EObject container = getLastIncompleteElement();
+    		EObject container = getLastIncompleteElement();
     		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal expectedElement = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal(container, terminal, followSetID, containmentTrace);
     		setPosition(expectedElement, input.index());
     		int startIncludingHiddenTokens = expectedElement.getStartIncludingHiddenTokens();
@@ -239,20 +275,20 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     		this.expectedElements.add(expectedElement);
     	}
     	
-    	protected void collectHiddenTokens(org.eclipse.emf.ecore.EObject element) {
+    	protected void collectHiddenTokens(EObject element) {
     	}
     	
-    	protected void copyLocalizationInfos(final org.eclipse.emf.ecore.EObject source, final org.eclipse.emf.ecore.EObject target) {
+    	protected void copyLocalizationInfos(final EObject source, final EObject target) {
     		if (disableLocationMap) {
+    			return;
+    		}
+    		final org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap locationMap = this.locationMap;
+    		if (locationMap == null) {
+    			// the locationMap can be null if the parser is used for code completion
     			return;
     		}
     		postParseCommands.add(new org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>() {
     			public boolean execute(org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource) {
-    				org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap locationMap = resource.getLocationMap();
-    				if (locationMap == null) {
-    					// the locationMap can be null if the parser is used for code completion
-    					return true;
-    				}
     				locationMap.setCharStart(target, locationMap.getCharStart(source));
     				locationMap.setCharEnd(target, locationMap.getCharEnd(source));
     				locationMap.setColumn(target, locationMap.getColumn(source));
@@ -262,17 +298,17 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     		});
     	}
     	
-    	protected void copyLocalizationInfos(final org.antlr.runtime3_4_0.CommonToken source, final org.eclipse.emf.ecore.EObject target) {
+    	protected void copyLocalizationInfos(final CommonToken source, final EObject target) {
     		if (disableLocationMap) {
+    			return;
+    		}
+    		final org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap locationMap = this.locationMap;
+    		if (locationMap == null) {
+    			// the locationMap can be null if the parser is used for code completion
     			return;
     		}
     		postParseCommands.add(new org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>() {
     			public boolean execute(org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource) {
-    				org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap locationMap = resource.getLocationMap();
-    				if (locationMap == null) {
-    					// the locationMap can be null if the parser is used for code completion
-    					return true;
-    				}
     				if (source == null) {
     					return true;
     				}
@@ -289,17 +325,17 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     	 * Sets the end character index and the last line for the given object in the
     	 * location map.
     	 */
-    	protected void setLocalizationEnd(java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>> postParseCommands , final org.eclipse.emf.ecore.EObject object, final int endChar, final int endLine) {
+    	protected void setLocalizationEnd(Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>> postParseCommands , final EObject object, final int endChar, final int endLine) {
     		if (disableLocationMap) {
+    			return;
+    		}
+    		final org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap locationMap = this.locationMap;
+    		if (locationMap == null) {
+    			// the locationMap can be null if the parser is used for code completion
     			return;
     		}
     		postParseCommands.add(new org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>() {
     			public boolean execute(org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource) {
-    				org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap locationMap = resource.getLocationMap();
-    				if (locationMap == null) {
-    					// the locationMap can be null if the parser is used for code completion
-    					return true;
-    				}
     				locationMap.setCharEnd(object, endChar);
     				locationMap.setLine(object, endLine);
     				return true;
@@ -307,14 +343,14 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     		});
     	}
     	
-    	public org.emftext.language.xpath2.resource.xpath2.IXpath2TextParser createInstance(java.io.InputStream actualInputStream, String encoding) {
+    	public org.emftext.language.xpath2.resource.xpath2.IXpath2TextParser createInstance(InputStream actualInputStream, String encoding) {
     		try {
     			if (encoding == null) {
-    				return new Xpath2Parser(new org.antlr.runtime3_4_0.CommonTokenStream(new Xpath2Lexer(new org.antlr.runtime3_4_0.ANTLRInputStream(actualInputStream))));
+    				return new Xpath2Parser(new CommonTokenStream(new Xpath2Lexer(new ANTLRInputStream(actualInputStream))));
     			} else {
-    				return new Xpath2Parser(new org.antlr.runtime3_4_0.CommonTokenStream(new Xpath2Lexer(new org.antlr.runtime3_4_0.ANTLRInputStream(actualInputStream, encoding))));
+    				return new Xpath2Parser(new CommonTokenStream(new Xpath2Lexer(new ANTLRInputStream(actualInputStream, encoding))));
     			}
-    		} catch (java.io.IOException e) {
+    		} catch (IOException e) {
     			new org.emftext.language.xpath2.resource.xpath2.util.Xpath2RuntimeUtil().logError("Error while creating parser.", e);
     			return null;
     		}
@@ -327,16 +363,16 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     		super(null);
     	}
     	
-    	protected org.eclipse.emf.ecore.EObject doParse() throws org.antlr.runtime3_4_0.RecognitionException {
+    	protected EObject doParse() throws RecognitionException {
     		this.lastPosition = 0;
     		// required because the lexer class can not be subclassed
     		((Xpath2Lexer) getTokenStream().getTokenSource()).lexerExceptions = lexerExceptions;
-    		((Xpath2Lexer) getTokenStream().getTokenSource()).lexerExceptionsPosition = lexerExceptionsPosition;
+    		((Xpath2Lexer) getTokenStream().getTokenSource()).lexerExceptionPositions = lexerExceptionPositions;
     		Object typeObject = getTypeObject();
     		if (typeObject == null) {
     			return start();
-    		} else if (typeObject instanceof org.eclipse.emf.ecore.EClass) {
-    			org.eclipse.emf.ecore.EClass type = (org.eclipse.emf.ecore.EClass) typeObject;
+    		} else if (typeObject instanceof EClass) {
+    			EClass type = (EClass) typeObject;
     			if (type.getInstanceClass() == org.emftext.language.xpath2.Expr.class) {
     				return parse_org_emftext_language_xpath2_Expr();
     			}
@@ -549,7 +585,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     		return mismatchedTokenRecoveryTries;
     	}
     	
-    	public Object getMissingSymbol(org.antlr.runtime3_4_0.IntStream arg0, org.antlr.runtime3_4_0.RecognitionException arg1, int arg2, org.antlr.runtime3_4_0.BitSet arg3) {
+    	public Object getMissingSymbol(IntStream arg0, RecognitionException arg1, int arg2, BitSet arg3) {
     		mismatchedTokenRecoveryTries++;
     		return super.getMissingSymbol(arg0, arg1, arg2, arg3);
     	}
@@ -563,7 +599,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     		if (typeObject != null) {
     			return typeObject;
     		}
-    		java.util.Map<?,?> options = getOptions();
+    		Map<?,?> options = getOptions();
     		if (options != null) {
     			typeObject = options.get(org.emftext.language.xpath2.resource.xpath2.IXpath2Options.RESOURCE_CONTENT_TYPE);
     		}
@@ -575,17 +611,25 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     	 * RecognitionExceptions.
     	 */
     	public org.emftext.language.xpath2.resource.xpath2.IXpath2ParseResult parse() {
+    		// Reset parser state
     		terminateParsing = false;
-    		postParseCommands = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>>();
+    		postParseCommands = new ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>>();
     		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ParseResult parseResult = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ParseResult();
+    		if (disableLocationMap) {
+    			locationMap = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2DevNullLocationMap();
+    		} else {
+    			locationMap = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LocationMap();
+    		}
+    		// Run parser
     		try {
-    			org.eclipse.emf.ecore.EObject result =  doParse();
+    			EObject result =  doParse();
     			if (lexerExceptions.isEmpty()) {
     				parseResult.setRoot(result);
+    				parseResult.setLocationMap(locationMap);
     			}
-    		} catch (org.antlr.runtime3_4_0.RecognitionException re) {
-    			reportError(re);
-    		} catch (java.lang.IllegalArgumentException iae) {
+    		} catch (RecognitionException re) {
+    			addErrorToResource(syntaxErrorMessageConverter.translateParseError(re));
+    		} catch (IllegalArgumentException iae) {
     			if ("The 'no null' constraint is violated".equals(iae.getMessage())) {
     				// can be caused if a null is set on EMF models where not allowed. this will just
     				// happen if other errors occurred before
@@ -593,28 +637,28 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     				iae.printStackTrace();
     			}
     		}
-    		for (org.antlr.runtime3_4_0.RecognitionException re : lexerExceptions) {
-    			reportLexicalError(re);
+    		for (RecognitionException re : lexerExceptions) {
+    			addErrorToResource(syntaxErrorMessageConverter.translateLexicalError(re, lexerExceptions, lexerExceptionPositions));
     		}
     		parseResult.getPostParseCommands().addAll(postParseCommands);
     		return parseResult;
     	}
     	
-    	public java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> parseToExpectedElements(org.eclipse.emf.ecore.EClass type, org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource dummyResource, int cursorOffset) {
+    	public List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> parseToExpectedElements(EClass type, org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource dummyResource, int cursorOffset) {
     		this.rememberExpectedElements = true;
     		this.parseToIndexTypeObject = type;
     		this.cursorOffset = cursorOffset;
     		this.lastStartIncludingHidden = -1;
-    		final org.antlr.runtime3_4_0.CommonTokenStream tokenStream = (org.antlr.runtime3_4_0.CommonTokenStream) getTokenStream();
+    		final CommonTokenStream tokenStream = (CommonTokenStream) getTokenStream();
     		org.emftext.language.xpath2.resource.xpath2.IXpath2ParseResult result = parse();
-    		for (org.eclipse.emf.ecore.EObject incompleteObject : incompleteObjects) {
-    			org.antlr.runtime3_4_0.Lexer lexer = (org.antlr.runtime3_4_0.Lexer) tokenStream.getTokenSource();
+    		for (EObject incompleteObject : incompleteObjects) {
+    			Lexer lexer = (Lexer) tokenStream.getTokenSource();
     			int endChar = lexer.getCharIndex();
     			int endLine = lexer.getLine();
     			setLocalizationEnd(result.getPostParseCommands(), incompleteObject, endChar, endLine);
     		}
     		if (result != null) {
-    			org.eclipse.emf.ecore.EObject root = result.getRoot();
+    			EObject root = result.getRoot();
     			if (root != null) {
     				dummyResource.getContentsInternal().add(root);
     			}
@@ -625,8 +669,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     		// remove all expected elements that were added after the last complete element
     		expectedElements = expectedElements.subList(0, expectedElementsIndexOfLastCompleteElement + 1);
     		int lastFollowSetID = expectedElements.get(expectedElementsIndexOfLastCompleteElement).getFollowSetID();
-    		java.util.Set<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> currentFollowSet = new java.util.LinkedHashSet<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal>();
-    		java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> newFollowSet = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal>();
+    		Set<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> currentFollowSet = new LinkedHashSet<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal>();
+    		List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> newFollowSet = new ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal>();
     		for (int i = expectedElementsIndexOfLastCompleteElement; i >= 0; i--) {
     			org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal expectedElementI = expectedElements.get(i);
     			if (expectedElementI.getFollowSetID() == lastFollowSetID) {
@@ -638,7 +682,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     		int followSetID = 246;
     		int i;
     		for (i = tokenIndexOfLastCompleteElement; i < tokenStream.size(); i++) {
-    			org.antlr.runtime3_4_0.CommonToken nextToken = (org.antlr.runtime3_4_0.CommonToken) tokenStream.get(i);
+    			CommonToken nextToken = (CommonToken) tokenStream.get(i);
     			if (nextToken.getType() < 0) {
     				break;
     			}
@@ -657,10 +701,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     				for (org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal nextFollow : currentFollowSet) {
     					if (nextFollow.getTerminal().getTokenNames().contains(getTokenNames()[nextToken.getType()])) {
     						// keep this one - it matches
-    						java.util.Collection<org.emftext.language.xpath2.resource.xpath2.util.Xpath2Pair<org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[]>> newFollowers = nextFollow.getTerminal().getFollowers();
+    						Collection<org.emftext.language.xpath2.resource.xpath2.util.Xpath2Pair<org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[]>> newFollowers = nextFollow.getTerminal().getFollowers();
     						for (org.emftext.language.xpath2.resource.xpath2.util.Xpath2Pair<org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[]> newFollowerPair : newFollowers) {
     							org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement newFollower = newFollowerPair.getLeft();
-    							org.eclipse.emf.ecore.EObject container = getLastIncompleteElement();
+    							EObject container = getLastIncompleteElement();
     							org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2ContainmentTrace containmentTrace = new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2ContainmentTrace(null, newFollowerPair.getRight());
     							org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal newFollowTerminal = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal(container, newFollower, followSetID, containmentTrace);
     							newFollowSet.add(newFollowTerminal);
@@ -688,7 +732,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     			if (index >= input.size()) {
     				break;
     			}
-    			org.antlr.runtime3_4_0.CommonToken tokenAtIndex = (org.antlr.runtime3_4_0.CommonToken) input.get(index);
+    			CommonToken tokenAtIndex = (CommonToken) input.get(index);
     			stopIncludingHiddenTokens = tokenAtIndex.getStopIndex() + 1;
     			if (tokenAtIndex.getChannel() != 99 && !anonymousTokens.contains(tokenAtIndex)) {
     				stopExcludingHiddenTokens = tokenAtIndex.getStopIndex() + 1;
@@ -698,7 +742,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     		expectedElement.setPosition(stopExcludingHiddenTokens, stopIncludingHiddenTokens);
     	}
     	
-    	public Object recoverFromMismatchedToken(org.antlr.runtime3_4_0.IntStream input, int ttype, org.antlr.runtime3_4_0.BitSet follow) throws org.antlr.runtime3_4_0.RecognitionException {
+    	public Object recoverFromMismatchedToken(IntStream input, int ttype, BitSet follow) throws RecognitionException {
     		if (!rememberExpectedElements) {
     			return super.recoverFromMismatchedToken(input, ttype, follow);
     		} else {
@@ -706,76 +750,9 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     		}
     	}
     	
-    	/**
-    	 * Translates errors thrown by the parser into human readable messages.
-    	 */
-    	public void reportError(final org.antlr.runtime3_4_0.RecognitionException e)  {
-    		String message = e.getMessage();
-    		if (e instanceof org.antlr.runtime3_4_0.MismatchedTokenException) {
-    			org.antlr.runtime3_4_0.MismatchedTokenException mte = (org.antlr.runtime3_4_0.MismatchedTokenException) e;
-    			String expectedTokenName = formatTokenName(mte.expecting);
-    			String actualTokenName = formatTokenName(e.token.getType());
-    			message = "Syntax error on token \"" + e.token.getText() + " (" + actualTokenName + ")\", \"" + expectedTokenName + "\" expected";
-    		} else if (e instanceof org.antlr.runtime3_4_0.MismatchedTreeNodeException) {
-    			org.antlr.runtime3_4_0.MismatchedTreeNodeException mtne = (org.antlr.runtime3_4_0.MismatchedTreeNodeException) e;
-    			String expectedTokenName = formatTokenName(mtne.expecting);
-    			message = "mismatched tree node: " + "xxx" + "; tokenName " + expectedTokenName;
-    		} else if (e instanceof org.antlr.runtime3_4_0.NoViableAltException) {
-    			message = "Syntax error on token \"" + e.token.getText() + "\", check following tokens";
-    		} else if (e instanceof org.antlr.runtime3_4_0.EarlyExitException) {
-    			message = "Syntax error on token \"" + e.token.getText() + "\", delete this token";
-    		} else if (e instanceof org.antlr.runtime3_4_0.MismatchedSetException) {
-    			org.antlr.runtime3_4_0.MismatchedSetException mse = (org.antlr.runtime3_4_0.MismatchedSetException) e;
-    			message = "mismatched token: " + e.token + "; expecting set " + mse.expecting;
-    		} else if (e instanceof org.antlr.runtime3_4_0.MismatchedNotSetException) {
-    			org.antlr.runtime3_4_0.MismatchedNotSetException mse = (org.antlr.runtime3_4_0.MismatchedNotSetException) e;
-    			message = "mismatched token: " +  e.token + "; expecting set " + mse.expecting;
-    		} else if (e instanceof org.antlr.runtime3_4_0.FailedPredicateException) {
-    			org.antlr.runtime3_4_0.FailedPredicateException fpe = (org.antlr.runtime3_4_0.FailedPredicateException) e;
-    			message = "rule " + fpe.ruleName + " failed predicate: {" +  fpe.predicateText + "}?";
-    		}
-    		// the resource may be null if the parser is used for code completion
-    		final String finalMessage = message;
-    		if (e.token instanceof org.antlr.runtime3_4_0.CommonToken) {
-    			final org.antlr.runtime3_4_0.CommonToken ct = (org.antlr.runtime3_4_0.CommonToken) e.token;
-    			addErrorToResource(finalMessage, ct.getCharPositionInLine(), ct.getLine(), ct.getStartIndex(), ct.getStopIndex());
-    		} else {
-    			addErrorToResource(finalMessage, e.token.getCharPositionInLine(), e.token.getLine(), 1, 5);
-    		}
-    	}
-    	
-    	/**
-    	 * Translates errors thrown by the lexer into human readable messages.
-    	 */
-    	public void reportLexicalError(final org.antlr.runtime3_4_0.RecognitionException e)  {
-    		String message = "";
-    		if (e instanceof org.antlr.runtime3_4_0.MismatchedTokenException) {
-    			org.antlr.runtime3_4_0.MismatchedTokenException mte = (org.antlr.runtime3_4_0.MismatchedTokenException) e;
-    			message = "Syntax error on token \"" + ((char) e.c) + "\", \"" + (char) mte.expecting + "\" expected";
-    		} else if (e instanceof org.antlr.runtime3_4_0.NoViableAltException) {
-    			message = "Syntax error on token \"" + ((char) e.c) + "\", delete this token";
-    		} else if (e instanceof org.antlr.runtime3_4_0.EarlyExitException) {
-    			org.antlr.runtime3_4_0.EarlyExitException eee = (org.antlr.runtime3_4_0.EarlyExitException) e;
-    			message = "required (...)+ loop (decision=" + eee.decisionNumber + ") did not match anything; on line " + e.line + ":" + e.charPositionInLine + " char=" + ((char) e.c) + "'";
-    		} else if (e instanceof org.antlr.runtime3_4_0.MismatchedSetException) {
-    			org.antlr.runtime3_4_0.MismatchedSetException mse = (org.antlr.runtime3_4_0.MismatchedSetException) e;
-    			message = "mismatched char: '" + ((char) e.c) + "' on line " + e.line + ":" + e.charPositionInLine + "; expecting set " + mse.expecting;
-    		} else if (e instanceof org.antlr.runtime3_4_0.MismatchedNotSetException) {
-    			org.antlr.runtime3_4_0.MismatchedNotSetException mse = (org.antlr.runtime3_4_0.MismatchedNotSetException) e;
-    			message = "mismatched char: '" + ((char) e.c) + "' on line " + e.line + ":" + e.charPositionInLine + "; expecting set " + mse.expecting;
-    		} else if (e instanceof org.antlr.runtime3_4_0.MismatchedRangeException) {
-    			org.antlr.runtime3_4_0.MismatchedRangeException mre = (org.antlr.runtime3_4_0.MismatchedRangeException) e;
-    			message = "mismatched char: '" + ((char) e.c) + "' on line " + e.line + ":" + e.charPositionInLine + "; expecting set '" + (char) mre.a + "'..'" + (char) mre.b + "'";
-    		} else if (e instanceof org.antlr.runtime3_4_0.FailedPredicateException) {
-    			org.antlr.runtime3_4_0.FailedPredicateException fpe = (org.antlr.runtime3_4_0.FailedPredicateException) e;
-    			message = "rule " + fpe.ruleName + " failed predicate: {" + fpe.predicateText + "}?";
-    		}
-    		addErrorToResource(message, e.charPositionInLine, e.line, lexerExceptionsPosition.get(lexerExceptions.indexOf(e)), lexerExceptionsPosition.get(lexerExceptions.indexOf(e)));
-    	}
-    	
     	private void startIncompleteElement(Object object) {
-    		if (object instanceof org.eclipse.emf.ecore.EObject) {
-    			this.incompleteObjects.add((org.eclipse.emf.ecore.EObject) object);
+    		if (object instanceof EObject) {
+    			this.incompleteObjects.add((EObject) object);
     		}
     	}
     	
@@ -785,13 +762,13 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     			if (!exists) {
     			}
     		}
-    		if (object instanceof org.eclipse.emf.ecore.EObject) {
+    		if (object instanceof EObject) {
     			this.tokenIndexOfLastCompleteElement = getTokenStream().index();
     			this.expectedElementsIndexOfLastCompleteElement = expectedElements.size() - 1;
     		}
     	}
     	
-    	private org.eclipse.emf.ecore.EObject getLastIncompleteElement() {
+    	private EObject getLastIncompleteElement() {
     		if (incompleteObjects.isEmpty()) {
     			return null;
     		}
@@ -802,9 +779,9 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "start"
-    // Xpath2.g:700:1: start returns [ org.eclipse.emf.ecore.EObject element = null] : (c0= parse_org_emftext_language_xpath2_Expr ) EOF ;
-    public final org.eclipse.emf.ecore.EObject start() throws RecognitionException {
-        org.eclipse.emf.ecore.EObject element =  null;
+    // Xpath2.g:682:1: start returns [ EObject element = null] : (c0= parse_org_emftext_language_xpath2_Expr ) EOF ;
+    public final EObject start() throws RecognitionException {
+        EObject element =  null;
 
         int start_StartIndex = input.index();
 
@@ -814,8 +791,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 1) ) { return element; }
 
-            // Xpath2.g:701:2: ( (c0= parse_org_emftext_language_xpath2_Expr ) EOF )
-            // Xpath2.g:702:2: (c0= parse_org_emftext_language_xpath2_Expr ) EOF
+            // Xpath2.g:683:2: ( (c0= parse_org_emftext_language_xpath2_Expr ) EOF )
+            // Xpath2.g:684:2: (c0= parse_org_emftext_language_xpath2_Expr ) EOF
             {
             if ( state.backtracking==0 ) {
             		// follow set for start rule(s)
@@ -842,8 +819,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		expectedElementsIndexOfLastCompleteElement = 0;
             	}
 
-            // Xpath2.g:726:2: (c0= parse_org_emftext_language_xpath2_Expr )
-            // Xpath2.g:727:3: c0= parse_org_emftext_language_xpath2_Expr
+            // Xpath2.g:708:2: (c0= parse_org_emftext_language_xpath2_Expr )
+            // Xpath2.g:709:3: c0= parse_org_emftext_language_xpath2_Expr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_Expr_in_start82);
             c0=parse_org_emftext_language_xpath2_Expr();
@@ -882,7 +859,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_Expr"
-    // Xpath2.g:735:1: parse_org_emftext_language_xpath2_Expr returns [org.emftext.language.xpath2.Expr element = null] : (a0_0= parse_org_emftext_language_xpath2_IfExpr |a0_1= parse_org_emftext_language_xpath2_ForExpr |a0_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a0_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a1= ',' (a2_0= parse_org_emftext_language_xpath2_IfExpr |a2_1= parse_org_emftext_language_xpath2_ForExpr |a2_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_3= parse_org_emftext_language_xpath2_OrExpr ) ) )* ;
+    // Xpath2.g:717:1: parse_org_emftext_language_xpath2_Expr returns [org.emftext.language.xpath2.Expr element = null] : (a0_0= parse_org_emftext_language_xpath2_IfExpr |a0_1= parse_org_emftext_language_xpath2_ForExpr |a0_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a0_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a1= ',' (a2_0= parse_org_emftext_language_xpath2_IfExpr |a2_1= parse_org_emftext_language_xpath2_ForExpr |a2_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_3= parse_org_emftext_language_xpath2_OrExpr ) ) )* ;
     public final org.emftext.language.xpath2.Expr parse_org_emftext_language_xpath2_Expr() throws RecognitionException {
         org.emftext.language.xpath2.Expr element =  null;
 
@@ -911,10 +888,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 2) ) { return element; }
 
-            // Xpath2.g:738:2: ( (a0_0= parse_org_emftext_language_xpath2_IfExpr |a0_1= parse_org_emftext_language_xpath2_ForExpr |a0_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a0_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a1= ',' (a2_0= parse_org_emftext_language_xpath2_IfExpr |a2_1= parse_org_emftext_language_xpath2_ForExpr |a2_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_3= parse_org_emftext_language_xpath2_OrExpr ) ) )* )
-            // Xpath2.g:739:2: (a0_0= parse_org_emftext_language_xpath2_IfExpr |a0_1= parse_org_emftext_language_xpath2_ForExpr |a0_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a0_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a1= ',' (a2_0= parse_org_emftext_language_xpath2_IfExpr |a2_1= parse_org_emftext_language_xpath2_ForExpr |a2_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_3= parse_org_emftext_language_xpath2_OrExpr ) ) )*
+            // Xpath2.g:720:2: ( (a0_0= parse_org_emftext_language_xpath2_IfExpr |a0_1= parse_org_emftext_language_xpath2_ForExpr |a0_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a0_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a1= ',' (a2_0= parse_org_emftext_language_xpath2_IfExpr |a2_1= parse_org_emftext_language_xpath2_ForExpr |a2_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_3= parse_org_emftext_language_xpath2_OrExpr ) ) )* )
+            // Xpath2.g:721:2: (a0_0= parse_org_emftext_language_xpath2_IfExpr |a0_1= parse_org_emftext_language_xpath2_ForExpr |a0_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a0_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a1= ',' (a2_0= parse_org_emftext_language_xpath2_IfExpr |a2_1= parse_org_emftext_language_xpath2_ForExpr |a2_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_3= parse_org_emftext_language_xpath2_OrExpr ) ) )*
             {
-            // Xpath2.g:739:2: (a0_0= parse_org_emftext_language_xpath2_IfExpr |a0_1= parse_org_emftext_language_xpath2_ForExpr |a0_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a0_3= parse_org_emftext_language_xpath2_OrExpr )
+            // Xpath2.g:721:2: (a0_0= parse_org_emftext_language_xpath2_IfExpr |a0_1= parse_org_emftext_language_xpath2_ForExpr |a0_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a0_3= parse_org_emftext_language_xpath2_OrExpr )
             int alt1=4;
             switch ( input.LA(1) ) {
             case 61:
@@ -985,7 +962,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt1) {
                 case 1 :
-                    // Xpath2.g:740:3: a0_0= parse_org_emftext_language_xpath2_IfExpr
+                    // Xpath2.g:722:3: a0_0= parse_org_emftext_language_xpath2_IfExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IfExpr_in_parse_org_emftext_language_xpath2_Expr119);
                     a0_0=parse_org_emftext_language_xpath2_IfExpr();
@@ -1016,7 +993,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:759:6: a0_1= parse_org_emftext_language_xpath2_ForExpr
+                    // Xpath2.g:741:6: a0_1= parse_org_emftext_language_xpath2_ForExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ForExpr_in_parse_org_emftext_language_xpath2_Expr133);
                     a0_1=parse_org_emftext_language_xpath2_ForExpr();
@@ -1047,7 +1024,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:778:6: a0_2= parse_org_emftext_language_xpath2_QuantifiedExpr
+                    // Xpath2.g:760:6: a0_2= parse_org_emftext_language_xpath2_QuantifiedExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_QuantifiedExpr_in_parse_org_emftext_language_xpath2_Expr147);
                     a0_2=parse_org_emftext_language_xpath2_QuantifiedExpr();
@@ -1078,7 +1055,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xpath2.g:797:6: a0_3= parse_org_emftext_language_xpath2_OrExpr
+                    // Xpath2.g:779:6: a0_3= parse_org_emftext_language_xpath2_OrExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_OrExpr_in_parse_org_emftext_language_xpath2_Expr161);
                     a0_3=parse_org_emftext_language_xpath2_OrExpr();
@@ -1120,7 +1097,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[23]);
             	}
 
-            // Xpath2.g:825:2: ( (a1= ',' (a2_0= parse_org_emftext_language_xpath2_IfExpr |a2_1= parse_org_emftext_language_xpath2_ForExpr |a2_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_3= parse_org_emftext_language_xpath2_OrExpr ) ) )*
+            // Xpath2.g:807:2: ( (a1= ',' (a2_0= parse_org_emftext_language_xpath2_IfExpr |a2_1= parse_org_emftext_language_xpath2_ForExpr |a2_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_3= parse_org_emftext_language_xpath2_OrExpr ) ) )*
             loop3:
             do {
                 int alt3=2;
@@ -1133,10 +1110,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                 switch (alt3) {
             	case 1 :
-            	    // Xpath2.g:826:3: (a1= ',' (a2_0= parse_org_emftext_language_xpath2_IfExpr |a2_1= parse_org_emftext_language_xpath2_ForExpr |a2_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_3= parse_org_emftext_language_xpath2_OrExpr ) )
+            	    // Xpath2.g:808:3: (a1= ',' (a2_0= parse_org_emftext_language_xpath2_IfExpr |a2_1= parse_org_emftext_language_xpath2_ForExpr |a2_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_3= parse_org_emftext_language_xpath2_OrExpr ) )
             	    {
-            	    // Xpath2.g:826:3: (a1= ',' (a2_0= parse_org_emftext_language_xpath2_IfExpr |a2_1= parse_org_emftext_language_xpath2_ForExpr |a2_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_3= parse_org_emftext_language_xpath2_OrExpr ) )
-            	    // Xpath2.g:827:4: a1= ',' (a2_0= parse_org_emftext_language_xpath2_IfExpr |a2_1= parse_org_emftext_language_xpath2_ForExpr |a2_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_3= parse_org_emftext_language_xpath2_OrExpr )
+            	    // Xpath2.g:808:3: (a1= ',' (a2_0= parse_org_emftext_language_xpath2_IfExpr |a2_1= parse_org_emftext_language_xpath2_ForExpr |a2_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_3= parse_org_emftext_language_xpath2_OrExpr ) )
+            	    // Xpath2.g:809:4: a1= ',' (a2_0= parse_org_emftext_language_xpath2_IfExpr |a2_1= parse_org_emftext_language_xpath2_ForExpr |a2_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_3= parse_org_emftext_language_xpath2_OrExpr )
             	    {
             	    a1=(Token)match(input,17,FOLLOW_17_in_parse_org_emftext_language_xpath2_Expr188); if (state.failed) return element;
 
@@ -1147,7 +1124,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    				}
             	    				collectHiddenTokens(element);
             	    				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_0_0_0_1_0_0_0, null, true);
-            	    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            	    				copyLocalizationInfos((CommonToken)a1, element);
             	    			}
 
             	    if ( state.backtracking==0 ) {
@@ -1174,7 +1151,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[43]);
             	    			}
 
-            	    // Xpath2.g:860:4: (a2_0= parse_org_emftext_language_xpath2_IfExpr |a2_1= parse_org_emftext_language_xpath2_ForExpr |a2_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_3= parse_org_emftext_language_xpath2_OrExpr )
+            	    // Xpath2.g:842:4: (a2_0= parse_org_emftext_language_xpath2_IfExpr |a2_1= parse_org_emftext_language_xpath2_ForExpr |a2_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_3= parse_org_emftext_language_xpath2_OrExpr )
             	    int alt2=4;
             	    switch ( input.LA(1) ) {
             	    case 61:
@@ -1245,7 +1222,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             	    switch (alt2) {
             	        case 1 :
-            	            // Xpath2.g:861:5: a2_0= parse_org_emftext_language_xpath2_IfExpr
+            	            // Xpath2.g:843:5: a2_0= parse_org_emftext_language_xpath2_IfExpr
             	            {
             	            pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IfExpr_in_parse_org_emftext_language_xpath2_Expr214);
             	            a2_0=parse_org_emftext_language_xpath2_IfExpr();
@@ -1276,7 +1253,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            }
             	            break;
             	        case 2 :
-            	            // Xpath2.g:880:10: a2_1= parse_org_emftext_language_xpath2_ForExpr
+            	            // Xpath2.g:862:10: a2_1= parse_org_emftext_language_xpath2_ForExpr
             	            {
             	            pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ForExpr_in_parse_org_emftext_language_xpath2_Expr234);
             	            a2_1=parse_org_emftext_language_xpath2_ForExpr();
@@ -1307,7 +1284,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            }
             	            break;
             	        case 3 :
-            	            // Xpath2.g:899:10: a2_2= parse_org_emftext_language_xpath2_QuantifiedExpr
+            	            // Xpath2.g:881:10: a2_2= parse_org_emftext_language_xpath2_QuantifiedExpr
             	            {
             	            pushFollow(FOLLOW_parse_org_emftext_language_xpath2_QuantifiedExpr_in_parse_org_emftext_language_xpath2_Expr254);
             	            a2_2=parse_org_emftext_language_xpath2_QuantifiedExpr();
@@ -1338,7 +1315,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            }
             	            break;
             	        case 4 :
-            	            // Xpath2.g:918:10: a2_3= parse_org_emftext_language_xpath2_OrExpr
+            	            // Xpath2.g:900:10: a2_3= parse_org_emftext_language_xpath2_OrExpr
             	            {
             	            pushFollow(FOLLOW_parse_org_emftext_language_xpath2_OrExpr_in_parse_org_emftext_language_xpath2_Expr274);
             	            a2_3=parse_org_emftext_language_xpath2_OrExpr();
@@ -1420,7 +1397,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_ForExpr"
-    // Xpath2.g:958:1: parse_org_emftext_language_xpath2_ForExpr returns [org.emftext.language.xpath2.ForExpr element = null] : a0= 'for' (a1_0= parse_org_emftext_language_xpath2_Iterator ) ( (a2= ',' (a3_0= parse_org_emftext_language_xpath2_Iterator ) ) )* a4= 'return' (a5_0= parse_org_emftext_language_xpath2_ExprSingle ) ;
+    // Xpath2.g:940:1: parse_org_emftext_language_xpath2_ForExpr returns [org.emftext.language.xpath2.ForExpr element = null] : a0= 'for' (a1_0= parse_org_emftext_language_xpath2_Iterator ) ( (a2= ',' (a3_0= parse_org_emftext_language_xpath2_Iterator ) ) )* a4= 'return' (a5_0= parse_org_emftext_language_xpath2_ExprSingle ) ;
     public final org.emftext.language.xpath2.ForExpr parse_org_emftext_language_xpath2_ForExpr() throws RecognitionException {
         org.emftext.language.xpath2.ForExpr element =  null;
 
@@ -1441,8 +1418,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 3) ) { return element; }
 
-            // Xpath2.g:961:2: (a0= 'for' (a1_0= parse_org_emftext_language_xpath2_Iterator ) ( (a2= ',' (a3_0= parse_org_emftext_language_xpath2_Iterator ) ) )* a4= 'return' (a5_0= parse_org_emftext_language_xpath2_ExprSingle ) )
-            // Xpath2.g:962:2: a0= 'for' (a1_0= parse_org_emftext_language_xpath2_Iterator ) ( (a2= ',' (a3_0= parse_org_emftext_language_xpath2_Iterator ) ) )* a4= 'return' (a5_0= parse_org_emftext_language_xpath2_ExprSingle )
+            // Xpath2.g:943:2: (a0= 'for' (a1_0= parse_org_emftext_language_xpath2_Iterator ) ( (a2= ',' (a3_0= parse_org_emftext_language_xpath2_Iterator ) ) )* a4= 'return' (a5_0= parse_org_emftext_language_xpath2_ExprSingle ) )
+            // Xpath2.g:944:2: a0= 'for' (a1_0= parse_org_emftext_language_xpath2_Iterator ) ( (a2= ',' (a3_0= parse_org_emftext_language_xpath2_Iterator ) ) )* a4= 'return' (a5_0= parse_org_emftext_language_xpath2_ExprSingle )
             {
             a0=(Token)match(input,57,FOLLOW_57_in_parse_org_emftext_language_xpath2_ForExpr330); if (state.failed) return element;
 
@@ -1453,7 +1430,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_1_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -1461,8 +1438,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[52]);
             	}
 
-            // Xpath2.g:976:2: (a1_0= parse_org_emftext_language_xpath2_Iterator )
-            // Xpath2.g:977:3: a1_0= parse_org_emftext_language_xpath2_Iterator
+            // Xpath2.g:958:2: (a1_0= parse_org_emftext_language_xpath2_Iterator )
+            // Xpath2.g:959:3: a1_0= parse_org_emftext_language_xpath2_Iterator
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_Iterator_in_parse_org_emftext_language_xpath2_ForExpr348);
             a1_0=parse_org_emftext_language_xpath2_Iterator();
@@ -1499,7 +1476,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[54]);
             	}
 
-            // Xpath2.g:1003:2: ( (a2= ',' (a3_0= parse_org_emftext_language_xpath2_Iterator ) ) )*
+            // Xpath2.g:985:2: ( (a2= ',' (a3_0= parse_org_emftext_language_xpath2_Iterator ) ) )*
             loop4:
             do {
                 int alt4=2;
@@ -1512,10 +1489,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                 switch (alt4) {
             	case 1 :
-            	    // Xpath2.g:1004:3: (a2= ',' (a3_0= parse_org_emftext_language_xpath2_Iterator ) )
+            	    // Xpath2.g:986:3: (a2= ',' (a3_0= parse_org_emftext_language_xpath2_Iterator ) )
             	    {
-            	    // Xpath2.g:1004:3: (a2= ',' (a3_0= parse_org_emftext_language_xpath2_Iterator ) )
-            	    // Xpath2.g:1005:4: a2= ',' (a3_0= parse_org_emftext_language_xpath2_Iterator )
+            	    // Xpath2.g:986:3: (a2= ',' (a3_0= parse_org_emftext_language_xpath2_Iterator ) )
+            	    // Xpath2.g:987:4: a2= ',' (a3_0= parse_org_emftext_language_xpath2_Iterator )
             	    {
             	    a2=(Token)match(input,17,FOLLOW_17_in_parse_org_emftext_language_xpath2_ForExpr375); if (state.failed) return element;
 
@@ -1526,7 +1503,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    				}
             	    				collectHiddenTokens(element);
             	    				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_1_0_0_3_0_0_0, null, true);
-            	    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+            	    				copyLocalizationInfos((CommonToken)a2, element);
             	    			}
 
             	    if ( state.backtracking==0 ) {
@@ -1534,8 +1511,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[55]);
             	    			}
 
-            	    // Xpath2.g:1019:4: (a3_0= parse_org_emftext_language_xpath2_Iterator )
-            	    // Xpath2.g:1020:5: a3_0= parse_org_emftext_language_xpath2_Iterator
+            	    // Xpath2.g:1001:4: (a3_0= parse_org_emftext_language_xpath2_Iterator )
+            	    // Xpath2.g:1002:5: a3_0= parse_org_emftext_language_xpath2_Iterator
             	    {
             	    pushFollow(FOLLOW_parse_org_emftext_language_xpath2_Iterator_in_parse_org_emftext_language_xpath2_ForExpr401);
             	    a3_0=parse_org_emftext_language_xpath2_Iterator();
@@ -1599,7 +1576,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_1_0_0_5, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+            		copyLocalizationInfos((CommonToken)a4, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -1626,8 +1603,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[79]);
             	}
 
-            // Xpath2.g:1087:2: (a5_0= parse_org_emftext_language_xpath2_ExprSingle )
-            // Xpath2.g:1088:3: a5_0= parse_org_emftext_language_xpath2_ExprSingle
+            // Xpath2.g:1069:2: (a5_0= parse_org_emftext_language_xpath2_ExprSingle )
+            // Xpath2.g:1070:3: a5_0= parse_org_emftext_language_xpath2_ExprSingle
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ExprSingle_in_parse_org_emftext_language_xpath2_ForExpr460);
             a5_0=parse_org_emftext_language_xpath2_ExprSingle();
@@ -1688,7 +1665,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_QuantifiedExpr"
-    // Xpath2.g:1120:1: parse_org_emftext_language_xpath2_QuantifiedExpr returns [org.emftext.language.xpath2.QuantifiedExpr element = null] : ( (a0= 'some' |a1= 'every' ) ) (a4_0= parse_org_emftext_language_xpath2_Iterator ) ( (a5= ',' (a6_0= parse_org_emftext_language_xpath2_Iterator ) ) )* a7= 'satisfies' (a8_0= parse_org_emftext_language_xpath2_IfExpr |a8_1= parse_org_emftext_language_xpath2_ForExpr |a8_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a8_3= parse_org_emftext_language_xpath2_OrExpr ) ;
+    // Xpath2.g:1102:1: parse_org_emftext_language_xpath2_QuantifiedExpr returns [org.emftext.language.xpath2.QuantifiedExpr element = null] : ( (a0= 'some' |a1= 'every' ) ) (a4_0= parse_org_emftext_language_xpath2_Iterator ) ( (a5= ',' (a6_0= parse_org_emftext_language_xpath2_Iterator ) ) )* a7= 'satisfies' (a8_0= parse_org_emftext_language_xpath2_IfExpr |a8_1= parse_org_emftext_language_xpath2_ForExpr |a8_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a8_3= parse_org_emftext_language_xpath2_OrExpr ) ;
     public final org.emftext.language.xpath2.QuantifiedExpr parse_org_emftext_language_xpath2_QuantifiedExpr() throws RecognitionException {
         org.emftext.language.xpath2.QuantifiedExpr element =  null;
 
@@ -1716,13 +1693,13 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 4) ) { return element; }
 
-            // Xpath2.g:1123:2: ( ( (a0= 'some' |a1= 'every' ) ) (a4_0= parse_org_emftext_language_xpath2_Iterator ) ( (a5= ',' (a6_0= parse_org_emftext_language_xpath2_Iterator ) ) )* a7= 'satisfies' (a8_0= parse_org_emftext_language_xpath2_IfExpr |a8_1= parse_org_emftext_language_xpath2_ForExpr |a8_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a8_3= parse_org_emftext_language_xpath2_OrExpr ) )
-            // Xpath2.g:1124:2: ( (a0= 'some' |a1= 'every' ) ) (a4_0= parse_org_emftext_language_xpath2_Iterator ) ( (a5= ',' (a6_0= parse_org_emftext_language_xpath2_Iterator ) ) )* a7= 'satisfies' (a8_0= parse_org_emftext_language_xpath2_IfExpr |a8_1= parse_org_emftext_language_xpath2_ForExpr |a8_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a8_3= parse_org_emftext_language_xpath2_OrExpr )
+            // Xpath2.g:1105:2: ( ( (a0= 'some' |a1= 'every' ) ) (a4_0= parse_org_emftext_language_xpath2_Iterator ) ( (a5= ',' (a6_0= parse_org_emftext_language_xpath2_Iterator ) ) )* a7= 'satisfies' (a8_0= parse_org_emftext_language_xpath2_IfExpr |a8_1= parse_org_emftext_language_xpath2_ForExpr |a8_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a8_3= parse_org_emftext_language_xpath2_OrExpr ) )
+            // Xpath2.g:1106:2: ( (a0= 'some' |a1= 'every' ) ) (a4_0= parse_org_emftext_language_xpath2_Iterator ) ( (a5= ',' (a6_0= parse_org_emftext_language_xpath2_Iterator ) ) )* a7= 'satisfies' (a8_0= parse_org_emftext_language_xpath2_IfExpr |a8_1= parse_org_emftext_language_xpath2_ForExpr |a8_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a8_3= parse_org_emftext_language_xpath2_OrExpr )
             {
-            // Xpath2.g:1124:2: ( (a0= 'some' |a1= 'every' ) )
-            // Xpath2.g:1125:3: (a0= 'some' |a1= 'every' )
+            // Xpath2.g:1106:2: ( (a0= 'some' |a1= 'every' ) )
+            // Xpath2.g:1107:3: (a0= 'some' |a1= 'every' )
             {
-            // Xpath2.g:1125:3: (a0= 'some' |a1= 'every' )
+            // Xpath2.g:1107:3: (a0= 'some' |a1= 'every' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1742,7 +1719,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt5) {
                 case 1 :
-                    // Xpath2.g:1126:4: a0= 'some'
+                    // Xpath2.g:1108:4: a0= 'some'
                     {
                     a0=(Token)match(input,84,FOLLOW_84_in_parse_org_emftext_language_xpath2_QuantifiedExpr502); if (state.failed) return element;
 
@@ -1753,7 +1730,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_2_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+                    				copyLocalizationInfos((CommonToken)a0, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getQuantifierKind().getEEnumLiteral(org.emftext.language.xpath2.QuantifierKind.SOME_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QUANTIFIED_EXPR__QUANTIFIER), value);
@@ -1763,7 +1740,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:1139:8: a1= 'every'
+                    // Xpath2.g:1121:8: a1= 'every'
                     {
                     a1=(Token)match(input,53,FOLLOW_53_in_parse_org_emftext_language_xpath2_QuantifiedExpr517); if (state.failed) return element;
 
@@ -1774,7 +1751,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_2_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+                    				copyLocalizationInfos((CommonToken)a1, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getQuantifierKind().getEEnumLiteral(org.emftext.language.xpath2.QuantifierKind.EVERY_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QUANTIFIED_EXPR__QUANTIFIER), value);
@@ -1795,8 +1772,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[86]);
             	}
 
-            // Xpath2.g:1159:2: (a4_0= parse_org_emftext_language_xpath2_Iterator )
-            // Xpath2.g:1160:3: a4_0= parse_org_emftext_language_xpath2_Iterator
+            // Xpath2.g:1141:2: (a4_0= parse_org_emftext_language_xpath2_Iterator )
+            // Xpath2.g:1142:3: a4_0= parse_org_emftext_language_xpath2_Iterator
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_Iterator_in_parse_org_emftext_language_xpath2_QuantifiedExpr542);
             a4_0=parse_org_emftext_language_xpath2_Iterator();
@@ -1833,7 +1810,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[88]);
             	}
 
-            // Xpath2.g:1186:2: ( (a5= ',' (a6_0= parse_org_emftext_language_xpath2_Iterator ) ) )*
+            // Xpath2.g:1168:2: ( (a5= ',' (a6_0= parse_org_emftext_language_xpath2_Iterator ) ) )*
             loop6:
             do {
                 int alt6=2;
@@ -1846,10 +1823,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                 switch (alt6) {
             	case 1 :
-            	    // Xpath2.g:1187:3: (a5= ',' (a6_0= parse_org_emftext_language_xpath2_Iterator ) )
+            	    // Xpath2.g:1169:3: (a5= ',' (a6_0= parse_org_emftext_language_xpath2_Iterator ) )
             	    {
-            	    // Xpath2.g:1187:3: (a5= ',' (a6_0= parse_org_emftext_language_xpath2_Iterator ) )
-            	    // Xpath2.g:1188:4: a5= ',' (a6_0= parse_org_emftext_language_xpath2_Iterator )
+            	    // Xpath2.g:1169:3: (a5= ',' (a6_0= parse_org_emftext_language_xpath2_Iterator ) )
+            	    // Xpath2.g:1170:4: a5= ',' (a6_0= parse_org_emftext_language_xpath2_Iterator )
             	    {
             	    a5=(Token)match(input,17,FOLLOW_17_in_parse_org_emftext_language_xpath2_QuantifiedExpr569); if (state.failed) return element;
 
@@ -1860,7 +1837,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    				}
             	    				collectHiddenTokens(element);
             	    				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_2_0_0_3_0_0_0, null, true);
-            	    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+            	    				copyLocalizationInfos((CommonToken)a5, element);
             	    			}
 
             	    if ( state.backtracking==0 ) {
@@ -1868,8 +1845,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[89]);
             	    			}
 
-            	    // Xpath2.g:1202:4: (a6_0= parse_org_emftext_language_xpath2_Iterator )
-            	    // Xpath2.g:1203:5: a6_0= parse_org_emftext_language_xpath2_Iterator
+            	    // Xpath2.g:1184:4: (a6_0= parse_org_emftext_language_xpath2_Iterator )
+            	    // Xpath2.g:1185:5: a6_0= parse_org_emftext_language_xpath2_Iterator
             	    {
             	    pushFollow(FOLLOW_parse_org_emftext_language_xpath2_Iterator_in_parse_org_emftext_language_xpath2_QuantifiedExpr595);
             	    a6_0=parse_org_emftext_language_xpath2_Iterator();
@@ -1933,7 +1910,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_2_0_0_4, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a7, element);
+            		copyLocalizationInfos((CommonToken)a7, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -1960,7 +1937,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[113]);
             	}
 
-            // Xpath2.g:1270:2: (a8_0= parse_org_emftext_language_xpath2_IfExpr |a8_1= parse_org_emftext_language_xpath2_ForExpr |a8_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a8_3= parse_org_emftext_language_xpath2_OrExpr )
+            // Xpath2.g:1252:2: (a8_0= parse_org_emftext_language_xpath2_IfExpr |a8_1= parse_org_emftext_language_xpath2_ForExpr |a8_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a8_3= parse_org_emftext_language_xpath2_OrExpr )
             int alt7=4;
             switch ( input.LA(1) ) {
             case 61:
@@ -2031,7 +2008,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt7) {
                 case 1 :
-                    // Xpath2.g:1271:3: a8_0= parse_org_emftext_language_xpath2_IfExpr
+                    // Xpath2.g:1253:3: a8_0= parse_org_emftext_language_xpath2_IfExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IfExpr_in_parse_org_emftext_language_xpath2_QuantifiedExpr654);
                     a8_0=parse_org_emftext_language_xpath2_IfExpr();
@@ -2062,7 +2039,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:1290:6: a8_1= parse_org_emftext_language_xpath2_ForExpr
+                    // Xpath2.g:1272:6: a8_1= parse_org_emftext_language_xpath2_ForExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ForExpr_in_parse_org_emftext_language_xpath2_QuantifiedExpr668);
                     a8_1=parse_org_emftext_language_xpath2_ForExpr();
@@ -2093,7 +2070,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:1309:6: a8_2= parse_org_emftext_language_xpath2_QuantifiedExpr
+                    // Xpath2.g:1291:6: a8_2= parse_org_emftext_language_xpath2_QuantifiedExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_QuantifiedExpr_in_parse_org_emftext_language_xpath2_QuantifiedExpr682);
                     a8_2=parse_org_emftext_language_xpath2_QuantifiedExpr();
@@ -2124,7 +2101,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xpath2.g:1328:6: a8_3= parse_org_emftext_language_xpath2_OrExpr
+                    // Xpath2.g:1310:6: a8_3= parse_org_emftext_language_xpath2_OrExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_OrExpr_in_parse_org_emftext_language_xpath2_QuantifiedExpr696);
                     a8_3=parse_org_emftext_language_xpath2_OrExpr();
@@ -2188,7 +2165,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_Iterator"
-    // Xpath2.g:1360:1: parse_org_emftext_language_xpath2_Iterator returns [org.emftext.language.xpath2.Iterator element = null] : a0= '$' ( (a1= QNAME ) | (a2= NCNAME ) ) a3= 'in' (a4_0= parse_org_emftext_language_xpath2_IfExpr |a4_1= parse_org_emftext_language_xpath2_ForExpr |a4_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a4_3= parse_org_emftext_language_xpath2_OrExpr ) ;
+    // Xpath2.g:1342:1: parse_org_emftext_language_xpath2_Iterator returns [org.emftext.language.xpath2.Iterator element = null] : a0= '$' ( (a1= QNAME ) | (a2= NCNAME ) ) a3= 'in' (a4_0= parse_org_emftext_language_xpath2_IfExpr |a4_1= parse_org_emftext_language_xpath2_ForExpr |a4_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a4_3= parse_org_emftext_language_xpath2_OrExpr ) ;
     public final org.emftext.language.xpath2.Iterator parse_org_emftext_language_xpath2_Iterator() throws RecognitionException {
         org.emftext.language.xpath2.Iterator element =  null;
 
@@ -2212,8 +2189,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 5) ) { return element; }
 
-            // Xpath2.g:1363:2: (a0= '$' ( (a1= QNAME ) | (a2= NCNAME ) ) a3= 'in' (a4_0= parse_org_emftext_language_xpath2_IfExpr |a4_1= parse_org_emftext_language_xpath2_ForExpr |a4_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a4_3= parse_org_emftext_language_xpath2_OrExpr ) )
-            // Xpath2.g:1364:2: a0= '$' ( (a1= QNAME ) | (a2= NCNAME ) ) a3= 'in' (a4_0= parse_org_emftext_language_xpath2_IfExpr |a4_1= parse_org_emftext_language_xpath2_ForExpr |a4_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a4_3= parse_org_emftext_language_xpath2_OrExpr )
+            // Xpath2.g:1345:2: (a0= '$' ( (a1= QNAME ) | (a2= NCNAME ) ) a3= 'in' (a4_0= parse_org_emftext_language_xpath2_IfExpr |a4_1= parse_org_emftext_language_xpath2_ForExpr |a4_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a4_3= parse_org_emftext_language_xpath2_OrExpr ) )
+            // Xpath2.g:1346:2: a0= '$' ( (a1= QNAME ) | (a2= NCNAME ) ) a3= 'in' (a4_0= parse_org_emftext_language_xpath2_IfExpr |a4_1= parse_org_emftext_language_xpath2_ForExpr |a4_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a4_3= parse_org_emftext_language_xpath2_OrExpr )
             {
             a0=(Token)match(input,12,FOLLOW_12_in_parse_org_emftext_language_xpath2_Iterator729); if (state.failed) return element;
 
@@ -2224,7 +2201,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_3_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -2233,7 +2210,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[121]);
             	}
 
-            // Xpath2.g:1379:2: ( (a1= QNAME ) | (a2= NCNAME ) )
+            // Xpath2.g:1361:2: ( (a1= QNAME ) | (a2= NCNAME ) )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -2253,10 +2230,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt8) {
                 case 1 :
-                    // Xpath2.g:1380:3: (a1= QNAME )
+                    // Xpath2.g:1362:3: (a1= QNAME )
                     {
-                    // Xpath2.g:1380:3: (a1= QNAME )
-                    // Xpath2.g:1381:4: a1= QNAME
+                    // Xpath2.g:1362:3: (a1= QNAME )
+                    // Xpath2.g:1363:4: a1= QNAME
                     {
                     a1=(Token)match(input,QNAME,FOLLOW_QNAME_in_parse_org_emftext_language_xpath2_Iterator752); if (state.failed) return element;
 
@@ -2275,7 +2252,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__VAR_NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a1).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a1).getLine(), ((CommonToken) a1).getCharPositionInLine(), ((CommonToken) a1).getStartIndex(), ((CommonToken) a1).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -2285,7 +2262,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_3_0_0_1_0_0_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, element);
+                    					copyLocalizationInfos((CommonToken) a1, element);
                     				}
                     			}
 
@@ -2300,10 +2277,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:1417:6: (a2= NCNAME )
+                    // Xpath2.g:1399:6: (a2= NCNAME )
                     {
-                    // Xpath2.g:1417:6: (a2= NCNAME )
-                    // Xpath2.g:1418:4: a2= NCNAME
+                    // Xpath2.g:1399:6: (a2= NCNAME )
+                    // Xpath2.g:1400:4: a2= NCNAME
                     {
                     a2=(Token)match(input,NCNAME,FOLLOW_NCNAME_in_parse_org_emftext_language_xpath2_Iterator790); if (state.failed) return element;
 
@@ -2322,7 +2299,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__VAR_NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a2).getLine(), ((CommonToken) a2).getCharPositionInLine(), ((CommonToken) a2).getStartIndex(), ((CommonToken) a2).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -2332,7 +2309,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_3_0_0_1_0_1_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
+                    					copyLocalizationInfos((CommonToken) a2, element);
                     				}
                     			}
 
@@ -2364,7 +2341,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_3_0_0_3, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+            		copyLocalizationInfos((CommonToken)a3, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -2391,7 +2368,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[144]);
             	}
 
-            // Xpath2.g:1492:2: (a4_0= parse_org_emftext_language_xpath2_IfExpr |a4_1= parse_org_emftext_language_xpath2_ForExpr |a4_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a4_3= parse_org_emftext_language_xpath2_OrExpr )
+            // Xpath2.g:1474:2: (a4_0= parse_org_emftext_language_xpath2_IfExpr |a4_1= parse_org_emftext_language_xpath2_ForExpr |a4_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a4_3= parse_org_emftext_language_xpath2_OrExpr )
             int alt9=4;
             switch ( input.LA(1) ) {
             case 61:
@@ -2462,7 +2439,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt9) {
                 case 1 :
-                    // Xpath2.g:1493:3: a4_0= parse_org_emftext_language_xpath2_IfExpr
+                    // Xpath2.g:1475:3: a4_0= parse_org_emftext_language_xpath2_IfExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IfExpr_in_parse_org_emftext_language_xpath2_Iterator842);
                     a4_0=parse_org_emftext_language_xpath2_IfExpr();
@@ -2493,7 +2470,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:1512:6: a4_1= parse_org_emftext_language_xpath2_ForExpr
+                    // Xpath2.g:1494:6: a4_1= parse_org_emftext_language_xpath2_ForExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ForExpr_in_parse_org_emftext_language_xpath2_Iterator856);
                     a4_1=parse_org_emftext_language_xpath2_ForExpr();
@@ -2524,7 +2501,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:1531:6: a4_2= parse_org_emftext_language_xpath2_QuantifiedExpr
+                    // Xpath2.g:1513:6: a4_2= parse_org_emftext_language_xpath2_QuantifiedExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_QuantifiedExpr_in_parse_org_emftext_language_xpath2_Iterator870);
                     a4_2=parse_org_emftext_language_xpath2_QuantifiedExpr();
@@ -2555,7 +2532,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xpath2.g:1550:6: a4_3= parse_org_emftext_language_xpath2_OrExpr
+                    // Xpath2.g:1532:6: a4_3= parse_org_emftext_language_xpath2_OrExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_OrExpr_in_parse_org_emftext_language_xpath2_Iterator884);
                     a4_3=parse_org_emftext_language_xpath2_OrExpr();
@@ -2617,7 +2594,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_IfExpr"
-    // Xpath2.g:1580:1: parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.IfExpr element = null] : a0= 'if' a1= '(' (a2_0= parse_org_emftext_language_xpath2_Expr |a2_1= parse_org_emftext_language_xpath2_IfExpr |a2_2= parse_org_emftext_language_xpath2_ForExpr |a2_3= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_4= parse_org_emftext_language_xpath2_OrExpr ) a3= ')' a4= 'then' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) a6= 'else' (a7_0= parse_org_emftext_language_xpath2_IfExpr |a7_1= parse_org_emftext_language_xpath2_ForExpr |a7_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a7_3= parse_org_emftext_language_xpath2_OrExpr ) ;
+    // Xpath2.g:1562:1: parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.IfExpr element = null] : a0= 'if' a1= '(' (a2_0= parse_org_emftext_language_xpath2_Expr |a2_1= parse_org_emftext_language_xpath2_IfExpr |a2_2= parse_org_emftext_language_xpath2_ForExpr |a2_3= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_4= parse_org_emftext_language_xpath2_OrExpr ) a3= ')' a4= 'then' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) a6= 'else' (a7_0= parse_org_emftext_language_xpath2_IfExpr |a7_1= parse_org_emftext_language_xpath2_ForExpr |a7_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a7_3= parse_org_emftext_language_xpath2_OrExpr ) ;
     public final org.emftext.language.xpath2.IfExpr parse_org_emftext_language_xpath2_IfExpr() throws RecognitionException {
         org.emftext.language.xpath2.IfExpr element =  null;
 
@@ -2660,8 +2637,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 6) ) { return element; }
 
-            // Xpath2.g:1583:2: (a0= 'if' a1= '(' (a2_0= parse_org_emftext_language_xpath2_Expr |a2_1= parse_org_emftext_language_xpath2_IfExpr |a2_2= parse_org_emftext_language_xpath2_ForExpr |a2_3= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_4= parse_org_emftext_language_xpath2_OrExpr ) a3= ')' a4= 'then' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) a6= 'else' (a7_0= parse_org_emftext_language_xpath2_IfExpr |a7_1= parse_org_emftext_language_xpath2_ForExpr |a7_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a7_3= parse_org_emftext_language_xpath2_OrExpr ) )
-            // Xpath2.g:1584:2: a0= 'if' a1= '(' (a2_0= parse_org_emftext_language_xpath2_Expr |a2_1= parse_org_emftext_language_xpath2_IfExpr |a2_2= parse_org_emftext_language_xpath2_ForExpr |a2_3= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_4= parse_org_emftext_language_xpath2_OrExpr ) a3= ')' a4= 'then' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) a6= 'else' (a7_0= parse_org_emftext_language_xpath2_IfExpr |a7_1= parse_org_emftext_language_xpath2_ForExpr |a7_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a7_3= parse_org_emftext_language_xpath2_OrExpr )
+            // Xpath2.g:1565:2: (a0= 'if' a1= '(' (a2_0= parse_org_emftext_language_xpath2_Expr |a2_1= parse_org_emftext_language_xpath2_IfExpr |a2_2= parse_org_emftext_language_xpath2_ForExpr |a2_3= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_4= parse_org_emftext_language_xpath2_OrExpr ) a3= ')' a4= 'then' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) a6= 'else' (a7_0= parse_org_emftext_language_xpath2_IfExpr |a7_1= parse_org_emftext_language_xpath2_ForExpr |a7_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a7_3= parse_org_emftext_language_xpath2_OrExpr ) )
+            // Xpath2.g:1566:2: a0= 'if' a1= '(' (a2_0= parse_org_emftext_language_xpath2_Expr |a2_1= parse_org_emftext_language_xpath2_IfExpr |a2_2= parse_org_emftext_language_xpath2_ForExpr |a2_3= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_4= parse_org_emftext_language_xpath2_OrExpr ) a3= ')' a4= 'then' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) a6= 'else' (a7_0= parse_org_emftext_language_xpath2_IfExpr |a7_1= parse_org_emftext_language_xpath2_ForExpr |a7_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a7_3= parse_org_emftext_language_xpath2_OrExpr )
             {
             a0=(Token)match(input,61,FOLLOW_61_in_parse_org_emftext_language_xpath2_IfExpr917); if (state.failed) return element;
 
@@ -2672,7 +2649,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -2689,7 +2666,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_2, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            		copyLocalizationInfos((CommonToken)a1, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -2716,7 +2693,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[169]);
             	}
 
-            // Xpath2.g:1631:2: (a2_0= parse_org_emftext_language_xpath2_Expr |a2_1= parse_org_emftext_language_xpath2_IfExpr |a2_2= parse_org_emftext_language_xpath2_ForExpr |a2_3= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_4= parse_org_emftext_language_xpath2_OrExpr )
+            // Xpath2.g:1613:2: (a2_0= parse_org_emftext_language_xpath2_Expr |a2_1= parse_org_emftext_language_xpath2_IfExpr |a2_2= parse_org_emftext_language_xpath2_ForExpr |a2_3= parse_org_emftext_language_xpath2_QuantifiedExpr |a2_4= parse_org_emftext_language_xpath2_OrExpr )
             int alt10=5;
             switch ( input.LA(1) ) {
             case 61:
@@ -3550,7 +3527,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt10) {
                 case 1 :
-                    // Xpath2.g:1632:3: a2_0= parse_org_emftext_language_xpath2_Expr
+                    // Xpath2.g:1614:3: a2_0= parse_org_emftext_language_xpath2_Expr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_Expr_in_parse_org_emftext_language_xpath2_IfExpr949);
                     a2_0=parse_org_emftext_language_xpath2_Expr();
@@ -3581,7 +3558,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:1651:6: a2_1= parse_org_emftext_language_xpath2_IfExpr
+                    // Xpath2.g:1633:6: a2_1= parse_org_emftext_language_xpath2_IfExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IfExpr_in_parse_org_emftext_language_xpath2_IfExpr963);
                     a2_1=parse_org_emftext_language_xpath2_IfExpr();
@@ -3612,7 +3589,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:1670:6: a2_2= parse_org_emftext_language_xpath2_ForExpr
+                    // Xpath2.g:1652:6: a2_2= parse_org_emftext_language_xpath2_ForExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ForExpr_in_parse_org_emftext_language_xpath2_IfExpr977);
                     a2_2=parse_org_emftext_language_xpath2_ForExpr();
@@ -3643,7 +3620,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xpath2.g:1689:6: a2_3= parse_org_emftext_language_xpath2_QuantifiedExpr
+                    // Xpath2.g:1671:6: a2_3= parse_org_emftext_language_xpath2_QuantifiedExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_QuantifiedExpr_in_parse_org_emftext_language_xpath2_IfExpr991);
                     a2_3=parse_org_emftext_language_xpath2_QuantifiedExpr();
@@ -3674,7 +3651,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xpath2.g:1708:6: a2_4= parse_org_emftext_language_xpath2_OrExpr
+                    // Xpath2.g:1690:6: a2_4= parse_org_emftext_language_xpath2_OrExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_OrExpr_in_parse_org_emftext_language_xpath2_IfExpr1005);
                     a2_4=parse_org_emftext_language_xpath2_OrExpr();
@@ -3722,7 +3699,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_4, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+            		copyLocalizationInfos((CommonToken)a3, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -3739,7 +3716,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_6, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+            		copyLocalizationInfos((CommonToken)a4, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -3766,7 +3743,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[191]);
             	}
 
-            // Xpath2.g:1780:2: (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr )
+            // Xpath2.g:1762:2: (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr )
             int alt11=4;
             switch ( input.LA(1) ) {
             case 61:
@@ -3837,7 +3814,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt11) {
                 case 1 :
-                    // Xpath2.g:1781:3: a5_0= parse_org_emftext_language_xpath2_IfExpr
+                    // Xpath2.g:1763:3: a5_0= parse_org_emftext_language_xpath2_IfExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IfExpr_in_parse_org_emftext_language_xpath2_IfExpr1055);
                     a5_0=parse_org_emftext_language_xpath2_IfExpr();
@@ -3868,7 +3845,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:1800:6: a5_1= parse_org_emftext_language_xpath2_ForExpr
+                    // Xpath2.g:1782:6: a5_1= parse_org_emftext_language_xpath2_ForExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ForExpr_in_parse_org_emftext_language_xpath2_IfExpr1069);
                     a5_1=parse_org_emftext_language_xpath2_ForExpr();
@@ -3899,7 +3876,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:1819:6: a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr
+                    // Xpath2.g:1801:6: a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_QuantifiedExpr_in_parse_org_emftext_language_xpath2_IfExpr1083);
                     a5_2=parse_org_emftext_language_xpath2_QuantifiedExpr();
@@ -3930,7 +3907,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xpath2.g:1838:6: a5_3= parse_org_emftext_language_xpath2_OrExpr
+                    // Xpath2.g:1820:6: a5_3= parse_org_emftext_language_xpath2_OrExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_OrExpr_in_parse_org_emftext_language_xpath2_IfExpr1097);
                     a5_3=parse_org_emftext_language_xpath2_OrExpr();
@@ -3978,7 +3955,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_10, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
+            		copyLocalizationInfos((CommonToken)a6, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -4005,7 +3982,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[212]);
             	}
 
-            // Xpath2.g:1896:2: (a7_0= parse_org_emftext_language_xpath2_IfExpr |a7_1= parse_org_emftext_language_xpath2_ForExpr |a7_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a7_3= parse_org_emftext_language_xpath2_OrExpr )
+            // Xpath2.g:1878:2: (a7_0= parse_org_emftext_language_xpath2_IfExpr |a7_1= parse_org_emftext_language_xpath2_ForExpr |a7_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a7_3= parse_org_emftext_language_xpath2_OrExpr )
             int alt12=4;
             switch ( input.LA(1) ) {
             case 61:
@@ -4076,7 +4053,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt12) {
                 case 1 :
-                    // Xpath2.g:1897:3: a7_0= parse_org_emftext_language_xpath2_IfExpr
+                    // Xpath2.g:1879:3: a7_0= parse_org_emftext_language_xpath2_IfExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IfExpr_in_parse_org_emftext_language_xpath2_IfExpr1133);
                     a7_0=parse_org_emftext_language_xpath2_IfExpr();
@@ -4107,7 +4084,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:1916:6: a7_1= parse_org_emftext_language_xpath2_ForExpr
+                    // Xpath2.g:1898:6: a7_1= parse_org_emftext_language_xpath2_ForExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ForExpr_in_parse_org_emftext_language_xpath2_IfExpr1147);
                     a7_1=parse_org_emftext_language_xpath2_ForExpr();
@@ -4138,7 +4115,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:1935:6: a7_2= parse_org_emftext_language_xpath2_QuantifiedExpr
+                    // Xpath2.g:1917:6: a7_2= parse_org_emftext_language_xpath2_QuantifiedExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_QuantifiedExpr_in_parse_org_emftext_language_xpath2_IfExpr1161);
                     a7_2=parse_org_emftext_language_xpath2_QuantifiedExpr();
@@ -4169,7 +4146,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xpath2.g:1954:6: a7_3= parse_org_emftext_language_xpath2_OrExpr
+                    // Xpath2.g:1936:6: a7_3= parse_org_emftext_language_xpath2_OrExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_OrExpr_in_parse_org_emftext_language_xpath2_IfExpr1175);
                     a7_3=parse_org_emftext_language_xpath2_OrExpr();
@@ -4233,7 +4210,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_OrExpr"
-    // Xpath2.g:1986:1: parse_org_emftext_language_xpath2_OrExpr returns [org.emftext.language.xpath2.OrExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_AndExpr ) ( (a1= 'or' (a2_0= parse_org_emftext_language_xpath2_AndExpr ) ) )* ;
+    // Xpath2.g:1968:1: parse_org_emftext_language_xpath2_OrExpr returns [org.emftext.language.xpath2.OrExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_AndExpr ) ( (a1= 'or' (a2_0= parse_org_emftext_language_xpath2_AndExpr ) ) )* ;
     public final org.emftext.language.xpath2.OrExpr parse_org_emftext_language_xpath2_OrExpr() throws RecognitionException {
         org.emftext.language.xpath2.OrExpr element =  null;
 
@@ -4250,11 +4227,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 7) ) { return element; }
 
-            // Xpath2.g:1989:2: ( (a0_0= parse_org_emftext_language_xpath2_AndExpr ) ( (a1= 'or' (a2_0= parse_org_emftext_language_xpath2_AndExpr ) ) )* )
-            // Xpath2.g:1990:2: (a0_0= parse_org_emftext_language_xpath2_AndExpr ) ( (a1= 'or' (a2_0= parse_org_emftext_language_xpath2_AndExpr ) ) )*
+            // Xpath2.g:1971:2: ( (a0_0= parse_org_emftext_language_xpath2_AndExpr ) ( (a1= 'or' (a2_0= parse_org_emftext_language_xpath2_AndExpr ) ) )* )
+            // Xpath2.g:1972:2: (a0_0= parse_org_emftext_language_xpath2_AndExpr ) ( (a1= 'or' (a2_0= parse_org_emftext_language_xpath2_AndExpr ) ) )*
             {
-            // Xpath2.g:1990:2: (a0_0= parse_org_emftext_language_xpath2_AndExpr )
-            // Xpath2.g:1991:3: a0_0= parse_org_emftext_language_xpath2_AndExpr
+            // Xpath2.g:1972:2: (a0_0= parse_org_emftext_language_xpath2_AndExpr )
+            // Xpath2.g:1973:3: a0_0= parse_org_emftext_language_xpath2_AndExpr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AndExpr_in_parse_org_emftext_language_xpath2_OrExpr1212);
             a0_0=parse_org_emftext_language_xpath2_AndExpr();
@@ -4296,7 +4273,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[225]);
             	}
 
-            // Xpath2.g:2022:2: ( (a1= 'or' (a2_0= parse_org_emftext_language_xpath2_AndExpr ) ) )*
+            // Xpath2.g:2004:2: ( (a1= 'or' (a2_0= parse_org_emftext_language_xpath2_AndExpr ) ) )*
             loop13:
             do {
                 int alt13=2;
@@ -4309,10 +4286,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                 switch (alt13) {
             	case 1 :
-            	    // Xpath2.g:2023:3: (a1= 'or' (a2_0= parse_org_emftext_language_xpath2_AndExpr ) )
+            	    // Xpath2.g:2005:3: (a1= 'or' (a2_0= parse_org_emftext_language_xpath2_AndExpr ) )
             	    {
-            	    // Xpath2.g:2023:3: (a1= 'or' (a2_0= parse_org_emftext_language_xpath2_AndExpr ) )
-            	    // Xpath2.g:2024:4: a1= 'or' (a2_0= parse_org_emftext_language_xpath2_AndExpr )
+            	    // Xpath2.g:2005:3: (a1= 'or' (a2_0= parse_org_emftext_language_xpath2_AndExpr ) )
+            	    // Xpath2.g:2006:4: a1= 'or' (a2_0= parse_org_emftext_language_xpath2_AndExpr )
             	    {
             	    a1=(Token)match(input,74,FOLLOW_74_in_parse_org_emftext_language_xpath2_OrExpr1239); if (state.failed) return element;
 
@@ -4323,7 +4300,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    				}
             	    				collectHiddenTokens(element);
             	    				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_5_0_0_1_0_0_1, null, true);
-            	    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            	    				copyLocalizationInfos((CommonToken)a1, element);
             	    			}
 
             	    if ( state.backtracking==0 ) {
@@ -4347,8 +4324,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getOrExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[242]);
             	    			}
 
-            	    // Xpath2.g:2054:4: (a2_0= parse_org_emftext_language_xpath2_AndExpr )
-            	    // Xpath2.g:2055:5: a2_0= parse_org_emftext_language_xpath2_AndExpr
+            	    // Xpath2.g:2036:4: (a2_0= parse_org_emftext_language_xpath2_AndExpr )
+            	    // Xpath2.g:2037:5: a2_0= parse_org_emftext_language_xpath2_AndExpr
             	    {
             	    pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AndExpr_in_parse_org_emftext_language_xpath2_OrExpr1265);
             	    a2_0=parse_org_emftext_language_xpath2_AndExpr();
@@ -4433,7 +4410,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_AndExpr"
-    // Xpath2.g:2101:1: parse_org_emftext_language_xpath2_AndExpr returns [org.emftext.language.xpath2.AndExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_ComparisonExpr ) ( (a1= 'and' (a2_0= parse_org_emftext_language_xpath2_ComparisonExpr ) ) )* ;
+    // Xpath2.g:2083:1: parse_org_emftext_language_xpath2_AndExpr returns [org.emftext.language.xpath2.AndExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_ComparisonExpr ) ( (a1= 'and' (a2_0= parse_org_emftext_language_xpath2_ComparisonExpr ) ) )* ;
     public final org.emftext.language.xpath2.AndExpr parse_org_emftext_language_xpath2_AndExpr() throws RecognitionException {
         org.emftext.language.xpath2.AndExpr element =  null;
 
@@ -4450,11 +4427,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 8) ) { return element; }
 
-            // Xpath2.g:2104:2: ( (a0_0= parse_org_emftext_language_xpath2_ComparisonExpr ) ( (a1= 'and' (a2_0= parse_org_emftext_language_xpath2_ComparisonExpr ) ) )* )
-            // Xpath2.g:2105:2: (a0_0= parse_org_emftext_language_xpath2_ComparisonExpr ) ( (a1= 'and' (a2_0= parse_org_emftext_language_xpath2_ComparisonExpr ) ) )*
+            // Xpath2.g:2086:2: ( (a0_0= parse_org_emftext_language_xpath2_ComparisonExpr ) ( (a1= 'and' (a2_0= parse_org_emftext_language_xpath2_ComparisonExpr ) ) )* )
+            // Xpath2.g:2087:2: (a0_0= parse_org_emftext_language_xpath2_ComparisonExpr ) ( (a1= 'and' (a2_0= parse_org_emftext_language_xpath2_ComparisonExpr ) ) )*
             {
-            // Xpath2.g:2105:2: (a0_0= parse_org_emftext_language_xpath2_ComparisonExpr )
-            // Xpath2.g:2106:3: a0_0= parse_org_emftext_language_xpath2_ComparisonExpr
+            // Xpath2.g:2087:2: (a0_0= parse_org_emftext_language_xpath2_ComparisonExpr )
+            // Xpath2.g:2088:3: a0_0= parse_org_emftext_language_xpath2_ComparisonExpr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ComparisonExpr_in_parse_org_emftext_language_xpath2_AndExpr1325);
             a0_0=parse_org_emftext_language_xpath2_ComparisonExpr();
@@ -4497,7 +4474,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[264]);
             	}
 
-            // Xpath2.g:2138:2: ( (a1= 'and' (a2_0= parse_org_emftext_language_xpath2_ComparisonExpr ) ) )*
+            // Xpath2.g:2120:2: ( (a1= 'and' (a2_0= parse_org_emftext_language_xpath2_ComparisonExpr ) ) )*
             loop14:
             do {
                 int alt14=2;
@@ -4510,10 +4487,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                 switch (alt14) {
             	case 1 :
-            	    // Xpath2.g:2139:3: (a1= 'and' (a2_0= parse_org_emftext_language_xpath2_ComparisonExpr ) )
+            	    // Xpath2.g:2121:3: (a1= 'and' (a2_0= parse_org_emftext_language_xpath2_ComparisonExpr ) )
             	    {
-            	    // Xpath2.g:2139:3: (a1= 'and' (a2_0= parse_org_emftext_language_xpath2_ComparisonExpr ) )
-            	    // Xpath2.g:2140:4: a1= 'and' (a2_0= parse_org_emftext_language_xpath2_ComparisonExpr )
+            	    // Xpath2.g:2121:3: (a1= 'and' (a2_0= parse_org_emftext_language_xpath2_ComparisonExpr ) )
+            	    // Xpath2.g:2122:4: a1= 'and' (a2_0= parse_org_emftext_language_xpath2_ComparisonExpr )
             	    {
             	    a1=(Token)match(input,38,FOLLOW_38_in_parse_org_emftext_language_xpath2_AndExpr1352); if (state.failed) return element;
 
@@ -4524,7 +4501,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    				}
             	    				collectHiddenTokens(element);
             	    				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_6_0_0_1_0_0_1, null, true);
-            	    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            	    				copyLocalizationInfos((CommonToken)a1, element);
             	    			}
 
             	    if ( state.backtracking==0 ) {
@@ -4548,8 +4525,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAndExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[281]);
             	    			}
 
-            	    // Xpath2.g:2170:4: (a2_0= parse_org_emftext_language_xpath2_ComparisonExpr )
-            	    // Xpath2.g:2171:5: a2_0= parse_org_emftext_language_xpath2_ComparisonExpr
+            	    // Xpath2.g:2152:4: (a2_0= parse_org_emftext_language_xpath2_ComparisonExpr )
+            	    // Xpath2.g:2153:5: a2_0= parse_org_emftext_language_xpath2_ComparisonExpr
             	    {
             	    pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ComparisonExpr_in_parse_org_emftext_language_xpath2_AndExpr1378);
             	    a2_0=parse_org_emftext_language_xpath2_ComparisonExpr();
@@ -4636,7 +4613,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_ComparisonExpr"
-    // Xpath2.g:2219:1: parse_org_emftext_language_xpath2_ComparisonExpr returns [org.emftext.language.xpath2.ComparisonExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_RangeExpr ) ( ( (a1_0= parse_org_emftext_language_xpath2_Comp ) (a2_0= parse_org_emftext_language_xpath2_RangeExpr ) ) )? ;
+    // Xpath2.g:2201:1: parse_org_emftext_language_xpath2_ComparisonExpr returns [org.emftext.language.xpath2.ComparisonExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_RangeExpr ) ( ( (a1_0= parse_org_emftext_language_xpath2_Comp ) (a2_0= parse_org_emftext_language_xpath2_RangeExpr ) ) )? ;
     public final org.emftext.language.xpath2.ComparisonExpr parse_org_emftext_language_xpath2_ComparisonExpr() throws RecognitionException {
         org.emftext.language.xpath2.ComparisonExpr element =  null;
 
@@ -4654,11 +4631,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 9) ) { return element; }
 
-            // Xpath2.g:2222:2: ( (a0_0= parse_org_emftext_language_xpath2_RangeExpr ) ( ( (a1_0= parse_org_emftext_language_xpath2_Comp ) (a2_0= parse_org_emftext_language_xpath2_RangeExpr ) ) )? )
-            // Xpath2.g:2223:2: (a0_0= parse_org_emftext_language_xpath2_RangeExpr ) ( ( (a1_0= parse_org_emftext_language_xpath2_Comp ) (a2_0= parse_org_emftext_language_xpath2_RangeExpr ) ) )?
+            // Xpath2.g:2204:2: ( (a0_0= parse_org_emftext_language_xpath2_RangeExpr ) ( ( (a1_0= parse_org_emftext_language_xpath2_Comp ) (a2_0= parse_org_emftext_language_xpath2_RangeExpr ) ) )? )
+            // Xpath2.g:2205:2: (a0_0= parse_org_emftext_language_xpath2_RangeExpr ) ( ( (a1_0= parse_org_emftext_language_xpath2_Comp ) (a2_0= parse_org_emftext_language_xpath2_RangeExpr ) ) )?
             {
-            // Xpath2.g:2223:2: (a0_0= parse_org_emftext_language_xpath2_RangeExpr )
-            // Xpath2.g:2224:3: a0_0= parse_org_emftext_language_xpath2_RangeExpr
+            // Xpath2.g:2205:2: (a0_0= parse_org_emftext_language_xpath2_RangeExpr )
+            // Xpath2.g:2206:3: a0_0= parse_org_emftext_language_xpath2_RangeExpr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_RangeExpr_in_parse_org_emftext_language_xpath2_ComparisonExpr1438);
             a0_0=parse_org_emftext_language_xpath2_RangeExpr();
@@ -4704,7 +4681,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[308]);
             	}
 
-            // Xpath2.g:2259:2: ( ( (a1_0= parse_org_emftext_language_xpath2_Comp ) (a2_0= parse_org_emftext_language_xpath2_RangeExpr ) ) )?
+            // Xpath2.g:2241:2: ( ( (a1_0= parse_org_emftext_language_xpath2_Comp ) (a2_0= parse_org_emftext_language_xpath2_RangeExpr ) ) )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -4713,13 +4690,13 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt15) {
                 case 1 :
-                    // Xpath2.g:2260:3: ( (a1_0= parse_org_emftext_language_xpath2_Comp ) (a2_0= parse_org_emftext_language_xpath2_RangeExpr ) )
+                    // Xpath2.g:2242:3: ( (a1_0= parse_org_emftext_language_xpath2_Comp ) (a2_0= parse_org_emftext_language_xpath2_RangeExpr ) )
                     {
-                    // Xpath2.g:2260:3: ( (a1_0= parse_org_emftext_language_xpath2_Comp ) (a2_0= parse_org_emftext_language_xpath2_RangeExpr ) )
-                    // Xpath2.g:2261:4: (a1_0= parse_org_emftext_language_xpath2_Comp ) (a2_0= parse_org_emftext_language_xpath2_RangeExpr )
+                    // Xpath2.g:2242:3: ( (a1_0= parse_org_emftext_language_xpath2_Comp ) (a2_0= parse_org_emftext_language_xpath2_RangeExpr ) )
+                    // Xpath2.g:2243:4: (a1_0= parse_org_emftext_language_xpath2_Comp ) (a2_0= parse_org_emftext_language_xpath2_RangeExpr )
                     {
-                    // Xpath2.g:2261:4: (a1_0= parse_org_emftext_language_xpath2_Comp )
-                    // Xpath2.g:2262:5: a1_0= parse_org_emftext_language_xpath2_Comp
+                    // Xpath2.g:2243:4: (a1_0= parse_org_emftext_language_xpath2_Comp )
+                    // Xpath2.g:2244:5: a1_0= parse_org_emftext_language_xpath2_Comp
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_Comp_in_parse_org_emftext_language_xpath2_ComparisonExpr1471);
                     a1_0=parse_org_emftext_language_xpath2_Comp();
@@ -4771,8 +4748,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[325]);
                     			}
 
-                    // Xpath2.g:2303:4: (a2_0= parse_org_emftext_language_xpath2_RangeExpr )
-                    // Xpath2.g:2304:5: a2_0= parse_org_emftext_language_xpath2_RangeExpr
+                    // Xpath2.g:2285:4: (a2_0= parse_org_emftext_language_xpath2_RangeExpr )
+                    // Xpath2.g:2286:5: a2_0= parse_org_emftext_language_xpath2_RangeExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_RangeExpr_in_parse_org_emftext_language_xpath2_ComparisonExpr1505);
                     a2_0=parse_org_emftext_language_xpath2_RangeExpr();
@@ -4856,7 +4833,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_RangeExpr"
-    // Xpath2.g:2352:1: parse_org_emftext_language_xpath2_RangeExpr returns [org.emftext.language.xpath2.RangeExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_AdditiveExpr ) ( (a1= 'to' (a2_0= parse_org_emftext_language_xpath2_AdditiveExpr ) ) )? ;
+    // Xpath2.g:2334:1: parse_org_emftext_language_xpath2_RangeExpr returns [org.emftext.language.xpath2.RangeExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_AdditiveExpr ) ( (a1= 'to' (a2_0= parse_org_emftext_language_xpath2_AdditiveExpr ) ) )? ;
     public final org.emftext.language.xpath2.RangeExpr parse_org_emftext_language_xpath2_RangeExpr() throws RecognitionException {
         org.emftext.language.xpath2.RangeExpr element =  null;
 
@@ -4873,11 +4850,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 10) ) { return element; }
 
-            // Xpath2.g:2355:2: ( (a0_0= parse_org_emftext_language_xpath2_AdditiveExpr ) ( (a1= 'to' (a2_0= parse_org_emftext_language_xpath2_AdditiveExpr ) ) )? )
-            // Xpath2.g:2356:2: (a0_0= parse_org_emftext_language_xpath2_AdditiveExpr ) ( (a1= 'to' (a2_0= parse_org_emftext_language_xpath2_AdditiveExpr ) ) )?
+            // Xpath2.g:2337:2: ( (a0_0= parse_org_emftext_language_xpath2_AdditiveExpr ) ( (a1= 'to' (a2_0= parse_org_emftext_language_xpath2_AdditiveExpr ) ) )? )
+            // Xpath2.g:2338:2: (a0_0= parse_org_emftext_language_xpath2_AdditiveExpr ) ( (a1= 'to' (a2_0= parse_org_emftext_language_xpath2_AdditiveExpr ) ) )?
             {
-            // Xpath2.g:2356:2: (a0_0= parse_org_emftext_language_xpath2_AdditiveExpr )
-            // Xpath2.g:2357:3: a0_0= parse_org_emftext_language_xpath2_AdditiveExpr
+            // Xpath2.g:2338:2: (a0_0= parse_org_emftext_language_xpath2_AdditiveExpr )
+            // Xpath2.g:2339:3: a0_0= parse_org_emftext_language_xpath2_AdditiveExpr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AdditiveExpr_in_parse_org_emftext_language_xpath2_RangeExpr1565);
             a0_0=parse_org_emftext_language_xpath2_AdditiveExpr();
@@ -4924,7 +4901,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[353]);
             	}
 
-            // Xpath2.g:2393:2: ( (a1= 'to' (a2_0= parse_org_emftext_language_xpath2_AdditiveExpr ) ) )?
+            // Xpath2.g:2375:2: ( (a1= 'to' (a2_0= parse_org_emftext_language_xpath2_AdditiveExpr ) ) )?
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -4933,10 +4910,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt16) {
                 case 1 :
-                    // Xpath2.g:2394:3: (a1= 'to' (a2_0= parse_org_emftext_language_xpath2_AdditiveExpr ) )
+                    // Xpath2.g:2376:3: (a1= 'to' (a2_0= parse_org_emftext_language_xpath2_AdditiveExpr ) )
                     {
-                    // Xpath2.g:2394:3: (a1= 'to' (a2_0= parse_org_emftext_language_xpath2_AdditiveExpr ) )
-                    // Xpath2.g:2395:4: a1= 'to' (a2_0= parse_org_emftext_language_xpath2_AdditiveExpr )
+                    // Xpath2.g:2376:3: (a1= 'to' (a2_0= parse_org_emftext_language_xpath2_AdditiveExpr ) )
+                    // Xpath2.g:2377:4: a1= 'to' (a2_0= parse_org_emftext_language_xpath2_AdditiveExpr )
                     {
                     a1=(Token)match(input,87,FOLLOW_87_in_parse_org_emftext_language_xpath2_RangeExpr1592); if (state.failed) return element;
 
@@ -4947,7 +4924,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_8_0_0_1_0_0_1, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+                    				copyLocalizationInfos((CommonToken)a1, element);
                     			}
 
                     if ( state.backtracking==0 ) {
@@ -4971,8 +4948,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getRangeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[370]);
                     			}
 
-                    // Xpath2.g:2425:4: (a2_0= parse_org_emftext_language_xpath2_AdditiveExpr )
-                    // Xpath2.g:2426:5: a2_0= parse_org_emftext_language_xpath2_AdditiveExpr
+                    // Xpath2.g:2407:4: (a2_0= parse_org_emftext_language_xpath2_AdditiveExpr )
+                    // Xpath2.g:2408:5: a2_0= parse_org_emftext_language_xpath2_AdditiveExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AdditiveExpr_in_parse_org_emftext_language_xpath2_RangeExpr1618);
                     a2_0=parse_org_emftext_language_xpath2_AdditiveExpr();
@@ -5062,7 +5039,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_GeneralComp"
-    // Xpath2.g:2480:1: parse_org_emftext_language_xpath2_GeneralComp returns [org.emftext.language.xpath2.GeneralComp element = null] : ( (a0= '=' |a1= '!=' |a2= '<' |a3= '<=' |a4= '>' |a5= '>=' ) ) ;
+    // Xpath2.g:2462:1: parse_org_emftext_language_xpath2_GeneralComp returns [org.emftext.language.xpath2.GeneralComp element = null] : ( (a0= '=' |a1= '!=' |a2= '<' |a3= '<=' |a4= '>' |a5= '>=' ) ) ;
     public final org.emftext.language.xpath2.GeneralComp parse_org_emftext_language_xpath2_GeneralComp() throws RecognitionException {
         org.emftext.language.xpath2.GeneralComp element =  null;
 
@@ -5080,13 +5057,13 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 11) ) { return element; }
 
-            // Xpath2.g:2483:2: ( ( (a0= '=' |a1= '!=' |a2= '<' |a3= '<=' |a4= '>' |a5= '>=' ) ) )
-            // Xpath2.g:2484:2: ( (a0= '=' |a1= '!=' |a2= '<' |a3= '<=' |a4= '>' |a5= '>=' ) )
+            // Xpath2.g:2465:2: ( ( (a0= '=' |a1= '!=' |a2= '<' |a3= '<=' |a4= '>' |a5= '>=' ) ) )
+            // Xpath2.g:2466:2: ( (a0= '=' |a1= '!=' |a2= '<' |a3= '<=' |a4= '>' |a5= '>=' ) )
             {
-            // Xpath2.g:2484:2: ( (a0= '=' |a1= '!=' |a2= '<' |a3= '<=' |a4= '>' |a5= '>=' ) )
-            // Xpath2.g:2485:3: (a0= '=' |a1= '!=' |a2= '<' |a3= '<=' |a4= '>' |a5= '>=' )
+            // Xpath2.g:2466:2: ( (a0= '=' |a1= '!=' |a2= '<' |a3= '<=' |a4= '>' |a5= '>=' ) )
+            // Xpath2.g:2467:3: (a0= '=' |a1= '!=' |a2= '<' |a3= '<=' |a4= '>' |a5= '>=' )
             {
-            // Xpath2.g:2485:3: (a0= '=' |a1= '!=' |a2= '<' |a3= '<=' |a4= '>' |a5= '>=' )
+            // Xpath2.g:2467:3: (a0= '=' |a1= '!=' |a2= '<' |a3= '<=' |a4= '>' |a5= '>=' )
             int alt17=6;
             switch ( input.LA(1) ) {
             case 28:
@@ -5130,7 +5107,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt17) {
                 case 1 :
-                    // Xpath2.g:2486:4: a0= '='
+                    // Xpath2.g:2468:4: a0= '='
                     {
                     a0=(Token)match(input,28,FOLLOW_28_in_parse_org_emftext_language_xpath2_GeneralComp1683); if (state.failed) return element;
 
@@ -5141,7 +5118,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_9_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+                    				copyLocalizationInfos((CommonToken)a0, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.EQ_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_COMP__OPERATOR), value);
@@ -5151,7 +5128,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:2499:8: a1= '!='
+                    // Xpath2.g:2481:8: a1= '!='
                     {
                     a1=(Token)match(input,11,FOLLOW_11_in_parse_org_emftext_language_xpath2_GeneralComp1698); if (state.failed) return element;
 
@@ -5162,7 +5139,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_9_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+                    				copyLocalizationInfos((CommonToken)a1, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.NE_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_COMP__OPERATOR), value);
@@ -5172,7 +5149,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:2512:8: a2= '<'
+                    // Xpath2.g:2494:8: a2= '<'
                     {
                     a2=(Token)match(input,25,FOLLOW_25_in_parse_org_emftext_language_xpath2_GeneralComp1713); if (state.failed) return element;
 
@@ -5183,7 +5160,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_9_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+                    				copyLocalizationInfos((CommonToken)a2, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.LT_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_COMP__OPERATOR), value);
@@ -5193,7 +5170,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xpath2.g:2525:8: a3= '<='
+                    // Xpath2.g:2507:8: a3= '<='
                     {
                     a3=(Token)match(input,27,FOLLOW_27_in_parse_org_emftext_language_xpath2_GeneralComp1728); if (state.failed) return element;
 
@@ -5204,7 +5181,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_9_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+                    				copyLocalizationInfos((CommonToken)a3, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.LE_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_COMP__OPERATOR), value);
@@ -5214,7 +5191,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xpath2.g:2538:8: a4= '>'
+                    // Xpath2.g:2520:8: a4= '>'
                     {
                     a4=(Token)match(input,29,FOLLOW_29_in_parse_org_emftext_language_xpath2_GeneralComp1743); if (state.failed) return element;
 
@@ -5225,7 +5202,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_9_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+                    				copyLocalizationInfos((CommonToken)a4, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.GT_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_COMP__OPERATOR), value);
@@ -5235,7 +5212,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 6 :
-                    // Xpath2.g:2551:8: a5= '>='
+                    // Xpath2.g:2533:8: a5= '>='
                     {
                     a5=(Token)match(input,30,FOLLOW_30_in_parse_org_emftext_language_xpath2_GeneralComp1758); if (state.failed) return element;
 
@@ -5246,7 +5223,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_9_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+                    				copyLocalizationInfos((CommonToken)a5, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.GE_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_COMP__OPERATOR), value);
@@ -5303,7 +5280,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_ValueComp"
-    // Xpath2.g:2589:1: parse_org_emftext_language_xpath2_ValueComp returns [org.emftext.language.xpath2.ValueComp element = null] : ( (a0= 'eq' |a1= 'ne' |a2= 'lt' |a3= 'le' |a4= 'gt' |a5= 'ge' ) ) ;
+    // Xpath2.g:2571:1: parse_org_emftext_language_xpath2_ValueComp returns [org.emftext.language.xpath2.ValueComp element = null] : ( (a0= 'eq' |a1= 'ne' |a2= 'lt' |a3= 'le' |a4= 'gt' |a5= 'ge' ) ) ;
     public final org.emftext.language.xpath2.ValueComp parse_org_emftext_language_xpath2_ValueComp() throws RecognitionException {
         org.emftext.language.xpath2.ValueComp element =  null;
 
@@ -5321,13 +5298,13 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 12) ) { return element; }
 
-            // Xpath2.g:2592:2: ( ( (a0= 'eq' |a1= 'ne' |a2= 'lt' |a3= 'le' |a4= 'gt' |a5= 'ge' ) ) )
-            // Xpath2.g:2593:2: ( (a0= 'eq' |a1= 'ne' |a2= 'lt' |a3= 'le' |a4= 'gt' |a5= 'ge' ) )
+            // Xpath2.g:2574:2: ( ( (a0= 'eq' |a1= 'ne' |a2= 'lt' |a3= 'le' |a4= 'gt' |a5= 'ge' ) ) )
+            // Xpath2.g:2575:2: ( (a0= 'eq' |a1= 'ne' |a2= 'lt' |a3= 'le' |a4= 'gt' |a5= 'ge' ) )
             {
-            // Xpath2.g:2593:2: ( (a0= 'eq' |a1= 'ne' |a2= 'lt' |a3= 'le' |a4= 'gt' |a5= 'ge' ) )
-            // Xpath2.g:2594:3: (a0= 'eq' |a1= 'ne' |a2= 'lt' |a3= 'le' |a4= 'gt' |a5= 'ge' )
+            // Xpath2.g:2575:2: ( (a0= 'eq' |a1= 'ne' |a2= 'lt' |a3= 'le' |a4= 'gt' |a5= 'ge' ) )
+            // Xpath2.g:2576:3: (a0= 'eq' |a1= 'ne' |a2= 'lt' |a3= 'le' |a4= 'gt' |a5= 'ge' )
             {
-            // Xpath2.g:2594:3: (a0= 'eq' |a1= 'ne' |a2= 'lt' |a3= 'le' |a4= 'gt' |a5= 'ge' )
+            // Xpath2.g:2576:3: (a0= 'eq' |a1= 'ne' |a2= 'lt' |a3= 'le' |a4= 'gt' |a5= 'ge' )
             int alt18=6;
             switch ( input.LA(1) ) {
             case 52:
@@ -5371,7 +5348,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt18) {
                 case 1 :
-                    // Xpath2.g:2595:4: a0= 'eq'
+                    // Xpath2.g:2577:4: a0= 'eq'
                     {
                     a0=(Token)match(input,52,FOLLOW_52_in_parse_org_emftext_language_xpath2_ValueComp1803); if (state.failed) return element;
 
@@ -5382,7 +5359,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_10_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+                    				copyLocalizationInfos((CommonToken)a0, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.EQ_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VALUE_COMP__OPERATOR), value);
@@ -5392,7 +5369,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:2608:8: a1= 'ne'
+                    // Xpath2.g:2590:8: a1= 'ne'
                     {
                     a1=(Token)match(input,71,FOLLOW_71_in_parse_org_emftext_language_xpath2_ValueComp1818); if (state.failed) return element;
 
@@ -5403,7 +5380,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_10_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+                    				copyLocalizationInfos((CommonToken)a1, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.NE_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VALUE_COMP__OPERATOR), value);
@@ -5413,7 +5390,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:2621:8: a2= 'lt'
+                    // Xpath2.g:2603:8: a2= 'lt'
                     {
                     a2=(Token)match(input,68,FOLLOW_68_in_parse_org_emftext_language_xpath2_ValueComp1833); if (state.failed) return element;
 
@@ -5424,7 +5401,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_10_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+                    				copyLocalizationInfos((CommonToken)a2, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.LT_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VALUE_COMP__OPERATOR), value);
@@ -5434,7 +5411,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xpath2.g:2634:8: a3= 'le'
+                    // Xpath2.g:2616:8: a3= 'le'
                     {
                     a3=(Token)match(input,67,FOLLOW_67_in_parse_org_emftext_language_xpath2_ValueComp1848); if (state.failed) return element;
 
@@ -5445,7 +5422,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_10_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+                    				copyLocalizationInfos((CommonToken)a3, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.LE_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VALUE_COMP__OPERATOR), value);
@@ -5455,7 +5432,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xpath2.g:2647:8: a4= 'gt'
+                    // Xpath2.g:2629:8: a4= 'gt'
                     {
                     a4=(Token)match(input,59,FOLLOW_59_in_parse_org_emftext_language_xpath2_ValueComp1863); if (state.failed) return element;
 
@@ -5466,7 +5443,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_10_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+                    				copyLocalizationInfos((CommonToken)a4, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.GT_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VALUE_COMP__OPERATOR), value);
@@ -5476,7 +5453,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 6 :
-                    // Xpath2.g:2660:8: a5= 'ge'
+                    // Xpath2.g:2642:8: a5= 'ge'
                     {
                     a5=(Token)match(input,58,FOLLOW_58_in_parse_org_emftext_language_xpath2_ValueComp1878); if (state.failed) return element;
 
@@ -5487,7 +5464,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_10_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+                    				copyLocalizationInfos((CommonToken)a5, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.GE_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VALUE_COMP__OPERATOR), value);
@@ -5544,7 +5521,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_NodeComp"
-    // Xpath2.g:2698:1: parse_org_emftext_language_xpath2_NodeComp returns [org.emftext.language.xpath2.NodeComp element = null] : ( (a0= 'is' |a1= '<<' |a2= '>>' ) ) ;
+    // Xpath2.g:2680:1: parse_org_emftext_language_xpath2_NodeComp returns [org.emftext.language.xpath2.NodeComp element = null] : ( (a0= 'is' |a1= '<<' |a2= '>>' ) ) ;
     public final org.emftext.language.xpath2.NodeComp parse_org_emftext_language_xpath2_NodeComp() throws RecognitionException {
         org.emftext.language.xpath2.NodeComp element =  null;
 
@@ -5559,13 +5536,13 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 13) ) { return element; }
 
-            // Xpath2.g:2701:2: ( ( (a0= 'is' |a1= '<<' |a2= '>>' ) ) )
-            // Xpath2.g:2702:2: ( (a0= 'is' |a1= '<<' |a2= '>>' ) )
+            // Xpath2.g:2683:2: ( ( (a0= 'is' |a1= '<<' |a2= '>>' ) ) )
+            // Xpath2.g:2684:2: ( (a0= 'is' |a1= '<<' |a2= '>>' ) )
             {
-            // Xpath2.g:2702:2: ( (a0= 'is' |a1= '<<' |a2= '>>' ) )
-            // Xpath2.g:2703:3: (a0= 'is' |a1= '<<' |a2= '>>' )
+            // Xpath2.g:2684:2: ( (a0= 'is' |a1= '<<' |a2= '>>' ) )
+            // Xpath2.g:2685:3: (a0= 'is' |a1= '<<' |a2= '>>' )
             {
-            // Xpath2.g:2703:3: (a0= 'is' |a1= '<<' |a2= '>>' )
+            // Xpath2.g:2685:3: (a0= 'is' |a1= '<<' |a2= '>>' )
             int alt19=3;
             switch ( input.LA(1) ) {
             case 65:
@@ -5594,7 +5571,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt19) {
                 case 1 :
-                    // Xpath2.g:2704:4: a0= 'is'
+                    // Xpath2.g:2686:4: a0= 'is'
                     {
                     a0=(Token)match(input,65,FOLLOW_65_in_parse_org_emftext_language_xpath2_NodeComp1923); if (state.failed) return element;
 
@@ -5605,7 +5582,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_11_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+                    				copyLocalizationInfos((CommonToken)a0, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNodeCompKind().getEEnumLiteral(org.emftext.language.xpath2.NodeCompKind.IS_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NODE_COMP__OPERATOR), value);
@@ -5615,7 +5592,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:2717:8: a1= '<<'
+                    // Xpath2.g:2699:8: a1= '<<'
                     {
                     a1=(Token)match(input,26,FOLLOW_26_in_parse_org_emftext_language_xpath2_NodeComp1938); if (state.failed) return element;
 
@@ -5626,7 +5603,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_11_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+                    				copyLocalizationInfos((CommonToken)a1, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNodeCompKind().getEEnumLiteral(org.emftext.language.xpath2.NodeCompKind.PRECEDES_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NODE_COMP__OPERATOR), value);
@@ -5636,7 +5613,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:2730:8: a2= '>>'
+                    // Xpath2.g:2712:8: a2= '>>'
                     {
                     a2=(Token)match(input,31,FOLLOW_31_in_parse_org_emftext_language_xpath2_NodeComp1953); if (state.failed) return element;
 
@@ -5647,7 +5624,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_11_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+                    				copyLocalizationInfos((CommonToken)a2, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNodeCompKind().getEEnumLiteral(org.emftext.language.xpath2.NodeCompKind.FOLLOWS_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NODE_COMP__OPERATOR), value);
@@ -5704,7 +5681,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_AdditiveExpr"
-    // Xpath2.g:2768:1: parse_org_emftext_language_xpath2_AdditiveExpr returns [org.emftext.language.xpath2.AdditiveExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_MultiplicativeExpr ) ( ( ( (a1= '+' |a2= '-' ) ) (a5_0= parse_org_emftext_language_xpath2_MultiplicativeExpr ) ) )* ;
+    // Xpath2.g:2750:1: parse_org_emftext_language_xpath2_AdditiveExpr returns [org.emftext.language.xpath2.AdditiveExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_MultiplicativeExpr ) ( ( ( (a1= '+' |a2= '-' ) ) (a5_0= parse_org_emftext_language_xpath2_MultiplicativeExpr ) ) )* ;
     public final org.emftext.language.xpath2.AdditiveExpr parse_org_emftext_language_xpath2_AdditiveExpr() throws RecognitionException {
         org.emftext.language.xpath2.AdditiveExpr element =  null;
 
@@ -5722,11 +5699,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 14) ) { return element; }
 
-            // Xpath2.g:2771:2: ( (a0_0= parse_org_emftext_language_xpath2_MultiplicativeExpr ) ( ( ( (a1= '+' |a2= '-' ) ) (a5_0= parse_org_emftext_language_xpath2_MultiplicativeExpr ) ) )* )
-            // Xpath2.g:2772:2: (a0_0= parse_org_emftext_language_xpath2_MultiplicativeExpr ) ( ( ( (a1= '+' |a2= '-' ) ) (a5_0= parse_org_emftext_language_xpath2_MultiplicativeExpr ) ) )*
+            // Xpath2.g:2753:2: ( (a0_0= parse_org_emftext_language_xpath2_MultiplicativeExpr ) ( ( ( (a1= '+' |a2= '-' ) ) (a5_0= parse_org_emftext_language_xpath2_MultiplicativeExpr ) ) )* )
+            // Xpath2.g:2754:2: (a0_0= parse_org_emftext_language_xpath2_MultiplicativeExpr ) ( ( ( (a1= '+' |a2= '-' ) ) (a5_0= parse_org_emftext_language_xpath2_MultiplicativeExpr ) ) )*
             {
-            // Xpath2.g:2772:2: (a0_0= parse_org_emftext_language_xpath2_MultiplicativeExpr )
-            // Xpath2.g:2773:3: a0_0= parse_org_emftext_language_xpath2_MultiplicativeExpr
+            // Xpath2.g:2754:2: (a0_0= parse_org_emftext_language_xpath2_MultiplicativeExpr )
+            // Xpath2.g:2755:3: a0_0= parse_org_emftext_language_xpath2_MultiplicativeExpr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_MultiplicativeExpr_in_parse_org_emftext_language_xpath2_AdditiveExpr1993);
             a0_0=parse_org_emftext_language_xpath2_MultiplicativeExpr();
@@ -5774,7 +5751,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[456]);
             	}
 
-            // Xpath2.g:2810:2: ( ( ( (a1= '+' |a2= '-' ) ) (a5_0= parse_org_emftext_language_xpath2_MultiplicativeExpr ) ) )*
+            // Xpath2.g:2792:2: ( ( ( (a1= '+' |a2= '-' ) ) (a5_0= parse_org_emftext_language_xpath2_MultiplicativeExpr ) ) )*
             loop21:
             do {
                 int alt21=2;
@@ -5787,15 +5764,15 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                 switch (alt21) {
             	case 1 :
-            	    // Xpath2.g:2811:3: ( ( (a1= '+' |a2= '-' ) ) (a5_0= parse_org_emftext_language_xpath2_MultiplicativeExpr ) )
+            	    // Xpath2.g:2793:3: ( ( (a1= '+' |a2= '-' ) ) (a5_0= parse_org_emftext_language_xpath2_MultiplicativeExpr ) )
             	    {
-            	    // Xpath2.g:2811:3: ( ( (a1= '+' |a2= '-' ) ) (a5_0= parse_org_emftext_language_xpath2_MultiplicativeExpr ) )
-            	    // Xpath2.g:2812:4: ( (a1= '+' |a2= '-' ) ) (a5_0= parse_org_emftext_language_xpath2_MultiplicativeExpr )
+            	    // Xpath2.g:2793:3: ( ( (a1= '+' |a2= '-' ) ) (a5_0= parse_org_emftext_language_xpath2_MultiplicativeExpr ) )
+            	    // Xpath2.g:2794:4: ( (a1= '+' |a2= '-' ) ) (a5_0= parse_org_emftext_language_xpath2_MultiplicativeExpr )
             	    {
-            	    // Xpath2.g:2812:4: ( (a1= '+' |a2= '-' ) )
-            	    // Xpath2.g:2813:5: (a1= '+' |a2= '-' )
+            	    // Xpath2.g:2794:4: ( (a1= '+' |a2= '-' ) )
+            	    // Xpath2.g:2795:5: (a1= '+' |a2= '-' )
             	    {
-            	    // Xpath2.g:2813:5: (a1= '+' |a2= '-' )
+            	    // Xpath2.g:2795:5: (a1= '+' |a2= '-' )
             	    int alt20=2;
             	    int LA20_0 = input.LA(1);
 
@@ -5815,7 +5792,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    }
             	    switch (alt20) {
             	        case 1 :
-            	            // Xpath2.g:2814:6: a1= '+'
+            	            // Xpath2.g:2796:6: a1= '+'
             	            {
             	            a1=(Token)match(input,16,FOLLOW_16_in_parse_org_emftext_language_xpath2_AdditiveExpr2033); if (state.failed) return element;
 
@@ -5826,7 +5803,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            						}
             	            						collectHiddenTokens(element);
             	            						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_12_0_0_1_0_0_1, null, true);
-            	            						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            	            						copyLocalizationInfos((CommonToken)a1, element);
             	            						// set value of enumeration attribute
             	            						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAdditiveOpKind().getEEnumLiteral(org.emftext.language.xpath2.AdditiveOpKind.ADDITION_VALUE).getInstance();
             	            						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.ADDITIVE_EXPR__OPERATOR, value);
@@ -5836,7 +5813,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            }
             	            break;
             	        case 2 :
-            	            // Xpath2.g:2827:12: a2= '-'
+            	            // Xpath2.g:2809:12: a2= '-'
             	            {
             	            a2=(Token)match(input,18,FOLLOW_18_in_parse_org_emftext_language_xpath2_AdditiveExpr2052); if (state.failed) return element;
 
@@ -5847,7 +5824,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            						}
             	            						collectHiddenTokens(element);
             	            						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_12_0_0_1_0_0_1, null, true);
-            	            						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+            	            						copyLocalizationInfos((CommonToken)a2, element);
             	            						// set value of enumeration attribute
             	            						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAdditiveOpKind().getEEnumLiteral(org.emftext.language.xpath2.AdditiveOpKind.SUBTRACTION_VALUE).getInstance();
             	            						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.ADDITIVE_EXPR__OPERATOR, value);
@@ -5884,8 +5861,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAdditiveExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[473]);
             	    			}
 
-            	    // Xpath2.g:2863:4: (a5_0= parse_org_emftext_language_xpath2_MultiplicativeExpr )
-            	    // Xpath2.g:2864:5: a5_0= parse_org_emftext_language_xpath2_MultiplicativeExpr
+            	    // Xpath2.g:2845:4: (a5_0= parse_org_emftext_language_xpath2_MultiplicativeExpr )
+            	    // Xpath2.g:2846:5: a5_0= parse_org_emftext_language_xpath2_MultiplicativeExpr
             	    {
             	    pushFollow(FOLLOW_parse_org_emftext_language_xpath2_MultiplicativeExpr_in_parse_org_emftext_language_xpath2_AdditiveExpr2089);
             	    a5_0=parse_org_emftext_language_xpath2_MultiplicativeExpr();
@@ -5982,7 +5959,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_MultiplicativeExpr"
-    // Xpath2.g:2922:1: parse_org_emftext_language_xpath2_MultiplicativeExpr returns [org.emftext.language.xpath2.MultiplicativeExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_UnionExpr ) ( ( ( (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' ) ) (a7_0= parse_org_emftext_language_xpath2_UnionExpr ) ) )* ;
+    // Xpath2.g:2904:1: parse_org_emftext_language_xpath2_MultiplicativeExpr returns [org.emftext.language.xpath2.MultiplicativeExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_UnionExpr ) ( ( ( (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' ) ) (a7_0= parse_org_emftext_language_xpath2_UnionExpr ) ) )* ;
     public final org.emftext.language.xpath2.MultiplicativeExpr parse_org_emftext_language_xpath2_MultiplicativeExpr() throws RecognitionException {
         org.emftext.language.xpath2.MultiplicativeExpr element =  null;
 
@@ -6002,11 +5979,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 15) ) { return element; }
 
-            // Xpath2.g:2925:2: ( (a0_0= parse_org_emftext_language_xpath2_UnionExpr ) ( ( ( (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' ) ) (a7_0= parse_org_emftext_language_xpath2_UnionExpr ) ) )* )
-            // Xpath2.g:2926:2: (a0_0= parse_org_emftext_language_xpath2_UnionExpr ) ( ( ( (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' ) ) (a7_0= parse_org_emftext_language_xpath2_UnionExpr ) ) )*
+            // Xpath2.g:2907:2: ( (a0_0= parse_org_emftext_language_xpath2_UnionExpr ) ( ( ( (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' ) ) (a7_0= parse_org_emftext_language_xpath2_UnionExpr ) ) )* )
+            // Xpath2.g:2908:2: (a0_0= parse_org_emftext_language_xpath2_UnionExpr ) ( ( ( (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' ) ) (a7_0= parse_org_emftext_language_xpath2_UnionExpr ) ) )*
             {
-            // Xpath2.g:2926:2: (a0_0= parse_org_emftext_language_xpath2_UnionExpr )
-            // Xpath2.g:2927:3: a0_0= parse_org_emftext_language_xpath2_UnionExpr
+            // Xpath2.g:2908:2: (a0_0= parse_org_emftext_language_xpath2_UnionExpr )
+            // Xpath2.g:2909:3: a0_0= parse_org_emftext_language_xpath2_UnionExpr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_UnionExpr_in_parse_org_emftext_language_xpath2_MultiplicativeExpr2149);
             a0_0=parse_org_emftext_language_xpath2_UnionExpr();
@@ -6055,7 +6032,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[513]);
             	}
 
-            // Xpath2.g:2965:2: ( ( ( (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' ) ) (a7_0= parse_org_emftext_language_xpath2_UnionExpr ) ) )*
+            // Xpath2.g:2947:2: ( ( ( (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' ) ) (a7_0= parse_org_emftext_language_xpath2_UnionExpr ) ) )*
             loop23:
             do {
                 int alt23=2;
@@ -6068,15 +6045,15 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                 switch (alt23) {
             	case 1 :
-            	    // Xpath2.g:2966:3: ( ( (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' ) ) (a7_0= parse_org_emftext_language_xpath2_UnionExpr ) )
+            	    // Xpath2.g:2948:3: ( ( (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' ) ) (a7_0= parse_org_emftext_language_xpath2_UnionExpr ) )
             	    {
-            	    // Xpath2.g:2966:3: ( ( (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' ) ) (a7_0= parse_org_emftext_language_xpath2_UnionExpr ) )
-            	    // Xpath2.g:2967:4: ( (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' ) ) (a7_0= parse_org_emftext_language_xpath2_UnionExpr )
+            	    // Xpath2.g:2948:3: ( ( (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' ) ) (a7_0= parse_org_emftext_language_xpath2_UnionExpr ) )
+            	    // Xpath2.g:2949:4: ( (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' ) ) (a7_0= parse_org_emftext_language_xpath2_UnionExpr )
             	    {
-            	    // Xpath2.g:2967:4: ( (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' ) )
-            	    // Xpath2.g:2968:5: (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' )
+            	    // Xpath2.g:2949:4: ( (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' ) )
+            	    // Xpath2.g:2950:5: (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' )
             	    {
-            	    // Xpath2.g:2968:5: (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' )
+            	    // Xpath2.g:2950:5: (a1= '*' |a2= 'div' |a3= 'idiv' |a4= 'mod' )
             	    int alt22=4;
             	    switch ( input.LA(1) ) {
             	    case 15:
@@ -6110,7 +6087,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             	    switch (alt22) {
             	        case 1 :
-            	            // Xpath2.g:2969:6: a1= '*'
+            	            // Xpath2.g:2951:6: a1= '*'
             	            {
             	            a1=(Token)match(input,15,FOLLOW_15_in_parse_org_emftext_language_xpath2_MultiplicativeExpr2189); if (state.failed) return element;
 
@@ -6121,7 +6098,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            						}
             	            						collectHiddenTokens(element);
             	            						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_13_0_0_1_0_0_1, null, true);
-            	            						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            	            						copyLocalizationInfos((CommonToken)a1, element);
             	            						// set value of enumeration attribute
             	            						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getMultiplicativeOpKind().getEEnumLiteral(org.emftext.language.xpath2.MultiplicativeOpKind.MULTIPLICATION_VALUE).getInstance();
             	            						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.MULTIPLICATIVE_EXPR__OPERATOR, value);
@@ -6131,7 +6108,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            }
             	            break;
             	        case 2 :
-            	            // Xpath2.g:2982:12: a2= 'div'
+            	            // Xpath2.g:2964:12: a2= 'div'
             	            {
             	            a2=(Token)match(input,47,FOLLOW_47_in_parse_org_emftext_language_xpath2_MultiplicativeExpr2208); if (state.failed) return element;
 
@@ -6142,7 +6119,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            						}
             	            						collectHiddenTokens(element);
             	            						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_13_0_0_1_0_0_1, null, true);
-            	            						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+            	            						copyLocalizationInfos((CommonToken)a2, element);
             	            						// set value of enumeration attribute
             	            						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getMultiplicativeOpKind().getEEnumLiteral(org.emftext.language.xpath2.MultiplicativeOpKind.DIV_VALUE).getInstance();
             	            						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.MULTIPLICATIVE_EXPR__OPERATOR, value);
@@ -6152,7 +6129,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            }
             	            break;
             	        case 3 :
-            	            // Xpath2.g:2995:12: a3= 'idiv'
+            	            // Xpath2.g:2977:12: a3= 'idiv'
             	            {
             	            a3=(Token)match(input,60,FOLLOW_60_in_parse_org_emftext_language_xpath2_MultiplicativeExpr2227); if (state.failed) return element;
 
@@ -6163,7 +6140,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            						}
             	            						collectHiddenTokens(element);
             	            						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_13_0_0_1_0_0_1, null, true);
-            	            						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+            	            						copyLocalizationInfos((CommonToken)a3, element);
             	            						// set value of enumeration attribute
             	            						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getMultiplicativeOpKind().getEEnumLiteral(org.emftext.language.xpath2.MultiplicativeOpKind.IDIV_VALUE).getInstance();
             	            						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.MULTIPLICATIVE_EXPR__OPERATOR, value);
@@ -6173,7 +6150,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            }
             	            break;
             	        case 4 :
-            	            // Xpath2.g:3008:12: a4= 'mod'
+            	            // Xpath2.g:2990:12: a4= 'mod'
             	            {
             	            a4=(Token)match(input,69,FOLLOW_69_in_parse_org_emftext_language_xpath2_MultiplicativeExpr2246); if (state.failed) return element;
 
@@ -6184,7 +6161,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            						}
             	            						collectHiddenTokens(element);
             	            						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_13_0_0_1_0_0_1, null, true);
-            	            						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+            	            						copyLocalizationInfos((CommonToken)a4, element);
             	            						// set value of enumeration attribute
             	            						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getMultiplicativeOpKind().getEEnumLiteral(org.emftext.language.xpath2.MultiplicativeOpKind.MOD_VALUE).getInstance();
             	            						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.MULTIPLICATIVE_EXPR__OPERATOR, value);
@@ -6221,8 +6198,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getMultiplicativeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[530]);
             	    			}
 
-            	    // Xpath2.g:3044:4: (a7_0= parse_org_emftext_language_xpath2_UnionExpr )
-            	    // Xpath2.g:3045:5: a7_0= parse_org_emftext_language_xpath2_UnionExpr
+            	    // Xpath2.g:3026:4: (a7_0= parse_org_emftext_language_xpath2_UnionExpr )
+            	    // Xpath2.g:3027:5: a7_0= parse_org_emftext_language_xpath2_UnionExpr
             	    {
             	    pushFollow(FOLLOW_parse_org_emftext_language_xpath2_UnionExpr_in_parse_org_emftext_language_xpath2_MultiplicativeExpr2283);
             	    a7_0=parse_org_emftext_language_xpath2_UnionExpr();
@@ -6321,7 +6298,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_UnionExpr"
-    // Xpath2.g:3105:1: parse_org_emftext_language_xpath2_UnionExpr returns [org.emftext.language.xpath2.UnionExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_IntersectExceptExpr ) ( ( ( (a1= 'union' |a2= '|' ) ) (a5_0= parse_org_emftext_language_xpath2_IntersectExceptExpr ) ) )* ;
+    // Xpath2.g:3087:1: parse_org_emftext_language_xpath2_UnionExpr returns [org.emftext.language.xpath2.UnionExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_IntersectExceptExpr ) ( ( ( (a1= 'union' |a2= '|' ) ) (a5_0= parse_org_emftext_language_xpath2_IntersectExceptExpr ) ) )* ;
     public final org.emftext.language.xpath2.UnionExpr parse_org_emftext_language_xpath2_UnionExpr() throws RecognitionException {
         org.emftext.language.xpath2.UnionExpr element =  null;
 
@@ -6339,11 +6316,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 16) ) { return element; }
 
-            // Xpath2.g:3108:2: ( (a0_0= parse_org_emftext_language_xpath2_IntersectExceptExpr ) ( ( ( (a1= 'union' |a2= '|' ) ) (a5_0= parse_org_emftext_language_xpath2_IntersectExceptExpr ) ) )* )
-            // Xpath2.g:3109:2: (a0_0= parse_org_emftext_language_xpath2_IntersectExceptExpr ) ( ( ( (a1= 'union' |a2= '|' ) ) (a5_0= parse_org_emftext_language_xpath2_IntersectExceptExpr ) ) )*
+            // Xpath2.g:3090:2: ( (a0_0= parse_org_emftext_language_xpath2_IntersectExceptExpr ) ( ( ( (a1= 'union' |a2= '|' ) ) (a5_0= parse_org_emftext_language_xpath2_IntersectExceptExpr ) ) )* )
+            // Xpath2.g:3091:2: (a0_0= parse_org_emftext_language_xpath2_IntersectExceptExpr ) ( ( ( (a1= 'union' |a2= '|' ) ) (a5_0= parse_org_emftext_language_xpath2_IntersectExceptExpr ) ) )*
             {
-            // Xpath2.g:3109:2: (a0_0= parse_org_emftext_language_xpath2_IntersectExceptExpr )
-            // Xpath2.g:3110:3: a0_0= parse_org_emftext_language_xpath2_IntersectExceptExpr
+            // Xpath2.g:3091:2: (a0_0= parse_org_emftext_language_xpath2_IntersectExceptExpr )
+            // Xpath2.g:3092:3: a0_0= parse_org_emftext_language_xpath2_IntersectExceptExpr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IntersectExceptExpr_in_parse_org_emftext_language_xpath2_UnionExpr2343);
             a0_0=parse_org_emftext_language_xpath2_IntersectExceptExpr();
@@ -6393,7 +6370,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[573]);
             	}
 
-            // Xpath2.g:3149:2: ( ( ( (a1= 'union' |a2= '|' ) ) (a5_0= parse_org_emftext_language_xpath2_IntersectExceptExpr ) ) )*
+            // Xpath2.g:3131:2: ( ( ( (a1= 'union' |a2= '|' ) ) (a5_0= parse_org_emftext_language_xpath2_IntersectExceptExpr ) ) )*
             loop25:
             do {
                 int alt25=2;
@@ -6406,15 +6383,15 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                 switch (alt25) {
             	case 1 :
-            	    // Xpath2.g:3150:3: ( ( (a1= 'union' |a2= '|' ) ) (a5_0= parse_org_emftext_language_xpath2_IntersectExceptExpr ) )
+            	    // Xpath2.g:3132:3: ( ( (a1= 'union' |a2= '|' ) ) (a5_0= parse_org_emftext_language_xpath2_IntersectExceptExpr ) )
             	    {
-            	    // Xpath2.g:3150:3: ( ( (a1= 'union' |a2= '|' ) ) (a5_0= parse_org_emftext_language_xpath2_IntersectExceptExpr ) )
-            	    // Xpath2.g:3151:4: ( (a1= 'union' |a2= '|' ) ) (a5_0= parse_org_emftext_language_xpath2_IntersectExceptExpr )
+            	    // Xpath2.g:3132:3: ( ( (a1= 'union' |a2= '|' ) ) (a5_0= parse_org_emftext_language_xpath2_IntersectExceptExpr ) )
+            	    // Xpath2.g:3133:4: ( (a1= 'union' |a2= '|' ) ) (a5_0= parse_org_emftext_language_xpath2_IntersectExceptExpr )
             	    {
-            	    // Xpath2.g:3151:4: ( (a1= 'union' |a2= '|' ) )
-            	    // Xpath2.g:3152:5: (a1= 'union' |a2= '|' )
+            	    // Xpath2.g:3133:4: ( (a1= 'union' |a2= '|' ) )
+            	    // Xpath2.g:3134:5: (a1= 'union' |a2= '|' )
             	    {
-            	    // Xpath2.g:3152:5: (a1= 'union' |a2= '|' )
+            	    // Xpath2.g:3134:5: (a1= 'union' |a2= '|' )
             	    int alt24=2;
             	    int LA24_0 = input.LA(1);
 
@@ -6434,7 +6411,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    }
             	    switch (alt24) {
             	        case 1 :
-            	            // Xpath2.g:3153:6: a1= 'union'
+            	            // Xpath2.g:3135:6: a1= 'union'
             	            {
             	            a1=(Token)match(input,89,FOLLOW_89_in_parse_org_emftext_language_xpath2_UnionExpr2383); if (state.failed) return element;
 
@@ -6445,7 +6422,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            						}
             	            						collectHiddenTokens(element);
             	            						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_14_0_0_1_0_0_1, null, true);
-            	            						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            	            						copyLocalizationInfos((CommonToken)a1, element);
             	            						// set value of enumeration attribute
             	            						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getUnionOp().getEEnumLiteral(org.emftext.language.xpath2.UnionOp.UNION_VALUE).getInstance();
             	            						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.UNION_EXPR__OPERATION, value);
@@ -6455,7 +6432,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            }
             	            break;
             	        case 2 :
-            	            // Xpath2.g:3166:12: a2= '|'
+            	            // Xpath2.g:3148:12: a2= '|'
             	            {
             	            a2=(Token)match(input,90,FOLLOW_90_in_parse_org_emftext_language_xpath2_UnionExpr2402); if (state.failed) return element;
 
@@ -6466,7 +6443,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            						}
             	            						collectHiddenTokens(element);
             	            						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_14_0_0_1_0_0_1, null, true);
-            	            						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+            	            						copyLocalizationInfos((CommonToken)a2, element);
             	            						// set value of enumeration attribute
             	            						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getUnionOp().getEEnumLiteral(org.emftext.language.xpath2.UnionOp.VERTICAL_BAR_VALUE).getInstance();
             	            						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.UNION_EXPR__OPERATION, value);
@@ -6503,8 +6480,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getUnionExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[590]);
             	    			}
 
-            	    // Xpath2.g:3202:4: (a5_0= parse_org_emftext_language_xpath2_IntersectExceptExpr )
-            	    // Xpath2.g:3203:5: a5_0= parse_org_emftext_language_xpath2_IntersectExceptExpr
+            	    // Xpath2.g:3184:4: (a5_0= parse_org_emftext_language_xpath2_IntersectExceptExpr )
+            	    // Xpath2.g:3185:5: a5_0= parse_org_emftext_language_xpath2_IntersectExceptExpr
             	    {
             	    pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IntersectExceptExpr_in_parse_org_emftext_language_xpath2_UnionExpr2439);
             	    a5_0=parse_org_emftext_language_xpath2_IntersectExceptExpr();
@@ -6605,7 +6582,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_IntersectExceptExpr"
-    // Xpath2.g:3265:1: parse_org_emftext_language_xpath2_IntersectExceptExpr returns [org.emftext.language.xpath2.IntersectExceptExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_InstanceofExpr ) ( ( ( (a1= 'intersect' |a2= 'except' ) ) (a5_0= parse_org_emftext_language_xpath2_InstanceofExpr ) ) )* ;
+    // Xpath2.g:3247:1: parse_org_emftext_language_xpath2_IntersectExceptExpr returns [org.emftext.language.xpath2.IntersectExceptExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_InstanceofExpr ) ( ( ( (a1= 'intersect' |a2= 'except' ) ) (a5_0= parse_org_emftext_language_xpath2_InstanceofExpr ) ) )* ;
     public final org.emftext.language.xpath2.IntersectExceptExpr parse_org_emftext_language_xpath2_IntersectExceptExpr() throws RecognitionException {
         org.emftext.language.xpath2.IntersectExceptExpr element =  null;
 
@@ -6623,11 +6600,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 17) ) { return element; }
 
-            // Xpath2.g:3268:2: ( (a0_0= parse_org_emftext_language_xpath2_InstanceofExpr ) ( ( ( (a1= 'intersect' |a2= 'except' ) ) (a5_0= parse_org_emftext_language_xpath2_InstanceofExpr ) ) )* )
-            // Xpath2.g:3269:2: (a0_0= parse_org_emftext_language_xpath2_InstanceofExpr ) ( ( ( (a1= 'intersect' |a2= 'except' ) ) (a5_0= parse_org_emftext_language_xpath2_InstanceofExpr ) ) )*
+            // Xpath2.g:3250:2: ( (a0_0= parse_org_emftext_language_xpath2_InstanceofExpr ) ( ( ( (a1= 'intersect' |a2= 'except' ) ) (a5_0= parse_org_emftext_language_xpath2_InstanceofExpr ) ) )* )
+            // Xpath2.g:3251:2: (a0_0= parse_org_emftext_language_xpath2_InstanceofExpr ) ( ( ( (a1= 'intersect' |a2= 'except' ) ) (a5_0= parse_org_emftext_language_xpath2_InstanceofExpr ) ) )*
             {
-            // Xpath2.g:3269:2: (a0_0= parse_org_emftext_language_xpath2_InstanceofExpr )
-            // Xpath2.g:3270:3: a0_0= parse_org_emftext_language_xpath2_InstanceofExpr
+            // Xpath2.g:3251:2: (a0_0= parse_org_emftext_language_xpath2_InstanceofExpr )
+            // Xpath2.g:3252:3: a0_0= parse_org_emftext_language_xpath2_InstanceofExpr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_InstanceofExpr_in_parse_org_emftext_language_xpath2_IntersectExceptExpr2499);
             a0_0=parse_org_emftext_language_xpath2_InstanceofExpr();
@@ -6678,7 +6655,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[636]);
             	}
 
-            // Xpath2.g:3310:2: ( ( ( (a1= 'intersect' |a2= 'except' ) ) (a5_0= parse_org_emftext_language_xpath2_InstanceofExpr ) ) )*
+            // Xpath2.g:3292:2: ( ( ( (a1= 'intersect' |a2= 'except' ) ) (a5_0= parse_org_emftext_language_xpath2_InstanceofExpr ) ) )*
             loop27:
             do {
                 int alt27=2;
@@ -6691,15 +6668,15 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                 switch (alt27) {
             	case 1 :
-            	    // Xpath2.g:3311:3: ( ( (a1= 'intersect' |a2= 'except' ) ) (a5_0= parse_org_emftext_language_xpath2_InstanceofExpr ) )
+            	    // Xpath2.g:3293:3: ( ( (a1= 'intersect' |a2= 'except' ) ) (a5_0= parse_org_emftext_language_xpath2_InstanceofExpr ) )
             	    {
-            	    // Xpath2.g:3311:3: ( ( (a1= 'intersect' |a2= 'except' ) ) (a5_0= parse_org_emftext_language_xpath2_InstanceofExpr ) )
-            	    // Xpath2.g:3312:4: ( (a1= 'intersect' |a2= 'except' ) ) (a5_0= parse_org_emftext_language_xpath2_InstanceofExpr )
+            	    // Xpath2.g:3293:3: ( ( (a1= 'intersect' |a2= 'except' ) ) (a5_0= parse_org_emftext_language_xpath2_InstanceofExpr ) )
+            	    // Xpath2.g:3294:4: ( (a1= 'intersect' |a2= 'except' ) ) (a5_0= parse_org_emftext_language_xpath2_InstanceofExpr )
             	    {
-            	    // Xpath2.g:3312:4: ( (a1= 'intersect' |a2= 'except' ) )
-            	    // Xpath2.g:3313:5: (a1= 'intersect' |a2= 'except' )
+            	    // Xpath2.g:3294:4: ( (a1= 'intersect' |a2= 'except' ) )
+            	    // Xpath2.g:3295:5: (a1= 'intersect' |a2= 'except' )
             	    {
-            	    // Xpath2.g:3313:5: (a1= 'intersect' |a2= 'except' )
+            	    // Xpath2.g:3295:5: (a1= 'intersect' |a2= 'except' )
             	    int alt26=2;
             	    int LA26_0 = input.LA(1);
 
@@ -6719,7 +6696,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    }
             	    switch (alt26) {
             	        case 1 :
-            	            // Xpath2.g:3314:6: a1= 'intersect'
+            	            // Xpath2.g:3296:6: a1= 'intersect'
             	            {
             	            a1=(Token)match(input,64,FOLLOW_64_in_parse_org_emftext_language_xpath2_IntersectExceptExpr2539); if (state.failed) return element;
 
@@ -6730,7 +6707,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            						}
             	            						collectHiddenTokens(element);
             	            						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_15_0_0_1_0_0_1, null, true);
-            	            						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            	            						copyLocalizationInfos((CommonToken)a1, element);
             	            						// set value of enumeration attribute
             	            						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getIntersectExceptOpKind().getEEnumLiteral(org.emftext.language.xpath2.IntersectExceptOpKind.INTERSECT_VALUE).getInstance();
             	            						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.INTERSECT_EXCEPT_EXPR__OPERATOR, value);
@@ -6740,7 +6717,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            }
             	            break;
             	        case 2 :
-            	            // Xpath2.g:3327:12: a2= 'except'
+            	            // Xpath2.g:3309:12: a2= 'except'
             	            {
             	            a2=(Token)match(input,54,FOLLOW_54_in_parse_org_emftext_language_xpath2_IntersectExceptExpr2558); if (state.failed) return element;
 
@@ -6751,7 +6728,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            						}
             	            						collectHiddenTokens(element);
             	            						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_15_0_0_1_0_0_1, null, true);
-            	            						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+            	            						copyLocalizationInfos((CommonToken)a2, element);
             	            						// set value of enumeration attribute
             	            						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getIntersectExceptOpKind().getEEnumLiteral(org.emftext.language.xpath2.IntersectExceptOpKind.EXCEPT_VALUE).getInstance();
             	            						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.INTERSECT_EXCEPT_EXPR__OPERATOR, value);
@@ -6788,8 +6765,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getIntersectExceptExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[653]);
             	    			}
 
-            	    // Xpath2.g:3363:4: (a5_0= parse_org_emftext_language_xpath2_InstanceofExpr )
-            	    // Xpath2.g:3364:5: a5_0= parse_org_emftext_language_xpath2_InstanceofExpr
+            	    // Xpath2.g:3345:4: (a5_0= parse_org_emftext_language_xpath2_InstanceofExpr )
+            	    // Xpath2.g:3346:5: a5_0= parse_org_emftext_language_xpath2_InstanceofExpr
             	    {
             	    pushFollow(FOLLOW_parse_org_emftext_language_xpath2_InstanceofExpr_in_parse_org_emftext_language_xpath2_IntersectExceptExpr2595);
             	    a5_0=parse_org_emftext_language_xpath2_InstanceofExpr();
@@ -6892,7 +6869,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_InstanceofExpr"
-    // Xpath2.g:3428:1: parse_org_emftext_language_xpath2_InstanceofExpr returns [org.emftext.language.xpath2.InstanceofExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_TreatExpr ) ( (a1= 'instance' a2= 'of' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) ) )? ;
+    // Xpath2.g:3410:1: parse_org_emftext_language_xpath2_InstanceofExpr returns [org.emftext.language.xpath2.InstanceofExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_TreatExpr ) ( (a1= 'instance' a2= 'of' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) ) )? ;
     public final org.emftext.language.xpath2.InstanceofExpr parse_org_emftext_language_xpath2_InstanceofExpr() throws RecognitionException {
         org.emftext.language.xpath2.InstanceofExpr element =  null;
 
@@ -6910,11 +6887,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 18) ) { return element; }
 
-            // Xpath2.g:3431:2: ( (a0_0= parse_org_emftext_language_xpath2_TreatExpr ) ( (a1= 'instance' a2= 'of' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) ) )? )
-            // Xpath2.g:3432:2: (a0_0= parse_org_emftext_language_xpath2_TreatExpr ) ( (a1= 'instance' a2= 'of' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) ) )?
+            // Xpath2.g:3413:2: ( (a0_0= parse_org_emftext_language_xpath2_TreatExpr ) ( (a1= 'instance' a2= 'of' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) ) )? )
+            // Xpath2.g:3414:2: (a0_0= parse_org_emftext_language_xpath2_TreatExpr ) ( (a1= 'instance' a2= 'of' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) ) )?
             {
-            // Xpath2.g:3432:2: (a0_0= parse_org_emftext_language_xpath2_TreatExpr )
-            // Xpath2.g:3433:3: a0_0= parse_org_emftext_language_xpath2_TreatExpr
+            // Xpath2.g:3414:2: (a0_0= parse_org_emftext_language_xpath2_TreatExpr )
+            // Xpath2.g:3415:3: a0_0= parse_org_emftext_language_xpath2_TreatExpr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_TreatExpr_in_parse_org_emftext_language_xpath2_InstanceofExpr2655);
             a0_0=parse_org_emftext_language_xpath2_TreatExpr();
@@ -6966,7 +6943,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[702]);
             	}
 
-            // Xpath2.g:3474:2: ( (a1= 'instance' a2= 'of' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) ) )?
+            // Xpath2.g:3456:2: ( (a1= 'instance' a2= 'of' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) ) )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -6975,10 +6952,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt28) {
                 case 1 :
-                    // Xpath2.g:3475:3: (a1= 'instance' a2= 'of' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) )
+                    // Xpath2.g:3457:3: (a1= 'instance' a2= 'of' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) )
                     {
-                    // Xpath2.g:3475:3: (a1= 'instance' a2= 'of' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) )
-                    // Xpath2.g:3476:4: a1= 'instance' a2= 'of' (a3_0= parse_org_emftext_language_xpath2_SequenceType )
+                    // Xpath2.g:3457:3: (a1= 'instance' a2= 'of' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) )
+                    // Xpath2.g:3458:4: a1= 'instance' a2= 'of' (a3_0= parse_org_emftext_language_xpath2_SequenceType )
                     {
                     a1=(Token)match(input,63,FOLLOW_63_in_parse_org_emftext_language_xpath2_InstanceofExpr2682); if (state.failed) return element;
 
@@ -6989,7 +6966,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_16_0_0_1_0_0_1, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+                    				copyLocalizationInfos((CommonToken)a1, element);
                     			}
 
                     if ( state.backtracking==0 ) {
@@ -7006,7 +6983,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_16_0_0_1_0_0_2, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+                    				copyLocalizationInfos((CommonToken)a2, element);
                     			}
 
                     if ( state.backtracking==0 ) {
@@ -7032,8 +7009,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[722]);
                     			}
 
-                    // Xpath2.g:3522:4: (a3_0= parse_org_emftext_language_xpath2_SequenceType )
-                    // Xpath2.g:3523:5: a3_0= parse_org_emftext_language_xpath2_SequenceType
+                    // Xpath2.g:3504:4: (a3_0= parse_org_emftext_language_xpath2_SequenceType )
+                    // Xpath2.g:3505:5: a3_0= parse_org_emftext_language_xpath2_SequenceType
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_SequenceType_in_parse_org_emftext_language_xpath2_InstanceofExpr2728);
                     a3_0=parse_org_emftext_language_xpath2_SequenceType();
@@ -7133,7 +7110,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_TreatExpr"
-    // Xpath2.g:3587:1: parse_org_emftext_language_xpath2_TreatExpr returns [org.emftext.language.xpath2.TreatExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_CastableExpr ) ( (a1= 'treat' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) ) )? ;
+    // Xpath2.g:3569:1: parse_org_emftext_language_xpath2_TreatExpr returns [org.emftext.language.xpath2.TreatExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_CastableExpr ) ( (a1= 'treat' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) ) )? ;
     public final org.emftext.language.xpath2.TreatExpr parse_org_emftext_language_xpath2_TreatExpr() throws RecognitionException {
         org.emftext.language.xpath2.TreatExpr element =  null;
 
@@ -7151,11 +7128,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 19) ) { return element; }
 
-            // Xpath2.g:3590:2: ( (a0_0= parse_org_emftext_language_xpath2_CastableExpr ) ( (a1= 'treat' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) ) )? )
-            // Xpath2.g:3591:2: (a0_0= parse_org_emftext_language_xpath2_CastableExpr ) ( (a1= 'treat' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) ) )?
+            // Xpath2.g:3572:2: ( (a0_0= parse_org_emftext_language_xpath2_CastableExpr ) ( (a1= 'treat' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) ) )? )
+            // Xpath2.g:3573:2: (a0_0= parse_org_emftext_language_xpath2_CastableExpr ) ( (a1= 'treat' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) ) )?
             {
-            // Xpath2.g:3591:2: (a0_0= parse_org_emftext_language_xpath2_CastableExpr )
-            // Xpath2.g:3592:3: a0_0= parse_org_emftext_language_xpath2_CastableExpr
+            // Xpath2.g:3573:2: (a0_0= parse_org_emftext_language_xpath2_CastableExpr )
+            // Xpath2.g:3574:3: a0_0= parse_org_emftext_language_xpath2_CastableExpr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_CastableExpr_in_parse_org_emftext_language_xpath2_TreatExpr2788);
             a0_0=parse_org_emftext_language_xpath2_CastableExpr();
@@ -7208,7 +7185,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[772]);
             	}
 
-            // Xpath2.g:3634:2: ( (a1= 'treat' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) ) )?
+            // Xpath2.g:3616:2: ( (a1= 'treat' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) ) )?
             int alt29=2;
             int LA29_0 = input.LA(1);
 
@@ -7217,10 +7194,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt29) {
                 case 1 :
-                    // Xpath2.g:3635:3: (a1= 'treat' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) )
+                    // Xpath2.g:3617:3: (a1= 'treat' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) )
                     {
-                    // Xpath2.g:3635:3: (a1= 'treat' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) )
-                    // Xpath2.g:3636:4: a1= 'treat' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SequenceType )
+                    // Xpath2.g:3617:3: (a1= 'treat' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SequenceType ) )
+                    // Xpath2.g:3618:4: a1= 'treat' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SequenceType )
                     {
                     a1=(Token)match(input,88,FOLLOW_88_in_parse_org_emftext_language_xpath2_TreatExpr2815); if (state.failed) return element;
 
@@ -7231,7 +7208,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_17_0_0_1_0_0_1, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+                    				copyLocalizationInfos((CommonToken)a1, element);
                     			}
 
                     if ( state.backtracking==0 ) {
@@ -7248,7 +7225,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_17_0_0_1_0_0_2, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+                    				copyLocalizationInfos((CommonToken)a2, element);
                     			}
 
                     if ( state.backtracking==0 ) {
@@ -7274,8 +7251,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[792]);
                     			}
 
-                    // Xpath2.g:3682:4: (a3_0= parse_org_emftext_language_xpath2_SequenceType )
-                    // Xpath2.g:3683:5: a3_0= parse_org_emftext_language_xpath2_SequenceType
+                    // Xpath2.g:3664:4: (a3_0= parse_org_emftext_language_xpath2_SequenceType )
+                    // Xpath2.g:3665:5: a3_0= parse_org_emftext_language_xpath2_SequenceType
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_SequenceType_in_parse_org_emftext_language_xpath2_TreatExpr2861);
                     a3_0=parse_org_emftext_language_xpath2_SequenceType();
@@ -7377,7 +7354,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_CastableExpr"
-    // Xpath2.g:3749:1: parse_org_emftext_language_xpath2_CastableExpr returns [org.emftext.language.xpath2.CastableExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_CastExpr ) ( (a1= 'castable' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) ) )? ;
+    // Xpath2.g:3731:1: parse_org_emftext_language_xpath2_CastableExpr returns [org.emftext.language.xpath2.CastableExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_CastExpr ) ( (a1= 'castable' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) ) )? ;
     public final org.emftext.language.xpath2.CastableExpr parse_org_emftext_language_xpath2_CastableExpr() throws RecognitionException {
         org.emftext.language.xpath2.CastableExpr element =  null;
 
@@ -7395,11 +7372,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 20) ) { return element; }
 
-            // Xpath2.g:3752:2: ( (a0_0= parse_org_emftext_language_xpath2_CastExpr ) ( (a1= 'castable' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) ) )? )
-            // Xpath2.g:3753:2: (a0_0= parse_org_emftext_language_xpath2_CastExpr ) ( (a1= 'castable' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) ) )?
+            // Xpath2.g:3734:2: ( (a0_0= parse_org_emftext_language_xpath2_CastExpr ) ( (a1= 'castable' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) ) )? )
+            // Xpath2.g:3735:2: (a0_0= parse_org_emftext_language_xpath2_CastExpr ) ( (a1= 'castable' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) ) )?
             {
-            // Xpath2.g:3753:2: (a0_0= parse_org_emftext_language_xpath2_CastExpr )
-            // Xpath2.g:3754:3: a0_0= parse_org_emftext_language_xpath2_CastExpr
+            // Xpath2.g:3735:2: (a0_0= parse_org_emftext_language_xpath2_CastExpr )
+            // Xpath2.g:3736:3: a0_0= parse_org_emftext_language_xpath2_CastExpr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_CastExpr_in_parse_org_emftext_language_xpath2_CastableExpr2921);
             a0_0=parse_org_emftext_language_xpath2_CastExpr();
@@ -7453,7 +7430,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[845]);
             	}
 
-            // Xpath2.g:3797:2: ( (a1= 'castable' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) ) )?
+            // Xpath2.g:3779:2: ( (a1= 'castable' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) ) )?
             int alt30=2;
             int LA30_0 = input.LA(1);
 
@@ -7462,10 +7439,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt30) {
                 case 1 :
-                    // Xpath2.g:3798:3: (a1= 'castable' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) )
+                    // Xpath2.g:3780:3: (a1= 'castable' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) )
                     {
-                    // Xpath2.g:3798:3: (a1= 'castable' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) )
-                    // Xpath2.g:3799:4: a1= 'castable' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType )
+                    // Xpath2.g:3780:3: (a1= 'castable' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) )
+                    // Xpath2.g:3781:4: a1= 'castable' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType )
                     {
                     a1=(Token)match(input,42,FOLLOW_42_in_parse_org_emftext_language_xpath2_CastableExpr2948); if (state.failed) return element;
 
@@ -7476,7 +7453,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_18_0_0_1_0_0_1, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+                    				copyLocalizationInfos((CommonToken)a1, element);
                     			}
 
                     if ( state.backtracking==0 ) {
@@ -7493,7 +7470,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_18_0_0_1_0_0_2, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+                    				copyLocalizationInfos((CommonToken)a2, element);
                     			}
 
                     if ( state.backtracking==0 ) {
@@ -7502,8 +7479,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getCastableExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[848]);
                     			}
 
-                    // Xpath2.g:3828:4: (a3_0= parse_org_emftext_language_xpath2_SingleType )
-                    // Xpath2.g:3829:5: a3_0= parse_org_emftext_language_xpath2_SingleType
+                    // Xpath2.g:3810:4: (a3_0= parse_org_emftext_language_xpath2_SingleType )
+                    // Xpath2.g:3811:5: a3_0= parse_org_emftext_language_xpath2_SingleType
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_SingleType_in_parse_org_emftext_language_xpath2_CastableExpr2994);
                     a3_0=parse_org_emftext_language_xpath2_SingleType();
@@ -7607,7 +7584,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_CastExpr"
-    // Xpath2.g:3897:1: parse_org_emftext_language_xpath2_CastExpr returns [org.emftext.language.xpath2.CastExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_UnaryExpr ) ( (a1= 'cast' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) ) )? ;
+    // Xpath2.g:3879:1: parse_org_emftext_language_xpath2_CastExpr returns [org.emftext.language.xpath2.CastExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_UnaryExpr ) ( (a1= 'cast' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) ) )? ;
     public final org.emftext.language.xpath2.CastExpr parse_org_emftext_language_xpath2_CastExpr() throws RecognitionException {
         org.emftext.language.xpath2.CastExpr element =  null;
 
@@ -7625,11 +7602,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 21) ) { return element; }
 
-            // Xpath2.g:3900:2: ( (a0_0= parse_org_emftext_language_xpath2_UnaryExpr ) ( (a1= 'cast' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) ) )? )
-            // Xpath2.g:3901:2: (a0_0= parse_org_emftext_language_xpath2_UnaryExpr ) ( (a1= 'cast' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) ) )?
+            // Xpath2.g:3882:2: ( (a0_0= parse_org_emftext_language_xpath2_UnaryExpr ) ( (a1= 'cast' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) ) )? )
+            // Xpath2.g:3883:2: (a0_0= parse_org_emftext_language_xpath2_UnaryExpr ) ( (a1= 'cast' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) ) )?
             {
-            // Xpath2.g:3901:2: (a0_0= parse_org_emftext_language_xpath2_UnaryExpr )
-            // Xpath2.g:3902:3: a0_0= parse_org_emftext_language_xpath2_UnaryExpr
+            // Xpath2.g:3883:2: (a0_0= parse_org_emftext_language_xpath2_UnaryExpr )
+            // Xpath2.g:3884:3: a0_0= parse_org_emftext_language_xpath2_UnaryExpr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_UnaryExpr_in_parse_org_emftext_language_xpath2_CastExpr3054);
             a0_0=parse_org_emftext_language_xpath2_UnaryExpr();
@@ -7684,7 +7661,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[904]);
             	}
 
-            // Xpath2.g:3946:2: ( (a1= 'cast' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) ) )?
+            // Xpath2.g:3928:2: ( (a1= 'cast' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) ) )?
             int alt31=2;
             int LA31_0 = input.LA(1);
 
@@ -7693,10 +7670,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt31) {
                 case 1 :
-                    // Xpath2.g:3947:3: (a1= 'cast' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) )
+                    // Xpath2.g:3929:3: (a1= 'cast' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) )
                     {
-                    // Xpath2.g:3947:3: (a1= 'cast' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) )
-                    // Xpath2.g:3948:4: a1= 'cast' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType )
+                    // Xpath2.g:3929:3: (a1= 'cast' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType ) )
+                    // Xpath2.g:3930:4: a1= 'cast' a2= 'as' (a3_0= parse_org_emftext_language_xpath2_SingleType )
                     {
                     a1=(Token)match(input,41,FOLLOW_41_in_parse_org_emftext_language_xpath2_CastExpr3081); if (state.failed) return element;
 
@@ -7707,7 +7684,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_19_0_0_1_0_0_1, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+                    				copyLocalizationInfos((CommonToken)a1, element);
                     			}
 
                     if ( state.backtracking==0 ) {
@@ -7724,7 +7701,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_19_0_0_1_0_0_2, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+                    				copyLocalizationInfos((CommonToken)a2, element);
                     			}
 
                     if ( state.backtracking==0 ) {
@@ -7733,8 +7710,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getCastExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[907]);
                     			}
 
-                    // Xpath2.g:3977:4: (a3_0= parse_org_emftext_language_xpath2_SingleType )
-                    // Xpath2.g:3978:5: a3_0= parse_org_emftext_language_xpath2_SingleType
+                    // Xpath2.g:3959:4: (a3_0= parse_org_emftext_language_xpath2_SingleType )
+                    // Xpath2.g:3960:5: a3_0= parse_org_emftext_language_xpath2_SingleType
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_SingleType_in_parse_org_emftext_language_xpath2_CastExpr3127);
                     a3_0=parse_org_emftext_language_xpath2_SingleType();
@@ -7840,7 +7817,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_UnaryExpr"
-    // Xpath2.g:4048:1: parse_org_emftext_language_xpath2_UnaryExpr returns [org.emftext.language.xpath2.UnaryExpr element = null] : ( ( (a0= '+' |a1= '-' ) ) )* (a4_0= parse_org_emftext_language_xpath2_ValueExpr ) ;
+    // Xpath2.g:4030:1: parse_org_emftext_language_xpath2_UnaryExpr returns [org.emftext.language.xpath2.UnaryExpr element = null] : ( ( (a0= '+' |a1= '-' ) ) )* (a4_0= parse_org_emftext_language_xpath2_ValueExpr ) ;
     public final org.emftext.language.xpath2.UnaryExpr parse_org_emftext_language_xpath2_UnaryExpr() throws RecognitionException {
         org.emftext.language.xpath2.UnaryExpr element =  null;
 
@@ -7856,10 +7833,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 22) ) { return element; }
 
-            // Xpath2.g:4051:2: ( ( ( (a0= '+' |a1= '-' ) ) )* (a4_0= parse_org_emftext_language_xpath2_ValueExpr ) )
-            // Xpath2.g:4052:2: ( ( (a0= '+' |a1= '-' ) ) )* (a4_0= parse_org_emftext_language_xpath2_ValueExpr )
+            // Xpath2.g:4033:2: ( ( ( (a0= '+' |a1= '-' ) ) )* (a4_0= parse_org_emftext_language_xpath2_ValueExpr ) )
+            // Xpath2.g:4034:2: ( ( (a0= '+' |a1= '-' ) ) )* (a4_0= parse_org_emftext_language_xpath2_ValueExpr )
             {
-            // Xpath2.g:4052:2: ( ( (a0= '+' |a1= '-' ) ) )*
+            // Xpath2.g:4034:2: ( ( (a0= '+' |a1= '-' ) ) )*
             loop33:
             do {
                 int alt33=2;
@@ -7872,12 +7849,12 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                 switch (alt33) {
             	case 1 :
-            	    // Xpath2.g:4053:3: ( (a0= '+' |a1= '-' ) )
+            	    // Xpath2.g:4035:3: ( (a0= '+' |a1= '-' ) )
             	    {
-            	    // Xpath2.g:4053:3: ( (a0= '+' |a1= '-' ) )
-            	    // Xpath2.g:4054:4: (a0= '+' |a1= '-' )
+            	    // Xpath2.g:4035:3: ( (a0= '+' |a1= '-' ) )
+            	    // Xpath2.g:4036:4: (a0= '+' |a1= '-' )
             	    {
-            	    // Xpath2.g:4054:4: (a0= '+' |a1= '-' )
+            	    // Xpath2.g:4036:4: (a0= '+' |a1= '-' )
             	    int alt32=2;
             	    int LA32_0 = input.LA(1);
 
@@ -7897,7 +7874,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    }
             	    switch (alt32) {
             	        case 1 :
-            	            // Xpath2.g:4055:5: a0= '+'
+            	            // Xpath2.g:4037:5: a0= '+'
             	            {
             	            a0=(Token)match(input,16,FOLLOW_16_in_parse_org_emftext_language_xpath2_UnaryExpr3198); if (state.failed) return element;
 
@@ -7908,7 +7885,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            					}
             	            					collectHiddenTokens(element);
             	            					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_20_0_0_0, null, true);
-            	            					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            	            					copyLocalizationInfos((CommonToken)a0, element);
             	            					// set value of enumeration attribute
             	            					Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getUnaryOp().getEEnumLiteral(org.emftext.language.xpath2.UnaryOp.PLUS_VALUE).getInstance();
             	            					addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.UNARY_EXPR__OPERATOR, value);
@@ -7918,7 +7895,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            }
             	            break;
             	        case 2 :
-            	            // Xpath2.g:4068:10: a1= '-'
+            	            // Xpath2.g:4050:10: a1= '-'
             	            {
             	            a1=(Token)match(input,18,FOLLOW_18_in_parse_org_emftext_language_xpath2_UnaryExpr3215); if (state.failed) return element;
 
@@ -7929,7 +7906,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            					}
             	            					collectHiddenTokens(element);
             	            					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_20_0_0_0, null, true);
-            	            					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            	            					copyLocalizationInfos((CommonToken)a1, element);
             	            					// set value of enumeration attribute
             	            					Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getUnaryOp().getEEnumLiteral(org.emftext.language.xpath2.UnaryOp.MINUS_VALUE).getInstance();
             	            					addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.UNARY_EXPR__OPERATOR, value);
@@ -7975,8 +7952,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getUnaryExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[962]);
             	}
 
-            // Xpath2.g:4105:2: (a4_0= parse_org_emftext_language_xpath2_ValueExpr )
-            // Xpath2.g:4106:3: a4_0= parse_org_emftext_language_xpath2_ValueExpr
+            // Xpath2.g:4087:2: (a4_0= parse_org_emftext_language_xpath2_ValueExpr )
+            // Xpath2.g:4088:3: a4_0= parse_org_emftext_language_xpath2_ValueExpr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ValueExpr_in_parse_org_emftext_language_xpath2_UnaryExpr3248);
             a4_0=parse_org_emftext_language_xpath2_ValueExpr();
@@ -8051,7 +8028,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_FilterExpr"
-    // Xpath2.g:4152:1: parse_org_emftext_language_xpath2_FilterExpr returns [org.emftext.language.xpath2.FilterExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_PrimaryExpr ) ( (a1_0= parse_org_emftext_language_xpath2_Predicate ) )* ;
+    // Xpath2.g:4134:1: parse_org_emftext_language_xpath2_FilterExpr returns [org.emftext.language.xpath2.FilterExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_PrimaryExpr ) ( (a1_0= parse_org_emftext_language_xpath2_Predicate ) )* ;
     public final org.emftext.language.xpath2.FilterExpr parse_org_emftext_language_xpath2_FilterExpr() throws RecognitionException {
         org.emftext.language.xpath2.FilterExpr element =  null;
 
@@ -8067,11 +8044,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 23) ) { return element; }
 
-            // Xpath2.g:4155:2: ( (a0_0= parse_org_emftext_language_xpath2_PrimaryExpr ) ( (a1_0= parse_org_emftext_language_xpath2_Predicate ) )* )
-            // Xpath2.g:4156:2: (a0_0= parse_org_emftext_language_xpath2_PrimaryExpr ) ( (a1_0= parse_org_emftext_language_xpath2_Predicate ) )*
+            // Xpath2.g:4137:2: ( (a0_0= parse_org_emftext_language_xpath2_PrimaryExpr ) ( (a1_0= parse_org_emftext_language_xpath2_Predicate ) )* )
+            // Xpath2.g:4138:2: (a0_0= parse_org_emftext_language_xpath2_PrimaryExpr ) ( (a1_0= parse_org_emftext_language_xpath2_Predicate ) )*
             {
-            // Xpath2.g:4156:2: (a0_0= parse_org_emftext_language_xpath2_PrimaryExpr )
-            // Xpath2.g:4157:3: a0_0= parse_org_emftext_language_xpath2_PrimaryExpr
+            // Xpath2.g:4138:2: (a0_0= parse_org_emftext_language_xpath2_PrimaryExpr )
+            // Xpath2.g:4139:3: a0_0= parse_org_emftext_language_xpath2_PrimaryExpr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_PrimaryExpr_in_parse_org_emftext_language_xpath2_FilterExpr3285);
             a0_0=parse_org_emftext_language_xpath2_PrimaryExpr();
@@ -8129,7 +8106,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1005]);
             	}
 
-            // Xpath2.g:4204:2: ( (a1_0= parse_org_emftext_language_xpath2_Predicate ) )*
+            // Xpath2.g:4186:2: ( (a1_0= parse_org_emftext_language_xpath2_Predicate ) )*
             loop34:
             do {
                 int alt34=2;
@@ -8142,10 +8119,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                 switch (alt34) {
             	case 1 :
-            	    // Xpath2.g:4205:3: (a1_0= parse_org_emftext_language_xpath2_Predicate )
+            	    // Xpath2.g:4187:3: (a1_0= parse_org_emftext_language_xpath2_Predicate )
             	    {
-            	    // Xpath2.g:4205:3: (a1_0= parse_org_emftext_language_xpath2_Predicate )
-            	    // Xpath2.g:4206:4: a1_0= parse_org_emftext_language_xpath2_Predicate
+            	    // Xpath2.g:4187:3: (a1_0= parse_org_emftext_language_xpath2_Predicate )
+            	    // Xpath2.g:4188:4: a1_0= parse_org_emftext_language_xpath2_Predicate
             	    {
             	    pushFollow(FOLLOW_parse_org_emftext_language_xpath2_Predicate_in_parse_org_emftext_language_xpath2_FilterExpr3312);
             	    a1_0=parse_org_emftext_language_xpath2_Predicate();
@@ -8232,7 +8209,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_FunctionCall"
-    // Xpath2.g:4256:1: parse_org_emftext_language_xpath2_FunctionCall returns [org.emftext.language.xpath2.FunctionCall element = null] : ( (a0= QNAME ) | (a1= NCNAME ) ) a2= '(' ( ( (a3_0= parse_org_emftext_language_xpath2_IfExpr |a3_1= parse_org_emftext_language_xpath2_ForExpr |a3_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a3_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) ) )* ) )? a6= ')' ;
+    // Xpath2.g:4238:1: parse_org_emftext_language_xpath2_FunctionCall returns [org.emftext.language.xpath2.FunctionCall element = null] : ( (a0= QNAME ) | (a1= NCNAME ) ) a2= '(' ( ( (a3_0= parse_org_emftext_language_xpath2_IfExpr |a3_1= parse_org_emftext_language_xpath2_ForExpr |a3_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a3_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) ) )* ) )? a6= ')' ;
     public final org.emftext.language.xpath2.FunctionCall parse_org_emftext_language_xpath2_FunctionCall() throws RecognitionException {
         org.emftext.language.xpath2.FunctionCall element =  null;
 
@@ -8265,10 +8242,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 24) ) { return element; }
 
-            // Xpath2.g:4259:2: ( ( (a0= QNAME ) | (a1= NCNAME ) ) a2= '(' ( ( (a3_0= parse_org_emftext_language_xpath2_IfExpr |a3_1= parse_org_emftext_language_xpath2_ForExpr |a3_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a3_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) ) )* ) )? a6= ')' )
-            // Xpath2.g:4260:2: ( (a0= QNAME ) | (a1= NCNAME ) ) a2= '(' ( ( (a3_0= parse_org_emftext_language_xpath2_IfExpr |a3_1= parse_org_emftext_language_xpath2_ForExpr |a3_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a3_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) ) )* ) )? a6= ')'
+            // Xpath2.g:4241:2: ( ( (a0= QNAME ) | (a1= NCNAME ) ) a2= '(' ( ( (a3_0= parse_org_emftext_language_xpath2_IfExpr |a3_1= parse_org_emftext_language_xpath2_ForExpr |a3_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a3_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) ) )* ) )? a6= ')' )
+            // Xpath2.g:4242:2: ( (a0= QNAME ) | (a1= NCNAME ) ) a2= '(' ( ( (a3_0= parse_org_emftext_language_xpath2_IfExpr |a3_1= parse_org_emftext_language_xpath2_ForExpr |a3_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a3_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) ) )* ) )? a6= ')'
             {
-            // Xpath2.g:4260:2: ( (a0= QNAME ) | (a1= NCNAME ) )
+            // Xpath2.g:4242:2: ( (a0= QNAME ) | (a1= NCNAME ) )
             int alt35=2;
             int LA35_0 = input.LA(1);
 
@@ -8288,10 +8265,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt35) {
                 case 1 :
-                    // Xpath2.g:4261:3: (a0= QNAME )
+                    // Xpath2.g:4243:3: (a0= QNAME )
                     {
-                    // Xpath2.g:4261:3: (a0= QNAME )
-                    // Xpath2.g:4262:4: a0= QNAME
+                    // Xpath2.g:4243:3: (a0= QNAME )
+                    // Xpath2.g:4244:4: a0= QNAME
                     {
                     a0=(Token)match(input,QNAME,FOLLOW_QNAME_in_parse_org_emftext_language_xpath2_FunctionCall3362); if (state.failed) return element;
 
@@ -8310,7 +8287,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a0).getLine(), ((CommonToken) a0).getCharPositionInLine(), ((CommonToken) a0).getStartIndex(), ((CommonToken) a0).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -8320,7 +8297,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_22_0_0_0_0_0_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+                    					copyLocalizationInfos((CommonToken) a0, element);
                     				}
                     			}
 
@@ -8335,10 +8312,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:4298:6: (a1= NCNAME )
+                    // Xpath2.g:4280:6: (a1= NCNAME )
                     {
-                    // Xpath2.g:4298:6: (a1= NCNAME )
-                    // Xpath2.g:4299:4: a1= NCNAME
+                    // Xpath2.g:4280:6: (a1= NCNAME )
+                    // Xpath2.g:4281:4: a1= NCNAME
                     {
                     a1=(Token)match(input,NCNAME,FOLLOW_NCNAME_in_parse_org_emftext_language_xpath2_FunctionCall3400); if (state.failed) return element;
 
@@ -8357,7 +8334,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a1).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a1).getLine(), ((CommonToken) a1).getCharPositionInLine(), ((CommonToken) a1).getStartIndex(), ((CommonToken) a1).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -8367,7 +8344,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_22_0_0_0_0_1_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, element);
+                    					copyLocalizationInfos((CommonToken) a1, element);
                     				}
                     			}
 
@@ -8399,7 +8376,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_22_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+            		copyLocalizationInfos((CommonToken)a2, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -8427,7 +8404,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1052]);
             	}
 
-            // Xpath2.g:4374:2: ( ( (a3_0= parse_org_emftext_language_xpath2_IfExpr |a3_1= parse_org_emftext_language_xpath2_ForExpr |a3_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a3_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) ) )* ) )?
+            // Xpath2.g:4356:2: ( ( (a3_0= parse_org_emftext_language_xpath2_IfExpr |a3_1= parse_org_emftext_language_xpath2_ForExpr |a3_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a3_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) ) )* ) )?
             int alt39=2;
             int LA39_0 = input.LA(1);
 
@@ -8436,12 +8413,12 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt39) {
                 case 1 :
-                    // Xpath2.g:4375:3: ( (a3_0= parse_org_emftext_language_xpath2_IfExpr |a3_1= parse_org_emftext_language_xpath2_ForExpr |a3_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a3_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) ) )* )
+                    // Xpath2.g:4357:3: ( (a3_0= parse_org_emftext_language_xpath2_IfExpr |a3_1= parse_org_emftext_language_xpath2_ForExpr |a3_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a3_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) ) )* )
                     {
-                    // Xpath2.g:4375:3: ( (a3_0= parse_org_emftext_language_xpath2_IfExpr |a3_1= parse_org_emftext_language_xpath2_ForExpr |a3_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a3_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) ) )* )
-                    // Xpath2.g:4376:4: (a3_0= parse_org_emftext_language_xpath2_IfExpr |a3_1= parse_org_emftext_language_xpath2_ForExpr |a3_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a3_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) ) )*
+                    // Xpath2.g:4357:3: ( (a3_0= parse_org_emftext_language_xpath2_IfExpr |a3_1= parse_org_emftext_language_xpath2_ForExpr |a3_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a3_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) ) )* )
+                    // Xpath2.g:4358:4: (a3_0= parse_org_emftext_language_xpath2_IfExpr |a3_1= parse_org_emftext_language_xpath2_ForExpr |a3_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a3_3= parse_org_emftext_language_xpath2_OrExpr ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) ) )*
                     {
-                    // Xpath2.g:4376:4: (a3_0= parse_org_emftext_language_xpath2_IfExpr |a3_1= parse_org_emftext_language_xpath2_ForExpr |a3_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a3_3= parse_org_emftext_language_xpath2_OrExpr )
+                    // Xpath2.g:4358:4: (a3_0= parse_org_emftext_language_xpath2_IfExpr |a3_1= parse_org_emftext_language_xpath2_ForExpr |a3_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a3_3= parse_org_emftext_language_xpath2_OrExpr )
                     int alt36=4;
                     switch ( input.LA(1) ) {
                     case 61:
@@ -8512,7 +8489,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                     switch (alt36) {
                         case 1 :
-                            // Xpath2.g:4377:5: a3_0= parse_org_emftext_language_xpath2_IfExpr
+                            // Xpath2.g:4359:5: a3_0= parse_org_emftext_language_xpath2_IfExpr
                             {
                             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IfExpr_in_parse_org_emftext_language_xpath2_FunctionCall3463);
                             a3_0=parse_org_emftext_language_xpath2_IfExpr();
@@ -8543,7 +8520,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                             }
                             break;
                         case 2 :
-                            // Xpath2.g:4396:10: a3_1= parse_org_emftext_language_xpath2_ForExpr
+                            // Xpath2.g:4378:10: a3_1= parse_org_emftext_language_xpath2_ForExpr
                             {
                             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ForExpr_in_parse_org_emftext_language_xpath2_FunctionCall3483);
                             a3_1=parse_org_emftext_language_xpath2_ForExpr();
@@ -8574,7 +8551,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                             }
                             break;
                         case 3 :
-                            // Xpath2.g:4415:10: a3_2= parse_org_emftext_language_xpath2_QuantifiedExpr
+                            // Xpath2.g:4397:10: a3_2= parse_org_emftext_language_xpath2_QuantifiedExpr
                             {
                             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_QuantifiedExpr_in_parse_org_emftext_language_xpath2_FunctionCall3503);
                             a3_2=parse_org_emftext_language_xpath2_QuantifiedExpr();
@@ -8605,7 +8582,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                             }
                             break;
                         case 4 :
-                            // Xpath2.g:4434:10: a3_3= parse_org_emftext_language_xpath2_OrExpr
+                            // Xpath2.g:4416:10: a3_3= parse_org_emftext_language_xpath2_OrExpr
                             {
                             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_OrExpr_in_parse_org_emftext_language_xpath2_FunctionCall3523);
                             a3_3=parse_org_emftext_language_xpath2_OrExpr();
@@ -8645,7 +8622,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1054]);
                     			}
 
-                    // Xpath2.g:4460:4: ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) ) )*
+                    // Xpath2.g:4442:4: ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) ) )*
                     loop38:
                     do {
                         int alt38=2;
@@ -8658,10 +8635,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                         switch (alt38) {
                     	case 1 :
-                    	    // Xpath2.g:4461:5: (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) )
+                    	    // Xpath2.g:4443:5: (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) )
                     	    {
-                    	    // Xpath2.g:4461:5: (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) )
-                    	    // Xpath2.g:4462:6: a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr )
+                    	    // Xpath2.g:4443:5: (a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr ) )
+                    	    // Xpath2.g:4444:6: a4= ',' (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr )
                     	    {
                     	    a4=(Token)match(input,17,FOLLOW_17_in_parse_org_emftext_language_xpath2_FunctionCall3564); if (state.failed) return element;
 
@@ -8672,7 +8649,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     	    						}
                     	    						collectHiddenTokens(element);
                     	    						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_22_0_0_2_0_0_1_0_0_0, null, true);
-                    	    						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+                    	    						copyLocalizationInfos((CommonToken)a4, element);
                     	    					}
 
                     	    if ( state.backtracking==0 ) {
@@ -8699,7 +8676,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     	    						addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1074]);
                     	    					}
 
-                    	    // Xpath2.g:4495:6: (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr )
+                    	    // Xpath2.g:4477:6: (a5_0= parse_org_emftext_language_xpath2_IfExpr |a5_1= parse_org_emftext_language_xpath2_ForExpr |a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr |a5_3= parse_org_emftext_language_xpath2_OrExpr )
                     	    int alt37=4;
                     	    switch ( input.LA(1) ) {
                     	    case 61:
@@ -8770,7 +8747,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                     	    switch (alt37) {
                     	        case 1 :
-                    	            // Xpath2.g:4496:7: a5_0= parse_org_emftext_language_xpath2_IfExpr
+                    	            // Xpath2.g:4478:7: a5_0= parse_org_emftext_language_xpath2_IfExpr
                     	            {
                     	            pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IfExpr_in_parse_org_emftext_language_xpath2_FunctionCall3598);
                     	            a5_0=parse_org_emftext_language_xpath2_IfExpr();
@@ -8801,7 +8778,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     	            }
                     	            break;
                     	        case 2 :
-                    	            // Xpath2.g:4515:14: a5_1= parse_org_emftext_language_xpath2_ForExpr
+                    	            // Xpath2.g:4497:14: a5_1= parse_org_emftext_language_xpath2_ForExpr
                     	            {
                     	            pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ForExpr_in_parse_org_emftext_language_xpath2_FunctionCall3624);
                     	            a5_1=parse_org_emftext_language_xpath2_ForExpr();
@@ -8832,7 +8809,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     	            }
                     	            break;
                     	        case 3 :
-                    	            // Xpath2.g:4534:14: a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr
+                    	            // Xpath2.g:4516:14: a5_2= parse_org_emftext_language_xpath2_QuantifiedExpr
                     	            {
                     	            pushFollow(FOLLOW_parse_org_emftext_language_xpath2_QuantifiedExpr_in_parse_org_emftext_language_xpath2_FunctionCall3650);
                     	            a5_2=parse_org_emftext_language_xpath2_QuantifiedExpr();
@@ -8863,7 +8840,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     	            }
                     	            break;
                     	        case 4 :
-                    	            // Xpath2.g:4553:14: a5_3= parse_org_emftext_language_xpath2_OrExpr
+                    	            // Xpath2.g:4535:14: a5_3= parse_org_emftext_language_xpath2_OrExpr
                     	            {
                     	            pushFollow(FOLLOW_parse_org_emftext_language_xpath2_OrExpr_in_parse_org_emftext_language_xpath2_FunctionCall3676);
                     	            a5_3=parse_org_emftext_language_xpath2_OrExpr();
@@ -8944,7 +8921,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_22_0_0_3, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
+            		copyLocalizationInfos((CommonToken)a6, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -8994,7 +8971,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_PathExpr"
-    // Xpath2.g:4632:1: parse_org_emftext_language_xpath2_PathExpr returns [org.emftext.language.xpath2.PathExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_PathExprChild ) ( (a1_0= parse_org_emftext_language_xpath2_ChildStepExpr |a1_1= parse_org_emftext_language_xpath2_DescOrSelfStepExpr ) )* ;
+    // Xpath2.g:4614:1: parse_org_emftext_language_xpath2_PathExpr returns [org.emftext.language.xpath2.PathExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_PathExprChild ) ( (a1_0= parse_org_emftext_language_xpath2_ChildStepExpr |a1_1= parse_org_emftext_language_xpath2_DescOrSelfStepExpr ) )* ;
     public final org.emftext.language.xpath2.PathExpr parse_org_emftext_language_xpath2_PathExpr() throws RecognitionException {
         org.emftext.language.xpath2.PathExpr element =  null;
 
@@ -9012,11 +8989,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 25) ) { return element; }
 
-            // Xpath2.g:4635:2: ( (a0_0= parse_org_emftext_language_xpath2_PathExprChild ) ( (a1_0= parse_org_emftext_language_xpath2_ChildStepExpr |a1_1= parse_org_emftext_language_xpath2_DescOrSelfStepExpr ) )* )
-            // Xpath2.g:4636:2: (a0_0= parse_org_emftext_language_xpath2_PathExprChild ) ( (a1_0= parse_org_emftext_language_xpath2_ChildStepExpr |a1_1= parse_org_emftext_language_xpath2_DescOrSelfStepExpr ) )*
+            // Xpath2.g:4617:2: ( (a0_0= parse_org_emftext_language_xpath2_PathExprChild ) ( (a1_0= parse_org_emftext_language_xpath2_ChildStepExpr |a1_1= parse_org_emftext_language_xpath2_DescOrSelfStepExpr ) )* )
+            // Xpath2.g:4618:2: (a0_0= parse_org_emftext_language_xpath2_PathExprChild ) ( (a1_0= parse_org_emftext_language_xpath2_ChildStepExpr |a1_1= parse_org_emftext_language_xpath2_DescOrSelfStepExpr ) )*
             {
-            // Xpath2.g:4636:2: (a0_0= parse_org_emftext_language_xpath2_PathExprChild )
-            // Xpath2.g:4637:3: a0_0= parse_org_emftext_language_xpath2_PathExprChild
+            // Xpath2.g:4618:2: (a0_0= parse_org_emftext_language_xpath2_PathExprChild )
+            // Xpath2.g:4619:3: a0_0= parse_org_emftext_language_xpath2_PathExprChild
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_PathExprChild_in_parse_org_emftext_language_xpath2_PathExpr3783);
             a0_0=parse_org_emftext_language_xpath2_PathExprChild();
@@ -9073,7 +9050,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1124]);
             	}
 
-            // Xpath2.g:4683:2: ( (a1_0= parse_org_emftext_language_xpath2_ChildStepExpr |a1_1= parse_org_emftext_language_xpath2_DescOrSelfStepExpr ) )*
+            // Xpath2.g:4665:2: ( (a1_0= parse_org_emftext_language_xpath2_ChildStepExpr |a1_1= parse_org_emftext_language_xpath2_DescOrSelfStepExpr ) )*
             loop41:
             do {
                 int alt41=2;
@@ -9086,9 +9063,9 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                 switch (alt41) {
             	case 1 :
-            	    // Xpath2.g:4684:3: (a1_0= parse_org_emftext_language_xpath2_ChildStepExpr |a1_1= parse_org_emftext_language_xpath2_DescOrSelfStepExpr )
+            	    // Xpath2.g:4666:3: (a1_0= parse_org_emftext_language_xpath2_ChildStepExpr |a1_1= parse_org_emftext_language_xpath2_DescOrSelfStepExpr )
             	    {
-            	    // Xpath2.g:4684:3: (a1_0= parse_org_emftext_language_xpath2_ChildStepExpr |a1_1= parse_org_emftext_language_xpath2_DescOrSelfStepExpr )
+            	    // Xpath2.g:4666:3: (a1_0= parse_org_emftext_language_xpath2_ChildStepExpr |a1_1= parse_org_emftext_language_xpath2_DescOrSelfStepExpr )
             	    int alt40=2;
             	    int LA40_0 = input.LA(1);
 
@@ -9108,7 +9085,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	    }
             	    switch (alt40) {
             	        case 1 :
-            	            // Xpath2.g:4685:4: a1_0= parse_org_emftext_language_xpath2_ChildStepExpr
+            	            // Xpath2.g:4667:4: a1_0= parse_org_emftext_language_xpath2_ChildStepExpr
             	            {
             	            pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ChildStepExpr_in_parse_org_emftext_language_xpath2_PathExpr3810);
             	            a1_0=parse_org_emftext_language_xpath2_ChildStepExpr();
@@ -9139,7 +9116,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             	            }
             	            break;
             	        case 2 :
-            	            // Xpath2.g:4704:8: a1_1= parse_org_emftext_language_xpath2_DescOrSelfStepExpr
+            	            // Xpath2.g:4686:8: a1_1= parse_org_emftext_language_xpath2_DescOrSelfStepExpr
             	            {
             	            pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DescOrSelfStepExpr_in_parse_org_emftext_language_xpath2_PathExpr3827);
             	            a1_1=parse_org_emftext_language_xpath2_DescOrSelfStepExpr();
@@ -9228,7 +9205,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_ChildStepExpr"
-    // Xpath2.g:4753:1: parse_org_emftext_language_xpath2_ChildStepExpr returns [org.emftext.language.xpath2.ChildStepExpr element = null] : a0= '/' (a1_0= parse_org_emftext_language_xpath2_StepExpr ) ;
+    // Xpath2.g:4735:1: parse_org_emftext_language_xpath2_ChildStepExpr returns [org.emftext.language.xpath2.ChildStepExpr element = null] : a0= '/' (a1_0= parse_org_emftext_language_xpath2_StepExpr ) ;
     public final org.emftext.language.xpath2.ChildStepExpr parse_org_emftext_language_xpath2_ChildStepExpr() throws RecognitionException {
         org.emftext.language.xpath2.ChildStepExpr element =  null;
 
@@ -9243,8 +9220,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 26) ) { return element; }
 
-            // Xpath2.g:4756:2: (a0= '/' (a1_0= parse_org_emftext_language_xpath2_StepExpr ) )
-            // Xpath2.g:4757:2: a0= '/' (a1_0= parse_org_emftext_language_xpath2_StepExpr )
+            // Xpath2.g:4738:2: (a0= '/' (a1_0= parse_org_emftext_language_xpath2_StepExpr ) )
+            // Xpath2.g:4739:2: a0= '/' (a1_0= parse_org_emftext_language_xpath2_StepExpr )
             {
             a0=(Token)match(input,21,FOLLOW_21_in_parse_org_emftext_language_xpath2_ChildStepExpr3868); if (state.failed) return element;
 
@@ -9255,7 +9232,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_24_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -9275,8 +9252,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1159]);
             	}
 
-            // Xpath2.g:4783:2: (a1_0= parse_org_emftext_language_xpath2_StepExpr )
-            // Xpath2.g:4784:3: a1_0= parse_org_emftext_language_xpath2_StepExpr
+            // Xpath2.g:4765:2: (a1_0= parse_org_emftext_language_xpath2_StepExpr )
+            // Xpath2.g:4766:3: a1_0= parse_org_emftext_language_xpath2_StepExpr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_StepExpr_in_parse_org_emftext_language_xpath2_ChildStepExpr3886);
             a1_0=parse_org_emftext_language_xpath2_StepExpr();
@@ -9353,7 +9330,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_DescOrSelfStepExpr"
-    // Xpath2.g:4832:1: parse_org_emftext_language_xpath2_DescOrSelfStepExpr returns [org.emftext.language.xpath2.DescOrSelfStepExpr element = null] : a0= '//' (a1_0= parse_org_emftext_language_xpath2_StepExpr ) ;
+    // Xpath2.g:4814:1: parse_org_emftext_language_xpath2_DescOrSelfStepExpr returns [org.emftext.language.xpath2.DescOrSelfStepExpr element = null] : a0= '//' (a1_0= parse_org_emftext_language_xpath2_StepExpr ) ;
     public final org.emftext.language.xpath2.DescOrSelfStepExpr parse_org_emftext_language_xpath2_DescOrSelfStepExpr() throws RecognitionException {
         org.emftext.language.xpath2.DescOrSelfStepExpr element =  null;
 
@@ -9368,8 +9345,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 27) ) { return element; }
 
-            // Xpath2.g:4835:2: (a0= '//' (a1_0= parse_org_emftext_language_xpath2_StepExpr ) )
-            // Xpath2.g:4836:2: a0= '//' (a1_0= parse_org_emftext_language_xpath2_StepExpr )
+            // Xpath2.g:4817:2: (a0= '//' (a1_0= parse_org_emftext_language_xpath2_StepExpr ) )
+            // Xpath2.g:4818:2: a0= '//' (a1_0= parse_org_emftext_language_xpath2_StepExpr )
             {
             a0=(Token)match(input,22,FOLLOW_22_in_parse_org_emftext_language_xpath2_DescOrSelfStepExpr3919); if (state.failed) return element;
 
@@ -9380,7 +9357,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_25_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -9400,8 +9377,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1194]);
             	}
 
-            // Xpath2.g:4862:2: (a1_0= parse_org_emftext_language_xpath2_StepExpr )
-            // Xpath2.g:4863:3: a1_0= parse_org_emftext_language_xpath2_StepExpr
+            // Xpath2.g:4844:2: (a1_0= parse_org_emftext_language_xpath2_StepExpr )
+            // Xpath2.g:4845:3: a1_0= parse_org_emftext_language_xpath2_StepExpr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_StepExpr_in_parse_org_emftext_language_xpath2_DescOrSelfStepExpr3937);
             a1_0=parse_org_emftext_language_xpath2_StepExpr();
@@ -9478,7 +9455,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_RootStepExpr"
-    // Xpath2.g:4911:1: parse_org_emftext_language_xpath2_RootStepExpr returns [org.emftext.language.xpath2.RootStepExpr element = null] : a0= '/' ;
+    // Xpath2.g:4893:1: parse_org_emftext_language_xpath2_RootStepExpr returns [org.emftext.language.xpath2.RootStepExpr element = null] : a0= '/' ;
     public final org.emftext.language.xpath2.RootStepExpr parse_org_emftext_language_xpath2_RootStepExpr() throws RecognitionException {
         org.emftext.language.xpath2.RootStepExpr element =  null;
 
@@ -9491,8 +9468,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 28) ) { return element; }
 
-            // Xpath2.g:4914:2: (a0= '/' )
-            // Xpath2.g:4915:2: a0= '/'
+            // Xpath2.g:4896:2: (a0= '/' )
+            // Xpath2.g:4897:2: a0= '/'
             {
             a0=(Token)match(input,21,FOLLOW_21_in_parse_org_emftext_language_xpath2_RootStepExpr3970); if (state.failed) return element;
 
@@ -9503,7 +9480,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_26_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -9552,7 +9529,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_SelfStepExpr"
-    // Xpath2.g:4952:1: parse_org_emftext_language_xpath2_SelfStepExpr returns [org.emftext.language.xpath2.SelfStepExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_SelfStepExprChild ) ;
+    // Xpath2.g:4934:1: parse_org_emftext_language_xpath2_SelfStepExpr returns [org.emftext.language.xpath2.SelfStepExpr element = null] : (a0_0= parse_org_emftext_language_xpath2_SelfStepExprChild ) ;
     public final org.emftext.language.xpath2.SelfStepExpr parse_org_emftext_language_xpath2_SelfStepExpr() throws RecognitionException {
         org.emftext.language.xpath2.SelfStepExpr element =  null;
 
@@ -9566,11 +9543,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 29) ) { return element; }
 
-            // Xpath2.g:4955:2: ( (a0_0= parse_org_emftext_language_xpath2_SelfStepExprChild ) )
-            // Xpath2.g:4956:2: (a0_0= parse_org_emftext_language_xpath2_SelfStepExprChild )
+            // Xpath2.g:4937:2: ( (a0_0= parse_org_emftext_language_xpath2_SelfStepExprChild ) )
+            // Xpath2.g:4938:2: (a0_0= parse_org_emftext_language_xpath2_SelfStepExprChild )
             {
-            // Xpath2.g:4956:2: (a0_0= parse_org_emftext_language_xpath2_SelfStepExprChild )
-            // Xpath2.g:4957:3: a0_0= parse_org_emftext_language_xpath2_SelfStepExprChild
+            // Xpath2.g:4938:2: (a0_0= parse_org_emftext_language_xpath2_SelfStepExprChild )
+            // Xpath2.g:4939:3: a0_0= parse_org_emftext_language_xpath2_SelfStepExprChild
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_SelfStepExprChild_in_parse_org_emftext_language_xpath2_SelfStepExpr4003);
             a0_0=parse_org_emftext_language_xpath2_SelfStepExprChild();
@@ -9647,7 +9624,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_GeneralForwardStep"
-    // Xpath2.g:5005:1: parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.language.xpath2.GeneralForwardStep element = null] : ( (a0= 'child' |a1= 'descendant' |a2= 'attribute' |a3= 'self' |a4= 'descendant-or-self' |a5= 'following-sibling' |a6= 'following' |a7= 'namespace' ) ) a10= '::' (a11_0= parse_org_emftext_language_xpath2_NodeTest ) ( (a12_0= parse_org_emftext_language_xpath2_Predicate ) )* ;
+    // Xpath2.g:4987:1: parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.language.xpath2.GeneralForwardStep element = null] : ( (a0= 'child' |a1= 'descendant' |a2= 'attribute' |a3= 'self' |a4= 'descendant-or-self' |a5= 'following-sibling' |a6= 'following' |a7= 'namespace' ) ) a10= '::' (a11_0= parse_org_emftext_language_xpath2_NodeTest ) ( (a12_0= parse_org_emftext_language_xpath2_Predicate ) )* ;
     public final org.emftext.language.xpath2.GeneralForwardStep parse_org_emftext_language_xpath2_GeneralForwardStep() throws RecognitionException {
         org.emftext.language.xpath2.GeneralForwardStep element =  null;
 
@@ -9672,13 +9649,13 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 30) ) { return element; }
 
-            // Xpath2.g:5008:2: ( ( (a0= 'child' |a1= 'descendant' |a2= 'attribute' |a3= 'self' |a4= 'descendant-or-self' |a5= 'following-sibling' |a6= 'following' |a7= 'namespace' ) ) a10= '::' (a11_0= parse_org_emftext_language_xpath2_NodeTest ) ( (a12_0= parse_org_emftext_language_xpath2_Predicate ) )* )
-            // Xpath2.g:5009:2: ( (a0= 'child' |a1= 'descendant' |a2= 'attribute' |a3= 'self' |a4= 'descendant-or-self' |a5= 'following-sibling' |a6= 'following' |a7= 'namespace' ) ) a10= '::' (a11_0= parse_org_emftext_language_xpath2_NodeTest ) ( (a12_0= parse_org_emftext_language_xpath2_Predicate ) )*
+            // Xpath2.g:4990:2: ( ( (a0= 'child' |a1= 'descendant' |a2= 'attribute' |a3= 'self' |a4= 'descendant-or-self' |a5= 'following-sibling' |a6= 'following' |a7= 'namespace' ) ) a10= '::' (a11_0= parse_org_emftext_language_xpath2_NodeTest ) ( (a12_0= parse_org_emftext_language_xpath2_Predicate ) )* )
+            // Xpath2.g:4991:2: ( (a0= 'child' |a1= 'descendant' |a2= 'attribute' |a3= 'self' |a4= 'descendant-or-self' |a5= 'following-sibling' |a6= 'following' |a7= 'namespace' ) ) a10= '::' (a11_0= parse_org_emftext_language_xpath2_NodeTest ) ( (a12_0= parse_org_emftext_language_xpath2_Predicate ) )*
             {
-            // Xpath2.g:5009:2: ( (a0= 'child' |a1= 'descendant' |a2= 'attribute' |a3= 'self' |a4= 'descendant-or-self' |a5= 'following-sibling' |a6= 'following' |a7= 'namespace' ) )
-            // Xpath2.g:5010:3: (a0= 'child' |a1= 'descendant' |a2= 'attribute' |a3= 'self' |a4= 'descendant-or-self' |a5= 'following-sibling' |a6= 'following' |a7= 'namespace' )
+            // Xpath2.g:4991:2: ( (a0= 'child' |a1= 'descendant' |a2= 'attribute' |a3= 'self' |a4= 'descendant-or-self' |a5= 'following-sibling' |a6= 'following' |a7= 'namespace' ) )
+            // Xpath2.g:4992:3: (a0= 'child' |a1= 'descendant' |a2= 'attribute' |a3= 'self' |a4= 'descendant-or-self' |a5= 'following-sibling' |a6= 'following' |a7= 'namespace' )
             {
-            // Xpath2.g:5010:3: (a0= 'child' |a1= 'descendant' |a2= 'attribute' |a3= 'self' |a4= 'descendant-or-self' |a5= 'following-sibling' |a6= 'following' |a7= 'namespace' )
+            // Xpath2.g:4992:3: (a0= 'child' |a1= 'descendant' |a2= 'attribute' |a3= 'self' |a4= 'descendant-or-self' |a5= 'following-sibling' |a6= 'following' |a7= 'namespace' )
             int alt42=8;
             switch ( input.LA(1) ) {
             case 43:
@@ -9732,7 +9709,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt42) {
                 case 1 :
-                    // Xpath2.g:5011:4: a0= 'child'
+                    // Xpath2.g:4993:4: a0= 'child'
                     {
                     a0=(Token)match(input,43,FOLLOW_43_in_parse_org_emftext_language_xpath2_GeneralForwardStep4045); if (state.failed) return element;
 
@@ -9743,7 +9720,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+                    				copyLocalizationInfos((CommonToken)a0, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.CHILD_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS), value);
@@ -9753,7 +9730,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:5024:8: a1= 'descendant'
+                    // Xpath2.g:5006:8: a1= 'descendant'
                     {
                     a1=(Token)match(input,45,FOLLOW_45_in_parse_org_emftext_language_xpath2_GeneralForwardStep4060); if (state.failed) return element;
 
@@ -9764,7 +9741,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+                    				copyLocalizationInfos((CommonToken)a1, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.DESCENDANT_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS), value);
@@ -9774,7 +9751,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:5037:8: a2= 'attribute'
+                    // Xpath2.g:5019:8: a2= 'attribute'
                     {
                     a2=(Token)match(input,40,FOLLOW_40_in_parse_org_emftext_language_xpath2_GeneralForwardStep4075); if (state.failed) return element;
 
@@ -9785,7 +9762,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+                    				copyLocalizationInfos((CommonToken)a2, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.ATTRIBUTE_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS), value);
@@ -9795,7 +9772,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xpath2.g:5050:8: a3= 'self'
+                    // Xpath2.g:5032:8: a3= 'self'
                     {
                     a3=(Token)match(input,83,FOLLOW_83_in_parse_org_emftext_language_xpath2_GeneralForwardStep4090); if (state.failed) return element;
 
@@ -9806,7 +9783,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+                    				copyLocalizationInfos((CommonToken)a3, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.SELF_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS), value);
@@ -9816,7 +9793,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xpath2.g:5063:8: a4= 'descendant-or-self'
+                    // Xpath2.g:5045:8: a4= 'descendant-or-self'
                     {
                     a4=(Token)match(input,46,FOLLOW_46_in_parse_org_emftext_language_xpath2_GeneralForwardStep4105); if (state.failed) return element;
 
@@ -9827,7 +9804,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+                    				copyLocalizationInfos((CommonToken)a4, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.DESCENDANT_OR_SELF_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS), value);
@@ -9837,7 +9814,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 6 :
-                    // Xpath2.g:5076:8: a5= 'following-sibling'
+                    // Xpath2.g:5058:8: a5= 'following-sibling'
                     {
                     a5=(Token)match(input,56,FOLLOW_56_in_parse_org_emftext_language_xpath2_GeneralForwardStep4120); if (state.failed) return element;
 
@@ -9848,7 +9825,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+                    				copyLocalizationInfos((CommonToken)a5, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.FOLLOWING_SIBLING_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS), value);
@@ -9858,7 +9835,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 7 :
-                    // Xpath2.g:5089:8: a6= 'following'
+                    // Xpath2.g:5071:8: a6= 'following'
                     {
                     a6=(Token)match(input,55,FOLLOW_55_in_parse_org_emftext_language_xpath2_GeneralForwardStep4135); if (state.failed) return element;
 
@@ -9869,7 +9846,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
+                    				copyLocalizationInfos((CommonToken)a6, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.FOLLOWING_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS), value);
@@ -9879,7 +9856,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 8 :
-                    // Xpath2.g:5102:8: a7= 'namespace'
+                    // Xpath2.g:5084:8: a7= 'namespace'
                     {
                     a7=(Token)match(input,70,FOLLOW_70_in_parse_org_emftext_language_xpath2_GeneralForwardStep4150); if (state.failed) return element;
 
@@ -9890,7 +9867,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a7, element);
+                    				copyLocalizationInfos((CommonToken)a7, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.NAMESPACE_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS), value);
@@ -9920,7 +9897,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a10, element);
+            		copyLocalizationInfos((CommonToken)a10, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -9947,8 +9924,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1281]);
             	}
 
-            // Xpath2.g:5155:2: (a11_0= parse_org_emftext_language_xpath2_NodeTest )
-            // Xpath2.g:5156:3: a11_0= parse_org_emftext_language_xpath2_NodeTest
+            // Xpath2.g:5137:2: (a11_0= parse_org_emftext_language_xpath2_NodeTest )
+            // Xpath2.g:5138:3: a11_0= parse_org_emftext_language_xpath2_NodeTest
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_NodeTest_in_parse_org_emftext_language_xpath2_GeneralForwardStep4189);
             a11_0=parse_org_emftext_language_xpath2_NodeTest();
@@ -10006,7 +9983,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1304]);
             	}
 
-            // Xpath2.g:5203:2: ( (a12_0= parse_org_emftext_language_xpath2_Predicate ) )*
+            // Xpath2.g:5185:2: ( (a12_0= parse_org_emftext_language_xpath2_Predicate ) )*
             loop43:
             do {
                 int alt43=2;
@@ -10019,10 +9996,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                 switch (alt43) {
             	case 1 :
-            	    // Xpath2.g:5204:3: (a12_0= parse_org_emftext_language_xpath2_Predicate )
+            	    // Xpath2.g:5186:3: (a12_0= parse_org_emftext_language_xpath2_Predicate )
             	    {
-            	    // Xpath2.g:5204:3: (a12_0= parse_org_emftext_language_xpath2_Predicate )
-            	    // Xpath2.g:5205:4: a12_0= parse_org_emftext_language_xpath2_Predicate
+            	    // Xpath2.g:5186:3: (a12_0= parse_org_emftext_language_xpath2_Predicate )
+            	    // Xpath2.g:5187:4: a12_0= parse_org_emftext_language_xpath2_Predicate
             	    {
             	    pushFollow(FOLLOW_parse_org_emftext_language_xpath2_Predicate_in_parse_org_emftext_language_xpath2_GeneralForwardStep4216);
             	    a12_0=parse_org_emftext_language_xpath2_Predicate();
@@ -10109,7 +10086,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_AbbrevForwardStep"
-    // Xpath2.g:5255:1: parse_org_emftext_language_xpath2_AbbrevForwardStep returns [org.emftext.language.xpath2.AbbrevForwardStep element = null] : ( (a0= '@' )? ) (a3_0= parse_org_emftext_language_xpath2_NodeTest ) ( (a4_0= parse_org_emftext_language_xpath2_Predicate ) )* ;
+    // Xpath2.g:5237:1: parse_org_emftext_language_xpath2_AbbrevForwardStep returns [org.emftext.language.xpath2.AbbrevForwardStep element = null] : ( (a0= '@' )? ) (a3_0= parse_org_emftext_language_xpath2_NodeTest ) ( (a4_0= parse_org_emftext_language_xpath2_Predicate ) )* ;
     public final org.emftext.language.xpath2.AbbrevForwardStep parse_org_emftext_language_xpath2_AbbrevForwardStep() throws RecognitionException {
         org.emftext.language.xpath2.AbbrevForwardStep element =  null;
 
@@ -10126,13 +10103,13 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 31) ) { return element; }
 
-            // Xpath2.g:5258:2: ( ( (a0= '@' )? ) (a3_0= parse_org_emftext_language_xpath2_NodeTest ) ( (a4_0= parse_org_emftext_language_xpath2_Predicate ) )* )
-            // Xpath2.g:5259:2: ( (a0= '@' )? ) (a3_0= parse_org_emftext_language_xpath2_NodeTest ) ( (a4_0= parse_org_emftext_language_xpath2_Predicate ) )*
+            // Xpath2.g:5240:2: ( ( (a0= '@' )? ) (a3_0= parse_org_emftext_language_xpath2_NodeTest ) ( (a4_0= parse_org_emftext_language_xpath2_Predicate ) )* )
+            // Xpath2.g:5241:2: ( (a0= '@' )? ) (a3_0= parse_org_emftext_language_xpath2_NodeTest ) ( (a4_0= parse_org_emftext_language_xpath2_Predicate ) )*
             {
-            // Xpath2.g:5259:2: ( (a0= '@' )? )
-            // Xpath2.g:5260:3: (a0= '@' )?
+            // Xpath2.g:5241:2: ( (a0= '@' )? )
+            // Xpath2.g:5242:3: (a0= '@' )?
             {
-            // Xpath2.g:5260:3: (a0= '@' )?
+            // Xpath2.g:5242:3: (a0= '@' )?
             int alt44=2;
             int LA44_0 = input.LA(1);
 
@@ -10141,7 +10118,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt44) {
                 case 1 :
-                    // Xpath2.g:5261:4: a0= '@'
+                    // Xpath2.g:5243:4: a0= '@'
                     {
                     a0=(Token)match(input,33,FOLLOW_33_in_parse_org_emftext_language_xpath2_AbbrevForwardStep4266); if (state.failed) return element;
 
@@ -10155,7 +10132,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_29_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+                    				copyLocalizationInfos((CommonToken)a0, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStepKind().getEEnumLiteral(org.emftext.language.xpath2.AbbrevForwardStepKind.ATTRIBUTE_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_FORWARD_STEP__KIND), value);
@@ -10195,8 +10172,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1347]);
             	}
 
-            // Xpath2.g:5302:2: (a3_0= parse_org_emftext_language_xpath2_NodeTest )
-            // Xpath2.g:5303:3: a3_0= parse_org_emftext_language_xpath2_NodeTest
+            // Xpath2.g:5284:2: (a3_0= parse_org_emftext_language_xpath2_NodeTest )
+            // Xpath2.g:5285:3: a3_0= parse_org_emftext_language_xpath2_NodeTest
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_NodeTest_in_parse_org_emftext_language_xpath2_AbbrevForwardStep4291);
             a3_0=parse_org_emftext_language_xpath2_NodeTest();
@@ -10257,7 +10234,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1370]);
             	}
 
-            // Xpath2.g:5353:2: ( (a4_0= parse_org_emftext_language_xpath2_Predicate ) )*
+            // Xpath2.g:5335:2: ( (a4_0= parse_org_emftext_language_xpath2_Predicate ) )*
             loop45:
             do {
                 int alt45=2;
@@ -10270,10 +10247,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                 switch (alt45) {
             	case 1 :
-            	    // Xpath2.g:5354:3: (a4_0= parse_org_emftext_language_xpath2_Predicate )
+            	    // Xpath2.g:5336:3: (a4_0= parse_org_emftext_language_xpath2_Predicate )
             	    {
-            	    // Xpath2.g:5354:3: (a4_0= parse_org_emftext_language_xpath2_Predicate )
-            	    // Xpath2.g:5355:4: a4_0= parse_org_emftext_language_xpath2_Predicate
+            	    // Xpath2.g:5336:3: (a4_0= parse_org_emftext_language_xpath2_Predicate )
+            	    // Xpath2.g:5337:4: a4_0= parse_org_emftext_language_xpath2_Predicate
             	    {
             	    pushFollow(FOLLOW_parse_org_emftext_language_xpath2_Predicate_in_parse_org_emftext_language_xpath2_AbbrevForwardStep4318);
             	    a4_0=parse_org_emftext_language_xpath2_Predicate();
@@ -10363,7 +10340,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_GeneralReverseStep"
-    // Xpath2.g:5408:1: parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.language.xpath2.GeneralReverseStep element = null] : ( (a0= 'parent' |a1= 'ancestor' |a2= 'preceding-sibling' |a3= 'preceding' |a4= 'ancestor-or-self' ) ) a7= '::' (a8_0= parse_org_emftext_language_xpath2_NodeTest ) ( (a9_0= parse_org_emftext_language_xpath2_Predicate ) )* ;
+    // Xpath2.g:5390:1: parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.language.xpath2.GeneralReverseStep element = null] : ( (a0= 'parent' |a1= 'ancestor' |a2= 'preceding-sibling' |a3= 'preceding' |a4= 'ancestor-or-self' ) ) a7= '::' (a8_0= parse_org_emftext_language_xpath2_NodeTest ) ( (a9_0= parse_org_emftext_language_xpath2_Predicate ) )* ;
     public final org.emftext.language.xpath2.GeneralReverseStep parse_org_emftext_language_xpath2_GeneralReverseStep() throws RecognitionException {
         org.emftext.language.xpath2.GeneralReverseStep element =  null;
 
@@ -10385,13 +10362,13 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 32) ) { return element; }
 
-            // Xpath2.g:5411:2: ( ( (a0= 'parent' |a1= 'ancestor' |a2= 'preceding-sibling' |a3= 'preceding' |a4= 'ancestor-or-self' ) ) a7= '::' (a8_0= parse_org_emftext_language_xpath2_NodeTest ) ( (a9_0= parse_org_emftext_language_xpath2_Predicate ) )* )
-            // Xpath2.g:5412:2: ( (a0= 'parent' |a1= 'ancestor' |a2= 'preceding-sibling' |a3= 'preceding' |a4= 'ancestor-or-self' ) ) a7= '::' (a8_0= parse_org_emftext_language_xpath2_NodeTest ) ( (a9_0= parse_org_emftext_language_xpath2_Predicate ) )*
+            // Xpath2.g:5393:2: ( ( (a0= 'parent' |a1= 'ancestor' |a2= 'preceding-sibling' |a3= 'preceding' |a4= 'ancestor-or-self' ) ) a7= '::' (a8_0= parse_org_emftext_language_xpath2_NodeTest ) ( (a9_0= parse_org_emftext_language_xpath2_Predicate ) )* )
+            // Xpath2.g:5394:2: ( (a0= 'parent' |a1= 'ancestor' |a2= 'preceding-sibling' |a3= 'preceding' |a4= 'ancestor-or-self' ) ) a7= '::' (a8_0= parse_org_emftext_language_xpath2_NodeTest ) ( (a9_0= parse_org_emftext_language_xpath2_Predicate ) )*
             {
-            // Xpath2.g:5412:2: ( (a0= 'parent' |a1= 'ancestor' |a2= 'preceding-sibling' |a3= 'preceding' |a4= 'ancestor-or-self' ) )
-            // Xpath2.g:5413:3: (a0= 'parent' |a1= 'ancestor' |a2= 'preceding-sibling' |a3= 'preceding' |a4= 'ancestor-or-self' )
+            // Xpath2.g:5394:2: ( (a0= 'parent' |a1= 'ancestor' |a2= 'preceding-sibling' |a3= 'preceding' |a4= 'ancestor-or-self' ) )
+            // Xpath2.g:5395:3: (a0= 'parent' |a1= 'ancestor' |a2= 'preceding-sibling' |a3= 'preceding' |a4= 'ancestor-or-self' )
             {
-            // Xpath2.g:5413:3: (a0= 'parent' |a1= 'ancestor' |a2= 'preceding-sibling' |a3= 'preceding' |a4= 'ancestor-or-self' )
+            // Xpath2.g:5395:3: (a0= 'parent' |a1= 'ancestor' |a2= 'preceding-sibling' |a3= 'preceding' |a4= 'ancestor-or-self' )
             int alt46=5;
             switch ( input.LA(1) ) {
             case 75:
@@ -10430,7 +10407,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt46) {
                 case 1 :
-                    // Xpath2.g:5414:4: a0= 'parent'
+                    // Xpath2.g:5396:4: a0= 'parent'
                     {
                     a0=(Token)match(input,75,FOLLOW_75_in_parse_org_emftext_language_xpath2_GeneralReverseStep4368); if (state.failed) return element;
 
@@ -10441,7 +10418,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+                    				copyLocalizationInfos((CommonToken)a0, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getReverseAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ReverseAxisKind.PARENT_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_REVERSE_STEP__AXIS), value);
@@ -10451,7 +10428,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:5427:8: a1= 'ancestor'
+                    // Xpath2.g:5409:8: a1= 'ancestor'
                     {
                     a1=(Token)match(input,36,FOLLOW_36_in_parse_org_emftext_language_xpath2_GeneralReverseStep4383); if (state.failed) return element;
 
@@ -10462,7 +10439,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+                    				copyLocalizationInfos((CommonToken)a1, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getReverseAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ReverseAxisKind.ANCESTOR_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_REVERSE_STEP__AXIS), value);
@@ -10472,7 +10449,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:5440:8: a2= 'preceding-sibling'
+                    // Xpath2.g:5422:8: a2= 'preceding-sibling'
                     {
                     a2=(Token)match(input,77,FOLLOW_77_in_parse_org_emftext_language_xpath2_GeneralReverseStep4398); if (state.failed) return element;
 
@@ -10483,7 +10460,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+                    				copyLocalizationInfos((CommonToken)a2, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getReverseAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ReverseAxisKind.PRECEDING_SIBLING_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_REVERSE_STEP__AXIS), value);
@@ -10493,7 +10470,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xpath2.g:5453:8: a3= 'preceding'
+                    // Xpath2.g:5435:8: a3= 'preceding'
                     {
                     a3=(Token)match(input,76,FOLLOW_76_in_parse_org_emftext_language_xpath2_GeneralReverseStep4413); if (state.failed) return element;
 
@@ -10504,7 +10481,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+                    				copyLocalizationInfos((CommonToken)a3, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getReverseAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ReverseAxisKind.PRECEDING_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_REVERSE_STEP__AXIS), value);
@@ -10514,7 +10491,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xpath2.g:5466:8: a4= 'ancestor-or-self'
+                    // Xpath2.g:5448:8: a4= 'ancestor-or-self'
                     {
                     a4=(Token)match(input,37,FOLLOW_37_in_parse_org_emftext_language_xpath2_GeneralReverseStep4428); if (state.failed) return element;
 
@@ -10525,7 +10502,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+                    				copyLocalizationInfos((CommonToken)a4, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getReverseAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ReverseAxisKind.ANCESTOR_OR_SELF_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_REVERSE_STEP__AXIS), value);
@@ -10555,7 +10532,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a7, element);
+            		copyLocalizationInfos((CommonToken)a7, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -10582,8 +10559,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1414]);
             	}
 
-            // Xpath2.g:5519:2: (a8_0= parse_org_emftext_language_xpath2_NodeTest )
-            // Xpath2.g:5520:3: a8_0= parse_org_emftext_language_xpath2_NodeTest
+            // Xpath2.g:5501:2: (a8_0= parse_org_emftext_language_xpath2_NodeTest )
+            // Xpath2.g:5502:3: a8_0= parse_org_emftext_language_xpath2_NodeTest
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_NodeTest_in_parse_org_emftext_language_xpath2_GeneralReverseStep4467);
             a8_0=parse_org_emftext_language_xpath2_NodeTest();
@@ -10641,7 +10618,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1437]);
             	}
 
-            // Xpath2.g:5567:2: ( (a9_0= parse_org_emftext_language_xpath2_Predicate ) )*
+            // Xpath2.g:5549:2: ( (a9_0= parse_org_emftext_language_xpath2_Predicate ) )*
             loop47:
             do {
                 int alt47=2;
@@ -10654,10 +10631,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                 switch (alt47) {
             	case 1 :
-            	    // Xpath2.g:5568:3: (a9_0= parse_org_emftext_language_xpath2_Predicate )
+            	    // Xpath2.g:5550:3: (a9_0= parse_org_emftext_language_xpath2_Predicate )
             	    {
-            	    // Xpath2.g:5568:3: (a9_0= parse_org_emftext_language_xpath2_Predicate )
-            	    // Xpath2.g:5569:4: a9_0= parse_org_emftext_language_xpath2_Predicate
+            	    // Xpath2.g:5550:3: (a9_0= parse_org_emftext_language_xpath2_Predicate )
+            	    // Xpath2.g:5551:4: a9_0= parse_org_emftext_language_xpath2_Predicate
             	    {
             	    pushFollow(FOLLOW_parse_org_emftext_language_xpath2_Predicate_in_parse_org_emftext_language_xpath2_GeneralReverseStep4494);
             	    a9_0=parse_org_emftext_language_xpath2_Predicate();
@@ -10744,7 +10721,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_AbbrevReverseStep"
-    // Xpath2.g:5619:1: parse_org_emftext_language_xpath2_AbbrevReverseStep returns [org.emftext.language.xpath2.AbbrevReverseStep element = null] : ( (a0= '..' ) ) ( (a3_0= parse_org_emftext_language_xpath2_Predicate ) )* ;
+    // Xpath2.g:5601:1: parse_org_emftext_language_xpath2_AbbrevReverseStep returns [org.emftext.language.xpath2.AbbrevReverseStep element = null] : ( (a0= '..' ) ) ( (a3_0= parse_org_emftext_language_xpath2_Predicate ) )* ;
     public final org.emftext.language.xpath2.AbbrevReverseStep parse_org_emftext_language_xpath2_AbbrevReverseStep() throws RecognitionException {
         org.emftext.language.xpath2.AbbrevReverseStep element =  null;
 
@@ -10759,14 +10736,14 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 33) ) { return element; }
 
-            // Xpath2.g:5622:2: ( ( (a0= '..' ) ) ( (a3_0= parse_org_emftext_language_xpath2_Predicate ) )* )
-            // Xpath2.g:5623:2: ( (a0= '..' ) ) ( (a3_0= parse_org_emftext_language_xpath2_Predicate ) )*
+            // Xpath2.g:5604:2: ( ( (a0= '..' ) ) ( (a3_0= parse_org_emftext_language_xpath2_Predicate ) )* )
+            // Xpath2.g:5605:2: ( (a0= '..' ) ) ( (a3_0= parse_org_emftext_language_xpath2_Predicate ) )*
             {
-            // Xpath2.g:5623:2: ( (a0= '..' ) )
-            // Xpath2.g:5624:3: (a0= '..' )
+            // Xpath2.g:5605:2: ( (a0= '..' ) )
+            // Xpath2.g:5606:3: (a0= '..' )
             {
-            // Xpath2.g:5624:3: (a0= '..' )
-            // Xpath2.g:5625:4: a0= '..'
+            // Xpath2.g:5606:3: (a0= '..' )
+            // Xpath2.g:5607:4: a0= '..'
             {
             a0=(Token)match(input,20,FOLLOW_20_in_parse_org_emftext_language_xpath2_AbbrevReverseStep4544); if (state.failed) return element;
 
@@ -10777,7 +10754,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             				}
             				collectHiddenTokens(element);
             				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_31_0_0_0, null, true);
-            				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            				copyLocalizationInfos((CommonToken)a0, element);
             				// set value of enumeration attribute
             				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevReverseStepKind().getEEnumLiteral(org.emftext.language.xpath2.AbbrevReverseStepKind.PARENT_VALUE).getInstance();
             				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_REVERSE_STEP__KIND), value);
@@ -10817,7 +10794,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1483]);
             	}
 
-            // Xpath2.g:5667:2: ( (a3_0= parse_org_emftext_language_xpath2_Predicate ) )*
+            // Xpath2.g:5649:2: ( (a3_0= parse_org_emftext_language_xpath2_Predicate ) )*
             loop48:
             do {
                 int alt48=2;
@@ -10830,10 +10807,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
                 switch (alt48) {
             	case 1 :
-            	    // Xpath2.g:5668:3: (a3_0= parse_org_emftext_language_xpath2_Predicate )
+            	    // Xpath2.g:5650:3: (a3_0= parse_org_emftext_language_xpath2_Predicate )
             	    {
-            	    // Xpath2.g:5668:3: (a3_0= parse_org_emftext_language_xpath2_Predicate )
-            	    // Xpath2.g:5669:4: a3_0= parse_org_emftext_language_xpath2_Predicate
+            	    // Xpath2.g:5650:3: (a3_0= parse_org_emftext_language_xpath2_Predicate )
+            	    // Xpath2.g:5651:4: a3_0= parse_org_emftext_language_xpath2_Predicate
             	    {
             	    pushFollow(FOLLOW_parse_org_emftext_language_xpath2_Predicate_in_parse_org_emftext_language_xpath2_AbbrevReverseStep4574);
             	    a3_0=parse_org_emftext_language_xpath2_Predicate();
@@ -10920,7 +10897,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_NodeKindTest"
-    // Xpath2.g:5719:1: parse_org_emftext_language_xpath2_NodeKindTest returns [org.emftext.language.xpath2.NodeKindTest element = null] : (a0_0= parse_org_emftext_language_xpath2_KindTest ) ;
+    // Xpath2.g:5701:1: parse_org_emftext_language_xpath2_NodeKindTest returns [org.emftext.language.xpath2.NodeKindTest element = null] : (a0_0= parse_org_emftext_language_xpath2_KindTest ) ;
     public final org.emftext.language.xpath2.NodeKindTest parse_org_emftext_language_xpath2_NodeKindTest() throws RecognitionException {
         org.emftext.language.xpath2.NodeKindTest element =  null;
 
@@ -10934,11 +10911,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 34) ) { return element; }
 
-            // Xpath2.g:5722:2: ( (a0_0= parse_org_emftext_language_xpath2_KindTest ) )
-            // Xpath2.g:5723:2: (a0_0= parse_org_emftext_language_xpath2_KindTest )
+            // Xpath2.g:5704:2: ( (a0_0= parse_org_emftext_language_xpath2_KindTest ) )
+            // Xpath2.g:5705:2: (a0_0= parse_org_emftext_language_xpath2_KindTest )
             {
-            // Xpath2.g:5723:2: (a0_0= parse_org_emftext_language_xpath2_KindTest )
-            // Xpath2.g:5724:3: a0_0= parse_org_emftext_language_xpath2_KindTest
+            // Xpath2.g:5705:2: (a0_0= parse_org_emftext_language_xpath2_KindTest )
+            // Xpath2.g:5706:3: a0_0= parse_org_emftext_language_xpath2_KindTest
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_KindTest_in_parse_org_emftext_language_xpath2_NodeKindTest4619);
             a0_0=parse_org_emftext_language_xpath2_KindTest();
@@ -11016,7 +10993,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_QNameTest"
-    // Xpath2.g:5773:1: parse_org_emftext_language_xpath2_QNameTest returns [org.emftext.language.xpath2.QNameTest element = null] : ( (a0= QNAME ) | (a1= NCNAME ) ) ;
+    // Xpath2.g:5755:1: parse_org_emftext_language_xpath2_QNameTest returns [org.emftext.language.xpath2.QNameTest element = null] : ( (a0= QNAME ) | (a1= NCNAME ) ) ;
     public final org.emftext.language.xpath2.QNameTest parse_org_emftext_language_xpath2_QNameTest() throws RecognitionException {
         org.emftext.language.xpath2.QNameTest element =  null;
 
@@ -11030,10 +11007,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 35) ) { return element; }
 
-            // Xpath2.g:5776:2: ( ( (a0= QNAME ) | (a1= NCNAME ) ) )
-            // Xpath2.g:5777:2: ( (a0= QNAME ) | (a1= NCNAME ) )
+            // Xpath2.g:5758:2: ( ( (a0= QNAME ) | (a1= NCNAME ) ) )
+            // Xpath2.g:5759:2: ( (a0= QNAME ) | (a1= NCNAME ) )
             {
-            // Xpath2.g:5777:2: ( (a0= QNAME ) | (a1= NCNAME ) )
+            // Xpath2.g:5759:2: ( (a0= QNAME ) | (a1= NCNAME ) )
             int alt49=2;
             int LA49_0 = input.LA(1);
 
@@ -11053,10 +11030,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt49) {
                 case 1 :
-                    // Xpath2.g:5778:3: (a0= QNAME )
+                    // Xpath2.g:5760:3: (a0= QNAME )
                     {
-                    // Xpath2.g:5778:3: (a0= QNAME )
-                    // Xpath2.g:5779:4: a0= QNAME
+                    // Xpath2.g:5760:3: (a0= QNAME )
+                    // Xpath2.g:5761:4: a0= QNAME
                     {
                     a0=(Token)match(input,QNAME,FOLLOW_QNAME_in_parse_org_emftext_language_xpath2_QNameTest4661); if (state.failed) return element;
 
@@ -11075,7 +11052,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QNAME_TEST__NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a0).getLine(), ((CommonToken) a0).getCharPositionInLine(), ((CommonToken) a0).getStartIndex(), ((CommonToken) a0).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -11085,7 +11062,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_33_0_0_0_0_0_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+                    					copyLocalizationInfos((CommonToken) a0, element);
                     				}
                     			}
 
@@ -11122,10 +11099,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:5837:6: (a1= NCNAME )
+                    // Xpath2.g:5819:6: (a1= NCNAME )
                     {
-                    // Xpath2.g:5837:6: (a1= NCNAME )
-                    // Xpath2.g:5838:4: a1= NCNAME
+                    // Xpath2.g:5819:6: (a1= NCNAME )
+                    // Xpath2.g:5820:4: a1= NCNAME
                     {
                     a1=(Token)match(input,NCNAME,FOLLOW_NCNAME_in_parse_org_emftext_language_xpath2_QNameTest4699); if (state.failed) return element;
 
@@ -11144,7 +11121,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QNAME_TEST__NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a1).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a1).getLine(), ((CommonToken) a1).getCharPositionInLine(), ((CommonToken) a1).getStartIndex(), ((CommonToken) a1).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -11154,7 +11131,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_33_0_0_0_0_1_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, element);
+                    					copyLocalizationInfos((CommonToken) a1, element);
                     				}
                     			}
 
@@ -11241,7 +11218,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_AnyWildcard"
-    // Xpath2.g:5925:1: parse_org_emftext_language_xpath2_AnyWildcard returns [org.emftext.language.xpath2.AnyWildcard element = null] : a0= '*' ;
+    // Xpath2.g:5907:1: parse_org_emftext_language_xpath2_AnyWildcard returns [org.emftext.language.xpath2.AnyWildcard element = null] : a0= '*' ;
     public final org.emftext.language.xpath2.AnyWildcard parse_org_emftext_language_xpath2_AnyWildcard() throws RecognitionException {
         org.emftext.language.xpath2.AnyWildcard element =  null;
 
@@ -11254,8 +11231,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 36) ) { return element; }
 
-            // Xpath2.g:5928:2: (a0= '*' )
-            // Xpath2.g:5929:2: a0= '*'
+            // Xpath2.g:5910:2: (a0= '*' )
+            // Xpath2.g:5911:2: a0= '*'
             {
             a0=(Token)match(input,15,FOLLOW_15_in_parse_org_emftext_language_xpath2_AnyWildcard4748); if (state.failed) return element;
 
@@ -11266,7 +11243,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_34_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -11316,7 +11293,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_LocalNameWildcard"
-    // Xpath2.g:5967:1: parse_org_emftext_language_xpath2_LocalNameWildcard returns [org.emftext.language.xpath2.LocalNameWildcard element = null] : (a0= NCNAME ) a1= ':' a2= '*' ;
+    // Xpath2.g:5949:1: parse_org_emftext_language_xpath2_LocalNameWildcard returns [org.emftext.language.xpath2.LocalNameWildcard element = null] : (a0= NCNAME ) a1= ':' a2= '*' ;
     public final org.emftext.language.xpath2.LocalNameWildcard parse_org_emftext_language_xpath2_LocalNameWildcard() throws RecognitionException {
         org.emftext.language.xpath2.LocalNameWildcard element =  null;
 
@@ -11331,11 +11308,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 37) ) { return element; }
 
-            // Xpath2.g:5970:2: ( (a0= NCNAME ) a1= ':' a2= '*' )
-            // Xpath2.g:5971:2: (a0= NCNAME ) a1= ':' a2= '*'
+            // Xpath2.g:5952:2: ( (a0= NCNAME ) a1= ':' a2= '*' )
+            // Xpath2.g:5953:2: (a0= NCNAME ) a1= ':' a2= '*'
             {
-            // Xpath2.g:5971:2: (a0= NCNAME )
-            // Xpath2.g:5972:3: a0= NCNAME
+            // Xpath2.g:5953:2: (a0= NCNAME )
+            // Xpath2.g:5954:3: a0= NCNAME
             {
             a0=(Token)match(input,NCNAME,FOLLOW_NCNAME_in_parse_org_emftext_language_xpath2_LocalNameWildcard4781); if (state.failed) return element;
 
@@ -11354,7 +11331,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             				tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.LOCAL_NAME_WILDCARD__NAMESPACE), result);
             				Object resolvedObject = result.getResolvedToken();
             				if (resolvedObject == null) {
-            					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+            					addErrorToResource(result.getErrorMessage(), ((CommonToken) a0).getLine(), ((CommonToken) a0).getCharPositionInLine(), ((CommonToken) a0).getStartIndex(), ((CommonToken) a0).getStopIndex());
             				}
             				java.lang.String resolved = (java.lang.String) resolvedObject;
             				if (resolved != null) {
@@ -11364,7 +11341,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             				}
             				collectHiddenTokens(element);
             				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_35_0_0_0, resolved, true);
-            				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+            				copyLocalizationInfos((CommonToken) a0, element);
             			}
             		}
 
@@ -11385,7 +11362,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_35_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            		copyLocalizationInfos((CommonToken)a1, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -11402,7 +11379,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_35_0_0_2, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+            		copyLocalizationInfos((CommonToken)a2, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -11452,7 +11429,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_NamespaceWildcard"
-    // Xpath2.g:6059:1: parse_org_emftext_language_xpath2_NamespaceWildcard returns [org.emftext.language.xpath2.NamespaceWildcard element = null] : a0= '*' a1= ':' (a2= NCNAME ) ;
+    // Xpath2.g:6041:1: parse_org_emftext_language_xpath2_NamespaceWildcard returns [org.emftext.language.xpath2.NamespaceWildcard element = null] : a0= '*' a1= ':' (a2= NCNAME ) ;
     public final org.emftext.language.xpath2.NamespaceWildcard parse_org_emftext_language_xpath2_NamespaceWildcard() throws RecognitionException {
         org.emftext.language.xpath2.NamespaceWildcard element =  null;
 
@@ -11467,8 +11444,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 38) ) { return element; }
 
-            // Xpath2.g:6062:2: (a0= '*' a1= ':' (a2= NCNAME ) )
-            // Xpath2.g:6063:2: a0= '*' a1= ':' (a2= NCNAME )
+            // Xpath2.g:6044:2: (a0= '*' a1= ':' (a2= NCNAME ) )
+            // Xpath2.g:6045:2: a0= '*' a1= ':' (a2= NCNAME )
             {
             a0=(Token)match(input,15,FOLLOW_15_in_parse_org_emftext_language_xpath2_NamespaceWildcard4845); if (state.failed) return element;
 
@@ -11479,7 +11456,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_36_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -11496,7 +11473,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_36_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            		copyLocalizationInfos((CommonToken)a1, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -11504,8 +11481,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1648]);
             	}
 
-            // Xpath2.g:6091:2: (a2= NCNAME )
-            // Xpath2.g:6092:3: a2= NCNAME
+            // Xpath2.g:6073:2: (a2= NCNAME )
+            // Xpath2.g:6074:3: a2= NCNAME
             {
             a2=(Token)match(input,NCNAME,FOLLOW_NCNAME_in_parse_org_emftext_language_xpath2_NamespaceWildcard4877); if (state.failed) return element;
 
@@ -11524,7 +11501,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAMESPACE_WILDCARD__LOCAL_NAME), result);
             				Object resolvedObject = result.getResolvedToken();
             				if (resolvedObject == null) {
-            					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+            					addErrorToResource(result.getErrorMessage(), ((CommonToken) a2).getLine(), ((CommonToken) a2).getCharPositionInLine(), ((CommonToken) a2).getStartIndex(), ((CommonToken) a2).getStopIndex());
             				}
             				java.lang.String resolved = (java.lang.String) resolvedObject;
             				if (resolved != null) {
@@ -11534,7 +11511,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             				}
             				collectHiddenTokens(element);
             				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_36_0_0_2, resolved, true);
-            				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
+            				copyLocalizationInfos((CommonToken) a2, element);
             			}
             		}
 
@@ -11588,7 +11565,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_Predicate"
-    // Xpath2.g:6151:1: parse_org_emftext_language_xpath2_Predicate returns [org.emftext.language.xpath2.Predicate element = null] : a0= '[' (a1_0= parse_org_emftext_language_xpath2_Expr ) a2= ']' ;
+    // Xpath2.g:6133:1: parse_org_emftext_language_xpath2_Predicate returns [org.emftext.language.xpath2.Predicate element = null] : a0= '[' (a1_0= parse_org_emftext_language_xpath2_Expr ) a2= ']' ;
     public final org.emftext.language.xpath2.Predicate parse_org_emftext_language_xpath2_Predicate() throws RecognitionException {
         org.emftext.language.xpath2.Predicate element =  null;
 
@@ -11604,8 +11581,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 39) ) { return element; }
 
-            // Xpath2.g:6154:2: (a0= '[' (a1_0= parse_org_emftext_language_xpath2_Expr ) a2= ']' )
-            // Xpath2.g:6155:2: a0= '[' (a1_0= parse_org_emftext_language_xpath2_Expr ) a2= ']'
+            // Xpath2.g:6136:2: (a0= '[' (a1_0= parse_org_emftext_language_xpath2_Expr ) a2= ']' )
+            // Xpath2.g:6137:2: a0= '[' (a1_0= parse_org_emftext_language_xpath2_Expr ) a2= ']'
             {
             a0=(Token)match(input,34,FOLLOW_34_in_parse_org_emftext_language_xpath2_Predicate4913); if (state.failed) return element;
 
@@ -11616,7 +11593,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_37_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -11643,8 +11620,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1691]);
             	}
 
-            // Xpath2.g:6188:2: (a1_0= parse_org_emftext_language_xpath2_Expr )
-            // Xpath2.g:6189:3: a1_0= parse_org_emftext_language_xpath2_Expr
+            // Xpath2.g:6170:2: (a1_0= parse_org_emftext_language_xpath2_Expr )
+            // Xpath2.g:6171:3: a1_0= parse_org_emftext_language_xpath2_Expr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_Expr_in_parse_org_emftext_language_xpath2_Predicate4931);
             a1_0=parse_org_emftext_language_xpath2_Expr();
@@ -11689,7 +11666,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_37_0_0_2, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+            		copyLocalizationInfos((CommonToken)a2, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -11739,7 +11716,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_VarRef"
-    // Xpath2.g:6252:1: parse_org_emftext_language_xpath2_VarRef returns [org.emftext.language.xpath2.VarRef element = null] : a0= '$' ( (a1= QNAME ) | (a2= NCNAME ) ) ;
+    // Xpath2.g:6234:1: parse_org_emftext_language_xpath2_VarRef returns [org.emftext.language.xpath2.VarRef element = null] : a0= '$' ( (a1= QNAME ) | (a2= NCNAME ) ) ;
     public final org.emftext.language.xpath2.VarRef parse_org_emftext_language_xpath2_VarRef() throws RecognitionException {
         org.emftext.language.xpath2.VarRef element =  null;
 
@@ -11754,8 +11731,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 40) ) { return element; }
 
-            // Xpath2.g:6255:2: (a0= '$' ( (a1= QNAME ) | (a2= NCNAME ) ) )
-            // Xpath2.g:6256:2: a0= '$' ( (a1= QNAME ) | (a2= NCNAME ) )
+            // Xpath2.g:6237:2: (a0= '$' ( (a1= QNAME ) | (a2= NCNAME ) ) )
+            // Xpath2.g:6238:2: a0= '$' ( (a1= QNAME ) | (a2= NCNAME ) )
             {
             a0=(Token)match(input,12,FOLLOW_12_in_parse_org_emftext_language_xpath2_VarRef4978); if (state.failed) return element;
 
@@ -11766,7 +11743,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_38_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -11775,7 +11752,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1717]);
             	}
 
-            // Xpath2.g:6271:2: ( (a1= QNAME ) | (a2= NCNAME ) )
+            // Xpath2.g:6253:2: ( (a1= QNAME ) | (a2= NCNAME ) )
             int alt50=2;
             int LA50_0 = input.LA(1);
 
@@ -11795,10 +11772,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt50) {
                 case 1 :
-                    // Xpath2.g:6272:3: (a1= QNAME )
+                    // Xpath2.g:6254:3: (a1= QNAME )
                     {
-                    // Xpath2.g:6272:3: (a1= QNAME )
-                    // Xpath2.g:6273:4: a1= QNAME
+                    // Xpath2.g:6254:3: (a1= QNAME )
+                    // Xpath2.g:6255:4: a1= QNAME
                     {
                     a1=(Token)match(input,QNAME,FOLLOW_QNAME_in_parse_org_emftext_language_xpath2_VarRef5001); if (state.failed) return element;
 
@@ -11817,7 +11794,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VAR_REF__VAR_NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a1).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a1).getLine(), ((CommonToken) a1).getCharPositionInLine(), ((CommonToken) a1).getStartIndex(), ((CommonToken) a1).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -11827,7 +11804,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_38_0_0_1_0_0_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, element);
+                    					copyLocalizationInfos((CommonToken) a1, element);
                     				}
                     			}
 
@@ -11864,10 +11841,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:6331:6: (a2= NCNAME )
+                    // Xpath2.g:6313:6: (a2= NCNAME )
                     {
-                    // Xpath2.g:6331:6: (a2= NCNAME )
-                    // Xpath2.g:6332:4: a2= NCNAME
+                    // Xpath2.g:6313:6: (a2= NCNAME )
+                    // Xpath2.g:6314:4: a2= NCNAME
                     {
                     a2=(Token)match(input,NCNAME,FOLLOW_NCNAME_in_parse_org_emftext_language_xpath2_VarRef5039); if (state.failed) return element;
 
@@ -11886,7 +11863,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VAR_REF__VAR_NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a2).getLine(), ((CommonToken) a2).getCharPositionInLine(), ((CommonToken) a2).getStartIndex(), ((CommonToken) a2).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -11896,7 +11873,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_38_0_0_1_0_1_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
+                    					copyLocalizationInfos((CommonToken) a2, element);
                     				}
                     			}
 
@@ -11983,7 +11960,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_ParenthesizedExpr"
-    // Xpath2.g:6419:1: parse_org_emftext_language_xpath2_ParenthesizedExpr returns [org.emftext.language.xpath2.ParenthesizedExpr element = null] : a0= '(' ( (a1_0= parse_org_emftext_language_xpath2_Expr ) )? a2= ')' ;
+    // Xpath2.g:6401:1: parse_org_emftext_language_xpath2_ParenthesizedExpr returns [org.emftext.language.xpath2.ParenthesizedExpr element = null] : a0= '(' ( (a1_0= parse_org_emftext_language_xpath2_Expr ) )? a2= ')' ;
     public final org.emftext.language.xpath2.ParenthesizedExpr parse_org_emftext_language_xpath2_ParenthesizedExpr() throws RecognitionException {
         org.emftext.language.xpath2.ParenthesizedExpr element =  null;
 
@@ -11999,8 +11976,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 41) ) { return element; }
 
-            // Xpath2.g:6422:2: (a0= '(' ( (a1_0= parse_org_emftext_language_xpath2_Expr ) )? a2= ')' )
-            // Xpath2.g:6423:2: a0= '(' ( (a1_0= parse_org_emftext_language_xpath2_Expr ) )? a2= ')'
+            // Xpath2.g:6404:2: (a0= '(' ( (a1_0= parse_org_emftext_language_xpath2_Expr ) )? a2= ')' )
+            // Xpath2.g:6405:2: a0= '(' ( (a1_0= parse_org_emftext_language_xpath2_Expr ) )? a2= ')'
             {
             a0=(Token)match(input,13,FOLLOW_13_in_parse_org_emftext_language_xpath2_ParenthesizedExpr5088); if (state.failed) return element;
 
@@ -12011,7 +11988,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_39_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -12039,7 +12016,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1807]);
             	}
 
-            // Xpath2.g:6457:2: ( (a1_0= parse_org_emftext_language_xpath2_Expr ) )?
+            // Xpath2.g:6439:2: ( (a1_0= parse_org_emftext_language_xpath2_Expr ) )?
             int alt51=2;
             int LA51_0 = input.LA(1);
 
@@ -12048,10 +12025,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt51) {
                 case 1 :
-                    // Xpath2.g:6458:3: (a1_0= parse_org_emftext_language_xpath2_Expr )
+                    // Xpath2.g:6440:3: (a1_0= parse_org_emftext_language_xpath2_Expr )
                     {
-                    // Xpath2.g:6458:3: (a1_0= parse_org_emftext_language_xpath2_Expr )
-                    // Xpath2.g:6459:4: a1_0= parse_org_emftext_language_xpath2_Expr
+                    // Xpath2.g:6440:3: (a1_0= parse_org_emftext_language_xpath2_Expr )
+                    // Xpath2.g:6441:4: a1_0= parse_org_emftext_language_xpath2_Expr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_Expr_in_parse_org_emftext_language_xpath2_ParenthesizedExpr5111);
                     a1_0=parse_org_emftext_language_xpath2_Expr();
@@ -12102,7 +12079,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_39_0_0_2, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+            		copyLocalizationInfos((CommonToken)a2, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -12152,7 +12129,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_ContextItemExpr"
-    // Xpath2.g:6523:1: parse_org_emftext_language_xpath2_ContextItemExpr returns [org.emftext.language.xpath2.ContextItemExpr element = null] : a0= '.' ;
+    // Xpath2.g:6505:1: parse_org_emftext_language_xpath2_ContextItemExpr returns [org.emftext.language.xpath2.ContextItemExpr element = null] : a0= '.' ;
     public final org.emftext.language.xpath2.ContextItemExpr parse_org_emftext_language_xpath2_ContextItemExpr() throws RecognitionException {
         org.emftext.language.xpath2.ContextItemExpr element =  null;
 
@@ -12165,8 +12142,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 42) ) { return element; }
 
-            // Xpath2.g:6526:2: (a0= '.' )
-            // Xpath2.g:6527:2: a0= '.'
+            // Xpath2.g:6508:2: (a0= '.' )
+            // Xpath2.g:6509:2: a0= '.'
             {
             a0=(Token)match(input,19,FOLLOW_19_in_parse_org_emftext_language_xpath2_ContextItemExpr5166); if (state.failed) return element;
 
@@ -12177,7 +12154,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_40_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -12227,7 +12204,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_SingleType"
-    // Xpath2.g:6565:1: parse_org_emftext_language_xpath2_SingleType returns [org.emftext.language.xpath2.SingleType element = null] : (a0_0= parse_org_emftext_language_xpath2_AtomicType ) ( (a1= '?' )? ) ;
+    // Xpath2.g:6547:1: parse_org_emftext_language_xpath2_SingleType returns [org.emftext.language.xpath2.SingleType element = null] : (a0_0= parse_org_emftext_language_xpath2_AtomicType ) ( (a1= '?' )? ) ;
     public final org.emftext.language.xpath2.SingleType parse_org_emftext_language_xpath2_SingleType() throws RecognitionException {
         org.emftext.language.xpath2.SingleType element =  null;
 
@@ -12242,11 +12219,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 43) ) { return element; }
 
-            // Xpath2.g:6568:2: ( (a0_0= parse_org_emftext_language_xpath2_AtomicType ) ( (a1= '?' )? ) )
-            // Xpath2.g:6569:2: (a0_0= parse_org_emftext_language_xpath2_AtomicType ) ( (a1= '?' )? )
+            // Xpath2.g:6550:2: ( (a0_0= parse_org_emftext_language_xpath2_AtomicType ) ( (a1= '?' )? ) )
+            // Xpath2.g:6551:2: (a0_0= parse_org_emftext_language_xpath2_AtomicType ) ( (a1= '?' )? )
             {
-            // Xpath2.g:6569:2: (a0_0= parse_org_emftext_language_xpath2_AtomicType )
-            // Xpath2.g:6570:3: a0_0= parse_org_emftext_language_xpath2_AtomicType
+            // Xpath2.g:6551:2: (a0_0= parse_org_emftext_language_xpath2_AtomicType )
+            // Xpath2.g:6552:3: a0_0= parse_org_emftext_language_xpath2_AtomicType
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AtomicType_in_parse_org_emftext_language_xpath2_SingleType5199);
             a0_0=parse_org_emftext_language_xpath2_AtomicType();
@@ -12305,10 +12282,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1873]);
             	}
 
-            // Xpath2.g:6618:2: ( (a1= '?' )? )
-            // Xpath2.g:6619:3: (a1= '?' )?
+            // Xpath2.g:6600:2: ( (a1= '?' )? )
+            // Xpath2.g:6601:3: (a1= '?' )?
             {
-            // Xpath2.g:6619:3: (a1= '?' )?
+            // Xpath2.g:6601:3: (a1= '?' )?
             int alt52=2;
             int LA52_0 = input.LA(1);
 
@@ -12317,7 +12294,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt52) {
                 case 1 :
-                    // Xpath2.g:6620:4: a1= '?'
+                    // Xpath2.g:6602:4: a1= '?'
                     {
                     a1=(Token)match(input,32,FOLLOW_32_in_parse_org_emftext_language_xpath2_SingleType5226); if (state.failed) return element;
 
@@ -12333,7 +12310,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_41_0_0_1, true, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+                    				copyLocalizationInfos((CommonToken)a1, element);
                     				// set value of boolean attribute
                     				Object value = true;
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SINGLE_TYPE__OPTIONAL), value);
@@ -12391,7 +12368,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_EmptySequenceType"
-    // Xpath2.g:6663:1: parse_org_emftext_language_xpath2_EmptySequenceType returns [org.emftext.language.xpath2.EmptySequenceType element = null] : a0= 'empty-sequence' a1= '(' a2= ')' ;
+    // Xpath2.g:6645:1: parse_org_emftext_language_xpath2_EmptySequenceType returns [org.emftext.language.xpath2.EmptySequenceType element = null] : a0= 'empty-sequence' a1= '(' a2= ')' ;
     public final org.emftext.language.xpath2.EmptySequenceType parse_org_emftext_language_xpath2_EmptySequenceType() throws RecognitionException {
         org.emftext.language.xpath2.EmptySequenceType element =  null;
 
@@ -12406,8 +12383,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 44) ) { return element; }
 
-            // Xpath2.g:6666:2: (a0= 'empty-sequence' a1= '(' a2= ')' )
-            // Xpath2.g:6667:2: a0= 'empty-sequence' a1= '(' a2= ')'
+            // Xpath2.g:6648:2: (a0= 'empty-sequence' a1= '(' a2= ')' )
+            // Xpath2.g:6649:2: a0= 'empty-sequence' a1= '(' a2= ')'
             {
             a0=(Token)match(input,51,FOLLOW_51_in_parse_org_emftext_language_xpath2_EmptySequenceType5262); if (state.failed) return element;
 
@@ -12418,7 +12395,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_42_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -12435,7 +12412,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_42_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            		copyLocalizationInfos((CommonToken)a1, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -12452,7 +12429,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_42_0_0_2, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+            		copyLocalizationInfos((CommonToken)a2, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -12495,7 +12472,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_ItemSequenceType"
-    // Xpath2.g:6726:1: parse_org_emftext_language_xpath2_ItemSequenceType returns [org.emftext.language.xpath2.ItemSequenceType element = null] : (a0_0= parse_org_emftext_language_xpath2_ItemType ) ( (a1= '?' |a2= '*' |a3= '+' )? ) ;
+    // Xpath2.g:6708:1: parse_org_emftext_language_xpath2_ItemSequenceType returns [org.emftext.language.xpath2.ItemSequenceType element = null] : (a0_0= parse_org_emftext_language_xpath2_ItemType ) ( (a1= '?' |a2= '*' |a3= '+' )? ) ;
     public final org.emftext.language.xpath2.ItemSequenceType parse_org_emftext_language_xpath2_ItemSequenceType() throws RecognitionException {
         org.emftext.language.xpath2.ItemSequenceType element =  null;
 
@@ -12512,11 +12489,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 45) ) { return element; }
 
-            // Xpath2.g:6729:2: ( (a0_0= parse_org_emftext_language_xpath2_ItemType ) ( (a1= '?' |a2= '*' |a3= '+' )? ) )
-            // Xpath2.g:6730:2: (a0_0= parse_org_emftext_language_xpath2_ItemType ) ( (a1= '?' |a2= '*' |a3= '+' )? )
+            // Xpath2.g:6711:2: ( (a0_0= parse_org_emftext_language_xpath2_ItemType ) ( (a1= '?' |a2= '*' |a3= '+' )? ) )
+            // Xpath2.g:6712:2: (a0_0= parse_org_emftext_language_xpath2_ItemType ) ( (a1= '?' |a2= '*' |a3= '+' )? )
             {
-            // Xpath2.g:6730:2: (a0_0= parse_org_emftext_language_xpath2_ItemType )
-            // Xpath2.g:6731:3: a0_0= parse_org_emftext_language_xpath2_ItemType
+            // Xpath2.g:6712:2: (a0_0= parse_org_emftext_language_xpath2_ItemType )
+            // Xpath2.g:6713:3: a0_0= parse_org_emftext_language_xpath2_ItemType
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ItemType_in_parse_org_emftext_language_xpath2_ItemSequenceType5323);
             a0_0=parse_org_emftext_language_xpath2_ItemType();
@@ -12555,10 +12532,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1910]);
             	}
 
-            // Xpath2.g:6759:2: ( (a1= '?' |a2= '*' |a3= '+' )? )
-            // Xpath2.g:6760:3: (a1= '?' |a2= '*' |a3= '+' )?
+            // Xpath2.g:6741:2: ( (a1= '?' |a2= '*' |a3= '+' )? )
+            // Xpath2.g:6742:3: (a1= '?' |a2= '*' |a3= '+' )?
             {
-            // Xpath2.g:6760:3: (a1= '?' |a2= '*' |a3= '+' )?
+            // Xpath2.g:6742:3: (a1= '?' |a2= '*' |a3= '+' )?
             int alt53=4;
             switch ( input.LA(1) ) {
                 case 32:
@@ -12588,7 +12565,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt53) {
                 case 1 :
-                    // Xpath2.g:6761:4: a1= '?'
+                    // Xpath2.g:6743:4: a1= '?'
                     {
                     a1=(Token)match(input,32,FOLLOW_32_in_parse_org_emftext_language_xpath2_ItemSequenceType5350); if (state.failed) return element;
 
@@ -12602,7 +12579,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_43_0_0_1, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+                    				copyLocalizationInfos((CommonToken)a1, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getOccurrenceIndicatorKind().getEEnumLiteral(org.emftext.language.xpath2.OccurrenceIndicatorKind.OPTIONAL_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE), value);
@@ -12612,7 +12589,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:6777:8: a2= '*'
+                    // Xpath2.g:6759:8: a2= '*'
                     {
                     a2=(Token)match(input,15,FOLLOW_15_in_parse_org_emftext_language_xpath2_ItemSequenceType5365); if (state.failed) return element;
 
@@ -12626,7 +12603,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_43_0_0_1, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+                    				copyLocalizationInfos((CommonToken)a2, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getOccurrenceIndicatorKind().getEEnumLiteral(org.emftext.language.xpath2.OccurrenceIndicatorKind.STAR_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE), value);
@@ -12636,7 +12613,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:6793:8: a3= '+'
+                    // Xpath2.g:6775:8: a3= '+'
                     {
                     a3=(Token)match(input,16,FOLLOW_16_in_parse_org_emftext_language_xpath2_ItemSequenceType5380); if (state.failed) return element;
 
@@ -12650,7 +12627,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_43_0_0_1, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+                    				copyLocalizationInfos((CommonToken)a3, element);
                     				// set value of enumeration attribute
                     				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getOccurrenceIndicatorKind().getEEnumLiteral(org.emftext.language.xpath2.OccurrenceIndicatorKind.PLUS_VALUE).getInstance();
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE), value);
@@ -12706,7 +12683,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_ItemKindTest"
-    // Xpath2.g:6832:1: parse_org_emftext_language_xpath2_ItemKindTest returns [org.emftext.language.xpath2.ItemKindTest element = null] : (a0_0= parse_org_emftext_language_xpath2_KindTest ) ;
+    // Xpath2.g:6814:1: parse_org_emftext_language_xpath2_ItemKindTest returns [org.emftext.language.xpath2.ItemKindTest element = null] : (a0_0= parse_org_emftext_language_xpath2_KindTest ) ;
     public final org.emftext.language.xpath2.ItemKindTest parse_org_emftext_language_xpath2_ItemKindTest() throws RecognitionException {
         org.emftext.language.xpath2.ItemKindTest element =  null;
 
@@ -12720,11 +12697,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 46) ) { return element; }
 
-            // Xpath2.g:6835:2: ( (a0_0= parse_org_emftext_language_xpath2_KindTest ) )
-            // Xpath2.g:6836:2: (a0_0= parse_org_emftext_language_xpath2_KindTest )
+            // Xpath2.g:6817:2: ( (a0_0= parse_org_emftext_language_xpath2_KindTest ) )
+            // Xpath2.g:6818:2: (a0_0= parse_org_emftext_language_xpath2_KindTest )
             {
-            // Xpath2.g:6836:2: (a0_0= parse_org_emftext_language_xpath2_KindTest )
-            // Xpath2.g:6837:3: a0_0= parse_org_emftext_language_xpath2_KindTest
+            // Xpath2.g:6818:2: (a0_0= parse_org_emftext_language_xpath2_KindTest )
+            // Xpath2.g:6819:3: a0_0= parse_org_emftext_language_xpath2_KindTest
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_KindTest_in_parse_org_emftext_language_xpath2_ItemKindTest5420);
             a0_0=parse_org_emftext_language_xpath2_KindTest();
@@ -12780,7 +12757,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_AnyItemType"
-    // Xpath2.g:6864:1: parse_org_emftext_language_xpath2_AnyItemType returns [org.emftext.language.xpath2.AnyItemType element = null] : a0= 'item' a1= '(' a2= ')' ;
+    // Xpath2.g:6846:1: parse_org_emftext_language_xpath2_AnyItemType returns [org.emftext.language.xpath2.AnyItemType element = null] : a0= 'item' a1= '(' a2= ')' ;
     public final org.emftext.language.xpath2.AnyItemType parse_org_emftext_language_xpath2_AnyItemType() throws RecognitionException {
         org.emftext.language.xpath2.AnyItemType element =  null;
 
@@ -12795,8 +12772,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 47) ) { return element; }
 
-            // Xpath2.g:6867:2: (a0= 'item' a1= '(' a2= ')' )
-            // Xpath2.g:6868:2: a0= 'item' a1= '(' a2= ')'
+            // Xpath2.g:6849:2: (a0= 'item' a1= '(' a2= ')' )
+            // Xpath2.g:6850:2: a0= 'item' a1= '(' a2= ')'
             {
             a0=(Token)match(input,66,FOLLOW_66_in_parse_org_emftext_language_xpath2_AnyItemType5453); if (state.failed) return element;
 
@@ -12807,7 +12784,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_45_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -12824,7 +12801,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_45_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            		copyLocalizationInfos((CommonToken)a1, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -12841,7 +12818,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_45_0_0_2, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+            		copyLocalizationInfos((CommonToken)a2, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -12869,7 +12846,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_AtomicItemType"
-    // Xpath2.g:6912:1: parse_org_emftext_language_xpath2_AtomicItemType returns [org.emftext.language.xpath2.AtomicItemType element = null] : (a0_0= parse_org_emftext_language_xpath2_AtomicType ) ;
+    // Xpath2.g:6894:1: parse_org_emftext_language_xpath2_AtomicItemType returns [org.emftext.language.xpath2.AtomicItemType element = null] : (a0_0= parse_org_emftext_language_xpath2_AtomicType ) ;
     public final org.emftext.language.xpath2.AtomicItemType parse_org_emftext_language_xpath2_AtomicItemType() throws RecognitionException {
         org.emftext.language.xpath2.AtomicItemType element =  null;
 
@@ -12883,11 +12860,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 48) ) { return element; }
 
-            // Xpath2.g:6915:2: ( (a0_0= parse_org_emftext_language_xpath2_AtomicType ) )
-            // Xpath2.g:6916:2: (a0_0= parse_org_emftext_language_xpath2_AtomicType )
+            // Xpath2.g:6897:2: ( (a0_0= parse_org_emftext_language_xpath2_AtomicType ) )
+            // Xpath2.g:6898:2: (a0_0= parse_org_emftext_language_xpath2_AtomicType )
             {
-            // Xpath2.g:6916:2: (a0_0= parse_org_emftext_language_xpath2_AtomicType )
-            // Xpath2.g:6917:3: a0_0= parse_org_emftext_language_xpath2_AtomicType
+            // Xpath2.g:6898:2: (a0_0= parse_org_emftext_language_xpath2_AtomicType )
+            // Xpath2.g:6899:3: a0_0= parse_org_emftext_language_xpath2_AtomicType
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AtomicType_in_parse_org_emftext_language_xpath2_AtomicItemType5514);
             a0_0=parse_org_emftext_language_xpath2_AtomicType();
@@ -12943,7 +12920,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_AtomicType"
-    // Xpath2.g:6944:1: parse_org_emftext_language_xpath2_AtomicType returns [org.emftext.language.xpath2.AtomicType element = null] : ( (a0= QNAME ) | (a1= NCNAME ) ) ;
+    // Xpath2.g:6926:1: parse_org_emftext_language_xpath2_AtomicType returns [org.emftext.language.xpath2.AtomicType element = null] : ( (a0= QNAME ) | (a1= NCNAME ) ) ;
     public final org.emftext.language.xpath2.AtomicType parse_org_emftext_language_xpath2_AtomicType() throws RecognitionException {
         org.emftext.language.xpath2.AtomicType element =  null;
 
@@ -12957,10 +12934,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 49) ) { return element; }
 
-            // Xpath2.g:6947:2: ( ( (a0= QNAME ) | (a1= NCNAME ) ) )
-            // Xpath2.g:6948:2: ( (a0= QNAME ) | (a1= NCNAME ) )
+            // Xpath2.g:6929:2: ( ( (a0= QNAME ) | (a1= NCNAME ) ) )
+            // Xpath2.g:6930:2: ( (a0= QNAME ) | (a1= NCNAME ) )
             {
-            // Xpath2.g:6948:2: ( (a0= QNAME ) | (a1= NCNAME ) )
+            // Xpath2.g:6930:2: ( (a0= QNAME ) | (a1= NCNAME ) )
             int alt54=2;
             int LA54_0 = input.LA(1);
 
@@ -12980,10 +12957,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt54) {
                 case 1 :
-                    // Xpath2.g:6949:3: (a0= QNAME )
+                    // Xpath2.g:6931:3: (a0= QNAME )
                     {
-                    // Xpath2.g:6949:3: (a0= QNAME )
-                    // Xpath2.g:6950:4: a0= QNAME
+                    // Xpath2.g:6931:3: (a0= QNAME )
+                    // Xpath2.g:6932:4: a0= QNAME
                     {
                     a0=(Token)match(input,QNAME,FOLLOW_QNAME_in_parse_org_emftext_language_xpath2_AtomicType5556); if (state.failed) return element;
 
@@ -13002,7 +12979,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ATOMIC_TYPE__NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a0).getLine(), ((CommonToken) a0).getCharPositionInLine(), ((CommonToken) a0).getStartIndex(), ((CommonToken) a0).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -13012,7 +12989,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_47_0_0_0_0_0_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+                    					copyLocalizationInfos((CommonToken) a0, element);
                     				}
                     			}
 
@@ -13046,10 +13023,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:7005:6: (a1= NCNAME )
+                    // Xpath2.g:6987:6: (a1= NCNAME )
                     {
-                    // Xpath2.g:7005:6: (a1= NCNAME )
-                    // Xpath2.g:7006:4: a1= NCNAME
+                    // Xpath2.g:6987:6: (a1= NCNAME )
+                    // Xpath2.g:6988:4: a1= NCNAME
                     {
                     a1=(Token)match(input,NCNAME,FOLLOW_NCNAME_in_parse_org_emftext_language_xpath2_AtomicType5594); if (state.failed) return element;
 
@@ -13068,7 +13045,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ATOMIC_TYPE__NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a1).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a1).getLine(), ((CommonToken) a1).getCharPositionInLine(), ((CommonToken) a1).getStartIndex(), ((CommonToken) a1).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -13078,7 +13055,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_47_0_0_0_0_1_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, element);
+                    					copyLocalizationInfos((CommonToken) a1, element);
                     				}
                     			}
 
@@ -13159,7 +13136,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_OptionalAtomicType"
-    // Xpath2.g:7087:1: parse_org_emftext_language_xpath2_OptionalAtomicType returns [org.emftext.language.xpath2.OptionalAtomicType element = null] : ( (a0= QNAME ) | (a1= NCNAME ) ) ( (a2= '?' )? ) ;
+    // Xpath2.g:7069:1: parse_org_emftext_language_xpath2_OptionalAtomicType returns [org.emftext.language.xpath2.OptionalAtomicType element = null] : ( (a0= QNAME ) | (a1= NCNAME ) ) ( (a2= '?' )? ) ;
     public final org.emftext.language.xpath2.OptionalAtomicType parse_org_emftext_language_xpath2_OptionalAtomicType() throws RecognitionException {
         org.emftext.language.xpath2.OptionalAtomicType element =  null;
 
@@ -13174,10 +13151,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 50) ) { return element; }
 
-            // Xpath2.g:7090:2: ( ( (a0= QNAME ) | (a1= NCNAME ) ) ( (a2= '?' )? ) )
-            // Xpath2.g:7091:2: ( (a0= QNAME ) | (a1= NCNAME ) ) ( (a2= '?' )? )
+            // Xpath2.g:7072:2: ( ( (a0= QNAME ) | (a1= NCNAME ) ) ( (a2= '?' )? ) )
+            // Xpath2.g:7073:2: ( (a0= QNAME ) | (a1= NCNAME ) ) ( (a2= '?' )? )
             {
-            // Xpath2.g:7091:2: ( (a0= QNAME ) | (a1= NCNAME ) )
+            // Xpath2.g:7073:2: ( (a0= QNAME ) | (a1= NCNAME ) )
             int alt55=2;
             int LA55_0 = input.LA(1);
 
@@ -13197,10 +13174,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt55) {
                 case 1 :
-                    // Xpath2.g:7092:3: (a0= QNAME )
+                    // Xpath2.g:7074:3: (a0= QNAME )
                     {
-                    // Xpath2.g:7092:3: (a0= QNAME )
-                    // Xpath2.g:7093:4: a0= QNAME
+                    // Xpath2.g:7074:3: (a0= QNAME )
+                    // Xpath2.g:7075:4: a0= QNAME
                     {
                     a0=(Token)match(input,QNAME,FOLLOW_QNAME_in_parse_org_emftext_language_xpath2_OptionalAtomicType5652); if (state.failed) return element;
 
@@ -13224,7 +13201,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.OPTIONAL_ATOMIC_TYPE__NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a0).getLine(), ((CommonToken) a0).getCharPositionInLine(), ((CommonToken) a0).getStartIndex(), ((CommonToken) a0).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -13234,7 +13211,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_48_0_0_0_0_0_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+                    					copyLocalizationInfos((CommonToken) a0, element);
                     				}
                     			}
 
@@ -13251,10 +13228,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:7136:6: (a1= NCNAME )
+                    // Xpath2.g:7118:6: (a1= NCNAME )
                     {
-                    // Xpath2.g:7136:6: (a1= NCNAME )
-                    // Xpath2.g:7137:4: a1= NCNAME
+                    // Xpath2.g:7118:6: (a1= NCNAME )
+                    // Xpath2.g:7119:4: a1= NCNAME
                     {
                     a1=(Token)match(input,NCNAME,FOLLOW_NCNAME_in_parse_org_emftext_language_xpath2_OptionalAtomicType5690); if (state.failed) return element;
 
@@ -13278,7 +13255,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.OPTIONAL_ATOMIC_TYPE__NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a1).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a1).getLine(), ((CommonToken) a1).getCharPositionInLine(), ((CommonToken) a1).getStartIndex(), ((CommonToken) a1).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -13288,7 +13265,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_48_0_0_0_0_1_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, element);
+                    					copyLocalizationInfos((CommonToken) a1, element);
                     				}
                     			}
 
@@ -13315,10 +13292,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2000]);
             	}
 
-            // Xpath2.g:7187:2: ( (a2= '?' )? )
-            // Xpath2.g:7188:3: (a2= '?' )?
+            // Xpath2.g:7169:2: ( (a2= '?' )? )
+            // Xpath2.g:7170:3: (a2= '?' )?
             {
-            // Xpath2.g:7188:3: (a2= '?' )?
+            // Xpath2.g:7170:3: (a2= '?' )?
             int alt56=2;
             int LA56_0 = input.LA(1);
 
@@ -13327,7 +13304,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt56) {
                 case 1 :
-                    // Xpath2.g:7189:4: a2= '?'
+                    // Xpath2.g:7171:4: a2= '?'
                     {
                     a2=(Token)match(input,32,FOLLOW_32_in_parse_org_emftext_language_xpath2_OptionalAtomicType5733); if (state.failed) return element;
 
@@ -13343,7 +13320,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_48_0_0_1, true, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+                    				copyLocalizationInfos((CommonToken)a2, element);
                     				// set value of boolean attribute
                     				Object value = true;
                     				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL), value);
@@ -13385,7 +13362,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_AnyKindTest"
-    // Xpath2.g:7216:1: parse_org_emftext_language_xpath2_AnyKindTest returns [org.emftext.language.xpath2.AnyKindTest element = null] : a0= 'node' a1= '(' a2= ')' ;
+    // Xpath2.g:7198:1: parse_org_emftext_language_xpath2_AnyKindTest returns [org.emftext.language.xpath2.AnyKindTest element = null] : a0= 'node' a1= '(' a2= ')' ;
     public final org.emftext.language.xpath2.AnyKindTest parse_org_emftext_language_xpath2_AnyKindTest() throws RecognitionException {
         org.emftext.language.xpath2.AnyKindTest element =  null;
 
@@ -13400,8 +13377,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 51) ) { return element; }
 
-            // Xpath2.g:7219:2: (a0= 'node' a1= '(' a2= ')' )
-            // Xpath2.g:7220:2: a0= 'node' a1= '(' a2= ')'
+            // Xpath2.g:7201:2: (a0= 'node' a1= '(' a2= ')' )
+            // Xpath2.g:7202:2: a0= 'node' a1= '(' a2= ')'
             {
             a0=(Token)match(input,72,FOLLOW_72_in_parse_org_emftext_language_xpath2_AnyKindTest5769); if (state.failed) return element;
 
@@ -13412,7 +13389,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_49_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -13429,7 +13406,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_49_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            		copyLocalizationInfos((CommonToken)a1, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -13446,7 +13423,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_49_0_0_2, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+            		copyLocalizationInfos((CommonToken)a2, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -13497,7 +13474,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_DocumentTest"
-    // Xpath2.g:7287:1: parse_org_emftext_language_xpath2_DocumentTest returns [org.emftext.language.xpath2.DocumentTest element = null] : a0= 'document-node' a1= '(' ( (a2_0= parse_org_emftext_language_xpath2_ElementTest |a2_1= parse_org_emftext_language_xpath2_SchemaElementTest ) )? a3= ')' ;
+    // Xpath2.g:7269:1: parse_org_emftext_language_xpath2_DocumentTest returns [org.emftext.language.xpath2.DocumentTest element = null] : a0= 'document-node' a1= '(' ( (a2_0= parse_org_emftext_language_xpath2_ElementTest |a2_1= parse_org_emftext_language_xpath2_SchemaElementTest ) )? a3= ')' ;
     public final org.emftext.language.xpath2.DocumentTest parse_org_emftext_language_xpath2_DocumentTest() throws RecognitionException {
         org.emftext.language.xpath2.DocumentTest element =  null;
 
@@ -13516,8 +13493,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 52) ) { return element; }
 
-            // Xpath2.g:7290:2: (a0= 'document-node' a1= '(' ( (a2_0= parse_org_emftext_language_xpath2_ElementTest |a2_1= parse_org_emftext_language_xpath2_SchemaElementTest ) )? a3= ')' )
-            // Xpath2.g:7291:2: a0= 'document-node' a1= '(' ( (a2_0= parse_org_emftext_language_xpath2_ElementTest |a2_1= parse_org_emftext_language_xpath2_SchemaElementTest ) )? a3= ')'
+            // Xpath2.g:7272:2: (a0= 'document-node' a1= '(' ( (a2_0= parse_org_emftext_language_xpath2_ElementTest |a2_1= parse_org_emftext_language_xpath2_SchemaElementTest ) )? a3= ')' )
+            // Xpath2.g:7273:2: a0= 'document-node' a1= '(' ( (a2_0= parse_org_emftext_language_xpath2_ElementTest |a2_1= parse_org_emftext_language_xpath2_SchemaElementTest ) )? a3= ')'
             {
             a0=(Token)match(input,48,FOLLOW_48_in_parse_org_emftext_language_xpath2_DocumentTest5826); if (state.failed) return element;
 
@@ -13528,7 +13505,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_50_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -13545,7 +13522,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_50_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            		copyLocalizationInfos((CommonToken)a1, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -13557,7 +13534,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2034]);
             	}
 
-            // Xpath2.g:7323:2: ( (a2_0= parse_org_emftext_language_xpath2_ElementTest |a2_1= parse_org_emftext_language_xpath2_SchemaElementTest ) )?
+            // Xpath2.g:7305:2: ( (a2_0= parse_org_emftext_language_xpath2_ElementTest |a2_1= parse_org_emftext_language_xpath2_SchemaElementTest ) )?
             int alt58=2;
             int LA58_0 = input.LA(1);
 
@@ -13566,9 +13543,9 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt58) {
                 case 1 :
-                    // Xpath2.g:7324:3: (a2_0= parse_org_emftext_language_xpath2_ElementTest |a2_1= parse_org_emftext_language_xpath2_SchemaElementTest )
+                    // Xpath2.g:7306:3: (a2_0= parse_org_emftext_language_xpath2_ElementTest |a2_1= parse_org_emftext_language_xpath2_SchemaElementTest )
                     {
-                    // Xpath2.g:7324:3: (a2_0= parse_org_emftext_language_xpath2_ElementTest |a2_1= parse_org_emftext_language_xpath2_SchemaElementTest )
+                    // Xpath2.g:7306:3: (a2_0= parse_org_emftext_language_xpath2_ElementTest |a2_1= parse_org_emftext_language_xpath2_SchemaElementTest )
                     int alt57=2;
                     int LA57_0 = input.LA(1);
 
@@ -13588,7 +13565,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     switch (alt57) {
                         case 1 :
-                            // Xpath2.g:7325:4: a2_0= parse_org_emftext_language_xpath2_ElementTest
+                            // Xpath2.g:7307:4: a2_0= parse_org_emftext_language_xpath2_ElementTest
                             {
                             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ElementTest_in_parse_org_emftext_language_xpath2_DocumentTest5863);
                             a2_0=parse_org_emftext_language_xpath2_ElementTest();
@@ -13619,7 +13596,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                             }
                             break;
                         case 2 :
-                            // Xpath2.g:7344:8: a2_1= parse_org_emftext_language_xpath2_SchemaElementTest
+                            // Xpath2.g:7326:8: a2_1= parse_org_emftext_language_xpath2_SchemaElementTest
                             {
                             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_SchemaElementTest_in_parse_org_emftext_language_xpath2_DocumentTest5880);
                             a2_1=parse_org_emftext_language_xpath2_SchemaElementTest();
@@ -13673,7 +13650,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_50_0_0_3, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+            		copyLocalizationInfos((CommonToken)a3, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -13724,7 +13701,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_TextTest"
-    // Xpath2.g:7409:1: parse_org_emftext_language_xpath2_TextTest returns [org.emftext.language.xpath2.TextTest element = null] : a0= 'text' a1= '(' a2= ')' ;
+    // Xpath2.g:7391:1: parse_org_emftext_language_xpath2_TextTest returns [org.emftext.language.xpath2.TextTest element = null] : a0= 'text' a1= '(' a2= ')' ;
     public final org.emftext.language.xpath2.TextTest parse_org_emftext_language_xpath2_TextTest() throws RecognitionException {
         org.emftext.language.xpath2.TextTest element =  null;
 
@@ -13739,8 +13716,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 53) ) { return element; }
 
-            // Xpath2.g:7412:2: (a0= 'text' a1= '(' a2= ')' )
-            // Xpath2.g:7413:2: a0= 'text' a1= '(' a2= ')'
+            // Xpath2.g:7394:2: (a0= 'text' a1= '(' a2= ')' )
+            // Xpath2.g:7395:2: a0= 'text' a1= '(' a2= ')'
             {
             a0=(Token)match(input,85,FOLLOW_85_in_parse_org_emftext_language_xpath2_TextTest5935); if (state.failed) return element;
 
@@ -13751,7 +13728,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_51_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -13768,7 +13745,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_51_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            		copyLocalizationInfos((CommonToken)a1, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -13785,7 +13762,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_51_0_0_2, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+            		copyLocalizationInfos((CommonToken)a2, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -13836,7 +13813,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_CommentTest"
-    // Xpath2.g:7480:1: parse_org_emftext_language_xpath2_CommentTest returns [org.emftext.language.xpath2.CommentTest element = null] : a0= 'comment' a1= '(' a2= ')' ;
+    // Xpath2.g:7462:1: parse_org_emftext_language_xpath2_CommentTest returns [org.emftext.language.xpath2.CommentTest element = null] : a0= 'comment' a1= '(' a2= ')' ;
     public final org.emftext.language.xpath2.CommentTest parse_org_emftext_language_xpath2_CommentTest() throws RecognitionException {
         org.emftext.language.xpath2.CommentTest element =  null;
 
@@ -13851,8 +13828,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 54) ) { return element; }
 
-            // Xpath2.g:7483:2: (a0= 'comment' a1= '(' a2= ')' )
-            // Xpath2.g:7484:2: a0= 'comment' a1= '(' a2= ')'
+            // Xpath2.g:7465:2: (a0= 'comment' a1= '(' a2= ')' )
+            // Xpath2.g:7466:2: a0= 'comment' a1= '(' a2= ')'
             {
             a0=(Token)match(input,44,FOLLOW_44_in_parse_org_emftext_language_xpath2_CommentTest5992); if (state.failed) return element;
 
@@ -13863,7 +13840,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_52_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -13880,7 +13857,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_52_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            		copyLocalizationInfos((CommonToken)a1, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -13897,7 +13874,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_52_0_0_2, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+            		copyLocalizationInfos((CommonToken)a2, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -13948,7 +13925,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_PITest"
-    // Xpath2.g:7551:1: parse_org_emftext_language_xpath2_PITest returns [org.emftext.language.xpath2.PITest element = null] : (a0= 'processing-instruction' a1= '(' a2= ')' |c0= parse_org_emftext_language_xpath2_NCNamePITest |c1= parse_org_emftext_language_xpath2_StringLiteralPITest );
+    // Xpath2.g:7533:1: parse_org_emftext_language_xpath2_PITest returns [org.emftext.language.xpath2.PITest element = null] : (a0= 'processing-instruction' a1= '(' a2= ')' |c0= parse_org_emftext_language_xpath2_NCNamePITest |c1= parse_org_emftext_language_xpath2_StringLiteralPITest );
     public final org.emftext.language.xpath2.PITest parse_org_emftext_language_xpath2_PITest() throws RecognitionException {
         org.emftext.language.xpath2.PITest element =  null;
 
@@ -13967,7 +13944,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 55) ) { return element; }
 
-            // Xpath2.g:7554:2: (a0= 'processing-instruction' a1= '(' a2= ')' |c0= parse_org_emftext_language_xpath2_NCNamePITest |c1= parse_org_emftext_language_xpath2_StringLiteralPITest )
+            // Xpath2.g:7536:2: (a0= 'processing-instruction' a1= '(' a2= ')' |c0= parse_org_emftext_language_xpath2_NCNamePITest |c1= parse_org_emftext_language_xpath2_StringLiteralPITest )
             int alt59=3;
             int LA59_0 = input.LA(1);
 
@@ -14020,7 +13997,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt59) {
                 case 1 :
-                    // Xpath2.g:7555:2: a0= 'processing-instruction' a1= '(' a2= ')'
+                    // Xpath2.g:7537:2: a0= 'processing-instruction' a1= '(' a2= ')'
                     {
                     a0=(Token)match(input,78,FOLLOW_78_in_parse_org_emftext_language_xpath2_PITest6049); if (state.failed) return element;
 
@@ -14031,7 +14008,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     		}
                     		collectHiddenTokens(element);
                     		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_53_0_0_0, null, true);
-                    		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+                    		copyLocalizationInfos((CommonToken)a0, element);
                     	}
 
                     if ( state.backtracking==0 ) {
@@ -14048,7 +14025,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     		}
                     		collectHiddenTokens(element);
                     		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_53_0_0_1, null, true);
-                    		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+                    		copyLocalizationInfos((CommonToken)a1, element);
                     	}
 
                     if ( state.backtracking==0 ) {
@@ -14065,7 +14042,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     		}
                     		collectHiddenTokens(element);
                     		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_53_0_0_2, null, true);
-                    		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+                    		copyLocalizationInfos((CommonToken)a2, element);
                     	}
 
                     if ( state.backtracking==0 ) {
@@ -14099,7 +14076,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:7622:2: c0= parse_org_emftext_language_xpath2_NCNamePITest
+                    // Xpath2.g:7604:2: c0= parse_org_emftext_language_xpath2_NCNamePITest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_NCNamePITest_in_parse_org_emftext_language_xpath2_PITest6096);
                     c0=parse_org_emftext_language_xpath2_NCNamePITest();
@@ -14112,7 +14089,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:7623:4: c1= parse_org_emftext_language_xpath2_StringLiteralPITest
+                    // Xpath2.g:7605:4: c1= parse_org_emftext_language_xpath2_StringLiteralPITest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_StringLiteralPITest_in_parse_org_emftext_language_xpath2_PITest6106);
                     c1=parse_org_emftext_language_xpath2_StringLiteralPITest();
@@ -14144,7 +14121,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_NCNamePITest"
-    // Xpath2.g:7627:1: parse_org_emftext_language_xpath2_NCNamePITest returns [org.emftext.language.xpath2.NCNamePITest element = null] : a0= 'processing-instruction' a1= '(' (a2= NCNAME ) a3= ')' ;
+    // Xpath2.g:7609:1: parse_org_emftext_language_xpath2_NCNamePITest returns [org.emftext.language.xpath2.NCNamePITest element = null] : a0= 'processing-instruction' a1= '(' (a2= NCNAME ) a3= ')' ;
     public final org.emftext.language.xpath2.NCNamePITest parse_org_emftext_language_xpath2_NCNamePITest() throws RecognitionException {
         org.emftext.language.xpath2.NCNamePITest element =  null;
 
@@ -14160,8 +14137,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 56) ) { return element; }
 
-            // Xpath2.g:7630:2: (a0= 'processing-instruction' a1= '(' (a2= NCNAME ) a3= ')' )
-            // Xpath2.g:7631:2: a0= 'processing-instruction' a1= '(' (a2= NCNAME ) a3= ')'
+            // Xpath2.g:7612:2: (a0= 'processing-instruction' a1= '(' (a2= NCNAME ) a3= ')' )
+            // Xpath2.g:7613:2: a0= 'processing-instruction' a1= '(' (a2= NCNAME ) a3= ')'
             {
             a0=(Token)match(input,78,FOLLOW_78_in_parse_org_emftext_language_xpath2_NCNamePITest6131); if (state.failed) return element;
 
@@ -14172,7 +14149,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_54_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -14189,7 +14166,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_54_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            		copyLocalizationInfos((CommonToken)a1, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -14197,8 +14174,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2139]);
             	}
 
-            // Xpath2.g:7659:2: (a2= NCNAME )
-            // Xpath2.g:7660:3: a2= NCNAME
+            // Xpath2.g:7641:2: (a2= NCNAME )
+            // Xpath2.g:7642:3: a2= NCNAME
             {
             a2=(Token)match(input,NCNAME,FOLLOW_NCNAME_in_parse_org_emftext_language_xpath2_NCNamePITest6163); if (state.failed) return element;
 
@@ -14217,7 +14194,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NC_NAME_PI_TEST__NAME), result);
             				Object resolvedObject = result.getResolvedToken();
             				if (resolvedObject == null) {
-            					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+            					addErrorToResource(result.getErrorMessage(), ((CommonToken) a2).getLine(), ((CommonToken) a2).getCharPositionInLine(), ((CommonToken) a2).getStartIndex(), ((CommonToken) a2).getStopIndex());
             				}
             				java.lang.String resolved = (java.lang.String) resolvedObject;
             				if (resolved != null) {
@@ -14227,7 +14204,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             				}
             				collectHiddenTokens(element);
             				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_54_0_0_2, resolved, true);
-            				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
+            				copyLocalizationInfos((CommonToken) a2, element);
             			}
             		}
 
@@ -14248,7 +14225,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_54_0_0_3, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+            		copyLocalizationInfos((CommonToken)a3, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -14299,7 +14276,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_StringLiteralPITest"
-    // Xpath2.g:7734:1: parse_org_emftext_language_xpath2_StringLiteralPITest returns [org.emftext.language.xpath2.StringLiteralPITest element = null] : a0= 'processing-instruction' a1= '(' (a2= STRING_LITERAL ) a3= ')' ;
+    // Xpath2.g:7716:1: parse_org_emftext_language_xpath2_StringLiteralPITest returns [org.emftext.language.xpath2.StringLiteralPITest element = null] : a0= 'processing-instruction' a1= '(' (a2= STRING_LITERAL ) a3= ')' ;
     public final org.emftext.language.xpath2.StringLiteralPITest parse_org_emftext_language_xpath2_StringLiteralPITest() throws RecognitionException {
         org.emftext.language.xpath2.StringLiteralPITest element =  null;
 
@@ -14315,8 +14292,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 57) ) { return element; }
 
-            // Xpath2.g:7737:2: (a0= 'processing-instruction' a1= '(' (a2= STRING_LITERAL ) a3= ')' )
-            // Xpath2.g:7738:2: a0= 'processing-instruction' a1= '(' (a2= STRING_LITERAL ) a3= ')'
+            // Xpath2.g:7719:2: (a0= 'processing-instruction' a1= '(' (a2= STRING_LITERAL ) a3= ')' )
+            // Xpath2.g:7720:2: a0= 'processing-instruction' a1= '(' (a2= STRING_LITERAL ) a3= ')'
             {
             a0=(Token)match(input,78,FOLLOW_78_in_parse_org_emftext_language_xpath2_StringLiteralPITest6213); if (state.failed) return element;
 
@@ -14327,7 +14304,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_55_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -14344,7 +14321,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_55_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            		copyLocalizationInfos((CommonToken)a1, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -14352,8 +14329,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2166]);
             	}
 
-            // Xpath2.g:7766:2: (a2= STRING_LITERAL )
-            // Xpath2.g:7767:3: a2= STRING_LITERAL
+            // Xpath2.g:7748:2: (a2= STRING_LITERAL )
+            // Xpath2.g:7749:3: a2= STRING_LITERAL
             {
             a2=(Token)match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_parse_org_emftext_language_xpath2_StringLiteralPITest6245); if (state.failed) return element;
 
@@ -14372,12 +14349,12 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.STRING_LITERAL_PI_TEST__LITERAL), result);
             				Object resolvedObject = result.getResolvedToken();
             				if (resolvedObject == null) {
-            					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+            					addErrorToResource(result.getErrorMessage(), ((CommonToken) a2).getLine(), ((CommonToken) a2).getCharPositionInLine(), ((CommonToken) a2).getStartIndex(), ((CommonToken) a2).getStopIndex());
             				}
             				String resolved = (String) resolvedObject;
             				org.emftext.language.xpath2.StringLiteral proxy = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createStringLiteral();
             				collectHiddenTokens(element);
-            				registerContextDependentProxy(new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContextDependentURIFragmentFactory<org.emftext.language.xpath2.StringLiteralPITest, org.emftext.language.xpath2.StringLiteral>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getStringLiteralPITestLiteralReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.STRING_LITERAL_PI_TEST__LITERAL), resolved, proxy);
+            				registerContextDependentProxy(new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContextDependentURIFragmentFactory<org.emftext.language.xpath2.StringLiteralPITest, org.emftext.language.xpath2.StringLiteral>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getStringLiteralPITestLiteralReferenceResolver()), element, (EReference) element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.STRING_LITERAL_PI_TEST__LITERAL), resolved, proxy);
             				if (proxy != null) {
             					Object value = proxy;
             					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.STRING_LITERAL_PI_TEST__LITERAL), value);
@@ -14385,8 +14362,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             				}
             				collectHiddenTokens(element);
             				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_55_0_0_2, proxy, true);
-            				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
-            				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, proxy);
+            				copyLocalizationInfos((CommonToken) a2, element);
+            				copyLocalizationInfos((CommonToken) a2, proxy);
             			}
             		}
 
@@ -14407,7 +14384,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_55_0_0_3, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+            		copyLocalizationInfos((CommonToken)a3, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -14458,7 +14435,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_AttributeTest"
-    // Xpath2.g:7845:1: parse_org_emftext_language_xpath2_AttributeTest returns [org.emftext.language.xpath2.AttributeTest element = null] : (a0= 'attribute' a1= '(' a2= ')' |c0= parse_org_emftext_language_xpath2_WildcardAttributeTest |c1= parse_org_emftext_language_xpath2_NameAttributeTest );
+    // Xpath2.g:7827:1: parse_org_emftext_language_xpath2_AttributeTest returns [org.emftext.language.xpath2.AttributeTest element = null] : (a0= 'attribute' a1= '(' a2= ')' |c0= parse_org_emftext_language_xpath2_WildcardAttributeTest |c1= parse_org_emftext_language_xpath2_NameAttributeTest );
     public final org.emftext.language.xpath2.AttributeTest parse_org_emftext_language_xpath2_AttributeTest() throws RecognitionException {
         org.emftext.language.xpath2.AttributeTest element =  null;
 
@@ -14477,7 +14454,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 58) ) { return element; }
 
-            // Xpath2.g:7848:2: (a0= 'attribute' a1= '(' a2= ')' |c0= parse_org_emftext_language_xpath2_WildcardAttributeTest |c1= parse_org_emftext_language_xpath2_NameAttributeTest )
+            // Xpath2.g:7830:2: (a0= 'attribute' a1= '(' a2= ')' |c0= parse_org_emftext_language_xpath2_WildcardAttributeTest |c1= parse_org_emftext_language_xpath2_NameAttributeTest )
             int alt60=3;
             int LA60_0 = input.LA(1);
 
@@ -14531,7 +14508,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt60) {
                 case 1 :
-                    // Xpath2.g:7849:2: a0= 'attribute' a1= '(' a2= ')'
+                    // Xpath2.g:7831:2: a0= 'attribute' a1= '(' a2= ')'
                     {
                     a0=(Token)match(input,40,FOLLOW_40_in_parse_org_emftext_language_xpath2_AttributeTest6295); if (state.failed) return element;
 
@@ -14542,7 +14519,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     		}
                     		collectHiddenTokens(element);
                     		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_56_0_0_0, null, true);
-                    		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+                    		copyLocalizationInfos((CommonToken)a0, element);
                     	}
 
                     if ( state.backtracking==0 ) {
@@ -14559,7 +14536,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     		}
                     		collectHiddenTokens(element);
                     		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_56_0_0_1, null, true);
-                    		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+                    		copyLocalizationInfos((CommonToken)a1, element);
                     	}
 
                     if ( state.backtracking==0 ) {
@@ -14576,7 +14553,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     		}
                     		collectHiddenTokens(element);
                     		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_56_0_0_2, null, true);
-                    		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+                    		copyLocalizationInfos((CommonToken)a2, element);
                     	}
 
                     if ( state.backtracking==0 ) {
@@ -14610,7 +14587,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:7916:2: c0= parse_org_emftext_language_xpath2_WildcardAttributeTest
+                    // Xpath2.g:7898:2: c0= parse_org_emftext_language_xpath2_WildcardAttributeTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_WildcardAttributeTest_in_parse_org_emftext_language_xpath2_AttributeTest6342);
                     c0=parse_org_emftext_language_xpath2_WildcardAttributeTest();
@@ -14623,7 +14600,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:7917:4: c1= parse_org_emftext_language_xpath2_NameAttributeTest
+                    // Xpath2.g:7899:4: c1= parse_org_emftext_language_xpath2_NameAttributeTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_NameAttributeTest_in_parse_org_emftext_language_xpath2_AttributeTest6352);
                     c1=parse_org_emftext_language_xpath2_NameAttributeTest();
@@ -14655,7 +14632,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_WildcardAttributeTest"
-    // Xpath2.g:7921:1: parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.language.xpath2.WildcardAttributeTest element = null] : a0= 'attribute' a1= '(' a2= '*' ( (a3= ',' ( (a4= QNAME ) | (a5= NCNAME ) ) ) )? a6= ')' ;
+    // Xpath2.g:7903:1: parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.language.xpath2.WildcardAttributeTest element = null] : a0= 'attribute' a1= '(' a2= '*' ( (a3= ',' ( (a4= QNAME ) | (a5= NCNAME ) ) ) )? a6= ')' ;
     public final org.emftext.language.xpath2.WildcardAttributeTest parse_org_emftext_language_xpath2_WildcardAttributeTest() throws RecognitionException {
         org.emftext.language.xpath2.WildcardAttributeTest element =  null;
 
@@ -14674,8 +14651,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 59) ) { return element; }
 
-            // Xpath2.g:7924:2: (a0= 'attribute' a1= '(' a2= '*' ( (a3= ',' ( (a4= QNAME ) | (a5= NCNAME ) ) ) )? a6= ')' )
-            // Xpath2.g:7925:2: a0= 'attribute' a1= '(' a2= '*' ( (a3= ',' ( (a4= QNAME ) | (a5= NCNAME ) ) ) )? a6= ')'
+            // Xpath2.g:7906:2: (a0= 'attribute' a1= '(' a2= '*' ( (a3= ',' ( (a4= QNAME ) | (a5= NCNAME ) ) ) )? a6= ')' )
+            // Xpath2.g:7907:2: a0= 'attribute' a1= '(' a2= '*' ( (a3= ',' ( (a4= QNAME ) | (a5= NCNAME ) ) ) )? a6= ')'
             {
             a0=(Token)match(input,40,FOLLOW_40_in_parse_org_emftext_language_xpath2_WildcardAttributeTest6377); if (state.failed) return element;
 
@@ -14686,7 +14663,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -14703,7 +14680,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            		copyLocalizationInfos((CommonToken)a1, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -14720,7 +14697,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_2, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+            		copyLocalizationInfos((CommonToken)a2, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -14729,7 +14706,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2221]);
             	}
 
-            // Xpath2.g:7968:2: ( (a3= ',' ( (a4= QNAME ) | (a5= NCNAME ) ) ) )?
+            // Xpath2.g:7950:2: ( (a3= ',' ( (a4= QNAME ) | (a5= NCNAME ) ) ) )?
             int alt62=2;
             int LA62_0 = input.LA(1);
 
@@ -14738,10 +14715,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt62) {
                 case 1 :
-                    // Xpath2.g:7969:3: (a3= ',' ( (a4= QNAME ) | (a5= NCNAME ) ) )
+                    // Xpath2.g:7951:3: (a3= ',' ( (a4= QNAME ) | (a5= NCNAME ) ) )
                     {
-                    // Xpath2.g:7969:3: (a3= ',' ( (a4= QNAME ) | (a5= NCNAME ) ) )
-                    // Xpath2.g:7970:4: a3= ',' ( (a4= QNAME ) | (a5= NCNAME ) )
+                    // Xpath2.g:7951:3: (a3= ',' ( (a4= QNAME ) | (a5= NCNAME ) ) )
+                    // Xpath2.g:7952:4: a3= ',' ( (a4= QNAME ) | (a5= NCNAME ) )
                     {
                     a3=(Token)match(input,17,FOLLOW_17_in_parse_org_emftext_language_xpath2_WildcardAttributeTest6428); if (state.failed) return element;
 
@@ -14752,7 +14729,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_3_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+                    				copyLocalizationInfos((CommonToken)a3, element);
                     			}
 
                     if ( state.backtracking==0 ) {
@@ -14761,7 +14738,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2223]);
                     			}
 
-                    // Xpath2.g:7985:4: ( (a4= QNAME ) | (a5= NCNAME ) )
+                    // Xpath2.g:7967:4: ( (a4= QNAME ) | (a5= NCNAME ) )
                     int alt61=2;
                     int LA61_0 = input.LA(1);
 
@@ -14781,10 +14758,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     switch (alt61) {
                         case 1 :
-                            // Xpath2.g:7986:5: (a4= QNAME )
+                            // Xpath2.g:7968:5: (a4= QNAME )
                             {
-                            // Xpath2.g:7986:5: (a4= QNAME )
-                            // Xpath2.g:7987:6: a4= QNAME
+                            // Xpath2.g:7968:5: (a4= QNAME )
+                            // Xpath2.g:7969:6: a4= QNAME
                             {
                             a4=(Token)match(input,QNAME,FOLLOW_QNAME_in_parse_org_emftext_language_xpath2_WildcardAttributeTest6461); if (state.failed) return element;
 
@@ -14803,7 +14780,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                             							tokenResolver.resolve(a4.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE), result);
                             							Object resolvedObject = result.getResolvedToken();
                             							if (resolvedObject == null) {
-                            								addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a4).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a4).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a4).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a4).getStopIndex());
+                            								addErrorToResource(result.getErrorMessage(), ((CommonToken) a4).getLine(), ((CommonToken) a4).getCharPositionInLine(), ((CommonToken) a4).getStartIndex(), ((CommonToken) a4).getStopIndex());
                             							}
                             							javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                             							if (resolved != null) {
@@ -14813,7 +14790,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                             							}
                             							collectHiddenTokens(element);
                             							retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_3_0_0_2_0_0_0, resolved, true);
-                            							copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a4, element);
+                            							copyLocalizationInfos((CommonToken) a4, element);
                             						}
                             					}
 
@@ -14828,10 +14805,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                             }
                             break;
                         case 2 :
-                            // Xpath2.g:8023:10: (a5= NCNAME )
+                            // Xpath2.g:8005:10: (a5= NCNAME )
                             {
-                            // Xpath2.g:8023:10: (a5= NCNAME )
-                            // Xpath2.g:8024:6: a5= NCNAME
+                            // Xpath2.g:8005:10: (a5= NCNAME )
+                            // Xpath2.g:8006:6: a5= NCNAME
                             {
                             a5=(Token)match(input,NCNAME,FOLLOW_NCNAME_in_parse_org_emftext_language_xpath2_WildcardAttributeTest6517); if (state.failed) return element;
 
@@ -14850,7 +14827,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                             							tokenResolver.resolve(a5.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE), result);
                             							Object resolvedObject = result.getResolvedToken();
                             							if (resolvedObject == null) {
-                            								addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a5).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a5).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a5).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a5).getStopIndex());
+                            								addErrorToResource(result.getErrorMessage(), ((CommonToken) a5).getLine(), ((CommonToken) a5).getCharPositionInLine(), ((CommonToken) a5).getStartIndex(), ((CommonToken) a5).getStopIndex());
                             							}
                             							javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                             							if (resolved != null) {
@@ -14860,7 +14837,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                             							}
                             							collectHiddenTokens(element);
                             							retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_3_0_0_2_0_1_0, resolved, true);
-                            							copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a5, element);
+                            							copyLocalizationInfos((CommonToken) a5, element);
                             						}
                             					}
 
@@ -14906,7 +14883,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_4, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
+            		copyLocalizationInfos((CommonToken)a6, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -14957,7 +14934,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_NameAttributeTest"
-    // Xpath2.g:8111:1: parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.language.xpath2.NameAttributeTest element = null] : a0= 'attribute' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) ( (a4= ',' ( (a5= QNAME ) | (a6= NCNAME ) ) ) )? a7= ')' ;
+    // Xpath2.g:8093:1: parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.language.xpath2.NameAttributeTest element = null] : a0= 'attribute' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) ( (a4= ',' ( (a5= QNAME ) | (a6= NCNAME ) ) ) )? a7= ')' ;
     public final org.emftext.language.xpath2.NameAttributeTest parse_org_emftext_language_xpath2_NameAttributeTest() throws RecognitionException {
         org.emftext.language.xpath2.NameAttributeTest element =  null;
 
@@ -14977,8 +14954,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 60) ) { return element; }
 
-            // Xpath2.g:8114:2: (a0= 'attribute' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) ( (a4= ',' ( (a5= QNAME ) | (a6= NCNAME ) ) ) )? a7= ')' )
-            // Xpath2.g:8115:2: a0= 'attribute' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) ( (a4= ',' ( (a5= QNAME ) | (a6= NCNAME ) ) ) )? a7= ')'
+            // Xpath2.g:8096:2: (a0= 'attribute' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) ( (a4= ',' ( (a5= QNAME ) | (a6= NCNAME ) ) ) )? a7= ')' )
+            // Xpath2.g:8097:2: a0= 'attribute' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) ( (a4= ',' ( (a5= QNAME ) | (a6= NCNAME ) ) ) )? a7= ')'
             {
             a0=(Token)match(input,40,FOLLOW_40_in_parse_org_emftext_language_xpath2_NameAttributeTest6611); if (state.failed) return element;
 
@@ -14989,7 +14966,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -15006,7 +14983,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            		copyLocalizationInfos((CommonToken)a1, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -15015,7 +14992,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2254]);
             	}
 
-            // Xpath2.g:8144:2: ( (a2= QNAME ) | (a3= NCNAME ) )
+            // Xpath2.g:8126:2: ( (a2= QNAME ) | (a3= NCNAME ) )
             int alt63=2;
             int LA63_0 = input.LA(1);
 
@@ -15035,10 +15012,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt63) {
                 case 1 :
-                    // Xpath2.g:8145:3: (a2= QNAME )
+                    // Xpath2.g:8127:3: (a2= QNAME )
                     {
-                    // Xpath2.g:8145:3: (a2= QNAME )
-                    // Xpath2.g:8146:4: a2= QNAME
+                    // Xpath2.g:8127:3: (a2= QNAME )
+                    // Xpath2.g:8128:4: a2= QNAME
                     {
                     a2=(Token)match(input,QNAME,FOLLOW_QNAME_in_parse_org_emftext_language_xpath2_NameAttributeTest6648); if (state.failed) return element;
 
@@ -15057,7 +15034,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ATTRIBUTE_TEST__NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a2).getLine(), ((CommonToken) a2).getCharPositionInLine(), ((CommonToken) a2).getStartIndex(), ((CommonToken) a2).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -15067,7 +15044,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_2_0_0_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
+                    					copyLocalizationInfos((CommonToken) a2, element);
                     				}
                     			}
 
@@ -15083,10 +15060,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:8183:6: (a3= NCNAME )
+                    // Xpath2.g:8165:6: (a3= NCNAME )
                     {
-                    // Xpath2.g:8183:6: (a3= NCNAME )
-                    // Xpath2.g:8184:4: a3= NCNAME
+                    // Xpath2.g:8165:6: (a3= NCNAME )
+                    // Xpath2.g:8166:4: a3= NCNAME
                     {
                     a3=(Token)match(input,NCNAME,FOLLOW_NCNAME_in_parse_org_emftext_language_xpath2_NameAttributeTest6686); if (state.failed) return element;
 
@@ -15105,7 +15082,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a3.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ATTRIBUTE_TEST__NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a3).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a3).getLine(), ((CommonToken) a3).getCharPositionInLine(), ((CommonToken) a3).getStartIndex(), ((CommonToken) a3).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -15115,7 +15092,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_2_0_1_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, element);
+                    					copyLocalizationInfos((CommonToken) a3, element);
                     				}
                     			}
 
@@ -15140,7 +15117,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2260]);
             	}
 
-            // Xpath2.g:8227:2: ( (a4= ',' ( (a5= QNAME ) | (a6= NCNAME ) ) ) )?
+            // Xpath2.g:8209:2: ( (a4= ',' ( (a5= QNAME ) | (a6= NCNAME ) ) ) )?
             int alt65=2;
             int LA65_0 = input.LA(1);
 
@@ -15149,10 +15126,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt65) {
                 case 1 :
-                    // Xpath2.g:8228:3: (a4= ',' ( (a5= QNAME ) | (a6= NCNAME ) ) )
+                    // Xpath2.g:8210:3: (a4= ',' ( (a5= QNAME ) | (a6= NCNAME ) ) )
                     {
-                    // Xpath2.g:8228:3: (a4= ',' ( (a5= QNAME ) | (a6= NCNAME ) ) )
-                    // Xpath2.g:8229:4: a4= ',' ( (a5= QNAME ) | (a6= NCNAME ) )
+                    // Xpath2.g:8210:3: (a4= ',' ( (a5= QNAME ) | (a6= NCNAME ) ) )
+                    // Xpath2.g:8211:4: a4= ',' ( (a5= QNAME ) | (a6= NCNAME ) )
                     {
                     a4=(Token)match(input,17,FOLLOW_17_in_parse_org_emftext_language_xpath2_NameAttributeTest6729); if (state.failed) return element;
 
@@ -15163,7 +15140,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_3_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+                    				copyLocalizationInfos((CommonToken)a4, element);
                     			}
 
                     if ( state.backtracking==0 ) {
@@ -15172,7 +15149,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2262]);
                     			}
 
-                    // Xpath2.g:8244:4: ( (a5= QNAME ) | (a6= NCNAME ) )
+                    // Xpath2.g:8226:4: ( (a5= QNAME ) | (a6= NCNAME ) )
                     int alt64=2;
                     int LA64_0 = input.LA(1);
 
@@ -15192,10 +15169,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     switch (alt64) {
                         case 1 :
-                            // Xpath2.g:8245:5: (a5= QNAME )
+                            // Xpath2.g:8227:5: (a5= QNAME )
                             {
-                            // Xpath2.g:8245:5: (a5= QNAME )
-                            // Xpath2.g:8246:6: a5= QNAME
+                            // Xpath2.g:8227:5: (a5= QNAME )
+                            // Xpath2.g:8228:6: a5= QNAME
                             {
                             a5=(Token)match(input,QNAME,FOLLOW_QNAME_in_parse_org_emftext_language_xpath2_NameAttributeTest6762); if (state.failed) return element;
 
@@ -15214,7 +15191,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                             							tokenResolver.resolve(a5.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE), result);
                             							Object resolvedObject = result.getResolvedToken();
                             							if (resolvedObject == null) {
-                            								addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a5).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a5).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a5).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a5).getStopIndex());
+                            								addErrorToResource(result.getErrorMessage(), ((CommonToken) a5).getLine(), ((CommonToken) a5).getCharPositionInLine(), ((CommonToken) a5).getStartIndex(), ((CommonToken) a5).getStopIndex());
                             							}
                             							javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                             							if (resolved != null) {
@@ -15224,7 +15201,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                             							}
                             							collectHiddenTokens(element);
                             							retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_3_0_0_2_0_0_0, resolved, true);
-                            							copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a5, element);
+                            							copyLocalizationInfos((CommonToken) a5, element);
                             						}
                             					}
 
@@ -15239,10 +15216,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                             }
                             break;
                         case 2 :
-                            // Xpath2.g:8282:10: (a6= NCNAME )
+                            // Xpath2.g:8264:10: (a6= NCNAME )
                             {
-                            // Xpath2.g:8282:10: (a6= NCNAME )
-                            // Xpath2.g:8283:6: a6= NCNAME
+                            // Xpath2.g:8264:10: (a6= NCNAME )
+                            // Xpath2.g:8265:6: a6= NCNAME
                             {
                             a6=(Token)match(input,NCNAME,FOLLOW_NCNAME_in_parse_org_emftext_language_xpath2_NameAttributeTest6818); if (state.failed) return element;
 
@@ -15261,7 +15238,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                             							tokenResolver.resolve(a6.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE), result);
                             							Object resolvedObject = result.getResolvedToken();
                             							if (resolvedObject == null) {
-                            								addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a6).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a6).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a6).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a6).getStopIndex());
+                            								addErrorToResource(result.getErrorMessage(), ((CommonToken) a6).getLine(), ((CommonToken) a6).getCharPositionInLine(), ((CommonToken) a6).getStartIndex(), ((CommonToken) a6).getStopIndex());
                             							}
                             							javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                             							if (resolved != null) {
@@ -15271,7 +15248,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                             							}
                             							collectHiddenTokens(element);
                             							retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_3_0_0_2_0_1_0, resolved, true);
-                            							copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a6, element);
+                            							copyLocalizationInfos((CommonToken) a6, element);
                             						}
                             					}
 
@@ -15317,7 +15294,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_4, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a7, element);
+            		copyLocalizationInfos((CommonToken)a7, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -15368,7 +15345,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_SchemaAttributeTest"
-    // Xpath2.g:8370:1: parse_org_emftext_language_xpath2_SchemaAttributeTest returns [org.emftext.language.xpath2.SchemaAttributeTest element = null] : a0= 'schema-attribute' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) a4= ')' ;
+    // Xpath2.g:8352:1: parse_org_emftext_language_xpath2_SchemaAttributeTest returns [org.emftext.language.xpath2.SchemaAttributeTest element = null] : a0= 'schema-attribute' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) a4= ')' ;
     public final org.emftext.language.xpath2.SchemaAttributeTest parse_org_emftext_language_xpath2_SchemaAttributeTest() throws RecognitionException {
         org.emftext.language.xpath2.SchemaAttributeTest element =  null;
 
@@ -15385,8 +15362,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 61) ) { return element; }
 
-            // Xpath2.g:8373:2: (a0= 'schema-attribute' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) a4= ')' )
-            // Xpath2.g:8374:2: a0= 'schema-attribute' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) a4= ')'
+            // Xpath2.g:8355:2: (a0= 'schema-attribute' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) a4= ')' )
+            // Xpath2.g:8356:2: a0= 'schema-attribute' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) a4= ')'
             {
             a0=(Token)match(input,81,FOLLOW_81_in_parse_org_emftext_language_xpath2_SchemaAttributeTest6912); if (state.failed) return element;
 
@@ -15397,7 +15374,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -15414,7 +15391,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            		copyLocalizationInfos((CommonToken)a1, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -15423,7 +15400,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2293]);
             	}
 
-            // Xpath2.g:8403:2: ( (a2= QNAME ) | (a3= NCNAME ) )
+            // Xpath2.g:8385:2: ( (a2= QNAME ) | (a3= NCNAME ) )
             int alt66=2;
             int LA66_0 = input.LA(1);
 
@@ -15443,10 +15420,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt66) {
                 case 1 :
-                    // Xpath2.g:8404:3: (a2= QNAME )
+                    // Xpath2.g:8386:3: (a2= QNAME )
                     {
-                    // Xpath2.g:8404:3: (a2= QNAME )
-                    // Xpath2.g:8405:4: a2= QNAME
+                    // Xpath2.g:8386:3: (a2= QNAME )
+                    // Xpath2.g:8387:4: a2= QNAME
                     {
                     a2=(Token)match(input,QNAME,FOLLOW_QNAME_in_parse_org_emftext_language_xpath2_SchemaAttributeTest6949); if (state.failed) return element;
 
@@ -15465,7 +15442,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SCHEMA_ATTRIBUTE_TEST__NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a2).getLine(), ((CommonToken) a2).getCharPositionInLine(), ((CommonToken) a2).getStartIndex(), ((CommonToken) a2).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -15475,7 +15452,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_2_0_0_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
+                    					copyLocalizationInfos((CommonToken) a2, element);
                     				}
                     			}
 
@@ -15490,10 +15467,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:8441:6: (a3= NCNAME )
+                    // Xpath2.g:8423:6: (a3= NCNAME )
                     {
-                    // Xpath2.g:8441:6: (a3= NCNAME )
-                    // Xpath2.g:8442:4: a3= NCNAME
+                    // Xpath2.g:8423:6: (a3= NCNAME )
+                    // Xpath2.g:8424:4: a3= NCNAME
                     {
                     a3=(Token)match(input,NCNAME,FOLLOW_NCNAME_in_parse_org_emftext_language_xpath2_SchemaAttributeTest6987); if (state.failed) return element;
 
@@ -15512,7 +15489,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a3.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SCHEMA_ATTRIBUTE_TEST__NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a3).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a3).getLine(), ((CommonToken) a3).getCharPositionInLine(), ((CommonToken) a3).getStartIndex(), ((CommonToken) a3).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -15522,7 +15499,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_2_0_1_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, element);
+                    					copyLocalizationInfos((CommonToken) a3, element);
                     				}
                     			}
 
@@ -15554,7 +15531,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_3, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+            		copyLocalizationInfos((CommonToken)a4, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -15605,7 +15582,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_ElementTest"
-    // Xpath2.g:8522:1: parse_org_emftext_language_xpath2_ElementTest returns [org.emftext.language.xpath2.ElementTest element = null] : (a0= 'element' a1= '(' a2= ')' |c0= parse_org_emftext_language_xpath2_WildcardElementTest |c1= parse_org_emftext_language_xpath2_NameElementTest );
+    // Xpath2.g:8504:1: parse_org_emftext_language_xpath2_ElementTest returns [org.emftext.language.xpath2.ElementTest element = null] : (a0= 'element' a1= '(' a2= ')' |c0= parse_org_emftext_language_xpath2_WildcardElementTest |c1= parse_org_emftext_language_xpath2_NameElementTest );
     public final org.emftext.language.xpath2.ElementTest parse_org_emftext_language_xpath2_ElementTest() throws RecognitionException {
         org.emftext.language.xpath2.ElementTest element =  null;
 
@@ -15624,7 +15601,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 62) ) { return element; }
 
-            // Xpath2.g:8525:2: (a0= 'element' a1= '(' a2= ')' |c0= parse_org_emftext_language_xpath2_WildcardElementTest |c1= parse_org_emftext_language_xpath2_NameElementTest )
+            // Xpath2.g:8507:2: (a0= 'element' a1= '(' a2= ')' |c0= parse_org_emftext_language_xpath2_WildcardElementTest |c1= parse_org_emftext_language_xpath2_NameElementTest )
             int alt67=3;
             int LA67_0 = input.LA(1);
 
@@ -15678,7 +15655,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt67) {
                 case 1 :
-                    // Xpath2.g:8526:2: a0= 'element' a1= '(' a2= ')'
+                    // Xpath2.g:8508:2: a0= 'element' a1= '(' a2= ')'
                     {
                     a0=(Token)match(input,49,FOLLOW_49_in_parse_org_emftext_language_xpath2_ElementTest7050); if (state.failed) return element;
 
@@ -15689,7 +15666,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     		}
                     		collectHiddenTokens(element);
                     		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_60_0_0_0, null, true);
-                    		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+                    		copyLocalizationInfos((CommonToken)a0, element);
                     	}
 
                     if ( state.backtracking==0 ) {
@@ -15706,7 +15683,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     		}
                     		collectHiddenTokens(element);
                     		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_60_0_0_1, null, true);
-                    		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+                    		copyLocalizationInfos((CommonToken)a1, element);
                     	}
 
                     if ( state.backtracking==0 ) {
@@ -15723,7 +15700,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     		}
                     		collectHiddenTokens(element);
                     		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_60_0_0_2, null, true);
-                    		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+                    		copyLocalizationInfos((CommonToken)a2, element);
                     	}
 
                     if ( state.backtracking==0 ) {
@@ -15758,7 +15735,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:8594:2: c0= parse_org_emftext_language_xpath2_WildcardElementTest
+                    // Xpath2.g:8576:2: c0= parse_org_emftext_language_xpath2_WildcardElementTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_WildcardElementTest_in_parse_org_emftext_language_xpath2_ElementTest7097);
                     c0=parse_org_emftext_language_xpath2_WildcardElementTest();
@@ -15771,7 +15748,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:8595:4: c1= parse_org_emftext_language_xpath2_NameElementTest
+                    // Xpath2.g:8577:4: c1= parse_org_emftext_language_xpath2_NameElementTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_NameElementTest_in_parse_org_emftext_language_xpath2_ElementTest7107);
                     c1=parse_org_emftext_language_xpath2_NameElementTest();
@@ -15803,7 +15780,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_WildcardElementTest"
-    // Xpath2.g:8599:1: parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.language.xpath2.WildcardElementTest element = null] : a0= 'element' a1= '(' a2= '*' ( (a3= ',' (a4_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) ) )? a5= ')' ;
+    // Xpath2.g:8581:1: parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.language.xpath2.WildcardElementTest element = null] : a0= 'element' a1= '(' a2= '*' ( (a3= ',' (a4_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) ) )? a5= ')' ;
     public final org.emftext.language.xpath2.WildcardElementTest parse_org_emftext_language_xpath2_WildcardElementTest() throws RecognitionException {
         org.emftext.language.xpath2.WildcardElementTest element =  null;
 
@@ -15822,8 +15799,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 63) ) { return element; }
 
-            // Xpath2.g:8602:2: (a0= 'element' a1= '(' a2= '*' ( (a3= ',' (a4_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) ) )? a5= ')' )
-            // Xpath2.g:8603:2: a0= 'element' a1= '(' a2= '*' ( (a3= ',' (a4_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) ) )? a5= ')'
+            // Xpath2.g:8584:2: (a0= 'element' a1= '(' a2= '*' ( (a3= ',' (a4_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) ) )? a5= ')' )
+            // Xpath2.g:8585:2: a0= 'element' a1= '(' a2= '*' ( (a3= ',' (a4_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) ) )? a5= ')'
             {
             a0=(Token)match(input,49,FOLLOW_49_in_parse_org_emftext_language_xpath2_WildcardElementTest7132); if (state.failed) return element;
 
@@ -15834,7 +15811,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -15851,7 +15828,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            		copyLocalizationInfos((CommonToken)a1, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -15868,7 +15845,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_2, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+            		copyLocalizationInfos((CommonToken)a2, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -15877,7 +15854,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2351]);
             	}
 
-            // Xpath2.g:8646:2: ( (a3= ',' (a4_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) ) )?
+            // Xpath2.g:8628:2: ( (a3= ',' (a4_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) ) )?
             int alt68=2;
             int LA68_0 = input.LA(1);
 
@@ -15886,10 +15863,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt68) {
                 case 1 :
-                    // Xpath2.g:8647:3: (a3= ',' (a4_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) )
+                    // Xpath2.g:8629:3: (a3= ',' (a4_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) )
                     {
-                    // Xpath2.g:8647:3: (a3= ',' (a4_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) )
-                    // Xpath2.g:8648:4: a3= ',' (a4_0= parse_org_emftext_language_xpath2_OptionalAtomicType )
+                    // Xpath2.g:8629:3: (a3= ',' (a4_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) )
+                    // Xpath2.g:8630:4: a3= ',' (a4_0= parse_org_emftext_language_xpath2_OptionalAtomicType )
                     {
                     a3=(Token)match(input,17,FOLLOW_17_in_parse_org_emftext_language_xpath2_WildcardElementTest7183); if (state.failed) return element;
 
@@ -15900,7 +15877,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_3_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+                    				copyLocalizationInfos((CommonToken)a3, element);
                     			}
 
                     if ( state.backtracking==0 ) {
@@ -15909,8 +15886,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getWildcardElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2353]);
                     			}
 
-                    // Xpath2.g:8663:4: (a4_0= parse_org_emftext_language_xpath2_OptionalAtomicType )
-                    // Xpath2.g:8664:5: a4_0= parse_org_emftext_language_xpath2_OptionalAtomicType
+                    // Xpath2.g:8645:4: (a4_0= parse_org_emftext_language_xpath2_OptionalAtomicType )
+                    // Xpath2.g:8646:5: a4_0= parse_org_emftext_language_xpath2_OptionalAtomicType
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_OptionalAtomicType_in_parse_org_emftext_language_xpath2_WildcardElementTest7209);
                     a4_0=parse_org_emftext_language_xpath2_OptionalAtomicType();
@@ -15969,7 +15946,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_4, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+            		copyLocalizationInfos((CommonToken)a5, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -16021,7 +15998,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_NameElementTest"
-    // Xpath2.g:8736:1: parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.xpath2.NameElementTest element = null] : a0= 'element' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) ) )? a6= ')' ;
+    // Xpath2.g:8718:1: parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.xpath2.NameElementTest element = null] : a0= 'element' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) ) )? a6= ')' ;
     public final org.emftext.language.xpath2.NameElementTest parse_org_emftext_language_xpath2_NameElementTest() throws RecognitionException {
         org.emftext.language.xpath2.NameElementTest element =  null;
 
@@ -16041,8 +16018,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 64) ) { return element; }
 
-            // Xpath2.g:8739:2: (a0= 'element' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) ) )? a6= ')' )
-            // Xpath2.g:8740:2: a0= 'element' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) ) )? a6= ')'
+            // Xpath2.g:8721:2: (a0= 'element' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) ) )? a6= ')' )
+            // Xpath2.g:8722:2: a0= 'element' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) ) )? a6= ')'
             {
             a0=(Token)match(input,49,FOLLOW_49_in_parse_org_emftext_language_xpath2_NameElementTest7279); if (state.failed) return element;
 
@@ -16053,7 +16030,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -16070,7 +16047,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            		copyLocalizationInfos((CommonToken)a1, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -16079,7 +16056,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2383]);
             	}
 
-            // Xpath2.g:8769:2: ( (a2= QNAME ) | (a3= NCNAME ) )
+            // Xpath2.g:8751:2: ( (a2= QNAME ) | (a3= NCNAME ) )
             int alt69=2;
             int LA69_0 = input.LA(1);
 
@@ -16099,10 +16076,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt69) {
                 case 1 :
-                    // Xpath2.g:8770:3: (a2= QNAME )
+                    // Xpath2.g:8752:3: (a2= QNAME )
                     {
-                    // Xpath2.g:8770:3: (a2= QNAME )
-                    // Xpath2.g:8771:4: a2= QNAME
+                    // Xpath2.g:8752:3: (a2= QNAME )
+                    // Xpath2.g:8753:4: a2= QNAME
                     {
                     a2=(Token)match(input,QNAME,FOLLOW_QNAME_in_parse_org_emftext_language_xpath2_NameElementTest7316); if (state.failed) return element;
 
@@ -16121,7 +16098,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ELEMENT_TEST__NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a2).getLine(), ((CommonToken) a2).getCharPositionInLine(), ((CommonToken) a2).getStartIndex(), ((CommonToken) a2).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -16131,7 +16108,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_2_0_0_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
+                    					copyLocalizationInfos((CommonToken) a2, element);
                     				}
                     			}
 
@@ -16147,10 +16124,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:8808:6: (a3= NCNAME )
+                    // Xpath2.g:8790:6: (a3= NCNAME )
                     {
-                    // Xpath2.g:8808:6: (a3= NCNAME )
-                    // Xpath2.g:8809:4: a3= NCNAME
+                    // Xpath2.g:8790:6: (a3= NCNAME )
+                    // Xpath2.g:8791:4: a3= NCNAME
                     {
                     a3=(Token)match(input,NCNAME,FOLLOW_NCNAME_in_parse_org_emftext_language_xpath2_NameElementTest7354); if (state.failed) return element;
 
@@ -16169,7 +16146,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a3.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ELEMENT_TEST__NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a3).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a3).getLine(), ((CommonToken) a3).getCharPositionInLine(), ((CommonToken) a3).getStartIndex(), ((CommonToken) a3).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -16179,7 +16156,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_2_0_1_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, element);
+                    					copyLocalizationInfos((CommonToken) a3, element);
                     				}
                     			}
 
@@ -16204,7 +16181,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2389]);
             	}
 
-            // Xpath2.g:8852:2: ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) ) )?
+            // Xpath2.g:8834:2: ( (a4= ',' (a5_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) ) )?
             int alt70=2;
             int LA70_0 = input.LA(1);
 
@@ -16213,10 +16190,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt70) {
                 case 1 :
-                    // Xpath2.g:8853:3: (a4= ',' (a5_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) )
+                    // Xpath2.g:8835:3: (a4= ',' (a5_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) )
                     {
-                    // Xpath2.g:8853:3: (a4= ',' (a5_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) )
-                    // Xpath2.g:8854:4: a4= ',' (a5_0= parse_org_emftext_language_xpath2_OptionalAtomicType )
+                    // Xpath2.g:8835:3: (a4= ',' (a5_0= parse_org_emftext_language_xpath2_OptionalAtomicType ) )
+                    // Xpath2.g:8836:4: a4= ',' (a5_0= parse_org_emftext_language_xpath2_OptionalAtomicType )
                     {
                     a4=(Token)match(input,17,FOLLOW_17_in_parse_org_emftext_language_xpath2_NameElementTest7397); if (state.failed) return element;
 
@@ -16227,7 +16204,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				}
                     				collectHiddenTokens(element);
                     				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_3_0_0_0, null, true);
-                    				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+                    				copyLocalizationInfos((CommonToken)a4, element);
                     			}
 
                     if ( state.backtracking==0 ) {
@@ -16236,8 +16213,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     				addExpectedElement(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2391]);
                     			}
 
-                    // Xpath2.g:8869:4: (a5_0= parse_org_emftext_language_xpath2_OptionalAtomicType )
-                    // Xpath2.g:8870:5: a5_0= parse_org_emftext_language_xpath2_OptionalAtomicType
+                    // Xpath2.g:8851:4: (a5_0= parse_org_emftext_language_xpath2_OptionalAtomicType )
+                    // Xpath2.g:8852:5: a5_0= parse_org_emftext_language_xpath2_OptionalAtomicType
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_OptionalAtomicType_in_parse_org_emftext_language_xpath2_NameElementTest7423);
                     a5_0=parse_org_emftext_language_xpath2_OptionalAtomicType();
@@ -16296,7 +16273,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_4, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
+            		copyLocalizationInfos((CommonToken)a6, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -16348,7 +16325,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_SchemaElementTest"
-    // Xpath2.g:8942:1: parse_org_emftext_language_xpath2_SchemaElementTest returns [org.emftext.language.xpath2.SchemaElementTest element = null] : a0= 'schema-element' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) a4= ')' ;
+    // Xpath2.g:8924:1: parse_org_emftext_language_xpath2_SchemaElementTest returns [org.emftext.language.xpath2.SchemaElementTest element = null] : a0= 'schema-element' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) a4= ')' ;
     public final org.emftext.language.xpath2.SchemaElementTest parse_org_emftext_language_xpath2_SchemaElementTest() throws RecognitionException {
         org.emftext.language.xpath2.SchemaElementTest element =  null;
 
@@ -16365,8 +16342,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 65) ) { return element; }
 
-            // Xpath2.g:8945:2: (a0= 'schema-element' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) a4= ')' )
-            // Xpath2.g:8946:2: a0= 'schema-element' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) a4= ')'
+            // Xpath2.g:8927:2: (a0= 'schema-element' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) a4= ')' )
+            // Xpath2.g:8928:2: a0= 'schema-element' a1= '(' ( (a2= QNAME ) | (a3= NCNAME ) ) a4= ')'
             {
             a0=(Token)match(input,82,FOLLOW_82_in_parse_org_emftext_language_xpath2_SchemaElementTest7493); if (state.failed) return element;
 
@@ -16377,7 +16354,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_0, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+            		copyLocalizationInfos((CommonToken)a0, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -16394,7 +16371,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_1, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+            		copyLocalizationInfos((CommonToken)a1, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -16403,7 +16380,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2421]);
             	}
 
-            // Xpath2.g:8975:2: ( (a2= QNAME ) | (a3= NCNAME ) )
+            // Xpath2.g:8957:2: ( (a2= QNAME ) | (a3= NCNAME ) )
             int alt71=2;
             int LA71_0 = input.LA(1);
 
@@ -16423,10 +16400,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt71) {
                 case 1 :
-                    // Xpath2.g:8976:3: (a2= QNAME )
+                    // Xpath2.g:8958:3: (a2= QNAME )
                     {
-                    // Xpath2.g:8976:3: (a2= QNAME )
-                    // Xpath2.g:8977:4: a2= QNAME
+                    // Xpath2.g:8958:3: (a2= QNAME )
+                    // Xpath2.g:8959:4: a2= QNAME
                     {
                     a2=(Token)match(input,QNAME,FOLLOW_QNAME_in_parse_org_emftext_language_xpath2_SchemaElementTest7530); if (state.failed) return element;
 
@@ -16445,7 +16422,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SCHEMA_ELEMENT_TEST__NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a2).getLine(), ((CommonToken) a2).getCharPositionInLine(), ((CommonToken) a2).getStartIndex(), ((CommonToken) a2).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -16455,7 +16432,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_2_0_0_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
+                    					copyLocalizationInfos((CommonToken) a2, element);
                     				}
                     			}
 
@@ -16470,10 +16447,10 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:9013:6: (a3= NCNAME )
+                    // Xpath2.g:8995:6: (a3= NCNAME )
                     {
-                    // Xpath2.g:9013:6: (a3= NCNAME )
-                    // Xpath2.g:9014:4: a3= NCNAME
+                    // Xpath2.g:8995:6: (a3= NCNAME )
+                    // Xpath2.g:8996:4: a3= NCNAME
                     {
                     a3=(Token)match(input,NCNAME,FOLLOW_NCNAME_in_parse_org_emftext_language_xpath2_SchemaElementTest7568); if (state.failed) return element;
 
@@ -16492,7 +16469,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					tokenResolver.resolve(a3.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SCHEMA_ELEMENT_TEST__NAME), result);
                     					Object resolvedObject = result.getResolvedToken();
                     					if (resolvedObject == null) {
-                    						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a3).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStopIndex());
+                    						addErrorToResource(result.getErrorMessage(), ((CommonToken) a3).getLine(), ((CommonToken) a3).getCharPositionInLine(), ((CommonToken) a3).getStartIndex(), ((CommonToken) a3).getStopIndex());
                     					}
                     					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
                     					if (resolved != null) {
@@ -16502,7 +16479,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     					}
                     					collectHiddenTokens(element);
                     					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_2_0_1_0, resolved, true);
-                    					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, element);
+                    					copyLocalizationInfos((CommonToken) a3, element);
                     				}
                     			}
 
@@ -16534,7 +16511,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             		}
             		collectHiddenTokens(element);
             		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_3, null, true);
-            		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+            		copyLocalizationInfos((CommonToken)a4, element);
             	}
 
             if ( state.backtracking==0 ) {
@@ -16586,7 +16563,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_IntegerLiteral"
-    // Xpath2.g:9095:1: parse_org_emftext_language_xpath2_IntegerLiteral returns [org.emftext.language.xpath2.IntegerLiteral element = null] : (a0= INTEGER_LITERAL ) ;
+    // Xpath2.g:9077:1: parse_org_emftext_language_xpath2_IntegerLiteral returns [org.emftext.language.xpath2.IntegerLiteral element = null] : (a0= INTEGER_LITERAL ) ;
     public final org.emftext.language.xpath2.IntegerLiteral parse_org_emftext_language_xpath2_IntegerLiteral() throws RecognitionException {
         org.emftext.language.xpath2.IntegerLiteral element =  null;
 
@@ -16599,11 +16576,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 66) ) { return element; }
 
-            // Xpath2.g:9098:2: ( (a0= INTEGER_LITERAL ) )
-            // Xpath2.g:9099:2: (a0= INTEGER_LITERAL )
+            // Xpath2.g:9080:2: ( (a0= INTEGER_LITERAL ) )
+            // Xpath2.g:9081:2: (a0= INTEGER_LITERAL )
             {
-            // Xpath2.g:9099:2: (a0= INTEGER_LITERAL )
-            // Xpath2.g:9100:3: a0= INTEGER_LITERAL
+            // Xpath2.g:9081:2: (a0= INTEGER_LITERAL )
+            // Xpath2.g:9082:3: a0= INTEGER_LITERAL
             {
             a0=(Token)match(input,INTEGER_LITERAL,FOLLOW_INTEGER_LITERAL_in_parse_org_emftext_language_xpath2_IntegerLiteral7635); if (state.failed) return element;
 
@@ -16622,7 +16599,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             				tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.INTEGER_LITERAL__VALUE), result);
             				Object resolvedObject = result.getResolvedToken();
             				if (resolvedObject == null) {
-            					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+            					addErrorToResource(result.getErrorMessage(), ((CommonToken) a0).getLine(), ((CommonToken) a0).getCharPositionInLine(), ((CommonToken) a0).getStartIndex(), ((CommonToken) a0).getStopIndex());
             				}
             				java.lang.Integer resolved = (java.lang.Integer) resolvedObject;
             				if (resolved != null) {
@@ -16632,7 +16609,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             				}
             				collectHiddenTokens(element);
             				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_64_0_0_0, resolved, true);
-            				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+            				copyLocalizationInfos((CommonToken) a0, element);
             			}
             		}
 
@@ -16686,7 +16663,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_DecimalLiteral"
-    // Xpath2.g:9159:1: parse_org_emftext_language_xpath2_DecimalLiteral returns [org.emftext.language.xpath2.DecimalLiteral element = null] : (a0= DECIMAL_LITERAL ) ;
+    // Xpath2.g:9141:1: parse_org_emftext_language_xpath2_DecimalLiteral returns [org.emftext.language.xpath2.DecimalLiteral element = null] : (a0= DECIMAL_LITERAL ) ;
     public final org.emftext.language.xpath2.DecimalLiteral parse_org_emftext_language_xpath2_DecimalLiteral() throws RecognitionException {
         org.emftext.language.xpath2.DecimalLiteral element =  null;
 
@@ -16699,11 +16676,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 67) ) { return element; }
 
-            // Xpath2.g:9162:2: ( (a0= DECIMAL_LITERAL ) )
-            // Xpath2.g:9163:2: (a0= DECIMAL_LITERAL )
+            // Xpath2.g:9144:2: ( (a0= DECIMAL_LITERAL ) )
+            // Xpath2.g:9145:2: (a0= DECIMAL_LITERAL )
             {
-            // Xpath2.g:9163:2: (a0= DECIMAL_LITERAL )
-            // Xpath2.g:9164:3: a0= DECIMAL_LITERAL
+            // Xpath2.g:9145:2: (a0= DECIMAL_LITERAL )
+            // Xpath2.g:9146:3: a0= DECIMAL_LITERAL
             {
             a0=(Token)match(input,DECIMAL_LITERAL,FOLLOW_DECIMAL_LITERAL_in_parse_org_emftext_language_xpath2_DecimalLiteral7675); if (state.failed) return element;
 
@@ -16722,7 +16699,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             				tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DECIMAL_LITERAL__VALUE), result);
             				Object resolvedObject = result.getResolvedToken();
             				if (resolvedObject == null) {
-            					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+            					addErrorToResource(result.getErrorMessage(), ((CommonToken) a0).getLine(), ((CommonToken) a0).getCharPositionInLine(), ((CommonToken) a0).getStartIndex(), ((CommonToken) a0).getStopIndex());
             				}
             				java.lang.Float resolved = (java.lang.Float) resolvedObject;
             				if (resolved != null) {
@@ -16732,7 +16709,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             				}
             				collectHiddenTokens(element);
             				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_65_0_0_0, resolved, true);
-            				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+            				copyLocalizationInfos((CommonToken) a0, element);
             			}
             		}
 
@@ -16786,7 +16763,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_DoubleLiteral"
-    // Xpath2.g:9223:1: parse_org_emftext_language_xpath2_DoubleLiteral returns [org.emftext.language.xpath2.DoubleLiteral element = null] : (a0= DOUBLE_LITERAL ) ;
+    // Xpath2.g:9205:1: parse_org_emftext_language_xpath2_DoubleLiteral returns [org.emftext.language.xpath2.DoubleLiteral element = null] : (a0= DOUBLE_LITERAL ) ;
     public final org.emftext.language.xpath2.DoubleLiteral parse_org_emftext_language_xpath2_DoubleLiteral() throws RecognitionException {
         org.emftext.language.xpath2.DoubleLiteral element =  null;
 
@@ -16799,11 +16776,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 68) ) { return element; }
 
-            // Xpath2.g:9226:2: ( (a0= DOUBLE_LITERAL ) )
-            // Xpath2.g:9227:2: (a0= DOUBLE_LITERAL )
+            // Xpath2.g:9208:2: ( (a0= DOUBLE_LITERAL ) )
+            // Xpath2.g:9209:2: (a0= DOUBLE_LITERAL )
             {
-            // Xpath2.g:9227:2: (a0= DOUBLE_LITERAL )
-            // Xpath2.g:9228:3: a0= DOUBLE_LITERAL
+            // Xpath2.g:9209:2: (a0= DOUBLE_LITERAL )
+            // Xpath2.g:9210:3: a0= DOUBLE_LITERAL
             {
             a0=(Token)match(input,DOUBLE_LITERAL,FOLLOW_DOUBLE_LITERAL_in_parse_org_emftext_language_xpath2_DoubleLiteral7715); if (state.failed) return element;
 
@@ -16822,7 +16799,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             				tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DOUBLE_LITERAL__VALUE), result);
             				Object resolvedObject = result.getResolvedToken();
             				if (resolvedObject == null) {
-            					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+            					addErrorToResource(result.getErrorMessage(), ((CommonToken) a0).getLine(), ((CommonToken) a0).getCharPositionInLine(), ((CommonToken) a0).getStartIndex(), ((CommonToken) a0).getStopIndex());
             				}
             				java.lang.Double resolved = (java.lang.Double) resolvedObject;
             				if (resolved != null) {
@@ -16832,7 +16809,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             				}
             				collectHiddenTokens(element);
             				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_66_0_0_0, resolved, true);
-            				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+            				copyLocalizationInfos((CommonToken) a0, element);
             			}
             		}
 
@@ -16886,7 +16863,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_StringLiteral"
-    // Xpath2.g:9287:1: parse_org_emftext_language_xpath2_StringLiteral returns [org.emftext.language.xpath2.StringLiteral element = null] : (a0= STRING_LITERAL ) ;
+    // Xpath2.g:9269:1: parse_org_emftext_language_xpath2_StringLiteral returns [org.emftext.language.xpath2.StringLiteral element = null] : (a0= STRING_LITERAL ) ;
     public final org.emftext.language.xpath2.StringLiteral parse_org_emftext_language_xpath2_StringLiteral() throws RecognitionException {
         org.emftext.language.xpath2.StringLiteral element =  null;
 
@@ -16899,11 +16876,11 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 69) ) { return element; }
 
-            // Xpath2.g:9290:2: ( (a0= STRING_LITERAL ) )
-            // Xpath2.g:9291:2: (a0= STRING_LITERAL )
+            // Xpath2.g:9272:2: ( (a0= STRING_LITERAL ) )
+            // Xpath2.g:9273:2: (a0= STRING_LITERAL )
             {
-            // Xpath2.g:9291:2: (a0= STRING_LITERAL )
-            // Xpath2.g:9292:3: a0= STRING_LITERAL
+            // Xpath2.g:9273:2: (a0= STRING_LITERAL )
+            // Xpath2.g:9274:3: a0= STRING_LITERAL
             {
             a0=(Token)match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_parse_org_emftext_language_xpath2_StringLiteral7755); if (state.failed) return element;
 
@@ -16922,7 +16899,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             				tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.STRING_LITERAL__VALUE), result);
             				Object resolvedObject = result.getResolvedToken();
             				if (resolvedObject == null) {
-            					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+            					addErrorToResource(result.getErrorMessage(), ((CommonToken) a0).getLine(), ((CommonToken) a0).getCharPositionInLine(), ((CommonToken) a0).getStartIndex(), ((CommonToken) a0).getStopIndex());
             				}
             				java.lang.String resolved = (java.lang.String) resolvedObject;
             				if (resolved != null) {
@@ -16932,7 +16909,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             				}
             				collectHiddenTokens(element);
             				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_67_0_0_0, resolved, true);
-            				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+            				copyLocalizationInfos((CommonToken) a0, element);
             			}
             		}
 
@@ -16986,7 +16963,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_ExprSingle"
-    // Xpath2.g:9351:1: parse_org_emftext_language_xpath2_ExprSingle returns [org.emftext.language.xpath2.ExprSingle element = null] : (c0= parse_org_emftext_language_xpath2_ForExpr |c1= parse_org_emftext_language_xpath2_QuantifiedExpr |c2= parse_org_emftext_language_xpath2_IfExpr |c3= parse_org_emftext_language_xpath2_OrExpr |c4= parse_org_emftext_language_xpath2_AndExpr |c5= parse_org_emftext_language_xpath2_ComparisonExpr |c6= parse_org_emftext_language_xpath2_RangeExpr |c7= parse_org_emftext_language_xpath2_AdditiveExpr |c8= parse_org_emftext_language_xpath2_MultiplicativeExpr |c9= parse_org_emftext_language_xpath2_UnionExpr |c10= parse_org_emftext_language_xpath2_IntersectExceptExpr |c11= parse_org_emftext_language_xpath2_InstanceofExpr |c12= parse_org_emftext_language_xpath2_TreatExpr |c13= parse_org_emftext_language_xpath2_CastableExpr |c14= parse_org_emftext_language_xpath2_CastExpr |c15= parse_org_emftext_language_xpath2_UnaryExpr |c16= parse_org_emftext_language_xpath2_FilterExpr |c17= parse_org_emftext_language_xpath2_FunctionCall |c18= parse_org_emftext_language_xpath2_PathExpr |c19= parse_org_emftext_language_xpath2_ChildStepExpr |c20= parse_org_emftext_language_xpath2_DescOrSelfStepExpr |c21= parse_org_emftext_language_xpath2_RootStepExpr |c22= parse_org_emftext_language_xpath2_SelfStepExpr |c23= parse_org_emftext_language_xpath2_GeneralForwardStep |c24= parse_org_emftext_language_xpath2_AbbrevForwardStep |c25= parse_org_emftext_language_xpath2_GeneralReverseStep |c26= parse_org_emftext_language_xpath2_AbbrevReverseStep |c27= parse_org_emftext_language_xpath2_VarRef |c28= parse_org_emftext_language_xpath2_ParenthesizedExpr |c29= parse_org_emftext_language_xpath2_ContextItemExpr |c30= parse_org_emftext_language_xpath2_IntegerLiteral |c31= parse_org_emftext_language_xpath2_DecimalLiteral |c32= parse_org_emftext_language_xpath2_DoubleLiteral |c33= parse_org_emftext_language_xpath2_StringLiteral );
+    // Xpath2.g:9333:1: parse_org_emftext_language_xpath2_ExprSingle returns [org.emftext.language.xpath2.ExprSingle element = null] : (c0= parse_org_emftext_language_xpath2_ForExpr |c1= parse_org_emftext_language_xpath2_QuantifiedExpr |c2= parse_org_emftext_language_xpath2_IfExpr |c3= parse_org_emftext_language_xpath2_OrExpr |c4= parse_org_emftext_language_xpath2_AndExpr |c5= parse_org_emftext_language_xpath2_ComparisonExpr |c6= parse_org_emftext_language_xpath2_RangeExpr |c7= parse_org_emftext_language_xpath2_AdditiveExpr |c8= parse_org_emftext_language_xpath2_MultiplicativeExpr |c9= parse_org_emftext_language_xpath2_UnionExpr |c10= parse_org_emftext_language_xpath2_IntersectExceptExpr |c11= parse_org_emftext_language_xpath2_InstanceofExpr |c12= parse_org_emftext_language_xpath2_TreatExpr |c13= parse_org_emftext_language_xpath2_CastableExpr |c14= parse_org_emftext_language_xpath2_CastExpr |c15= parse_org_emftext_language_xpath2_UnaryExpr |c16= parse_org_emftext_language_xpath2_FilterExpr |c17= parse_org_emftext_language_xpath2_FunctionCall |c18= parse_org_emftext_language_xpath2_PathExpr |c19= parse_org_emftext_language_xpath2_ChildStepExpr |c20= parse_org_emftext_language_xpath2_DescOrSelfStepExpr |c21= parse_org_emftext_language_xpath2_RootStepExpr |c22= parse_org_emftext_language_xpath2_SelfStepExpr |c23= parse_org_emftext_language_xpath2_GeneralForwardStep |c24= parse_org_emftext_language_xpath2_AbbrevForwardStep |c25= parse_org_emftext_language_xpath2_GeneralReverseStep |c26= parse_org_emftext_language_xpath2_AbbrevReverseStep |c27= parse_org_emftext_language_xpath2_VarRef |c28= parse_org_emftext_language_xpath2_ParenthesizedExpr |c29= parse_org_emftext_language_xpath2_ContextItemExpr |c30= parse_org_emftext_language_xpath2_IntegerLiteral |c31= parse_org_emftext_language_xpath2_DecimalLiteral |c32= parse_org_emftext_language_xpath2_DoubleLiteral |c33= parse_org_emftext_language_xpath2_StringLiteral );
     public final org.emftext.language.xpath2.ExprSingle parse_org_emftext_language_xpath2_ExprSingle() throws RecognitionException {
         org.emftext.language.xpath2.ExprSingle element =  null;
 
@@ -17064,12 +17041,12 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 70) ) { return element; }
 
-            // Xpath2.g:9352:2: (c0= parse_org_emftext_language_xpath2_ForExpr |c1= parse_org_emftext_language_xpath2_QuantifiedExpr |c2= parse_org_emftext_language_xpath2_IfExpr |c3= parse_org_emftext_language_xpath2_OrExpr |c4= parse_org_emftext_language_xpath2_AndExpr |c5= parse_org_emftext_language_xpath2_ComparisonExpr |c6= parse_org_emftext_language_xpath2_RangeExpr |c7= parse_org_emftext_language_xpath2_AdditiveExpr |c8= parse_org_emftext_language_xpath2_MultiplicativeExpr |c9= parse_org_emftext_language_xpath2_UnionExpr |c10= parse_org_emftext_language_xpath2_IntersectExceptExpr |c11= parse_org_emftext_language_xpath2_InstanceofExpr |c12= parse_org_emftext_language_xpath2_TreatExpr |c13= parse_org_emftext_language_xpath2_CastableExpr |c14= parse_org_emftext_language_xpath2_CastExpr |c15= parse_org_emftext_language_xpath2_UnaryExpr |c16= parse_org_emftext_language_xpath2_FilterExpr |c17= parse_org_emftext_language_xpath2_FunctionCall |c18= parse_org_emftext_language_xpath2_PathExpr |c19= parse_org_emftext_language_xpath2_ChildStepExpr |c20= parse_org_emftext_language_xpath2_DescOrSelfStepExpr |c21= parse_org_emftext_language_xpath2_RootStepExpr |c22= parse_org_emftext_language_xpath2_SelfStepExpr |c23= parse_org_emftext_language_xpath2_GeneralForwardStep |c24= parse_org_emftext_language_xpath2_AbbrevForwardStep |c25= parse_org_emftext_language_xpath2_GeneralReverseStep |c26= parse_org_emftext_language_xpath2_AbbrevReverseStep |c27= parse_org_emftext_language_xpath2_VarRef |c28= parse_org_emftext_language_xpath2_ParenthesizedExpr |c29= parse_org_emftext_language_xpath2_ContextItemExpr |c30= parse_org_emftext_language_xpath2_IntegerLiteral |c31= parse_org_emftext_language_xpath2_DecimalLiteral |c32= parse_org_emftext_language_xpath2_DoubleLiteral |c33= parse_org_emftext_language_xpath2_StringLiteral )
+            // Xpath2.g:9334:2: (c0= parse_org_emftext_language_xpath2_ForExpr |c1= parse_org_emftext_language_xpath2_QuantifiedExpr |c2= parse_org_emftext_language_xpath2_IfExpr |c3= parse_org_emftext_language_xpath2_OrExpr |c4= parse_org_emftext_language_xpath2_AndExpr |c5= parse_org_emftext_language_xpath2_ComparisonExpr |c6= parse_org_emftext_language_xpath2_RangeExpr |c7= parse_org_emftext_language_xpath2_AdditiveExpr |c8= parse_org_emftext_language_xpath2_MultiplicativeExpr |c9= parse_org_emftext_language_xpath2_UnionExpr |c10= parse_org_emftext_language_xpath2_IntersectExceptExpr |c11= parse_org_emftext_language_xpath2_InstanceofExpr |c12= parse_org_emftext_language_xpath2_TreatExpr |c13= parse_org_emftext_language_xpath2_CastableExpr |c14= parse_org_emftext_language_xpath2_CastExpr |c15= parse_org_emftext_language_xpath2_UnaryExpr |c16= parse_org_emftext_language_xpath2_FilterExpr |c17= parse_org_emftext_language_xpath2_FunctionCall |c18= parse_org_emftext_language_xpath2_PathExpr |c19= parse_org_emftext_language_xpath2_ChildStepExpr |c20= parse_org_emftext_language_xpath2_DescOrSelfStepExpr |c21= parse_org_emftext_language_xpath2_RootStepExpr |c22= parse_org_emftext_language_xpath2_SelfStepExpr |c23= parse_org_emftext_language_xpath2_GeneralForwardStep |c24= parse_org_emftext_language_xpath2_AbbrevForwardStep |c25= parse_org_emftext_language_xpath2_GeneralReverseStep |c26= parse_org_emftext_language_xpath2_AbbrevReverseStep |c27= parse_org_emftext_language_xpath2_VarRef |c28= parse_org_emftext_language_xpath2_ParenthesizedExpr |c29= parse_org_emftext_language_xpath2_ContextItemExpr |c30= parse_org_emftext_language_xpath2_IntegerLiteral |c31= parse_org_emftext_language_xpath2_DecimalLiteral |c32= parse_org_emftext_language_xpath2_DoubleLiteral |c33= parse_org_emftext_language_xpath2_StringLiteral )
             int alt72=34;
             alt72 = dfa72.predict(input);
             switch (alt72) {
                 case 1 :
-                    // Xpath2.g:9353:2: c0= parse_org_emftext_language_xpath2_ForExpr
+                    // Xpath2.g:9335:2: c0= parse_org_emftext_language_xpath2_ForExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ForExpr_in_parse_org_emftext_language_xpath2_ExprSingle7787);
                     c0=parse_org_emftext_language_xpath2_ForExpr();
@@ -17082,7 +17059,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:9354:4: c1= parse_org_emftext_language_xpath2_QuantifiedExpr
+                    // Xpath2.g:9336:4: c1= parse_org_emftext_language_xpath2_QuantifiedExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_QuantifiedExpr_in_parse_org_emftext_language_xpath2_ExprSingle7797);
                     c1=parse_org_emftext_language_xpath2_QuantifiedExpr();
@@ -17095,7 +17072,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:9355:4: c2= parse_org_emftext_language_xpath2_IfExpr
+                    // Xpath2.g:9337:4: c2= parse_org_emftext_language_xpath2_IfExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IfExpr_in_parse_org_emftext_language_xpath2_ExprSingle7807);
                     c2=parse_org_emftext_language_xpath2_IfExpr();
@@ -17108,7 +17085,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xpath2.g:9356:4: c3= parse_org_emftext_language_xpath2_OrExpr
+                    // Xpath2.g:9338:4: c3= parse_org_emftext_language_xpath2_OrExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_OrExpr_in_parse_org_emftext_language_xpath2_ExprSingle7817);
                     c3=parse_org_emftext_language_xpath2_OrExpr();
@@ -17121,7 +17098,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xpath2.g:9357:4: c4= parse_org_emftext_language_xpath2_AndExpr
+                    // Xpath2.g:9339:4: c4= parse_org_emftext_language_xpath2_AndExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AndExpr_in_parse_org_emftext_language_xpath2_ExprSingle7827);
                     c4=parse_org_emftext_language_xpath2_AndExpr();
@@ -17134,7 +17111,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 6 :
-                    // Xpath2.g:9358:4: c5= parse_org_emftext_language_xpath2_ComparisonExpr
+                    // Xpath2.g:9340:4: c5= parse_org_emftext_language_xpath2_ComparisonExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ComparisonExpr_in_parse_org_emftext_language_xpath2_ExprSingle7837);
                     c5=parse_org_emftext_language_xpath2_ComparisonExpr();
@@ -17147,7 +17124,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 7 :
-                    // Xpath2.g:9359:4: c6= parse_org_emftext_language_xpath2_RangeExpr
+                    // Xpath2.g:9341:4: c6= parse_org_emftext_language_xpath2_RangeExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_RangeExpr_in_parse_org_emftext_language_xpath2_ExprSingle7847);
                     c6=parse_org_emftext_language_xpath2_RangeExpr();
@@ -17160,7 +17137,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 8 :
-                    // Xpath2.g:9360:4: c7= parse_org_emftext_language_xpath2_AdditiveExpr
+                    // Xpath2.g:9342:4: c7= parse_org_emftext_language_xpath2_AdditiveExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AdditiveExpr_in_parse_org_emftext_language_xpath2_ExprSingle7857);
                     c7=parse_org_emftext_language_xpath2_AdditiveExpr();
@@ -17173,7 +17150,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 9 :
-                    // Xpath2.g:9361:4: c8= parse_org_emftext_language_xpath2_MultiplicativeExpr
+                    // Xpath2.g:9343:4: c8= parse_org_emftext_language_xpath2_MultiplicativeExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_MultiplicativeExpr_in_parse_org_emftext_language_xpath2_ExprSingle7867);
                     c8=parse_org_emftext_language_xpath2_MultiplicativeExpr();
@@ -17186,7 +17163,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 10 :
-                    // Xpath2.g:9362:4: c9= parse_org_emftext_language_xpath2_UnionExpr
+                    // Xpath2.g:9344:4: c9= parse_org_emftext_language_xpath2_UnionExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_UnionExpr_in_parse_org_emftext_language_xpath2_ExprSingle7877);
                     c9=parse_org_emftext_language_xpath2_UnionExpr();
@@ -17199,7 +17176,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 11 :
-                    // Xpath2.g:9363:4: c10= parse_org_emftext_language_xpath2_IntersectExceptExpr
+                    // Xpath2.g:9345:4: c10= parse_org_emftext_language_xpath2_IntersectExceptExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IntersectExceptExpr_in_parse_org_emftext_language_xpath2_ExprSingle7887);
                     c10=parse_org_emftext_language_xpath2_IntersectExceptExpr();
@@ -17212,7 +17189,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 12 :
-                    // Xpath2.g:9364:4: c11= parse_org_emftext_language_xpath2_InstanceofExpr
+                    // Xpath2.g:9346:4: c11= parse_org_emftext_language_xpath2_InstanceofExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_InstanceofExpr_in_parse_org_emftext_language_xpath2_ExprSingle7897);
                     c11=parse_org_emftext_language_xpath2_InstanceofExpr();
@@ -17225,7 +17202,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 13 :
-                    // Xpath2.g:9365:4: c12= parse_org_emftext_language_xpath2_TreatExpr
+                    // Xpath2.g:9347:4: c12= parse_org_emftext_language_xpath2_TreatExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_TreatExpr_in_parse_org_emftext_language_xpath2_ExprSingle7907);
                     c12=parse_org_emftext_language_xpath2_TreatExpr();
@@ -17238,7 +17215,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 14 :
-                    // Xpath2.g:9366:4: c13= parse_org_emftext_language_xpath2_CastableExpr
+                    // Xpath2.g:9348:4: c13= parse_org_emftext_language_xpath2_CastableExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_CastableExpr_in_parse_org_emftext_language_xpath2_ExprSingle7917);
                     c13=parse_org_emftext_language_xpath2_CastableExpr();
@@ -17251,7 +17228,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 15 :
-                    // Xpath2.g:9367:4: c14= parse_org_emftext_language_xpath2_CastExpr
+                    // Xpath2.g:9349:4: c14= parse_org_emftext_language_xpath2_CastExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_CastExpr_in_parse_org_emftext_language_xpath2_ExprSingle7927);
                     c14=parse_org_emftext_language_xpath2_CastExpr();
@@ -17264,7 +17241,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 16 :
-                    // Xpath2.g:9368:4: c15= parse_org_emftext_language_xpath2_UnaryExpr
+                    // Xpath2.g:9350:4: c15= parse_org_emftext_language_xpath2_UnaryExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_UnaryExpr_in_parse_org_emftext_language_xpath2_ExprSingle7937);
                     c15=parse_org_emftext_language_xpath2_UnaryExpr();
@@ -17277,7 +17254,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 17 :
-                    // Xpath2.g:9369:4: c16= parse_org_emftext_language_xpath2_FilterExpr
+                    // Xpath2.g:9351:4: c16= parse_org_emftext_language_xpath2_FilterExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_FilterExpr_in_parse_org_emftext_language_xpath2_ExprSingle7947);
                     c16=parse_org_emftext_language_xpath2_FilterExpr();
@@ -17290,7 +17267,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 18 :
-                    // Xpath2.g:9370:4: c17= parse_org_emftext_language_xpath2_FunctionCall
+                    // Xpath2.g:9352:4: c17= parse_org_emftext_language_xpath2_FunctionCall
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_FunctionCall_in_parse_org_emftext_language_xpath2_ExprSingle7957);
                     c17=parse_org_emftext_language_xpath2_FunctionCall();
@@ -17303,7 +17280,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 19 :
-                    // Xpath2.g:9371:4: c18= parse_org_emftext_language_xpath2_PathExpr
+                    // Xpath2.g:9353:4: c18= parse_org_emftext_language_xpath2_PathExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_PathExpr_in_parse_org_emftext_language_xpath2_ExprSingle7967);
                     c18=parse_org_emftext_language_xpath2_PathExpr();
@@ -17316,7 +17293,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 20 :
-                    // Xpath2.g:9372:4: c19= parse_org_emftext_language_xpath2_ChildStepExpr
+                    // Xpath2.g:9354:4: c19= parse_org_emftext_language_xpath2_ChildStepExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ChildStepExpr_in_parse_org_emftext_language_xpath2_ExprSingle7977);
                     c19=parse_org_emftext_language_xpath2_ChildStepExpr();
@@ -17329,7 +17306,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 21 :
-                    // Xpath2.g:9373:4: c20= parse_org_emftext_language_xpath2_DescOrSelfStepExpr
+                    // Xpath2.g:9355:4: c20= parse_org_emftext_language_xpath2_DescOrSelfStepExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DescOrSelfStepExpr_in_parse_org_emftext_language_xpath2_ExprSingle7987);
                     c20=parse_org_emftext_language_xpath2_DescOrSelfStepExpr();
@@ -17342,7 +17319,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 22 :
-                    // Xpath2.g:9374:4: c21= parse_org_emftext_language_xpath2_RootStepExpr
+                    // Xpath2.g:9356:4: c21= parse_org_emftext_language_xpath2_RootStepExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_RootStepExpr_in_parse_org_emftext_language_xpath2_ExprSingle7997);
                     c21=parse_org_emftext_language_xpath2_RootStepExpr();
@@ -17355,7 +17332,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 23 :
-                    // Xpath2.g:9375:4: c22= parse_org_emftext_language_xpath2_SelfStepExpr
+                    // Xpath2.g:9357:4: c22= parse_org_emftext_language_xpath2_SelfStepExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_SelfStepExpr_in_parse_org_emftext_language_xpath2_ExprSingle8007);
                     c22=parse_org_emftext_language_xpath2_SelfStepExpr();
@@ -17368,7 +17345,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 24 :
-                    // Xpath2.g:9376:4: c23= parse_org_emftext_language_xpath2_GeneralForwardStep
+                    // Xpath2.g:9358:4: c23= parse_org_emftext_language_xpath2_GeneralForwardStep
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_GeneralForwardStep_in_parse_org_emftext_language_xpath2_ExprSingle8017);
                     c23=parse_org_emftext_language_xpath2_GeneralForwardStep();
@@ -17381,7 +17358,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 25 :
-                    // Xpath2.g:9377:4: c24= parse_org_emftext_language_xpath2_AbbrevForwardStep
+                    // Xpath2.g:9359:4: c24= parse_org_emftext_language_xpath2_AbbrevForwardStep
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AbbrevForwardStep_in_parse_org_emftext_language_xpath2_ExprSingle8027);
                     c24=parse_org_emftext_language_xpath2_AbbrevForwardStep();
@@ -17394,7 +17371,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 26 :
-                    // Xpath2.g:9378:4: c25= parse_org_emftext_language_xpath2_GeneralReverseStep
+                    // Xpath2.g:9360:4: c25= parse_org_emftext_language_xpath2_GeneralReverseStep
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_GeneralReverseStep_in_parse_org_emftext_language_xpath2_ExprSingle8037);
                     c25=parse_org_emftext_language_xpath2_GeneralReverseStep();
@@ -17407,7 +17384,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 27 :
-                    // Xpath2.g:9379:4: c26= parse_org_emftext_language_xpath2_AbbrevReverseStep
+                    // Xpath2.g:9361:4: c26= parse_org_emftext_language_xpath2_AbbrevReverseStep
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AbbrevReverseStep_in_parse_org_emftext_language_xpath2_ExprSingle8047);
                     c26=parse_org_emftext_language_xpath2_AbbrevReverseStep();
@@ -17420,7 +17397,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 28 :
-                    // Xpath2.g:9380:4: c27= parse_org_emftext_language_xpath2_VarRef
+                    // Xpath2.g:9362:4: c27= parse_org_emftext_language_xpath2_VarRef
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_VarRef_in_parse_org_emftext_language_xpath2_ExprSingle8057);
                     c27=parse_org_emftext_language_xpath2_VarRef();
@@ -17433,7 +17410,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 29 :
-                    // Xpath2.g:9381:4: c28= parse_org_emftext_language_xpath2_ParenthesizedExpr
+                    // Xpath2.g:9363:4: c28= parse_org_emftext_language_xpath2_ParenthesizedExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ParenthesizedExpr_in_parse_org_emftext_language_xpath2_ExprSingle8067);
                     c28=parse_org_emftext_language_xpath2_ParenthesizedExpr();
@@ -17446,7 +17423,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 30 :
-                    // Xpath2.g:9382:4: c29= parse_org_emftext_language_xpath2_ContextItemExpr
+                    // Xpath2.g:9364:4: c29= parse_org_emftext_language_xpath2_ContextItemExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ContextItemExpr_in_parse_org_emftext_language_xpath2_ExprSingle8077);
                     c29=parse_org_emftext_language_xpath2_ContextItemExpr();
@@ -17459,7 +17436,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 31 :
-                    // Xpath2.g:9383:4: c30= parse_org_emftext_language_xpath2_IntegerLiteral
+                    // Xpath2.g:9365:4: c30= parse_org_emftext_language_xpath2_IntegerLiteral
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IntegerLiteral_in_parse_org_emftext_language_xpath2_ExprSingle8087);
                     c30=parse_org_emftext_language_xpath2_IntegerLiteral();
@@ -17472,7 +17449,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 32 :
-                    // Xpath2.g:9384:4: c31= parse_org_emftext_language_xpath2_DecimalLiteral
+                    // Xpath2.g:9366:4: c31= parse_org_emftext_language_xpath2_DecimalLiteral
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DecimalLiteral_in_parse_org_emftext_language_xpath2_ExprSingle8097);
                     c31=parse_org_emftext_language_xpath2_DecimalLiteral();
@@ -17485,7 +17462,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 33 :
-                    // Xpath2.g:9385:4: c32= parse_org_emftext_language_xpath2_DoubleLiteral
+                    // Xpath2.g:9367:4: c32= parse_org_emftext_language_xpath2_DoubleLiteral
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DoubleLiteral_in_parse_org_emftext_language_xpath2_ExprSingle8107);
                     c32=parse_org_emftext_language_xpath2_DoubleLiteral();
@@ -17498,7 +17475,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 34 :
-                    // Xpath2.g:9386:4: c33= parse_org_emftext_language_xpath2_StringLiteral
+                    // Xpath2.g:9368:4: c33= parse_org_emftext_language_xpath2_StringLiteral
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_StringLiteral_in_parse_org_emftext_language_xpath2_ExprSingle8117);
                     c33=parse_org_emftext_language_xpath2_StringLiteral();
@@ -17530,7 +17507,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_Comp"
-    // Xpath2.g:9390:1: parse_org_emftext_language_xpath2_Comp returns [org.emftext.language.xpath2.Comp element = null] : (c0= parse_org_emftext_language_xpath2_GeneralComp |c1= parse_org_emftext_language_xpath2_ValueComp |c2= parse_org_emftext_language_xpath2_NodeComp );
+    // Xpath2.g:9372:1: parse_org_emftext_language_xpath2_Comp returns [org.emftext.language.xpath2.Comp element = null] : (c0= parse_org_emftext_language_xpath2_GeneralComp |c1= parse_org_emftext_language_xpath2_ValueComp |c2= parse_org_emftext_language_xpath2_NodeComp );
     public final org.emftext.language.xpath2.Comp parse_org_emftext_language_xpath2_Comp() throws RecognitionException {
         org.emftext.language.xpath2.Comp element =  null;
 
@@ -17546,7 +17523,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 71) ) { return element; }
 
-            // Xpath2.g:9391:2: (c0= parse_org_emftext_language_xpath2_GeneralComp |c1= parse_org_emftext_language_xpath2_ValueComp |c2= parse_org_emftext_language_xpath2_NodeComp )
+            // Xpath2.g:9373:2: (c0= parse_org_emftext_language_xpath2_GeneralComp |c1= parse_org_emftext_language_xpath2_ValueComp |c2= parse_org_emftext_language_xpath2_NodeComp )
             int alt73=3;
             switch ( input.LA(1) ) {
             case 11:
@@ -17587,7 +17564,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt73) {
                 case 1 :
-                    // Xpath2.g:9392:2: c0= parse_org_emftext_language_xpath2_GeneralComp
+                    // Xpath2.g:9374:2: c0= parse_org_emftext_language_xpath2_GeneralComp
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_GeneralComp_in_parse_org_emftext_language_xpath2_Comp8138);
                     c0=parse_org_emftext_language_xpath2_GeneralComp();
@@ -17600,7 +17577,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:9393:4: c1= parse_org_emftext_language_xpath2_ValueComp
+                    // Xpath2.g:9375:4: c1= parse_org_emftext_language_xpath2_ValueComp
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ValueComp_in_parse_org_emftext_language_xpath2_Comp8148);
                     c1=parse_org_emftext_language_xpath2_ValueComp();
@@ -17613,7 +17590,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:9394:4: c2= parse_org_emftext_language_xpath2_NodeComp
+                    // Xpath2.g:9376:4: c2= parse_org_emftext_language_xpath2_NodeComp
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_NodeComp_in_parse_org_emftext_language_xpath2_Comp8158);
                     c2=parse_org_emftext_language_xpath2_NodeComp();
@@ -17645,7 +17622,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_SequenceType"
-    // Xpath2.g:9398:1: parse_org_emftext_language_xpath2_SequenceType returns [org.emftext.language.xpath2.SequenceType element = null] : (c0= parse_org_emftext_language_xpath2_EmptySequenceType |c1= parse_org_emftext_language_xpath2_ItemSequenceType );
+    // Xpath2.g:9380:1: parse_org_emftext_language_xpath2_SequenceType returns [org.emftext.language.xpath2.SequenceType element = null] : (c0= parse_org_emftext_language_xpath2_EmptySequenceType |c1= parse_org_emftext_language_xpath2_ItemSequenceType );
     public final org.emftext.language.xpath2.SequenceType parse_org_emftext_language_xpath2_SequenceType() throws RecognitionException {
         org.emftext.language.xpath2.SequenceType element =  null;
 
@@ -17659,7 +17636,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 72) ) { return element; }
 
-            // Xpath2.g:9399:2: (c0= parse_org_emftext_language_xpath2_EmptySequenceType |c1= parse_org_emftext_language_xpath2_ItemSequenceType )
+            // Xpath2.g:9381:2: (c0= parse_org_emftext_language_xpath2_EmptySequenceType |c1= parse_org_emftext_language_xpath2_ItemSequenceType )
             int alt74=2;
             int LA74_0 = input.LA(1);
 
@@ -17679,7 +17656,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             }
             switch (alt74) {
                 case 1 :
-                    // Xpath2.g:9400:2: c0= parse_org_emftext_language_xpath2_EmptySequenceType
+                    // Xpath2.g:9382:2: c0= parse_org_emftext_language_xpath2_EmptySequenceType
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_EmptySequenceType_in_parse_org_emftext_language_xpath2_SequenceType8179);
                     c0=parse_org_emftext_language_xpath2_EmptySequenceType();
@@ -17692,7 +17669,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:9401:4: c1= parse_org_emftext_language_xpath2_ItemSequenceType
+                    // Xpath2.g:9383:4: c1= parse_org_emftext_language_xpath2_ItemSequenceType
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ItemSequenceType_in_parse_org_emftext_language_xpath2_SequenceType8189);
                     c1=parse_org_emftext_language_xpath2_ItemSequenceType();
@@ -17724,7 +17701,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_ValueExpr"
-    // Xpath2.g:9405:1: parse_org_emftext_language_xpath2_ValueExpr returns [org.emftext.language.xpath2.ValueExpr element = null] : c0= parse_org_emftext_language_xpath2_PathExpr ;
+    // Xpath2.g:9387:1: parse_org_emftext_language_xpath2_ValueExpr returns [org.emftext.language.xpath2.ValueExpr element = null] : c0= parse_org_emftext_language_xpath2_PathExpr ;
     public final org.emftext.language.xpath2.ValueExpr parse_org_emftext_language_xpath2_ValueExpr() throws RecognitionException {
         org.emftext.language.xpath2.ValueExpr element =  null;
 
@@ -17736,8 +17713,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 73) ) { return element; }
 
-            // Xpath2.g:9406:2: (c0= parse_org_emftext_language_xpath2_PathExpr )
-            // Xpath2.g:9407:2: c0= parse_org_emftext_language_xpath2_PathExpr
+            // Xpath2.g:9388:2: (c0= parse_org_emftext_language_xpath2_PathExpr )
+            // Xpath2.g:9389:2: c0= parse_org_emftext_language_xpath2_PathExpr
             {
             pushFollow(FOLLOW_parse_org_emftext_language_xpath2_PathExpr_in_parse_org_emftext_language_xpath2_ValueExpr8210);
             c0=parse_org_emftext_language_xpath2_PathExpr();
@@ -17767,7 +17744,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_PrimaryExpr"
-    // Xpath2.g:9411:1: parse_org_emftext_language_xpath2_PrimaryExpr returns [org.emftext.language.xpath2.PrimaryExpr element = null] : (c0= parse_org_emftext_language_xpath2_FunctionCall |c1= parse_org_emftext_language_xpath2_VarRef |c2= parse_org_emftext_language_xpath2_ParenthesizedExpr |c3= parse_org_emftext_language_xpath2_ContextItemExpr |c4= parse_org_emftext_language_xpath2_IntegerLiteral |c5= parse_org_emftext_language_xpath2_DecimalLiteral |c6= parse_org_emftext_language_xpath2_DoubleLiteral |c7= parse_org_emftext_language_xpath2_StringLiteral );
+    // Xpath2.g:9393:1: parse_org_emftext_language_xpath2_PrimaryExpr returns [org.emftext.language.xpath2.PrimaryExpr element = null] : (c0= parse_org_emftext_language_xpath2_FunctionCall |c1= parse_org_emftext_language_xpath2_VarRef |c2= parse_org_emftext_language_xpath2_ParenthesizedExpr |c3= parse_org_emftext_language_xpath2_ContextItemExpr |c4= parse_org_emftext_language_xpath2_IntegerLiteral |c5= parse_org_emftext_language_xpath2_DecimalLiteral |c6= parse_org_emftext_language_xpath2_DoubleLiteral |c7= parse_org_emftext_language_xpath2_StringLiteral );
     public final org.emftext.language.xpath2.PrimaryExpr parse_org_emftext_language_xpath2_PrimaryExpr() throws RecognitionException {
         org.emftext.language.xpath2.PrimaryExpr element =  null;
 
@@ -17793,7 +17770,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 74) ) { return element; }
 
-            // Xpath2.g:9412:2: (c0= parse_org_emftext_language_xpath2_FunctionCall |c1= parse_org_emftext_language_xpath2_VarRef |c2= parse_org_emftext_language_xpath2_ParenthesizedExpr |c3= parse_org_emftext_language_xpath2_ContextItemExpr |c4= parse_org_emftext_language_xpath2_IntegerLiteral |c5= parse_org_emftext_language_xpath2_DecimalLiteral |c6= parse_org_emftext_language_xpath2_DoubleLiteral |c7= parse_org_emftext_language_xpath2_StringLiteral )
+            // Xpath2.g:9394:2: (c0= parse_org_emftext_language_xpath2_FunctionCall |c1= parse_org_emftext_language_xpath2_VarRef |c2= parse_org_emftext_language_xpath2_ParenthesizedExpr |c3= parse_org_emftext_language_xpath2_ContextItemExpr |c4= parse_org_emftext_language_xpath2_IntegerLiteral |c5= parse_org_emftext_language_xpath2_DecimalLiteral |c6= parse_org_emftext_language_xpath2_DoubleLiteral |c7= parse_org_emftext_language_xpath2_StringLiteral )
             int alt75=8;
             switch ( input.LA(1) ) {
             case NCNAME:
@@ -17848,7 +17825,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt75) {
                 case 1 :
-                    // Xpath2.g:9413:2: c0= parse_org_emftext_language_xpath2_FunctionCall
+                    // Xpath2.g:9395:2: c0= parse_org_emftext_language_xpath2_FunctionCall
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_FunctionCall_in_parse_org_emftext_language_xpath2_PrimaryExpr8231);
                     c0=parse_org_emftext_language_xpath2_FunctionCall();
@@ -17861,7 +17838,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:9414:4: c1= parse_org_emftext_language_xpath2_VarRef
+                    // Xpath2.g:9396:4: c1= parse_org_emftext_language_xpath2_VarRef
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_VarRef_in_parse_org_emftext_language_xpath2_PrimaryExpr8241);
                     c1=parse_org_emftext_language_xpath2_VarRef();
@@ -17874,7 +17851,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:9415:4: c2= parse_org_emftext_language_xpath2_ParenthesizedExpr
+                    // Xpath2.g:9397:4: c2= parse_org_emftext_language_xpath2_ParenthesizedExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ParenthesizedExpr_in_parse_org_emftext_language_xpath2_PrimaryExpr8251);
                     c2=parse_org_emftext_language_xpath2_ParenthesizedExpr();
@@ -17887,7 +17864,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xpath2.g:9416:4: c3= parse_org_emftext_language_xpath2_ContextItemExpr
+                    // Xpath2.g:9398:4: c3= parse_org_emftext_language_xpath2_ContextItemExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ContextItemExpr_in_parse_org_emftext_language_xpath2_PrimaryExpr8261);
                     c3=parse_org_emftext_language_xpath2_ContextItemExpr();
@@ -17900,7 +17877,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xpath2.g:9417:4: c4= parse_org_emftext_language_xpath2_IntegerLiteral
+                    // Xpath2.g:9399:4: c4= parse_org_emftext_language_xpath2_IntegerLiteral
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IntegerLiteral_in_parse_org_emftext_language_xpath2_PrimaryExpr8271);
                     c4=parse_org_emftext_language_xpath2_IntegerLiteral();
@@ -17913,7 +17890,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 6 :
-                    // Xpath2.g:9418:4: c5= parse_org_emftext_language_xpath2_DecimalLiteral
+                    // Xpath2.g:9400:4: c5= parse_org_emftext_language_xpath2_DecimalLiteral
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DecimalLiteral_in_parse_org_emftext_language_xpath2_PrimaryExpr8281);
                     c5=parse_org_emftext_language_xpath2_DecimalLiteral();
@@ -17926,7 +17903,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 7 :
-                    // Xpath2.g:9419:4: c6= parse_org_emftext_language_xpath2_DoubleLiteral
+                    // Xpath2.g:9401:4: c6= parse_org_emftext_language_xpath2_DoubleLiteral
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DoubleLiteral_in_parse_org_emftext_language_xpath2_PrimaryExpr8291);
                     c6=parse_org_emftext_language_xpath2_DoubleLiteral();
@@ -17939,7 +17916,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 8 :
-                    // Xpath2.g:9420:4: c7= parse_org_emftext_language_xpath2_StringLiteral
+                    // Xpath2.g:9402:4: c7= parse_org_emftext_language_xpath2_StringLiteral
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_StringLiteral_in_parse_org_emftext_language_xpath2_PrimaryExpr8301);
                     c7=parse_org_emftext_language_xpath2_StringLiteral();
@@ -17971,7 +17948,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_PathExprChild"
-    // Xpath2.g:9424:1: parse_org_emftext_language_xpath2_PathExprChild returns [org.emftext.language.xpath2.PathExprChild element = null] : (c0= parse_org_emftext_language_xpath2_FilterExpr |c1= parse_org_emftext_language_xpath2_FunctionCall |c2= parse_org_emftext_language_xpath2_ChildStepExpr |c3= parse_org_emftext_language_xpath2_DescOrSelfStepExpr |c4= parse_org_emftext_language_xpath2_RootStepExpr |c5= parse_org_emftext_language_xpath2_SelfStepExpr |c6= parse_org_emftext_language_xpath2_GeneralForwardStep |c7= parse_org_emftext_language_xpath2_AbbrevForwardStep |c8= parse_org_emftext_language_xpath2_GeneralReverseStep |c9= parse_org_emftext_language_xpath2_AbbrevReverseStep |c10= parse_org_emftext_language_xpath2_VarRef |c11= parse_org_emftext_language_xpath2_ParenthesizedExpr |c12= parse_org_emftext_language_xpath2_ContextItemExpr |c13= parse_org_emftext_language_xpath2_IntegerLiteral |c14= parse_org_emftext_language_xpath2_DecimalLiteral |c15= parse_org_emftext_language_xpath2_DoubleLiteral |c16= parse_org_emftext_language_xpath2_StringLiteral );
+    // Xpath2.g:9406:1: parse_org_emftext_language_xpath2_PathExprChild returns [org.emftext.language.xpath2.PathExprChild element = null] : (c0= parse_org_emftext_language_xpath2_FilterExpr |c1= parse_org_emftext_language_xpath2_FunctionCall |c2= parse_org_emftext_language_xpath2_ChildStepExpr |c3= parse_org_emftext_language_xpath2_DescOrSelfStepExpr |c4= parse_org_emftext_language_xpath2_RootStepExpr |c5= parse_org_emftext_language_xpath2_SelfStepExpr |c6= parse_org_emftext_language_xpath2_GeneralForwardStep |c7= parse_org_emftext_language_xpath2_AbbrevForwardStep |c8= parse_org_emftext_language_xpath2_GeneralReverseStep |c9= parse_org_emftext_language_xpath2_AbbrevReverseStep |c10= parse_org_emftext_language_xpath2_VarRef |c11= parse_org_emftext_language_xpath2_ParenthesizedExpr |c12= parse_org_emftext_language_xpath2_ContextItemExpr |c13= parse_org_emftext_language_xpath2_IntegerLiteral |c14= parse_org_emftext_language_xpath2_DecimalLiteral |c15= parse_org_emftext_language_xpath2_DoubleLiteral |c16= parse_org_emftext_language_xpath2_StringLiteral );
     public final org.emftext.language.xpath2.PathExprChild parse_org_emftext_language_xpath2_PathExprChild() throws RecognitionException {
         org.emftext.language.xpath2.PathExprChild element =  null;
 
@@ -18015,7 +17992,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 75) ) { return element; }
 
-            // Xpath2.g:9425:2: (c0= parse_org_emftext_language_xpath2_FilterExpr |c1= parse_org_emftext_language_xpath2_FunctionCall |c2= parse_org_emftext_language_xpath2_ChildStepExpr |c3= parse_org_emftext_language_xpath2_DescOrSelfStepExpr |c4= parse_org_emftext_language_xpath2_RootStepExpr |c5= parse_org_emftext_language_xpath2_SelfStepExpr |c6= parse_org_emftext_language_xpath2_GeneralForwardStep |c7= parse_org_emftext_language_xpath2_AbbrevForwardStep |c8= parse_org_emftext_language_xpath2_GeneralReverseStep |c9= parse_org_emftext_language_xpath2_AbbrevReverseStep |c10= parse_org_emftext_language_xpath2_VarRef |c11= parse_org_emftext_language_xpath2_ParenthesizedExpr |c12= parse_org_emftext_language_xpath2_ContextItemExpr |c13= parse_org_emftext_language_xpath2_IntegerLiteral |c14= parse_org_emftext_language_xpath2_DecimalLiteral |c15= parse_org_emftext_language_xpath2_DoubleLiteral |c16= parse_org_emftext_language_xpath2_StringLiteral )
+            // Xpath2.g:9407:2: (c0= parse_org_emftext_language_xpath2_FilterExpr |c1= parse_org_emftext_language_xpath2_FunctionCall |c2= parse_org_emftext_language_xpath2_ChildStepExpr |c3= parse_org_emftext_language_xpath2_DescOrSelfStepExpr |c4= parse_org_emftext_language_xpath2_RootStepExpr |c5= parse_org_emftext_language_xpath2_SelfStepExpr |c6= parse_org_emftext_language_xpath2_GeneralForwardStep |c7= parse_org_emftext_language_xpath2_AbbrevForwardStep |c8= parse_org_emftext_language_xpath2_GeneralReverseStep |c9= parse_org_emftext_language_xpath2_AbbrevReverseStep |c10= parse_org_emftext_language_xpath2_VarRef |c11= parse_org_emftext_language_xpath2_ParenthesizedExpr |c12= parse_org_emftext_language_xpath2_ContextItemExpr |c13= parse_org_emftext_language_xpath2_IntegerLiteral |c14= parse_org_emftext_language_xpath2_DecimalLiteral |c15= parse_org_emftext_language_xpath2_DoubleLiteral |c16= parse_org_emftext_language_xpath2_StringLiteral )
             int alt76=17;
             switch ( input.LA(1) ) {
             case QNAME:
@@ -18750,7 +18727,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt76) {
                 case 1 :
-                    // Xpath2.g:9426:2: c0= parse_org_emftext_language_xpath2_FilterExpr
+                    // Xpath2.g:9408:2: c0= parse_org_emftext_language_xpath2_FilterExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_FilterExpr_in_parse_org_emftext_language_xpath2_PathExprChild8322);
                     c0=parse_org_emftext_language_xpath2_FilterExpr();
@@ -18763,7 +18740,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:9427:4: c1= parse_org_emftext_language_xpath2_FunctionCall
+                    // Xpath2.g:9409:4: c1= parse_org_emftext_language_xpath2_FunctionCall
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_FunctionCall_in_parse_org_emftext_language_xpath2_PathExprChild8332);
                     c1=parse_org_emftext_language_xpath2_FunctionCall();
@@ -18776,7 +18753,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:9428:4: c2= parse_org_emftext_language_xpath2_ChildStepExpr
+                    // Xpath2.g:9410:4: c2= parse_org_emftext_language_xpath2_ChildStepExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ChildStepExpr_in_parse_org_emftext_language_xpath2_PathExprChild8342);
                     c2=parse_org_emftext_language_xpath2_ChildStepExpr();
@@ -18789,7 +18766,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xpath2.g:9429:4: c3= parse_org_emftext_language_xpath2_DescOrSelfStepExpr
+                    // Xpath2.g:9411:4: c3= parse_org_emftext_language_xpath2_DescOrSelfStepExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DescOrSelfStepExpr_in_parse_org_emftext_language_xpath2_PathExprChild8352);
                     c3=parse_org_emftext_language_xpath2_DescOrSelfStepExpr();
@@ -18802,7 +18779,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xpath2.g:9430:4: c4= parse_org_emftext_language_xpath2_RootStepExpr
+                    // Xpath2.g:9412:4: c4= parse_org_emftext_language_xpath2_RootStepExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_RootStepExpr_in_parse_org_emftext_language_xpath2_PathExprChild8362);
                     c4=parse_org_emftext_language_xpath2_RootStepExpr();
@@ -18815,7 +18792,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 6 :
-                    // Xpath2.g:9431:4: c5= parse_org_emftext_language_xpath2_SelfStepExpr
+                    // Xpath2.g:9413:4: c5= parse_org_emftext_language_xpath2_SelfStepExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_SelfStepExpr_in_parse_org_emftext_language_xpath2_PathExprChild8372);
                     c5=parse_org_emftext_language_xpath2_SelfStepExpr();
@@ -18828,7 +18805,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 7 :
-                    // Xpath2.g:9432:4: c6= parse_org_emftext_language_xpath2_GeneralForwardStep
+                    // Xpath2.g:9414:4: c6= parse_org_emftext_language_xpath2_GeneralForwardStep
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_GeneralForwardStep_in_parse_org_emftext_language_xpath2_PathExprChild8382);
                     c6=parse_org_emftext_language_xpath2_GeneralForwardStep();
@@ -18841,7 +18818,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 8 :
-                    // Xpath2.g:9433:4: c7= parse_org_emftext_language_xpath2_AbbrevForwardStep
+                    // Xpath2.g:9415:4: c7= parse_org_emftext_language_xpath2_AbbrevForwardStep
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AbbrevForwardStep_in_parse_org_emftext_language_xpath2_PathExprChild8392);
                     c7=parse_org_emftext_language_xpath2_AbbrevForwardStep();
@@ -18854,7 +18831,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 9 :
-                    // Xpath2.g:9434:4: c8= parse_org_emftext_language_xpath2_GeneralReverseStep
+                    // Xpath2.g:9416:4: c8= parse_org_emftext_language_xpath2_GeneralReverseStep
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_GeneralReverseStep_in_parse_org_emftext_language_xpath2_PathExprChild8402);
                     c8=parse_org_emftext_language_xpath2_GeneralReverseStep();
@@ -18867,7 +18844,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 10 :
-                    // Xpath2.g:9435:4: c9= parse_org_emftext_language_xpath2_AbbrevReverseStep
+                    // Xpath2.g:9417:4: c9= parse_org_emftext_language_xpath2_AbbrevReverseStep
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AbbrevReverseStep_in_parse_org_emftext_language_xpath2_PathExprChild8412);
                     c9=parse_org_emftext_language_xpath2_AbbrevReverseStep();
@@ -18880,7 +18857,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 11 :
-                    // Xpath2.g:9436:4: c10= parse_org_emftext_language_xpath2_VarRef
+                    // Xpath2.g:9418:4: c10= parse_org_emftext_language_xpath2_VarRef
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_VarRef_in_parse_org_emftext_language_xpath2_PathExprChild8422);
                     c10=parse_org_emftext_language_xpath2_VarRef();
@@ -18893,7 +18870,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 12 :
-                    // Xpath2.g:9437:4: c11= parse_org_emftext_language_xpath2_ParenthesizedExpr
+                    // Xpath2.g:9419:4: c11= parse_org_emftext_language_xpath2_ParenthesizedExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ParenthesizedExpr_in_parse_org_emftext_language_xpath2_PathExprChild8432);
                     c11=parse_org_emftext_language_xpath2_ParenthesizedExpr();
@@ -18906,7 +18883,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 13 :
-                    // Xpath2.g:9438:4: c12= parse_org_emftext_language_xpath2_ContextItemExpr
+                    // Xpath2.g:9420:4: c12= parse_org_emftext_language_xpath2_ContextItemExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ContextItemExpr_in_parse_org_emftext_language_xpath2_PathExprChild8442);
                     c12=parse_org_emftext_language_xpath2_ContextItemExpr();
@@ -18919,7 +18896,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 14 :
-                    // Xpath2.g:9439:4: c13= parse_org_emftext_language_xpath2_IntegerLiteral
+                    // Xpath2.g:9421:4: c13= parse_org_emftext_language_xpath2_IntegerLiteral
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IntegerLiteral_in_parse_org_emftext_language_xpath2_PathExprChild8452);
                     c13=parse_org_emftext_language_xpath2_IntegerLiteral();
@@ -18932,7 +18909,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 15 :
-                    // Xpath2.g:9440:4: c14= parse_org_emftext_language_xpath2_DecimalLiteral
+                    // Xpath2.g:9422:4: c14= parse_org_emftext_language_xpath2_DecimalLiteral
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DecimalLiteral_in_parse_org_emftext_language_xpath2_PathExprChild8462);
                     c14=parse_org_emftext_language_xpath2_DecimalLiteral();
@@ -18945,7 +18922,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 16 :
-                    // Xpath2.g:9441:4: c15= parse_org_emftext_language_xpath2_DoubleLiteral
+                    // Xpath2.g:9423:4: c15= parse_org_emftext_language_xpath2_DoubleLiteral
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DoubleLiteral_in_parse_org_emftext_language_xpath2_PathExprChild8472);
                     c15=parse_org_emftext_language_xpath2_DoubleLiteral();
@@ -18958,7 +18935,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 17 :
-                    // Xpath2.g:9442:4: c16= parse_org_emftext_language_xpath2_StringLiteral
+                    // Xpath2.g:9424:4: c16= parse_org_emftext_language_xpath2_StringLiteral
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_StringLiteral_in_parse_org_emftext_language_xpath2_PathExprChild8482);
                     c16=parse_org_emftext_language_xpath2_StringLiteral();
@@ -18990,7 +18967,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_StepExpr"
-    // Xpath2.g:9446:1: parse_org_emftext_language_xpath2_StepExpr returns [org.emftext.language.xpath2.StepExpr element = null] : (c0= parse_org_emftext_language_xpath2_FilterExpr |c1= parse_org_emftext_language_xpath2_GeneralForwardStep |c2= parse_org_emftext_language_xpath2_AbbrevForwardStep |c3= parse_org_emftext_language_xpath2_GeneralReverseStep |c4= parse_org_emftext_language_xpath2_AbbrevReverseStep );
+    // Xpath2.g:9428:1: parse_org_emftext_language_xpath2_StepExpr returns [org.emftext.language.xpath2.StepExpr element = null] : (c0= parse_org_emftext_language_xpath2_FilterExpr |c1= parse_org_emftext_language_xpath2_GeneralForwardStep |c2= parse_org_emftext_language_xpath2_AbbrevForwardStep |c3= parse_org_emftext_language_xpath2_GeneralReverseStep |c4= parse_org_emftext_language_xpath2_AbbrevReverseStep );
     public final org.emftext.language.xpath2.StepExpr parse_org_emftext_language_xpath2_StepExpr() throws RecognitionException {
         org.emftext.language.xpath2.StepExpr element =  null;
 
@@ -19010,7 +18987,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 76) ) { return element; }
 
-            // Xpath2.g:9447:2: (c0= parse_org_emftext_language_xpath2_FilterExpr |c1= parse_org_emftext_language_xpath2_GeneralForwardStep |c2= parse_org_emftext_language_xpath2_AbbrevForwardStep |c3= parse_org_emftext_language_xpath2_GeneralReverseStep |c4= parse_org_emftext_language_xpath2_AbbrevReverseStep )
+            // Xpath2.g:9429:2: (c0= parse_org_emftext_language_xpath2_FilterExpr |c1= parse_org_emftext_language_xpath2_GeneralForwardStep |c2= parse_org_emftext_language_xpath2_AbbrevForwardStep |c3= parse_org_emftext_language_xpath2_GeneralReverseStep |c4= parse_org_emftext_language_xpath2_AbbrevReverseStep )
             int alt77=5;
             switch ( input.LA(1) ) {
             case QNAME:
@@ -19134,7 +19111,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt77) {
                 case 1 :
-                    // Xpath2.g:9448:2: c0= parse_org_emftext_language_xpath2_FilterExpr
+                    // Xpath2.g:9430:2: c0= parse_org_emftext_language_xpath2_FilterExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_FilterExpr_in_parse_org_emftext_language_xpath2_StepExpr8503);
                     c0=parse_org_emftext_language_xpath2_FilterExpr();
@@ -19147,7 +19124,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:9449:4: c1= parse_org_emftext_language_xpath2_GeneralForwardStep
+                    // Xpath2.g:9431:4: c1= parse_org_emftext_language_xpath2_GeneralForwardStep
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_GeneralForwardStep_in_parse_org_emftext_language_xpath2_StepExpr8513);
                     c1=parse_org_emftext_language_xpath2_GeneralForwardStep();
@@ -19160,7 +19137,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:9450:4: c2= parse_org_emftext_language_xpath2_AbbrevForwardStep
+                    // Xpath2.g:9432:4: c2= parse_org_emftext_language_xpath2_AbbrevForwardStep
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AbbrevForwardStep_in_parse_org_emftext_language_xpath2_StepExpr8523);
                     c2=parse_org_emftext_language_xpath2_AbbrevForwardStep();
@@ -19173,7 +19150,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xpath2.g:9451:4: c3= parse_org_emftext_language_xpath2_GeneralReverseStep
+                    // Xpath2.g:9433:4: c3= parse_org_emftext_language_xpath2_GeneralReverseStep
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_GeneralReverseStep_in_parse_org_emftext_language_xpath2_StepExpr8533);
                     c3=parse_org_emftext_language_xpath2_GeneralReverseStep();
@@ -19186,7 +19163,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xpath2.g:9452:4: c4= parse_org_emftext_language_xpath2_AbbrevReverseStep
+                    // Xpath2.g:9434:4: c4= parse_org_emftext_language_xpath2_AbbrevReverseStep
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AbbrevReverseStep_in_parse_org_emftext_language_xpath2_StepExpr8543);
                     c4=parse_org_emftext_language_xpath2_AbbrevReverseStep();
@@ -19218,7 +19195,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_SelfStepExprChild"
-    // Xpath2.g:9456:1: parse_org_emftext_language_xpath2_SelfStepExprChild returns [org.emftext.language.xpath2.SelfStepExprChild element = null] : (c0= parse_org_emftext_language_xpath2_FilterExpr |c1= parse_org_emftext_language_xpath2_FunctionCall |c2= parse_org_emftext_language_xpath2_GeneralForwardStep |c3= parse_org_emftext_language_xpath2_AbbrevForwardStep |c4= parse_org_emftext_language_xpath2_GeneralReverseStep |c5= parse_org_emftext_language_xpath2_AbbrevReverseStep |c6= parse_org_emftext_language_xpath2_VarRef |c7= parse_org_emftext_language_xpath2_ParenthesizedExpr |c8= parse_org_emftext_language_xpath2_ContextItemExpr |c9= parse_org_emftext_language_xpath2_IntegerLiteral |c10= parse_org_emftext_language_xpath2_DecimalLiteral |c11= parse_org_emftext_language_xpath2_DoubleLiteral |c12= parse_org_emftext_language_xpath2_StringLiteral );
+    // Xpath2.g:9438:1: parse_org_emftext_language_xpath2_SelfStepExprChild returns [org.emftext.language.xpath2.SelfStepExprChild element = null] : (c0= parse_org_emftext_language_xpath2_FilterExpr |c1= parse_org_emftext_language_xpath2_FunctionCall |c2= parse_org_emftext_language_xpath2_GeneralForwardStep |c3= parse_org_emftext_language_xpath2_AbbrevForwardStep |c4= parse_org_emftext_language_xpath2_GeneralReverseStep |c5= parse_org_emftext_language_xpath2_AbbrevReverseStep |c6= parse_org_emftext_language_xpath2_VarRef |c7= parse_org_emftext_language_xpath2_ParenthesizedExpr |c8= parse_org_emftext_language_xpath2_ContextItemExpr |c9= parse_org_emftext_language_xpath2_IntegerLiteral |c10= parse_org_emftext_language_xpath2_DecimalLiteral |c11= parse_org_emftext_language_xpath2_DoubleLiteral |c12= parse_org_emftext_language_xpath2_StringLiteral );
     public final org.emftext.language.xpath2.SelfStepExprChild parse_org_emftext_language_xpath2_SelfStepExprChild() throws RecognitionException {
         org.emftext.language.xpath2.SelfStepExprChild element =  null;
 
@@ -19254,7 +19231,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 77) ) { return element; }
 
-            // Xpath2.g:9457:2: (c0= parse_org_emftext_language_xpath2_FilterExpr |c1= parse_org_emftext_language_xpath2_FunctionCall |c2= parse_org_emftext_language_xpath2_GeneralForwardStep |c3= parse_org_emftext_language_xpath2_AbbrevForwardStep |c4= parse_org_emftext_language_xpath2_GeneralReverseStep |c5= parse_org_emftext_language_xpath2_AbbrevReverseStep |c6= parse_org_emftext_language_xpath2_VarRef |c7= parse_org_emftext_language_xpath2_ParenthesizedExpr |c8= parse_org_emftext_language_xpath2_ContextItemExpr |c9= parse_org_emftext_language_xpath2_IntegerLiteral |c10= parse_org_emftext_language_xpath2_DecimalLiteral |c11= parse_org_emftext_language_xpath2_DoubleLiteral |c12= parse_org_emftext_language_xpath2_StringLiteral )
+            // Xpath2.g:9439:2: (c0= parse_org_emftext_language_xpath2_FilterExpr |c1= parse_org_emftext_language_xpath2_FunctionCall |c2= parse_org_emftext_language_xpath2_GeneralForwardStep |c3= parse_org_emftext_language_xpath2_AbbrevForwardStep |c4= parse_org_emftext_language_xpath2_GeneralReverseStep |c5= parse_org_emftext_language_xpath2_AbbrevReverseStep |c6= parse_org_emftext_language_xpath2_VarRef |c7= parse_org_emftext_language_xpath2_ParenthesizedExpr |c8= parse_org_emftext_language_xpath2_ContextItemExpr |c9= parse_org_emftext_language_xpath2_IntegerLiteral |c10= parse_org_emftext_language_xpath2_DecimalLiteral |c11= parse_org_emftext_language_xpath2_DoubleLiteral |c12= parse_org_emftext_language_xpath2_StringLiteral )
             int alt78=13;
             switch ( input.LA(1) ) {
             case QNAME:
@@ -19513,7 +19490,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt78) {
                 case 1 :
-                    // Xpath2.g:9458:2: c0= parse_org_emftext_language_xpath2_FilterExpr
+                    // Xpath2.g:9440:2: c0= parse_org_emftext_language_xpath2_FilterExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_FilterExpr_in_parse_org_emftext_language_xpath2_SelfStepExprChild8564);
                     c0=parse_org_emftext_language_xpath2_FilterExpr();
@@ -19526,7 +19503,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:9459:4: c1= parse_org_emftext_language_xpath2_FunctionCall
+                    // Xpath2.g:9441:4: c1= parse_org_emftext_language_xpath2_FunctionCall
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_FunctionCall_in_parse_org_emftext_language_xpath2_SelfStepExprChild8574);
                     c1=parse_org_emftext_language_xpath2_FunctionCall();
@@ -19539,7 +19516,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:9460:4: c2= parse_org_emftext_language_xpath2_GeneralForwardStep
+                    // Xpath2.g:9442:4: c2= parse_org_emftext_language_xpath2_GeneralForwardStep
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_GeneralForwardStep_in_parse_org_emftext_language_xpath2_SelfStepExprChild8584);
                     c2=parse_org_emftext_language_xpath2_GeneralForwardStep();
@@ -19552,7 +19529,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xpath2.g:9461:4: c3= parse_org_emftext_language_xpath2_AbbrevForwardStep
+                    // Xpath2.g:9443:4: c3= parse_org_emftext_language_xpath2_AbbrevForwardStep
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AbbrevForwardStep_in_parse_org_emftext_language_xpath2_SelfStepExprChild8594);
                     c3=parse_org_emftext_language_xpath2_AbbrevForwardStep();
@@ -19565,7 +19542,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xpath2.g:9462:4: c4= parse_org_emftext_language_xpath2_GeneralReverseStep
+                    // Xpath2.g:9444:4: c4= parse_org_emftext_language_xpath2_GeneralReverseStep
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_GeneralReverseStep_in_parse_org_emftext_language_xpath2_SelfStepExprChild8604);
                     c4=parse_org_emftext_language_xpath2_GeneralReverseStep();
@@ -19578,7 +19555,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 6 :
-                    // Xpath2.g:9463:4: c5= parse_org_emftext_language_xpath2_AbbrevReverseStep
+                    // Xpath2.g:9445:4: c5= parse_org_emftext_language_xpath2_AbbrevReverseStep
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AbbrevReverseStep_in_parse_org_emftext_language_xpath2_SelfStepExprChild8614);
                     c5=parse_org_emftext_language_xpath2_AbbrevReverseStep();
@@ -19591,7 +19568,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 7 :
-                    // Xpath2.g:9464:4: c6= parse_org_emftext_language_xpath2_VarRef
+                    // Xpath2.g:9446:4: c6= parse_org_emftext_language_xpath2_VarRef
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_VarRef_in_parse_org_emftext_language_xpath2_SelfStepExprChild8624);
                     c6=parse_org_emftext_language_xpath2_VarRef();
@@ -19604,7 +19581,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 8 :
-                    // Xpath2.g:9465:4: c7= parse_org_emftext_language_xpath2_ParenthesizedExpr
+                    // Xpath2.g:9447:4: c7= parse_org_emftext_language_xpath2_ParenthesizedExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ParenthesizedExpr_in_parse_org_emftext_language_xpath2_SelfStepExprChild8634);
                     c7=parse_org_emftext_language_xpath2_ParenthesizedExpr();
@@ -19617,7 +19594,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 9 :
-                    // Xpath2.g:9466:4: c8= parse_org_emftext_language_xpath2_ContextItemExpr
+                    // Xpath2.g:9448:4: c8= parse_org_emftext_language_xpath2_ContextItemExpr
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ContextItemExpr_in_parse_org_emftext_language_xpath2_SelfStepExprChild8644);
                     c8=parse_org_emftext_language_xpath2_ContextItemExpr();
@@ -19630,7 +19607,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 10 :
-                    // Xpath2.g:9467:4: c9= parse_org_emftext_language_xpath2_IntegerLiteral
+                    // Xpath2.g:9449:4: c9= parse_org_emftext_language_xpath2_IntegerLiteral
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IntegerLiteral_in_parse_org_emftext_language_xpath2_SelfStepExprChild8654);
                     c9=parse_org_emftext_language_xpath2_IntegerLiteral();
@@ -19643,7 +19620,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 11 :
-                    // Xpath2.g:9468:4: c10= parse_org_emftext_language_xpath2_DecimalLiteral
+                    // Xpath2.g:9450:4: c10= parse_org_emftext_language_xpath2_DecimalLiteral
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DecimalLiteral_in_parse_org_emftext_language_xpath2_SelfStepExprChild8664);
                     c10=parse_org_emftext_language_xpath2_DecimalLiteral();
@@ -19656,7 +19633,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 12 :
-                    // Xpath2.g:9469:4: c11= parse_org_emftext_language_xpath2_DoubleLiteral
+                    // Xpath2.g:9451:4: c11= parse_org_emftext_language_xpath2_DoubleLiteral
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DoubleLiteral_in_parse_org_emftext_language_xpath2_SelfStepExprChild8674);
                     c11=parse_org_emftext_language_xpath2_DoubleLiteral();
@@ -19669,7 +19646,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 13 :
-                    // Xpath2.g:9470:4: c12= parse_org_emftext_language_xpath2_StringLiteral
+                    // Xpath2.g:9452:4: c12= parse_org_emftext_language_xpath2_StringLiteral
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_StringLiteral_in_parse_org_emftext_language_xpath2_SelfStepExprChild8684);
                     c12=parse_org_emftext_language_xpath2_StringLiteral();
@@ -19701,7 +19678,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_NodeTest"
-    // Xpath2.g:9474:1: parse_org_emftext_language_xpath2_NodeTest returns [org.emftext.language.xpath2.NodeTest element = null] : (c0= parse_org_emftext_language_xpath2_NodeKindTest |c1= parse_org_emftext_language_xpath2_QNameTest |c2= parse_org_emftext_language_xpath2_AnyWildcard |c3= parse_org_emftext_language_xpath2_LocalNameWildcard |c4= parse_org_emftext_language_xpath2_NamespaceWildcard );
+    // Xpath2.g:9456:1: parse_org_emftext_language_xpath2_NodeTest returns [org.emftext.language.xpath2.NodeTest element = null] : (c0= parse_org_emftext_language_xpath2_NodeKindTest |c1= parse_org_emftext_language_xpath2_QNameTest |c2= parse_org_emftext_language_xpath2_AnyWildcard |c3= parse_org_emftext_language_xpath2_LocalNameWildcard |c4= parse_org_emftext_language_xpath2_NamespaceWildcard );
     public final org.emftext.language.xpath2.NodeTest parse_org_emftext_language_xpath2_NodeTest() throws RecognitionException {
         org.emftext.language.xpath2.NodeTest element =  null;
 
@@ -19721,7 +19698,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 78) ) { return element; }
 
-            // Xpath2.g:9475:2: (c0= parse_org_emftext_language_xpath2_NodeKindTest |c1= parse_org_emftext_language_xpath2_QNameTest |c2= parse_org_emftext_language_xpath2_AnyWildcard |c3= parse_org_emftext_language_xpath2_LocalNameWildcard |c4= parse_org_emftext_language_xpath2_NamespaceWildcard )
+            // Xpath2.g:9457:2: (c0= parse_org_emftext_language_xpath2_NodeKindTest |c1= parse_org_emftext_language_xpath2_QNameTest |c2= parse_org_emftext_language_xpath2_AnyWildcard |c3= parse_org_emftext_language_xpath2_LocalNameWildcard |c4= parse_org_emftext_language_xpath2_NamespaceWildcard )
             int alt79=5;
             switch ( input.LA(1) ) {
             case 40:
@@ -19793,7 +19770,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt79) {
                 case 1 :
-                    // Xpath2.g:9476:2: c0= parse_org_emftext_language_xpath2_NodeKindTest
+                    // Xpath2.g:9458:2: c0= parse_org_emftext_language_xpath2_NodeKindTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_NodeKindTest_in_parse_org_emftext_language_xpath2_NodeTest8705);
                     c0=parse_org_emftext_language_xpath2_NodeKindTest();
@@ -19806,7 +19783,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:9477:4: c1= parse_org_emftext_language_xpath2_QNameTest
+                    // Xpath2.g:9459:4: c1= parse_org_emftext_language_xpath2_QNameTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_QNameTest_in_parse_org_emftext_language_xpath2_NodeTest8715);
                     c1=parse_org_emftext_language_xpath2_QNameTest();
@@ -19819,7 +19796,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:9478:4: c2= parse_org_emftext_language_xpath2_AnyWildcard
+                    // Xpath2.g:9460:4: c2= parse_org_emftext_language_xpath2_AnyWildcard
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AnyWildcard_in_parse_org_emftext_language_xpath2_NodeTest8725);
                     c2=parse_org_emftext_language_xpath2_AnyWildcard();
@@ -19832,7 +19809,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xpath2.g:9479:4: c3= parse_org_emftext_language_xpath2_LocalNameWildcard
+                    // Xpath2.g:9461:4: c3= parse_org_emftext_language_xpath2_LocalNameWildcard
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_LocalNameWildcard_in_parse_org_emftext_language_xpath2_NodeTest8735);
                     c3=parse_org_emftext_language_xpath2_LocalNameWildcard();
@@ -19845,7 +19822,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xpath2.g:9480:4: c4= parse_org_emftext_language_xpath2_NamespaceWildcard
+                    // Xpath2.g:9462:4: c4= parse_org_emftext_language_xpath2_NamespaceWildcard
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_NamespaceWildcard_in_parse_org_emftext_language_xpath2_NodeTest8745);
                     c4=parse_org_emftext_language_xpath2_NamespaceWildcard();
@@ -19877,7 +19854,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_KindTest"
-    // Xpath2.g:9484:1: parse_org_emftext_language_xpath2_KindTest returns [org.emftext.language.xpath2.KindTest element = null] : (c0= parse_org_emftext_language_xpath2_AnyKindTest |c1= parse_org_emftext_language_xpath2_DocumentTest |c2= parse_org_emftext_language_xpath2_TextTest |c3= parse_org_emftext_language_xpath2_CommentTest |c4= parse_org_emftext_language_xpath2_PITest |c5= parse_org_emftext_language_xpath2_NCNamePITest |c6= parse_org_emftext_language_xpath2_StringLiteralPITest |c7= parse_org_emftext_language_xpath2_AttributeTest |c8= parse_org_emftext_language_xpath2_WildcardAttributeTest |c9= parse_org_emftext_language_xpath2_NameAttributeTest |c10= parse_org_emftext_language_xpath2_SchemaAttributeTest |c11= parse_org_emftext_language_xpath2_ElementTest |c12= parse_org_emftext_language_xpath2_WildcardElementTest |c13= parse_org_emftext_language_xpath2_NameElementTest |c14= parse_org_emftext_language_xpath2_SchemaElementTest );
+    // Xpath2.g:9466:1: parse_org_emftext_language_xpath2_KindTest returns [org.emftext.language.xpath2.KindTest element = null] : (c0= parse_org_emftext_language_xpath2_AnyKindTest |c1= parse_org_emftext_language_xpath2_DocumentTest |c2= parse_org_emftext_language_xpath2_TextTest |c3= parse_org_emftext_language_xpath2_CommentTest |c4= parse_org_emftext_language_xpath2_PITest |c5= parse_org_emftext_language_xpath2_NCNamePITest |c6= parse_org_emftext_language_xpath2_StringLiteralPITest |c7= parse_org_emftext_language_xpath2_AttributeTest |c8= parse_org_emftext_language_xpath2_WildcardAttributeTest |c9= parse_org_emftext_language_xpath2_NameAttributeTest |c10= parse_org_emftext_language_xpath2_SchemaAttributeTest |c11= parse_org_emftext_language_xpath2_ElementTest |c12= parse_org_emftext_language_xpath2_WildcardElementTest |c13= parse_org_emftext_language_xpath2_NameElementTest |c14= parse_org_emftext_language_xpath2_SchemaElementTest );
     public final org.emftext.language.xpath2.KindTest parse_org_emftext_language_xpath2_KindTest() throws RecognitionException {
         org.emftext.language.xpath2.KindTest element =  null;
 
@@ -19917,7 +19894,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 79) ) { return element; }
 
-            // Xpath2.g:9485:2: (c0= parse_org_emftext_language_xpath2_AnyKindTest |c1= parse_org_emftext_language_xpath2_DocumentTest |c2= parse_org_emftext_language_xpath2_TextTest |c3= parse_org_emftext_language_xpath2_CommentTest |c4= parse_org_emftext_language_xpath2_PITest |c5= parse_org_emftext_language_xpath2_NCNamePITest |c6= parse_org_emftext_language_xpath2_StringLiteralPITest |c7= parse_org_emftext_language_xpath2_AttributeTest |c8= parse_org_emftext_language_xpath2_WildcardAttributeTest |c9= parse_org_emftext_language_xpath2_NameAttributeTest |c10= parse_org_emftext_language_xpath2_SchemaAttributeTest |c11= parse_org_emftext_language_xpath2_ElementTest |c12= parse_org_emftext_language_xpath2_WildcardElementTest |c13= parse_org_emftext_language_xpath2_NameElementTest |c14= parse_org_emftext_language_xpath2_SchemaElementTest )
+            // Xpath2.g:9467:2: (c0= parse_org_emftext_language_xpath2_AnyKindTest |c1= parse_org_emftext_language_xpath2_DocumentTest |c2= parse_org_emftext_language_xpath2_TextTest |c3= parse_org_emftext_language_xpath2_CommentTest |c4= parse_org_emftext_language_xpath2_PITest |c5= parse_org_emftext_language_xpath2_NCNamePITest |c6= parse_org_emftext_language_xpath2_StringLiteralPITest |c7= parse_org_emftext_language_xpath2_AttributeTest |c8= parse_org_emftext_language_xpath2_WildcardAttributeTest |c9= parse_org_emftext_language_xpath2_NameAttributeTest |c10= parse_org_emftext_language_xpath2_SchemaAttributeTest |c11= parse_org_emftext_language_xpath2_ElementTest |c12= parse_org_emftext_language_xpath2_WildcardElementTest |c13= parse_org_emftext_language_xpath2_NameElementTest |c14= parse_org_emftext_language_xpath2_SchemaElementTest )
             int alt80=15;
             switch ( input.LA(1) ) {
             case 72:
@@ -20922,7 +20899,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt80) {
                 case 1 :
-                    // Xpath2.g:9486:2: c0= parse_org_emftext_language_xpath2_AnyKindTest
+                    // Xpath2.g:9468:2: c0= parse_org_emftext_language_xpath2_AnyKindTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AnyKindTest_in_parse_org_emftext_language_xpath2_KindTest8766);
                     c0=parse_org_emftext_language_xpath2_AnyKindTest();
@@ -20935,7 +20912,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:9487:4: c1= parse_org_emftext_language_xpath2_DocumentTest
+                    // Xpath2.g:9469:4: c1= parse_org_emftext_language_xpath2_DocumentTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DocumentTest_in_parse_org_emftext_language_xpath2_KindTest8776);
                     c1=parse_org_emftext_language_xpath2_DocumentTest();
@@ -20948,7 +20925,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:9488:4: c2= parse_org_emftext_language_xpath2_TextTest
+                    // Xpath2.g:9470:4: c2= parse_org_emftext_language_xpath2_TextTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_TextTest_in_parse_org_emftext_language_xpath2_KindTest8786);
                     c2=parse_org_emftext_language_xpath2_TextTest();
@@ -20961,7 +20938,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 4 :
-                    // Xpath2.g:9489:4: c3= parse_org_emftext_language_xpath2_CommentTest
+                    // Xpath2.g:9471:4: c3= parse_org_emftext_language_xpath2_CommentTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_CommentTest_in_parse_org_emftext_language_xpath2_KindTest8796);
                     c3=parse_org_emftext_language_xpath2_CommentTest();
@@ -20974,7 +20951,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 5 :
-                    // Xpath2.g:9490:4: c4= parse_org_emftext_language_xpath2_PITest
+                    // Xpath2.g:9472:4: c4= parse_org_emftext_language_xpath2_PITest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_PITest_in_parse_org_emftext_language_xpath2_KindTest8806);
                     c4=parse_org_emftext_language_xpath2_PITest();
@@ -20987,7 +20964,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 6 :
-                    // Xpath2.g:9491:4: c5= parse_org_emftext_language_xpath2_NCNamePITest
+                    // Xpath2.g:9473:4: c5= parse_org_emftext_language_xpath2_NCNamePITest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_NCNamePITest_in_parse_org_emftext_language_xpath2_KindTest8816);
                     c5=parse_org_emftext_language_xpath2_NCNamePITest();
@@ -21000,7 +20977,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 7 :
-                    // Xpath2.g:9492:4: c6= parse_org_emftext_language_xpath2_StringLiteralPITest
+                    // Xpath2.g:9474:4: c6= parse_org_emftext_language_xpath2_StringLiteralPITest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_StringLiteralPITest_in_parse_org_emftext_language_xpath2_KindTest8826);
                     c6=parse_org_emftext_language_xpath2_StringLiteralPITest();
@@ -21013,7 +20990,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 8 :
-                    // Xpath2.g:9493:4: c7= parse_org_emftext_language_xpath2_AttributeTest
+                    // Xpath2.g:9475:4: c7= parse_org_emftext_language_xpath2_AttributeTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AttributeTest_in_parse_org_emftext_language_xpath2_KindTest8836);
                     c7=parse_org_emftext_language_xpath2_AttributeTest();
@@ -21026,7 +21003,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 9 :
-                    // Xpath2.g:9494:4: c8= parse_org_emftext_language_xpath2_WildcardAttributeTest
+                    // Xpath2.g:9476:4: c8= parse_org_emftext_language_xpath2_WildcardAttributeTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_WildcardAttributeTest_in_parse_org_emftext_language_xpath2_KindTest8846);
                     c8=parse_org_emftext_language_xpath2_WildcardAttributeTest();
@@ -21039,7 +21016,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 10 :
-                    // Xpath2.g:9495:4: c9= parse_org_emftext_language_xpath2_NameAttributeTest
+                    // Xpath2.g:9477:4: c9= parse_org_emftext_language_xpath2_NameAttributeTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_NameAttributeTest_in_parse_org_emftext_language_xpath2_KindTest8856);
                     c9=parse_org_emftext_language_xpath2_NameAttributeTest();
@@ -21052,7 +21029,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 11 :
-                    // Xpath2.g:9496:4: c10= parse_org_emftext_language_xpath2_SchemaAttributeTest
+                    // Xpath2.g:9478:4: c10= parse_org_emftext_language_xpath2_SchemaAttributeTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_SchemaAttributeTest_in_parse_org_emftext_language_xpath2_KindTest8866);
                     c10=parse_org_emftext_language_xpath2_SchemaAttributeTest();
@@ -21065,7 +21042,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 12 :
-                    // Xpath2.g:9497:4: c11= parse_org_emftext_language_xpath2_ElementTest
+                    // Xpath2.g:9479:4: c11= parse_org_emftext_language_xpath2_ElementTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ElementTest_in_parse_org_emftext_language_xpath2_KindTest8876);
                     c11=parse_org_emftext_language_xpath2_ElementTest();
@@ -21078,7 +21055,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 13 :
-                    // Xpath2.g:9498:4: c12= parse_org_emftext_language_xpath2_WildcardElementTest
+                    // Xpath2.g:9480:4: c12= parse_org_emftext_language_xpath2_WildcardElementTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_WildcardElementTest_in_parse_org_emftext_language_xpath2_KindTest8886);
                     c12=parse_org_emftext_language_xpath2_WildcardElementTest();
@@ -21091,7 +21068,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 14 :
-                    // Xpath2.g:9499:4: c13= parse_org_emftext_language_xpath2_NameElementTest
+                    // Xpath2.g:9481:4: c13= parse_org_emftext_language_xpath2_NameElementTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_NameElementTest_in_parse_org_emftext_language_xpath2_KindTest8896);
                     c13=parse_org_emftext_language_xpath2_NameElementTest();
@@ -21104,7 +21081,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 15 :
-                    // Xpath2.g:9500:4: c14= parse_org_emftext_language_xpath2_SchemaElementTest
+                    // Xpath2.g:9482:4: c14= parse_org_emftext_language_xpath2_SchemaElementTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_SchemaElementTest_in_parse_org_emftext_language_xpath2_KindTest8906);
                     c14=parse_org_emftext_language_xpath2_SchemaElementTest();
@@ -21136,7 +21113,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
 
     // $ANTLR start "parse_org_emftext_language_xpath2_ItemType"
-    // Xpath2.g:9504:1: parse_org_emftext_language_xpath2_ItemType returns [org.emftext.language.xpath2.ItemType element = null] : (c0= parse_org_emftext_language_xpath2_ItemKindTest |c1= parse_org_emftext_language_xpath2_AnyItemType |c2= parse_org_emftext_language_xpath2_AtomicItemType );
+    // Xpath2.g:9486:1: parse_org_emftext_language_xpath2_ItemType returns [org.emftext.language.xpath2.ItemType element = null] : (c0= parse_org_emftext_language_xpath2_ItemKindTest |c1= parse_org_emftext_language_xpath2_AnyItemType |c2= parse_org_emftext_language_xpath2_AtomicItemType );
     public final org.emftext.language.xpath2.ItemType parse_org_emftext_language_xpath2_ItemType() throws RecognitionException {
         org.emftext.language.xpath2.ItemType element =  null;
 
@@ -21152,7 +21129,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 80) ) { return element; }
 
-            // Xpath2.g:9505:2: (c0= parse_org_emftext_language_xpath2_ItemKindTest |c1= parse_org_emftext_language_xpath2_AnyItemType |c2= parse_org_emftext_language_xpath2_AtomicItemType )
+            // Xpath2.g:9487:2: (c0= parse_org_emftext_language_xpath2_ItemKindTest |c1= parse_org_emftext_language_xpath2_AnyItemType |c2= parse_org_emftext_language_xpath2_AtomicItemType )
             int alt81=3;
             switch ( input.LA(1) ) {
             case 40:
@@ -21190,7 +21167,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
 
             switch (alt81) {
                 case 1 :
-                    // Xpath2.g:9506:2: c0= parse_org_emftext_language_xpath2_ItemKindTest
+                    // Xpath2.g:9488:2: c0= parse_org_emftext_language_xpath2_ItemKindTest
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ItemKindTest_in_parse_org_emftext_language_xpath2_ItemType8927);
                     c0=parse_org_emftext_language_xpath2_ItemKindTest();
@@ -21203,7 +21180,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:9507:4: c1= parse_org_emftext_language_xpath2_AnyItemType
+                    // Xpath2.g:9489:4: c1= parse_org_emftext_language_xpath2_AnyItemType
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AnyItemType_in_parse_org_emftext_language_xpath2_ItemType8937);
                     c1=parse_org_emftext_language_xpath2_AnyItemType();
@@ -21216,7 +21193,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
                     }
                     break;
                 case 3 :
-                    // Xpath2.g:9508:4: c2= parse_org_emftext_language_xpath2_AtomicItemType
+                    // Xpath2.g:9490:4: c2= parse_org_emftext_language_xpath2_AtomicItemType
                     {
                     pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AtomicItemType_in_parse_org_emftext_language_xpath2_ItemType8947);
                     c2=parse_org_emftext_language_xpath2_AtomicItemType();
@@ -21250,8 +21227,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.Expr a2_0 =null;
 
 
-        // Xpath2.g:1632:3: (a2_0= parse_org_emftext_language_xpath2_Expr )
-        // Xpath2.g:1632:3: a2_0= parse_org_emftext_language_xpath2_Expr
+        // Xpath2.g:1614:3: (a2_0= parse_org_emftext_language_xpath2_Expr )
+        // Xpath2.g:1614:3: a2_0= parse_org_emftext_language_xpath2_Expr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_Expr_in_synpred18_Xpath2949);
         a2_0=parse_org_emftext_language_xpath2_Expr();
@@ -21269,8 +21246,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.IfExpr a2_1 =null;
 
 
-        // Xpath2.g:1651:6: (a2_1= parse_org_emftext_language_xpath2_IfExpr )
-        // Xpath2.g:1651:6: a2_1= parse_org_emftext_language_xpath2_IfExpr
+        // Xpath2.g:1633:6: (a2_1= parse_org_emftext_language_xpath2_IfExpr )
+        // Xpath2.g:1633:6: a2_1= parse_org_emftext_language_xpath2_IfExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IfExpr_in_synpred19_Xpath2963);
         a2_1=parse_org_emftext_language_xpath2_IfExpr();
@@ -21288,8 +21265,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.ForExpr a2_2 =null;
 
 
-        // Xpath2.g:1670:6: (a2_2= parse_org_emftext_language_xpath2_ForExpr )
-        // Xpath2.g:1670:6: a2_2= parse_org_emftext_language_xpath2_ForExpr
+        // Xpath2.g:1652:6: (a2_2= parse_org_emftext_language_xpath2_ForExpr )
+        // Xpath2.g:1652:6: a2_2= parse_org_emftext_language_xpath2_ForExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ForExpr_in_synpred20_Xpath2977);
         a2_2=parse_org_emftext_language_xpath2_ForExpr();
@@ -21307,8 +21284,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.QuantifiedExpr a2_3 =null;
 
 
-        // Xpath2.g:1689:6: (a2_3= parse_org_emftext_language_xpath2_QuantifiedExpr )
-        // Xpath2.g:1689:6: a2_3= parse_org_emftext_language_xpath2_QuantifiedExpr
+        // Xpath2.g:1671:6: (a2_3= parse_org_emftext_language_xpath2_QuantifiedExpr )
+        // Xpath2.g:1671:6: a2_3= parse_org_emftext_language_xpath2_QuantifiedExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_QuantifiedExpr_in_synpred21_Xpath2991);
         a2_3=parse_org_emftext_language_xpath2_QuantifiedExpr();
@@ -21325,8 +21302,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     public final void synpred93_Xpath2_fragment() throws RecognitionException {
         Token a2=null;
 
-        // Xpath2.g:6777:8: (a2= '*' )
-        // Xpath2.g:6777:8: a2= '*'
+        // Xpath2.g:6759:8: (a2= '*' )
+        // Xpath2.g:6759:8: a2= '*'
         {
         a2=(Token)match(input,15,FOLLOW_15_in_synpred93_Xpath25365); if (state.failed) return ;
 
@@ -21339,8 +21316,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
     public final void synpred94_Xpath2_fragment() throws RecognitionException {
         Token a3=null;
 
-        // Xpath2.g:6793:8: (a3= '+' )
-        // Xpath2.g:6793:8: a3= '+'
+        // Xpath2.g:6775:8: (a3= '+' )
+        // Xpath2.g:6775:8: a3= '+'
         {
         a3=(Token)match(input,16,FOLLOW_16_in_synpred94_Xpath25380); if (state.failed) return ;
 
@@ -21354,8 +21331,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.OrExpr c3 =null;
 
 
-        // Xpath2.g:9356:4: (c3= parse_org_emftext_language_xpath2_OrExpr )
-        // Xpath2.g:9356:4: c3= parse_org_emftext_language_xpath2_OrExpr
+        // Xpath2.g:9338:4: (c3= parse_org_emftext_language_xpath2_OrExpr )
+        // Xpath2.g:9338:4: c3= parse_org_emftext_language_xpath2_OrExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_OrExpr_in_synpred119_Xpath27817);
         c3=parse_org_emftext_language_xpath2_OrExpr();
@@ -21373,8 +21350,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.AndExpr c4 =null;
 
 
-        // Xpath2.g:9357:4: (c4= parse_org_emftext_language_xpath2_AndExpr )
-        // Xpath2.g:9357:4: c4= parse_org_emftext_language_xpath2_AndExpr
+        // Xpath2.g:9339:4: (c4= parse_org_emftext_language_xpath2_AndExpr )
+        // Xpath2.g:9339:4: c4= parse_org_emftext_language_xpath2_AndExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AndExpr_in_synpred120_Xpath27827);
         c4=parse_org_emftext_language_xpath2_AndExpr();
@@ -21392,8 +21369,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.ComparisonExpr c5 =null;
 
 
-        // Xpath2.g:9358:4: (c5= parse_org_emftext_language_xpath2_ComparisonExpr )
-        // Xpath2.g:9358:4: c5= parse_org_emftext_language_xpath2_ComparisonExpr
+        // Xpath2.g:9340:4: (c5= parse_org_emftext_language_xpath2_ComparisonExpr )
+        // Xpath2.g:9340:4: c5= parse_org_emftext_language_xpath2_ComparisonExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ComparisonExpr_in_synpred121_Xpath27837);
         c5=parse_org_emftext_language_xpath2_ComparisonExpr();
@@ -21411,8 +21388,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.RangeExpr c6 =null;
 
 
-        // Xpath2.g:9359:4: (c6= parse_org_emftext_language_xpath2_RangeExpr )
-        // Xpath2.g:9359:4: c6= parse_org_emftext_language_xpath2_RangeExpr
+        // Xpath2.g:9341:4: (c6= parse_org_emftext_language_xpath2_RangeExpr )
+        // Xpath2.g:9341:4: c6= parse_org_emftext_language_xpath2_RangeExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_RangeExpr_in_synpred122_Xpath27847);
         c6=parse_org_emftext_language_xpath2_RangeExpr();
@@ -21430,8 +21407,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.AdditiveExpr c7 =null;
 
 
-        // Xpath2.g:9360:4: (c7= parse_org_emftext_language_xpath2_AdditiveExpr )
-        // Xpath2.g:9360:4: c7= parse_org_emftext_language_xpath2_AdditiveExpr
+        // Xpath2.g:9342:4: (c7= parse_org_emftext_language_xpath2_AdditiveExpr )
+        // Xpath2.g:9342:4: c7= parse_org_emftext_language_xpath2_AdditiveExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AdditiveExpr_in_synpred123_Xpath27857);
         c7=parse_org_emftext_language_xpath2_AdditiveExpr();
@@ -21449,8 +21426,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.MultiplicativeExpr c8 =null;
 
 
-        // Xpath2.g:9361:4: (c8= parse_org_emftext_language_xpath2_MultiplicativeExpr )
-        // Xpath2.g:9361:4: c8= parse_org_emftext_language_xpath2_MultiplicativeExpr
+        // Xpath2.g:9343:4: (c8= parse_org_emftext_language_xpath2_MultiplicativeExpr )
+        // Xpath2.g:9343:4: c8= parse_org_emftext_language_xpath2_MultiplicativeExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_MultiplicativeExpr_in_synpred124_Xpath27867);
         c8=parse_org_emftext_language_xpath2_MultiplicativeExpr();
@@ -21468,8 +21445,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.UnionExpr c9 =null;
 
 
-        // Xpath2.g:9362:4: (c9= parse_org_emftext_language_xpath2_UnionExpr )
-        // Xpath2.g:9362:4: c9= parse_org_emftext_language_xpath2_UnionExpr
+        // Xpath2.g:9344:4: (c9= parse_org_emftext_language_xpath2_UnionExpr )
+        // Xpath2.g:9344:4: c9= parse_org_emftext_language_xpath2_UnionExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_UnionExpr_in_synpred125_Xpath27877);
         c9=parse_org_emftext_language_xpath2_UnionExpr();
@@ -21487,8 +21464,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.IntersectExceptExpr c10 =null;
 
 
-        // Xpath2.g:9363:4: (c10= parse_org_emftext_language_xpath2_IntersectExceptExpr )
-        // Xpath2.g:9363:4: c10= parse_org_emftext_language_xpath2_IntersectExceptExpr
+        // Xpath2.g:9345:4: (c10= parse_org_emftext_language_xpath2_IntersectExceptExpr )
+        // Xpath2.g:9345:4: c10= parse_org_emftext_language_xpath2_IntersectExceptExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IntersectExceptExpr_in_synpred126_Xpath27887);
         c10=parse_org_emftext_language_xpath2_IntersectExceptExpr();
@@ -21506,8 +21483,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.InstanceofExpr c11 =null;
 
 
-        // Xpath2.g:9364:4: (c11= parse_org_emftext_language_xpath2_InstanceofExpr )
-        // Xpath2.g:9364:4: c11= parse_org_emftext_language_xpath2_InstanceofExpr
+        // Xpath2.g:9346:4: (c11= parse_org_emftext_language_xpath2_InstanceofExpr )
+        // Xpath2.g:9346:4: c11= parse_org_emftext_language_xpath2_InstanceofExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_InstanceofExpr_in_synpred127_Xpath27897);
         c11=parse_org_emftext_language_xpath2_InstanceofExpr();
@@ -21525,8 +21502,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.TreatExpr c12 =null;
 
 
-        // Xpath2.g:9365:4: (c12= parse_org_emftext_language_xpath2_TreatExpr )
-        // Xpath2.g:9365:4: c12= parse_org_emftext_language_xpath2_TreatExpr
+        // Xpath2.g:9347:4: (c12= parse_org_emftext_language_xpath2_TreatExpr )
+        // Xpath2.g:9347:4: c12= parse_org_emftext_language_xpath2_TreatExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_TreatExpr_in_synpred128_Xpath27907);
         c12=parse_org_emftext_language_xpath2_TreatExpr();
@@ -21544,8 +21521,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.CastableExpr c13 =null;
 
 
-        // Xpath2.g:9366:4: (c13= parse_org_emftext_language_xpath2_CastableExpr )
-        // Xpath2.g:9366:4: c13= parse_org_emftext_language_xpath2_CastableExpr
+        // Xpath2.g:9348:4: (c13= parse_org_emftext_language_xpath2_CastableExpr )
+        // Xpath2.g:9348:4: c13= parse_org_emftext_language_xpath2_CastableExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_CastableExpr_in_synpred129_Xpath27917);
         c13=parse_org_emftext_language_xpath2_CastableExpr();
@@ -21563,8 +21540,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.CastExpr c14 =null;
 
 
-        // Xpath2.g:9367:4: (c14= parse_org_emftext_language_xpath2_CastExpr )
-        // Xpath2.g:9367:4: c14= parse_org_emftext_language_xpath2_CastExpr
+        // Xpath2.g:9349:4: (c14= parse_org_emftext_language_xpath2_CastExpr )
+        // Xpath2.g:9349:4: c14= parse_org_emftext_language_xpath2_CastExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_CastExpr_in_synpred130_Xpath27927);
         c14=parse_org_emftext_language_xpath2_CastExpr();
@@ -21582,8 +21559,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.UnaryExpr c15 =null;
 
 
-        // Xpath2.g:9368:4: (c15= parse_org_emftext_language_xpath2_UnaryExpr )
-        // Xpath2.g:9368:4: c15= parse_org_emftext_language_xpath2_UnaryExpr
+        // Xpath2.g:9350:4: (c15= parse_org_emftext_language_xpath2_UnaryExpr )
+        // Xpath2.g:9350:4: c15= parse_org_emftext_language_xpath2_UnaryExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_UnaryExpr_in_synpred131_Xpath27937);
         c15=parse_org_emftext_language_xpath2_UnaryExpr();
@@ -21601,8 +21578,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.FilterExpr c16 =null;
 
 
-        // Xpath2.g:9369:4: (c16= parse_org_emftext_language_xpath2_FilterExpr )
-        // Xpath2.g:9369:4: c16= parse_org_emftext_language_xpath2_FilterExpr
+        // Xpath2.g:9351:4: (c16= parse_org_emftext_language_xpath2_FilterExpr )
+        // Xpath2.g:9351:4: c16= parse_org_emftext_language_xpath2_FilterExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_FilterExpr_in_synpred132_Xpath27947);
         c16=parse_org_emftext_language_xpath2_FilterExpr();
@@ -21620,8 +21597,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.FunctionCall c17 =null;
 
 
-        // Xpath2.g:9370:4: (c17= parse_org_emftext_language_xpath2_FunctionCall )
-        // Xpath2.g:9370:4: c17= parse_org_emftext_language_xpath2_FunctionCall
+        // Xpath2.g:9352:4: (c17= parse_org_emftext_language_xpath2_FunctionCall )
+        // Xpath2.g:9352:4: c17= parse_org_emftext_language_xpath2_FunctionCall
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_FunctionCall_in_synpred133_Xpath27957);
         c17=parse_org_emftext_language_xpath2_FunctionCall();
@@ -21639,8 +21616,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.PathExpr c18 =null;
 
 
-        // Xpath2.g:9371:4: (c18= parse_org_emftext_language_xpath2_PathExpr )
-        // Xpath2.g:9371:4: c18= parse_org_emftext_language_xpath2_PathExpr
+        // Xpath2.g:9353:4: (c18= parse_org_emftext_language_xpath2_PathExpr )
+        // Xpath2.g:9353:4: c18= parse_org_emftext_language_xpath2_PathExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_PathExpr_in_synpred134_Xpath27967);
         c18=parse_org_emftext_language_xpath2_PathExpr();
@@ -21658,8 +21635,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.ChildStepExpr c19 =null;
 
 
-        // Xpath2.g:9372:4: (c19= parse_org_emftext_language_xpath2_ChildStepExpr )
-        // Xpath2.g:9372:4: c19= parse_org_emftext_language_xpath2_ChildStepExpr
+        // Xpath2.g:9354:4: (c19= parse_org_emftext_language_xpath2_ChildStepExpr )
+        // Xpath2.g:9354:4: c19= parse_org_emftext_language_xpath2_ChildStepExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ChildStepExpr_in_synpred135_Xpath27977);
         c19=parse_org_emftext_language_xpath2_ChildStepExpr();
@@ -21677,8 +21654,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.DescOrSelfStepExpr c20 =null;
 
 
-        // Xpath2.g:9373:4: (c20= parse_org_emftext_language_xpath2_DescOrSelfStepExpr )
-        // Xpath2.g:9373:4: c20= parse_org_emftext_language_xpath2_DescOrSelfStepExpr
+        // Xpath2.g:9355:4: (c20= parse_org_emftext_language_xpath2_DescOrSelfStepExpr )
+        // Xpath2.g:9355:4: c20= parse_org_emftext_language_xpath2_DescOrSelfStepExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DescOrSelfStepExpr_in_synpred136_Xpath27987);
         c20=parse_org_emftext_language_xpath2_DescOrSelfStepExpr();
@@ -21696,8 +21673,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.RootStepExpr c21 =null;
 
 
-        // Xpath2.g:9374:4: (c21= parse_org_emftext_language_xpath2_RootStepExpr )
-        // Xpath2.g:9374:4: c21= parse_org_emftext_language_xpath2_RootStepExpr
+        // Xpath2.g:9356:4: (c21= parse_org_emftext_language_xpath2_RootStepExpr )
+        // Xpath2.g:9356:4: c21= parse_org_emftext_language_xpath2_RootStepExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_RootStepExpr_in_synpred137_Xpath27997);
         c21=parse_org_emftext_language_xpath2_RootStepExpr();
@@ -21715,8 +21692,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.SelfStepExpr c22 =null;
 
 
-        // Xpath2.g:9375:4: (c22= parse_org_emftext_language_xpath2_SelfStepExpr )
-        // Xpath2.g:9375:4: c22= parse_org_emftext_language_xpath2_SelfStepExpr
+        // Xpath2.g:9357:4: (c22= parse_org_emftext_language_xpath2_SelfStepExpr )
+        // Xpath2.g:9357:4: c22= parse_org_emftext_language_xpath2_SelfStepExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_SelfStepExpr_in_synpred138_Xpath28007);
         c22=parse_org_emftext_language_xpath2_SelfStepExpr();
@@ -21734,8 +21711,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.GeneralForwardStep c23 =null;
 
 
-        // Xpath2.g:9376:4: (c23= parse_org_emftext_language_xpath2_GeneralForwardStep )
-        // Xpath2.g:9376:4: c23= parse_org_emftext_language_xpath2_GeneralForwardStep
+        // Xpath2.g:9358:4: (c23= parse_org_emftext_language_xpath2_GeneralForwardStep )
+        // Xpath2.g:9358:4: c23= parse_org_emftext_language_xpath2_GeneralForwardStep
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_GeneralForwardStep_in_synpred139_Xpath28017);
         c23=parse_org_emftext_language_xpath2_GeneralForwardStep();
@@ -21753,8 +21730,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.AbbrevForwardStep c24 =null;
 
 
-        // Xpath2.g:9377:4: (c24= parse_org_emftext_language_xpath2_AbbrevForwardStep )
-        // Xpath2.g:9377:4: c24= parse_org_emftext_language_xpath2_AbbrevForwardStep
+        // Xpath2.g:9359:4: (c24= parse_org_emftext_language_xpath2_AbbrevForwardStep )
+        // Xpath2.g:9359:4: c24= parse_org_emftext_language_xpath2_AbbrevForwardStep
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AbbrevForwardStep_in_synpred140_Xpath28027);
         c24=parse_org_emftext_language_xpath2_AbbrevForwardStep();
@@ -21772,8 +21749,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.GeneralReverseStep c25 =null;
 
 
-        // Xpath2.g:9378:4: (c25= parse_org_emftext_language_xpath2_GeneralReverseStep )
-        // Xpath2.g:9378:4: c25= parse_org_emftext_language_xpath2_GeneralReverseStep
+        // Xpath2.g:9360:4: (c25= parse_org_emftext_language_xpath2_GeneralReverseStep )
+        // Xpath2.g:9360:4: c25= parse_org_emftext_language_xpath2_GeneralReverseStep
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_GeneralReverseStep_in_synpred141_Xpath28037);
         c25=parse_org_emftext_language_xpath2_GeneralReverseStep();
@@ -21791,8 +21768,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.AbbrevReverseStep c26 =null;
 
 
-        // Xpath2.g:9379:4: (c26= parse_org_emftext_language_xpath2_AbbrevReverseStep )
-        // Xpath2.g:9379:4: c26= parse_org_emftext_language_xpath2_AbbrevReverseStep
+        // Xpath2.g:9361:4: (c26= parse_org_emftext_language_xpath2_AbbrevReverseStep )
+        // Xpath2.g:9361:4: c26= parse_org_emftext_language_xpath2_AbbrevReverseStep
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AbbrevReverseStep_in_synpred142_Xpath28047);
         c26=parse_org_emftext_language_xpath2_AbbrevReverseStep();
@@ -21810,8 +21787,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.VarRef c27 =null;
 
 
-        // Xpath2.g:9380:4: (c27= parse_org_emftext_language_xpath2_VarRef )
-        // Xpath2.g:9380:4: c27= parse_org_emftext_language_xpath2_VarRef
+        // Xpath2.g:9362:4: (c27= parse_org_emftext_language_xpath2_VarRef )
+        // Xpath2.g:9362:4: c27= parse_org_emftext_language_xpath2_VarRef
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_VarRef_in_synpred143_Xpath28057);
         c27=parse_org_emftext_language_xpath2_VarRef();
@@ -21829,8 +21806,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.ParenthesizedExpr c28 =null;
 
 
-        // Xpath2.g:9381:4: (c28= parse_org_emftext_language_xpath2_ParenthesizedExpr )
-        // Xpath2.g:9381:4: c28= parse_org_emftext_language_xpath2_ParenthesizedExpr
+        // Xpath2.g:9363:4: (c28= parse_org_emftext_language_xpath2_ParenthesizedExpr )
+        // Xpath2.g:9363:4: c28= parse_org_emftext_language_xpath2_ParenthesizedExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ParenthesizedExpr_in_synpred144_Xpath28067);
         c28=parse_org_emftext_language_xpath2_ParenthesizedExpr();
@@ -21848,8 +21825,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.ContextItemExpr c29 =null;
 
 
-        // Xpath2.g:9382:4: (c29= parse_org_emftext_language_xpath2_ContextItemExpr )
-        // Xpath2.g:9382:4: c29= parse_org_emftext_language_xpath2_ContextItemExpr
+        // Xpath2.g:9364:4: (c29= parse_org_emftext_language_xpath2_ContextItemExpr )
+        // Xpath2.g:9364:4: c29= parse_org_emftext_language_xpath2_ContextItemExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ContextItemExpr_in_synpred145_Xpath28077);
         c29=parse_org_emftext_language_xpath2_ContextItemExpr();
@@ -21867,8 +21844,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.IntegerLiteral c30 =null;
 
 
-        // Xpath2.g:9383:4: (c30= parse_org_emftext_language_xpath2_IntegerLiteral )
-        // Xpath2.g:9383:4: c30= parse_org_emftext_language_xpath2_IntegerLiteral
+        // Xpath2.g:9365:4: (c30= parse_org_emftext_language_xpath2_IntegerLiteral )
+        // Xpath2.g:9365:4: c30= parse_org_emftext_language_xpath2_IntegerLiteral
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IntegerLiteral_in_synpred146_Xpath28087);
         c30=parse_org_emftext_language_xpath2_IntegerLiteral();
@@ -21886,8 +21863,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.DecimalLiteral c31 =null;
 
 
-        // Xpath2.g:9384:4: (c31= parse_org_emftext_language_xpath2_DecimalLiteral )
-        // Xpath2.g:9384:4: c31= parse_org_emftext_language_xpath2_DecimalLiteral
+        // Xpath2.g:9366:4: (c31= parse_org_emftext_language_xpath2_DecimalLiteral )
+        // Xpath2.g:9366:4: c31= parse_org_emftext_language_xpath2_DecimalLiteral
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DecimalLiteral_in_synpred147_Xpath28097);
         c31=parse_org_emftext_language_xpath2_DecimalLiteral();
@@ -21905,8 +21882,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.DoubleLiteral c32 =null;
 
 
-        // Xpath2.g:9385:4: (c32= parse_org_emftext_language_xpath2_DoubleLiteral )
-        // Xpath2.g:9385:4: c32= parse_org_emftext_language_xpath2_DoubleLiteral
+        // Xpath2.g:9367:4: (c32= parse_org_emftext_language_xpath2_DoubleLiteral )
+        // Xpath2.g:9367:4: c32= parse_org_emftext_language_xpath2_DoubleLiteral
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DoubleLiteral_in_synpred148_Xpath28107);
         c32=parse_org_emftext_language_xpath2_DoubleLiteral();
@@ -21924,8 +21901,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.FilterExpr c0 =null;
 
 
-        // Xpath2.g:9426:2: (c0= parse_org_emftext_language_xpath2_FilterExpr )
-        // Xpath2.g:9426:2: c0= parse_org_emftext_language_xpath2_FilterExpr
+        // Xpath2.g:9408:2: (c0= parse_org_emftext_language_xpath2_FilterExpr )
+        // Xpath2.g:9408:2: c0= parse_org_emftext_language_xpath2_FilterExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_FilterExpr_in_synpred159_Xpath28322);
         c0=parse_org_emftext_language_xpath2_FilterExpr();
@@ -21943,8 +21920,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.FunctionCall c1 =null;
 
 
-        // Xpath2.g:9427:4: (c1= parse_org_emftext_language_xpath2_FunctionCall )
-        // Xpath2.g:9427:4: c1= parse_org_emftext_language_xpath2_FunctionCall
+        // Xpath2.g:9409:4: (c1= parse_org_emftext_language_xpath2_FunctionCall )
+        // Xpath2.g:9409:4: c1= parse_org_emftext_language_xpath2_FunctionCall
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_FunctionCall_in_synpred160_Xpath28332);
         c1=parse_org_emftext_language_xpath2_FunctionCall();
@@ -21962,8 +21939,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.ChildStepExpr c2 =null;
 
 
-        // Xpath2.g:9428:4: (c2= parse_org_emftext_language_xpath2_ChildStepExpr )
-        // Xpath2.g:9428:4: c2= parse_org_emftext_language_xpath2_ChildStepExpr
+        // Xpath2.g:9410:4: (c2= parse_org_emftext_language_xpath2_ChildStepExpr )
+        // Xpath2.g:9410:4: c2= parse_org_emftext_language_xpath2_ChildStepExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ChildStepExpr_in_synpred161_Xpath28342);
         c2=parse_org_emftext_language_xpath2_ChildStepExpr();
@@ -21981,8 +21958,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.RootStepExpr c4 =null;
 
 
-        // Xpath2.g:9430:4: (c4= parse_org_emftext_language_xpath2_RootStepExpr )
-        // Xpath2.g:9430:4: c4= parse_org_emftext_language_xpath2_RootStepExpr
+        // Xpath2.g:9412:4: (c4= parse_org_emftext_language_xpath2_RootStepExpr )
+        // Xpath2.g:9412:4: c4= parse_org_emftext_language_xpath2_RootStepExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_RootStepExpr_in_synpred163_Xpath28362);
         c4=parse_org_emftext_language_xpath2_RootStepExpr();
@@ -22000,8 +21977,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.SelfStepExpr c5 =null;
 
 
-        // Xpath2.g:9431:4: (c5= parse_org_emftext_language_xpath2_SelfStepExpr )
-        // Xpath2.g:9431:4: c5= parse_org_emftext_language_xpath2_SelfStepExpr
+        // Xpath2.g:9413:4: (c5= parse_org_emftext_language_xpath2_SelfStepExpr )
+        // Xpath2.g:9413:4: c5= parse_org_emftext_language_xpath2_SelfStepExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_SelfStepExpr_in_synpred164_Xpath28372);
         c5=parse_org_emftext_language_xpath2_SelfStepExpr();
@@ -22019,8 +21996,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.GeneralForwardStep c6 =null;
 
 
-        // Xpath2.g:9432:4: (c6= parse_org_emftext_language_xpath2_GeneralForwardStep )
-        // Xpath2.g:9432:4: c6= parse_org_emftext_language_xpath2_GeneralForwardStep
+        // Xpath2.g:9414:4: (c6= parse_org_emftext_language_xpath2_GeneralForwardStep )
+        // Xpath2.g:9414:4: c6= parse_org_emftext_language_xpath2_GeneralForwardStep
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_GeneralForwardStep_in_synpred165_Xpath28382);
         c6=parse_org_emftext_language_xpath2_GeneralForwardStep();
@@ -22038,8 +22015,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.AbbrevForwardStep c7 =null;
 
 
-        // Xpath2.g:9433:4: (c7= parse_org_emftext_language_xpath2_AbbrevForwardStep )
-        // Xpath2.g:9433:4: c7= parse_org_emftext_language_xpath2_AbbrevForwardStep
+        // Xpath2.g:9415:4: (c7= parse_org_emftext_language_xpath2_AbbrevForwardStep )
+        // Xpath2.g:9415:4: c7= parse_org_emftext_language_xpath2_AbbrevForwardStep
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AbbrevForwardStep_in_synpred166_Xpath28392);
         c7=parse_org_emftext_language_xpath2_AbbrevForwardStep();
@@ -22057,8 +22034,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.GeneralReverseStep c8 =null;
 
 
-        // Xpath2.g:9434:4: (c8= parse_org_emftext_language_xpath2_GeneralReverseStep )
-        // Xpath2.g:9434:4: c8= parse_org_emftext_language_xpath2_GeneralReverseStep
+        // Xpath2.g:9416:4: (c8= parse_org_emftext_language_xpath2_GeneralReverseStep )
+        // Xpath2.g:9416:4: c8= parse_org_emftext_language_xpath2_GeneralReverseStep
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_GeneralReverseStep_in_synpred167_Xpath28402);
         c8=parse_org_emftext_language_xpath2_GeneralReverseStep();
@@ -22076,8 +22053,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.AbbrevReverseStep c9 =null;
 
 
-        // Xpath2.g:9435:4: (c9= parse_org_emftext_language_xpath2_AbbrevReverseStep )
-        // Xpath2.g:9435:4: c9= parse_org_emftext_language_xpath2_AbbrevReverseStep
+        // Xpath2.g:9417:4: (c9= parse_org_emftext_language_xpath2_AbbrevReverseStep )
+        // Xpath2.g:9417:4: c9= parse_org_emftext_language_xpath2_AbbrevReverseStep
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AbbrevReverseStep_in_synpred168_Xpath28412);
         c9=parse_org_emftext_language_xpath2_AbbrevReverseStep();
@@ -22095,8 +22072,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.VarRef c10 =null;
 
 
-        // Xpath2.g:9436:4: (c10= parse_org_emftext_language_xpath2_VarRef )
-        // Xpath2.g:9436:4: c10= parse_org_emftext_language_xpath2_VarRef
+        // Xpath2.g:9418:4: (c10= parse_org_emftext_language_xpath2_VarRef )
+        // Xpath2.g:9418:4: c10= parse_org_emftext_language_xpath2_VarRef
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_VarRef_in_synpred169_Xpath28422);
         c10=parse_org_emftext_language_xpath2_VarRef();
@@ -22114,8 +22091,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.ParenthesizedExpr c11 =null;
 
 
-        // Xpath2.g:9437:4: (c11= parse_org_emftext_language_xpath2_ParenthesizedExpr )
-        // Xpath2.g:9437:4: c11= parse_org_emftext_language_xpath2_ParenthesizedExpr
+        // Xpath2.g:9419:4: (c11= parse_org_emftext_language_xpath2_ParenthesizedExpr )
+        // Xpath2.g:9419:4: c11= parse_org_emftext_language_xpath2_ParenthesizedExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ParenthesizedExpr_in_synpred170_Xpath28432);
         c11=parse_org_emftext_language_xpath2_ParenthesizedExpr();
@@ -22133,8 +22110,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.ContextItemExpr c12 =null;
 
 
-        // Xpath2.g:9438:4: (c12= parse_org_emftext_language_xpath2_ContextItemExpr )
-        // Xpath2.g:9438:4: c12= parse_org_emftext_language_xpath2_ContextItemExpr
+        // Xpath2.g:9420:4: (c12= parse_org_emftext_language_xpath2_ContextItemExpr )
+        // Xpath2.g:9420:4: c12= parse_org_emftext_language_xpath2_ContextItemExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ContextItemExpr_in_synpred171_Xpath28442);
         c12=parse_org_emftext_language_xpath2_ContextItemExpr();
@@ -22152,8 +22129,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.IntegerLiteral c13 =null;
 
 
-        // Xpath2.g:9439:4: (c13= parse_org_emftext_language_xpath2_IntegerLiteral )
-        // Xpath2.g:9439:4: c13= parse_org_emftext_language_xpath2_IntegerLiteral
+        // Xpath2.g:9421:4: (c13= parse_org_emftext_language_xpath2_IntegerLiteral )
+        // Xpath2.g:9421:4: c13= parse_org_emftext_language_xpath2_IntegerLiteral
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IntegerLiteral_in_synpred172_Xpath28452);
         c13=parse_org_emftext_language_xpath2_IntegerLiteral();
@@ -22171,8 +22148,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.DecimalLiteral c14 =null;
 
 
-        // Xpath2.g:9440:4: (c14= parse_org_emftext_language_xpath2_DecimalLiteral )
-        // Xpath2.g:9440:4: c14= parse_org_emftext_language_xpath2_DecimalLiteral
+        // Xpath2.g:9422:4: (c14= parse_org_emftext_language_xpath2_DecimalLiteral )
+        // Xpath2.g:9422:4: c14= parse_org_emftext_language_xpath2_DecimalLiteral
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DecimalLiteral_in_synpred173_Xpath28462);
         c14=parse_org_emftext_language_xpath2_DecimalLiteral();
@@ -22190,8 +22167,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.DoubleLiteral c15 =null;
 
 
-        // Xpath2.g:9441:4: (c15= parse_org_emftext_language_xpath2_DoubleLiteral )
-        // Xpath2.g:9441:4: c15= parse_org_emftext_language_xpath2_DoubleLiteral
+        // Xpath2.g:9423:4: (c15= parse_org_emftext_language_xpath2_DoubleLiteral )
+        // Xpath2.g:9423:4: c15= parse_org_emftext_language_xpath2_DoubleLiteral
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DoubleLiteral_in_synpred174_Xpath28472);
         c15=parse_org_emftext_language_xpath2_DoubleLiteral();
@@ -22209,8 +22186,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.FilterExpr c0 =null;
 
 
-        // Xpath2.g:9458:2: (c0= parse_org_emftext_language_xpath2_FilterExpr )
-        // Xpath2.g:9458:2: c0= parse_org_emftext_language_xpath2_FilterExpr
+        // Xpath2.g:9440:2: (c0= parse_org_emftext_language_xpath2_FilterExpr )
+        // Xpath2.g:9440:2: c0= parse_org_emftext_language_xpath2_FilterExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_FilterExpr_in_synpred179_Xpath28564);
         c0=parse_org_emftext_language_xpath2_FilterExpr();
@@ -22228,8 +22205,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.FunctionCall c1 =null;
 
 
-        // Xpath2.g:9459:4: (c1= parse_org_emftext_language_xpath2_FunctionCall )
-        // Xpath2.g:9459:4: c1= parse_org_emftext_language_xpath2_FunctionCall
+        // Xpath2.g:9441:4: (c1= parse_org_emftext_language_xpath2_FunctionCall )
+        // Xpath2.g:9441:4: c1= parse_org_emftext_language_xpath2_FunctionCall
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_FunctionCall_in_synpred180_Xpath28574);
         c1=parse_org_emftext_language_xpath2_FunctionCall();
@@ -22247,8 +22224,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.GeneralForwardStep c2 =null;
 
 
-        // Xpath2.g:9460:4: (c2= parse_org_emftext_language_xpath2_GeneralForwardStep )
-        // Xpath2.g:9460:4: c2= parse_org_emftext_language_xpath2_GeneralForwardStep
+        // Xpath2.g:9442:4: (c2= parse_org_emftext_language_xpath2_GeneralForwardStep )
+        // Xpath2.g:9442:4: c2= parse_org_emftext_language_xpath2_GeneralForwardStep
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_GeneralForwardStep_in_synpred181_Xpath28584);
         c2=parse_org_emftext_language_xpath2_GeneralForwardStep();
@@ -22266,8 +22243,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.AbbrevForwardStep c3 =null;
 
 
-        // Xpath2.g:9461:4: (c3= parse_org_emftext_language_xpath2_AbbrevForwardStep )
-        // Xpath2.g:9461:4: c3= parse_org_emftext_language_xpath2_AbbrevForwardStep
+        // Xpath2.g:9443:4: (c3= parse_org_emftext_language_xpath2_AbbrevForwardStep )
+        // Xpath2.g:9443:4: c3= parse_org_emftext_language_xpath2_AbbrevForwardStep
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AbbrevForwardStep_in_synpred182_Xpath28594);
         c3=parse_org_emftext_language_xpath2_AbbrevForwardStep();
@@ -22285,8 +22262,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.VarRef c6 =null;
 
 
-        // Xpath2.g:9464:4: (c6= parse_org_emftext_language_xpath2_VarRef )
-        // Xpath2.g:9464:4: c6= parse_org_emftext_language_xpath2_VarRef
+        // Xpath2.g:9446:4: (c6= parse_org_emftext_language_xpath2_VarRef )
+        // Xpath2.g:9446:4: c6= parse_org_emftext_language_xpath2_VarRef
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_VarRef_in_synpred185_Xpath28624);
         c6=parse_org_emftext_language_xpath2_VarRef();
@@ -22304,8 +22281,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.ParenthesizedExpr c7 =null;
 
 
-        // Xpath2.g:9465:4: (c7= parse_org_emftext_language_xpath2_ParenthesizedExpr )
-        // Xpath2.g:9465:4: c7= parse_org_emftext_language_xpath2_ParenthesizedExpr
+        // Xpath2.g:9447:4: (c7= parse_org_emftext_language_xpath2_ParenthesizedExpr )
+        // Xpath2.g:9447:4: c7= parse_org_emftext_language_xpath2_ParenthesizedExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ParenthesizedExpr_in_synpred186_Xpath28634);
         c7=parse_org_emftext_language_xpath2_ParenthesizedExpr();
@@ -22323,8 +22300,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.ContextItemExpr c8 =null;
 
 
-        // Xpath2.g:9466:4: (c8= parse_org_emftext_language_xpath2_ContextItemExpr )
-        // Xpath2.g:9466:4: c8= parse_org_emftext_language_xpath2_ContextItemExpr
+        // Xpath2.g:9448:4: (c8= parse_org_emftext_language_xpath2_ContextItemExpr )
+        // Xpath2.g:9448:4: c8= parse_org_emftext_language_xpath2_ContextItemExpr
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ContextItemExpr_in_synpred187_Xpath28644);
         c8=parse_org_emftext_language_xpath2_ContextItemExpr();
@@ -22342,8 +22319,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.IntegerLiteral c9 =null;
 
 
-        // Xpath2.g:9467:4: (c9= parse_org_emftext_language_xpath2_IntegerLiteral )
-        // Xpath2.g:9467:4: c9= parse_org_emftext_language_xpath2_IntegerLiteral
+        // Xpath2.g:9449:4: (c9= parse_org_emftext_language_xpath2_IntegerLiteral )
+        // Xpath2.g:9449:4: c9= parse_org_emftext_language_xpath2_IntegerLiteral
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_IntegerLiteral_in_synpred188_Xpath28654);
         c9=parse_org_emftext_language_xpath2_IntegerLiteral();
@@ -22361,8 +22338,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.DecimalLiteral c10 =null;
 
 
-        // Xpath2.g:9468:4: (c10= parse_org_emftext_language_xpath2_DecimalLiteral )
-        // Xpath2.g:9468:4: c10= parse_org_emftext_language_xpath2_DecimalLiteral
+        // Xpath2.g:9450:4: (c10= parse_org_emftext_language_xpath2_DecimalLiteral )
+        // Xpath2.g:9450:4: c10= parse_org_emftext_language_xpath2_DecimalLiteral
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DecimalLiteral_in_synpred189_Xpath28664);
         c10=parse_org_emftext_language_xpath2_DecimalLiteral();
@@ -22380,8 +22357,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.DoubleLiteral c11 =null;
 
 
-        // Xpath2.g:9469:4: (c11= parse_org_emftext_language_xpath2_DoubleLiteral )
-        // Xpath2.g:9469:4: c11= parse_org_emftext_language_xpath2_DoubleLiteral
+        // Xpath2.g:9451:4: (c11= parse_org_emftext_language_xpath2_DoubleLiteral )
+        // Xpath2.g:9451:4: c11= parse_org_emftext_language_xpath2_DoubleLiteral
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_DoubleLiteral_in_synpred190_Xpath28674);
         c11=parse_org_emftext_language_xpath2_DoubleLiteral();
@@ -22399,8 +22376,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.PITest c4 =null;
 
 
-        // Xpath2.g:9490:4: (c4= parse_org_emftext_language_xpath2_PITest )
-        // Xpath2.g:9490:4: c4= parse_org_emftext_language_xpath2_PITest
+        // Xpath2.g:9472:4: (c4= parse_org_emftext_language_xpath2_PITest )
+        // Xpath2.g:9472:4: c4= parse_org_emftext_language_xpath2_PITest
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_PITest_in_synpred199_Xpath28806);
         c4=parse_org_emftext_language_xpath2_PITest();
@@ -22418,8 +22395,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.NCNamePITest c5 =null;
 
 
-        // Xpath2.g:9491:4: (c5= parse_org_emftext_language_xpath2_NCNamePITest )
-        // Xpath2.g:9491:4: c5= parse_org_emftext_language_xpath2_NCNamePITest
+        // Xpath2.g:9473:4: (c5= parse_org_emftext_language_xpath2_NCNamePITest )
+        // Xpath2.g:9473:4: c5= parse_org_emftext_language_xpath2_NCNamePITest
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_NCNamePITest_in_synpred200_Xpath28816);
         c5=parse_org_emftext_language_xpath2_NCNamePITest();
@@ -22437,8 +22414,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.StringLiteralPITest c6 =null;
 
 
-        // Xpath2.g:9492:4: (c6= parse_org_emftext_language_xpath2_StringLiteralPITest )
-        // Xpath2.g:9492:4: c6= parse_org_emftext_language_xpath2_StringLiteralPITest
+        // Xpath2.g:9474:4: (c6= parse_org_emftext_language_xpath2_StringLiteralPITest )
+        // Xpath2.g:9474:4: c6= parse_org_emftext_language_xpath2_StringLiteralPITest
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_StringLiteralPITest_in_synpred201_Xpath28826);
         c6=parse_org_emftext_language_xpath2_StringLiteralPITest();
@@ -22456,8 +22433,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.AttributeTest c7 =null;
 
 
-        // Xpath2.g:9493:4: (c7= parse_org_emftext_language_xpath2_AttributeTest )
-        // Xpath2.g:9493:4: c7= parse_org_emftext_language_xpath2_AttributeTest
+        // Xpath2.g:9475:4: (c7= parse_org_emftext_language_xpath2_AttributeTest )
+        // Xpath2.g:9475:4: c7= parse_org_emftext_language_xpath2_AttributeTest
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_AttributeTest_in_synpred202_Xpath28836);
         c7=parse_org_emftext_language_xpath2_AttributeTest();
@@ -22475,8 +22452,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.WildcardAttributeTest c8 =null;
 
 
-        // Xpath2.g:9494:4: (c8= parse_org_emftext_language_xpath2_WildcardAttributeTest )
-        // Xpath2.g:9494:4: c8= parse_org_emftext_language_xpath2_WildcardAttributeTest
+        // Xpath2.g:9476:4: (c8= parse_org_emftext_language_xpath2_WildcardAttributeTest )
+        // Xpath2.g:9476:4: c8= parse_org_emftext_language_xpath2_WildcardAttributeTest
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_WildcardAttributeTest_in_synpred203_Xpath28846);
         c8=parse_org_emftext_language_xpath2_WildcardAttributeTest();
@@ -22494,8 +22471,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.NameAttributeTest c9 =null;
 
 
-        // Xpath2.g:9495:4: (c9= parse_org_emftext_language_xpath2_NameAttributeTest )
-        // Xpath2.g:9495:4: c9= parse_org_emftext_language_xpath2_NameAttributeTest
+        // Xpath2.g:9477:4: (c9= parse_org_emftext_language_xpath2_NameAttributeTest )
+        // Xpath2.g:9477:4: c9= parse_org_emftext_language_xpath2_NameAttributeTest
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_NameAttributeTest_in_synpred204_Xpath28856);
         c9=parse_org_emftext_language_xpath2_NameAttributeTest();
@@ -22513,8 +22490,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.ElementTest c11 =null;
 
 
-        // Xpath2.g:9497:4: (c11= parse_org_emftext_language_xpath2_ElementTest )
-        // Xpath2.g:9497:4: c11= parse_org_emftext_language_xpath2_ElementTest
+        // Xpath2.g:9479:4: (c11= parse_org_emftext_language_xpath2_ElementTest )
+        // Xpath2.g:9479:4: c11= parse_org_emftext_language_xpath2_ElementTest
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_ElementTest_in_synpred206_Xpath28876);
         c11=parse_org_emftext_language_xpath2_ElementTest();
@@ -22532,8 +22509,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.WildcardElementTest c12 =null;
 
 
-        // Xpath2.g:9498:4: (c12= parse_org_emftext_language_xpath2_WildcardElementTest )
-        // Xpath2.g:9498:4: c12= parse_org_emftext_language_xpath2_WildcardElementTest
+        // Xpath2.g:9480:4: (c12= parse_org_emftext_language_xpath2_WildcardElementTest )
+        // Xpath2.g:9480:4: c12= parse_org_emftext_language_xpath2_WildcardElementTest
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_WildcardElementTest_in_synpred207_Xpath28886);
         c12=parse_org_emftext_language_xpath2_WildcardElementTest();
@@ -22551,8 +22528,8 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
         org.emftext.language.xpath2.NameElementTest c13 =null;
 
 
-        // Xpath2.g:9499:4: (c13= parse_org_emftext_language_xpath2_NameElementTest )
-        // Xpath2.g:9499:4: c13= parse_org_emftext_language_xpath2_NameElementTest
+        // Xpath2.g:9481:4: (c13= parse_org_emftext_language_xpath2_NameElementTest )
+        // Xpath2.g:9481:4: c13= parse_org_emftext_language_xpath2_NameElementTest
         {
         pushFollow(FOLLOW_parse_org_emftext_language_xpath2_NameElementTest_in_synpred208_Xpath28896);
         c13=parse_org_emftext_language_xpath2_NameElementTest();
@@ -23677,7 +23654,7 @@ public class Xpath2Parser extends Xpath2ANTLRParserBase {
             this.transition = DFA72_transition;
         }
         public String getDescription() {
-            return "9351:1: parse_org_emftext_language_xpath2_ExprSingle returns [org.emftext.language.xpath2.ExprSingle element = null] : (c0= parse_org_emftext_language_xpath2_ForExpr |c1= parse_org_emftext_language_xpath2_QuantifiedExpr |c2= parse_org_emftext_language_xpath2_IfExpr |c3= parse_org_emftext_language_xpath2_OrExpr |c4= parse_org_emftext_language_xpath2_AndExpr |c5= parse_org_emftext_language_xpath2_ComparisonExpr |c6= parse_org_emftext_language_xpath2_RangeExpr |c7= parse_org_emftext_language_xpath2_AdditiveExpr |c8= parse_org_emftext_language_xpath2_MultiplicativeExpr |c9= parse_org_emftext_language_xpath2_UnionExpr |c10= parse_org_emftext_language_xpath2_IntersectExceptExpr |c11= parse_org_emftext_language_xpath2_InstanceofExpr |c12= parse_org_emftext_language_xpath2_TreatExpr |c13= parse_org_emftext_language_xpath2_CastableExpr |c14= parse_org_emftext_language_xpath2_CastExpr |c15= parse_org_emftext_language_xpath2_UnaryExpr |c16= parse_org_emftext_language_xpath2_FilterExpr |c17= parse_org_emftext_language_xpath2_FunctionCall |c18= parse_org_emftext_language_xpath2_PathExpr |c19= parse_org_emftext_language_xpath2_ChildStepExpr |c20= parse_org_emftext_language_xpath2_DescOrSelfStepExpr |c21= parse_org_emftext_language_xpath2_RootStepExpr |c22= parse_org_emftext_language_xpath2_SelfStepExpr |c23= parse_org_emftext_language_xpath2_GeneralForwardStep |c24= parse_org_emftext_language_xpath2_AbbrevForwardStep |c25= parse_org_emftext_language_xpath2_GeneralReverseStep |c26= parse_org_emftext_language_xpath2_AbbrevReverseStep |c27= parse_org_emftext_language_xpath2_VarRef |c28= parse_org_emftext_language_xpath2_ParenthesizedExpr |c29= parse_org_emftext_language_xpath2_ContextItemExpr |c30= parse_org_emftext_language_xpath2_IntegerLiteral |c31= parse_org_emftext_language_xpath2_DecimalLiteral |c32= parse_org_emftext_language_xpath2_DoubleLiteral |c33= parse_org_emftext_language_xpath2_StringLiteral );";
+            return "9333:1: parse_org_emftext_language_xpath2_ExprSingle returns [org.emftext.language.xpath2.ExprSingle element = null] : (c0= parse_org_emftext_language_xpath2_ForExpr |c1= parse_org_emftext_language_xpath2_QuantifiedExpr |c2= parse_org_emftext_language_xpath2_IfExpr |c3= parse_org_emftext_language_xpath2_OrExpr |c4= parse_org_emftext_language_xpath2_AndExpr |c5= parse_org_emftext_language_xpath2_ComparisonExpr |c6= parse_org_emftext_language_xpath2_RangeExpr |c7= parse_org_emftext_language_xpath2_AdditiveExpr |c8= parse_org_emftext_language_xpath2_MultiplicativeExpr |c9= parse_org_emftext_language_xpath2_UnionExpr |c10= parse_org_emftext_language_xpath2_IntersectExceptExpr |c11= parse_org_emftext_language_xpath2_InstanceofExpr |c12= parse_org_emftext_language_xpath2_TreatExpr |c13= parse_org_emftext_language_xpath2_CastableExpr |c14= parse_org_emftext_language_xpath2_CastExpr |c15= parse_org_emftext_language_xpath2_UnaryExpr |c16= parse_org_emftext_language_xpath2_FilterExpr |c17= parse_org_emftext_language_xpath2_FunctionCall |c18= parse_org_emftext_language_xpath2_PathExpr |c19= parse_org_emftext_language_xpath2_ChildStepExpr |c20= parse_org_emftext_language_xpath2_DescOrSelfStepExpr |c21= parse_org_emftext_language_xpath2_RootStepExpr |c22= parse_org_emftext_language_xpath2_SelfStepExpr |c23= parse_org_emftext_language_xpath2_GeneralForwardStep |c24= parse_org_emftext_language_xpath2_AbbrevForwardStep |c25= parse_org_emftext_language_xpath2_GeneralReverseStep |c26= parse_org_emftext_language_xpath2_AbbrevReverseStep |c27= parse_org_emftext_language_xpath2_VarRef |c28= parse_org_emftext_language_xpath2_ParenthesizedExpr |c29= parse_org_emftext_language_xpath2_ContextItemExpr |c30= parse_org_emftext_language_xpath2_IntegerLiteral |c31= parse_org_emftext_language_xpath2_DecimalLiteral |c32= parse_org_emftext_language_xpath2_DoubleLiteral |c33= parse_org_emftext_language_xpath2_StringLiteral );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;

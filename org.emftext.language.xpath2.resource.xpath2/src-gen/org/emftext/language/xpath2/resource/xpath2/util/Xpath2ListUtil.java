@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,20 +10,24 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.util;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * A utility class that encapsulates some case operations that need to be
  * performed unchecked, because of Java's type erasure.
  */
 public class Xpath2ListUtil {
 	
-	@SuppressWarnings("unchecked")	
-	public static <T> java.util.List<T> castListUnchecked(Object list) {
-		return (java.util.List<T>) list;
+	@SuppressWarnings("unchecked")
+	public static <T> List<T> castListUnchecked(Object list) {
+		return (List<T>) list;
 	}
 	
-	public static java.util.List<Object> copySafelyToObjectList(java.util.List<?> list) {
-		java.util.Iterator<?> it = list.iterator();
-		java.util.List<Object> castedCopy = new java.util.ArrayList<Object>();
+	public static List<Object> copySafelyToObjectList(List<?> list) {
+		Iterator<?> it = list.iterator();
+		List<Object> castedCopy = new ArrayList<Object>();
 		while (it.hasNext()) {
 			castedCopy.add(it.next());
 		}

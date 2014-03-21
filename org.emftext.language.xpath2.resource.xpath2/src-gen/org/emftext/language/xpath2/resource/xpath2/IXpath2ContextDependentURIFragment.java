@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,9 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * An <code>IContextDependentURIFragment</code> points at an element referenced
@@ -28,7 +31,7 @@ package org.emftext.language.xpath2.resource.xpath2;
  * @param <ReferenceType> the type of the reference that can be resolved by this
  * fragment
  */
-public interface IXpath2ContextDependentURIFragment<ReferenceType extends org.eclipse.emf.ecore.EObject> {
+public interface IXpath2ContextDependentURIFragment<ReferenceType extends EObject> {
 	
 	/**
 	 * A prefix that can be used in a <code>URI.fragment</code> String of a proxy to
@@ -40,7 +43,7 @@ public interface IXpath2ContextDependentURIFragment<ReferenceType extends org.ec
 	 * 
 	 * @return The proxy object.
 	 */
-	public org.eclipse.emf.ecore.EObject getProxy();
+	public EObject getProxy();
 	
 	/**
 	 * 
@@ -53,14 +56,14 @@ public interface IXpath2ContextDependentURIFragment<ReferenceType extends org.ec
 	 * 
 	 * @return The element that references the proxy.
 	 */
-	public org.eclipse.emf.ecore.EObject getContainer();
+	public EObject getContainer();
 	
 	/**
 	 * 
 	 * @return The references of the container's <code>EClass</code> that holds the
 	 * proxy.
 	 */
-	public org.eclipse.emf.ecore.EReference getReference();
+	public EReference getReference();
 	
 	/**
 	 * 

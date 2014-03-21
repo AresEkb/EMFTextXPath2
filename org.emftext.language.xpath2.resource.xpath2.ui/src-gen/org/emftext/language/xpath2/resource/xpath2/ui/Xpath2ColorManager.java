@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,18 +10,25 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.ui;
 
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.RGB;
+import org.eclipse.swt.widgets.Display;
+
 /**
  * A class for RGB-based color objects.
  */
 public class Xpath2ColorManager {
 	
-	protected java.util.Map<org.eclipse.swt.graphics.RGB, org.eclipse.swt.graphics.Color> fColorTable = new java.util.LinkedHashMap<org.eclipse.swt.graphics.RGB, org.eclipse.swt.graphics.Color>(10);
+	protected Map<RGB, Color> fColorTable = new LinkedHashMap<RGB, Color>(10);
 	
 	/**
 	 * Disposes all colors in the cache.
 	 */
 	public void dispose() {
-		java.util.Iterator<org.eclipse.swt.graphics.Color> e = fColorTable.values().iterator();
+		Iterator<Color> e = fColorTable.values().iterator();
 		while (e.hasNext()) {
 			e.next().dispose();
 		}
@@ -30,14 +37,14 @@ public class Xpath2ColorManager {
 	/**
 	 * Constructs and caches the given color.
 	 * 
-	 * @param rgb The color as org.eclipse.swt.graphics.RGB
+	 * @param rgb The color as RGB
 	 * 
 	 * @return The color (from cache or newly constructed)
 	 */
-	public org.eclipse.swt.graphics.Color getColor(org.eclipse.swt.graphics.RGB rgb) {
-		org.eclipse.swt.graphics.Color color = fColorTable.get(rgb);
+	public Color getColor(RGB rgb) {
+		Color color = fColorTable.get(rgb);
 		if (color == null) {
-			color = new org.eclipse.swt.graphics.Color(org.eclipse.swt.widgets.Display.getCurrent(), rgb);
+			color = new Color(Display.getCurrent(), rgb);
 			fColorTable.put(rgb, color);
 		}
 		return color;

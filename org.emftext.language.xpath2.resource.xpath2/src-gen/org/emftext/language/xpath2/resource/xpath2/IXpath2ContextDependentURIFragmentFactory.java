@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,9 @@
  */
 package org.emftext.language.xpath2.resource.xpath2;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+
 /**
  * An interface for factories to create instances of
  * org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment.
@@ -18,7 +21,7 @@ package org.emftext.language.xpath2.resource.xpath2;
  * resolved
  * @param <ReferenceType> the type of the reference to be resolved
  */
-public interface IXpath2ContextDependentURIFragmentFactory<ContainerType extends org.eclipse.emf.ecore.EObject, ReferenceType extends org.eclipse.emf.ecore.EObject> {
+public interface IXpath2ContextDependentURIFragmentFactory<ContainerType extends EObject, ReferenceType extends EObject> {
 	
 	/**
 	 * Create a new instance of the
@@ -35,5 +38,5 @@ public interface IXpath2ContextDependentURIFragmentFactory<ContainerType extends
 	 * @return the new instance of
 	 * org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment
 	 */
-	public org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment<?> create(String identifier, ContainerType container, org.eclipse.emf.ecore.EReference reference, int positionInReference, org.eclipse.emf.ecore.EObject proxy);
+	public org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment<?> create(String identifier, ContainerType container, EReference reference, int positionInReference, EObject proxy);
 }

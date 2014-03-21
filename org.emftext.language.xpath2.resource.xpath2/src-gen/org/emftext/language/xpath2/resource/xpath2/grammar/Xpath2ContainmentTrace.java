@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,9 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2.grammar;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * A Xpath2ContainmentTrace represents a specific path to a structural feature by
@@ -22,19 +25,19 @@ public class Xpath2ContainmentTrace {
 	/**
 	 * The class where the trace starts.
 	 */
-	private org.eclipse.emf.ecore.EClass startClass;
+	private EClass startClass;
 	
 	/**
 	 * The path of contained features.
 	 */
 	private org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[] path;
 	
-	public Xpath2ContainmentTrace(org.eclipse.emf.ecore.EClass startClass, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[] path) {
+	public Xpath2ContainmentTrace(EClass startClass, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[] path) {
 		super();
 		// Verify arguments
 		if (startClass != null) {
 			if (path.length > 0) {
-				org.eclipse.emf.ecore.EStructuralFeature feature = path[path.length - 1].getFeature();
+				EStructuralFeature feature = path[path.length - 1].getFeature();
 				if (!startClass.getEAllStructuralFeatures().contains(feature)) {
 					throw new RuntimeException("Metaclass " + startClass.getName() + " must contain feature " + feature.getName());
 				}
@@ -44,7 +47,7 @@ public class Xpath2ContainmentTrace {
 		this.path = path;
 	}
 	
-	public org.eclipse.emf.ecore.EClass getStartClass() {
+	public EClass getStartClass() {
 		return startClass;
 	}
 	

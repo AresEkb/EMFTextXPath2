@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,47 +10,51 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.ui;
 
+import java.util.Collection;
+import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
+import org.eclipse.jface.preference.IPreferenceStore;
+
 /**
- * A class used to initialize default preference values.
+ * This class can be used to initialize default preference values.
  */
-public class Xpath2PreferenceInitializer extends org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer {
+public class Xpath2PreferenceInitializer extends AbstractPreferenceInitializer {
 	
 	public void initializeDefaultPreferences() {
 		
 		initializeDefaultSyntaxHighlighting();
 		initializeDefaultBrackets();
 		
-		org.eclipse.jface.preference.IPreferenceStore store = org.emftext.language.xpath2.resource.xpath2.ui.Xpath2UIPlugin.getDefault().getPreferenceStore();
+		IPreferenceStore store = org.emftext.language.xpath2.resource.xpath2.ui.Xpath2UIPlugin.getDefault().getPreferenceStore();
 		// Set default value for matching brackets
 		store.setDefault(org.emftext.language.xpath2.resource.xpath2.ui.Xpath2PreferenceConstants.EDITOR_MATCHING_BRACKETS_COLOR, "192,192,192");
 		store.setDefault(org.emftext.language.xpath2.resource.xpath2.ui.Xpath2PreferenceConstants.EDITOR_MATCHING_BRACKETS_CHECKBOX, true);
 		
 	}
 	
-	private void initializeDefaultBrackets() {
-		org.eclipse.jface.preference.IPreferenceStore store = org.emftext.language.xpath2.resource.xpath2.ui.Xpath2UIPlugin.getDefault().getPreferenceStore();
+	protected void initializeDefaultBrackets() {
+		IPreferenceStore store = org.emftext.language.xpath2.resource.xpath2.ui.Xpath2UIPlugin.getDefault().getPreferenceStore();
 		initializeDefaultBrackets(store, new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation());
 	}
 	
+	protected void initializeDefaultBrackets(IPreferenceStore store, org.emftext.language.xpath2.resource.xpath2.IXpath2MetaInformation metaInformation) {
+		String languageId = metaInformation.getSyntaxName();
+		// set default brackets
+		org.emftext.language.xpath2.resource.xpath2.ui.Xpath2BracketSet bracketSet = new org.emftext.language.xpath2.resource.xpath2.ui.Xpath2BracketSet();
+		final Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2BracketPair> bracketPairs = metaInformation.getBracketPairs();
+		if (bracketPairs != null) {
+			for (org.emftext.language.xpath2.resource.xpath2.IXpath2BracketPair bracketPair : bracketPairs) {
+				bracketSet.addBracketPair(bracketPair.getOpeningBracket(), bracketPair.getClosingBracket(), bracketPair.isClosingEnabledInside(), bracketPair.isCloseAfterEnter());
+			}
+		}
+		store.setDefault(languageId + org.emftext.language.xpath2.resource.xpath2.ui.Xpath2PreferenceConstants.EDITOR_BRACKETS_SUFFIX, bracketSet.serialize());
+	}
+	
 	public void initializeDefaultSyntaxHighlighting() {
-		org.eclipse.jface.preference.IPreferenceStore store = org.emftext.language.xpath2.resource.xpath2.ui.Xpath2UIPlugin.getDefault().getPreferenceStore();
+		IPreferenceStore store = org.emftext.language.xpath2.resource.xpath2.ui.Xpath2UIPlugin.getDefault().getPreferenceStore();
 		initializeDefaultSyntaxHighlighting(store, new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation());
 	}
 	
-	private void initializeDefaultBrackets(org.eclipse.jface.preference.IPreferenceStore store, org.emftext.language.xpath2.resource.xpath2.IXpath2MetaInformation metaInformation) {
-		String languageId = metaInformation.getSyntaxName();
-		// set default brackets for ITextResource bracket set
-		org.emftext.language.xpath2.resource.xpath2.ui.Xpath2BracketSet bracketSet = new org.emftext.language.xpath2.resource.xpath2.ui.Xpath2BracketSet(null, null);
-		final java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2BracketPair> bracketPairs = metaInformation.getBracketPairs();
-		if (bracketPairs != null) {
-			for (org.emftext.language.xpath2.resource.xpath2.IXpath2BracketPair bracketPair : bracketPairs) {
-				bracketSet.addBracketPair(bracketPair.getOpeningBracket(), bracketPair.getClosingBracket(), bracketPair.isClosingEnabledInside());
-			}
-		}
-		store.setDefault(languageId + org.emftext.language.xpath2.resource.xpath2.ui.Xpath2PreferenceConstants.EDITOR_BRACKETS_SUFFIX, bracketSet.getBracketString());
-	}
-	
-	private void initializeDefaultSyntaxHighlighting(org.eclipse.jface.preference.IPreferenceStore store, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation metaInformation) {
+	protected void initializeDefaultSyntaxHighlighting(IPreferenceStore store, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation metaInformation) {
 		String languageId = metaInformation.getSyntaxName();
 		String[] tokenNames = metaInformation.getSyntaxHighlightableTokenNames();
 		if (tokenNames == null) {
@@ -68,7 +72,7 @@ public class Xpath2PreferenceInitializer extends org.eclipse.core.runtime.prefer
 		}
 	}
 	
-	private void setProperties(org.eclipse.jface.preference.IPreferenceStore store, String languageID, String tokenName, String color, boolean bold, boolean enable, boolean italic, boolean strikethrough, boolean underline) {
+	protected void setProperties(IPreferenceStore store, String languageID, String tokenName, String color, boolean bold, boolean enable, boolean italic, boolean strikethrough, boolean underline) {
 		store.setDefault(org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.getPreferenceKey(languageID, tokenName, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.StyleProperty.BOLD), bold);
 		store.setDefault(org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.getPreferenceKey(languageID, tokenName, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.StyleProperty.COLOR), color);
 		store.setDefault(org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.getPreferenceKey(languageID, tokenName, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.StyleProperty.ENABLE), enable);
@@ -77,7 +81,7 @@ public class Xpath2PreferenceInitializer extends org.eclipse.core.runtime.prefer
 		store.setDefault(org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.getPreferenceKey(languageID, tokenName, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.StyleProperty.UNDERLINE), underline);
 	}
 	
-	private String getColorString(int[] colorAsRGB) {
+	protected String getColorString(int[] colorAsRGB) {
 		if (colorAsRGB == null) {
 			return "0,0,0";
 		}
@@ -86,4 +90,6 @@ public class Xpath2PreferenceInitializer extends org.eclipse.core.runtime.prefer
 		}
 		return colorAsRGB[0] + "," +colorAsRGB[1] + ","+ colorAsRGB[2];
 	}
+	
 }
+

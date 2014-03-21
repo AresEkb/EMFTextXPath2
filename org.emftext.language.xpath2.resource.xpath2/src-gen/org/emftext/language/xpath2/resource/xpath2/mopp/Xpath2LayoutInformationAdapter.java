@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,13 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * A Xpath2LayoutInformationAdapter is used to store layout information that is
@@ -23,23 +30,23 @@ package org.emftext.language.xpath2.resource.xpath2.mopp;
  * modified, while still keeping the formatting of the original text document from
  * which the model was originally created.
  */
-public class Xpath2LayoutInformationAdapter implements org.eclipse.emf.common.notify.Adapter {
+public class Xpath2LayoutInformationAdapter implements Adapter {
 	
 	/**
 	 * The EObject that this adapter is attached to.
 	 */
-	private org.eclipse.emf.common.notify.Notifier target;
+	private Notifier target;
 	
 	/**
 	 * A list of LayoutInformation objects. one for each keyword, attribute and
 	 * reference.
 	 */
-	private java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation>();
+	private List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations = new ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation>();
 	
 	/**
 	 * Returns the EObject that this adapter is attached to.
 	 */
-	public org.eclipse.emf.common.notify.Notifier getTarget() {
+	public Notifier getTarget() {
 		return target;
 	}
 	
@@ -47,17 +54,17 @@ public class Xpath2LayoutInformationAdapter implements org.eclipse.emf.common.no
 		return false;
 	}
 	
-	public void notifyChanged(org.eclipse.emf.common.notify.Notification notification) {
+	public void notifyChanged(Notification notification) {
 	}
 	
 	/**
 	 * Sets the EObject that this adapter is attached to.
 	 */
-	public void setTarget(org.eclipse.emf.common.notify.Notifier newTarget) {
+	public void setTarget(Notifier newTarget) {
 		this.target = newTarget;
 	}
 	
-	public java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> getLayoutInformations() {
+	public List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> getLayoutInformations() {
 		return layoutInformations;
 	}
 	
@@ -74,7 +81,7 @@ public class Xpath2LayoutInformationAdapter implements org.eclipse.emf.common.no
 	 * referenced. To keep the layout information up to date, this replacement must be
 	 * propagated to all attached layout information objects.
 	 */
-	public void replaceProxy(org.eclipse.emf.ecore.EObject proxy, org.eclipse.emf.ecore.EObject target) {
+	public void replaceProxy(EObject proxy, EObject target) {
 		for (org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation layoutInformation : layoutInformations) {
 			layoutInformation.replaceProxy(proxy, target);
 		}

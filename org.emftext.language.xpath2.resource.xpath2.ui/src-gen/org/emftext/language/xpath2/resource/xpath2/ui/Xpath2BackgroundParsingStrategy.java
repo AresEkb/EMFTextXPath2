@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,14 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2.ui;
+
+import java.io.ByteArrayInputStream;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.jface.text.DocumentEvent;
+import org.eclipse.jface.text.IDocument;
 
 /**
  * A background parsing strategy that starts parsing after a amount of time after
@@ -33,14 +41,14 @@ public class Xpath2BackgroundParsingStrategy {
 	/**
 	 * Schedules a task for background parsing that will be started after a delay.
 	 */
-	public void parse(org.eclipse.jface.text.DocumentEvent event, final org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource, final org.emftext.language.xpath2.resource.xpath2.ui.Xpath2Editor editor) {
+	public void parse(DocumentEvent event, final org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource, final org.emftext.language.xpath2.resource.xpath2.ui.Xpath2Editor editor) {
 		parse(event.getDocument(), resource, editor, DELAY);
 	}
 	
 	/**
 	 * Schedules a task for background parsing that will be started after a delay.
 	 */
-	public void parse(org.eclipse.jface.text.IDocument document, final org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource, final org.emftext.language.xpath2.resource.xpath2.ui.Xpath2Editor editor, long delay) {
+	public void parse(IDocument document, final org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource, final org.emftext.language.xpath2.resource.xpath2.ui.Xpath2Editor editor, long delay) {
 		parse(document.get(), resource, editor, delay);
 	}
 	
@@ -60,7 +68,7 @@ public class Xpath2BackgroundParsingStrategy {
 		// multiple threads. the creation of multiple tasks would imply that multiple
 		// background parsing threads for one editor are created, which is not desired.
 		synchronized (lock) {
-			if (job == null || job.getState() != org.eclipse.core.runtime.jobs.Job.RUNNING) {
+			if (job == null || job.getState() != Job.RUNNING) {
 				// schedule new task
 				job = new ParsingJob();
 				job.resource = resource;
@@ -73,7 +81,7 @@ public class Xpath2BackgroundParsingStrategy {
 		}
 	}
 	
-	private class ParsingJob extends org.eclipse.core.runtime.jobs.Job {
+	private class ParsingJob extends Job {
 		private org.emftext.language.xpath2.resource.xpath2.ui.Xpath2Editor editor;
 		private org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource;
 		
@@ -83,7 +91,7 @@ public class Xpath2BackgroundParsingStrategy {
 		
 		private String newContents = null;
 		
-		protected org.eclipse.core.runtime.IStatus run(org.eclipse.core.runtime.IProgressMonitor monitor) {
+		protected IStatus run(IProgressMonitor monitor) {
 			while (newContents != null ) {
 				while (newContents != null) {
 					try {
@@ -100,7 +108,7 @@ public class Xpath2BackgroundParsingStrategy {
 						} else {
 							bytes = currentContent.getBytes();
 						}
-						resource.reload(new java.io.ByteArrayInputStream(bytes), null);
+						resource.reload(new ByteArrayInputStream(bytes), null);
 						if (newContents != null) {
 							Thread.sleep(DELAY);
 						}
@@ -110,7 +118,7 @@ public class Xpath2BackgroundParsingStrategy {
 				}
 				editor.notifyBackgroundParsingFinished();
 			}
-			return org.eclipse.core.runtime.Status.OK_STATUS;
+			return Status.OK_STATUS;
 		}
 	};
 	

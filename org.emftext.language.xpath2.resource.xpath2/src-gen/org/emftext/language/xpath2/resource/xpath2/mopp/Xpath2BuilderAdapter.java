@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,45 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
-public class Xpath2BuilderAdapter extends org.eclipse.core.resources.IncrementalProjectBuilder implements org.eclipse.core.resources.IResourceDeltaVisitor, org.eclipse.core.resources.IResourceVisitor {
+import java.util.Map;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.IResourceDeltaVisitor;
+import org.eclipse.core.resources.IResourceVisitor;
+import org.eclipse.core.resources.IncrementalProjectBuilder;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+
+public class Xpath2BuilderAdapter extends IncrementalProjectBuilder {
+	
+	private static class ResourceCollector implements IResourceDeltaVisitor, IResourceVisitor {
+		
+		private java.util.Map<IResource, Boolean> resourceMap = new java.util.LinkedHashMap<IResource, Boolean>();
+		
+		public boolean visit(IResourceDelta delta) throws CoreException {
+			IResource resource = delta.getResource();
+			return doVisit(resource, delta.getKind() == IResourceDelta.REMOVED);
+		}
+		
+		public boolean visit(IResource resource) throws CoreException {
+			return doVisit(resource, false);
+		}
+		
+		private boolean doVisit(IResource resource, boolean removed) throws CoreException {
+			resourceMap.put(resource, removed);
+			return true;
+		}
+		
+		private Map<IResource, Boolean> getResourceMap() {
+			return resourceMap;
+		}
+		
+	}
 	
 	/**
 	 * The ID of the default, generated builder.
@@ -19,37 +57,31 @@ public class Xpath2BuilderAdapter extends org.eclipse.core.resources.Incremental
 	
 	private org.emftext.language.xpath2.resource.xpath2.IXpath2Builder defaultBuilder = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Builder();
 	
-	/**
-	 * This resource set is used during the whole build.
-	 */
-	private org.eclipse.emf.ecore.resource.ResourceSet resourceSet;
-	
-	/**
-	 * This monitor is used during the build.
-	 */
-	private org.eclipse.core.runtime.IProgressMonitor monitor;
-	
-	public org.eclipse.core.resources.IProject[] build(int kind, java.util.Map<String, String> args, final org.eclipse.core.runtime.IProgressMonitor monitor) throws org.eclipse.core.runtime.CoreException {
-		// Set context for build
-		this.monitor = monitor;
-		this.resourceSet = new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl();
-		// Perform build by calling the resource visitors
-		org.eclipse.core.resources.IResourceDelta delta = getDelta(getProject());
+	public IProject[] build(int kind, Map<String, String> args, final IProgressMonitor monitor) throws CoreException {
+		// Collect resources that must be built
+		ResourceCollector resourceCollector = new ResourceCollector();
+		IResourceDelta delta = getDelta(getProject());
 		if (delta != null) {
 			// This is an incremental build
-			delta.accept(this);
+			delta.accept(resourceCollector);
 		} else {
 			// This is a full build
-			getProject().accept(this);
+			getProject().accept(resourceCollector);
 		}
-		// Reset build context
-		this.resourceSet = null;
-		this.monitor = null;
+		
+		// This resource set is used during the whole build.
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Map<IResource, Boolean> resourceMap = resourceCollector.getResourceMap();
+		monitor.beginTask(org.emftext.language.xpath2.resource.xpath2.Xpath2ResourceBundle.BUILDER_ADAPTER_TASK_NAME, resourceMap.size() * 2);
+		for (IResource resource : resourceMap.keySet()) {
+			doVisit(resource, resourceMap.get(resource), monitor, resourceSet);
+		}
+		monitor.done();
 		return null;
 	}
 	
-	public void build(org.eclipse.core.resources.IFile resource, org.eclipse.emf.ecore.resource.ResourceSet resourceSet, org.eclipse.core.runtime.IProgressMonitor monitor) {
-		org.eclipse.emf.common.util.URI uri = org.eclipse.emf.common.util.URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
+	public void build(IFile resource, ResourceSet resourceSet, IProgressMonitor monitor) {
+		URI uri = URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
 		org.emftext.language.xpath2.resource.xpath2.IXpath2Builder builder = getBuilder();
 		if (builder.isBuildingNeeded(uri)) {
 			org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource customResource = (org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource) resourceSet.getResource(uri, true);
@@ -77,26 +109,14 @@ public class Xpath2BuilderAdapter extends org.eclipse.core.resources.Incremental
 	/**
 	 * Runs the task item builder to search for new task items in changed resources.
 	 */
-	public void runTaskItemBuilder(org.eclipse.core.resources.IFile resource, org.eclipse.emf.ecore.resource.ResourceSet resourceSet, org.eclipse.core.runtime.IProgressMonitor monitor) {
+	public void runTaskItemBuilder(IFile resource, ResourceSet resourceSet, IProgressMonitor monitor) {
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItemBuilder taskItemBuilder = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItemBuilder();
-		new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MarkerHelper().removeAllMarkers(resource, taskItemBuilder.getBuilderMarkerId());
 		taskItemBuilder.build(resource, resourceSet, monitor);
 	}
 	
-	@Override	
-	public boolean visit(org.eclipse.core.resources.IResourceDelta delta) throws org.eclipse.core.runtime.CoreException {
-		org.eclipse.core.resources.IResource resource = delta.getResource();
-		return doVisit(resource, delta.getKind() == org.eclipse.core.resources.IResourceDelta.REMOVED);
-	}
-	
-	@Override	
-	public boolean visit(org.eclipse.core.resources.IResource resource) throws org.eclipse.core.runtime.CoreException {
-		return doVisit(resource, false);
-	}
-	
-	protected boolean doVisit(org.eclipse.core.resources.IResource resource, boolean removed) throws org.eclipse.core.runtime.CoreException {
+	protected boolean doVisit(IResource resource, boolean removed, IProgressMonitor monitor, ResourceSet resourceSet) throws CoreException {
 		if (removed) {
-			org.eclipse.emf.common.util.URI uri = org.eclipse.emf.common.util.URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
+			URI uri = URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
 			org.emftext.language.xpath2.resource.xpath2.IXpath2Builder builder = getBuilder();
 			if (builder.isBuildingNeeded(uri)) {
 				builder.handleDeletion(uri, monitor);
@@ -104,15 +124,19 @@ public class Xpath2BuilderAdapter extends org.eclipse.core.resources.Incremental
 			new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MarkerHelper().removeAllMarkers(resource, getBuilderMarkerId());
 			return false;
 		}
-		if (resource instanceof org.eclipse.core.resources.IFile && resource.getName().endsWith("." + new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation().getSyntaxName())) {
+		
+		if (resource instanceof IFile && resource.getName().endsWith("." + new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation().getSyntaxName())) {
 			// First, call the default generated builder that is usually customized to add
-			// compilation-like behavior.
-			build((org.eclipse.core.resources.IFile) resource, resourceSet, monitor);
+			// compilation-like behavior. The Builder may consume one tick from the progress
+			// monitor.
+			build((IFile) resource, resourceSet, monitor);
 			// Second, call the task item builder that searches for task items in DSL
-			// documents and creates task markers.
-			runTaskItemBuilder((org.eclipse.core.resources.IFile) resource, resourceSet, monitor);
+			// documents and creates task markers. The TaskItemBuilder may consume one tick
+			// from the progress monitor.
+			runTaskItemBuilder((IFile) resource, resourceSet, monitor);
 			return false;
 		}
+		
 		return true;
 	}
 	

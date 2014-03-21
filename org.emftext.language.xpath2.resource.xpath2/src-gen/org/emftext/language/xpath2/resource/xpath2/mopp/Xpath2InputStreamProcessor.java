@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,12 +10,13 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
+import java.io.InputStream;
+
 /**
- * A InputStreamProcessor can be used like a normal java.io.InputStream, but
- * provides information about the encoding that is used to represent characters as
- * bytes.
+ * A InputStreamProcessor can be used like a normal InputStream, but provides
+ * information about the encoding that is used to represent characters as bytes.
  */
-public abstract class Xpath2InputStreamProcessor extends java.io.InputStream {
+public abstract class Xpath2InputStreamProcessor extends InputStream {
 	
 	/**
 	 * Returns the encoding of the characters that can be read from this

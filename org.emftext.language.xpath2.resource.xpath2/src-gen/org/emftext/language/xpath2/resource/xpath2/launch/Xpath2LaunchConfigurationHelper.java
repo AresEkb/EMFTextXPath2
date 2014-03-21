@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,18 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.launch;
 
+import java.io.IOException;
+import java.net.ServerSocket;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.debug.core.ILaunch;
+import org.eclipse.debug.core.ILaunchConfiguration;
+import org.eclipse.debug.core.ILaunchManager;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * A class that provides common methods that are required by launch configuration
  * delegates.
@@ -18,8 +30,8 @@ public class Xpath2LaunchConfigurationHelper {
 	
 	public static class SystemOutInterpreter extends org.emftext.language.xpath2.resource.xpath2.util.AbstractXpath2Interpreter<Void,Void> {
 		
-		@Override		
-		public Void interprete(org.eclipse.emf.ecore.EObject object, Void context) {
+		@Override
+		public Void interprete(EObject object, Void context) {
 			System.out.println("Found " + object + ", but don't know what to do with it.");
 			return null;
 		}
@@ -28,16 +40,16 @@ public class Xpath2LaunchConfigurationHelper {
 	/**
 	 * Launch an example interpreter that prints object to System.out.
 	 */
-	public void launch(org.eclipse.debug.core.ILaunchConfiguration configuration, String mode, org.eclipse.debug.core.ILaunch launch, org.eclipse.core.runtime.IProgressMonitor monitor) throws org.eclipse.core.runtime.CoreException {
-		org.eclipse.emf.ecore.EObject root = getModelRoot(configuration);
+	public void launch(ILaunchConfiguration configuration, String mode, ILaunch launch, IProgressMonitor monitor) throws CoreException {
+		EObject root = getModelRoot(configuration);
 		// replace this delegate with your actual interpreter
 		SystemOutInterpreter delegate = new SystemOutInterpreter();
 		delegate.addObjectTreeToInterpreteTopDown(root);
 		launchInterpreter(configuration, mode, launch, monitor, delegate, null);
 	}
 	
-	public <ResultType, ContextType> void launchInterpreter(org.eclipse.debug.core.ILaunchConfiguration configuration, String mode, org.eclipse.debug.core.ILaunch launch, org.eclipse.core.runtime.IProgressMonitor monitor, org.emftext.language.xpath2.resource.xpath2.util.AbstractXpath2Interpreter<ResultType, ContextType> delegate, final ContextType context) throws org.eclipse.core.runtime.CoreException {
-		final boolean enableDebugger = mode.equals(org.eclipse.debug.core.ILaunchManager.DEBUG_MODE);
+	public <ResultType, ContextType> void launchInterpreter(ILaunchConfiguration configuration, String mode, ILaunch launch, IProgressMonitor monitor, org.emftext.language.xpath2.resource.xpath2.util.AbstractXpath2Interpreter<ResultType, ContextType> delegate, final ContextType context) throws CoreException {
+		final boolean enableDebugger = mode.equals(ILaunchManager.DEBUG_MODE);
 		// step 1: find two free ports we can use to communicate between the Eclipse and
 		// the interpreter
 		int requestPort = findFreePort();
@@ -69,11 +81,11 @@ public class Xpath2LaunchConfigurationHelper {
 		launch.addDebugTarget(new org.emftext.language.xpath2.resource.xpath2.debug.Xpath2DebugTarget(process, launch, requestPort, eventPort));
 	}
 	
-	public org.eclipse.emf.common.util.URI getURI(org.eclipse.debug.core.ILaunchConfiguration configuration) throws org.eclipse.core.runtime.CoreException {
-		return org.eclipse.emf.common.util.URI.createURI(configuration.getAttribute(org.emftext.language.xpath2.resource.xpath2.launch.Xpath2LaunchConfigurationDelegate.ATTR_RESOURCE_URI, (String) null));
+	public URI getURI(ILaunchConfiguration configuration) throws CoreException {
+		return URI.createURI(configuration.getAttribute(org.emftext.language.xpath2.resource.xpath2.launch.Xpath2LaunchConfigurationDelegate.ATTR_RESOURCE_URI, (String) null));
 	}
 	
-	public org.eclipse.emf.ecore.EObject getModelRoot(org.eclipse.debug.core.ILaunchConfiguration configuration) throws org.eclipse.core.runtime.CoreException {
+	public EObject getModelRoot(ILaunchConfiguration configuration) throws CoreException {
 		return org.emftext.language.xpath2.resource.xpath2.util.Xpath2ResourceUtil.getResourceContent(getURI(configuration));
 	}
 	
@@ -81,16 +93,16 @@ public class Xpath2LaunchConfigurationHelper {
 	 * Returns a free port number on localhost, or -1 if unable to find a free port.
 	 */
 	protected int findFreePort() {
-		java.net.ServerSocket socket = null;
+		ServerSocket socket = null;
 		try {
-			socket = new java.net.ServerSocket(0);
+			socket = new ServerSocket(0);
 			return socket.getLocalPort();
-		} catch (java.io.IOException e) {
+		} catch (IOException e) {
 		} finally {
 			if (socket != null) {
 				try {
 					socket.close();
-				} catch (java.io.IOException e) {
+				} catch (IOException e) {
 				}
 			}
 		}
@@ -105,7 +117,7 @@ public class Xpath2LaunchConfigurationHelper {
 	 * 
 	 * @throws CoreException
 	 */
-	protected void abort(String message, Throwable e) throws org.eclipse.core.runtime.CoreException {
-		throw new org.eclipse.core.runtime.CoreException(new org.eclipse.core.runtime.Status(org.eclipse.core.runtime.IStatus.ERROR, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Plugin.DEBUG_MODEL_ID, 0, message, e));
+	protected void abort(String message, Throwable e) throws CoreException {
+		throw new CoreException(new Status(IStatus.ERROR, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Plugin.DEBUG_MODEL_ID, 0, message, e));
 	}
 }

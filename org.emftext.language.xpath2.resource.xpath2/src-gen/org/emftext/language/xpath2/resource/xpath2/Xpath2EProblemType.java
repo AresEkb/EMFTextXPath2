@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,8 +10,9 @@
  */
 package org.emftext.language.xpath2.resource.xpath2;
 
+
 public enum Xpath2EProblemType {
-	SYNTAX_ERROR, PRINT_PROBLEM, UNRESOLVED_REFERENCE, ANALYSIS_PROBLEM, BUILDER_ERROR, UNKNOWN, ;
+	SYNTAX_ERROR, PRINT_PROBLEM, UNRESOLVED_REFERENCE, ANALYSIS_PROBLEM, BATCH_CONSTRAINT_PROBLEM, LIVE_CONSTRAINT_PROBLEM, BUILDER_ERROR, UNKNOWN, ;
 	
 	/**
 	 * Returns the ID that is used for this type of problem when creating markers for

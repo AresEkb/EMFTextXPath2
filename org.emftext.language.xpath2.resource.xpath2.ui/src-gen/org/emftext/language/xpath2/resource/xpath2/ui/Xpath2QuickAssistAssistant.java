@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,22 +10,32 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.ui;
 
-public class Xpath2QuickAssistAssistant extends org.eclipse.jface.text.quickassist.QuickAssistAssistant implements org.eclipse.jface.text.quickassist.IQuickAssistAssistant {
+import org.eclipse.jface.text.AbstractReusableInformationControlCreator;
+import org.eclipse.jface.text.DefaultInformationControl;
+import org.eclipse.jface.text.DefaultInformationControl.IInformationPresenter;
+import org.eclipse.jface.text.IInformationControl;
+import org.eclipse.jface.text.quickassist.IQuickAssistAssistant;
+import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
+import org.eclipse.jface.text.quickassist.QuickAssistAssistant;
+import org.eclipse.jface.text.source.Annotation;
+import org.eclipse.swt.widgets.Shell;
+
+public class Xpath2QuickAssistAssistant extends QuickAssistAssistant implements IQuickAssistAssistant {
 	
 	public Xpath2QuickAssistAssistant(org.emftext.language.xpath2.resource.xpath2.IXpath2ResourceProvider resourceProvider, org.emftext.language.xpath2.resource.xpath2.ui.IXpath2AnnotationModelProvider annotationModelProvider) {
 		setQuickAssistProcessor(new org.emftext.language.xpath2.resource.xpath2.ui.Xpath2QuickAssistProcessor(resourceProvider, annotationModelProvider));
-		setInformationControlCreator(new org.eclipse.jface.text.AbstractReusableInformationControlCreator() {
-			public org.eclipse.jface.text.IInformationControl doCreateInformationControl(org.eclipse.swt.widgets.Shell parent) {
-				return new org.eclipse.jface.text.DefaultInformationControl(parent, (org.eclipse.jface.text.DefaultInformationControl.IInformationPresenter) null);
+		setInformationControlCreator(new AbstractReusableInformationControlCreator() {
+			public IInformationControl doCreateInformationControl(Shell parent) {
+				return new DefaultInformationControl(parent, (IInformationPresenter) null);
 			}
 		});
 	}
 	
-	public boolean canAssist(org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext invocationContext) {
+	public boolean canAssist(IQuickAssistInvocationContext invocationContext) {
 		return false;
 	}
 	
-	public boolean canFix(org.eclipse.jface.text.source.Annotation annotation) {
+	public boolean canFix(Annotation annotation) {
 		return true;
 	}
 	

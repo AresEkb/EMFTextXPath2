@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,24 +10,38 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.emf.common.util.URI;
+
 public class Xpath2Builder implements org.emftext.language.xpath2.resource.xpath2.IXpath2Builder {
 	
-	public boolean isBuildingNeeded(org.eclipse.emf.common.util.URI uri) {
-		// change this to return true to enable building of all resources
+	public boolean isBuildingNeeded(URI uri) {
+		// Change this to return true to enable building of all resources.
 		return false;
 	}
 	
-	public org.eclipse.core.runtime.IStatus build(org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource resource, org.eclipse.core.runtime.IProgressMonitor monitor) {
-		// set option overrideBuilder to 'false' and then perform build here
-		return org.eclipse.core.runtime.Status.OK_STATUS;
+	public IStatus build(org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource resource, IProgressMonitor monitor) {
+		// Set option 'overrideBuilder' to 'false' and then perform build here.
+		
+		// We use one tick from the parent monitor because the BuilderAdapter reserves one
+		// tick for the Builder.
+		SubProgressMonitor subMonitor = new SubProgressMonitor(monitor, 1);
+		subMonitor.beginTask("Building " + resource.getURI().lastSegment(), 10);
+		// The actual work of the builder can be performed here.
+		subMonitor.worked(10);
+		subMonitor.done();
+		return Status.OK_STATUS;
 	}
 	
 	/**
 	 * Handles the deletion of the given resource.
 	 */
-	public org.eclipse.core.runtime.IStatus handleDeletion(org.eclipse.emf.common.util.URI uri, org.eclipse.core.runtime.IProgressMonitor monitor) {
+	public IStatus handleDeletion(URI uri, IProgressMonitor monitor) {
 		// by default nothing is done when a resource is deleted
-		return org.eclipse.core.runtime.Status.OK_STATUS;
+		return Status.OK_STATUS;
 	}
 	
 }

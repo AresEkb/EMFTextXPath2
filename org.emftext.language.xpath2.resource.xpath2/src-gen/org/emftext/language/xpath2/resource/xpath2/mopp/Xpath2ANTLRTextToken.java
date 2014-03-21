@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,12 +10,15 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
+import org.antlr.runtime3_4_0.CommonToken;
+import org.antlr.runtime3_4_0.Token;
+
 public class Xpath2ANTLRTextToken extends org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TextToken {
 	
 	private final static org.emftext.language.xpath2.resource.xpath2.IXpath2MetaInformation metaInformation = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation();
 	
-	public Xpath2ANTLRTextToken(org.antlr.runtime3_4_0.Token antlrToken) {
-		super(getTokenName(metaInformation.getTokenNames(), antlrToken.getType()), antlrToken.getText(), ((org.antlr.runtime3_4_0.CommonToken) antlrToken).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) antlrToken).getStopIndex() - ((org.antlr.runtime3_4_0.CommonToken) antlrToken).getStartIndex() + 1, antlrToken.getLine(), antlrToken.getCharPositionInLine(), canBeUsedForSyntaxHighlighting(antlrToken.getType()));
+	public Xpath2ANTLRTextToken(Token antlrToken) {
+		super(getTokenName(metaInformation.getTokenNames(), antlrToken.getType()), antlrToken.getText(), ((CommonToken) antlrToken).getStartIndex(), ((CommonToken) antlrToken).getStopIndex() - ((CommonToken) antlrToken).getStartIndex() + 1, antlrToken.getLine(), antlrToken.getCharPositionInLine(), canBeUsedForSyntaxHighlighting(antlrToken.getType()));
 	}
 	
 	public static String getTokenName(String[] tokenNames, int index) {
@@ -33,16 +36,16 @@ public class Xpath2ANTLRTextToken extends org.emftext.language.xpath2.resource.x
 		if (tokenType < 0) {
 			return false;
 		}
-		if (tokenType == org.antlr.runtime3_4_0.Token.UP) {
+		if (tokenType == Token.UP) {
 			return false;
 		}
-		if (tokenType == org.antlr.runtime3_4_0.Token.DOWN) {
+		if (tokenType == Token.DOWN) {
 			return false;
 		}
-		if (tokenType == org.antlr.runtime3_4_0.Token.EOR_TOKEN_TYPE) {
+		if (tokenType == Token.EOR_TOKEN_TYPE) {
 			return false;
 		}
-		if (tokenType == org.antlr.runtime3_4_0.Token.INVALID_TOKEN_TYPE) {
+		if (tokenType == Token.INVALID_TOKEN_TYPE) {
 			return false;
 		}
 		return true;

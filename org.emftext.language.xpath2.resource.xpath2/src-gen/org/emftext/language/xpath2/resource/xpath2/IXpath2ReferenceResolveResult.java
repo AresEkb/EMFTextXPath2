@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,9 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2;
+
+import java.util.Collection;
+import org.eclipse.emf.common.util.URI;
 
 /**
  * The result of a single attempt to resolve an identifier. The result can either
@@ -32,7 +35,7 @@ public interface IXpath2ReferenceResolveResult<ReferenceType> {
 	 * Returns an unmodifiable collection of the quick fixes that can be used to
 	 * resolve the resolving error.
 	 */
-	public java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> getQuickFixes();
+	public Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> getQuickFixes();
 	
 	/**
 	 * Adds a quick fix to the set of quick fixes that can be used to resolve the
@@ -80,13 +83,13 @@ public interface IXpath2ReferenceResolveResult<ReferenceType> {
 	 * @param identifier
 	 * @param newIdentifier
 	 */
-	public void addMapping(String identifier, org.eclipse.emf.common.util.URI newIdentifier, String warning);
+	public void addMapping(String identifier, URI newIdentifier, String warning);
 	
 	/**
 	 * 
-	 * @see addMapping(String, org.eclipse.emf.common.util.URI, String)
+	 * @see addMapping(String, URI, String)
 	 */
-	public void addMapping(String identifier, org.eclipse.emf.common.util.URI newIdentifier);
+	public void addMapping(String identifier, URI newIdentifier);
 	
 	/**
 	 * Indicates the type of the result. Depending on the type of the result different
@@ -118,6 +121,6 @@ public interface IXpath2ReferenceResolveResult<ReferenceType> {
 	/**
 	 * Returns all mappings that were found while resolving an identifier.
 	 */
-	public java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<ReferenceType>> getMappings();
+	public Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<ReferenceType>> getMappings();
 	
 }

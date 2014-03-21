@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,12 +10,20 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.ui;
 
-public class Xpath2AnnotationModelFactory implements org.eclipse.core.filebuffers.IAnnotationModelFactory {
+import org.eclipse.core.filebuffers.IAnnotationModelFactory;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.jface.text.source.IAnnotationModel;
+
+public class Xpath2AnnotationModelFactory implements IAnnotationModelFactory {
 	
-	public org.eclipse.jface.text.source.IAnnotationModel createAnnotationModel(org.eclipse.core.runtime.IPath location) {
-		org.eclipse.core.resources.IWorkspace workspace = org.eclipse.core.resources.ResourcesPlugin.getWorkspace();
-		org.eclipse.core.resources.IWorkspaceRoot root = workspace.getRoot();
-		org.eclipse.core.resources.IResource resource = root.findMember(location);
+	public IAnnotationModel createAnnotationModel(IPath location) {
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		IWorkspaceRoot root = workspace.getRoot();
+		IResource resource = root.findMember(location);
 		return new org.emftext.language.xpath2.resource.xpath2.ui.Xpath2AnnotationModel(resource);
 	}
 	

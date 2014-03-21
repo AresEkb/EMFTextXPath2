@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,8 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
+import java.util.List;
+
 /**
  * The Xpath2TaskItemDetector is used to find task items in text documents. The
  * current implementation searches for specific keywords to detect task items. The
@@ -19,7 +21,7 @@ public class Xpath2TaskItemDetector {
 	
 	public static String[] TASK_ITEM_KEYWORDS = new String[] {"TODO", "FIXME", "XXX"};
 	
-	public java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItem> findTaskItems(String text, int line, int charStart) {
+	public List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItem> findTaskItems(String text, int line, int charStart) {
 		java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItem> foundItems = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItem>();
 		String remainingText = text;
 		boolean continueSearch = true;

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,11 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Collection;
+import org.eclipse.emf.ecore.EClass;
 
 /**
  * This interface provides information about a generated EMFText text resource
@@ -52,7 +57,7 @@ public interface IXpath2MetaInformation {
 	 * 
 	 * @return a new instance of the parser class
 	 */
-	public org.emftext.language.xpath2.resource.xpath2.IXpath2TextParser createParser(java.io.InputStream inputStream, String encoding);
+	public org.emftext.language.xpath2.resource.xpath2.IXpath2TextParser createParser(InputStream inputStream, String encoding);
 	
 	/**
 	 * Returns a new instance of the printer.
@@ -62,13 +67,13 @@ public interface IXpath2MetaInformation {
 	 * 
 	 * @return a new instance of the printer class
 	 */
-	public org.emftext.language.xpath2.resource.xpath2.IXpath2TextPrinter createPrinter(java.io.OutputStream outputStream, org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource);
+	public org.emftext.language.xpath2.resource.xpath2.IXpath2TextPrinter createPrinter(OutputStream outputStream, org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource);
 	
 	/**
 	 * Returns all meta classes for which syntax was defined. This information is used
 	 * both by the NewFileWizard and the code completion.
 	 */
-	public org.eclipse.emf.ecore.EClass[] getClassesWithSyntax();
+	public EClass[] getClassesWithSyntax();
 	
 	/**
 	 * Returns an instance of the reference resolver switch class.
@@ -98,11 +103,11 @@ public interface IXpath2MetaInformation {
 	/**
 	 * Returns the default bracket pairs.
 	 */
-	public java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2BracketPair> getBracketPairs();
+	public Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2BracketPair> getBracketPairs();
 	
 	/**
 	 * Returns all classes for which folding must be enabled in the editor.
 	 */
-	public org.eclipse.emf.ecore.EClass[] getFoldableClasses();
+	public EClass[] getFoldableClasses();
 	
 }

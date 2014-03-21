@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,15 +10,36 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+
 public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpath2.IXpath2TextPrinter {
 	
 	protected class PrintToken {
 		
 		private String text;
 		private String tokenName;
-		private org.eclipse.emf.ecore.EObject container;
+		private EObject container;
 		
-		public PrintToken(String text, String tokenName, org.eclipse.emf.ecore.EObject container) {
+		public PrintToken(String text, String tokenName, EObject container) {
 			this.text = text;
 			this.tokenName = tokenName;
 			this.container = container;
@@ -32,7 +53,7 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 			return tokenName;
 		}
 		
-		public org.eclipse.emf.ecore.EObject getContainer() {
+		public EObject getContainer() {
 			return container;
 		}
 		
@@ -52,19 +73,19 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 	 */
 	protected class PrintCountingMap {
 		
-		private java.util.Map<String, java.util.List<Object>> featureToValuesMap = new java.util.LinkedHashMap<String, java.util.List<Object>>();
-		private java.util.Map<String, java.util.Set<Integer>> featureToPrintedIndicesMap = new java.util.LinkedHashMap<String, java.util.Set<Integer>>();
+		private Map<String, List<Object>> featureToValuesMap = new LinkedHashMap<String, List<Object>>();
+		private Map<String, Set<Integer>> featureToPrintedIndicesMap = new LinkedHashMap<String, Set<Integer>>();
 		
-		public void setFeatureValues(String featureName, java.util.List<Object> values) {
+		public void setFeatureValues(String featureName, List<Object> values) {
 			featureToValuesMap.put(featureName, values);
 			// If the feature does not have values it won't be printed. An entry in
 			// 'featureToPrintedIndicesMap' is therefore not needed in this case.
 			if (values != null) {
-				featureToPrintedIndicesMap.put(featureName, new java.util.LinkedHashSet<Integer>());
+				featureToPrintedIndicesMap.put(featureName, new LinkedHashSet<Integer>());
 			}
 		}
 		
-		public java.util.Set<Integer> getIndicesToPrint(String featureName) {
+		public Set<Integer> getIndicesToPrint(String featureName) {
 			return featureToPrintedIndicesMap.get(featureName);
 		}
 		
@@ -73,10 +94,10 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		}
 		
 		public int getCountLeft(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Terminal terminal) {
-			org.eclipse.emf.ecore.EStructuralFeature feature = terminal.getFeature();
+			EStructuralFeature feature = terminal.getFeature();
 			String featureName = feature.getName();
-			java.util.List<Object> totalValuesToPrint = featureToValuesMap.get(featureName);
-			java.util.Set<Integer> printedIndices = featureToPrintedIndicesMap.get(featureName);
+			List<Object> totalValuesToPrint = featureToValuesMap.get(featureName);
+			Set<Integer> printedIndices = featureToPrintedIndicesMap.get(featureName);
 			if (totalValuesToPrint == null) {
 				return 0;
 			}
@@ -100,10 +121,10 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 	 */
 	private org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource;
 	
-	private java.util.Map<?, ?> options;
-	private java.io.OutputStream outputStream;
+	private Map<?, ?> options;
+	private OutputStream outputStream;
 	private String encoding = System.getProperty("file.encoding");
-	protected java.util.List<PrintToken> tokenOutputStream;
+	protected List<PrintToken> tokenOutputStream;
 	private org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolverFactory tokenResolverFactory = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenResolverFactory();
 	private boolean handleTokenSpaceAutomatically = true;
 	private int tokenSpace = 1;
@@ -135,25 +156,25 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 	 */
 	private boolean startedPrintingContainedObject;
 	
-	public Xpath2Printer2(java.io.OutputStream outputStream, org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource) {
+	public Xpath2Printer2(OutputStream outputStream, org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource) {
 		super();
 		this.outputStream = outputStream;
 		this.resource = resource;
 	}
 	
-	public void print(org.eclipse.emf.ecore.EObject element) throws java.io.IOException {
-		tokenOutputStream = new java.util.ArrayList<PrintToken>();
+	public void print(EObject element) throws IOException {
+		tokenOutputStream = new ArrayList<PrintToken>();
 		currentTabs = 0;
 		tabsBeforeCurrentObject = 0;
 		startedPrintingObject = true;
 		startedPrintingContainedObject = false;
-		java.util.List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement>  formattingElements = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement>();
+		List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement>  formattingElements = new ArrayList<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement>();
 		doPrint(element, formattingElements);
 		// print all remaining formatting elements
-		java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations = getCopyOfLayoutInformation(element);
+		List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations = getCopyOfLayoutInformation(element);
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation eofLayoutInformation = getLayoutInformation(layoutInformations, null, null, null);
 		printFormattingElements(element, formattingElements, layoutInformations, eofLayoutInformation);
-		java.io.PrintWriter writer = new java.io.PrintWriter(new java.io.OutputStreamWriter(new java.io.BufferedOutputStream(outputStream), encoding));
+		PrintWriter writer = new PrintWriter(new OutputStreamWriter(new BufferedOutputStream(outputStream), encoding));
 		if (handleTokenSpaceAutomatically) {
 			printSmart(writer);
 		} else {
@@ -162,12 +183,12 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		writer.flush();
 	}
 	
-	protected void doPrint(org.eclipse.emf.ecore.EObject element, java.util.List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements) {
+	protected void doPrint(EObject element, List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements) {
 		if (element == null) {
-			throw new java.lang.IllegalArgumentException("Nothing to write.");
+			throw new IllegalArgumentException("Nothing to write.");
 		}
 		if (outputStream == null) {
-			throw new java.lang.IllegalArgumentException("Nothing to write on.");
+			throw new IllegalArgumentException("Nothing to write on.");
 		}
 		
 		if (element instanceof org.emftext.language.xpath2.Expr) {
@@ -446,8 +467,8 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		addWarningToResource("The printer can not handle " + element.eClass().getName() + " elements", element);
 	}
 	
-	public void printInternal(org.eclipse.emf.ecore.EObject eObject, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement ruleElement, java.util.List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements) {
-		java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations = getCopyOfLayoutInformation(eObject);
+	public void printInternal(EObject eObject, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement ruleElement, List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements) {
+		List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations = getCopyOfLayoutInformation(eObject);
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator decoratorTree = getDecoratorTree(ruleElement);
 		decorateTree(decoratorTree, eObject);
 		printTree(decoratorTree, eObject, foundFormattingElements, layoutInformations);
@@ -468,9 +489,9 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		return decorator;
 	}
 	
-	public void decorateTree(org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator decorator, org.eclipse.emf.ecore.EObject eObject) {
+	public void decorateTree(org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator decorator, EObject eObject) {
 		PrintCountingMap printCountingMap = initializePrintCountingMap(eObject);
-		java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator> keywordsToPrint = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator>();
+		List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator> keywordsToPrint = new ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator>();
 		decorateTreeBasic(decorator, eObject, printCountingMap, keywordsToPrint);
 		for (org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator keywordToPrint : keywordsToPrint) {
 			// for keywords the concrete index does not matter, but we must add one to
@@ -483,19 +504,19 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 	 * Tries to decorate the decorator with an attribute value, or reference held by
 	 * the given EObject. Returns true if an attribute value or reference was found.
 	 */
-	public boolean decorateTreeBasic(org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator decorator, org.eclipse.emf.ecore.EObject eObject, PrintCountingMap printCountingMap, java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator> keywordsToPrint) {
+	public boolean decorateTreeBasic(org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator decorator, EObject eObject, PrintCountingMap printCountingMap, List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator> keywordsToPrint) {
 		boolean foundFeatureToPrint = false;
 		org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement syntaxElement = decorator.getDecoratedElement();
 		org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality cardinality = syntaxElement.getCardinality();
 		boolean isFirstIteration = true;
 		while (true) {
-			java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator> subKeywordsToPrint = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator>();
+			List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator> subKeywordsToPrint = new ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator>();
 			boolean keepDecorating = false;
 			if (syntaxElement instanceof org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Keyword) {
 				subKeywordsToPrint.add(decorator);
 			} else if (syntaxElement instanceof org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Terminal) {
 				org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Terminal terminal = (org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Terminal) syntaxElement;
-				org.eclipse.emf.ecore.EStructuralFeature feature = terminal.getFeature();
+				EStructuralFeature feature = terminal.getFeature();
 				if (feature == org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.ANONYMOUS_FEATURE) {
 					return false;
 				}
@@ -563,14 +584,14 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		return foundFeatureToPrint;
 	}
 	
-	private int findElementWithCorrectType(org.eclipse.emf.ecore.EObject eObject, org.eclipse.emf.ecore.EStructuralFeature feature, java.util.Set<Integer> indicesToPrint, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment containment) {
+	private int findElementWithCorrectType(EObject eObject, EStructuralFeature feature, Set<Integer> indicesToPrint, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment containment) {
 		// Since the 'ignoreTypeRestrictionsForPrinting' option is set to true, the type
 		// restrictions are not considered when printing models.
 		boolean ignoreTypeRestrictions = true;
-		org.eclipse.emf.ecore.EClass[] allowedTypes = containment.getAllowedTypes();
+		EClass[] allowedTypes = containment.getAllowedTypes();
 		Object value = eObject.eGet(feature);
-		if (value instanceof java.util.List<?>) {
-			java.util.List<?> valueList = (java.util.List<?>) value;
+		if (value instanceof List<?>) {
+			List<?> valueList = (List<?>) value;
 			int listSize = valueList.size();
 			for (int index = 0; index < listSize; index++) {
 				if (indicesToPrint.contains(index)) {
@@ -596,11 +617,11 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 	 * multiple choices are available. We pick the choice that prints at least one
 	 * attribute or reference.
 	 */
-	public boolean doesPrintFeature(org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator decorator, org.eclipse.emf.ecore.EObject eObject, PrintCountingMap printCountingMap) {
+	public boolean doesPrintFeature(org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator decorator, EObject eObject, PrintCountingMap printCountingMap) {
 		org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement syntaxElement = decorator.getDecoratedElement();
 		if (syntaxElement instanceof org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Terminal) {
 			org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Terminal terminal = (org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Terminal) syntaxElement;
-			org.eclipse.emf.ecore.EStructuralFeature feature = terminal.getFeature();
+			EStructuralFeature feature = terminal.getFeature();
 			if (feature == org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.ANONYMOUS_FEATURE) {
 				return false;
 			}
@@ -618,10 +639,10 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		return false;
 	}
 	
-	public boolean printTree(org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator decorator, org.eclipse.emf.ecore.EObject eObject, java.util.List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements, java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations) {
+	public boolean printTree(org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxElementDecorator decorator, EObject eObject, List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements, List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations) {
 		org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement printElement = decorator.getDecoratedElement();
 		org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality cardinality = printElement.getCardinality();
-		java.util.List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> cloned = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement>();
+		List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> cloned = new ArrayList<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement>();
 		cloned.addAll(foundFormattingElements);
 		boolean foundSomethingAtAll = false;
 		boolean foundSomethingToPrint;
@@ -681,23 +702,23 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		return foundSomethingToPrint;
 	}
 	
-	public void printKeyword(org.eclipse.emf.ecore.EObject eObject, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Keyword keyword, java.util.List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements, java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations) {
+	public void printKeyword(EObject eObject, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Keyword keyword, List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements, List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations) {
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation keywordLayout = getLayoutInformation(layoutInformations, keyword, null, eObject);
 		printFormattingElements(eObject, foundFormattingElements, layoutInformations, keywordLayout);
 		String value = keyword.getValue();
 		tokenOutputStream.add(new PrintToken(value, "'" + org.emftext.language.xpath2.resource.xpath2.util.Xpath2StringUtil.escapeToANTLRKeyword(value) + "'", eObject));
 	}
 	
-	public void printFeature(org.eclipse.emf.ecore.EObject eObject, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Placeholder placeholder, int count, java.util.List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements, java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations) {
-		org.eclipse.emf.ecore.EStructuralFeature feature = placeholder.getFeature();
-		if (feature instanceof org.eclipse.emf.ecore.EAttribute) {
-			printAttribute(eObject, (org.eclipse.emf.ecore.EAttribute) feature, placeholder, count, foundFormattingElements, layoutInformations);
+	public void printFeature(EObject eObject, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Placeholder placeholder, int count, List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements, List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations) {
+		EStructuralFeature feature = placeholder.getFeature();
+		if (feature instanceof EAttribute) {
+			printAttribute(eObject, (EAttribute) feature, placeholder, count, foundFormattingElements, layoutInformations);
 		} else {
-			printReference(eObject, (org.eclipse.emf.ecore.EReference) feature, placeholder, count, foundFormattingElements, layoutInformations);
+			printReference(eObject, (EReference) feature, placeholder, count, foundFormattingElements, layoutInformations);
 		}
 	}
 	
-	public void printAttribute(org.eclipse.emf.ecore.EObject eObject, org.eclipse.emf.ecore.EAttribute attribute, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Placeholder placeholder, int index, java.util.List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements, java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations) {
+	public void printAttribute(EObject eObject, EAttribute attribute, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Placeholder placeholder, int index, List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements, List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations) {
 		String result = null;
 		Object attributeValue = org.emftext.language.xpath2.resource.xpath2.util.Xpath2EObjectUtil.getFeatureValue(eObject, attribute, index);
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation attributeLayout = getLayoutInformation(layoutInformations, placeholder, attributeValue, eObject);
@@ -724,8 +745,8 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 	}
 	
 	
-	public void printBooleanTerminal(org.eclipse.emf.ecore.EObject eObject, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2BooleanTerminal booleanTerminal, int index, java.util.List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements, java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations) {
-		org.eclipse.emf.ecore.EAttribute attribute = booleanTerminal.getAttribute();
+	public void printBooleanTerminal(EObject eObject, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2BooleanTerminal booleanTerminal, int index, List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements, List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations) {
+		EAttribute attribute = booleanTerminal.getAttribute();
 		String result = null;
 		Object attributeValue = org.emftext.language.xpath2.resource.xpath2.util.Xpath2EObjectUtil.getFeatureValue(eObject, attribute, index);
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation attributeLayout = getLayoutInformation(layoutInformations, booleanTerminal, attributeValue, eObject);
@@ -753,8 +774,8 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 	}
 	
 	
-	public void printEnumerationTerminal(org.eclipse.emf.ecore.EObject eObject, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2EnumerationTerminal enumTerminal, int index, java.util.List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements, java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations) {
-		org.eclipse.emf.ecore.EAttribute attribute = enumTerminal.getAttribute();
+	public void printEnumerationTerminal(EObject eObject, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2EnumerationTerminal enumTerminal, int index, List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements, List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations) {
+		EAttribute attribute = enumTerminal.getAttribute();
 		String result = null;
 		Object attributeValue = org.emftext.language.xpath2.resource.xpath2.util.Xpath2EObjectUtil.getFeatureValue(eObject, attribute, index);
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation attributeLayout = getLayoutInformation(layoutInformations, enumTerminal, attributeValue, eObject);
@@ -767,8 +788,8 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		if (result == null) {
 			// if no text is available, the enumeration attribute is converted to its textual
 			// representation using the literals of the enumeration terminal
-			assert attributeValue instanceof org.eclipse.emf.common.util.Enumerator;
-			result = enumTerminal.getText(((org.eclipse.emf.common.util.Enumerator) attributeValue).getName());
+			assert attributeValue instanceof Enumerator;
+			result = enumTerminal.getText(((Enumerator) attributeValue).getName());
 		}
 		
 		if (result != null && !"".equals(result)) {
@@ -779,8 +800,8 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 	}
 	
 	
-	public void printContainedObject(org.eclipse.emf.ecore.EObject eObject, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment containment, int index, java.util.List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements, java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations) {
-		org.eclipse.emf.ecore.EStructuralFeature reference = containment.getFeature();
+	public void printContainedObject(EObject eObject, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment containment, int index, List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements, List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations) {
+		EStructuralFeature reference = containment.getFeature();
 		Object o = org.emftext.language.xpath2.resource.xpath2.util.Xpath2EObjectUtil.getFeatureValue(eObject, reference, index);
 		// save current number of tabs to restore them after printing the contained object
 		int oldTabsBeforeCurrentObject = tabsBeforeCurrentObject;
@@ -790,13 +811,13 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		// printed with the old number of tabs.
 		startedPrintingContainedObject = false;
 		currentTabs = 0;
-		doPrint((org.eclipse.emf.ecore.EObject) o, foundFormattingElements);
+		doPrint((EObject) o, foundFormattingElements);
 		// restore number of tabs after printing the contained object
 		tabsBeforeCurrentObject = oldTabsBeforeCurrentObject;
 		currentTabs = oldCurrentTabs;
 	}
 	
-	public void printFormattingElements(org.eclipse.emf.ecore.EObject eObject, java.util.List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements, java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation layoutInformation) {
+	public void printFormattingElements(EObject eObject, List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements, List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation layoutInformation) {
 		String hiddenTokenText = getHiddenTokenText(layoutInformation);
 		if (hiddenTokenText != null) {
 			// removed used information
@@ -852,8 +873,8 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		startedPrintingContainedObject = true;
 	}
 	
-	@SuppressWarnings("unchecked")	
-	public void printReference(org.eclipse.emf.ecore.EObject eObject, org.eclipse.emf.ecore.EReference reference, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Placeholder placeholder, int index, java.util.List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements, java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations) {
+	@SuppressWarnings("unchecked")
+	public void printReference(EObject eObject, EReference reference, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Placeholder placeholder, int index, List<org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FormattingElement> foundFormattingElements, List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations) {
 		String tokenName = placeholder.getTokenName();
 		Object referencedObject = org.emftext.language.xpath2.resource.xpath2.util.Xpath2EObjectUtil.getFeatureValue(eObject, reference, index, false);
 		// first add layout before the reference
@@ -861,10 +882,10 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		printFormattingElements(eObject, foundFormattingElements, layoutInformations, referenceLayout);
 		// proxy objects must be printed differently
 		String deresolvedReference = null;
-		if (referencedObject instanceof org.eclipse.emf.ecore.EObject) {
-			org.eclipse.emf.ecore.EObject eObjectToDeResolve = (org.eclipse.emf.ecore.EObject) referencedObject;
+		if (referencedObject instanceof EObject) {
+			EObject eObjectToDeResolve = (EObject) referencedObject;
 			if (eObjectToDeResolve.eIsProxy()) {
-				deresolvedReference = ((org.eclipse.emf.ecore.InternalEObject) eObjectToDeResolve).eProxyURI().fragment();
+				deresolvedReference = ((InternalEObject) eObjectToDeResolve).eProxyURI().fragment();
 				// If the proxy was created by EMFText, we can try to recover the identifier from
 				// the proxy URI
 				if (deresolvedReference != null && deresolvedReference.startsWith(org.emftext.language.xpath2.resource.xpath2.IXpath2ContextDependentURIFragment.INTERNAL_URI_FRAGMENT_PREFIX)) {
@@ -877,10 +898,10 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 			// NC-References must always be printed by deresolving the reference. We cannot
 			// use the visible token information, because deresolving usually depends on
 			// attribute values of the referenced object instead of the object itself.
-			@SuppressWarnings("rawtypes")			
+			@SuppressWarnings("rawtypes")
 			org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolver referenceResolver = getReferenceResolverSwitch().getResolver(reference);
 			referenceResolver.setOptions(getOptions());
-			deresolvedReference = referenceResolver.deResolve((org.eclipse.emf.ecore.EObject) referencedObject, eObject, reference);
+			deresolvedReference = referenceResolver.deResolve((EObject) referencedObject, eObject, reference);
 		}
 		org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver tokenResolver = tokenResolverFactory.createTokenResolver(tokenName);
 		tokenResolver.setOptions(getOptions());
@@ -889,26 +910,26 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		tokenOutputStream.add(new PrintToken(deresolvedToken, tokenName, eObject));
 	}
 	
-	@SuppressWarnings("unchecked")	
-	public PrintCountingMap initializePrintCountingMap(org.eclipse.emf.ecore.EObject eObject) {
+	@SuppressWarnings("unchecked")
+	public PrintCountingMap initializePrintCountingMap(EObject eObject) {
 		// The PrintCountingMap contains a mapping from feature names to the number of
 		// remaining elements that still need to be printed. The map is initialized with
 		// the number of elements stored in each structural feature. For lists this is the
 		// list size. For non-multiple features it is either 1 (if the feature is set) or
 		// 0 (if the feature is null).
 		PrintCountingMap printCountingMap = new PrintCountingMap();
-		java.util.List<org.eclipse.emf.ecore.EStructuralFeature> features = eObject.eClass().getEAllStructuralFeatures();
-		for (org.eclipse.emf.ecore.EStructuralFeature feature : features) {
+		List<EStructuralFeature> features = eObject.eClass().getEAllStructuralFeatures();
+		for (EStructuralFeature feature : features) {
 			// We get the feature value without resolving it, because resolving is not
 			// required to count the number of elements that are referenced by the feature.
 			// Moreover, triggering reference resolving is not desired here, because we'd also
 			// like to print models that contain unresolved references.
 			Object featureValue = eObject.eGet(feature, false);
 			if (featureValue != null) {
-				if (featureValue instanceof java.util.List<?>) {
-					printCountingMap.setFeatureValues(feature.getName(), (java.util.List<Object>) featureValue);
+				if (featureValue instanceof List<?>) {
+					printCountingMap.setFeatureValues(feature.getName(), (List<Object>) featureValue);
 				} else {
-					printCountingMap.setFeatureValues(feature.getName(), java.util.Collections.singletonList(featureValue));
+					printCountingMap.setFeatureValues(feature.getName(), Collections.singletonList(featureValue));
 				}
 			} else {
 				printCountingMap.setFeatureValues(feature.getName(), null);
@@ -917,11 +938,11 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		return printCountingMap;
 	}
 	
-	public java.util.Map<?,?> getOptions() {
+	public Map<?,?> getOptions() {
 		return options;
 	}
 	
-	public void setOptions(java.util.Map<?,?> options) {
+	public void setOptions(Map<?,?> options) {
 		this.options = options;
 	}
 	
@@ -943,7 +964,7 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		return (org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ReferenceResolverSwitch) new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation().getReferenceResolverSwitch();
 	}
 	
-	protected void addWarningToResource(final String errorMessage, org.eclipse.emf.ecore.EObject cause) {
+	protected void addWarningToResource(final String errorMessage, EObject cause) {
 		org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource = getResource();
 		if (resource == null) {
 			// the resource can be null if the printer is used stand alone
@@ -952,8 +973,8 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		resource.addProblem(new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Problem(errorMessage, org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemType.PRINT_PROBLEM, org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemSeverity.WARNING), cause);
 	}
 	
-	protected org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformationAdapter getLayoutInformationAdapter(org.eclipse.emf.ecore.EObject element) {
-		for (org.eclipse.emf.common.notify.Adapter adapter : element.eAdapters()) {
+	protected org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformationAdapter getLayoutInformationAdapter(EObject element) {
+		for (Adapter adapter : element.eAdapters()) {
 			if (adapter instanceof org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformationAdapter) {
 				return (org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformationAdapter) adapter;
 			}
@@ -963,7 +984,7 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		return newAdapter;
 	}
 	
-	private org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation getLayoutInformation(java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement syntaxElement, Object object, org.eclipse.emf.ecore.EObject container) {
+	private org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation getLayoutInformation(List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement syntaxElement, Object object, EObject container) {
 		for (org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation layoutInformation : layoutInformations) {
 			if (syntaxElement == layoutInformation.getSyntaxElement()) {
 				if (object == null) {
@@ -973,8 +994,8 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 				// to, if we compare with a non-proxy object. If we're printing a resource that
 				// contains proxy objects, resolving must not be triggered.
 				boolean isNoProxy = true;
-				if (object instanceof org.eclipse.emf.ecore.EObject) {
-					org.eclipse.emf.ecore.EObject eObject = (org.eclipse.emf.ecore.EObject) object;
+				if (object instanceof EObject) {
+					EObject eObject = (EObject) object;
 					isNoProxy = !eObject.eIsProxy();
 				}
 				if (isSame(object, layoutInformation.getObject(container, isNoProxy))) {
@@ -985,12 +1006,12 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		return null;
 	}
 	
-	public java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> getCopyOfLayoutInformation(org.eclipse.emf.ecore.EObject eObject) {
+	public List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> getCopyOfLayoutInformation(EObject eObject) {
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformationAdapter layoutInformationAdapter = getLayoutInformationAdapter(eObject);
-		java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> originalLayoutInformations = layoutInformationAdapter.getLayoutInformations();
+		List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> originalLayoutInformations = layoutInformationAdapter.getLayoutInformations();
 		// create a copy of the original list of layout information object in order to be
 		// able to remove used informations during printing
-		java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation>(originalLayoutInformations.size());
+		List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation> layoutInformations = new ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LayoutInformation>(originalLayoutInformations.size());
 		layoutInformations.addAll(originalLayoutInformations);
 		return layoutInformations;
 	}
@@ -1034,7 +1055,7 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 	/**
 	 * Prints the current tokenOutputStream to the given writer (as it is).
 	 */
-	public void printBasic(java.io.PrintWriter writer) throws java.io.IOException {
+	public void printBasic(PrintWriter writer) throws IOException {
 		for (PrintToken nextToken : tokenOutputStream) {
 			writer.write(nextToken.getText());
 		}
@@ -1057,7 +1078,7 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 	 * both regarding their type and their text. If two tokens successfully form a
 	 * group a third one is added and so on.
 	 */
-	public void printSmart(java.io.PrintWriter writer) throws java.io.IOException {
+	public void printSmart(PrintWriter writer) throws IOException {
 		// stores the text of the current group of tokens. this text is given to the lexer
 		// to check whether it can be correctly scanned.
 		StringBuilder currentBlock = new StringBuilder();
@@ -1087,7 +1108,7 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 			org.emftext.language.xpath2.resource.xpath2.IXpath2TextScanner scanner = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation().createLexer();
 			scanner.setText(currentBlock.toString());
 			// retrieve all tokens from scanner and add them to list 'tempTokens'
-			java.util.List<org.emftext.language.xpath2.resource.xpath2.IXpath2TextToken> tempTokens = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2TextToken>();
+			List<org.emftext.language.xpath2.resource.xpath2.IXpath2TextToken> tempTokens = new ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2TextToken>();
 			org.emftext.language.xpath2.resource.xpath2.IXpath2TextToken nextToken = scanner.getNextToken();
 			while (nextToken != null && nextToken.getText() != null) {
 				tempTokens.add(nextToken);
@@ -1147,15 +1168,15 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		return o1 == o2;
 	}
 	
-	protected java.util.List<Class<?>> getAllowedTypes(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Terminal terminal) {
-		java.util.List<Class<?>> allowedTypes = new java.util.ArrayList<Class<?>>();
+	protected List<Class<?>> getAllowedTypes(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Terminal terminal) {
+		List<Class<?>> allowedTypes = new ArrayList<Class<?>>();
 		allowedTypes.add(terminal.getFeature().getEType().getInstanceClass());
 		if (terminal instanceof org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment) {
 			org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment printingContainment = (org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment) terminal;
-			org.eclipse.emf.ecore.EClass[] typeRestrictions = printingContainment.getAllowedTypes();
+			EClass[] typeRestrictions = printingContainment.getAllowedTypes();
 			if (typeRestrictions != null && typeRestrictions.length > 0) {
 				allowedTypes.clear();
-				for (org.eclipse.emf.ecore.EClass eClass : typeRestrictions) {
+				for (EClass eClass : typeRestrictions) {
 					allowedTypes.add(eClass.getInstanceClass());
 				}
 			}
@@ -1163,15 +1184,21 @@ public class Xpath2Printer2 implements org.emftext.language.xpath2.resource.xpat
 		return allowedTypes;
 	}
 	
-	protected PrintToken createSpaceToken(org.eclipse.emf.ecore.EObject container) {
+	protected PrintToken createSpaceToken(EObject container) {
 		return new PrintToken(" ", null, container);
 	}
 	
-	protected PrintToken createTabToken(org.eclipse.emf.ecore.EObject container) {
+	protected PrintToken createTabToken(EObject container) {
 		return new PrintToken("\t", null, container);
 	}
 	
-	protected PrintToken createNewLineToken(org.eclipse.emf.ecore.EObject container) {
+	protected PrintToken createNewLineToken(EObject container) {
+		if (options != null) {
+			Object lineBreaks = options.get(org.emftext.language.xpath2.resource.xpath2.IXpath2Options.LINE_DELIMITER_FOR_PRINTING);
+			if (lineBreaks != null && lineBreaks instanceof String) {
+				return new PrintToken((String) lineBreaks, null, container);
+			}
+		}
 		return new PrintToken(NEW_LINE, null, container);
 	}
 	

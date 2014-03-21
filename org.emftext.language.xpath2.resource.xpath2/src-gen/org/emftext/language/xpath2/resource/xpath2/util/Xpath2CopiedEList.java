@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,16 +10,23 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.util;
 
-public class Xpath2CopiedEList<E> implements org.eclipse.emf.common.util.EList<E> {
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+
+public class Xpath2CopiedEList<E> implements EList<E> {
 	
-	private org.eclipse.emf.common.util.EList<E> original;
-	private org.eclipse.emf.common.util.EList<E> copy;
+	private EList<E> original;
+	private EList<E> copy;
 	
-	@SuppressWarnings("unchecked")	
-	public Xpath2CopiedEList(org.eclipse.emf.common.util.EList<E> original) {
+	@SuppressWarnings("unchecked")
+	public Xpath2CopiedEList(EList<E> original) {
 		super();
 		this.original = original;
-		this.copy = new org.eclipse.emf.common.util.BasicEList<E>();
+		this.copy = new BasicEList<E>();
 		Object[] originalContent = this.original.toArray();
 		for (Object next : originalContent) {
 			this.copy.add((E) next);
@@ -46,12 +53,12 @@ public class Xpath2CopiedEList<E> implements org.eclipse.emf.common.util.EList<E
 		original.add(index, element);
 	}
 	
-	public boolean addAll(java.util.Collection<? extends E> c) {
+	public boolean addAll(Collection<? extends E> c) {
 		copy.addAll(c);
 		return original.addAll(c);
 	}
 	
-	public boolean addAll(int index, java.util.Collection<? extends E> c) {
+	public boolean addAll(int index, Collection<? extends E> c) {
 		copy.addAll(index, c);
 		return original.addAll(index, c);
 	}
@@ -65,7 +72,7 @@ public class Xpath2CopiedEList<E> implements org.eclipse.emf.common.util.EList<E
 		return copy.contains(o);
 	}
 	
-	public boolean containsAll(java.util.Collection<?> c) {
+	public boolean containsAll(Collection<?> c) {
 		return copy.containsAll(c);
 	}
 	
@@ -81,7 +88,7 @@ public class Xpath2CopiedEList<E> implements org.eclipse.emf.common.util.EList<E
 		return copy.isEmpty();
 	}
 	
-	public java.util.Iterator<E> iterator() {
+	public Iterator<E> iterator() {
 		return copy.iterator();
 	}
 	
@@ -89,11 +96,11 @@ public class Xpath2CopiedEList<E> implements org.eclipse.emf.common.util.EList<E
 		return copy.lastIndexOf(o);
 	}
 	
-	public java.util.ListIterator<E> listIterator() {
+	public ListIterator<E> listIterator() {
 		return copy.listIterator();
 	}
 	
-	public java.util.ListIterator<E> listIterator(int index) {
+	public ListIterator<E> listIterator(int index) {
 		return copy.listIterator(index);
 	}
 	
@@ -107,12 +114,12 @@ public class Xpath2CopiedEList<E> implements org.eclipse.emf.common.util.EList<E
 		return original.remove(index);
 	}
 	
-	public boolean removeAll(java.util.Collection<?> c) {
+	public boolean removeAll(Collection<?> c) {
 		copy.removeAll(c);
 		return original.removeAll(c);
 	}
 	
-	public boolean retainAll(java.util.Collection<?> c) {
+	public boolean retainAll(Collection<?> c) {
 		copy.retainAll(c);
 		return original.retainAll(c);
 	}
@@ -126,7 +133,7 @@ public class Xpath2CopiedEList<E> implements org.eclipse.emf.common.util.EList<E
 		return copy.size();
 	}
 	
-	public java.util.List<E> subList(int fromIndex, int toIndex) {
+	public List<E> subList(int fromIndex, int toIndex) {
 		return copy.subList(fromIndex, toIndex);
 	}
 	
@@ -136,6 +143,10 @@ public class Xpath2CopiedEList<E> implements org.eclipse.emf.common.util.EList<E
 	
 	public <T> T[] toArray(T[] a) {
 		return copy.toArray(a);
+	}
+	
+	public String toString() {
+		return copy.toString();
 	}
 	
 }

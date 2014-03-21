@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,38 +10,19 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+/**
+ * This class provides information about how brackets must be handled in the
+ * editor (e.g., whether they must be closed automatically).
+ */
 public class Xpath2BracketInformationProvider {
 	
-	public class BracketPair implements org.emftext.language.xpath2.resource.xpath2.IXpath2BracketPair {
-		
-		private String opening;
-		private String closing;
-		private boolean closingEnabledInside;
-		
-		public BracketPair(String opening, String closing, boolean closingEnabledInside) {
-			super();
-			this.opening = opening;
-			this.closing = closing;
-			this.closingEnabledInside = closingEnabledInside;
-		}
-		
-		public String getOpeningBracket() {
-			return opening;
-		}
-		
-		public String getClosingBracket() {
-			return closing;
-		}
-		
-		public boolean isClosingEnabledInside() {
-			return closingEnabledInside;
-		}
-	}
-	
-	public java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2BracketPair> getBracketPairs() {
-		java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2BracketPair> result = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2BracketPair>();
-		result.add(new BracketPair("(", ")", true));
-		result.add(new BracketPair("[", "]", true));
+	public Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2BracketPair> getBracketPairs() {
+		Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2BracketPair> result = new ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2BracketPair>();
+		result.add(new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2BracketPair("(", ")", true, false));
+		result.add(new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2BracketPair("[", "]", true, false));
 		return result;
 	}
 	

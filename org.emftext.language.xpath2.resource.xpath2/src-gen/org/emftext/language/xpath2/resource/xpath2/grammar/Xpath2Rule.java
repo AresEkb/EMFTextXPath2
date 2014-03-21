@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,19 +10,21 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.grammar;
 
+import org.eclipse.emf.ecore.EClass;
+
 /**
  * A class to represent a rules in the grammar.
  */
 public class Xpath2Rule extends org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement {
 	
-	private final org.eclipse.emf.ecore.EClass metaclass;
+	private final EClass metaclass;
 	
-	public Xpath2Rule(org.eclipse.emf.ecore.EClass metaclass, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice choice, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality cardinality) {
+	public Xpath2Rule(EClass metaclass, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice choice, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality cardinality) {
 		super(cardinality, new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement[] {choice});
 		this.metaclass = metaclass;
 	}
 	
-	public org.eclipse.emf.ecore.EClass getMetaclass() {
+	public EClass getMetaclass() {
 		return metaclass;
 	}
 	

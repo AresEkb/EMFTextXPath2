@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,10 @@
  */
 package org.emftext.language.xpath2.resource.xpath2;
 
+import java.util.Collection;
+import java.util.Set;
+import org.eclipse.emf.ecore.EClass;
+
 /**
  * An element that is expected at a given position in a resource stream.
  */
@@ -18,12 +22,12 @@ public interface IXpath2ExpectedElement {
 	/**
 	 * Returns the names of all tokens that are expected at the given position.
 	 */
-	public java.util.Set<String> getTokenNames();
+	public Set<String> getTokenNames();
 	
 	/**
 	 * Returns the metaclass of the rule that contains the expected element.
 	 */
-	public org.eclipse.emf.ecore.EClass getRuleMetaclass();
+	public EClass getRuleMetaclass();
 	
 	/**
 	 * Returns the syntax element that is expected.
@@ -40,6 +44,6 @@ public interface IXpath2ExpectedElement {
 	 * pair of an expected elements and the containment trace that leads from the
 	 * current element to the follower.
 	 */
-	public java.util.Collection<org.emftext.language.xpath2.resource.xpath2.util.Xpath2Pair<org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[]>> getFollowers();
+	public Collection<org.emftext.language.xpath2.resource.xpath2.util.Xpath2Pair<org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[]>> getFollowers();
 	
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,9 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 
 /**
  * Xpath2LayoutInformation objects are used to store layout information that is
@@ -79,19 +82,19 @@ public class Xpath2LayoutInformation {
 	 * 'resolve' is set to true and the referenced object is a proxy, this method
 	 * tries to resolve the proxy.
 	 */
-	public Object getObject(org.eclipse.emf.ecore.EObject container, boolean resolve) {
+	public Object getObject(EObject container, boolean resolve) {
 		if (wasResolved || !resolve) {
 			return object;
 		}
 		// we need to try to resolve proxy objects again, because the proxy might have
 		// been resolved before this adapter existed, which means we missed the
 		// replaceProxy() notification
-		if (object instanceof org.eclipse.emf.ecore.InternalEObject) {
-			org.eclipse.emf.ecore.InternalEObject internalObject = (org.eclipse.emf.ecore.InternalEObject) object;
+		if (object instanceof InternalEObject) {
+			InternalEObject internalObject = (InternalEObject) object;
 			if (internalObject.eIsProxy()) {
-				if (container instanceof org.eclipse.emf.ecore.InternalEObject) {
-					org.eclipse.emf.ecore.InternalEObject internalContainer = (org.eclipse.emf.ecore.InternalEObject) container;
-					org.eclipse.emf.ecore.EObject resolvedObject = internalContainer.eResolveProxy(internalObject);
+				if (container instanceof InternalEObject) {
+					InternalEObject internalContainer = (InternalEObject) container;
+					EObject resolvedObject = internalContainer.eResolveProxy(internalObject);
 					if (resolvedObject != internalObject) {
 						object = resolvedObject;
 						wasResolved = true;
@@ -112,7 +115,7 @@ public class Xpath2LayoutInformation {
 		return visibleTokenText;
 	}
 	
-	public void replaceProxy(org.eclipse.emf.ecore.EObject proxy, org.eclipse.emf.ecore.EObject target) {
+	public void replaceProxy(EObject proxy, EObject target) {
 		if (this.object == proxy) {
 			this.object = target;
 		}

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,9 +10,11 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.util;
 
+import org.eclipse.emf.common.util.URI;
+
 public class Xpath2URIUtil {
 	
-	public boolean isInBinFolder(org.eclipse.emf.common.util.URI uri) {
+	public boolean isInBinFolder(URI uri) {
 		String[] segments = uri.segments();
 		for (String segment : segments) {
 			if ("bin".equals(segment)) {

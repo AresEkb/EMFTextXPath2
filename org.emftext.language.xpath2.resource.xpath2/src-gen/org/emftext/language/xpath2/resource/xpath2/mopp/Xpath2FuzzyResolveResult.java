@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,10 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
+import java.util.Collection;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * A FuzzyResolveResult is an implementation of the IXpath2ReferenceResolveResult
  * interface that delegates all method calls to a given
@@ -19,11 +23,11 @@ package org.emftext.language.xpath2.resource.xpath2.mopp;
  * 
  * @param <ReferenceType> the type of the reference that is resolved
  */
-public class Xpath2FuzzyResolveResult<ReferenceType extends org.eclipse.emf.ecore.EObject> implements org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult<ReferenceType> {
+public class Xpath2FuzzyResolveResult<ReferenceType extends EObject> implements org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult<ReferenceType> {
 	
-	private org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult<org.eclipse.emf.ecore.EObject> delegate;
+	private org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult<EObject> delegate;
 	
-	public Xpath2FuzzyResolveResult(org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult<org.eclipse.emf.ecore.EObject> delegate) {
+	public Xpath2FuzzyResolveResult(org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult<EObject> delegate) {
 		this.delegate = delegate;
 	}
 	
@@ -31,7 +35,7 @@ public class Xpath2FuzzyResolveResult<ReferenceType extends org.eclipse.emf.ecor
 		return delegate.getErrorMessage();
 	}
 	
-	public java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<ReferenceType>> getMappings() {
+	public Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<ReferenceType>> getMappings() {
 		return null;
 	}
 	
@@ -52,22 +56,22 @@ public class Xpath2FuzzyResolveResult<ReferenceType extends org.eclipse.emf.ecor
 	}
 	
 	public void addMapping(String identifier, ReferenceType target) {
-		delegate.addMapping(identifier, (org.eclipse.emf.ecore.EObject) target);
+		delegate.addMapping(identifier, (EObject) target);
 	}
 	
-	public void addMapping(String identifier, org.eclipse.emf.common.util.URI uri) {
+	public void addMapping(String identifier, URI uri) {
 		delegate.addMapping(identifier, uri);
 	}
 	
 	public void addMapping(String identifier, ReferenceType target, String warning) {
-		delegate.addMapping(identifier, (org.eclipse.emf.ecore.EObject) target, warning);
+		delegate.addMapping(identifier, (EObject) target, warning);
 	}
 	
-	public void addMapping(String identifier, org.eclipse.emf.common.util.URI uri, String warning) {
+	public void addMapping(String identifier, URI uri, String warning) {
 		delegate.addMapping(identifier, uri, warning);
 	}
 	
-	public java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> getQuickFixes() {
+	public Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> getQuickFixes() {
 		return delegate.getQuickFixes();
 	}
 	

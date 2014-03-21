@@ -1,6 +1,11 @@
 // $ANTLR 3.4
 
 	package org.emftext.language.xpath2.resource.xpath2.mopp;
+	
+	import java.util.ArrayList;
+import java.util.List;
+import org.antlr.runtime3_4_0.ANTLRStringStream;
+import org.antlr.runtime3_4_0.RecognitionException;
 
 
 import org.antlr.runtime3_4_0.*;
@@ -99,12 +104,12 @@ public class Xpath2Lexer extends Lexer {
     public static final int STRING_LITERAL=9;
     public static final int WHITESPACE=10;
 
-    	public java.util.List<org.antlr.runtime3_4_0.RecognitionException> lexerExceptions  = new java.util.ArrayList<org.antlr.runtime3_4_0.RecognitionException>();
-    	public java.util.List<Integer> lexerExceptionsPosition = new java.util.ArrayList<Integer>();
+    	public List<RecognitionException> lexerExceptions  = new ArrayList<RecognitionException>();
+    	public List<Integer> lexerExceptionPositions = new ArrayList<Integer>();
     	
-    	public void reportError(org.antlr.runtime3_4_0.RecognitionException e) {
+    	public void reportError(RecognitionException e) {
     		lexerExceptions.add(e);
-    		lexerExceptionsPosition.add(((org.antlr.runtime3_4_0.ANTLRStringStream) input).index());
+    		lexerExceptionPositions.add(((ANTLRStringStream) input).index());
     	}
 
 
@@ -128,8 +133,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__11;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:15:7: ( '!=' )
-            // Xpath2.g:15:9: '!='
+            // Xpath2.g:20:7: ( '!=' )
+            // Xpath2.g:20:9: '!='
             {
             match("!="); 
 
@@ -151,8 +156,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__12;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:16:7: ( '$' )
-            // Xpath2.g:16:9: '$'
+            // Xpath2.g:21:7: ( '$' )
+            // Xpath2.g:21:9: '$'
             {
             match('$'); 
 
@@ -172,8 +177,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__13;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:17:7: ( '(' )
-            // Xpath2.g:17:9: '('
+            // Xpath2.g:22:7: ( '(' )
+            // Xpath2.g:22:9: '('
             {
             match('('); 
 
@@ -193,8 +198,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__14;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:18:7: ( ')' )
-            // Xpath2.g:18:9: ')'
+            // Xpath2.g:23:7: ( ')' )
+            // Xpath2.g:23:9: ')'
             {
             match(')'); 
 
@@ -214,8 +219,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__15;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:19:7: ( '*' )
-            // Xpath2.g:19:9: '*'
+            // Xpath2.g:24:7: ( '*' )
+            // Xpath2.g:24:9: '*'
             {
             match('*'); 
 
@@ -235,8 +240,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__16;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:20:7: ( '+' )
-            // Xpath2.g:20:9: '+'
+            // Xpath2.g:25:7: ( '+' )
+            // Xpath2.g:25:9: '+'
             {
             match('+'); 
 
@@ -256,8 +261,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:21:7: ( ',' )
-            // Xpath2.g:21:9: ','
+            // Xpath2.g:26:7: ( ',' )
+            // Xpath2.g:26:9: ','
             {
             match(','); 
 
@@ -277,8 +282,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:22:7: ( '-' )
-            // Xpath2.g:22:9: '-'
+            // Xpath2.g:27:7: ( '-' )
+            // Xpath2.g:27:9: '-'
             {
             match('-'); 
 
@@ -298,8 +303,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:23:7: ( '.' )
-            // Xpath2.g:23:9: '.'
+            // Xpath2.g:28:7: ( '.' )
+            // Xpath2.g:28:9: '.'
             {
             match('.'); 
 
@@ -319,8 +324,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:24:7: ( '..' )
-            // Xpath2.g:24:9: '..'
+            // Xpath2.g:29:7: ( '..' )
+            // Xpath2.g:29:9: '..'
             {
             match(".."); 
 
@@ -342,8 +347,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:25:7: ( '/' )
-            // Xpath2.g:25:9: '/'
+            // Xpath2.g:30:7: ( '/' )
+            // Xpath2.g:30:9: '/'
             {
             match('/'); 
 
@@ -363,8 +368,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:26:7: ( '//' )
-            // Xpath2.g:26:9: '//'
+            // Xpath2.g:31:7: ( '//' )
+            // Xpath2.g:31:9: '//'
             {
             match("//"); 
 
@@ -386,8 +391,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:27:7: ( ':' )
-            // Xpath2.g:27:9: ':'
+            // Xpath2.g:32:7: ( ':' )
+            // Xpath2.g:32:9: ':'
             {
             match(':'); 
 
@@ -407,8 +412,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:28:7: ( '::' )
-            // Xpath2.g:28:9: '::'
+            // Xpath2.g:33:7: ( '::' )
+            // Xpath2.g:33:9: '::'
             {
             match("::"); 
 
@@ -430,8 +435,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:29:7: ( '<' )
-            // Xpath2.g:29:9: '<'
+            // Xpath2.g:34:7: ( '<' )
+            // Xpath2.g:34:9: '<'
             {
             match('<'); 
 
@@ -451,8 +456,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:30:7: ( '<<' )
-            // Xpath2.g:30:9: '<<'
+            // Xpath2.g:35:7: ( '<<' )
+            // Xpath2.g:35:9: '<<'
             {
             match("<<"); 
 
@@ -474,8 +479,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:31:7: ( '<=' )
-            // Xpath2.g:31:9: '<='
+            // Xpath2.g:36:7: ( '<=' )
+            // Xpath2.g:36:9: '<='
             {
             match("<="); 
 
@@ -497,8 +502,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:32:7: ( '=' )
-            // Xpath2.g:32:9: '='
+            // Xpath2.g:37:7: ( '=' )
+            // Xpath2.g:37:9: '='
             {
             match('='); 
 
@@ -518,8 +523,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:33:7: ( '>' )
-            // Xpath2.g:33:9: '>'
+            // Xpath2.g:38:7: ( '>' )
+            // Xpath2.g:38:9: '>'
             {
             match('>'); 
 
@@ -539,8 +544,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:34:7: ( '>=' )
-            // Xpath2.g:34:9: '>='
+            // Xpath2.g:39:7: ( '>=' )
+            // Xpath2.g:39:9: '>='
             {
             match(">="); 
 
@@ -562,8 +567,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:35:7: ( '>>' )
-            // Xpath2.g:35:9: '>>'
+            // Xpath2.g:40:7: ( '>>' )
+            // Xpath2.g:40:9: '>>'
             {
             match(">>"); 
 
@@ -585,8 +590,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:36:7: ( '?' )
-            // Xpath2.g:36:9: '?'
+            // Xpath2.g:41:7: ( '?' )
+            // Xpath2.g:41:9: '?'
             {
             match('?'); 
 
@@ -606,8 +611,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:37:7: ( '@' )
-            // Xpath2.g:37:9: '@'
+            // Xpath2.g:42:7: ( '@' )
+            // Xpath2.g:42:9: '@'
             {
             match('@'); 
 
@@ -627,8 +632,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:38:7: ( '[' )
-            // Xpath2.g:38:9: '['
+            // Xpath2.g:43:7: ( '[' )
+            // Xpath2.g:43:9: '['
             {
             match('['); 
 
@@ -648,8 +653,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:39:7: ( ']' )
-            // Xpath2.g:39:9: ']'
+            // Xpath2.g:44:7: ( ']' )
+            // Xpath2.g:44:9: ']'
             {
             match(']'); 
 
@@ -669,8 +674,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:40:7: ( 'ancestor' )
-            // Xpath2.g:40:9: 'ancestor'
+            // Xpath2.g:45:7: ( 'ancestor' )
+            // Xpath2.g:45:9: 'ancestor'
             {
             match("ancestor"); 
 
@@ -692,8 +697,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:41:7: ( 'ancestor-or-self' )
-            // Xpath2.g:41:9: 'ancestor-or-self'
+            // Xpath2.g:46:7: ( 'ancestor-or-self' )
+            // Xpath2.g:46:9: 'ancestor-or-self'
             {
             match("ancestor-or-self"); 
 
@@ -715,8 +720,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:42:7: ( 'and' )
-            // Xpath2.g:42:9: 'and'
+            // Xpath2.g:47:7: ( 'and' )
+            // Xpath2.g:47:9: 'and'
             {
             match("and"); 
 
@@ -738,8 +743,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:43:7: ( 'as' )
-            // Xpath2.g:43:9: 'as'
+            // Xpath2.g:48:7: ( 'as' )
+            // Xpath2.g:48:9: 'as'
             {
             match("as"); 
 
@@ -761,8 +766,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:44:7: ( 'attribute' )
-            // Xpath2.g:44:9: 'attribute'
+            // Xpath2.g:49:7: ( 'attribute' )
+            // Xpath2.g:49:9: 'attribute'
             {
             match("attribute"); 
 
@@ -784,8 +789,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:45:7: ( 'cast' )
-            // Xpath2.g:45:9: 'cast'
+            // Xpath2.g:50:7: ( 'cast' )
+            // Xpath2.g:50:9: 'cast'
             {
             match("cast"); 
 
@@ -807,8 +812,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:46:7: ( 'castable' )
-            // Xpath2.g:46:9: 'castable'
+            // Xpath2.g:51:7: ( 'castable' )
+            // Xpath2.g:51:9: 'castable'
             {
             match("castable"); 
 
@@ -830,8 +835,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:47:7: ( 'child' )
-            // Xpath2.g:47:9: 'child'
+            // Xpath2.g:52:7: ( 'child' )
+            // Xpath2.g:52:9: 'child'
             {
             match("child"); 
 
@@ -853,8 +858,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:48:7: ( 'comment' )
-            // Xpath2.g:48:9: 'comment'
+            // Xpath2.g:53:7: ( 'comment' )
+            // Xpath2.g:53:9: 'comment'
             {
             match("comment"); 
 
@@ -876,8 +881,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:49:7: ( 'descendant' )
-            // Xpath2.g:49:9: 'descendant'
+            // Xpath2.g:54:7: ( 'descendant' )
+            // Xpath2.g:54:9: 'descendant'
             {
             match("descendant"); 
 
@@ -899,8 +904,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:50:7: ( 'descendant-or-self' )
-            // Xpath2.g:50:9: 'descendant-or-self'
+            // Xpath2.g:55:7: ( 'descendant-or-self' )
+            // Xpath2.g:55:9: 'descendant-or-self'
             {
             match("descendant-or-self"); 
 
@@ -922,8 +927,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:51:7: ( 'div' )
-            // Xpath2.g:51:9: 'div'
+            // Xpath2.g:56:7: ( 'div' )
+            // Xpath2.g:56:9: 'div'
             {
             match("div"); 
 
@@ -945,8 +950,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:52:7: ( 'document-node' )
-            // Xpath2.g:52:9: 'document-node'
+            // Xpath2.g:57:7: ( 'document-node' )
+            // Xpath2.g:57:9: 'document-node'
             {
             match("document-node"); 
 
@@ -968,8 +973,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:53:7: ( 'element' )
-            // Xpath2.g:53:9: 'element'
+            // Xpath2.g:58:7: ( 'element' )
+            // Xpath2.g:58:9: 'element'
             {
             match("element"); 
 
@@ -991,8 +996,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:54:7: ( 'else' )
-            // Xpath2.g:54:9: 'else'
+            // Xpath2.g:59:7: ( 'else' )
+            // Xpath2.g:59:9: 'else'
             {
             match("else"); 
 
@@ -1014,8 +1019,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:55:7: ( 'empty-sequence' )
-            // Xpath2.g:55:9: 'empty-sequence'
+            // Xpath2.g:60:7: ( 'empty-sequence' )
+            // Xpath2.g:60:9: 'empty-sequence'
             {
             match("empty-sequence"); 
 
@@ -1037,8 +1042,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:56:7: ( 'eq' )
-            // Xpath2.g:56:9: 'eq'
+            // Xpath2.g:61:7: ( 'eq' )
+            // Xpath2.g:61:9: 'eq'
             {
             match("eq"); 
 
@@ -1060,8 +1065,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:57:7: ( 'every' )
-            // Xpath2.g:57:9: 'every'
+            // Xpath2.g:62:7: ( 'every' )
+            // Xpath2.g:62:9: 'every'
             {
             match("every"); 
 
@@ -1083,8 +1088,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:58:7: ( 'except' )
-            // Xpath2.g:58:9: 'except'
+            // Xpath2.g:63:7: ( 'except' )
+            // Xpath2.g:63:9: 'except'
             {
             match("except"); 
 
@@ -1106,8 +1111,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:59:7: ( 'following' )
-            // Xpath2.g:59:9: 'following'
+            // Xpath2.g:64:7: ( 'following' )
+            // Xpath2.g:64:9: 'following'
             {
             match("following"); 
 
@@ -1129,8 +1134,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:60:7: ( 'following-sibling' )
-            // Xpath2.g:60:9: 'following-sibling'
+            // Xpath2.g:65:7: ( 'following-sibling' )
+            // Xpath2.g:65:9: 'following-sibling'
             {
             match("following-sibling"); 
 
@@ -1152,8 +1157,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:61:7: ( 'for' )
-            // Xpath2.g:61:9: 'for'
+            // Xpath2.g:66:7: ( 'for' )
+            // Xpath2.g:66:9: 'for'
             {
             match("for"); 
 
@@ -1175,8 +1180,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:62:7: ( 'ge' )
-            // Xpath2.g:62:9: 'ge'
+            // Xpath2.g:67:7: ( 'ge' )
+            // Xpath2.g:67:9: 'ge'
             {
             match("ge"); 
 
@@ -1198,8 +1203,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:63:7: ( 'gt' )
-            // Xpath2.g:63:9: 'gt'
+            // Xpath2.g:68:7: ( 'gt' )
+            // Xpath2.g:68:9: 'gt'
             {
             match("gt"); 
 
@@ -1221,8 +1226,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:64:7: ( 'idiv' )
-            // Xpath2.g:64:9: 'idiv'
+            // Xpath2.g:69:7: ( 'idiv' )
+            // Xpath2.g:69:9: 'idiv'
             {
             match("idiv"); 
 
@@ -1244,8 +1249,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:65:7: ( 'if' )
-            // Xpath2.g:65:9: 'if'
+            // Xpath2.g:70:7: ( 'if' )
+            // Xpath2.g:70:9: 'if'
             {
             match("if"); 
 
@@ -1267,8 +1272,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:66:7: ( 'in' )
-            // Xpath2.g:66:9: 'in'
+            // Xpath2.g:71:7: ( 'in' )
+            // Xpath2.g:71:9: 'in'
             {
             match("in"); 
 
@@ -1290,8 +1295,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:67:7: ( 'instance' )
-            // Xpath2.g:67:9: 'instance'
+            // Xpath2.g:72:7: ( 'instance' )
+            // Xpath2.g:72:9: 'instance'
             {
             match("instance"); 
 
@@ -1313,8 +1318,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:68:7: ( 'intersect' )
-            // Xpath2.g:68:9: 'intersect'
+            // Xpath2.g:73:7: ( 'intersect' )
+            // Xpath2.g:73:9: 'intersect'
             {
             match("intersect"); 
 
@@ -1336,8 +1341,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:69:7: ( 'is' )
-            // Xpath2.g:69:9: 'is'
+            // Xpath2.g:74:7: ( 'is' )
+            // Xpath2.g:74:9: 'is'
             {
             match("is"); 
 
@@ -1359,8 +1364,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:70:7: ( 'item' )
-            // Xpath2.g:70:9: 'item'
+            // Xpath2.g:75:7: ( 'item' )
+            // Xpath2.g:75:9: 'item'
             {
             match("item"); 
 
@@ -1382,8 +1387,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:71:7: ( 'le' )
-            // Xpath2.g:71:9: 'le'
+            // Xpath2.g:76:7: ( 'le' )
+            // Xpath2.g:76:9: 'le'
             {
             match("le"); 
 
@@ -1405,8 +1410,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:72:7: ( 'lt' )
-            // Xpath2.g:72:9: 'lt'
+            // Xpath2.g:77:7: ( 'lt' )
+            // Xpath2.g:77:9: 'lt'
             {
             match("lt"); 
 
@@ -1428,8 +1433,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:73:7: ( 'mod' )
-            // Xpath2.g:73:9: 'mod'
+            // Xpath2.g:78:7: ( 'mod' )
+            // Xpath2.g:78:9: 'mod'
             {
             match("mod"); 
 
@@ -1451,8 +1456,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:74:7: ( 'namespace' )
-            // Xpath2.g:74:9: 'namespace'
+            // Xpath2.g:79:7: ( 'namespace' )
+            // Xpath2.g:79:9: 'namespace'
             {
             match("namespace"); 
 
@@ -1474,8 +1479,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:75:7: ( 'ne' )
-            // Xpath2.g:75:9: 'ne'
+            // Xpath2.g:80:7: ( 'ne' )
+            // Xpath2.g:80:9: 'ne'
             {
             match("ne"); 
 
@@ -1497,8 +1502,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:76:7: ( 'node' )
-            // Xpath2.g:76:9: 'node'
+            // Xpath2.g:81:7: ( 'node' )
+            // Xpath2.g:81:9: 'node'
             {
             match("node"); 
 
@@ -1520,8 +1525,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__73;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:77:7: ( 'of' )
-            // Xpath2.g:77:9: 'of'
+            // Xpath2.g:82:7: ( 'of' )
+            // Xpath2.g:82:9: 'of'
             {
             match("of"); 
 
@@ -1543,8 +1548,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__74;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:78:7: ( 'or' )
-            // Xpath2.g:78:9: 'or'
+            // Xpath2.g:83:7: ( 'or' )
+            // Xpath2.g:83:9: 'or'
             {
             match("or"); 
 
@@ -1566,8 +1571,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__75;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:79:7: ( 'parent' )
-            // Xpath2.g:79:9: 'parent'
+            // Xpath2.g:84:7: ( 'parent' )
+            // Xpath2.g:84:9: 'parent'
             {
             match("parent"); 
 
@@ -1589,8 +1594,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__76;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:80:7: ( 'preceding' )
-            // Xpath2.g:80:9: 'preceding'
+            // Xpath2.g:85:7: ( 'preceding' )
+            // Xpath2.g:85:9: 'preceding'
             {
             match("preceding"); 
 
@@ -1612,8 +1617,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__77;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:81:7: ( 'preceding-sibling' )
-            // Xpath2.g:81:9: 'preceding-sibling'
+            // Xpath2.g:86:7: ( 'preceding-sibling' )
+            // Xpath2.g:86:9: 'preceding-sibling'
             {
             match("preceding-sibling"); 
 
@@ -1635,8 +1640,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__78;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:82:7: ( 'processing-instruction' )
-            // Xpath2.g:82:9: 'processing-instruction'
+            // Xpath2.g:87:7: ( 'processing-instruction' )
+            // Xpath2.g:87:9: 'processing-instruction'
             {
             match("processing-instruction"); 
 
@@ -1658,8 +1663,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__79;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:83:7: ( 'return' )
-            // Xpath2.g:83:9: 'return'
+            // Xpath2.g:88:7: ( 'return' )
+            // Xpath2.g:88:9: 'return'
             {
             match("return"); 
 
@@ -1681,8 +1686,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__80;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:84:7: ( 'satisfies' )
-            // Xpath2.g:84:9: 'satisfies'
+            // Xpath2.g:89:7: ( 'satisfies' )
+            // Xpath2.g:89:9: 'satisfies'
             {
             match("satisfies"); 
 
@@ -1704,8 +1709,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__81;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:85:7: ( 'schema-attribute' )
-            // Xpath2.g:85:9: 'schema-attribute'
+            // Xpath2.g:90:7: ( 'schema-attribute' )
+            // Xpath2.g:90:9: 'schema-attribute'
             {
             match("schema-attribute"); 
 
@@ -1727,8 +1732,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__82;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:86:7: ( 'schema-element' )
-            // Xpath2.g:86:9: 'schema-element'
+            // Xpath2.g:91:7: ( 'schema-element' )
+            // Xpath2.g:91:9: 'schema-element'
             {
             match("schema-element"); 
 
@@ -1750,8 +1755,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__83;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:87:7: ( 'self' )
-            // Xpath2.g:87:9: 'self'
+            // Xpath2.g:92:7: ( 'self' )
+            // Xpath2.g:92:9: 'self'
             {
             match("self"); 
 
@@ -1773,8 +1778,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__84;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:88:7: ( 'some' )
-            // Xpath2.g:88:9: 'some'
+            // Xpath2.g:93:7: ( 'some' )
+            // Xpath2.g:93:9: 'some'
             {
             match("some"); 
 
@@ -1796,8 +1801,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__85;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:89:7: ( 'text' )
-            // Xpath2.g:89:9: 'text'
+            // Xpath2.g:94:7: ( 'text' )
+            // Xpath2.g:94:9: 'text'
             {
             match("text"); 
 
@@ -1819,8 +1824,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__86;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:90:7: ( 'then' )
-            // Xpath2.g:90:9: 'then'
+            // Xpath2.g:95:7: ( 'then' )
+            // Xpath2.g:95:9: 'then'
             {
             match("then"); 
 
@@ -1842,8 +1847,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__87;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:91:7: ( 'to' )
-            // Xpath2.g:91:9: 'to'
+            // Xpath2.g:96:7: ( 'to' )
+            // Xpath2.g:96:9: 'to'
             {
             match("to"); 
 
@@ -1865,8 +1870,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__88;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:92:7: ( 'treat' )
-            // Xpath2.g:92:9: 'treat'
+            // Xpath2.g:97:7: ( 'treat' )
+            // Xpath2.g:97:9: 'treat'
             {
             match("treat"); 
 
@@ -1888,8 +1893,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__89;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:93:7: ( 'union' )
-            // Xpath2.g:93:9: 'union'
+            // Xpath2.g:98:7: ( 'union' )
+            // Xpath2.g:98:9: 'union'
             {
             match("union"); 
 
@@ -1911,8 +1916,8 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = T__90;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:94:7: ( '|' )
-            // Xpath2.g:94:9: '|'
+            // Xpath2.g:99:7: ( '|' )
+            // Xpath2.g:99:9: '|'
             {
             match('|'); 
 
@@ -1932,13 +1937,13 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = INTEGER_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:9512:16: ( ( ( '0' .. '9' )+ ) )
-            // Xpath2.g:9513:2: ( ( '0' .. '9' )+ )
+            // Xpath2.g:9494:16: ( ( ( '0' .. '9' )+ ) )
+            // Xpath2.g:9495:2: ( ( '0' .. '9' )+ )
             {
-            // Xpath2.g:9513:2: ( ( '0' .. '9' )+ )
-            // Xpath2.g:9513:3: ( '0' .. '9' )+
+            // Xpath2.g:9495:2: ( ( '0' .. '9' )+ )
+            // Xpath2.g:9495:3: ( '0' .. '9' )+
             {
-            // Xpath2.g:9513:3: ( '0' .. '9' )+
+            // Xpath2.g:9495:3: ( '0' .. '9' )+
             int cnt1=0;
             loop1:
             do {
@@ -1996,10 +2001,10 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = DECIMAL_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:9515:16: ( ( ( '.' ( '0' .. '9' )+ ) | ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ) ) )
-            // Xpath2.g:9516:2: ( ( '.' ( '0' .. '9' )+ ) | ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ) )
+            // Xpath2.g:9497:16: ( ( ( '.' ( '0' .. '9' )+ ) | ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ) ) )
+            // Xpath2.g:9498:2: ( ( '.' ( '0' .. '9' )+ ) | ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ) )
             {
-            // Xpath2.g:9516:2: ( ( '.' ( '0' .. '9' )+ ) | ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ) )
+            // Xpath2.g:9498:2: ( ( '.' ( '0' .. '9' )+ ) | ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ) )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -2018,14 +2023,14 @@ public class Xpath2Lexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // Xpath2.g:9516:3: ( '.' ( '0' .. '9' )+ )
+                    // Xpath2.g:9498:3: ( '.' ( '0' .. '9' )+ )
                     {
-                    // Xpath2.g:9516:3: ( '.' ( '0' .. '9' )+ )
-                    // Xpath2.g:9516:4: '.' ( '0' .. '9' )+
+                    // Xpath2.g:9498:3: ( '.' ( '0' .. '9' )+ )
+                    // Xpath2.g:9498:4: '.' ( '0' .. '9' )+
                     {
                     match('.'); 
 
-                    // Xpath2.g:9516:7: ( '0' .. '9' )+
+                    // Xpath2.g:9498:7: ( '0' .. '9' )+
                     int cnt2=0;
                     loop2:
                     do {
@@ -2070,12 +2075,12 @@ public class Xpath2Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:9516:20: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* )
+                    // Xpath2.g:9498:20: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* )
                     {
-                    // Xpath2.g:9516:20: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* )
-                    // Xpath2.g:9516:21: ( '0' .. '9' )+ '.' ( '0' .. '9' )*
+                    // Xpath2.g:9498:20: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* )
+                    // Xpath2.g:9498:21: ( '0' .. '9' )+ '.' ( '0' .. '9' )*
                     {
-                    // Xpath2.g:9516:21: ( '0' .. '9' )+
+                    // Xpath2.g:9498:21: ( '0' .. '9' )+
                     int cnt3=0;
                     loop3:
                     do {
@@ -2116,7 +2121,7 @@ public class Xpath2Lexer extends Lexer {
 
                     match('.'); 
 
-                    // Xpath2.g:9516:35: ( '0' .. '9' )*
+                    // Xpath2.g:9498:35: ( '0' .. '9' )*
                     loop4:
                     do {
                         int alt4=2;
@@ -2175,10 +2180,10 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = DOUBLE_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:9518:15: ( ( ( '.' ( '0' .. '9' )+ ) | ( ( '0' .. '9' )+ ( '.' ( '0' .. '9' )* )? ) ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ ) )
-            // Xpath2.g:9519:2: ( ( '.' ( '0' .. '9' )+ ) | ( ( '0' .. '9' )+ ( '.' ( '0' .. '9' )* )? ) ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // Xpath2.g:9500:15: ( ( ( '.' ( '0' .. '9' )+ ) | ( ( '0' .. '9' )+ ( '.' ( '0' .. '9' )* )? ) ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ ) )
+            // Xpath2.g:9501:2: ( ( '.' ( '0' .. '9' )+ ) | ( ( '0' .. '9' )+ ( '.' ( '0' .. '9' )* )? ) ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
             {
-            // Xpath2.g:9519:2: ( ( '.' ( '0' .. '9' )+ ) | ( ( '0' .. '9' )+ ( '.' ( '0' .. '9' )* )? ) ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // Xpath2.g:9501:2: ( ( '.' ( '0' .. '9' )+ ) | ( ( '0' .. '9' )+ ( '.' ( '0' .. '9' )* )? ) ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -2197,14 +2202,14 @@ public class Xpath2Lexer extends Lexer {
             }
             switch (alt12) {
                 case 1 :
-                    // Xpath2.g:9519:3: ( '.' ( '0' .. '9' )+ )
+                    // Xpath2.g:9501:3: ( '.' ( '0' .. '9' )+ )
                     {
-                    // Xpath2.g:9519:3: ( '.' ( '0' .. '9' )+ )
-                    // Xpath2.g:9519:4: '.' ( '0' .. '9' )+
+                    // Xpath2.g:9501:3: ( '.' ( '0' .. '9' )+ )
+                    // Xpath2.g:9501:4: '.' ( '0' .. '9' )+
                     {
                     match('.'); 
 
-                    // Xpath2.g:9519:7: ( '0' .. '9' )+
+                    // Xpath2.g:9501:7: ( '0' .. '9' )+
                     int cnt6=0;
                     loop6:
                     do {
@@ -2249,12 +2254,12 @@ public class Xpath2Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:9519:20: ( ( '0' .. '9' )+ ( '.' ( '0' .. '9' )* )? ) ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+                    // Xpath2.g:9501:20: ( ( '0' .. '9' )+ ( '.' ( '0' .. '9' )* )? ) ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
                     {
-                    // Xpath2.g:9519:20: ( ( '0' .. '9' )+ ( '.' ( '0' .. '9' )* )? )
-                    // Xpath2.g:9519:21: ( '0' .. '9' )+ ( '.' ( '0' .. '9' )* )?
+                    // Xpath2.g:9501:20: ( ( '0' .. '9' )+ ( '.' ( '0' .. '9' )* )? )
+                    // Xpath2.g:9501:21: ( '0' .. '9' )+ ( '.' ( '0' .. '9' )* )?
                     {
-                    // Xpath2.g:9519:21: ( '0' .. '9' )+
+                    // Xpath2.g:9501:21: ( '0' .. '9' )+
                     int cnt7=0;
                     loop7:
                     do {
@@ -2293,7 +2298,7 @@ public class Xpath2Lexer extends Lexer {
                     } while (true);
 
 
-                    // Xpath2.g:9519:32: ( '.' ( '0' .. '9' )* )?
+                    // Xpath2.g:9501:32: ( '.' ( '0' .. '9' )* )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -2302,11 +2307,11 @@ public class Xpath2Lexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // Xpath2.g:9519:33: '.' ( '0' .. '9' )*
+                            // Xpath2.g:9501:33: '.' ( '0' .. '9' )*
                             {
                             match('.'); 
 
-                            // Xpath2.g:9519:36: ( '0' .. '9' )*
+                            // Xpath2.g:9501:36: ( '0' .. '9' )*
                             loop8:
                             do {
                                 int alt8=2;
@@ -2359,7 +2364,7 @@ public class Xpath2Lexer extends Lexer {
                     }
 
 
-                    // Xpath2.g:9519:59: ( '+' | '-' )?
+                    // Xpath2.g:9501:59: ( '+' | '-' )?
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
@@ -2386,7 +2391,7 @@ public class Xpath2Lexer extends Lexer {
                     }
 
 
-                    // Xpath2.g:9519:69: ( '0' .. '9' )+
+                    // Xpath2.g:9501:69: ( '0' .. '9' )+
                     int cnt11=0;
                     loop11:
                     do {
@@ -2447,11 +2452,11 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = QNAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:9521:6: ( ( ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* ':' ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* ) )
-            // Xpath2.g:9522:2: ( ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* ':' ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* )
+            // Xpath2.g:9503:6: ( ( ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* ':' ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* ) )
+            // Xpath2.g:9504:2: ( ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* ':' ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* )
             {
-            // Xpath2.g:9522:2: ( ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* ':' ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* )
-            // Xpath2.g:9522:3: ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* ':' ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )*
+            // Xpath2.g:9504:2: ( ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* ':' ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* )
+            // Xpath2.g:9504:3: ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* ':' ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )*
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z')||(input.LA(1) >= '\u00C0' && input.LA(1) <= '\u00D6')||(input.LA(1) >= '\u00D8' && input.LA(1) <= '\u00F6')||(input.LA(1) >= '\u00F8' && input.LA(1) <= '\u02FF')||(input.LA(1) >= '\u0370' && input.LA(1) <= '\u037D')||(input.LA(1) >= '\u037F' && input.LA(1) <= '\u1FFF')||(input.LA(1) >= '\u200C' && input.LA(1) <= '\u200D')||(input.LA(1) >= '\u2070' && input.LA(1) <= '\u218F')||(input.LA(1) >= '\u2C00' && input.LA(1) <= '\u2FEF')||(input.LA(1) >= '\u3001' && input.LA(1) <= '\uD7FF')||(input.LA(1) >= '\uF900' && input.LA(1) <= '\uFDCF')||(input.LA(1) >= '\uFDF0' && input.LA(1) <= '\uFFFD') ) {
                 input.consume();
@@ -2463,7 +2468,7 @@ public class Xpath2Lexer extends Lexer {
             }
 
 
-            // Xpath2.g:9522:235: ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )*
+            // Xpath2.g:9504:235: ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )*
             loop13:
             do {
                 int alt13=2;
@@ -2509,7 +2514,7 @@ public class Xpath2Lexer extends Lexer {
             }
 
 
-            // Xpath2.g:9522:767: ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )*
+            // Xpath2.g:9504:767: ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )*
             loop14:
             do {
                 int alt14=2;
@@ -2562,11 +2567,11 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = NCNAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:9524:7: ( ( ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* ) )
-            // Xpath2.g:9525:2: ( ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* )
+            // Xpath2.g:9506:7: ( ( ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* ) )
+            // Xpath2.g:9507:2: ( ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* )
             {
-            // Xpath2.g:9525:2: ( ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* )
-            // Xpath2.g:9525:3: ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )*
+            // Xpath2.g:9507:2: ( ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )* )
+            // Xpath2.g:9507:3: ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' ) ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )*
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z')||(input.LA(1) >= '\u00C0' && input.LA(1) <= '\u00D6')||(input.LA(1) >= '\u00D8' && input.LA(1) <= '\u00F6')||(input.LA(1) >= '\u00F8' && input.LA(1) <= '\u02FF')||(input.LA(1) >= '\u0370' && input.LA(1) <= '\u037D')||(input.LA(1) >= '\u037F' && input.LA(1) <= '\u1FFF')||(input.LA(1) >= '\u200C' && input.LA(1) <= '\u200D')||(input.LA(1) >= '\u2070' && input.LA(1) <= '\u218F')||(input.LA(1) >= '\u2C00' && input.LA(1) <= '\u2FEF')||(input.LA(1) >= '\u3001' && input.LA(1) <= '\uD7FF')||(input.LA(1) >= '\uF900' && input.LA(1) <= '\uFDCF')||(input.LA(1) >= '\uFDF0' && input.LA(1) <= '\uFFFD') ) {
                 input.consume();
@@ -2578,7 +2583,7 @@ public class Xpath2Lexer extends Lexer {
             }
 
 
-            // Xpath2.g:9525:235: ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )*
+            // Xpath2.g:9507:235: ( 'A' .. 'Z' | '_' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' | '-' | '.' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )*
             loop15:
             do {
                 int alt15=2;
@@ -2631,10 +2636,10 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = STRING_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:9527:15: ( ( ( '\\\"' ) ( '\\\"\\\"' |~ ( '\\\"' ) )* ( '\\\"' ) | ( '\\'' ) ( '\\'\\'' |~ ( '\\'' ) )* ( '\\'' ) ) )
-            // Xpath2.g:9528:2: ( ( '\\\"' ) ( '\\\"\\\"' |~ ( '\\\"' ) )* ( '\\\"' ) | ( '\\'' ) ( '\\'\\'' |~ ( '\\'' ) )* ( '\\'' ) )
+            // Xpath2.g:9509:15: ( ( ( '\\\"' ) ( '\\\"\\\"' |~ ( '\\\"' ) )* ( '\\\"' ) | ( '\\'' ) ( '\\'\\'' |~ ( '\\'' ) )* ( '\\'' ) ) )
+            // Xpath2.g:9510:2: ( ( '\\\"' ) ( '\\\"\\\"' |~ ( '\\\"' ) )* ( '\\\"' ) | ( '\\'' ) ( '\\'\\'' |~ ( '\\'' ) )* ( '\\'' ) )
             {
-            // Xpath2.g:9528:2: ( ( '\\\"' ) ( '\\\"\\\"' |~ ( '\\\"' ) )* ( '\\\"' ) | ( '\\'' ) ( '\\'\\'' |~ ( '\\'' ) )* ( '\\'' ) )
+            // Xpath2.g:9510:2: ( ( '\\\"' ) ( '\\\"\\\"' |~ ( '\\\"' ) )* ( '\\\"' ) | ( '\\'' ) ( '\\'\\'' |~ ( '\\'' ) )* ( '\\'' ) )
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -2653,17 +2658,17 @@ public class Xpath2Lexer extends Lexer {
             }
             switch (alt18) {
                 case 1 :
-                    // Xpath2.g:9528:3: ( '\\\"' ) ( '\\\"\\\"' |~ ( '\\\"' ) )* ( '\\\"' )
+                    // Xpath2.g:9510:3: ( '\\\"' ) ( '\\\"\\\"' |~ ( '\\\"' ) )* ( '\\\"' )
                     {
-                    // Xpath2.g:9528:3: ( '\\\"' )
-                    // Xpath2.g:9528:4: '\\\"'
+                    // Xpath2.g:9510:3: ( '\\\"' )
+                    // Xpath2.g:9510:4: '\\\"'
                     {
                     match('\"'); 
 
                     }
 
 
-                    // Xpath2.g:9528:9: ( '\\\"\\\"' |~ ( '\\\"' ) )*
+                    // Xpath2.g:9510:9: ( '\\\"\\\"' |~ ( '\\\"' ) )*
                     loop16:
                     do {
                         int alt16=3;
@@ -2685,7 +2690,7 @@ public class Xpath2Lexer extends Lexer {
 
                         switch (alt16) {
                     	case 1 :
-                    	    // Xpath2.g:9528:10: '\\\"\\\"'
+                    	    // Xpath2.g:9510:10: '\\\"\\\"'
                     	    {
                     	    match("\"\""); 
 
@@ -2694,7 +2699,7 @@ public class Xpath2Lexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // Xpath2.g:9528:17: ~ ( '\\\"' )
+                    	    // Xpath2.g:9510:17: ~ ( '\\\"' )
                     	    {
                     	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '\uFFFF') ) {
                     	        input.consume();
@@ -2715,8 +2720,8 @@ public class Xpath2Lexer extends Lexer {
                     } while (true);
 
 
-                    // Xpath2.g:9528:26: ( '\\\"' )
-                    // Xpath2.g:9528:27: '\\\"'
+                    // Xpath2.g:9510:26: ( '\\\"' )
+                    // Xpath2.g:9510:27: '\\\"'
                     {
                     match('\"'); 
 
@@ -2726,17 +2731,17 @@ public class Xpath2Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Xpath2.g:9528:33: ( '\\'' ) ( '\\'\\'' |~ ( '\\'' ) )* ( '\\'' )
+                    // Xpath2.g:9510:33: ( '\\'' ) ( '\\'\\'' |~ ( '\\'' ) )* ( '\\'' )
                     {
-                    // Xpath2.g:9528:33: ( '\\'' )
-                    // Xpath2.g:9528:34: '\\''
+                    // Xpath2.g:9510:33: ( '\\'' )
+                    // Xpath2.g:9510:34: '\\''
                     {
                     match('\''); 
 
                     }
 
 
-                    // Xpath2.g:9528:39: ( '\\'\\'' |~ ( '\\'' ) )*
+                    // Xpath2.g:9510:39: ( '\\'\\'' |~ ( '\\'' ) )*
                     loop17:
                     do {
                         int alt17=3;
@@ -2758,7 +2763,7 @@ public class Xpath2Lexer extends Lexer {
 
                         switch (alt17) {
                     	case 1 :
-                    	    // Xpath2.g:9528:40: '\\'\\''
+                    	    // Xpath2.g:9510:40: '\\'\\''
                     	    {
                     	    match("''"); 
 
@@ -2767,7 +2772,7 @@ public class Xpath2Lexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // Xpath2.g:9528:47: ~ ( '\\'' )
+                    	    // Xpath2.g:9510:47: ~ ( '\\'' )
                     	    {
                     	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '&')||(input.LA(1) >= '(' && input.LA(1) <= '\uFFFF') ) {
                     	        input.consume();
@@ -2788,8 +2793,8 @@ public class Xpath2Lexer extends Lexer {
                     } while (true);
 
 
-                    // Xpath2.g:9528:56: ( '\\'' )
-                    // Xpath2.g:9528:57: '\\''
+                    // Xpath2.g:9510:56: ( '\\'' )
+                    // Xpath2.g:9510:57: '\\''
                     {
                     match('\''); 
 
@@ -2818,13 +2823,13 @@ public class Xpath2Lexer extends Lexer {
         try {
             int _type = WHITESPACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Xpath2.g:9530:11: ( ( ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+ ) )
-            // Xpath2.g:9531:2: ( ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+ )
+            // Xpath2.g:9512:11: ( ( ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+ ) )
+            // Xpath2.g:9513:2: ( ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+ )
             {
-            // Xpath2.g:9531:2: ( ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+ )
-            // Xpath2.g:9531:3: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
+            // Xpath2.g:9513:2: ( ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+ )
+            // Xpath2.g:9513:3: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
             {
-            // Xpath2.g:9531:3: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
+            // Xpath2.g:9513:3: ( ' ' | '\\t' | '\\f' | '\\r' | '\\n' )+
             int cnt19=0;
             loop19:
             do {

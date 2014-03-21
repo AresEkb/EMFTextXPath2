@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,13 +10,15 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
+import org.antlr.runtime3_4_0.RecognitionException;
+
 /**
  * An Excpetion to represent invalid content types for parser instances.
  * 
  * @see
  * org.emftext.language.xpath2.resource.xpath2.IXpath2Options.RESOURCE_CONTENT_TYPE
  */
-public class Xpath2UnexpectedContentTypeException extends org.antlr.runtime3_4_0.RecognitionException {
+public class Xpath2UnexpectedContentTypeException extends RecognitionException {
 	
 	private static final long serialVersionUID = 4791359811519433999L;
 	

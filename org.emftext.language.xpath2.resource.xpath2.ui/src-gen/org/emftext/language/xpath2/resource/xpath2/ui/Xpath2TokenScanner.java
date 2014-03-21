@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,24 +10,39 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.TextAttribute;
+import org.eclipse.jface.text.rules.IToken;
+import org.eclipse.jface.text.rules.Token;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.RGB;
+
 /**
  * An adapter from the Eclipse
  * <code>org.eclipse.jface.text.rules.ITokenScanner</code> interface to the
  * generated lexer.
  */
-public class Xpath2TokenScanner implements org.eclipse.jface.text.rules.ITokenScanner {
+public class Xpath2TokenScanner implements org.emftext.language.xpath2.resource.xpath2.ui.IXpath2TokenScanner {
 	
 	private org.emftext.language.xpath2.resource.xpath2.IXpath2TextScanner lexer;
 	private org.emftext.language.xpath2.resource.xpath2.IXpath2TextToken currentToken;
-	private java.util.List<org.emftext.language.xpath2.resource.xpath2.IXpath2TextToken> nextTokens;
+	private List<org.emftext.language.xpath2.resource.xpath2.IXpath2TextToken> nextTokens;
 	private int offset;
 	private String languageId;
-	private org.eclipse.jface.preference.IPreferenceStore store;
+	private IPreferenceStore store;
 	private org.emftext.language.xpath2.resource.xpath2.ui.Xpath2ColorManager colorManager;
 	private org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource;
 	
 	/**
+	 * Creates a new Xpath2TokenScanner.
 	 * 
+	 * @param resource The resource to scan
 	 * @param colorManager A manager to obtain color objects
 	 */
 	public Xpath2TokenScanner(org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2ColorManager colorManager) {
@@ -39,7 +54,7 @@ public class Xpath2TokenScanner implements org.eclipse.jface.text.rules.ITokenSc
 		if (plugin != null) {
 			this.store = plugin.getPreferenceStore();
 		}
-		this.nextTokens = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2TextToken>();
+		this.nextTokens = new ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2TextToken>();
 	}
 	
 	public int getTokenLength() {
@@ -50,7 +65,7 @@ public class Xpath2TokenScanner implements org.eclipse.jface.text.rules.ITokenSc
 		return offset + currentToken.getOffset();
 	}
 	
-	public org.eclipse.jface.text.rules.IToken nextToken() {
+	public IToken nextToken() {
 		boolean isOriginalToken = true;
 		if (!nextTokens.isEmpty()) {
 			currentToken = nextTokens.remove(0);
@@ -59,14 +74,14 @@ public class Xpath2TokenScanner implements org.eclipse.jface.text.rules.ITokenSc
 			currentToken = lexer.getNextToken();
 		}
 		if (currentToken == null || !currentToken.canBeUsedForSyntaxHighlighting()) {
-			return org.eclipse.jface.text.rules.Token.EOF;
+			return Token.EOF;
 		}
 		
 		if (isOriginalToken) {
 			splitCurrentToken();
 		}
 		
-		org.eclipse.jface.text.TextAttribute textAttribute = null;
+		TextAttribute textAttribute = null;
 		String tokenName = currentToken.getName();
 		if (tokenName != null) {
 			org.emftext.language.xpath2.resource.xpath2.IXpath2TokenStyle staticStyle = getStaticTokenStyle();
@@ -78,14 +93,14 @@ public class Xpath2TokenScanner implements org.eclipse.jface.text.rules.ITokenSc
 			}
 		}
 		
-		return new org.eclipse.jface.text.rules.Token(textAttribute);
+		return new Token(textAttribute);
 	}
 	
-	public void setRange(org.eclipse.jface.text.IDocument document, int offset, int length) {
+	public void setRange(IDocument document, int offset, int length) {
 		this.offset = offset;
 		try {
 			lexer.setText(document.get(offset, length));
-		} catch (org.eclipse.jface.text.BadLocationException e) {
+		} catch (BadLocationException e) {
 			// ignore this error. It might occur during editing when locations are outdated
 			// quickly.
 		}
@@ -95,7 +110,7 @@ public class Xpath2TokenScanner implements org.eclipse.jface.text.rules.ITokenSc
 		return currentToken.getText();
 	}
 	
-	public int[] convertToIntArray(org.eclipse.swt.graphics.RGB rgb) {
+	public int[] convertToIntArray(RGB rgb) {
 		if (rgb == null) {
 			return null;
 		}
@@ -103,57 +118,62 @@ public class Xpath2TokenScanner implements org.eclipse.jface.text.rules.ITokenSc
 	}
 	
 	public org.emftext.language.xpath2.resource.xpath2.IXpath2TokenStyle getStaticTokenStyle() {
-		org.emftext.language.xpath2.resource.xpath2.IXpath2TokenStyle staticStyle = null;
 		String tokenName = currentToken.getName();
 		String enableKey = org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.getPreferenceKey(languageId, tokenName, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.StyleProperty.ENABLE);
-		boolean enabled = store.getBoolean(enableKey);
-		if (enabled) {
-			String colorKey = org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.getPreferenceKey(languageId, tokenName, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.StyleProperty.COLOR);
-			org.eclipse.swt.graphics.RGB foregroundRGB = org.eclipse.jface.preference.PreferenceConverter.getColor(store, colorKey);
-			org.eclipse.swt.graphics.RGB backgroundRGB = null;
-			boolean bold = store.getBoolean(org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.getPreferenceKey(languageId, tokenName, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.StyleProperty.BOLD));
-			boolean italic = store.getBoolean(org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.getPreferenceKey(languageId, tokenName, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.StyleProperty.ITALIC));
-			boolean strikethrough = store.getBoolean(org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.getPreferenceKey(languageId, tokenName, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.StyleProperty.STRIKETHROUGH));
-			boolean underline = store.getBoolean(org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.getPreferenceKey(languageId, tokenName, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.StyleProperty.UNDERLINE));
-			staticStyle = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(convertToIntArray(foregroundRGB), convertToIntArray(backgroundRGB), bold, italic, strikethrough, underline);
+		if (store == null) {
+			return null;
 		}
-		return staticStyle;
+		
+		boolean enabled = store.getBoolean(enableKey);
+		if (!enabled) {
+			return null;
+		}
+		
+		String colorKey = org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.getPreferenceKey(languageId, tokenName, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.StyleProperty.COLOR);
+		RGB foregroundRGB = PreferenceConverter.getColor(store, colorKey);
+		RGB backgroundRGB = null;
+		boolean bold = store.getBoolean(org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.getPreferenceKey(languageId, tokenName, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.StyleProperty.BOLD));
+		boolean italic = store.getBoolean(org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.getPreferenceKey(languageId, tokenName, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.StyleProperty.ITALIC));
+		boolean strikethrough = store.getBoolean(org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.getPreferenceKey(languageId, tokenName, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.StyleProperty.STRIKETHROUGH));
+		boolean underline = store.getBoolean(org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.getPreferenceKey(languageId, tokenName, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2SyntaxColoringHelper.StyleProperty.UNDERLINE));
+		return new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenStyle(convertToIntArray(foregroundRGB), convertToIntArray(backgroundRGB), bold, italic, strikethrough, underline);
 	}
 	
 	public org.emftext.language.xpath2.resource.xpath2.IXpath2TokenStyle getDynamicTokenStyle(org.emftext.language.xpath2.resource.xpath2.IXpath2TokenStyle staticStyle) {
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2DynamicTokenStyler dynamicTokenStyler = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2DynamicTokenStyler();
+		dynamicTokenStyler.setOffset(offset);
 		org.emftext.language.xpath2.resource.xpath2.IXpath2TokenStyle dynamicStyle = dynamicTokenStyler.getDynamicTokenStyle(resource, currentToken, staticStyle);
 		return dynamicStyle;
 	}
 	
-	public org.eclipse.jface.text.TextAttribute getTextAttribute(org.emftext.language.xpath2.resource.xpath2.IXpath2TokenStyle tokeStyle) {
+	public TextAttribute getTextAttribute(org.emftext.language.xpath2.resource.xpath2.IXpath2TokenStyle tokeStyle) {
 		int[] foregroundColorArray = tokeStyle.getColorAsRGB();
-		org.eclipse.swt.graphics.Color foregroundColor = null;
+		Color foregroundColor = null;
 		if (colorManager != null) {
-			foregroundColor = colorManager.getColor(new org.eclipse.swt.graphics.RGB(foregroundColorArray[0], foregroundColorArray[1], foregroundColorArray[2]));
+			foregroundColor = colorManager.getColor(new RGB(foregroundColorArray[0], foregroundColorArray[1], foregroundColorArray[2]));
 		}
 		int[] backgroundColorArray = tokeStyle.getBackgroundColorAsRGB();
-		org.eclipse.swt.graphics.Color backgroundColor = null;
+		Color backgroundColor = null;
 		if (backgroundColorArray != null) {
-			org.eclipse.swt.graphics.RGB backgroundRGB = new org.eclipse.swt.graphics.RGB(backgroundColorArray[0], backgroundColorArray[1], backgroundColorArray[2]);
+			RGB backgroundRGB = new RGB(backgroundColorArray[0], backgroundColorArray[1], backgroundColorArray[2]);
 			if (colorManager != null) {
 				backgroundColor = colorManager.getColor(backgroundRGB);
 			}
 		}
-		int style = org.eclipse.swt.SWT.NORMAL;
+		int style = SWT.NORMAL;
 		if (tokeStyle.isBold()) {
-			style = style | org.eclipse.swt.SWT.BOLD;
+			style = style | SWT.BOLD;
 		}
 		if (tokeStyle.isItalic()) {
-			style = style | org.eclipse.swt.SWT.ITALIC;
+			style = style | SWT.ITALIC;
 		}
 		if (tokeStyle.isStrikethrough()) {
-			style = style | org.eclipse.jface.text.TextAttribute.STRIKETHROUGH;
+			style = style | TextAttribute.STRIKETHROUGH;
 		}
 		if (tokeStyle.isUnderline()) {
-			style = style | org.eclipse.jface.text.TextAttribute.UNDERLINE;
+			style = style | TextAttribute.UNDERLINE;
 		}
-		return new org.eclipse.jface.text.TextAttribute(foregroundColor, backgroundColor, style);
+		return new TextAttribute(foregroundColor, backgroundColor, style);
 	}
 	
 	/**
@@ -166,7 +186,7 @@ public class Xpath2TokenScanner implements org.eclipse.jface.text.rules.ITokenSc
 		final int charStart = currentToken.getOffset();
 		final int column = currentToken.getColumn();
 		
-		java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItem> taskItems = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItemDetector().findTaskItems(text, line, charStart);
+		List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItem> taskItems = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItemDetector().findTaskItems(text, line, charStart);
 		
 		// this is the offset for the next token to be added
 		int offset = charStart;
@@ -178,7 +198,7 @@ public class Xpath2TokenScanner implements org.eclipse.jface.text.rules.ITokenSc
 			int itemColumn = 0;
 			
 			itemBeginRelative = itemBegin - charStart;
-			// create token before task item (TODO if required)
+			// create token before task item
 			String textBefore = text.substring(offset - charStart, itemBeginRelative);
 			int textBeforeLength = textBefore.length();
 			newItems.add(new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TextToken(name, textBefore, offset, textBeforeLength, line, column, true));
@@ -193,7 +213,7 @@ public class Xpath2TokenScanner implements org.eclipse.jface.text.rules.ITokenSc
 		}
 		
 		if (!taskItems.isEmpty()) {
-			// create token after last task item (TODO if required)
+			// create token after last task item
 			String textAfter = text.substring(offset - charStart);
 			newItems.add(new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TextToken(name, textAfter, offset, textAfter.length(), line, column, true));
 		}

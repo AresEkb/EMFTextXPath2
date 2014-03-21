@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,9 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.grammar;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 /**
  * A class to represent boolean terminals in a grammar.
  */
@@ -18,9 +21,9 @@ public class Xpath2BooleanTerminal extends org.emftext.language.xpath2.resource.
 	private String trueLiteral;
 	private String falseLiteral;
 	
-	public Xpath2BooleanTerminal(org.eclipse.emf.ecore.EStructuralFeature attribute, String trueLiteral, String falseLiteral, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality cardinality, int mandatoryOccurrencesAfter) {
+	public Xpath2BooleanTerminal(EStructuralFeature attribute, String trueLiteral, String falseLiteral, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality cardinality, int mandatoryOccurrencesAfter) {
 		super(attribute, cardinality, mandatoryOccurrencesAfter);
-		assert attribute instanceof org.eclipse.emf.ecore.EAttribute;
+		assert attribute instanceof EAttribute;
 		this.trueLiteral = trueLiteral;
 		this.falseLiteral = falseLiteral;
 	}
@@ -33,8 +36,8 @@ public class Xpath2BooleanTerminal extends org.emftext.language.xpath2.resource.
 		return falseLiteral;
 	}
 	
-	public org.eclipse.emf.ecore.EAttribute getAttribute() {
-		return (org.eclipse.emf.ecore.EAttribute) getFeature();
+	public EAttribute getAttribute() {
+		return (EAttribute) getFeature();
 	}
 	
 }

@@ -8,19 +8,44 @@ options {
 
 @lexer::header {
 	package org.emftext.language.xpath2.resource.xpath2.mopp;
+	
+	import java.util.ArrayList;
+import java.util.List;
+import org.antlr.runtime3_4_0.ANTLRStringStream;
+import org.antlr.runtime3_4_0.RecognitionException;
 }
 
 @lexer::members {
-	public java.util.List<org.antlr.runtime3_4_0.RecognitionException> lexerExceptions  = new java.util.ArrayList<org.antlr.runtime3_4_0.RecognitionException>();
-	public java.util.List<Integer> lexerExceptionsPosition = new java.util.ArrayList<Integer>();
+	public List<RecognitionException> lexerExceptions  = new ArrayList<RecognitionException>();
+	public List<Integer> lexerExceptionPositions = new ArrayList<Integer>();
 	
-	public void reportError(org.antlr.runtime3_4_0.RecognitionException e) {
+	public void reportError(RecognitionException e) {
 		lexerExceptions.add(e);
-		lexerExceptionsPosition.add(((org.antlr.runtime3_4_0.ANTLRStringStream) input).index());
+		lexerExceptionPositions.add(((ANTLRStringStream) input).index());
 	}
 }
 @header{
 	package org.emftext.language.xpath2.resource.xpath2.mopp;
+	
+	import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import org.antlr.runtime3_4_0.ANTLRInputStream;
+import org.antlr.runtime3_4_0.BitSet;
+import org.antlr.runtime3_4_0.CommonToken;
+import org.antlr.runtime3_4_0.CommonTokenStream;
+import org.antlr.runtime3_4_0.IntStream;
+import org.antlr.runtime3_4_0.Lexer;
+import org.antlr.runtime3_4_0.RecognitionException;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 }
 
 @members{
@@ -46,18 +71,18 @@ options {
 	 * This list is only filled if <code>rememberExpectedElements</code> is set to
 	 * true.
 	 */
-	private java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> expectedElements = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal>();
+	private List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> expectedElements = new ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal>();
 	
 	private int mismatchedTokenRecoveryTries = 0;
 	/**
 	 * A helper list to allow a lexer to pass errors to its parser
 	 */
-	protected java.util.List<org.antlr.runtime3_4_0.RecognitionException> lexerExceptions = java.util.Collections.synchronizedList(new java.util.ArrayList<org.antlr.runtime3_4_0.RecognitionException>());
+	protected List<RecognitionException> lexerExceptions = Collections.synchronizedList(new ArrayList<RecognitionException>());
 	
 	/**
 	 * Another helper list to allow a lexer to pass positions of errors to its parser
 	 */
-	protected java.util.List<Integer> lexerExceptionsPosition = java.util.Collections.synchronizedList(new java.util.ArrayList<Integer>());
+	protected List<Integer> lexerExceptionPositions = Collections.synchronizedList(new ArrayList<Integer>());
 	
 	/**
 	 * A stack for incomplete objects. This stack is used filled when the parser is
@@ -65,7 +90,7 @@ options {
 	 * pushed on the stack. Once the element was parser completely it is popped from
 	 * the stack.
 	 */
-	java.util.List<org.eclipse.emf.ecore.EObject> incompleteObjects = new java.util.ArrayList<org.eclipse.emf.ecore.EObject>();
+	java.util.List<EObject> incompleteObjects = new java.util.ArrayList<EObject>();
 	
 	private int stopIncludingHiddenTokens;
 	private int stopExcludingHiddenTokens;
@@ -85,6 +110,15 @@ options {
 	 */
 	private int lastStartIncludingHidden;
 	
+	private org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap locationMap;
+	
+	private org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxErrorMessageConverter syntaxErrorMessageConverter = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2SyntaxErrorMessageConverter(tokenNames);
+	
+	@Override
+	public void reportError(RecognitionException re) {
+		addErrorToResource(syntaxErrorMessageConverter.translateParseError(re));
+	}
+	
 	protected void addErrorToResource(final String errorMessage, final int column, final int line, final int startIndex, final int stopIndex) {
 		postParseCommands.add(new org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>() {
 			public boolean execute(org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource) {
@@ -102,7 +136,7 @@ options {
 					public String getMessage() {
 						return errorMessage;
 					}
-					public java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> getQuickFixes() {
+					public Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> getQuickFixes() {
 						return null;
 					}
 				}, column, line, startIndex, stopIndex);
@@ -111,7 +145,14 @@ options {
 		});
 	}
 	
-	public void addExpectedElement(org.eclipse.emf.ecore.EClass eClass, int[] ids) {
+	protected void addErrorToResource(org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LocalizedMessage message) {
+		if (message == null) {
+			return;
+		}
+		addErrorToResource(message.getMessage(), message.getColumn(), message.getLine(), message.getCharStart(), message.getCharEnd());
+	}
+	
+	public void addExpectedElement(EClass eClass, int[] ids) {
 		if (!this.rememberExpectedElements) {
 			return;
 		}
@@ -123,7 +164,7 @@ options {
 			containmentFeatures[i - 2] = org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2FollowSetProvider.LINKS[ids[i]];
 		}
 		org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2ContainmentTrace containmentTrace = new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2ContainmentTrace(eClass, containmentFeatures);
-		org.eclipse.emf.ecore.EObject container = getLastIncompleteElement();
+		EObject container = getLastIncompleteElement();
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal expectedElement = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal(container, terminal, followSetID, containmentTrace);
 		setPosition(expectedElement, input.index());
 		int startIncludingHiddenTokens = expectedElement.getStartIncludingHiddenTokens();
@@ -136,20 +177,20 @@ options {
 		this.expectedElements.add(expectedElement);
 	}
 	
-	protected void collectHiddenTokens(org.eclipse.emf.ecore.EObject element) {
+	protected void collectHiddenTokens(EObject element) {
 	}
 	
-	protected void copyLocalizationInfos(final org.eclipse.emf.ecore.EObject source, final org.eclipse.emf.ecore.EObject target) {
+	protected void copyLocalizationInfos(final EObject source, final EObject target) {
 		if (disableLocationMap) {
+			return;
+		}
+		final org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap locationMap = this.locationMap;
+		if (locationMap == null) {
+			// the locationMap can be null if the parser is used for code completion
 			return;
 		}
 		postParseCommands.add(new org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>() {
 			public boolean execute(org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource) {
-				org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap locationMap = resource.getLocationMap();
-				if (locationMap == null) {
-					// the locationMap can be null if the parser is used for code completion
-					return true;
-				}
 				locationMap.setCharStart(target, locationMap.getCharStart(source));
 				locationMap.setCharEnd(target, locationMap.getCharEnd(source));
 				locationMap.setColumn(target, locationMap.getColumn(source));
@@ -159,17 +200,17 @@ options {
 		});
 	}
 	
-	protected void copyLocalizationInfos(final org.antlr.runtime3_4_0.CommonToken source, final org.eclipse.emf.ecore.EObject target) {
+	protected void copyLocalizationInfos(final CommonToken source, final EObject target) {
 		if (disableLocationMap) {
+			return;
+		}
+		final org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap locationMap = this.locationMap;
+		if (locationMap == null) {
+			// the locationMap can be null if the parser is used for code completion
 			return;
 		}
 		postParseCommands.add(new org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>() {
 			public boolean execute(org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource) {
-				org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap locationMap = resource.getLocationMap();
-				if (locationMap == null) {
-					// the locationMap can be null if the parser is used for code completion
-					return true;
-				}
 				if (source == null) {
 					return true;
 				}
@@ -186,17 +227,17 @@ options {
 	 * Sets the end character index and the last line for the given object in the
 	 * location map.
 	 */
-	protected void setLocalizationEnd(java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>> postParseCommands , final org.eclipse.emf.ecore.EObject object, final int endChar, final int endLine) {
+	protected void setLocalizationEnd(Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>> postParseCommands , final EObject object, final int endChar, final int endLine) {
 		if (disableLocationMap) {
+			return;
+		}
+		final org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap locationMap = this.locationMap;
+		if (locationMap == null) {
+			// the locationMap can be null if the parser is used for code completion
 			return;
 		}
 		postParseCommands.add(new org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>() {
 			public boolean execute(org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource) {
-				org.emftext.language.xpath2.resource.xpath2.IXpath2LocationMap locationMap = resource.getLocationMap();
-				if (locationMap == null) {
-					// the locationMap can be null if the parser is used for code completion
-					return true;
-				}
 				locationMap.setCharEnd(object, endChar);
 				locationMap.setLine(object, endLine);
 				return true;
@@ -204,14 +245,14 @@ options {
 		});
 	}
 	
-	public org.emftext.language.xpath2.resource.xpath2.IXpath2TextParser createInstance(java.io.InputStream actualInputStream, String encoding) {
+	public org.emftext.language.xpath2.resource.xpath2.IXpath2TextParser createInstance(InputStream actualInputStream, String encoding) {
 		try {
 			if (encoding == null) {
-				return new Xpath2Parser(new org.antlr.runtime3_4_0.CommonTokenStream(new Xpath2Lexer(new org.antlr.runtime3_4_0.ANTLRInputStream(actualInputStream))));
+				return new Xpath2Parser(new CommonTokenStream(new Xpath2Lexer(new ANTLRInputStream(actualInputStream))));
 			} else {
-				return new Xpath2Parser(new org.antlr.runtime3_4_0.CommonTokenStream(new Xpath2Lexer(new org.antlr.runtime3_4_0.ANTLRInputStream(actualInputStream, encoding))));
+				return new Xpath2Parser(new CommonTokenStream(new Xpath2Lexer(new ANTLRInputStream(actualInputStream, encoding))));
 			}
-		} catch (java.io.IOException e) {
+		} catch (IOException e) {
 			new org.emftext.language.xpath2.resource.xpath2.util.Xpath2RuntimeUtil().logError("Error while creating parser.", e);
 			return null;
 		}
@@ -224,16 +265,16 @@ options {
 		super(null);
 	}
 	
-	protected org.eclipse.emf.ecore.EObject doParse() throws org.antlr.runtime3_4_0.RecognitionException {
+	protected EObject doParse() throws RecognitionException {
 		this.lastPosition = 0;
 		// required because the lexer class can not be subclassed
 		((Xpath2Lexer) getTokenStream().getTokenSource()).lexerExceptions = lexerExceptions;
-		((Xpath2Lexer) getTokenStream().getTokenSource()).lexerExceptionsPosition = lexerExceptionsPosition;
+		((Xpath2Lexer) getTokenStream().getTokenSource()).lexerExceptionPositions = lexerExceptionPositions;
 		Object typeObject = getTypeObject();
 		if (typeObject == null) {
 			return start();
-		} else if (typeObject instanceof org.eclipse.emf.ecore.EClass) {
-			org.eclipse.emf.ecore.EClass type = (org.eclipse.emf.ecore.EClass) typeObject;
+		} else if (typeObject instanceof EClass) {
+			EClass type = (EClass) typeObject;
 			if (type.getInstanceClass() == org.emftext.language.xpath2.Expr.class) {
 				return parse_org_emftext_language_xpath2_Expr();
 			}
@@ -446,7 +487,7 @@ options {
 		return mismatchedTokenRecoveryTries;
 	}
 	
-	public Object getMissingSymbol(org.antlr.runtime3_4_0.IntStream arg0, org.antlr.runtime3_4_0.RecognitionException arg1, int arg2, org.antlr.runtime3_4_0.BitSet arg3) {
+	public Object getMissingSymbol(IntStream arg0, RecognitionException arg1, int arg2, BitSet arg3) {
 		mismatchedTokenRecoveryTries++;
 		return super.getMissingSymbol(arg0, arg1, arg2, arg3);
 	}
@@ -460,7 +501,7 @@ options {
 		if (typeObject != null) {
 			return typeObject;
 		}
-		java.util.Map<?,?> options = getOptions();
+		Map<?,?> options = getOptions();
 		if (options != null) {
 			typeObject = options.get(org.emftext.language.xpath2.resource.xpath2.IXpath2Options.RESOURCE_CONTENT_TYPE);
 		}
@@ -472,17 +513,25 @@ options {
 	 * RecognitionExceptions.
 	 */
 	public org.emftext.language.xpath2.resource.xpath2.IXpath2ParseResult parse() {
+		// Reset parser state
 		terminateParsing = false;
-		postParseCommands = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>>();
+		postParseCommands = new ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource>>();
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ParseResult parseResult = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ParseResult();
+		if (disableLocationMap) {
+			locationMap = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2DevNullLocationMap();
+		} else {
+			locationMap = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2LocationMap();
+		}
+		// Run parser
 		try {
-			org.eclipse.emf.ecore.EObject result =  doParse();
+			EObject result =  doParse();
 			if (lexerExceptions.isEmpty()) {
 				parseResult.setRoot(result);
+				parseResult.setLocationMap(locationMap);
 			}
-		} catch (org.antlr.runtime3_4_0.RecognitionException re) {
-			reportError(re);
-		} catch (java.lang.IllegalArgumentException iae) {
+		} catch (RecognitionException re) {
+			addErrorToResource(syntaxErrorMessageConverter.translateParseError(re));
+		} catch (IllegalArgumentException iae) {
 			if ("The 'no null' constraint is violated".equals(iae.getMessage())) {
 				// can be caused if a null is set on EMF models where not allowed. this will just
 				// happen if other errors occurred before
@@ -490,28 +539,28 @@ options {
 				iae.printStackTrace();
 			}
 		}
-		for (org.antlr.runtime3_4_0.RecognitionException re : lexerExceptions) {
-			reportLexicalError(re);
+		for (RecognitionException re : lexerExceptions) {
+			addErrorToResource(syntaxErrorMessageConverter.translateLexicalError(re, lexerExceptions, lexerExceptionPositions));
 		}
 		parseResult.getPostParseCommands().addAll(postParseCommands);
 		return parseResult;
 	}
 	
-	public java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> parseToExpectedElements(org.eclipse.emf.ecore.EClass type, org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource dummyResource, int cursorOffset) {
+	public List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> parseToExpectedElements(EClass type, org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource dummyResource, int cursorOffset) {
 		this.rememberExpectedElements = true;
 		this.parseToIndexTypeObject = type;
 		this.cursorOffset = cursorOffset;
 		this.lastStartIncludingHidden = -1;
-		final org.antlr.runtime3_4_0.CommonTokenStream tokenStream = (org.antlr.runtime3_4_0.CommonTokenStream) getTokenStream();
+		final CommonTokenStream tokenStream = (CommonTokenStream) getTokenStream();
 		org.emftext.language.xpath2.resource.xpath2.IXpath2ParseResult result = parse();
-		for (org.eclipse.emf.ecore.EObject incompleteObject : incompleteObjects) {
-			org.antlr.runtime3_4_0.Lexer lexer = (org.antlr.runtime3_4_0.Lexer) tokenStream.getTokenSource();
+		for (EObject incompleteObject : incompleteObjects) {
+			Lexer lexer = (Lexer) tokenStream.getTokenSource();
 			int endChar = lexer.getCharIndex();
 			int endLine = lexer.getLine();
 			setLocalizationEnd(result.getPostParseCommands(), incompleteObject, endChar, endLine);
 		}
 		if (result != null) {
-			org.eclipse.emf.ecore.EObject root = result.getRoot();
+			EObject root = result.getRoot();
 			if (root != null) {
 				dummyResource.getContentsInternal().add(root);
 			}
@@ -522,8 +571,8 @@ options {
 		// remove all expected elements that were added after the last complete element
 		expectedElements = expectedElements.subList(0, expectedElementsIndexOfLastCompleteElement + 1);
 		int lastFollowSetID = expectedElements.get(expectedElementsIndexOfLastCompleteElement).getFollowSetID();
-		java.util.Set<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> currentFollowSet = new java.util.LinkedHashSet<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal>();
-		java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> newFollowSet = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal>();
+		Set<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> currentFollowSet = new LinkedHashSet<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal>();
+		List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> newFollowSet = new ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal>();
 		for (int i = expectedElementsIndexOfLastCompleteElement; i >= 0; i--) {
 			org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal expectedElementI = expectedElements.get(i);
 			if (expectedElementI.getFollowSetID() == lastFollowSetID) {
@@ -535,7 +584,7 @@ options {
 		int followSetID = 246;
 		int i;
 		for (i = tokenIndexOfLastCompleteElement; i < tokenStream.size(); i++) {
-			org.antlr.runtime3_4_0.CommonToken nextToken = (org.antlr.runtime3_4_0.CommonToken) tokenStream.get(i);
+			CommonToken nextToken = (CommonToken) tokenStream.get(i);
 			if (nextToken.getType() < 0) {
 				break;
 			}
@@ -554,10 +603,10 @@ options {
 				for (org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal nextFollow : currentFollowSet) {
 					if (nextFollow.getTerminal().getTokenNames().contains(getTokenNames()[nextToken.getType()])) {
 						// keep this one - it matches
-						java.util.Collection<org.emftext.language.xpath2.resource.xpath2.util.Xpath2Pair<org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[]>> newFollowers = nextFollow.getTerminal().getFollowers();
+						Collection<org.emftext.language.xpath2.resource.xpath2.util.Xpath2Pair<org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[]>> newFollowers = nextFollow.getTerminal().getFollowers();
 						for (org.emftext.language.xpath2.resource.xpath2.util.Xpath2Pair<org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[]> newFollowerPair : newFollowers) {
 							org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement newFollower = newFollowerPair.getLeft();
-							org.eclipse.emf.ecore.EObject container = getLastIncompleteElement();
+							EObject container = getLastIncompleteElement();
 							org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2ContainmentTrace containmentTrace = new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2ContainmentTrace(null, newFollowerPair.getRight());
 							org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal newFollowTerminal = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal(container, newFollower, followSetID, containmentTrace);
 							newFollowSet.add(newFollowTerminal);
@@ -585,7 +634,7 @@ options {
 			if (index >= input.size()) {
 				break;
 			}
-			org.antlr.runtime3_4_0.CommonToken tokenAtIndex = (org.antlr.runtime3_4_0.CommonToken) input.get(index);
+			CommonToken tokenAtIndex = (CommonToken) input.get(index);
 			stopIncludingHiddenTokens = tokenAtIndex.getStopIndex() + 1;
 			if (tokenAtIndex.getChannel() != 99 && !anonymousTokens.contains(tokenAtIndex)) {
 				stopExcludingHiddenTokens = tokenAtIndex.getStopIndex() + 1;
@@ -595,7 +644,7 @@ options {
 		expectedElement.setPosition(stopExcludingHiddenTokens, stopIncludingHiddenTokens);
 	}
 	
-	public Object recoverFromMismatchedToken(org.antlr.runtime3_4_0.IntStream input, int ttype, org.antlr.runtime3_4_0.BitSet follow) throws org.antlr.runtime3_4_0.RecognitionException {
+	public Object recoverFromMismatchedToken(IntStream input, int ttype, BitSet follow) throws RecognitionException {
 		if (!rememberExpectedElements) {
 			return super.recoverFromMismatchedToken(input, ttype, follow);
 		} else {
@@ -603,76 +652,9 @@ options {
 		}
 	}
 	
-	/**
-	 * Translates errors thrown by the parser into human readable messages.
-	 */
-	public void reportError(final org.antlr.runtime3_4_0.RecognitionException e)  {
-		String message = e.getMessage();
-		if (e instanceof org.antlr.runtime3_4_0.MismatchedTokenException) {
-			org.antlr.runtime3_4_0.MismatchedTokenException mte = (org.antlr.runtime3_4_0.MismatchedTokenException) e;
-			String expectedTokenName = formatTokenName(mte.expecting);
-			String actualTokenName = formatTokenName(e.token.getType());
-			message = "Syntax error on token \"" + e.token.getText() + " (" + actualTokenName + ")\", \"" + expectedTokenName + "\" expected";
-		} else if (e instanceof org.antlr.runtime3_4_0.MismatchedTreeNodeException) {
-			org.antlr.runtime3_4_0.MismatchedTreeNodeException mtne = (org.antlr.runtime3_4_0.MismatchedTreeNodeException) e;
-			String expectedTokenName = formatTokenName(mtne.expecting);
-			message = "mismatched tree node: " + "xxx" + "; tokenName " + expectedTokenName;
-		} else if (e instanceof org.antlr.runtime3_4_0.NoViableAltException) {
-			message = "Syntax error on token \"" + e.token.getText() + "\", check following tokens";
-		} else if (e instanceof org.antlr.runtime3_4_0.EarlyExitException) {
-			message = "Syntax error on token \"" + e.token.getText() + "\", delete this token";
-		} else if (e instanceof org.antlr.runtime3_4_0.MismatchedSetException) {
-			org.antlr.runtime3_4_0.MismatchedSetException mse = (org.antlr.runtime3_4_0.MismatchedSetException) e;
-			message = "mismatched token: " + e.token + "; expecting set " + mse.expecting;
-		} else if (e instanceof org.antlr.runtime3_4_0.MismatchedNotSetException) {
-			org.antlr.runtime3_4_0.MismatchedNotSetException mse = (org.antlr.runtime3_4_0.MismatchedNotSetException) e;
-			message = "mismatched token: " +  e.token + "; expecting set " + mse.expecting;
-		} else if (e instanceof org.antlr.runtime3_4_0.FailedPredicateException) {
-			org.antlr.runtime3_4_0.FailedPredicateException fpe = (org.antlr.runtime3_4_0.FailedPredicateException) e;
-			message = "rule " + fpe.ruleName + " failed predicate: {" +  fpe.predicateText + "}?";
-		}
-		// the resource may be null if the parser is used for code completion
-		final String finalMessage = message;
-		if (e.token instanceof org.antlr.runtime3_4_0.CommonToken) {
-			final org.antlr.runtime3_4_0.CommonToken ct = (org.antlr.runtime3_4_0.CommonToken) e.token;
-			addErrorToResource(finalMessage, ct.getCharPositionInLine(), ct.getLine(), ct.getStartIndex(), ct.getStopIndex());
-		} else {
-			addErrorToResource(finalMessage, e.token.getCharPositionInLine(), e.token.getLine(), 1, 5);
-		}
-	}
-	
-	/**
-	 * Translates errors thrown by the lexer into human readable messages.
-	 */
-	public void reportLexicalError(final org.antlr.runtime3_4_0.RecognitionException e)  {
-		String message = "";
-		if (e instanceof org.antlr.runtime3_4_0.MismatchedTokenException) {
-			org.antlr.runtime3_4_0.MismatchedTokenException mte = (org.antlr.runtime3_4_0.MismatchedTokenException) e;
-			message = "Syntax error on token \"" + ((char) e.c) + "\", \"" + (char) mte.expecting + "\" expected";
-		} else if (e instanceof org.antlr.runtime3_4_0.NoViableAltException) {
-			message = "Syntax error on token \"" + ((char) e.c) + "\", delete this token";
-		} else if (e instanceof org.antlr.runtime3_4_0.EarlyExitException) {
-			org.antlr.runtime3_4_0.EarlyExitException eee = (org.antlr.runtime3_4_0.EarlyExitException) e;
-			message = "required (...)+ loop (decision=" + eee.decisionNumber + ") did not match anything; on line " + e.line + ":" + e.charPositionInLine + " char=" + ((char) e.c) + "'";
-		} else if (e instanceof org.antlr.runtime3_4_0.MismatchedSetException) {
-			org.antlr.runtime3_4_0.MismatchedSetException mse = (org.antlr.runtime3_4_0.MismatchedSetException) e;
-			message = "mismatched char: '" + ((char) e.c) + "' on line " + e.line + ":" + e.charPositionInLine + "; expecting set " + mse.expecting;
-		} else if (e instanceof org.antlr.runtime3_4_0.MismatchedNotSetException) {
-			org.antlr.runtime3_4_0.MismatchedNotSetException mse = (org.antlr.runtime3_4_0.MismatchedNotSetException) e;
-			message = "mismatched char: '" + ((char) e.c) + "' on line " + e.line + ":" + e.charPositionInLine + "; expecting set " + mse.expecting;
-		} else if (e instanceof org.antlr.runtime3_4_0.MismatchedRangeException) {
-			org.antlr.runtime3_4_0.MismatchedRangeException mre = (org.antlr.runtime3_4_0.MismatchedRangeException) e;
-			message = "mismatched char: '" + ((char) e.c) + "' on line " + e.line + ":" + e.charPositionInLine + "; expecting set '" + (char) mre.a + "'..'" + (char) mre.b + "'";
-		} else if (e instanceof org.antlr.runtime3_4_0.FailedPredicateException) {
-			org.antlr.runtime3_4_0.FailedPredicateException fpe = (org.antlr.runtime3_4_0.FailedPredicateException) e;
-			message = "rule " + fpe.ruleName + " failed predicate: {" + fpe.predicateText + "}?";
-		}
-		addErrorToResource(message, e.charPositionInLine, e.line, lexerExceptionsPosition.get(lexerExceptions.indexOf(e)), lexerExceptionsPosition.get(lexerExceptions.indexOf(e)));
-	}
-	
 	private void startIncompleteElement(Object object) {
-		if (object instanceof org.eclipse.emf.ecore.EObject) {
-			this.incompleteObjects.add((org.eclipse.emf.ecore.EObject) object);
+		if (object instanceof EObject) {
+			this.incompleteObjects.add((EObject) object);
 		}
 	}
 	
@@ -682,13 +664,13 @@ options {
 			if (!exists) {
 			}
 		}
-		if (object instanceof org.eclipse.emf.ecore.EObject) {
+		if (object instanceof EObject) {
 			this.tokenIndexOfLastCompleteElement = getTokenStream().index();
 			this.expectedElementsIndexOfLastCompleteElement = expectedElements.size() - 1;
 		}
 	}
 	
-	private org.eclipse.emf.ecore.EObject getLastIncompleteElement() {
+	private EObject getLastIncompleteElement() {
 		if (incompleteObjects.isEmpty()) {
 			return null;
 		}
@@ -697,7 +679,7 @@ options {
 	
 }
 
-start returns [ org.eclipse.emf.ecore.EObject element = null]
+start returns [ EObject element = null]
 :
 	{
 		// follow set for start rule(s)
@@ -831,7 +813,7 @@ parse_org_emftext_language_xpath2_Expr returns [org.emftext.language.xpath2.Expr
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_0_0_0_1_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+				copyLocalizationInfos((CommonToken)a1, element);
 			}
 			{
 				// expected elements (follow set)
@@ -966,7 +948,7 @@ parse_org_emftext_language_xpath2_ForExpr returns [org.emftext.language.xpath2.F
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_1_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -1009,7 +991,7 @@ parse_org_emftext_language_xpath2_ForExpr returns [org.emftext.language.xpath2.F
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_1_0_0_3_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+				copyLocalizationInfos((CommonToken)a2, element);
 			}
 			{
 				// expected elements (follow set)
@@ -1058,7 +1040,7 @@ parse_org_emftext_language_xpath2_ForExpr returns [org.emftext.language.xpath2.F
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_1_0_0_5, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+		copyLocalizationInfos((CommonToken)a4, element);
 	}
 	{
 		// expected elements (follow set)
@@ -1130,7 +1112,7 @@ parse_org_emftext_language_xpath2_QuantifiedExpr returns [org.emftext.language.x
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_2_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+				copyLocalizationInfos((CommonToken)a0, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getQuantifierKind().getEEnumLiteral(org.emftext.language.xpath2.QuantifierKind.SOME_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QUANTIFIED_EXPR__QUANTIFIER), value);
@@ -1143,7 +1125,7 @@ parse_org_emftext_language_xpath2_QuantifiedExpr returns [org.emftext.language.x
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_2_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+				copyLocalizationInfos((CommonToken)a1, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getQuantifierKind().getEEnumLiteral(org.emftext.language.xpath2.QuantifierKind.EVERY_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QUANTIFIED_EXPR__QUANTIFIER), value);
@@ -1192,7 +1174,7 @@ parse_org_emftext_language_xpath2_QuantifiedExpr returns [org.emftext.language.x
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_2_0_0_3_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+				copyLocalizationInfos((CommonToken)a5, element);
 			}
 			{
 				// expected elements (follow set)
@@ -1241,7 +1223,7 @@ parse_org_emftext_language_xpath2_QuantifiedExpr returns [org.emftext.language.x
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_2_0_0_4, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a7, element);
+		copyLocalizationInfos((CommonToken)a7, element);
 	}
 	{
 		// expected elements (follow set)
@@ -1368,7 +1350,7 @@ parse_org_emftext_language_xpath2_Iterator returns [org.emftext.language.xpath2.
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_3_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -1394,7 +1376,7 @@ parse_org_emftext_language_xpath2_Iterator returns [org.emftext.language.xpath2.
 					tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__VAR_NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a1).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a1).getLine(), ((CommonToken) a1).getCharPositionInLine(), ((CommonToken) a1).getStartIndex(), ((CommonToken) a1).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -1404,7 +1386,7 @@ parse_org_emftext_language_xpath2_Iterator returns [org.emftext.language.xpath2.
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_3_0_0_1_0_0_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, element);
+					copyLocalizationInfos((CommonToken) a1, element);
 				}
 			}
 		)
@@ -1431,7 +1413,7 @@ parse_org_emftext_language_xpath2_Iterator returns [org.emftext.language.xpath2.
 					tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__VAR_NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a2).getLine(), ((CommonToken) a2).getCharPositionInLine(), ((CommonToken) a2).getStartIndex(), ((CommonToken) a2).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -1441,7 +1423,7 @@ parse_org_emftext_language_xpath2_Iterator returns [org.emftext.language.xpath2.
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_3_0_0_1_0_1_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
+					copyLocalizationInfos((CommonToken) a2, element);
 				}
 			}
 		)
@@ -1463,7 +1445,7 @@ parse_org_emftext_language_xpath2_Iterator returns [org.emftext.language.xpath2.
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_3_0_0_3, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+		copyLocalizationInfos((CommonToken)a3, element);
 	}
 	{
 		// expected elements (follow set)
@@ -1588,7 +1570,7 @@ parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.If
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -1602,7 +1584,7 @@ parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.If
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -1737,7 +1719,7 @@ parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.If
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_4, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+		copyLocalizationInfos((CommonToken)a3, element);
 	}
 	{
 		// expected elements (follow set)
@@ -1751,7 +1733,7 @@ parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.If
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_6, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+		copyLocalizationInfos((CommonToken)a4, element);
 	}
 	{
 		// expected elements (follow set)
@@ -1867,7 +1849,7 @@ parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.If
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_4_0_0_10, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
+		copyLocalizationInfos((CommonToken)a6, element);
 	}
 	{
 		// expected elements (follow set)
@@ -2028,7 +2010,7 @@ parse_org_emftext_language_xpath2_OrExpr returns [org.emftext.language.xpath2.Or
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_5_0_0_1_0_0_1, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+				copyLocalizationInfos((CommonToken)a1, element);
 			}
 			{
 				// expected elements (follow set)
@@ -2144,7 +2126,7 @@ parse_org_emftext_language_xpath2_AndExpr returns [org.emftext.language.xpath2.A
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_6_0_0_1_0_0_1, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+				copyLocalizationInfos((CommonToken)a1, element);
 			}
 			{
 				// expected elements (follow set)
@@ -2399,7 +2381,7 @@ parse_org_emftext_language_xpath2_RangeExpr returns [org.emftext.language.xpath2
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_8_0_0_1_0_0_1, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+				copyLocalizationInfos((CommonToken)a1, element);
 			}
 			{
 				// expected elements (follow set)
@@ -2490,7 +2472,7 @@ parse_org_emftext_language_xpath2_GeneralComp returns [org.emftext.language.xpat
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_9_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+				copyLocalizationInfos((CommonToken)a0, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.EQ_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_COMP__OPERATOR), value);
@@ -2503,7 +2485,7 @@ parse_org_emftext_language_xpath2_GeneralComp returns [org.emftext.language.xpat
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_9_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+				copyLocalizationInfos((CommonToken)a1, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.NE_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_COMP__OPERATOR), value);
@@ -2516,7 +2498,7 @@ parse_org_emftext_language_xpath2_GeneralComp returns [org.emftext.language.xpat
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_9_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+				copyLocalizationInfos((CommonToken)a2, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.LT_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_COMP__OPERATOR), value);
@@ -2529,7 +2511,7 @@ parse_org_emftext_language_xpath2_GeneralComp returns [org.emftext.language.xpat
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_9_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+				copyLocalizationInfos((CommonToken)a3, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.LE_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_COMP__OPERATOR), value);
@@ -2542,7 +2524,7 @@ parse_org_emftext_language_xpath2_GeneralComp returns [org.emftext.language.xpat
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_9_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+				copyLocalizationInfos((CommonToken)a4, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.GT_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_COMP__OPERATOR), value);
@@ -2555,7 +2537,7 @@ parse_org_emftext_language_xpath2_GeneralComp returns [org.emftext.language.xpat
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_9_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+				copyLocalizationInfos((CommonToken)a5, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.GE_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_COMP__OPERATOR), value);
@@ -2599,7 +2581,7 @@ parse_org_emftext_language_xpath2_ValueComp returns [org.emftext.language.xpath2
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_10_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+				copyLocalizationInfos((CommonToken)a0, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.EQ_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VALUE_COMP__OPERATOR), value);
@@ -2612,7 +2594,7 @@ parse_org_emftext_language_xpath2_ValueComp returns [org.emftext.language.xpath2
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_10_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+				copyLocalizationInfos((CommonToken)a1, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.NE_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VALUE_COMP__OPERATOR), value);
@@ -2625,7 +2607,7 @@ parse_org_emftext_language_xpath2_ValueComp returns [org.emftext.language.xpath2
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_10_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+				copyLocalizationInfos((CommonToken)a2, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.LT_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VALUE_COMP__OPERATOR), value);
@@ -2638,7 +2620,7 @@ parse_org_emftext_language_xpath2_ValueComp returns [org.emftext.language.xpath2
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_10_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+				copyLocalizationInfos((CommonToken)a3, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.LE_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VALUE_COMP__OPERATOR), value);
@@ -2651,7 +2633,7 @@ parse_org_emftext_language_xpath2_ValueComp returns [org.emftext.language.xpath2
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_10_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+				copyLocalizationInfos((CommonToken)a4, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.GT_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VALUE_COMP__OPERATOR), value);
@@ -2664,7 +2646,7 @@ parse_org_emftext_language_xpath2_ValueComp returns [org.emftext.language.xpath2
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_10_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+				copyLocalizationInfos((CommonToken)a5, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getGeneralCompKind().getEEnumLiteral(org.emftext.language.xpath2.GeneralCompKind.GE_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VALUE_COMP__OPERATOR), value);
@@ -2708,7 +2690,7 @@ parse_org_emftext_language_xpath2_NodeComp returns [org.emftext.language.xpath2.
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_11_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+				copyLocalizationInfos((CommonToken)a0, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNodeCompKind().getEEnumLiteral(org.emftext.language.xpath2.NodeCompKind.IS_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NODE_COMP__OPERATOR), value);
@@ -2721,7 +2703,7 @@ parse_org_emftext_language_xpath2_NodeComp returns [org.emftext.language.xpath2.
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_11_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+				copyLocalizationInfos((CommonToken)a1, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNodeCompKind().getEEnumLiteral(org.emftext.language.xpath2.NodeCompKind.PRECEDES_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NODE_COMP__OPERATOR), value);
@@ -2734,7 +2716,7 @@ parse_org_emftext_language_xpath2_NodeComp returns [org.emftext.language.xpath2.
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_11_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+				copyLocalizationInfos((CommonToken)a2, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getNodeCompKind().getEEnumLiteral(org.emftext.language.xpath2.NodeCompKind.FOLLOWS_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NODE_COMP__OPERATOR), value);
@@ -2818,7 +2800,7 @@ parse_org_emftext_language_xpath2_AdditiveExpr returns [org.emftext.language.xpa
 						}
 						collectHiddenTokens(element);
 						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_12_0_0_1_0_0_1, null, true);
-						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+						copyLocalizationInfos((CommonToken)a1, element);
 						// set value of enumeration attribute
 						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAdditiveOpKind().getEEnumLiteral(org.emftext.language.xpath2.AdditiveOpKind.ADDITION_VALUE).getInstance();
 						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.ADDITIVE_EXPR__OPERATOR, value);
@@ -2831,7 +2813,7 @@ parse_org_emftext_language_xpath2_AdditiveExpr returns [org.emftext.language.xpa
 						}
 						collectHiddenTokens(element);
 						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_12_0_0_1_0_0_1, null, true);
-						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+						copyLocalizationInfos((CommonToken)a2, element);
 						// set value of enumeration attribute
 						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAdditiveOpKind().getEEnumLiteral(org.emftext.language.xpath2.AdditiveOpKind.SUBTRACTION_VALUE).getInstance();
 						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.ADDITIVE_EXPR__OPERATOR, value);
@@ -2973,7 +2955,7 @@ parse_org_emftext_language_xpath2_MultiplicativeExpr returns [org.emftext.langua
 						}
 						collectHiddenTokens(element);
 						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_13_0_0_1_0_0_1, null, true);
-						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+						copyLocalizationInfos((CommonToken)a1, element);
 						// set value of enumeration attribute
 						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getMultiplicativeOpKind().getEEnumLiteral(org.emftext.language.xpath2.MultiplicativeOpKind.MULTIPLICATION_VALUE).getInstance();
 						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.MULTIPLICATIVE_EXPR__OPERATOR, value);
@@ -2986,7 +2968,7 @@ parse_org_emftext_language_xpath2_MultiplicativeExpr returns [org.emftext.langua
 						}
 						collectHiddenTokens(element);
 						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_13_0_0_1_0_0_1, null, true);
-						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+						copyLocalizationInfos((CommonToken)a2, element);
 						// set value of enumeration attribute
 						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getMultiplicativeOpKind().getEEnumLiteral(org.emftext.language.xpath2.MultiplicativeOpKind.DIV_VALUE).getInstance();
 						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.MULTIPLICATIVE_EXPR__OPERATOR, value);
@@ -2999,7 +2981,7 @@ parse_org_emftext_language_xpath2_MultiplicativeExpr returns [org.emftext.langua
 						}
 						collectHiddenTokens(element);
 						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_13_0_0_1_0_0_1, null, true);
-						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+						copyLocalizationInfos((CommonToken)a3, element);
 						// set value of enumeration attribute
 						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getMultiplicativeOpKind().getEEnumLiteral(org.emftext.language.xpath2.MultiplicativeOpKind.IDIV_VALUE).getInstance();
 						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.MULTIPLICATIVE_EXPR__OPERATOR, value);
@@ -3012,7 +2994,7 @@ parse_org_emftext_language_xpath2_MultiplicativeExpr returns [org.emftext.langua
 						}
 						collectHiddenTokens(element);
 						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_13_0_0_1_0_0_1, null, true);
-						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+						copyLocalizationInfos((CommonToken)a4, element);
 						// set value of enumeration attribute
 						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getMultiplicativeOpKind().getEEnumLiteral(org.emftext.language.xpath2.MultiplicativeOpKind.MOD_VALUE).getInstance();
 						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.MULTIPLICATIVE_EXPR__OPERATOR, value);
@@ -3157,7 +3139,7 @@ parse_org_emftext_language_xpath2_UnionExpr returns [org.emftext.language.xpath2
 						}
 						collectHiddenTokens(element);
 						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_14_0_0_1_0_0_1, null, true);
-						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+						copyLocalizationInfos((CommonToken)a1, element);
 						// set value of enumeration attribute
 						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getUnionOp().getEEnumLiteral(org.emftext.language.xpath2.UnionOp.UNION_VALUE).getInstance();
 						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.UNION_EXPR__OPERATION, value);
@@ -3170,7 +3152,7 @@ parse_org_emftext_language_xpath2_UnionExpr returns [org.emftext.language.xpath2
 						}
 						collectHiddenTokens(element);
 						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_14_0_0_1_0_0_1, null, true);
-						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+						copyLocalizationInfos((CommonToken)a2, element);
 						// set value of enumeration attribute
 						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getUnionOp().getEEnumLiteral(org.emftext.language.xpath2.UnionOp.VERTICAL_BAR_VALUE).getInstance();
 						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.UNION_EXPR__OPERATION, value);
@@ -3318,7 +3300,7 @@ parse_org_emftext_language_xpath2_IntersectExceptExpr returns [org.emftext.langu
 						}
 						collectHiddenTokens(element);
 						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_15_0_0_1_0_0_1, null, true);
-						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+						copyLocalizationInfos((CommonToken)a1, element);
 						// set value of enumeration attribute
 						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getIntersectExceptOpKind().getEEnumLiteral(org.emftext.language.xpath2.IntersectExceptOpKind.INTERSECT_VALUE).getInstance();
 						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.INTERSECT_EXCEPT_EXPR__OPERATOR, value);
@@ -3331,7 +3313,7 @@ parse_org_emftext_language_xpath2_IntersectExceptExpr returns [org.emftext.langu
 						}
 						collectHiddenTokens(element);
 						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_15_0_0_1_0_0_1, null, true);
-						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+						copyLocalizationInfos((CommonToken)a2, element);
 						// set value of enumeration attribute
 						Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getIntersectExceptOpKind().getEEnumLiteral(org.emftext.language.xpath2.IntersectExceptOpKind.EXCEPT_VALUE).getInstance();
 						addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.INTERSECT_EXCEPT_EXPR__OPERATOR, value);
@@ -3480,7 +3462,7 @@ parse_org_emftext_language_xpath2_InstanceofExpr returns [org.emftext.language.x
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_16_0_0_1_0_0_1, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+				copyLocalizationInfos((CommonToken)a1, element);
 			}
 			{
 				// expected elements (follow set)
@@ -3494,7 +3476,7 @@ parse_org_emftext_language_xpath2_InstanceofExpr returns [org.emftext.language.x
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_16_0_0_1_0_0_2, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+				copyLocalizationInfos((CommonToken)a2, element);
 			}
 			{
 				// expected elements (follow set)
@@ -3640,7 +3622,7 @@ parse_org_emftext_language_xpath2_TreatExpr returns [org.emftext.language.xpath2
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_17_0_0_1_0_0_1, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+				copyLocalizationInfos((CommonToken)a1, element);
 			}
 			{
 				// expected elements (follow set)
@@ -3654,7 +3636,7 @@ parse_org_emftext_language_xpath2_TreatExpr returns [org.emftext.language.xpath2
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_17_0_0_1_0_0_2, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+				copyLocalizationInfos((CommonToken)a2, element);
 			}
 			{
 				// expected elements (follow set)
@@ -3803,7 +3785,7 @@ parse_org_emftext_language_xpath2_CastableExpr returns [org.emftext.language.xpa
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_18_0_0_1_0_0_1, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+				copyLocalizationInfos((CommonToken)a1, element);
 			}
 			{
 				// expected elements (follow set)
@@ -3817,7 +3799,7 @@ parse_org_emftext_language_xpath2_CastableExpr returns [org.emftext.language.xpa
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_18_0_0_1_0_0_2, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+				copyLocalizationInfos((CommonToken)a2, element);
 			}
 			{
 				// expected elements (follow set)
@@ -3952,7 +3934,7 @@ parse_org_emftext_language_xpath2_CastExpr returns [org.emftext.language.xpath2.
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_19_0_0_1_0_0_1, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+				copyLocalizationInfos((CommonToken)a1, element);
 			}
 			{
 				// expected elements (follow set)
@@ -3966,7 +3948,7 @@ parse_org_emftext_language_xpath2_CastExpr returns [org.emftext.language.xpath2.
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_19_0_0_1_0_0_2, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+				copyLocalizationInfos((CommonToken)a2, element);
 			}
 			{
 				// expected elements (follow set)
@@ -4059,7 +4041,7 @@ parse_org_emftext_language_xpath2_UnaryExpr returns [org.emftext.language.xpath2
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_20_0_0_0, null, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+					copyLocalizationInfos((CommonToken)a0, element);
 					// set value of enumeration attribute
 					Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getUnaryOp().getEEnumLiteral(org.emftext.language.xpath2.UnaryOp.PLUS_VALUE).getInstance();
 					addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.UNARY_EXPR__OPERATOR, value);
@@ -4072,7 +4054,7 @@ parse_org_emftext_language_xpath2_UnaryExpr returns [org.emftext.language.xpath2
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_20_0_0_0, null, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+					copyLocalizationInfos((CommonToken)a1, element);
 					// set value of enumeration attribute
 					Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getUnaryOp().getEEnumLiteral(org.emftext.language.xpath2.UnaryOp.MINUS_VALUE).getInstance();
 					addObjectToList(element, org.emftext.language.xpath2.Xpath2Package.UNARY_EXPR__OPERATOR, value);
@@ -4275,7 +4257,7 @@ parse_org_emftext_language_xpath2_FunctionCall returns [org.emftext.language.xpa
 					tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a0).getLine(), ((CommonToken) a0).getCharPositionInLine(), ((CommonToken) a0).getStartIndex(), ((CommonToken) a0).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -4285,7 +4267,7 @@ parse_org_emftext_language_xpath2_FunctionCall returns [org.emftext.language.xpa
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_22_0_0_0_0_0_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+					copyLocalizationInfos((CommonToken) a0, element);
 				}
 			}
 		)
@@ -4312,7 +4294,7 @@ parse_org_emftext_language_xpath2_FunctionCall returns [org.emftext.language.xpa
 					tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a1).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a1).getLine(), ((CommonToken) a1).getCharPositionInLine(), ((CommonToken) a1).getStartIndex(), ((CommonToken) a1).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -4322,7 +4304,7 @@ parse_org_emftext_language_xpath2_FunctionCall returns [org.emftext.language.xpa
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_22_0_0_0_0_1_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, element);
+					copyLocalizationInfos((CommonToken) a1, element);
 				}
 			}
 		)
@@ -4344,7 +4326,7 @@ parse_org_emftext_language_xpath2_FunctionCall returns [org.emftext.language.xpa
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_22_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+		copyLocalizationInfos((CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
@@ -4466,7 +4448,7 @@ parse_org_emftext_language_xpath2_FunctionCall returns [org.emftext.language.xpa
 						}
 						collectHiddenTokens(element);
 						retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_22_0_0_2_0_0_1_0_0_0, null, true);
-						copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+						copyLocalizationInfos((CommonToken)a4, element);
 					}
 					{
 						// expected elements (follow set)
@@ -4598,7 +4580,7 @@ parse_org_emftext_language_xpath2_FunctionCall returns [org.emftext.language.xpa
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_22_0_0_3, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
+		copyLocalizationInfos((CommonToken)a6, element);
 	}
 	{
 		// expected elements (follow set)
@@ -4761,7 +4743,7 @@ parse_org_emftext_language_xpath2_ChildStepExpr returns [org.emftext.language.xp
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_24_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -4840,7 +4822,7 @@ parse_org_emftext_language_xpath2_DescOrSelfStepExpr returns [org.emftext.langua
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_25_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -4919,7 +4901,7 @@ parse_org_emftext_language_xpath2_RootStepExpr returns [org.emftext.language.xpa
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_26_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -5015,7 +4997,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+				copyLocalizationInfos((CommonToken)a0, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.CHILD_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS), value);
@@ -5028,7 +5010,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+				copyLocalizationInfos((CommonToken)a1, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.DESCENDANT_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS), value);
@@ -5041,7 +5023,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+				copyLocalizationInfos((CommonToken)a2, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.ATTRIBUTE_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS), value);
@@ -5054,7 +5036,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+				copyLocalizationInfos((CommonToken)a3, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.SELF_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS), value);
@@ -5067,7 +5049,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+				copyLocalizationInfos((CommonToken)a4, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.DESCENDANT_OR_SELF_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS), value);
@@ -5080,7 +5062,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+				copyLocalizationInfos((CommonToken)a5, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.FOLLOWING_SIBLING_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS), value);
@@ -5093,7 +5075,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
+				copyLocalizationInfos((CommonToken)a6, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.FOLLOWING_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS), value);
@@ -5106,7 +5088,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a7, element);
+				copyLocalizationInfos((CommonToken)a7, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getForwardAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ForwardAxisKind.NAMESPACE_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS), value);
@@ -5126,7 +5108,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_28_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a10, element);
+		copyLocalizationInfos((CommonToken)a10, element);
 	}
 	{
 		// expected elements (follow set)
@@ -5268,7 +5250,7 @@ parse_org_emftext_language_xpath2_AbbrevForwardStep returns [org.emftext.languag
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_29_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+				copyLocalizationInfos((CommonToken)a0, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevForwardStepKind().getEEnumLiteral(org.emftext.language.xpath2.AbbrevForwardStepKind.ATTRIBUTE_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_FORWARD_STEP__KIND), value);
@@ -5418,7 +5400,7 @@ parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.langua
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+				copyLocalizationInfos((CommonToken)a0, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getReverseAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ReverseAxisKind.PARENT_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_REVERSE_STEP__AXIS), value);
@@ -5431,7 +5413,7 @@ parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.langua
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+				copyLocalizationInfos((CommonToken)a1, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getReverseAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ReverseAxisKind.ANCESTOR_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_REVERSE_STEP__AXIS), value);
@@ -5444,7 +5426,7 @@ parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.langua
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+				copyLocalizationInfos((CommonToken)a2, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getReverseAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ReverseAxisKind.PRECEDING_SIBLING_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_REVERSE_STEP__AXIS), value);
@@ -5457,7 +5439,7 @@ parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.langua
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+				copyLocalizationInfos((CommonToken)a3, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getReverseAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ReverseAxisKind.PRECEDING_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_REVERSE_STEP__AXIS), value);
@@ -5470,7 +5452,7 @@ parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.langua
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+				copyLocalizationInfos((CommonToken)a4, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getReverseAxisKind().getEEnumLiteral(org.emftext.language.xpath2.ReverseAxisKind.ANCESTOR_OR_SELF_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_REVERSE_STEP__AXIS), value);
@@ -5490,7 +5472,7 @@ parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.langua
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_30_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a7, element);
+		copyLocalizationInfos((CommonToken)a7, element);
 	}
 	{
 		// expected elements (follow set)
@@ -5629,7 +5611,7 @@ parse_org_emftext_language_xpath2_AbbrevReverseStep returns [org.emftext.languag
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_31_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+				copyLocalizationInfos((CommonToken)a0, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getAbbrevReverseStepKind().getEEnumLiteral(org.emftext.language.xpath2.AbbrevReverseStepKind.PARENT_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_REVERSE_STEP__KIND), value);
@@ -5792,7 +5774,7 @@ parse_org_emftext_language_xpath2_QNameTest returns [org.emftext.language.xpath2
 					tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QNAME_TEST__NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a0).getLine(), ((CommonToken) a0).getCharPositionInLine(), ((CommonToken) a0).getStartIndex(), ((CommonToken) a0).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -5802,7 +5784,7 @@ parse_org_emftext_language_xpath2_QNameTest returns [org.emftext.language.xpath2
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_33_0_0_0_0_0_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+					copyLocalizationInfos((CommonToken) a0, element);
 				}
 			}
 		)
@@ -5851,7 +5833,7 @@ parse_org_emftext_language_xpath2_QNameTest returns [org.emftext.language.xpath2
 					tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QNAME_TEST__NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a1).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a1).getLine(), ((CommonToken) a1).getCharPositionInLine(), ((CommonToken) a1).getStartIndex(), ((CommonToken) a1).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -5861,7 +5843,7 @@ parse_org_emftext_language_xpath2_QNameTest returns [org.emftext.language.xpath2
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_33_0_0_0_0_1_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, element);
+					copyLocalizationInfos((CommonToken) a1, element);
 				}
 			}
 		)
@@ -5933,7 +5915,7 @@ parse_org_emftext_language_xpath2_AnyWildcard returns [org.emftext.language.xpat
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_34_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -5985,7 +5967,7 @@ parse_org_emftext_language_xpath2_LocalNameWildcard returns [org.emftext.languag
 				tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.LOCAL_NAME_WILDCARD__NAMESPACE), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+					addErrorToResource(result.getErrorMessage(), ((CommonToken) a0).getLine(), ((CommonToken) a0).getCharPositionInLine(), ((CommonToken) a0).getStartIndex(), ((CommonToken) a0).getStopIndex());
 				}
 				java.lang.String resolved = (java.lang.String) resolvedObject;
 				if (resolved != null) {
@@ -5995,7 +5977,7 @@ parse_org_emftext_language_xpath2_LocalNameWildcard returns [org.emftext.languag
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_35_0_0_0, resolved, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+				copyLocalizationInfos((CommonToken) a0, element);
 			}
 		}
 	)
@@ -6011,7 +5993,7 @@ parse_org_emftext_language_xpath2_LocalNameWildcard returns [org.emftext.languag
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_35_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -6025,7 +6007,7 @@ parse_org_emftext_language_xpath2_LocalNameWildcard returns [org.emftext.languag
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_35_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+		copyLocalizationInfos((CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
@@ -6067,7 +6049,7 @@ parse_org_emftext_language_xpath2_NamespaceWildcard returns [org.emftext.languag
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_36_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -6081,7 +6063,7 @@ parse_org_emftext_language_xpath2_NamespaceWildcard returns [org.emftext.languag
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_36_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -6105,7 +6087,7 @@ parse_org_emftext_language_xpath2_NamespaceWildcard returns [org.emftext.languag
 				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAMESPACE_WILDCARD__LOCAL_NAME), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+					addErrorToResource(result.getErrorMessage(), ((CommonToken) a2).getLine(), ((CommonToken) a2).getCharPositionInLine(), ((CommonToken) a2).getStartIndex(), ((CommonToken) a2).getStopIndex());
 				}
 				java.lang.String resolved = (java.lang.String) resolvedObject;
 				if (resolved != null) {
@@ -6115,7 +6097,7 @@ parse_org_emftext_language_xpath2_NamespaceWildcard returns [org.emftext.languag
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_36_0_0_2, resolved, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
+				copyLocalizationInfos((CommonToken) a2, element);
 			}
 		}
 	)
@@ -6159,7 +6141,7 @@ parse_org_emftext_language_xpath2_Predicate returns [org.emftext.language.xpath2
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_37_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -6218,7 +6200,7 @@ parse_org_emftext_language_xpath2_Predicate returns [org.emftext.language.xpath2
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_37_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+		copyLocalizationInfos((CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
@@ -6260,7 +6242,7 @@ parse_org_emftext_language_xpath2_VarRef returns [org.emftext.language.xpath2.Va
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_38_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -6286,7 +6268,7 @@ parse_org_emftext_language_xpath2_VarRef returns [org.emftext.language.xpath2.Va
 					tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VAR_REF__VAR_NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a1).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a1).getLine(), ((CommonToken) a1).getCharPositionInLine(), ((CommonToken) a1).getStartIndex(), ((CommonToken) a1).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -6296,7 +6278,7 @@ parse_org_emftext_language_xpath2_VarRef returns [org.emftext.language.xpath2.Va
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_38_0_0_1_0_0_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, element);
+					copyLocalizationInfos((CommonToken) a1, element);
 				}
 			}
 		)
@@ -6345,7 +6327,7 @@ parse_org_emftext_language_xpath2_VarRef returns [org.emftext.language.xpath2.Va
 					tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VAR_REF__VAR_NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a2).getLine(), ((CommonToken) a2).getCharPositionInLine(), ((CommonToken) a2).getStartIndex(), ((CommonToken) a2).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -6355,7 +6337,7 @@ parse_org_emftext_language_xpath2_VarRef returns [org.emftext.language.xpath2.Va
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_38_0_0_1_0_1_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
+					copyLocalizationInfos((CommonToken) a2, element);
 				}
 			}
 		)
@@ -6427,7 +6409,7 @@ parse_org_emftext_language_xpath2_ParenthesizedExpr returns [org.emftext.languag
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_39_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -6489,7 +6471,7 @@ parse_org_emftext_language_xpath2_ParenthesizedExpr returns [org.emftext.languag
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_39_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+		copyLocalizationInfos((CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
@@ -6531,7 +6513,7 @@ parse_org_emftext_language_xpath2_ContextItemExpr returns [org.emftext.language.
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_40_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -6629,7 +6611,7 @@ parse_org_emftext_language_xpath2_SingleType returns [org.emftext.language.xpath
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_41_0_0_1, true, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+				copyLocalizationInfos((CommonToken)a1, element);
 				// set value of boolean attribute
 				Object value = true;
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SINGLE_TYPE__OPTIONAL), value);
@@ -6671,7 +6653,7 @@ parse_org_emftext_language_xpath2_EmptySequenceType returns [org.emftext.languag
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_42_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -6685,7 +6667,7 @@ parse_org_emftext_language_xpath2_EmptySequenceType returns [org.emftext.languag
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_42_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -6699,7 +6681,7 @@ parse_org_emftext_language_xpath2_EmptySequenceType returns [org.emftext.languag
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_42_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+		copyLocalizationInfos((CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
@@ -6768,7 +6750,7 @@ parse_org_emftext_language_xpath2_ItemSequenceType returns [org.emftext.language
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_43_0_0_1, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+				copyLocalizationInfos((CommonToken)a1, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getOccurrenceIndicatorKind().getEEnumLiteral(org.emftext.language.xpath2.OccurrenceIndicatorKind.OPTIONAL_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE), value);
@@ -6784,7 +6766,7 @@ parse_org_emftext_language_xpath2_ItemSequenceType returns [org.emftext.language
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_43_0_0_1, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+				copyLocalizationInfos((CommonToken)a2, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getOccurrenceIndicatorKind().getEEnumLiteral(org.emftext.language.xpath2.OccurrenceIndicatorKind.STAR_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE), value);
@@ -6800,7 +6782,7 @@ parse_org_emftext_language_xpath2_ItemSequenceType returns [org.emftext.language
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_43_0_0_1, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+				copyLocalizationInfos((CommonToken)a3, element);
 				// set value of enumeration attribute
 				Object value = org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getOccurrenceIndicatorKind().getEEnumLiteral(org.emftext.language.xpath2.OccurrenceIndicatorKind.PLUS_VALUE).getInstance();
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE), value);
@@ -6872,7 +6854,7 @@ parse_org_emftext_language_xpath2_AnyItemType returns [org.emftext.language.xpat
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_45_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -6886,7 +6868,7 @@ parse_org_emftext_language_xpath2_AnyItemType returns [org.emftext.language.xpat
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_45_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -6900,7 +6882,7 @@ parse_org_emftext_language_xpath2_AnyItemType returns [org.emftext.language.xpat
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_45_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+		copyLocalizationInfos((CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
@@ -6963,7 +6945,7 @@ parse_org_emftext_language_xpath2_AtomicType returns [org.emftext.language.xpath
 					tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ATOMIC_TYPE__NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a0).getLine(), ((CommonToken) a0).getCharPositionInLine(), ((CommonToken) a0).getStartIndex(), ((CommonToken) a0).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -6973,7 +6955,7 @@ parse_org_emftext_language_xpath2_AtomicType returns [org.emftext.language.xpath
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_47_0_0_0_0_0_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+					copyLocalizationInfos((CommonToken) a0, element);
 				}
 			}
 		)
@@ -7019,7 +7001,7 @@ parse_org_emftext_language_xpath2_AtomicType returns [org.emftext.language.xpath
 					tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ATOMIC_TYPE__NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a1).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a1).getLine(), ((CommonToken) a1).getCharPositionInLine(), ((CommonToken) a1).getStartIndex(), ((CommonToken) a1).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -7029,7 +7011,7 @@ parse_org_emftext_language_xpath2_AtomicType returns [org.emftext.language.xpath
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_47_0_0_0_0_1_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, element);
+					copyLocalizationInfos((CommonToken) a1, element);
 				}
 			}
 		)
@@ -7111,7 +7093,7 @@ parse_org_emftext_language_xpath2_OptionalAtomicType returns [org.emftext.langua
 					tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.OPTIONAL_ATOMIC_TYPE__NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a0).getLine(), ((CommonToken) a0).getCharPositionInLine(), ((CommonToken) a0).getStartIndex(), ((CommonToken) a0).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -7121,7 +7103,7 @@ parse_org_emftext_language_xpath2_OptionalAtomicType returns [org.emftext.langua
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_48_0_0_0_0_0_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+					copyLocalizationInfos((CommonToken) a0, element);
 				}
 			}
 		)
@@ -7155,7 +7137,7 @@ parse_org_emftext_language_xpath2_OptionalAtomicType returns [org.emftext.langua
 					tokenResolver.resolve(a1.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.OPTIONAL_ATOMIC_TYPE__NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a1).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a1).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a1).getLine(), ((CommonToken) a1).getCharPositionInLine(), ((CommonToken) a1).getStartIndex(), ((CommonToken) a1).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -7165,7 +7147,7 @@ parse_org_emftext_language_xpath2_OptionalAtomicType returns [org.emftext.langua
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_48_0_0_0_0_1_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a1, element);
+					copyLocalizationInfos((CommonToken) a1, element);
 				}
 			}
 		)
@@ -7198,7 +7180,7 @@ parse_org_emftext_language_xpath2_OptionalAtomicType returns [org.emftext.langua
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_48_0_0_1, true, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+				copyLocalizationInfos((CommonToken)a2, element);
 				// set value of boolean attribute
 				Object value = true;
 				element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL), value);
@@ -7224,7 +7206,7 @@ parse_org_emftext_language_xpath2_AnyKindTest returns [org.emftext.language.xpat
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_49_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7238,7 +7220,7 @@ parse_org_emftext_language_xpath2_AnyKindTest returns [org.emftext.language.xpat
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_49_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7252,7 +7234,7 @@ parse_org_emftext_language_xpath2_AnyKindTest returns [org.emftext.language.xpat
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_49_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+		copyLocalizationInfos((CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7295,7 +7277,7 @@ parse_org_emftext_language_xpath2_DocumentTest returns [org.emftext.language.xpa
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_50_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7309,7 +7291,7 @@ parse_org_emftext_language_xpath2_DocumentTest returns [org.emftext.language.xpa
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_50_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7374,7 +7356,7 @@ parse_org_emftext_language_xpath2_DocumentTest returns [org.emftext.language.xpa
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_50_0_0_3, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+		copyLocalizationInfos((CommonToken)a3, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7417,7 +7399,7 @@ parse_org_emftext_language_xpath2_TextTest returns [org.emftext.language.xpath2.
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_51_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7431,7 +7413,7 @@ parse_org_emftext_language_xpath2_TextTest returns [org.emftext.language.xpath2.
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_51_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7445,7 +7427,7 @@ parse_org_emftext_language_xpath2_TextTest returns [org.emftext.language.xpath2.
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_51_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+		copyLocalizationInfos((CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7488,7 +7470,7 @@ parse_org_emftext_language_xpath2_CommentTest returns [org.emftext.language.xpat
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_52_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7502,7 +7484,7 @@ parse_org_emftext_language_xpath2_CommentTest returns [org.emftext.language.xpat
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_52_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7516,7 +7498,7 @@ parse_org_emftext_language_xpath2_CommentTest returns [org.emftext.language.xpat
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_52_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+		copyLocalizationInfos((CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7559,7 +7541,7 @@ parse_org_emftext_language_xpath2_PITest returns [org.emftext.language.xpath2.PI
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_53_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7573,7 +7555,7 @@ parse_org_emftext_language_xpath2_PITest returns [org.emftext.language.xpath2.PI
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_53_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7587,7 +7569,7 @@ parse_org_emftext_language_xpath2_PITest returns [org.emftext.language.xpath2.PI
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_53_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+		copyLocalizationInfos((CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7635,7 +7617,7 @@ parse_org_emftext_language_xpath2_NCNamePITest returns [org.emftext.language.xpa
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_54_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7649,7 +7631,7 @@ parse_org_emftext_language_xpath2_NCNamePITest returns [org.emftext.language.xpa
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_54_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7673,7 +7655,7 @@ parse_org_emftext_language_xpath2_NCNamePITest returns [org.emftext.language.xpa
 				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NC_NAME_PI_TEST__NAME), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+					addErrorToResource(result.getErrorMessage(), ((CommonToken) a2).getLine(), ((CommonToken) a2).getCharPositionInLine(), ((CommonToken) a2).getStartIndex(), ((CommonToken) a2).getStopIndex());
 				}
 				java.lang.String resolved = (java.lang.String) resolvedObject;
 				if (resolved != null) {
@@ -7683,7 +7665,7 @@ parse_org_emftext_language_xpath2_NCNamePITest returns [org.emftext.language.xpa
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_54_0_0_2, resolved, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
+				copyLocalizationInfos((CommonToken) a2, element);
 			}
 		}
 	)
@@ -7699,7 +7681,7 @@ parse_org_emftext_language_xpath2_NCNamePITest returns [org.emftext.language.xpa
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_54_0_0_3, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+		copyLocalizationInfos((CommonToken)a3, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7742,7 +7724,7 @@ parse_org_emftext_language_xpath2_StringLiteralPITest returns [org.emftext.langu
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_55_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7756,7 +7738,7 @@ parse_org_emftext_language_xpath2_StringLiteralPITest returns [org.emftext.langu
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_55_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7780,12 +7762,12 @@ parse_org_emftext_language_xpath2_StringLiteralPITest returns [org.emftext.langu
 				tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.STRING_LITERAL_PI_TEST__LITERAL), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+					addErrorToResource(result.getErrorMessage(), ((CommonToken) a2).getLine(), ((CommonToken) a2).getCharPositionInLine(), ((CommonToken) a2).getStartIndex(), ((CommonToken) a2).getStopIndex());
 				}
 				String resolved = (String) resolvedObject;
 				org.emftext.language.xpath2.StringLiteral proxy = org.emftext.language.xpath2.Xpath2Factory.eINSTANCE.createStringLiteral();
 				collectHiddenTokens(element);
-				registerContextDependentProxy(new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContextDependentURIFragmentFactory<org.emftext.language.xpath2.StringLiteralPITest, org.emftext.language.xpath2.StringLiteral>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getStringLiteralPITestLiteralReferenceResolver()), element, (org.eclipse.emf.ecore.EReference) element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.STRING_LITERAL_PI_TEST__LITERAL), resolved, proxy);
+				registerContextDependentProxy(new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContextDependentURIFragmentFactory<org.emftext.language.xpath2.StringLiteralPITest, org.emftext.language.xpath2.StringLiteral>(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getStringLiteralPITestLiteralReferenceResolver()), element, (EReference) element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.STRING_LITERAL_PI_TEST__LITERAL), resolved, proxy);
 				if (proxy != null) {
 					Object value = proxy;
 					element.eSet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.STRING_LITERAL_PI_TEST__LITERAL), value);
@@ -7793,8 +7775,8 @@ parse_org_emftext_language_xpath2_StringLiteralPITest returns [org.emftext.langu
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_55_0_0_2, proxy, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, proxy);
+				copyLocalizationInfos((CommonToken) a2, element);
+				copyLocalizationInfos((CommonToken) a2, proxy);
 			}
 		}
 	)
@@ -7810,7 +7792,7 @@ parse_org_emftext_language_xpath2_StringLiteralPITest returns [org.emftext.langu
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_55_0_0_3, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+		copyLocalizationInfos((CommonToken)a3, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7853,7 +7835,7 @@ parse_org_emftext_language_xpath2_AttributeTest returns [org.emftext.language.xp
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_56_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7867,7 +7849,7 @@ parse_org_emftext_language_xpath2_AttributeTest returns [org.emftext.language.xp
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_56_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7881,7 +7863,7 @@ parse_org_emftext_language_xpath2_AttributeTest returns [org.emftext.language.xp
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_56_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+		copyLocalizationInfos((CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7929,7 +7911,7 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7943,7 +7925,7 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7957,7 +7939,7 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+		copyLocalizationInfos((CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
@@ -7974,7 +7956,7 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_3_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+				copyLocalizationInfos((CommonToken)a3, element);
 			}
 			{
 				// expected elements (follow set)
@@ -8000,7 +7982,7 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 							tokenResolver.resolve(a4.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE), result);
 							Object resolvedObject = result.getResolvedToken();
 							if (resolvedObject == null) {
-								addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a4).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a4).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a4).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a4).getStopIndex());
+								addErrorToResource(result.getErrorMessage(), ((CommonToken) a4).getLine(), ((CommonToken) a4).getCharPositionInLine(), ((CommonToken) a4).getStartIndex(), ((CommonToken) a4).getStopIndex());
 							}
 							javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 							if (resolved != null) {
@@ -8010,7 +7992,7 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 							}
 							collectHiddenTokens(element);
 							retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_3_0_0_2_0_0_0, resolved, true);
-							copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a4, element);
+							copyLocalizationInfos((CommonToken) a4, element);
 						}
 					}
 				)
@@ -8037,7 +8019,7 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 							tokenResolver.resolve(a5.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE), result);
 							Object resolvedObject = result.getResolvedToken();
 							if (resolvedObject == null) {
-								addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a5).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a5).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a5).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a5).getStopIndex());
+								addErrorToResource(result.getErrorMessage(), ((CommonToken) a5).getLine(), ((CommonToken) a5).getCharPositionInLine(), ((CommonToken) a5).getStartIndex(), ((CommonToken) a5).getStopIndex());
 							}
 							javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 							if (resolved != null) {
@@ -8047,7 +8029,7 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 							}
 							collectHiddenTokens(element);
 							retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_3_0_0_2_0_1_0, resolved, true);
-							copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a5, element);
+							copyLocalizationInfos((CommonToken) a5, element);
 						}
 					}
 				)
@@ -8076,7 +8058,7 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_57_0_0_4, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
+		copyLocalizationInfos((CommonToken)a6, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8119,7 +8101,7 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8133,7 +8115,7 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8159,7 +8141,7 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 					tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ATTRIBUTE_TEST__NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a2).getLine(), ((CommonToken) a2).getCharPositionInLine(), ((CommonToken) a2).getStartIndex(), ((CommonToken) a2).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -8169,7 +8151,7 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_2_0_0_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
+					copyLocalizationInfos((CommonToken) a2, element);
 				}
 			}
 		)
@@ -8197,7 +8179,7 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 					tokenResolver.resolve(a3.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ATTRIBUTE_TEST__NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a3).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a3).getLine(), ((CommonToken) a3).getCharPositionInLine(), ((CommonToken) a3).getStartIndex(), ((CommonToken) a3).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -8207,7 +8189,7 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_2_0_1_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, element);
+					copyLocalizationInfos((CommonToken) a3, element);
 				}
 			}
 		)
@@ -8233,7 +8215,7 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_3_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+				copyLocalizationInfos((CommonToken)a4, element);
 			}
 			{
 				// expected elements (follow set)
@@ -8259,7 +8241,7 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 							tokenResolver.resolve(a5.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE), result);
 							Object resolvedObject = result.getResolvedToken();
 							if (resolvedObject == null) {
-								addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a5).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a5).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a5).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a5).getStopIndex());
+								addErrorToResource(result.getErrorMessage(), ((CommonToken) a5).getLine(), ((CommonToken) a5).getCharPositionInLine(), ((CommonToken) a5).getStartIndex(), ((CommonToken) a5).getStopIndex());
 							}
 							javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 							if (resolved != null) {
@@ -8269,7 +8251,7 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 							}
 							collectHiddenTokens(element);
 							retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_3_0_0_2_0_0_0, resolved, true);
-							copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a5, element);
+							copyLocalizationInfos((CommonToken) a5, element);
 						}
 					}
 				)
@@ -8296,7 +8278,7 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 							tokenResolver.resolve(a6.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE), result);
 							Object resolvedObject = result.getResolvedToken();
 							if (resolvedObject == null) {
-								addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a6).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a6).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a6).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a6).getStopIndex());
+								addErrorToResource(result.getErrorMessage(), ((CommonToken) a6).getLine(), ((CommonToken) a6).getCharPositionInLine(), ((CommonToken) a6).getStartIndex(), ((CommonToken) a6).getStopIndex());
 							}
 							javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 							if (resolved != null) {
@@ -8306,7 +8288,7 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 							}
 							collectHiddenTokens(element);
 							retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_3_0_0_2_0_1_0, resolved, true);
-							copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a6, element);
+							copyLocalizationInfos((CommonToken) a6, element);
 						}
 					}
 				)
@@ -8335,7 +8317,7 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_58_0_0_4, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a7, element);
+		copyLocalizationInfos((CommonToken)a7, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8378,7 +8360,7 @@ parse_org_emftext_language_xpath2_SchemaAttributeTest returns [org.emftext.langu
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8392,7 +8374,7 @@ parse_org_emftext_language_xpath2_SchemaAttributeTest returns [org.emftext.langu
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8418,7 +8400,7 @@ parse_org_emftext_language_xpath2_SchemaAttributeTest returns [org.emftext.langu
 					tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SCHEMA_ATTRIBUTE_TEST__NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a2).getLine(), ((CommonToken) a2).getCharPositionInLine(), ((CommonToken) a2).getStartIndex(), ((CommonToken) a2).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -8428,7 +8410,7 @@ parse_org_emftext_language_xpath2_SchemaAttributeTest returns [org.emftext.langu
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_2_0_0_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
+					copyLocalizationInfos((CommonToken) a2, element);
 				}
 			}
 		)
@@ -8455,7 +8437,7 @@ parse_org_emftext_language_xpath2_SchemaAttributeTest returns [org.emftext.langu
 					tokenResolver.resolve(a3.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SCHEMA_ATTRIBUTE_TEST__NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a3).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a3).getLine(), ((CommonToken) a3).getCharPositionInLine(), ((CommonToken) a3).getStartIndex(), ((CommonToken) a3).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -8465,7 +8447,7 @@ parse_org_emftext_language_xpath2_SchemaAttributeTest returns [org.emftext.langu
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_2_0_1_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, element);
+					copyLocalizationInfos((CommonToken) a3, element);
 				}
 			}
 		)
@@ -8487,7 +8469,7 @@ parse_org_emftext_language_xpath2_SchemaAttributeTest returns [org.emftext.langu
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_59_0_0_3, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+		copyLocalizationInfos((CommonToken)a4, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8530,7 +8512,7 @@ parse_org_emftext_language_xpath2_ElementTest returns [org.emftext.language.xpat
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_60_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8544,7 +8526,7 @@ parse_org_emftext_language_xpath2_ElementTest returns [org.emftext.language.xpat
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_60_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8558,7 +8540,7 @@ parse_org_emftext_language_xpath2_ElementTest returns [org.emftext.language.xpat
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_60_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+		copyLocalizationInfos((CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8607,7 +8589,7 @@ parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.langu
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8621,7 +8603,7 @@ parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.langu
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8635,7 +8617,7 @@ parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.langu
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_2, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a2, element);
+		copyLocalizationInfos((CommonToken)a2, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8652,7 +8634,7 @@ parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.langu
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_3_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a3, element);
+				copyLocalizationInfos((CommonToken)a3, element);
 			}
 			{
 				// expected elements (follow set)
@@ -8700,7 +8682,7 @@ parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.langu
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_61_0_0_4, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a5, element);
+		copyLocalizationInfos((CommonToken)a5, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8744,7 +8726,7 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8758,7 +8740,7 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8784,7 +8766,7 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 					tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ELEMENT_TEST__NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a2).getLine(), ((CommonToken) a2).getCharPositionInLine(), ((CommonToken) a2).getStartIndex(), ((CommonToken) a2).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -8794,7 +8776,7 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_2_0_0_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
+					copyLocalizationInfos((CommonToken) a2, element);
 				}
 			}
 		)
@@ -8822,7 +8804,7 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 					tokenResolver.resolve(a3.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ELEMENT_TEST__NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a3).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a3).getLine(), ((CommonToken) a3).getCharPositionInLine(), ((CommonToken) a3).getStartIndex(), ((CommonToken) a3).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -8832,7 +8814,7 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_2_0_1_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, element);
+					copyLocalizationInfos((CommonToken) a3, element);
 				}
 			}
 		)
@@ -8858,7 +8840,7 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_3_0_0_0, null, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+				copyLocalizationInfos((CommonToken)a4, element);
 			}
 			{
 				// expected elements (follow set)
@@ -8906,7 +8888,7 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_62_0_0_4, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a6, element);
+		copyLocalizationInfos((CommonToken)a6, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8950,7 +8932,7 @@ parse_org_emftext_language_xpath2_SchemaElementTest returns [org.emftext.languag
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_0, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a0, element);
+		copyLocalizationInfos((CommonToken)a0, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8964,7 +8946,7 @@ parse_org_emftext_language_xpath2_SchemaElementTest returns [org.emftext.languag
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_1, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a1, element);
+		copyLocalizationInfos((CommonToken)a1, element);
 	}
 	{
 		// expected elements (follow set)
@@ -8990,7 +8972,7 @@ parse_org_emftext_language_xpath2_SchemaElementTest returns [org.emftext.languag
 					tokenResolver.resolve(a2.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SCHEMA_ELEMENT_TEST__NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a2).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a2).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a2).getLine(), ((CommonToken) a2).getCharPositionInLine(), ((CommonToken) a2).getStartIndex(), ((CommonToken) a2).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -9000,7 +8982,7 @@ parse_org_emftext_language_xpath2_SchemaElementTest returns [org.emftext.languag
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_2_0_0_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a2, element);
+					copyLocalizationInfos((CommonToken) a2, element);
 				}
 			}
 		)
@@ -9027,7 +9009,7 @@ parse_org_emftext_language_xpath2_SchemaElementTest returns [org.emftext.languag
 					tokenResolver.resolve(a3.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SCHEMA_ELEMENT_TEST__NAME), result);
 					Object resolvedObject = result.getResolvedToken();
 					if (resolvedObject == null) {
-						addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a3).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a3).getStopIndex());
+						addErrorToResource(result.getErrorMessage(), ((CommonToken) a3).getLine(), ((CommonToken) a3).getCharPositionInLine(), ((CommonToken) a3).getStartIndex(), ((CommonToken) a3).getStopIndex());
 					}
 					javax.xml.namespace.QName resolved = (javax.xml.namespace.QName) resolvedObject;
 					if (resolved != null) {
@@ -9037,7 +9019,7 @@ parse_org_emftext_language_xpath2_SchemaElementTest returns [org.emftext.languag
 					}
 					collectHiddenTokens(element);
 					retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_2_0_1_0, resolved, true);
-					copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a3, element);
+					copyLocalizationInfos((CommonToken) a3, element);
 				}
 			}
 		)
@@ -9059,7 +9041,7 @@ parse_org_emftext_language_xpath2_SchemaElementTest returns [org.emftext.languag
 		}
 		collectHiddenTokens(element);
 		retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_63_0_0_3, null, true);
-		copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken)a4, element);
+		copyLocalizationInfos((CommonToken)a4, element);
 	}
 	{
 		// expected elements (follow set)
@@ -9113,7 +9095,7 @@ parse_org_emftext_language_xpath2_IntegerLiteral returns [org.emftext.language.x
 				tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.INTEGER_LITERAL__VALUE), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+					addErrorToResource(result.getErrorMessage(), ((CommonToken) a0).getLine(), ((CommonToken) a0).getCharPositionInLine(), ((CommonToken) a0).getStartIndex(), ((CommonToken) a0).getStopIndex());
 				}
 				java.lang.Integer resolved = (java.lang.Integer) resolvedObject;
 				if (resolved != null) {
@@ -9123,7 +9105,7 @@ parse_org_emftext_language_xpath2_IntegerLiteral returns [org.emftext.language.x
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_64_0_0_0, resolved, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+				copyLocalizationInfos((CommonToken) a0, element);
 			}
 		}
 	)
@@ -9177,7 +9159,7 @@ parse_org_emftext_language_xpath2_DecimalLiteral returns [org.emftext.language.x
 				tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DECIMAL_LITERAL__VALUE), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+					addErrorToResource(result.getErrorMessage(), ((CommonToken) a0).getLine(), ((CommonToken) a0).getCharPositionInLine(), ((CommonToken) a0).getStartIndex(), ((CommonToken) a0).getStopIndex());
 				}
 				java.lang.Float resolved = (java.lang.Float) resolvedObject;
 				if (resolved != null) {
@@ -9187,7 +9169,7 @@ parse_org_emftext_language_xpath2_DecimalLiteral returns [org.emftext.language.x
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_65_0_0_0, resolved, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+				copyLocalizationInfos((CommonToken) a0, element);
 			}
 		}
 	)
@@ -9241,7 +9223,7 @@ parse_org_emftext_language_xpath2_DoubleLiteral returns [org.emftext.language.xp
 				tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DOUBLE_LITERAL__VALUE), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+					addErrorToResource(result.getErrorMessage(), ((CommonToken) a0).getLine(), ((CommonToken) a0).getCharPositionInLine(), ((CommonToken) a0).getStartIndex(), ((CommonToken) a0).getStopIndex());
 				}
 				java.lang.Double resolved = (java.lang.Double) resolvedObject;
 				if (resolved != null) {
@@ -9251,7 +9233,7 @@ parse_org_emftext_language_xpath2_DoubleLiteral returns [org.emftext.language.xp
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_66_0_0_0, resolved, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+				copyLocalizationInfos((CommonToken) a0, element);
 			}
 		}
 	)
@@ -9305,7 +9287,7 @@ parse_org_emftext_language_xpath2_StringLiteral returns [org.emftext.language.xp
 				tokenResolver.resolve(a0.getText(), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.STRING_LITERAL__VALUE), result);
 				Object resolvedObject = result.getResolvedToken();
 				if (resolvedObject == null) {
-					addErrorToResource(result.getErrorMessage(), ((org.antlr.runtime3_4_0.CommonToken) a0).getLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getCharPositionInLine(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStartIndex(), ((org.antlr.runtime3_4_0.CommonToken) a0).getStopIndex());
+					addErrorToResource(result.getErrorMessage(), ((CommonToken) a0).getLine(), ((CommonToken) a0).getCharPositionInLine(), ((CommonToken) a0).getStartIndex(), ((CommonToken) a0).getStopIndex());
 				}
 				java.lang.String resolved = (java.lang.String) resolvedObject;
 				if (resolved != null) {
@@ -9315,7 +9297,7 @@ parse_org_emftext_language_xpath2_StringLiteral returns [org.emftext.language.xp
 				}
 				collectHiddenTokens(element);
 				retrieveLayoutInformation(element, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2GrammarInformationProvider.XPATH2_67_0_0_0, resolved, true);
-				copyLocalizationInfos((org.antlr.runtime3_4_0.CommonToken) a0, element);
+				copyLocalizationInfos((CommonToken) a0, element);
 			}
 		}
 	)

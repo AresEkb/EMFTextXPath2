@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,8 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.grammar;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 /**
  * This class provides the follow sets for all terminals of the grammar. These
  * sets are used during code completion.
@@ -18,7 +20,7 @@ public class Xpath2FollowSetProvider {
 	
 	public final static org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement TERMINALS[] = new org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement[148];
 	
-	public final static org.eclipse.emf.ecore.EStructuralFeature[] FEATURES = new org.eclipse.emf.ecore.EStructuralFeature[50];
+	public final static EStructuralFeature[] FEATURES = new EStructuralFeature[50];
 	
 	public final static org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[] LINKS = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[6167];
 	

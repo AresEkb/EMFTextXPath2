@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,20 +10,32 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.ui;
 
-public class Xpath2CompletionProcessor implements org.eclipse.jface.text.contentassist.IContentAssistProcessor {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import org.eclipse.jface.text.ITextViewer;
+import org.eclipse.jface.text.contentassist.CompletionProposal;
+import org.eclipse.jface.text.contentassist.ContextInformation;
+import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.jface.text.contentassist.IContextInformation;
+import org.eclipse.jface.text.contentassist.IContextInformationValidator;
+import org.eclipse.swt.graphics.Image;
+
+public class Xpath2CompletionProcessor implements IContentAssistProcessor {
 	
 	private org.emftext.language.xpath2.resource.xpath2.IXpath2ResourceProvider resourceProvider;
-	private org.emftext.language.xpath2.resource.xpath2.ui.IXpath2BracketHandlerProvider bracketHandlerProvider;
 	
-	public Xpath2CompletionProcessor(org.emftext.language.xpath2.resource.xpath2.IXpath2ResourceProvider resourceProvider, org.emftext.language.xpath2.resource.xpath2.ui.IXpath2BracketHandlerProvider bracketHandlerProvider) {
+	public Xpath2CompletionProcessor(org.emftext.language.xpath2.resource.xpath2.IXpath2ResourceProvider resourceProvider) {
+		super();
 		this.resourceProvider = resourceProvider;
-		this.bracketHandlerProvider = bracketHandlerProvider;
 	}
 	
-	public org.eclipse.jface.text.contentassist.ICompletionProposal[] computeCompletionProposals(org.eclipse.jface.text.ITextViewer viewer, int offset) {
+	public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer, int offset) {
 		org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource textResource = resourceProvider.getResource();
 		if (textResource == null) {
-			return new org.eclipse.jface.text.contentassist.ICompletionProposal[0];
+			return new ICompletionProposal[0];
 		}
 		String content = viewer.getDocument().get();
 		org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CodeCompletionHelper helper = new org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CodeCompletionHelper();
@@ -31,41 +43,34 @@ public class Xpath2CompletionProcessor implements org.eclipse.jface.text.content
 		
 		// call completion proposal post processor to allow for customizing the proposals
 		org.emftext.language.xpath2.resource.xpath2.ui.Xpath2ProposalPostProcessor proposalPostProcessor = new org.emftext.language.xpath2.resource.xpath2.ui.Xpath2ProposalPostProcessor();
-		java.util.List<org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal> computedProposalList = java.util.Arrays.asList(computedProposals);
-		java.util.List<org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal> extendedProposalList = proposalPostProcessor.process(computedProposalList);
+		List<org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal> computedProposalList = Arrays.asList(computedProposals);
+		List<org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal> extendedProposalList = proposalPostProcessor.process(computedProposalList);
 		if (extendedProposalList == null) {
-			extendedProposalList = java.util.Collections.emptyList();
+			extendedProposalList = Collections.emptyList();
 		}
-		java.util.List<org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal> finalProposalList = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal>();
+		List<org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal> finalProposalList = new ArrayList<org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal>();
 		for (org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal proposal : extendedProposalList) {
-			if (proposal.getMatchesPrefix()) {
+			if (proposal.isMatchesPrefix()) {
 				finalProposalList.add(proposal);
 			}
 		}
-		org.eclipse.jface.text.contentassist.ICompletionProposal[] result = new org.eclipse.jface.text.contentassist.ICompletionProposal[finalProposalList.size()];
+		ICompletionProposal[] result = new ICompletionProposal[finalProposalList.size()];
 		int i = 0;
 		for (org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal proposal : finalProposalList) {
 			String proposalString = proposal.getInsertString();
-			String displayString = proposal.getDisplayString();
+			String displayString = (proposal.getDisplayString()==null)?proposalString:proposal.getDisplayString();
 			String prefix = proposal.getPrefix();
-			org.eclipse.swt.graphics.Image image = proposal.getImage();
-			org.eclipse.jface.text.contentassist.IContextInformation info;
-			info = new org.eclipse.jface.text.contentassist.ContextInformation(image, proposalString, proposalString);
+			Image image = proposal.getImage();
+			IContextInformation info;
+			info = new ContextInformation(image, displayString, proposalString);
 			int begin = offset - prefix.length();
 			int replacementLength = prefix.length();
-			// if a closing bracket was automatically inserted right before, we enlarge the
-			// replacement length in order to overwrite the bracket.
-			org.emftext.language.xpath2.resource.xpath2.ui.IXpath2BracketHandler bracketHandler = bracketHandlerProvider.getBracketHandler();
-			String closingBracket = bracketHandler.getClosingBracket();
-			if (bracketHandler.addedClosingBracket() && proposalString.endsWith(closingBracket)) {
-				replacementLength += closingBracket.length();
-			}
-			result[i++] = new org.eclipse.jface.text.contentassist.CompletionProposal(proposalString, begin, replacementLength, proposalString.length(), image, displayString, info, proposalString);
+			result[i++] = new CompletionProposal(proposalString, begin, replacementLength, proposalString.length(), image, displayString, info, proposalString);
 		}
 		return result;
 	}
 	
-	public org.eclipse.jface.text.contentassist.IContextInformation[] computeContextInformation(org.eclipse.jface.text.ITextViewer viewer, int offset) {
+	public IContextInformation[] computeContextInformation(ITextViewer viewer, int offset) {
 		return null;
 	}
 	
@@ -77,7 +82,7 @@ public class Xpath2CompletionProcessor implements org.eclipse.jface.text.content
 		return null;
 	}
 	
-	public org.eclipse.jface.text.contentassist.IContextInformationValidator getContextInformationValidator() {
+	public IContextInformationValidator getContextInformationValidator() {
 		return null;
 	}
 	

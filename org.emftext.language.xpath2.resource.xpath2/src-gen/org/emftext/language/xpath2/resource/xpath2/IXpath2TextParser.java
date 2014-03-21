@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,9 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2;
+
+import java.util.List;
+import org.eclipse.emf.ecore.EClass;
 
 /**
  * A text parser parses a text into a tree of <code>EObject</code>s. It is
@@ -36,7 +39,7 @@ public interface IXpath2TextParser extends org.emftext.language.xpath2.resource.
 	 * The <code>cursorPosition</code> is used to discard expected elements, which
 	 * will not be needed.
 	 */
-	public java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> parseToExpectedElements(org.eclipse.emf.ecore.EClass type, org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource dummyResource, int cursorOffset);
+	public List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> parseToExpectedElements(EClass type, org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource dummyResource, int cursorOffset);
 	
 	/**
 	 * Signals the parse to terminate parsing as soon as possible. This method must be

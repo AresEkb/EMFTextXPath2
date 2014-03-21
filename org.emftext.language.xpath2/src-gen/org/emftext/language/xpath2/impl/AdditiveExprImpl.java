@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -42,187 +42,169 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr
-{
-  /**
-   * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOperand()
-   * @generated
-   * @ordered
-   */
-  protected EList<AdditiveExprChild> operand;
+public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr {
+    /**
+     * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getOperand()
+     * @generated
+     * @ordered
+     */
+    protected EList<AdditiveExprChild> operand;
 
-  /**
-   * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOperator()
-   * @generated
-   * @ordered
-   */
-  protected EList<AdditiveOpKind> operator;
+    /**
+     * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getOperator()
+     * @generated
+     * @ordered
+     */
+    protected EList<AdditiveOpKind> operator;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected AdditiveExprImpl()
-  {
-    super();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return Xpath2Package.Literals.ADDITIVE_EXPR;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<AdditiveExprChild> getOperand()
-  {
-    if (operand == null)
-    {
-      operand = new EObjectContainmentEList<AdditiveExprChild>(AdditiveExprChild.class, this, Xpath2Package.ADDITIVE_EXPR__OPERAND);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected AdditiveExprImpl() {
+        super();
     }
-    return operand;
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<AdditiveOpKind> getOperator()
-  {
-    if (operator == null)
-    {
-      operator = new EDataTypeEList<AdditiveOpKind>(AdditiveOpKind.class, this, Xpath2Package.ADDITIVE_EXPR__OPERATOR);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return Xpath2Package.Literals.ADDITIVE_EXPR;
     }
-    return operator;
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case Xpath2Package.ADDITIVE_EXPR__OPERAND:
-        return ((InternalEList<?>)getOperand()).basicRemove(otherEnd, msgs);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<AdditiveExprChild> getOperand() {
+        if (operand == null) {
+            operand = new EObjectContainmentEList<AdditiveExprChild>(AdditiveExprChild.class, this, Xpath2Package.ADDITIVE_EXPR__OPERAND);
+        }
+        return operand;
     }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case Xpath2Package.ADDITIVE_EXPR__OPERAND:
-        return getOperand();
-      case Xpath2Package.ADDITIVE_EXPR__OPERATOR:
-        return getOperator();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<AdditiveOpKind> getOperator() {
+        if (operator == null) {
+            operator = new EDataTypeEList<AdditiveOpKind>(AdditiveOpKind.class, this, Xpath2Package.ADDITIVE_EXPR__OPERATOR);
+        }
+        return operator;
     }
-    return super.eGet(featureID, resolve, coreType);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case Xpath2Package.ADDITIVE_EXPR__OPERAND:
-        getOperand().clear();
-        getOperand().addAll((Collection<? extends AdditiveExprChild>)newValue);
-        return;
-      case Xpath2Package.ADDITIVE_EXPR__OPERATOR:
-        getOperator().clear();
-        getOperator().addAll((Collection<? extends AdditiveOpKind>)newValue);
-        return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case Xpath2Package.ADDITIVE_EXPR__OPERAND:
+                return ((InternalEList<?>)getOperand()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
     }
-    super.eSet(featureID, newValue);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case Xpath2Package.ADDITIVE_EXPR__OPERAND:
-        getOperand().clear();
-        return;
-      case Xpath2Package.ADDITIVE_EXPR__OPERATOR:
-        getOperator().clear();
-        return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case Xpath2Package.ADDITIVE_EXPR__OPERAND:
+                return getOperand();
+            case Xpath2Package.ADDITIVE_EXPR__OPERATOR:
+                return getOperator();
+        }
+        return super.eGet(featureID, resolve, coreType);
     }
-    super.eUnset(featureID);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case Xpath2Package.ADDITIVE_EXPR__OPERAND:
-        return operand != null && !operand.isEmpty();
-      case Xpath2Package.ADDITIVE_EXPR__OPERATOR:
-        return operator != null && !operator.isEmpty();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case Xpath2Package.ADDITIVE_EXPR__OPERAND:
+                getOperand().clear();
+                getOperand().addAll((Collection<? extends AdditiveExprChild>)newValue);
+                return;
+            case Xpath2Package.ADDITIVE_EXPR__OPERATOR:
+                getOperator().clear();
+                getOperator().addAll((Collection<? extends AdditiveOpKind>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
     }
-    return super.eIsSet(featureID);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case Xpath2Package.ADDITIVE_EXPR__OPERAND:
+                getOperand().clear();
+                return;
+            case Xpath2Package.ADDITIVE_EXPR__OPERATOR:
+                getOperator().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (operator: ");
-    result.append(operator);
-    result.append(')');
-    return result.toString();
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case Xpath2Package.ADDITIVE_EXPR__OPERAND:
+                return operand != null && !operand.isEmpty();
+            case Xpath2Package.ADDITIVE_EXPR__OPERATOR:
+                return operator != null && !operator.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString() {
+        if (eIsProxy()) return super.toString();
+
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (operator: ");
+        result.append(operator);
+        result.append(')');
+        return result.toString();
+    }
 
 } //AdditiveExprImpl

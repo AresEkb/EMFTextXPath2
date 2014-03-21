@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,21 +10,26 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.ui;
 
-public class Xpath2PropertyTester extends org.eclipse.core.expressions.PropertyTester {
+import org.eclipse.core.expressions.PropertyTester;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.ui.part.FileEditorInput;
+
+public class Xpath2PropertyTester extends PropertyTester {
 	
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
-		if (receiver instanceof org.eclipse.core.resources.IResource) {
-			org.eclipse.core.resources.IResource resource = (org.eclipse.core.resources.IResource) receiver;
+		if (receiver instanceof IResource) {
+			IResource resource = (IResource) receiver;
 			return hasMatchingURI(resource);
-		} else if (receiver instanceof org.eclipse.ui.part.FileEditorInput) {
-			org.eclipse.ui.part.FileEditorInput editorInput = (org.eclipse.ui.part.FileEditorInput) receiver;
-			org.eclipse.core.resources.IFile file = editorInput.getFile();
+		} else if (receiver instanceof FileEditorInput) {
+			FileEditorInput editorInput = (FileEditorInput) receiver;
+			IFile file = editorInput.getFile();
 			return hasMatchingURI(file);
 		}
 		return false;
 	}
 	
-	private boolean hasMatchingURI(org.eclipse.core.resources.IResource resource) {
+	private boolean hasMatchingURI(IResource resource) {
 		String path = resource.getLocationURI().getPath();
 		return path.endsWith("." + new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation().getSyntaxName());
 	}

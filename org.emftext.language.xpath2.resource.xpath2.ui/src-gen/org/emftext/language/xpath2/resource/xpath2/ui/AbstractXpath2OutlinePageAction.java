@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,12 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.ui;
 
-public abstract class AbstractXpath2OutlinePageAction extends org.eclipse.jface.action.Action {
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.custom.BusyIndicator;
+import org.eclipse.swt.widgets.Display;
+
+public abstract class AbstractXpath2OutlinePageAction extends Action {
 	
 	private String preferenceKey = this.getClass().getSimpleName() + ".isChecked";
 	
@@ -22,7 +27,7 @@ public abstract class AbstractXpath2OutlinePageAction extends org.eclipse.jface.
 	}
 	
 	public void initialize(String imagePath) {
-		org.eclipse.jface.resource.ImageDescriptor descriptor = org.emftext.language.xpath2.resource.xpath2.ui.Xpath2ImageProvider.INSTANCE.getImageDescriptor(imagePath);
+		ImageDescriptor descriptor = org.emftext.language.xpath2.resource.xpath2.ui.Xpath2ImageProvider.INSTANCE.getImageDescriptor(imagePath);
 		setDisabledImageDescriptor(descriptor);
 		setImageDescriptor(descriptor);
 		setHoverImageDescriptor(descriptor);
@@ -30,7 +35,7 @@ public abstract class AbstractXpath2OutlinePageAction extends org.eclipse.jface.
 		valueChanged(checked, false);
 	}
 	
-	@Override	
+	@Override
 	public void run() {
 		if (keepState()) {
 			valueChanged(isChecked(), true);
@@ -40,7 +45,7 @@ public abstract class AbstractXpath2OutlinePageAction extends org.eclipse.jface.
 	}
 	
 	public void runBusy(final boolean on) {
-		org.eclipse.swt.custom.BusyIndicator.showWhile(org.eclipse.swt.widgets.Display.getCurrent(), new Runnable() {
+		BusyIndicator.showWhile(Display.getCurrent(), new Runnable() {
 			public void run() {
 				runInternal(on);
 			}

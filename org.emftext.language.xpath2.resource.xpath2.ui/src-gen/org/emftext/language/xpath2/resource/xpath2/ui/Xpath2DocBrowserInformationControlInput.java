@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,9 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.ui;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+
 /**
  * Provides input for the <code>TextHover</code>. The most is copied from
  * <code>org.eclipse.jdt.internal.ui.text.java.hover.JavadocBrowserInformationContr
@@ -19,10 +22,10 @@ public class Xpath2DocBrowserInformationControlInput {
 	
 	private final Xpath2DocBrowserInformationControlInput fPrevious;
 	private Xpath2DocBrowserInformationControlInput fNext;
-	private final org.eclipse.emf.ecore.EObject element;
+	private final EObject element;
 	private final String htmlContent;
 	private final String tokenText;
-	private final org.eclipse.emf.ecore.resource.Resource resource;
+	private final Resource resource;
 	
 	/**
 	 * Creates a new browser information control input.
@@ -31,7 +34,7 @@ public class Xpath2DocBrowserInformationControlInput {
 	 * @param element the element, or <code>null</code> if none available
 	 * @param htmlContent HTML contents, must not be null
 	 */
-	public Xpath2DocBrowserInformationControlInput(Xpath2DocBrowserInformationControlInput previous, org.eclipse.emf.ecore.EObject element, org.eclipse.emf.ecore.resource.Resource resource, String htmlContent, String tokenText) {
+	public Xpath2DocBrowserInformationControlInput(Xpath2DocBrowserInformationControlInput previous, EObject element, Resource resource, String htmlContent, String tokenText) {
 		fPrevious= previous;
 		if (previous != null) {
 			previous.fNext= this;
@@ -65,7 +68,7 @@ public class Xpath2DocBrowserInformationControlInput {
 	 * 
 	 * @return the resource
 	 */
-	public org.eclipse.emf.ecore.resource.Resource getResource() {
+	public Resource getResource() {
 		return resource;
 	}
 	

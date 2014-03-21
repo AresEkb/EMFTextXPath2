@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,8 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2.ui;
+
+import org.eclipse.core.resources.IResource;
 
 public class Xpath2UIMetaInformation extends org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation {
 	
@@ -30,15 +32,20 @@ public class Xpath2UIMetaInformation extends org.emftext.language.xpath2.resourc
 	 * ce, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2ColorManager) instead.
 	 */
 	public org.emftext.language.xpath2.resource.xpath2.ui.Xpath2TokenScanner createTokenScanner(org.emftext.language.xpath2.resource.xpath2.ui.Xpath2ColorManager colorManager) {
-		return createTokenScanner(null, colorManager);
+		return (org.emftext.language.xpath2.resource.xpath2.ui.Xpath2TokenScanner) createTokenScanner(null, colorManager);
 	}
 	
-	public org.emftext.language.xpath2.resource.xpath2.ui.Xpath2TokenScanner createTokenScanner(org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2ColorManager colorManager) {
+	public org.emftext.language.xpath2.resource.xpath2.ui.IXpath2TokenScanner createTokenScanner(org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2ColorManager colorManager) {
 		return new org.emftext.language.xpath2.resource.xpath2.ui.Xpath2TokenScanner(resource, colorManager);
 	}
 	
 	public org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CodeCompletionHelper createCodeCompletionHelper() {
 		return new org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CodeCompletionHelper();
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public Object createResourceAdapter(Object adaptableObject, Class adapterType, IResource resource) {
+		return new org.emftext.language.xpath2.resource.xpath2.ui.debug.Xpath2LineBreakpointAdapter();
 	}
 	
 }

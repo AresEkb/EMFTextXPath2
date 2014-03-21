@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,8 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2;
+
+import org.eclipse.emf.common.util.URI;
 
 /**
  * Implementors of this interface map identifiers to URIs. This is sometimes
@@ -24,6 +26,6 @@ public interface IXpath2URIMapping<ReferenceType> extends org.emftext.language.x
 	 * such that it can be resolved by the default resolution mechanism that will be
 	 * called on this URI (see <code>Resource.getEObject()</code>).
 	 */
-	public org.eclipse.emf.common.util.URI getTargetIdentifier();
+	public URI getTargetIdentifier();
 	
 }

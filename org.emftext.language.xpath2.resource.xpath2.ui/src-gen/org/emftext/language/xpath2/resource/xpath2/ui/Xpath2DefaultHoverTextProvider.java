@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,22 +10,27 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.ui;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
 public class Xpath2DefaultHoverTextProvider implements org.emftext.language.xpath2.resource.xpath2.IXpath2HoverTextProvider {
 	
-	public String getHoverText(org.eclipse.emf.ecore.EObject container, org.eclipse.emf.ecore.EObject referencedObject) {
+	public String getHoverText(EObject container, EObject referencedObject) {
 		return getHoverText(referencedObject);
 	}
 	
-	public String getHoverText(org.eclipse.emf.ecore.EObject object) {
+	public String getHoverText(EObject object) {
 		if (object == null) {
 			return null;
 		}
-		org.eclipse.emf.ecore.EClass eClass = object.eClass();
+		EClass eClass = object.eClass();
 		String label = "<strong>" + eClass.getName() + "</strong>";
-		String documentation = org.eclipse.emf.ecore.util.EcoreUtil.getDocumentation(eClass);
+		String documentation = EcoreUtil.getDocumentation(eClass);
 		String documentationHTML = documentation == null ? "" : " (" + documentation +")";
 		label += documentationHTML;
-		for (org.eclipse.emf.ecore.EAttribute attribute : eClass.getEAllAttributes()) {
+		for (EAttribute attribute : eClass.getEAllAttributes()) {
 			Object value = null;
 			try {
 				value = object.eGet(attribute);

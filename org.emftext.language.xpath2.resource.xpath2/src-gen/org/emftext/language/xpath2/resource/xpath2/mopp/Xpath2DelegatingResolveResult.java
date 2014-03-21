@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,9 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
+
+import java.util.Collection;
+import org.eclipse.emf.common.util.URI;
 
 /**
  * An implementation of the ResolveResult interface that delegates all method
@@ -30,7 +33,7 @@ public class Xpath2DelegatingResolveResult<ReferenceType> implements org.emftext
 		return delegate.getErrorMessage();
 	}
 	
-	public java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<ReferenceType>> getMappings() {
+	public Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceMapping<ReferenceType>> getMappings() {
 		return delegate.getMappings();
 	}
 	
@@ -54,7 +57,7 @@ public class Xpath2DelegatingResolveResult<ReferenceType> implements org.emftext
 		delegate.addMapping(identifier, target);
 	}
 	
-	public void addMapping(String identifier, org.eclipse.emf.common.util.URI uri) {
+	public void addMapping(String identifier, URI uri) {
 		delegate.addMapping(identifier, uri);
 	}
 	
@@ -62,11 +65,11 @@ public class Xpath2DelegatingResolveResult<ReferenceType> implements org.emftext
 		delegate.addMapping(identifier, target, warning);
 	}
 	
-	public void addMapping(String identifier, org.eclipse.emf.common.util.URI uri, String warning) {
+	public void addMapping(String identifier, URI uri, String warning) {
 		delegate.addMapping(identifier, uri, warning);
 	}
 	
-	public java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> getQuickFixes() {
+	public Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> getQuickFixes() {
 		return delegate.getQuickFixes();
 	}
 	

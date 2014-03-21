@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -37,237 +37,216 @@ import org.emftext.language.xpath2.Xpath2Package;
  *
  * @generated
  */
-public class SingleTypeImpl extends EObjectImpl implements SingleType
-{
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected AtomicType type;
+public class SingleTypeImpl extends EObjectImpl implements SingleType {
+    /**
+     * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getType()
+     * @generated
+     * @ordered
+     */
+    protected AtomicType type;
 
-  /**
-   * The default value of the '{@link #isOptional() <em>Optional</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isOptional()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean OPTIONAL_EDEFAULT = false;
+    /**
+     * The default value of the '{@link #isOptional() <em>Optional</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isOptional()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean OPTIONAL_EDEFAULT = false;
 
-  /**
-   * The cached value of the '{@link #isOptional() <em>Optional</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isOptional()
-   * @generated
-   * @ordered
-   */
-  protected boolean optional = OPTIONAL_EDEFAULT;
+    /**
+     * The cached value of the '{@link #isOptional() <em>Optional</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isOptional()
+     * @generated
+     * @ordered
+     */
+    protected boolean optional = OPTIONAL_EDEFAULT;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected SingleTypeImpl()
-  {
-    super();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return Xpath2Package.Literals.SINGLE_TYPE;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AtomicType getType()
-  {
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetType(AtomicType newType, NotificationChain msgs)
-  {
-    AtomicType oldType = type;
-    type = newType;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.SINGLE_TYPE__TYPE, oldType, newType);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected SingleTypeImpl() {
+        super();
     }
-    return msgs;
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setType(AtomicType newType)
-  {
-    if (newType != type)
-    {
-      NotificationChain msgs = null;
-      if (type != null)
-        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.SINGLE_TYPE__TYPE, null, msgs);
-      if (newType != null)
-        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.SINGLE_TYPE__TYPE, null, msgs);
-      msgs = basicSetType(newType, msgs);
-      if (msgs != null) msgs.dispatch();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return Xpath2Package.Literals.SINGLE_TYPE;
     }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.SINGLE_TYPE__TYPE, newType, newType));
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean isOptional()
-  {
-    return optional;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setOptional(boolean newOptional)
-  {
-    boolean oldOptional = optional;
-    optional = newOptional;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.SINGLE_TYPE__OPTIONAL, oldOptional, optional));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case Xpath2Package.SINGLE_TYPE__TYPE:
-        return basicSetType(null, msgs);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public AtomicType getType() {
+        return type;
     }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case Xpath2Package.SINGLE_TYPE__TYPE:
-        return getType();
-      case Xpath2Package.SINGLE_TYPE__OPTIONAL:
-        return isOptional();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetType(AtomicType newType, NotificationChain msgs) {
+        AtomicType oldType = type;
+        type = newType;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.SINGLE_TYPE__TYPE, oldType, newType);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
-    return super.eGet(featureID, resolve, coreType);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case Xpath2Package.SINGLE_TYPE__TYPE:
-        setType((AtomicType)newValue);
-        return;
-      case Xpath2Package.SINGLE_TYPE__OPTIONAL:
-        setOptional((Boolean)newValue);
-        return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setType(AtomicType newType) {
+        if (newType != type) {
+            NotificationChain msgs = null;
+            if (type != null)
+                msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.SINGLE_TYPE__TYPE, null, msgs);
+            if (newType != null)
+                msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.SINGLE_TYPE__TYPE, null, msgs);
+            msgs = basicSetType(newType, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.SINGLE_TYPE__TYPE, newType, newType));
     }
-    super.eSet(featureID, newValue);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case Xpath2Package.SINGLE_TYPE__TYPE:
-        setType((AtomicType)null);
-        return;
-      case Xpath2Package.SINGLE_TYPE__OPTIONAL:
-        setOptional(OPTIONAL_EDEFAULT);
-        return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isOptional() {
+        return optional;
     }
-    super.eUnset(featureID);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case Xpath2Package.SINGLE_TYPE__TYPE:
-        return type != null;
-      case Xpath2Package.SINGLE_TYPE__OPTIONAL:
-        return optional != OPTIONAL_EDEFAULT;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setOptional(boolean newOptional) {
+        boolean oldOptional = optional;
+        optional = newOptional;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.SINGLE_TYPE__OPTIONAL, oldOptional, optional));
     }
-    return super.eIsSet(featureID);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case Xpath2Package.SINGLE_TYPE__TYPE:
+                return basicSetType(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (optional: ");
-    result.append(optional);
-    result.append(')');
-    return result.toString();
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case Xpath2Package.SINGLE_TYPE__TYPE:
+                return getType();
+            case Xpath2Package.SINGLE_TYPE__OPTIONAL:
+                return isOptional();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case Xpath2Package.SINGLE_TYPE__TYPE:
+                setType((AtomicType)newValue);
+                return;
+            case Xpath2Package.SINGLE_TYPE__OPTIONAL:
+                setOptional((Boolean)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case Xpath2Package.SINGLE_TYPE__TYPE:
+                setType((AtomicType)null);
+                return;
+            case Xpath2Package.SINGLE_TYPE__OPTIONAL:
+                setOptional(OPTIONAL_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case Xpath2Package.SINGLE_TYPE__TYPE:
+                return type != null;
+            case Xpath2Package.SINGLE_TYPE__OPTIONAL:
+                return optional != OPTIONAL_EDEFAULT;
+        }
+        return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString() {
+        if (eIsProxy()) return super.toString();
+
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (optional: ");
+        result.append(optional);
+        result.append(')');
+        return result.toString();
+    }
 
 } //SingleTypeImpl

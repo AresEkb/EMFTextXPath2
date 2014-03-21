@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,12 +10,22 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.ui;
 
-public class Xpath2OutlinePageTreeViewerComparator extends org.eclipse.jface.viewers.ViewerComparator {
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerComparator;
+
+public class Xpath2OutlinePageTreeViewerComparator extends ViewerComparator {
 	
-	private static java.util.Map<org.eclipse.emf.ecore.EPackage, Integer> ePackageMap = new java.util.LinkedHashMap<org.eclipse.emf.ecore.EPackage, Integer>();
+	private static Map<EPackage, Integer> ePackageMap = new LinkedHashMap<EPackage, Integer>();
 	private static int nextPackageID;
 	
-	private java.util.Comparator<Object> comparator = new java.util.Comparator<Object>() {
+	private Comparator<Object> comparator = new Comparator<Object>() {
 		
 		public int compare(Object o1, Object o2) {
 			if (!sortLexically) {
@@ -40,15 +50,15 @@ public class Xpath2OutlinePageTreeViewerComparator extends org.eclipse.jface.vie
 		this.sortLexically = on;
 	}
 	
-	@Override	
+	@Override
 	public int category(Object element) {
 		if (!groupTypes) {
 			return 0;
 		}
-		if (element instanceof org.eclipse.emf.ecore.EObject) {
-			org.eclipse.emf.ecore.EObject eObject = (org.eclipse.emf.ecore.EObject) element;
-			org.eclipse.emf.ecore.EClass eClass = eObject.eClass();
-			org.eclipse.emf.ecore.EPackage ePackage = eClass.getEPackage();
+		if (element instanceof EObject) {
+			EObject eObject = (EObject) element;
+			EClass eClass = eObject.eClass();
+			EPackage ePackage = eClass.getEPackage();
 			int packageID = getEPackageID(ePackage);
 			int classifierID = eClass.getClassifierID();
 			return packageID + classifierID;
@@ -57,7 +67,7 @@ public class Xpath2OutlinePageTreeViewerComparator extends org.eclipse.jface.vie
 		}
 	}
 	
-	private int getEPackageID(org.eclipse.emf.ecore.EPackage ePackage) {
+	private int getEPackageID(EPackage ePackage) {
 		Integer packageID = ePackageMap.get(ePackage);
 		if (packageID == null) {
 			packageID = nextPackageID;
@@ -68,11 +78,11 @@ public class Xpath2OutlinePageTreeViewerComparator extends org.eclipse.jface.vie
 		return packageID;
 	}
 	
-	public java.util.Comparator<?> getComparator() {
+	public Comparator<?> getComparator() {
 		return this.comparator;
 	}
 	
-	public int compare(org.eclipse.jface.viewers.Viewer viewer, Object o1, Object o2) {
+	public int compare(Viewer viewer, Object o1, Object o2) {
 		// first check categories
 		int cat1 = category(o1);
 		int cat2 = category(o2);
@@ -80,12 +90,12 @@ public class Xpath2OutlinePageTreeViewerComparator extends org.eclipse.jface.vie
 			return cat1 - cat2;
 		}
 		// then try to compare the names
-		if (sortLexically && o1 instanceof org.eclipse.emf.ecore.EObject && o2 instanceof org.eclipse.emf.ecore.EObject) {
-			org.eclipse.emf.ecore.EObject e1 = (org.eclipse.emf.ecore.EObject) o1;
-			org.eclipse.emf.ecore.EObject e2 = (org.eclipse.emf.ecore.EObject) o2;
+		if (sortLexically && o1 instanceof EObject && o2 instanceof EObject) {
+			EObject e1 = (EObject) o1;
+			EObject e2 = (EObject) o2;
 			org.emftext.language.xpath2.resource.xpath2.IXpath2NameProvider nameProvider = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation().createNameProvider();
-			java.util.List<String> names1 = nameProvider.getNames(e1);
-			java.util.List<String> names2 = nameProvider.getNames(e2);
+			List<String> names1 = nameProvider.getNames(e1);
+			List<String> names2 = nameProvider.getNames(e2);
 			if (names1 != null && !names1.isEmpty() && names2 != null && !names2.isEmpty()) {
 				String name1 = names1.get(0);
 				String name2 = names2.get(0);

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,9 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2.util;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * A UnicodeConverter can read an input stream and convert unicode escape
@@ -26,14 +29,14 @@ public class Xpath2UnicodeConverter extends org.emftext.language.xpath2.resource
 	/**
 	 * The original input stream.
 	 */
-	private java.io.InputStream inputStream;
+	private InputStream inputStream;
 	
 	/**
 	 * Creates a new UnicodeConverter that reads from the given stream.
 	 * 
 	 * @param inputStream the original stream to read from
 	 */
-	public Xpath2UnicodeConverter(java.io.InputStream inputStream) {
+	public Xpath2UnicodeConverter(InputStream inputStream) {
 		this.inputStream = inputStream;
 	}
 	
@@ -41,8 +44,9 @@ public class Xpath2UnicodeConverter extends org.emftext.language.xpath2.resource
 	 * Reads one character from the stream. Escaped unicode characters are converted
 	 * to UTF-8 byte sequences (i.e., up to four bytes).
 	 */
-	@Override	
-	public int read() throws java.io.IOException {
+	@Override
+	
+	public int read() throws IOException {
 		if (!stackIsEmpty()) {
 			int result = pop();
 			return result;

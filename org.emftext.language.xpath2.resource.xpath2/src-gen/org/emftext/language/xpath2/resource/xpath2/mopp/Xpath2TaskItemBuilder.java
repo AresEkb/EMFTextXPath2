@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,16 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
+import java.io.IOException;
+import java.io.InputStream;
+import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 /**
  * The Xpath2TaskItemBuilder is used to find task items in text documents. The
  * current implementation uses the generated lexer and the TaskItemDetector to
@@ -18,17 +28,26 @@ package org.emftext.language.xpath2.resource.xpath2.mopp;
  */
 public class Xpath2TaskItemBuilder {
 	
-	public void build(org.eclipse.core.resources.IFile resource, org.eclipse.emf.ecore.resource.ResourceSet resourceSet, org.eclipse.core.runtime.IProgressMonitor monitor) {
-		monitor.setTaskName("Searching for task items");
-		new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MarkerHelper().removeAllMarkers(resource, org.eclipse.core.resources.IMarker.TASK);
+	public void build(IFile resource, ResourceSet resourceSet, IProgressMonitor monitor) {
+		// We use one tick from the parent monitor because the BuilderAdapter reserves one
+		// tick for finding task items.
+		SubProgressMonitor subMonitor = new SubProgressMonitor(monitor, 1);
+		// We define the overall work to be 3 ticks (removing markers, scanning the
+		// resource, creating new markers).
+		subMonitor.beginTask("Searching for task items in " + new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation().getSyntaxName() + " files", 3);
+		new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MarkerHelper().removeAllMarkers(resource, IMarker.TASK);
+		subMonitor.worked(1);
 		if (isInBinFolder(resource)) {
+			subMonitor.done();
 			return;
 		}
 		java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItem> taskItems = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItem>();
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItemDetector taskItemDetector = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItemDetector();
+		InputStream inputStream = null;
 		try {
-			java.io.InputStream inputStream = resource.getContents();
-			String content = org.emftext.language.xpath2.resource.xpath2.util.Xpath2StreamUtil.getContent(inputStream);
+			inputStream = resource.getContents();
+			String charset = resource.getCharset();
+			String content = org.emftext.language.xpath2.resource.xpath2.util.Xpath2StreamUtil.getContent(inputStream, charset);
 			org.emftext.language.xpath2.resource.xpath2.IXpath2TextScanner lexer = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation().createLexer();
 			lexer.setText(content);
 			
@@ -38,30 +57,41 @@ public class Xpath2TaskItemBuilder {
 				taskItems.addAll(taskItemDetector.findTaskItems(text, nextToken.getLine(), nextToken.getOffset()));
 				nextToken = lexer.getNextToken();
 			}
-		} catch (java.io.IOException e) {
+		} catch (IOException e) {
 			org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Plugin.logError("Exception while searching for task items", e);
-		} catch (org.eclipse.core.runtime.CoreException e) {
+		} catch (CoreException e) {
 			org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Plugin.logError("Exception while searching for task items", e);
 		}
 		
+		try {
+			if (inputStream != null) {
+				inputStream.close();
+			}
+		} catch (IOException e) {
+			// Ignore this
+		}
+		subMonitor.worked(1);
+		
 		for (org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItem taskItem : taskItems) {
 			java.util.Map<String, Object> markerAttributes = new java.util.LinkedHashMap<String, Object>();
-			markerAttributes.put(org.eclipse.core.resources.IMarker.USER_EDITABLE, false);
-			markerAttributes.put(org.eclipse.core.resources.IMarker.DONE, false);
-			markerAttributes.put(org.eclipse.core.resources.IMarker.LINE_NUMBER, taskItem.getLine());
-			markerAttributes.put(org.eclipse.core.resources.IMarker.CHAR_START, taskItem.getCharStart());
-			markerAttributes.put(org.eclipse.core.resources.IMarker.CHAR_END, taskItem.getCharEnd());
-			markerAttributes.put(org.eclipse.core.resources.IMarker.MESSAGE, taskItem.getMessage());
-			new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MarkerHelper().createMarker(resource, org.eclipse.core.resources.IMarker.TASK, markerAttributes);
+			markerAttributes.put(IMarker.USER_EDITABLE, false);
+			markerAttributes.put(IMarker.DONE, false);
+			markerAttributes.put(IMarker.LINE_NUMBER, taskItem.getLine());
+			markerAttributes.put(IMarker.CHAR_START, taskItem.getCharStart());
+			markerAttributes.put(IMarker.CHAR_END, taskItem.getCharEnd());
+			markerAttributes.put(IMarker.MESSAGE, taskItem.getMessage());
+			new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MarkerHelper().createMarker(resource, IMarker.TASK, markerAttributes);
 		}
+		subMonitor.worked(1);
+		subMonitor.done();
 	}
 	
 	public String getBuilderMarkerId() {
-		return org.eclipse.core.resources.IMarker.TASK;
+		return IMarker.TASK;
 	}
 	
-	public boolean isInBinFolder(org.eclipse.core.resources.IFile resource) {
-		org.eclipse.core.resources.IContainer parent = resource.getParent();
+	public boolean isInBinFolder(IFile resource) {
+		IContainer parent = resource.getParent();
 		while (parent != null) {
 			if ("bin".equals(parent.getName())) {
 				return true;

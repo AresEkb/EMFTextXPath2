@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,11 @@
  *    Denis Nikiforov - initial API and implementation
  */
 package org.emftext.language.xpath2.resource.xpath2.util;
+
+import java.io.File;
+import java.util.Map;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.common.util.URI;
 
 /**
  * Class Xpath2TextResourceUtil can be used to perform common tasks on text
@@ -23,8 +28,8 @@ public class Xpath2TextResourceUtil {
 	 * org.emftext.language.xpath2.resource.xpath2.util.Xpath2ResourceUtil.getResource(
 	 * ) instead.
 	 */
-	@Deprecated	
-	public static org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource getResource(org.eclipse.core.resources.IFile file) {
+	@Deprecated
+	public static org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource getResource(IFile file) {
 		return new org.emftext.language.xpath2.resource.xpath2.util.Xpath2EclipseProxy().getResource(file);
 	}
 	
@@ -33,8 +38,8 @@ public class Xpath2TextResourceUtil {
 	 * org.emftext.language.xpath2.resource.xpath2.util.Xpath2ResourceUtil.getResource(
 	 * ) instead.
 	 */
-	@Deprecated	
-	public static org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource getResource(java.io.File file, java.util.Map<?,?> options) {
+	@Deprecated
+	public static org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource getResource(File file, Map<?,?> options) {
 		return org.emftext.language.xpath2.resource.xpath2.util.Xpath2ResourceUtil.getResource(file, options);
 	}
 	
@@ -43,8 +48,8 @@ public class Xpath2TextResourceUtil {
 	 * org.emftext.language.xpath2.resource.xpath2.util.Xpath2ResourceUtil.getResource(
 	 * ) instead.
 	 */
-	@Deprecated	
-	public static org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource getResource(org.eclipse.emf.common.util.URI uri) {
+	@Deprecated
+	public static org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource getResource(URI uri) {
 		return org.emftext.language.xpath2.resource.xpath2.util.Xpath2ResourceUtil.getResource(uri);
 	}
 	
@@ -53,8 +58,8 @@ public class Xpath2TextResourceUtil {
 	 * org.emftext.language.xpath2.resource.xpath2.util.Xpath2ResourceUtil.getResource(
 	 * ) instead.
 	 */
-	@Deprecated	
-	public static org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource getResource(org.eclipse.emf.common.util.URI uri, java.util.Map<?,?> options) {
+	@Deprecated
+	public static org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource getResource(URI uri, Map<?,?> options) {
 		return org.emftext.language.xpath2.resource.xpath2.util.Xpath2ResourceUtil.getResource(uri, options);
 	}
 	

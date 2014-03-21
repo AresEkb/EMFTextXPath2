@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,23 +10,23 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.ui;
 
-public class Xpath2EObjectSelection implements org.eclipse.jface.viewers.IStructuredSelection {
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.IStructuredSelection;
+
+public class Xpath2EObjectSelection implements IStructuredSelection {
 	
-	private final org.eclipse.emf.ecore.EObject selectedObject;
-	private final boolean highlighting;
+	private final EObject selectedObject;
 	
-	public Xpath2EObjectSelection(org.eclipse.emf.ecore.EObject selectedObject, boolean highlighting) {
+	public Xpath2EObjectSelection(EObject selectedObject) {
 		super();
 		this.selectedObject = selectedObject;
-		this.highlighting = highlighting;
 	}
 	
-	public org.eclipse.emf.ecore.EObject getSelectedObject() {
+	public EObject getSelectedObject() {
 		return selectedObject;
-	}
-	
-	public boolean doHighlighting() {
-		return highlighting;
 	}
 	
 	public boolean isEmpty() {
@@ -37,8 +37,8 @@ public class Xpath2EObjectSelection implements org.eclipse.jface.viewers.IStruct
 		return selectedObject;
 	}
 	
-	public java.util.Iterator<?> iterator() {
-		return new java.util.Iterator<org.eclipse.emf.ecore.EObject>() {
+	public Iterator<?> iterator() {
+		return new Iterator<EObject>() {
 			
 			private boolean hasNext = true;
 			
@@ -46,7 +46,7 @@ public class Xpath2EObjectSelection implements org.eclipse.jface.viewers.IStruct
 				return hasNext;
 			}
 			
-			public org.eclipse.emf.ecore.EObject next(){
+			public EObject next(){
 				hasNext = false;
 				return selectedObject;
 			}
@@ -64,10 +64,8 @@ public class Xpath2EObjectSelection implements org.eclipse.jface.viewers.IStruct
 		return new Object[] {selectedObject};
 	}
 	
-	public java.util.List<?> toList() {
-		java.util.ArrayList<org.eclipse.emf.ecore.EObject> list = new java.util.ArrayList<org.eclipse.emf.ecore.EObject>();
-		list.add(selectedObject);
-		return list;
+	public List<?> toList() {
+		return Collections.singletonList(selectedObject);
 	}
 	
 }

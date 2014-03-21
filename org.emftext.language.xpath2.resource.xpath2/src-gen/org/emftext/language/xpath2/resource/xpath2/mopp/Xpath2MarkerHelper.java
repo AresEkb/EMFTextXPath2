@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,29 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.ISchedulingRule;
+import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.impl.BasicEObjectImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreValidator;
+
 /**
  * Helper class to add markers to text files based on EMF's
- * <code>org.eclipse.emf.ecore.resource.Resource.Diagnostic</code>. If a resource
- * contains
+ * <code>ResourceDiagnostic</code>. If a resource contains
  * <code>org.emftext.language.xpath2.resource.xpath2.IXpath2TextDiagnostic</code>s
  * it uses the more precise information of this extended diagnostic type.
  */
@@ -39,20 +58,20 @@ public class Xpath2MarkerHelper {
 	 */
 	private final static MarkerCommandQueue COMMAND_QUEUE = new MarkerCommandQueue();
 	
-	public static class MutexRule implements org.eclipse.core.runtime.jobs.ISchedulingRule {
+	public static class MutexRule implements ISchedulingRule {
 		
-		public boolean isConflicting(org.eclipse.core.runtime.jobs.ISchedulingRule rule) {
+		public boolean isConflicting(ISchedulingRule rule) {
 			return rule == this;
 		}
 		
-		public boolean contains(org.eclipse.core.runtime.jobs.ISchedulingRule rule) {
+		public boolean contains(ISchedulingRule rule) {
 			return rule == this;
 		}
 	}
 	
 	private static class MarkerCommandQueue {
 		
-		private java.util.List<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<Object>> commands = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<Object>>();
+		private List<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<Object>> commands = new ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<Object>>();
 		
 		private MutexRule schedulingRule = new MutexRule();
 		
@@ -67,11 +86,11 @@ public class Xpath2MarkerHelper {
 		}
 		
 		private void scheduleRunCommandsJob() {
-			org.eclipse.core.runtime.jobs.Job job = new org.eclipse.core.runtime.jobs.Job("updating markers") {
-				@Override				
-				protected org.eclipse.core.runtime.IStatus run(org.eclipse.core.runtime.IProgressMonitor monitor) {
+			Job job = new Job("updating markers") {
+				@Override
+				protected IStatus run(IProgressMonitor monitor) {
 					runCommands();
-					return org.eclipse.core.runtime.Status.OK_STATUS;
+					return Status.OK_STATUS;
 				}
 			};
 			job.setRule(schedulingRule);
@@ -79,7 +98,7 @@ public class Xpath2MarkerHelper {
 		}
 		
 		public void runCommands() {
-			java.util.List<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<Object>> commandsToProcess = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<Object>>();
+			List<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<Object>> commandsToProcess = new ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2Command<Object>>();
 			synchronized(commands) {
 				commandsToProcess.addAll(commands);
 				commands.clear();
@@ -100,15 +119,15 @@ public class Xpath2MarkerHelper {
 	 * @param resource The resource that is the file to mark.
 	 * @param diagnostic The diagnostic with information for the marker.
 	 */
-	public void mark(org.eclipse.emf.ecore.resource.Resource resource, org.emftext.language.xpath2.resource.xpath2.IXpath2TextDiagnostic diagnostic) {
-		final org.eclipse.core.resources.IFile file = getFile(resource);
+	public void mark(Resource resource, org.emftext.language.xpath2.resource.xpath2.IXpath2TextDiagnostic diagnostic) {
+		final IFile file = getFile(resource);
 		if (file == null) {
 			return;
 		}
 		createMarkerFromDiagnostic(file, diagnostic);
 	}
 	
-	protected void createMarkerFromDiagnostic(final org.eclipse.core.resources.IFile file, final org.emftext.language.xpath2.resource.xpath2.IXpath2TextDiagnostic diagnostic) {
+	protected void createMarkerFromDiagnostic(final IFile file, final org.emftext.language.xpath2.resource.xpath2.IXpath2TextDiagnostic diagnostic) {
 		final org.emftext.language.xpath2.resource.xpath2.IXpath2Problem problem = diagnostic.getProblem();
 		org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemType problemType = problem.getType();
 		final String markerID = getMarkerID(problemType);
@@ -116,30 +135,30 @@ public class Xpath2MarkerHelper {
 			public boolean execute(Object context) {
 				try {
 					// if there are too many markers, we do not add new ones
-					if (file.findMarkers(markerID, false, org.eclipse.core.resources.IResource.DEPTH_ZERO).length >= MAXIMUM_MARKERS) {
+					if (file.findMarkers(markerID, false, IResource.DEPTH_ZERO).length >= MAXIMUM_MARKERS) {
 						return true;
 					}
 					
-					org.eclipse.core.resources.IMarker marker = file.createMarker(markerID);
+					IMarker marker = file.createMarker(markerID);
 					if (problem.getSeverity() == org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemSeverity.ERROR) {
-						marker.setAttribute(org.eclipse.core.resources.IMarker.SEVERITY, org.eclipse.core.resources.IMarker.SEVERITY_ERROR);
+						marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
 					} else {
-						marker.setAttribute(org.eclipse.core.resources.IMarker.SEVERITY, org.eclipse.core.resources.IMarker.SEVERITY_WARNING);
+						marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_WARNING);
 					}
-					marker.setAttribute(org.eclipse.core.resources.IMarker.MESSAGE, diagnostic.getMessage());
+					marker.setAttribute(IMarker.MESSAGE, diagnostic.getMessage());
 					org.emftext.language.xpath2.resource.xpath2.IXpath2TextDiagnostic textDiagnostic = (org.emftext.language.xpath2.resource.xpath2.IXpath2TextDiagnostic) diagnostic;
-					marker.setAttribute(org.eclipse.core.resources.IMarker.LINE_NUMBER, textDiagnostic.getLine());
-					marker.setAttribute(org.eclipse.core.resources.IMarker.CHAR_START, textDiagnostic.getCharStart());
-					marker.setAttribute(org.eclipse.core.resources.IMarker.CHAR_END, textDiagnostic.getCharEnd() + 1);
+					marker.setAttribute(IMarker.LINE_NUMBER, textDiagnostic.getLine());
+					marker.setAttribute(IMarker.CHAR_START, textDiagnostic.getCharStart());
+					marker.setAttribute(IMarker.CHAR_END, textDiagnostic.getCharEnd() + 1);
 					if (diagnostic instanceof org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource.ElementBasedTextDiagnostic) {
-						org.eclipse.emf.ecore.EObject element = ((org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource.ElementBasedTextDiagnostic) diagnostic).getElement();
+						EObject element = ((org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Resource.ElementBasedTextDiagnostic) diagnostic).getElement();
 						String elementURI = getObjectURI(element);
 						if (elementURI != null) {
-							marker.setAttribute(org.eclipse.emf.ecore.util.EcoreValidator.URI_ATTRIBUTE, elementURI);
+							marker.setAttribute(EcoreValidator.URI_ATTRIBUTE, elementURI);
 						}
 					}
-					java.util.Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> quickFixes = textDiagnostic.getProblem().getQuickFixes();
-					java.util.Collection<Object> sourceIDs = new java.util.ArrayList<Object>();
+					Collection<org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix> quickFixes = textDiagnostic.getProblem().getQuickFixes();
+					Collection<Object> sourceIDs = new ArrayList<Object>();
 					if (quickFixes != null) {
 						for (org.emftext.language.xpath2.resource.xpath2.IXpath2QuickFix quickFix : quickFixes) {
 							if (quickFix != null) {
@@ -148,9 +167,9 @@ public class Xpath2MarkerHelper {
 						}
 					}
 					if (!sourceIDs.isEmpty()) {
-						marker.setAttribute(org.eclipse.core.resources.IMarker.SOURCE_ID, org.emftext.language.xpath2.resource.xpath2.util.Xpath2StringUtil.explode(sourceIDs, "|"));
+						marker.setAttribute(IMarker.SOURCE_ID, org.emftext.language.xpath2.resource.xpath2.util.Xpath2StringUtil.explode(sourceIDs, "|"));
 					}
-				} catch (org.eclipse.core.runtime.CoreException ce) {
+				} catch (CoreException ce) {
 					handleException(ce);
 				}
 				return true;
@@ -166,7 +185,7 @@ public class Xpath2MarkerHelper {
 	 * 
 	 * @param resource The resource where to delete markers from
 	 */
-	public void unmark(org.eclipse.emf.ecore.resource.Resource resource) {
+	public void unmark(Resource resource) {
 		for (org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemType nextType : org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemType.values()) {
 			unmark(resource, nextType);
 		}
@@ -181,8 +200,8 @@ public class Xpath2MarkerHelper {
 	 * @param resource The resource where to delete markers from
 	 * @param problemType The type of problem to remove
 	 */
-	public void unmark(org.eclipse.emf.ecore.resource.Resource resource, org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemType problemType) {
-		final org.eclipse.core.resources.IFile file = getFile(resource);
+	public void unmark(Resource resource, org.emftext.language.xpath2.resource.xpath2.Xpath2EProblemType problemType) {
+		final IFile file = getFile(resource);
 		if (file == null) {
 			return;
 		}
@@ -190,8 +209,8 @@ public class Xpath2MarkerHelper {
 		COMMAND_QUEUE.addCommand(new org.emftext.language.xpath2.resource.xpath2.IXpath2Command<Object>() {
 			public boolean execute(Object context) {
 				try {
-					file.deleteMarkers(markerType, false, org.eclipse.core.resources.IResource.DEPTH_ZERO);
-				} catch (org.eclipse.core.runtime.CoreException ce) {
+					file.deleteMarkers(markerType, false, IResource.DEPTH_ZERO);
+				} catch (CoreException ce) {
 					handleException(ce);
 				}
 				return true;
@@ -208,8 +227,8 @@ public class Xpath2MarkerHelper {
 	 * @param resource The resource where to delete markers from
 	 * @param causingObject The cause of the problems to remove
 	 */
-	public void unmark(org.eclipse.emf.ecore.resource.Resource resource, final org.eclipse.emf.ecore.EObject causingObject) {
-		final org.eclipse.core.resources.IFile file = getFile(resource);
+	public void unmark(Resource resource, final EObject causingObject) {
+		final IFile file = getFile(resource);
 		if (file == null) {
 			return;
 		}
@@ -221,13 +240,13 @@ public class Xpath2MarkerHelper {
 		COMMAND_QUEUE.addCommand(new org.emftext.language.xpath2.resource.xpath2.IXpath2Command<Object>() {
 			public boolean execute(Object context) {
 				try {
-					org.eclipse.core.resources.IMarker[] markers = file.findMarkers(markerID, true, org.eclipse.core.resources.IResource.DEPTH_ZERO);
-					for (org.eclipse.core.resources.IMarker marker : markers) {
-						if (causingObjectURI.equals(marker.getAttribute(org.eclipse.emf.ecore.util.EcoreValidator.URI_ATTRIBUTE))) {
+					IMarker[] markers = file.findMarkers(markerID, true, IResource.DEPTH_ZERO);
+					for (IMarker marker : markers) {
+						if (causingObjectURI.equals(marker.getAttribute(EcoreValidator.URI_ATTRIBUTE))) {
 							marker.delete();
 						}
 					}
-				} catch (org.eclipse.core.runtime.CoreException ce) {
+				} catch (CoreException ce) {
 					handleException(ce);
 				}
 				return true;
@@ -253,36 +272,36 @@ public class Xpath2MarkerHelper {
 	 * running, the resource is not a platform resource, or the resource cannot be
 	 * found in the workspace, this method returns <code>null</code>.
 	 */
-	protected org.eclipse.core.resources.IFile getFile(org.eclipse.emf.ecore.resource.Resource resource) {
-		if (resource == null || !org.eclipse.core.runtime.Platform.isRunning()) {
+	protected IFile getFile(Resource resource) {
+		if (resource == null || !Platform.isRunning()) {
 			return null;
 		}
 		String platformString = resource.getURI().toPlatformString(true);
 		if (platformString == null) {
 			return null;
 		}
-		org.eclipse.core.resources.IFile file = (org.eclipse.core.resources.IFile) org.eclipse.core.resources.ResourcesPlugin.getWorkspace().getRoot().findMember(platformString);
+		IFile file = (IFile) ResourcesPlugin.getWorkspace().getRoot().findMember(platformString);
 		return file;
 	}
 	
 	/**
 	 * Returns an URI that identifies the given object.
 	 */
-	protected String getObjectURI(org.eclipse.emf.ecore.EObject object) {
+	protected String getObjectURI(EObject object) {
 		if (object == null) {
 			return null;
 		}
-		if (object.eIsProxy() && object instanceof org.eclipse.emf.ecore.impl.BasicEObjectImpl) {
-			return ((org.eclipse.emf.ecore.impl.BasicEObjectImpl) object).eProxyURI().toString();
+		if (object.eIsProxy() && object instanceof BasicEObjectImpl) {
+			return ((BasicEObjectImpl) object).eProxyURI().toString();
 		}
-		org.eclipse.emf.ecore.resource.Resource eResource = object.eResource();
+		Resource eResource = object.eResource();
 		if (eResource == null) {
 			return null;
 		}
 		return eResource.getURI().toString() + "#" + eResource.getURIFragment(object);
 	}
 	
-	protected void handleException(org.eclipse.core.runtime.CoreException ce) {
+	protected void handleException(CoreException ce) {
 		if (ce.getMessage().matches("Marker.*not found.")) {
 			// ignore
 		}else if (ce.getMessage().matches("Resource.*does not exist.")) {
@@ -301,15 +320,15 @@ public class Xpath2MarkerHelper {
 	 * @param resource The resource where to delete markers from
 	 * @param markerId The id of the marker type to remove
 	 */
-	public void removeAllMarkers(final org.eclipse.core.resources.IResource resource, final String markerId) {
+	public void removeAllMarkers(final IResource resource, final String markerId) {
 		if (resource == null) {
 			return;
 		}
 		COMMAND_QUEUE.addCommand(new org.emftext.language.xpath2.resource.xpath2.IXpath2Command<Object>() {
 			public boolean execute(Object context) {
 				try {
-					resource.deleteMarkers(markerId, false, org.eclipse.core.resources.IResource.DEPTH_ZERO);
-				} catch (org.eclipse.core.runtime.CoreException ce) {
+					resource.deleteMarkers(markerId, false, IResource.DEPTH_ZERO);
+				} catch (CoreException ce) {
 					handleException(ce);
 				}
 				return true;
@@ -317,7 +336,7 @@ public class Xpath2MarkerHelper {
 		});
 	}
 	
-	public void createMarker(final org.eclipse.core.resources.IResource resource, final String markerId, final java.util.Map<String, Object> markerAttributes) {
+	public void createMarker(final IResource resource, final String markerId, final Map<String, Object> markerAttributes) {
 		if (resource == null) {
 			return;
 		}
@@ -325,12 +344,12 @@ public class Xpath2MarkerHelper {
 		COMMAND_QUEUE.addCommand(new org.emftext.language.xpath2.resource.xpath2.IXpath2Command<Object>() {
 			public boolean execute(Object context) {
 				try {
-					org.eclipse.core.resources.IMarker marker = resource.createMarker(markerId);
+					IMarker marker = resource.createMarker(markerId);
 					for (String key : markerAttributes.keySet()) {
 						marker.setAttribute(key, markerAttributes.get(key));
 					}
 					return true;
-				} catch (org.eclipse.core.runtime.CoreException e) {
+				} catch (CoreException e) {
 					org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Plugin.logError("Can't create marker.", e);
 					return false;
 				}
