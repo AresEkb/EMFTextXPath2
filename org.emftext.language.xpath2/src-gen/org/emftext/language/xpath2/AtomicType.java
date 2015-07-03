@@ -21,12 +21,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.AtomicType#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getAtomicType()
+ * @see org.emftext.language.xpath2.XPath2Package#getAtomicType()
  * @model
  * @generated
  */
@@ -41,7 +41,7 @@ public interface AtomicType extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(QName)
-     * @see org.emftext.language.xpath2.Xpath2Package#getAtomicType_Name()
+     * @see org.emftext.language.xpath2.XPath2Package#getAtomicType_Name()
      * @model dataType="org.eclipse.emf.ecore.xml.type.QName" required="true"
      * @generated
      */

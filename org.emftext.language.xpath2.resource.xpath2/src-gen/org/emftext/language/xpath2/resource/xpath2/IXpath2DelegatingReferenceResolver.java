@@ -13,10 +13,12 @@ package org.emftext.language.xpath2.resource.xpath2;
 import org.eclipse.emf.ecore.EObject;
 
 /**
+ * <p>
  * A delegating reference resolver is an extension of a normal reference resolver
  * that can be configured with another resolver that it may delegate method calls
  * to. This interface can be implemented by additional resolvers to customize
  * resolving using the load option ADDITIONAL_REFERENCE_RESOLVERS.
+ * </p>
  * 
  * @see org.emftext.language.xpath2.resource.xpath2.IXpath2Options
  */

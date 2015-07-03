@@ -18,12 +18,12 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.StringLiteral#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getStringLiteral()
+ * @see org.emftext.language.xpath2.XPath2Package#getStringLiteral()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface StringLiteral extends Literal {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Value</em>' attribute.
      * @see #setValue(String)
-     * @see org.emftext.language.xpath2.Xpath2Package#getStringLiteral_Value()
+     * @see org.emftext.language.xpath2.XPath2Package#getStringLiteral_Value()
      * @model required="true"
      * @generated
      */

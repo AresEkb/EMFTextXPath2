@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.NameElementTest;
 import org.emftext.language.xpath2.OptionalAtomicType;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,11 +30,11 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.NameElementTestImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.NameElementTestImpl#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -85,7 +85,7 @@ public class NameElementTestImpl extends ElementTestImpl implements NameElementT
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.NAME_ELEMENT_TEST;
+        return XPath2Package.Literals.NAME_ELEMENT_TEST;
     }
 
     /**
@@ -106,7 +106,7 @@ public class NameElementTestImpl extends ElementTestImpl implements NameElementT
         QName oldName = name;
         name = newName;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.NAME_ELEMENT_TEST__NAME, oldName, name));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.NAME_ELEMENT_TEST__NAME, oldName, name));
     }
 
     /**
@@ -127,7 +127,7 @@ public class NameElementTestImpl extends ElementTestImpl implements NameElementT
         OptionalAtomicType oldType = type;
         type = newType;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.NAME_ELEMENT_TEST__TYPE, oldType, newType);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.NAME_ELEMENT_TEST__TYPE, oldType, newType);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -142,14 +142,14 @@ public class NameElementTestImpl extends ElementTestImpl implements NameElementT
         if (newType != type) {
             NotificationChain msgs = null;
             if (type != null)
-                msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.NAME_ELEMENT_TEST__TYPE, null, msgs);
+                msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.NAME_ELEMENT_TEST__TYPE, null, msgs);
             if (newType != null)
-                msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.NAME_ELEMENT_TEST__TYPE, null, msgs);
+                msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.NAME_ELEMENT_TEST__TYPE, null, msgs);
             msgs = basicSetType(newType, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.NAME_ELEMENT_TEST__TYPE, newType, newType));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.NAME_ELEMENT_TEST__TYPE, newType, newType));
     }
 
     /**
@@ -160,7 +160,7 @@ public class NameElementTestImpl extends ElementTestImpl implements NameElementT
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.NAME_ELEMENT_TEST__TYPE:
+            case XPath2Package.NAME_ELEMENT_TEST__TYPE:
                 return basicSetType(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -174,9 +174,9 @@ public class NameElementTestImpl extends ElementTestImpl implements NameElementT
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.NAME_ELEMENT_TEST__NAME:
+            case XPath2Package.NAME_ELEMENT_TEST__NAME:
                 return getName();
-            case Xpath2Package.NAME_ELEMENT_TEST__TYPE:
+            case XPath2Package.NAME_ELEMENT_TEST__TYPE:
                 return getType();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -190,10 +190,10 @@ public class NameElementTestImpl extends ElementTestImpl implements NameElementT
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.NAME_ELEMENT_TEST__NAME:
+            case XPath2Package.NAME_ELEMENT_TEST__NAME:
                 setName((QName)newValue);
                 return;
-            case Xpath2Package.NAME_ELEMENT_TEST__TYPE:
+            case XPath2Package.NAME_ELEMENT_TEST__TYPE:
                 setType((OptionalAtomicType)newValue);
                 return;
         }
@@ -208,10 +208,10 @@ public class NameElementTestImpl extends ElementTestImpl implements NameElementT
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.NAME_ELEMENT_TEST__NAME:
+            case XPath2Package.NAME_ELEMENT_TEST__NAME:
                 setName(NAME_EDEFAULT);
                 return;
-            case Xpath2Package.NAME_ELEMENT_TEST__TYPE:
+            case XPath2Package.NAME_ELEMENT_TEST__TYPE:
                 setType((OptionalAtomicType)null);
                 return;
         }
@@ -226,9 +226,9 @@ public class NameElementTestImpl extends ElementTestImpl implements NameElementT
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.NAME_ELEMENT_TEST__NAME:
+            case XPath2Package.NAME_ELEMENT_TEST__NAME:
                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-            case Xpath2Package.NAME_ELEMENT_TEST__TYPE:
+            case XPath2Package.NAME_ELEMENT_TEST__TYPE:
                 return type != null;
         }
         return super.eIsSet(featureID);

@@ -19,13 +19,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.UnionExpr#getOperand <em>Operand</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.UnionExpr#getOperation <em>Operation</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getUnionExpr()
+ * @see org.emftext.language.xpath2.XPath2Package#getUnionExpr()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface UnionExpr extends MultiplicativeExprChild {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Operand</em>' containment reference list.
-     * @see org.emftext.language.xpath2.Xpath2Package#getUnionExpr_Operand()
+     * @see org.emftext.language.xpath2.XPath2Package#getUnionExpr_Operand()
      * @model containment="true" required="true"
      * @generated
      */
@@ -58,7 +58,7 @@ public interface UnionExpr extends MultiplicativeExprChild {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Operation</em>' attribute list.
      * @see org.emftext.language.xpath2.UnionOp
-     * @see org.emftext.language.xpath2.Xpath2Package#getUnionExpr_Operation()
+     * @see org.emftext.language.xpath2.XPath2Package#getUnionExpr_Operation()
      * @model unique="false"
      * @generated
      */

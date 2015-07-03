@@ -18,12 +18,12 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.LocalNameWildcard#getNamespace <em>Namespace</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getLocalNameWildcard()
+ * @see org.emftext.language.xpath2.XPath2Package#getLocalNameWildcard()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface LocalNameWildcard extends Wildcard {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Namespace</em>' attribute.
      * @see #setNamespace(String)
-     * @see org.emftext.language.xpath2.Xpath2Package#getLocalNameWildcard_Namespace()
+     * @see org.emftext.language.xpath2.XPath2Package#getLocalNameWildcard_Namespace()
      * @model required="true"
      * @generated
      */

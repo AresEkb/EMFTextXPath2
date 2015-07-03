@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.NameAttributeTest;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,11 +27,11 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.NameAttributeTestImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.NameAttributeTestImpl#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -92,7 +92,7 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.NAME_ATTRIBUTE_TEST;
+        return XPath2Package.Literals.NAME_ATTRIBUTE_TEST;
     }
 
     /**
@@ -113,7 +113,7 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
         QName oldName = name;
         name = newName;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.NAME_ATTRIBUTE_TEST__NAME, oldName, name));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.NAME_ATTRIBUTE_TEST__NAME, oldName, name));
     }
 
     /**
@@ -134,7 +134,7 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
         QName oldType = type;
         type = newType;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE, oldType, type));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.NAME_ATTRIBUTE_TEST__TYPE, oldType, type));
     }
 
     /**
@@ -145,9 +145,9 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.NAME_ATTRIBUTE_TEST__NAME:
+            case XPath2Package.NAME_ATTRIBUTE_TEST__NAME:
                 return getName();
-            case Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE:
+            case XPath2Package.NAME_ATTRIBUTE_TEST__TYPE:
                 return getType();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -161,10 +161,10 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.NAME_ATTRIBUTE_TEST__NAME:
+            case XPath2Package.NAME_ATTRIBUTE_TEST__NAME:
                 setName((QName)newValue);
                 return;
-            case Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE:
+            case XPath2Package.NAME_ATTRIBUTE_TEST__TYPE:
                 setType((QName)newValue);
                 return;
         }
@@ -179,10 +179,10 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.NAME_ATTRIBUTE_TEST__NAME:
+            case XPath2Package.NAME_ATTRIBUTE_TEST__NAME:
                 setName(NAME_EDEFAULT);
                 return;
-            case Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE:
+            case XPath2Package.NAME_ATTRIBUTE_TEST__TYPE:
                 setType(TYPE_EDEFAULT);
                 return;
         }
@@ -197,9 +197,9 @@ public class NameAttributeTestImpl extends AttributeTestImpl implements NameAttr
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.NAME_ATTRIBUTE_TEST__NAME:
+            case XPath2Package.NAME_ATTRIBUTE_TEST__NAME:
                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-            case Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE:
+            case XPath2Package.NAME_ATTRIBUTE_TEST__TYPE:
                 return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
         }
         return super.eIsSet(featureID);

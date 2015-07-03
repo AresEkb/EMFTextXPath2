@@ -13,9 +13,11 @@ package org.emftext.language.xpath2.resource.xpath2.mopp;
 import org.eclipse.emf.common.util.URI;
 
 /**
+ * <p>
  * A basic implementation of the
  * org.emftext.language.xpath2.resource.xpath2.IXpath2URIMapping interface that
  * can map identifiers to URIs.
+ * </p>
  * 
  * @param <ReferenceType> unused type parameter which is needed to implement
  * org.emftext.language.xpath2.resource.xpath2.IXpath2URIMapping.

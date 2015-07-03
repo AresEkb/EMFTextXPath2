@@ -19,14 +19,14 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.QuantifiedExpr#getQuantifier <em>Quantifier</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.QuantifiedExpr#getIterator <em>Iterator</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.QuantifiedExpr#getSatisfies <em>Satisfies</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getQuantifiedExpr()
+ * @see org.emftext.language.xpath2.XPath2Package#getQuantifiedExpr()
  * @model
  * @generated
  */
@@ -43,7 +43,7 @@ public interface QuantifiedExpr extends ExprSingle {
      * @return the value of the '<em>Quantifier</em>' attribute.
      * @see org.emftext.language.xpath2.QuantifierKind
      * @see #setQuantifier(QuantifierKind)
-     * @see org.emftext.language.xpath2.Xpath2Package#getQuantifiedExpr_Quantifier()
+     * @see org.emftext.language.xpath2.XPath2Package#getQuantifiedExpr_Quantifier()
      * @model required="true"
      * @generated
      */
@@ -70,7 +70,7 @@ public interface QuantifiedExpr extends ExprSingle {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Iterator</em>' containment reference list.
-     * @see org.emftext.language.xpath2.Xpath2Package#getQuantifiedExpr_Iterator()
+     * @see org.emftext.language.xpath2.XPath2Package#getQuantifiedExpr_Iterator()
      * @model containment="true" required="true"
      * @generated
      */
@@ -86,7 +86,7 @@ public interface QuantifiedExpr extends ExprSingle {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Satisfies</em>' containment reference.
      * @see #setSatisfies(ExprSingle)
-     * @see org.emftext.language.xpath2.Xpath2Package#getQuantifiedExpr_Satisfies()
+     * @see org.emftext.language.xpath2.XPath2Package#getQuantifiedExpr_Satisfies()
      * @model containment="true" required="true"
      * @generated
      */

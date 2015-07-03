@@ -19,13 +19,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.UnaryExpr#getOperand <em>Operand</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.UnaryExpr#getOperator <em>Operator</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getUnaryExpr()
+ * @see org.emftext.language.xpath2.XPath2Package#getUnaryExpr()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface UnaryExpr extends CastExprChild {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Operand</em>' containment reference.
      * @see #setOperand(UnaryExprChild)
-     * @see org.emftext.language.xpath2.Xpath2Package#getUnaryExpr_Operand()
+     * @see org.emftext.language.xpath2.XPath2Package#getUnaryExpr_Operand()
      * @model containment="true" required="true"
      * @generated
      */
@@ -68,7 +68,7 @@ public interface UnaryExpr extends CastExprChild {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Operator</em>' attribute list.
      * @see org.emftext.language.xpath2.UnaryOp
-     * @see org.emftext.language.xpath2.Xpath2Package#getUnaryExpr_Operator()
+     * @see org.emftext.language.xpath2.XPath2Package#getUnaryExpr_Operator()
      * @model unique="false"
      * @generated
      */

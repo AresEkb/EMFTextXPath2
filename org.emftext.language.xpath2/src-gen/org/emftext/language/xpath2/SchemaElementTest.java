@@ -19,12 +19,12 @@ import javax.xml.namespace.QName;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.SchemaElementTest#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getSchemaElementTest()
+ * @see org.emftext.language.xpath2.XPath2Package#getSchemaElementTest()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface SchemaElementTest extends KindTest {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(QName)
-     * @see org.emftext.language.xpath2.Xpath2Package#getSchemaElementTest_Name()
+     * @see org.emftext.language.xpath2.XPath2Package#getSchemaElementTest_Name()
      * @model dataType="org.eclipse.emf.ecore.xml.type.QName" required="true"
      * @generated
      */

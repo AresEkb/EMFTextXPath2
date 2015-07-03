@@ -19,12 +19,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.AxisStep#getPredicate <em>Predicate</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getAxisStep()
+ * @see org.emftext.language.xpath2.XPath2Package#getAxisStep()
  * @model abstract="true"
  * @generated
  */
@@ -39,7 +39,7 @@ public interface AxisStep extends StepExpr {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Predicate</em>' containment reference list.
-     * @see org.emftext.language.xpath2.Xpath2Package#getAxisStep_Predicate()
+     * @see org.emftext.language.xpath2.XPath2Package#getAxisStep_Predicate()
      * @model containment="true"
      * @generated
      */

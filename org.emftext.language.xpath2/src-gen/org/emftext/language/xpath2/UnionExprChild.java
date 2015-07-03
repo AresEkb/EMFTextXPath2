@@ -17,7 +17,7 @@ package org.emftext.language.xpath2;
  * <!-- end-user-doc -->
  *
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getUnionExprChild()
+ * @see org.emftext.language.xpath2.XPath2Package#getUnionExprChild()
  * @model abstract="true"
  * @generated
  */

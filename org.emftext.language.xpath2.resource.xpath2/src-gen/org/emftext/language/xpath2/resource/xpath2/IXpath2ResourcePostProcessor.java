@@ -19,8 +19,10 @@ package org.emftext.language.xpath2.resource.xpath2;
 public interface IXpath2ResourcePostProcessor {
 	
 	/**
+	 * <p>
 	 * Processes the resource after it was parsed. This method is automatically called
 	 * for registered post processors.
+	 * </p>
 	 * 
 	 * @param resource the resource to validate of modify
 	 */

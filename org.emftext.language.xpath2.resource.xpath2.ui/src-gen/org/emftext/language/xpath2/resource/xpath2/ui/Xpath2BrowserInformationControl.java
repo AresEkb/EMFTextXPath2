@@ -47,20 +47,44 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Slider;
 
 /**
+ * <p>
  * Displays HTML information in a {@link Browser} widget.
+ * </p>
+ * <p>
+ * <p>
+ * </p>
  * <p>
  * This IInformationControlExtension2 expects {@link #setInput(Object)} to be
  * called with an argument of type BrowserInformationControlInput.
  * </p>
+ * <p>
+ * </p>
+ * </p>
+ * <p>
  * <p>Moved into this package from
  * <code>org.eclipse.jface.internal.text.revisions</code>.</p>
+ * </p>
+ * <p>
  * <p>This class may be instantiated; it is not intended to be subclassed.</p>
+ * </p>
+ * <p>
  * <p>Current problems:
+ * </p>
+ * <p>
  * <ul>
+ * </p>
+ * <p>
  * 	<li>the size computation is too small</li>
+ * </p>
+ * <p>
  * 	<li>focusLost event is not sent - see
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=84532</li>
+ * </p>
+ * <p>
  * </ul>
+ * </p>
+ * <p>
+ * </p>
  * </p>
  * 
  * @since 3.2
@@ -68,8 +92,10 @@ import org.eclipse.swt.widgets.Slider;
 public class Xpath2BrowserInformationControl extends AbstractInformationControl implements IInformationControlExtension2, IDelayedInputChangeProvider {
 	
 	/**
+	 * <p>
 	 * Tells whether the SWT Browser widget and hence this information control is
 	 * available.
+	 * </p>
 	 * 
 	 * @param parent the parent component used for checking or <code>null</code> if
 	 * none
@@ -161,7 +187,9 @@ public class Xpath2BrowserInformationControl extends AbstractInformationControl 
 	private final String fSymbolicFontName;
 	
 	/**
+	 * <p>
 	 * Creates a browser information control with the given shell as parent.
+	 * </p>
 	 * 
 	 * @param parent the parent shell
 	 * @param symbolicFontName the symbolic name of the font used for size computations
@@ -174,7 +202,9 @@ public class Xpath2BrowserInformationControl extends AbstractInformationControl 
 	}
 	
 	/**
+	 * <p>
 	 * Creates a browser information control with the given shell as parent.
+	 * </p>
 	 * 
 	 * @param parent the parent shell
 	 * @param symbolicFontName the symbolic name of the font used for size computations
@@ -188,7 +218,9 @@ public class Xpath2BrowserInformationControl extends AbstractInformationControl 
 	}
 	
 	/**
+	 * <p>
 	 * Creates a browser information control with the given shell as parent.
+	 * </p>
 	 * 
 	 * @param parent the parent shell
 	 * @param symbolicFontName the symbolic name of the font used for size computations
@@ -355,7 +387,9 @@ public class Xpath2BrowserInformationControl extends AbstractInformationControl 
 	}
 	
 	/**
+	 * <p>
 	 * Creates and initializes the text layout used to compute the size hint.
+	 * </p>
 	 * 
 	 * @since 3.2
 	 */
@@ -467,8 +501,10 @@ public class Xpath2BrowserInformationControl extends AbstractInformationControl 
 	}
 	
 	/**
+	 * <p>
 	 * Adds the listener to the collection of listeners who will be notified when the
 	 * current location has changed or is about to change.
+	 * </p>
 	 * 
 	 * @param listener the location listener
 	 * 
@@ -493,8 +529,10 @@ public class Xpath2BrowserInformationControl extends AbstractInformationControl 
 	}
 	
 	/**
+	 * <p>
 	 * Adds a listener for input changes to this input change provider. Has no effect
 	 * if an identical listener is already registered.
+	 * </p>
 	 * 
 	 * @param inputChangeListener the listener to add
 	 * 
@@ -506,8 +544,10 @@ public class Xpath2BrowserInformationControl extends AbstractInformationControl 
 	}
 	
 	/**
+	 * <p>
 	 * Removes the given input change listener from this input change provider. Has no
 	 * effect if an identical listener is not registered.
+	 * </p>
 	 * 
 	 * @param inputChangeListener the listener to remove
 	 * 
@@ -529,7 +569,9 @@ public class Xpath2BrowserInformationControl extends AbstractInformationControl 
 	}
 	
 	/**
+	 * <p>
 	 * Tells whether a delayed input change listener is registered.
+	 * </p>
 	 * 
 	 * @return <code>true</code> iff a delayed input change listener is currently
 	 * registered
@@ -541,7 +583,9 @@ public class Xpath2BrowserInformationControl extends AbstractInformationControl 
 	}
 	
 	/**
+	 * <p>
 	 * Notifies listeners of a delayed input change.
+	 * </p>
 	 * 
 	 * @param newInput the new input, or <code>null</code> to request cancellation
 	 * 

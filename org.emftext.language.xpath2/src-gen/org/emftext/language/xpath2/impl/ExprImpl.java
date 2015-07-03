@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.emftext.language.xpath2.Expr;
 import org.emftext.language.xpath2.ExprSingle;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,10 +32,10 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.ExprImpl#getExpr <em>Expr</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -66,7 +66,7 @@ public class ExprImpl extends AnyExprImpl implements Expr {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.EXPR;
+        return XPath2Package.Literals.EXPR;
     }
 
     /**
@@ -76,7 +76,7 @@ public class ExprImpl extends AnyExprImpl implements Expr {
      */
     public EList<ExprSingle> getExpr() {
         if (expr == null) {
-            expr = new EObjectContainmentEList<ExprSingle>(ExprSingle.class, this, Xpath2Package.EXPR__EXPR);
+            expr = new EObjectContainmentEList<ExprSingle>(ExprSingle.class, this, XPath2Package.EXPR__EXPR);
         }
         return expr;
     }
@@ -89,7 +89,7 @@ public class ExprImpl extends AnyExprImpl implements Expr {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.EXPR__EXPR:
+            case XPath2Package.EXPR__EXPR:
                 return ((InternalEList<?>)getExpr()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -103,7 +103,7 @@ public class ExprImpl extends AnyExprImpl implements Expr {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.EXPR__EXPR:
+            case XPath2Package.EXPR__EXPR:
                 return getExpr();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -118,7 +118,7 @@ public class ExprImpl extends AnyExprImpl implements Expr {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.EXPR__EXPR:
+            case XPath2Package.EXPR__EXPR:
                 getExpr().clear();
                 getExpr().addAll((Collection<? extends ExprSingle>)newValue);
                 return;
@@ -134,7 +134,7 @@ public class ExprImpl extends AnyExprImpl implements Expr {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.EXPR__EXPR:
+            case XPath2Package.EXPR__EXPR:
                 getExpr().clear();
                 return;
         }
@@ -149,7 +149,7 @@ public class ExprImpl extends AnyExprImpl implements Expr {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.EXPR__EXPR:
+            case XPath2Package.EXPR__EXPR:
                 return expr != null && !expr.isEmpty();
         }
         return super.eIsSet(featureID);

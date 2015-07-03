@@ -19,13 +19,13 @@ import javax.xml.namespace.QName;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.NameElementTest#getName <em>Name</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.NameElementTest#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getNameElementTest()
+ * @see org.emftext.language.xpath2.XPath2Package#getNameElementTest()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface NameElementTest extends ElementTest {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(QName)
-     * @see org.emftext.language.xpath2.Xpath2Package#getNameElementTest_Name()
+     * @see org.emftext.language.xpath2.XPath2Package#getNameElementTest_Name()
      * @model dataType="org.eclipse.emf.ecore.xml.type.QName" required="true"
      * @generated
      */
@@ -66,7 +66,7 @@ public interface NameElementTest extends ElementTest {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Type</em>' containment reference.
      * @see #setType(OptionalAtomicType)
-     * @see org.emftext.language.xpath2.Xpath2Package#getNameElementTest_Type()
+     * @see org.emftext.language.xpath2.XPath2Package#getNameElementTest_Type()
      * @model containment="true"
      * @generated
      */

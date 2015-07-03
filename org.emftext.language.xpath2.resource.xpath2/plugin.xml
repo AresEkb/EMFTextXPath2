@@ -45,6 +45,20 @@
 		</super>
 	</extension>
 	
+	<extension id="org.emftext.language.xpath2.resource.xpath2.problem.batch_constraint_problem" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.emftext.language.xpath2.resource.xpath2.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.emftext.language.xpath2.resource.xpath2.problem.live_constraint_problem" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.emftext.language.xpath2.resource.xpath2.problem">
+		</super>
+	</extension>
+	
 	<extension id="org.emftext.language.xpath2.resource.xpath2.problem.builder_error" name="EMFText Problem" point="org.eclipse.core.resources.markers">
 		<persistent value="true">
 		</persistent>
@@ -70,14 +84,13 @@
 	
 	<extension-point id="org.emftext.language.xpath2.resource.xpath2.default_load_options" name="Default Load Options" schema="schema/default_load_options.exsd">
 	</extension-point>
-    
-    <extension point="org.emftext.language.xpath2.resource.xpath2.default_load_options">
-        <provider
-            class="org.emftext.language.xpath2.resource.xpath2.post.PostProcessor"
-            id="org.emftext.language.xpath2.resource.xpath2.post.PostProcessor">
-        </provider>
-    </extension>
 	
+	<extension point="org.emftext.language.xpath2.resource.xpath2.default_load_options">
+		<provider class="org.emftext.language.xpath2.resource.xpath2.post.PostProcessor"
+			id="org.emftext.language.xpath2.resource.xpath2.post.PostProcessor">
+		</provider>
+	</extension>
+
 	<extension point="org.eclipse.emf.ecore.extension_parser">
 		<parser class="org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ResourceFactoryDelegator" type="xpath2">
 		</parser>

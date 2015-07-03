@@ -18,12 +18,12 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.ValueComp#getOperator <em>Operator</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getValueComp()
+ * @see org.emftext.language.xpath2.XPath2Package#getValueComp()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface ValueComp extends Comp {
      * @return the value of the '<em>Operator</em>' attribute.
      * @see org.emftext.language.xpath2.GeneralCompKind
      * @see #setOperator(GeneralCompKind)
-     * @see org.emftext.language.xpath2.Xpath2Package#getValueComp_Operator()
+     * @see org.emftext.language.xpath2.XPath2Package#getValueComp_Operator()
      * @model required="true"
      * @generated
      */

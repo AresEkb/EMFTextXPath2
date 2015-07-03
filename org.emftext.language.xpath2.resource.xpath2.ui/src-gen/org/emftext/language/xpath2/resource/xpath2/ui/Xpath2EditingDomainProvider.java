@@ -34,6 +34,9 @@ public class Xpath2EditingDomainProvider {
 		
 		BasicCommandStack commandStack = new BasicCommandStack();
 		
+		// Register resource factories (esp. for additional extensions).
+		new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation().registerResourceFactory();
+		
 		return new AdapterFactoryEditingDomain(adapterFactory, commandStack, new LinkedHashMap<Resource, Boolean>());
 	}
 	

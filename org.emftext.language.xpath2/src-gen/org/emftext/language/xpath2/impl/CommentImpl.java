@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.emftext.language.xpath2.Comment;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,11 +34,11 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.CommentImpl#getText <em>Text</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.CommentImpl#getComment <em>Comment</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -79,7 +79,7 @@ public class CommentImpl extends EObjectImpl implements Comment {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.COMMENT;
+        return XPath2Package.Literals.COMMENT;
     }
 
     /**
@@ -89,7 +89,7 @@ public class CommentImpl extends EObjectImpl implements Comment {
      */
     public EList<String> getText() {
         if (text == null) {
-            text = new EDataTypeUniqueEList<String>(String.class, this, Xpath2Package.COMMENT__TEXT);
+            text = new EDataTypeUniqueEList<String>(String.class, this, XPath2Package.COMMENT__TEXT);
         }
         return text;
     }
@@ -101,7 +101,7 @@ public class CommentImpl extends EObjectImpl implements Comment {
      */
     public EList<Comment> getComment() {
         if (comment == null) {
-            comment = new EObjectContainmentEList<Comment>(Comment.class, this, Xpath2Package.COMMENT__COMMENT);
+            comment = new EObjectContainmentEList<Comment>(Comment.class, this, XPath2Package.COMMENT__COMMENT);
         }
         return comment;
     }
@@ -114,7 +114,7 @@ public class CommentImpl extends EObjectImpl implements Comment {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.COMMENT__COMMENT:
+            case XPath2Package.COMMENT__COMMENT:
                 return ((InternalEList<?>)getComment()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -128,9 +128,9 @@ public class CommentImpl extends EObjectImpl implements Comment {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.COMMENT__TEXT:
+            case XPath2Package.COMMENT__TEXT:
                 return getText();
-            case Xpath2Package.COMMENT__COMMENT:
+            case XPath2Package.COMMENT__COMMENT:
                 return getComment();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -145,11 +145,11 @@ public class CommentImpl extends EObjectImpl implements Comment {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.COMMENT__TEXT:
+            case XPath2Package.COMMENT__TEXT:
                 getText().clear();
                 getText().addAll((Collection<? extends String>)newValue);
                 return;
-            case Xpath2Package.COMMENT__COMMENT:
+            case XPath2Package.COMMENT__COMMENT:
                 getComment().clear();
                 getComment().addAll((Collection<? extends Comment>)newValue);
                 return;
@@ -165,10 +165,10 @@ public class CommentImpl extends EObjectImpl implements Comment {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.COMMENT__TEXT:
+            case XPath2Package.COMMENT__TEXT:
                 getText().clear();
                 return;
-            case Xpath2Package.COMMENT__COMMENT:
+            case XPath2Package.COMMENT__COMMENT:
                 getComment().clear();
                 return;
         }
@@ -183,9 +183,9 @@ public class CommentImpl extends EObjectImpl implements Comment {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.COMMENT__TEXT:
+            case XPath2Package.COMMENT__TEXT:
                 return text != null && !text.isEmpty();
-            case Xpath2Package.COMMENT__COMMENT:
+            case XPath2Package.COMMENT__COMMENT:
                 return comment != null && !comment.isEmpty();
         }
         return super.eIsSet(featureID);

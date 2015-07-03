@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Node Comp Kind</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.emftext.language.xpath2.Xpath2Package#getNodeCompKind()
+ * @see org.emftext.language.xpath2.XPath2Package#getNodeCompKind()
  * @model
  * @generated
  */
@@ -126,6 +126,8 @@ public enum NodeCompKind implements Enumerator {
      * Returns the '<em><b>Node Comp Kind</b></em>' literal with the specified literal value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param literal the literal.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static NodeCompKind get(String literal) {
@@ -142,6 +144,8 @@ public enum NodeCompKind implements Enumerator {
      * Returns the '<em><b>Node Comp Kind</b></em>' literal with the specified name.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param name the name.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static NodeCompKind getByName(String name) {
@@ -158,6 +162,8 @@ public enum NodeCompKind implements Enumerator {
      * Returns the '<em><b>Node Comp Kind</b></em>' literal with the specified integer value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param value the integer value.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static NodeCompKind get(int value) {

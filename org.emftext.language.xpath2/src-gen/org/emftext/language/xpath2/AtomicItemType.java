@@ -18,12 +18,12 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.AtomicItemType#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getAtomicItemType()
+ * @see org.emftext.language.xpath2.XPath2Package#getAtomicItemType()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface AtomicItemType extends ItemType {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Type</em>' containment reference.
      * @see #setType(AtomicType)
-     * @see org.emftext.language.xpath2.Xpath2Package#getAtomicItemType_Type()
+     * @see org.emftext.language.xpath2.XPath2Package#getAtomicItemType_Type()
      * @model containment="true" required="true"
      * @generated
      */

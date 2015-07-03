@@ -15,14 +15,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.emftext.language.xpath2.Comp;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Comp</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -43,7 +41,7 @@ public abstract class CompImpl extends EObjectImpl implements Comp {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.COMP;
+        return XPath2Package.Literals.COMP;
     }
 
 } //CompImpl

@@ -27,17 +27,17 @@ import org.emftext.language.xpath2.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.emftext.language.xpath2.Xpath2Package
+ * @see org.emftext.language.xpath2.XPath2Package
  * @generated
  */
-public class Xpath2Switch<T> extends Switch<T> {
+public class XPath2Switch<T> extends Switch<T> {
     /**
      * The cached model package
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected static Xpath2Package modelPackage;
+    protected static XPath2Package modelPackage;
 
     /**
      * Creates an instance of the switch.
@@ -45,9 +45,9 @@ public class Xpath2Switch<T> extends Switch<T> {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Xpath2Switch() {
+    public XPath2Switch() {
         if (modelPackage == null) {
-            modelPackage = Xpath2Package.eINSTANCE;
+            modelPackage = XPath2Package.eINSTANCE;
         }
     }
 
@@ -55,7 +55,7 @@ public class Xpath2Switch<T> extends Switch<T> {
      * Checks whether this is a switch for the given package.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @parameter ePackage the package in question.
+     * @param ePackage the package in question.
      * @return whether this is a switch for the given package.
      * @generated
      */
@@ -74,14 +74,14 @@ public class Xpath2Switch<T> extends Switch<T> {
     @Override
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
-            case Xpath2Package.ANY_EXPR: {
+            case XPath2Package.ANY_EXPR: {
                 AnyExpr anyExpr = (AnyExpr)theEObject;
                 T result = caseAnyExpr(anyExpr);
                 if (result == null) result = caseParenthesizedExprChild(anyExpr);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.EXPR: {
+            case XPath2Package.EXPR: {
                 Expr expr = (Expr)theEObject;
                 T result = caseExpr(expr);
                 if (result == null) result = caseAnyExpr(expr);
@@ -89,7 +89,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.EXPR_SINGLE: {
+            case XPath2Package.EXPR_SINGLE: {
                 ExprSingle exprSingle = (ExprSingle)theEObject;
                 T result = caseExprSingle(exprSingle);
                 if (result == null) result = caseAnyExpr(exprSingle);
@@ -97,7 +97,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.FOR_EXPR: {
+            case XPath2Package.FOR_EXPR: {
                 ForExpr forExpr = (ForExpr)theEObject;
                 T result = caseForExpr(forExpr);
                 if (result == null) result = caseExprSingle(forExpr);
@@ -106,7 +106,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.QUANTIFIED_EXPR: {
+            case XPath2Package.QUANTIFIED_EXPR: {
                 QuantifiedExpr quantifiedExpr = (QuantifiedExpr)theEObject;
                 T result = caseQuantifiedExpr(quantifiedExpr);
                 if (result == null) result = caseExprSingle(quantifiedExpr);
@@ -115,7 +115,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.IF_EXPR: {
+            case XPath2Package.IF_EXPR: {
                 IfExpr ifExpr = (IfExpr)theEObject;
                 T result = caseIfExpr(ifExpr);
                 if (result == null) result = caseExprSingle(ifExpr);
@@ -124,13 +124,13 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.ITERATOR: {
+            case XPath2Package.ITERATOR: {
                 Iterator iterator = (Iterator)theEObject;
                 T result = caseIterator(iterator);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.OR_EXPR: {
+            case XPath2Package.OR_EXPR: {
                 OrExpr orExpr = (OrExpr)theEObject;
                 T result = caseOrExpr(orExpr);
                 if (result == null) result = caseExprSingle(orExpr);
@@ -139,7 +139,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.OR_EXPR_CHILD: {
+            case XPath2Package.OR_EXPR_CHILD: {
                 OrExprChild orExprChild = (OrExprChild)theEObject;
                 T result = caseOrExprChild(orExprChild);
                 if (result == null) result = caseExprSingle(orExprChild);
@@ -148,7 +148,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.AND_EXPR: {
+            case XPath2Package.AND_EXPR: {
                 AndExpr andExpr = (AndExpr)theEObject;
                 T result = caseAndExpr(andExpr);
                 if (result == null) result = caseOrExprChild(andExpr);
@@ -158,7 +158,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.AND_EXPR_CHILD: {
+            case XPath2Package.AND_EXPR_CHILD: {
                 AndExprChild andExprChild = (AndExprChild)theEObject;
                 T result = caseAndExprChild(andExprChild);
                 if (result == null) result = caseOrExprChild(andExprChild);
@@ -168,7 +168,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.COMPARISON_EXPR: {
+            case XPath2Package.COMPARISON_EXPR: {
                 ComparisonExpr comparisonExpr = (ComparisonExpr)theEObject;
                 T result = caseComparisonExpr(comparisonExpr);
                 if (result == null) result = caseAndExprChild(comparisonExpr);
@@ -179,7 +179,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.COMPARISON_EXPR_CHILD: {
+            case XPath2Package.COMPARISON_EXPR_CHILD: {
                 ComparisonExprChild comparisonExprChild = (ComparisonExprChild)theEObject;
                 T result = caseComparisonExprChild(comparisonExprChild);
                 if (result == null) result = caseAndExprChild(comparisonExprChild);
@@ -190,7 +190,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.RANGE_EXPR: {
+            case XPath2Package.RANGE_EXPR: {
                 RangeExpr rangeExpr = (RangeExpr)theEObject;
                 T result = caseRangeExpr(rangeExpr);
                 if (result == null) result = caseComparisonExprChild(rangeExpr);
@@ -202,7 +202,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.RANGE_EXPR_CHILD: {
+            case XPath2Package.RANGE_EXPR_CHILD: {
                 RangeExprChild rangeExprChild = (RangeExprChild)theEObject;
                 T result = caseRangeExprChild(rangeExprChild);
                 if (result == null) result = caseComparisonExprChild(rangeExprChild);
@@ -214,7 +214,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.ADDITIVE_EXPR: {
+            case XPath2Package.ADDITIVE_EXPR: {
                 AdditiveExpr additiveExpr = (AdditiveExpr)theEObject;
                 T result = caseAdditiveExpr(additiveExpr);
                 if (result == null) result = caseRangeExprChild(additiveExpr);
@@ -227,7 +227,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.ADDITIVE_EXPR_CHILD: {
+            case XPath2Package.ADDITIVE_EXPR_CHILD: {
                 AdditiveExprChild additiveExprChild = (AdditiveExprChild)theEObject;
                 T result = caseAdditiveExprChild(additiveExprChild);
                 if (result == null) result = caseRangeExprChild(additiveExprChild);
@@ -240,7 +240,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.MULTIPLICATIVE_EXPR: {
+            case XPath2Package.MULTIPLICATIVE_EXPR: {
                 MultiplicativeExpr multiplicativeExpr = (MultiplicativeExpr)theEObject;
                 T result = caseMultiplicativeExpr(multiplicativeExpr);
                 if (result == null) result = caseAdditiveExprChild(multiplicativeExpr);
@@ -254,7 +254,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.MULTIPLICATIVE_EXPR_CHILD: {
+            case XPath2Package.MULTIPLICATIVE_EXPR_CHILD: {
                 MultiplicativeExprChild multiplicativeExprChild = (MultiplicativeExprChild)theEObject;
                 T result = caseMultiplicativeExprChild(multiplicativeExprChild);
                 if (result == null) result = caseAdditiveExprChild(multiplicativeExprChild);
@@ -268,7 +268,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.UNION_EXPR: {
+            case XPath2Package.UNION_EXPR: {
                 UnionExpr unionExpr = (UnionExpr)theEObject;
                 T result = caseUnionExpr(unionExpr);
                 if (result == null) result = caseMultiplicativeExprChild(unionExpr);
@@ -283,7 +283,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.UNION_EXPR_CHILD: {
+            case XPath2Package.UNION_EXPR_CHILD: {
                 UnionExprChild unionExprChild = (UnionExprChild)theEObject;
                 T result = caseUnionExprChild(unionExprChild);
                 if (result == null) result = caseMultiplicativeExprChild(unionExprChild);
@@ -298,7 +298,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.INTERSECT_EXCEPT_EXPR: {
+            case XPath2Package.INTERSECT_EXCEPT_EXPR: {
                 IntersectExceptExpr intersectExceptExpr = (IntersectExceptExpr)theEObject;
                 T result = caseIntersectExceptExpr(intersectExceptExpr);
                 if (result == null) result = caseUnionExprChild(intersectExceptExpr);
@@ -314,7 +314,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.INTERSECT_EXCEPT_EXPR_CHILD: {
+            case XPath2Package.INTERSECT_EXCEPT_EXPR_CHILD: {
                 IntersectExceptExprChild intersectExceptExprChild = (IntersectExceptExprChild)theEObject;
                 T result = caseIntersectExceptExprChild(intersectExceptExprChild);
                 if (result == null) result = caseUnionExprChild(intersectExceptExprChild);
@@ -330,7 +330,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.INSTANCEOF_EXPR: {
+            case XPath2Package.INSTANCEOF_EXPR: {
                 InstanceofExpr instanceofExpr = (InstanceofExpr)theEObject;
                 T result = caseInstanceofExpr(instanceofExpr);
                 if (result == null) result = caseIntersectExceptExprChild(instanceofExpr);
@@ -347,7 +347,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.INSTANCEOF_EXPR_CHILD: {
+            case XPath2Package.INSTANCEOF_EXPR_CHILD: {
                 InstanceofExprChild instanceofExprChild = (InstanceofExprChild)theEObject;
                 T result = caseInstanceofExprChild(instanceofExprChild);
                 if (result == null) result = caseIntersectExceptExprChild(instanceofExprChild);
@@ -364,7 +364,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.TREAT_EXPR: {
+            case XPath2Package.TREAT_EXPR: {
                 TreatExpr treatExpr = (TreatExpr)theEObject;
                 T result = caseTreatExpr(treatExpr);
                 if (result == null) result = caseInstanceofExprChild(treatExpr);
@@ -382,7 +382,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.TREAT_EXPR_CHILD: {
+            case XPath2Package.TREAT_EXPR_CHILD: {
                 TreatExprChild treatExprChild = (TreatExprChild)theEObject;
                 T result = caseTreatExprChild(treatExprChild);
                 if (result == null) result = caseInstanceofExprChild(treatExprChild);
@@ -400,7 +400,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.CASTABLE_EXPR: {
+            case XPath2Package.CASTABLE_EXPR: {
                 CastableExpr castableExpr = (CastableExpr)theEObject;
                 T result = caseCastableExpr(castableExpr);
                 if (result == null) result = caseTreatExprChild(castableExpr);
@@ -419,7 +419,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.CASTABLE_EXPR_CHILD: {
+            case XPath2Package.CASTABLE_EXPR_CHILD: {
                 CastableExprChild castableExprChild = (CastableExprChild)theEObject;
                 T result = caseCastableExprChild(castableExprChild);
                 if (result == null) result = caseTreatExprChild(castableExprChild);
@@ -438,7 +438,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.CAST_EXPR: {
+            case XPath2Package.CAST_EXPR: {
                 CastExpr castExpr = (CastExpr)theEObject;
                 T result = caseCastExpr(castExpr);
                 if (result == null) result = caseCastableExprChild(castExpr);
@@ -458,7 +458,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.CAST_EXPR_CHILD: {
+            case XPath2Package.CAST_EXPR_CHILD: {
                 CastExprChild castExprChild = (CastExprChild)theEObject;
                 T result = caseCastExprChild(castExprChild);
                 if (result == null) result = caseCastableExprChild(castExprChild);
@@ -478,7 +478,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.UNARY_EXPR: {
+            case XPath2Package.UNARY_EXPR: {
                 UnaryExpr unaryExpr = (UnaryExpr)theEObject;
                 T result = caseUnaryExpr(unaryExpr);
                 if (result == null) result = caseCastExprChild(unaryExpr);
@@ -499,7 +499,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.UNARY_EXPR_CHILD: {
+            case XPath2Package.UNARY_EXPR_CHILD: {
                 UnaryExprChild unaryExprChild = (UnaryExprChild)theEObject;
                 T result = caseUnaryExprChild(unaryExprChild);
                 if (result == null) result = caseCastExprChild(unaryExprChild);
@@ -520,7 +520,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.VALUE_EXPR: {
+            case XPath2Package.VALUE_EXPR: {
                 ValueExpr valueExpr = (ValueExpr)theEObject;
                 T result = caseValueExpr(valueExpr);
                 if (result == null) result = caseUnaryExprChild(valueExpr);
@@ -542,7 +542,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.PATH_EXPR: {
+            case XPath2Package.PATH_EXPR: {
                 PathExpr pathExpr = (PathExpr)theEObject;
                 T result = casePathExpr(pathExpr);
                 if (result == null) result = caseValueExpr(pathExpr);
@@ -565,7 +565,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.PATH_EXPR_CHILD: {
+            case XPath2Package.PATH_EXPR_CHILD: {
                 PathExprChild pathExprChild = (PathExprChild)theEObject;
                 T result = casePathExprChild(pathExprChild);
                 if (result == null) result = caseUnaryExprChild(pathExprChild);
@@ -587,7 +587,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.ROOT_STEP_EXPR: {
+            case XPath2Package.ROOT_STEP_EXPR: {
                 RootStepExpr rootStepExpr = (RootStepExpr)theEObject;
                 T result = caseRootStepExpr(rootStepExpr);
                 if (result == null) result = casePathExprChild(rootStepExpr);
@@ -610,7 +610,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.CHILD_STEP_EXPR: {
+            case XPath2Package.CHILD_STEP_EXPR: {
                 ChildStepExpr childStepExpr = (ChildStepExpr)theEObject;
                 T result = caseChildStepExpr(childStepExpr);
                 if (result == null) result = casePathExprChild(childStepExpr);
@@ -633,7 +633,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.DESC_OR_SELF_STEP_EXPR: {
+            case XPath2Package.DESC_OR_SELF_STEP_EXPR: {
                 DescOrSelfStepExpr descOrSelfStepExpr = (DescOrSelfStepExpr)theEObject;
                 T result = caseDescOrSelfStepExpr(descOrSelfStepExpr);
                 if (result == null) result = casePathExprChild(descOrSelfStepExpr);
@@ -656,7 +656,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.SELF_STEP_EXPR: {
+            case XPath2Package.SELF_STEP_EXPR: {
                 SelfStepExpr selfStepExpr = (SelfStepExpr)theEObject;
                 T result = caseSelfStepExpr(selfStepExpr);
                 if (result == null) result = casePathExprChild(selfStepExpr);
@@ -679,7 +679,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.SELF_STEP_EXPR_CHILD: {
+            case XPath2Package.SELF_STEP_EXPR_CHILD: {
                 SelfStepExprChild selfStepExprChild = (SelfStepExprChild)theEObject;
                 T result = caseSelfStepExprChild(selfStepExprChild);
                 if (result == null) result = casePathExprChild(selfStepExprChild);
@@ -702,7 +702,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.STEP_EXPR: {
+            case XPath2Package.STEP_EXPR: {
                 StepExpr stepExpr = (StepExpr)theEObject;
                 T result = caseStepExpr(stepExpr);
                 if (result == null) result = caseSelfStepExprChild(stepExpr);
@@ -726,7 +726,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.FILTER_EXPR: {
+            case XPath2Package.FILTER_EXPR: {
                 FilterExpr filterExpr = (FilterExpr)theEObject;
                 T result = caseFilterExpr(filterExpr);
                 if (result == null) result = caseStepExpr(filterExpr);
@@ -751,7 +751,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.FILTER_EXPR_CHILD: {
+            case XPath2Package.FILTER_EXPR_CHILD: {
                 FilterExprChild filterExprChild = (FilterExprChild)theEObject;
                 T result = caseFilterExprChild(filterExprChild);
                 if (result == null) result = caseSelfStepExprChild(filterExprChild);
@@ -775,7 +775,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.AXIS_STEP: {
+            case XPath2Package.AXIS_STEP: {
                 AxisStep axisStep = (AxisStep)theEObject;
                 T result = caseAxisStep(axisStep);
                 if (result == null) result = caseStepExpr(axisStep);
@@ -800,7 +800,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.FORWARD_STEP: {
+            case XPath2Package.FORWARD_STEP: {
                 ForwardStep forwardStep = (ForwardStep)theEObject;
                 T result = caseForwardStep(forwardStep);
                 if (result == null) result = caseAxisStep(forwardStep);
@@ -826,7 +826,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.REVERSE_STEP: {
+            case XPath2Package.REVERSE_STEP: {
                 ReverseStep reverseStep = (ReverseStep)theEObject;
                 T result = caseReverseStep(reverseStep);
                 if (result == null) result = caseAxisStep(reverseStep);
@@ -852,7 +852,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.GENERAL_FORWARD_STEP: {
+            case XPath2Package.GENERAL_FORWARD_STEP: {
                 GeneralForwardStep generalForwardStep = (GeneralForwardStep)theEObject;
                 T result = caseGeneralForwardStep(generalForwardStep);
                 if (result == null) result = caseForwardStep(generalForwardStep);
@@ -879,7 +879,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.ABBREV_FORWARD_STEP: {
+            case XPath2Package.ABBREV_FORWARD_STEP: {
                 AbbrevForwardStep abbrevForwardStep = (AbbrevForwardStep)theEObject;
                 T result = caseAbbrevForwardStep(abbrevForwardStep);
                 if (result == null) result = caseForwardStep(abbrevForwardStep);
@@ -906,7 +906,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.GENERAL_REVERSE_STEP: {
+            case XPath2Package.GENERAL_REVERSE_STEP: {
                 GeneralReverseStep generalReverseStep = (GeneralReverseStep)theEObject;
                 T result = caseGeneralReverseStep(generalReverseStep);
                 if (result == null) result = caseReverseStep(generalReverseStep);
@@ -933,7 +933,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.ABBREV_REVERSE_STEP: {
+            case XPath2Package.ABBREV_REVERSE_STEP: {
                 AbbrevReverseStep abbrevReverseStep = (AbbrevReverseStep)theEObject;
                 T result = caseAbbrevReverseStep(abbrevReverseStep);
                 if (result == null) result = caseReverseStep(abbrevReverseStep);
@@ -960,27 +960,27 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.NODE_TEST: {
+            case XPath2Package.NODE_TEST: {
                 NodeTest nodeTest = (NodeTest)theEObject;
                 T result = caseNodeTest(nodeTest);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.NODE_KIND_TEST: {
+            case XPath2Package.NODE_KIND_TEST: {
                 NodeKindTest nodeKindTest = (NodeKindTest)theEObject;
                 T result = caseNodeKindTest(nodeKindTest);
                 if (result == null) result = caseNodeTest(nodeKindTest);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.NAME_TEST: {
+            case XPath2Package.NAME_TEST: {
                 NameTest nameTest = (NameTest)theEObject;
                 T result = caseNameTest(nameTest);
                 if (result == null) result = caseNodeTest(nameTest);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.QNAME_TEST: {
+            case XPath2Package.QNAME_TEST: {
                 QNameTest qNameTest = (QNameTest)theEObject;
                 T result = caseQNameTest(qNameTest);
                 if (result == null) result = caseNameTest(qNameTest);
@@ -988,7 +988,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.WILDCARD: {
+            case XPath2Package.WILDCARD: {
                 Wildcard wildcard = (Wildcard)theEObject;
                 T result = caseWildcard(wildcard);
                 if (result == null) result = caseNameTest(wildcard);
@@ -996,7 +996,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.ANY_WILDCARD: {
+            case XPath2Package.ANY_WILDCARD: {
                 AnyWildcard anyWildcard = (AnyWildcard)theEObject;
                 T result = caseAnyWildcard(anyWildcard);
                 if (result == null) result = caseWildcard(anyWildcard);
@@ -1005,7 +1005,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.LOCAL_NAME_WILDCARD: {
+            case XPath2Package.LOCAL_NAME_WILDCARD: {
                 LocalNameWildcard localNameWildcard = (LocalNameWildcard)theEObject;
                 T result = caseLocalNameWildcard(localNameWildcard);
                 if (result == null) result = caseWildcard(localNameWildcard);
@@ -1014,7 +1014,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.NAMESPACE_WILDCARD: {
+            case XPath2Package.NAMESPACE_WILDCARD: {
                 NamespaceWildcard namespaceWildcard = (NamespaceWildcard)theEObject;
                 T result = caseNamespaceWildcard(namespaceWildcard);
                 if (result == null) result = caseWildcard(namespaceWildcard);
@@ -1023,13 +1023,13 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.PREDICATE: {
+            case XPath2Package.PREDICATE: {
                 Predicate predicate = (Predicate)theEObject;
                 T result = casePredicate(predicate);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.PRIMARY_EXPR: {
+            case XPath2Package.PRIMARY_EXPR: {
                 PrimaryExpr primaryExpr = (PrimaryExpr)theEObject;
                 T result = casePrimaryExpr(primaryExpr);
                 if (result == null) result = caseFilterExprChild(primaryExpr);
@@ -1054,7 +1054,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.LITERAL: {
+            case XPath2Package.LITERAL: {
                 Literal literal = (Literal)theEObject;
                 T result = caseLiteral(literal);
                 if (result == null) result = casePrimaryExpr(literal);
@@ -1080,7 +1080,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.VAR_REF: {
+            case XPath2Package.VAR_REF: {
                 VarRef varRef = (VarRef)theEObject;
                 T result = caseVarRef(varRef);
                 if (result == null) result = casePrimaryExpr(varRef);
@@ -1106,7 +1106,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.PARENTHESIZED_EXPR: {
+            case XPath2Package.PARENTHESIZED_EXPR: {
                 ParenthesizedExpr parenthesizedExpr = (ParenthesizedExpr)theEObject;
                 T result = caseParenthesizedExpr(parenthesizedExpr);
                 if (result == null) result = casePrimaryExpr(parenthesizedExpr);
@@ -1132,13 +1132,13 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.PARENTHESIZED_EXPR_CHILD: {
+            case XPath2Package.PARENTHESIZED_EXPR_CHILD: {
                 ParenthesizedExprChild parenthesizedExprChild = (ParenthesizedExprChild)theEObject;
                 T result = caseParenthesizedExprChild(parenthesizedExprChild);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.CONTEXT_ITEM_EXPR: {
+            case XPath2Package.CONTEXT_ITEM_EXPR: {
                 ContextItemExpr contextItemExpr = (ContextItemExpr)theEObject;
                 T result = caseContextItemExpr(contextItemExpr);
                 if (result == null) result = casePrimaryExpr(contextItemExpr);
@@ -1164,7 +1164,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.FUNCTION_CALL: {
+            case XPath2Package.FUNCTION_CALL: {
                 FunctionCall functionCall = (FunctionCall)theEObject;
                 T result = caseFunctionCall(functionCall);
                 if (result == null) result = casePrimaryExpr(functionCall);
@@ -1190,7 +1190,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.NUMERIC_LITERAL: {
+            case XPath2Package.NUMERIC_LITERAL: {
                 NumericLiteral numericLiteral = (NumericLiteral)theEObject;
                 T result = caseNumericLiteral(numericLiteral);
                 if (result == null) result = caseLiteral(numericLiteral);
@@ -1217,7 +1217,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.STRING_LITERAL: {
+            case XPath2Package.STRING_LITERAL: {
                 StringLiteral stringLiteral = (StringLiteral)theEObject;
                 T result = caseStringLiteral(stringLiteral);
                 if (result == null) result = caseLiteral(stringLiteral);
@@ -1244,7 +1244,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.INTEGER_LITERAL: {
+            case XPath2Package.INTEGER_LITERAL: {
                 IntegerLiteral integerLiteral = (IntegerLiteral)theEObject;
                 T result = caseIntegerLiteral(integerLiteral);
                 if (result == null) result = caseNumericLiteral(integerLiteral);
@@ -1272,7 +1272,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.DECIMAL_LITERAL: {
+            case XPath2Package.DECIMAL_LITERAL: {
                 DecimalLiteral decimalLiteral = (DecimalLiteral)theEObject;
                 T result = caseDecimalLiteral(decimalLiteral);
                 if (result == null) result = caseNumericLiteral(decimalLiteral);
@@ -1300,7 +1300,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.DOUBLE_LITERAL: {
+            case XPath2Package.DOUBLE_LITERAL: {
                 DoubleLiteral doubleLiteral = (DoubleLiteral)theEObject;
                 T result = caseDoubleLiteral(doubleLiteral);
                 if (result == null) result = caseNumericLiteral(doubleLiteral);
@@ -1328,119 +1328,119 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.COMP: {
+            case XPath2Package.COMP: {
                 Comp comp = (Comp)theEObject;
                 T result = caseComp(comp);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.GENERAL_COMP: {
+            case XPath2Package.GENERAL_COMP: {
                 GeneralComp generalComp = (GeneralComp)theEObject;
                 T result = caseGeneralComp(generalComp);
                 if (result == null) result = caseComp(generalComp);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.VALUE_COMP: {
+            case XPath2Package.VALUE_COMP: {
                 ValueComp valueComp = (ValueComp)theEObject;
                 T result = caseValueComp(valueComp);
                 if (result == null) result = caseComp(valueComp);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.NODE_COMP: {
+            case XPath2Package.NODE_COMP: {
                 NodeComp nodeComp = (NodeComp)theEObject;
                 T result = caseNodeComp(nodeComp);
                 if (result == null) result = caseComp(nodeComp);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.SINGLE_TYPE: {
+            case XPath2Package.SINGLE_TYPE: {
                 SingleType singleType = (SingleType)theEObject;
                 T result = caseSingleType(singleType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.ATOMIC_TYPE: {
+            case XPath2Package.ATOMIC_TYPE: {
                 AtomicType atomicType = (AtomicType)theEObject;
                 T result = caseAtomicType(atomicType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.OPTIONAL_ATOMIC_TYPE: {
+            case XPath2Package.OPTIONAL_ATOMIC_TYPE: {
                 OptionalAtomicType optionalAtomicType = (OptionalAtomicType)theEObject;
                 T result = caseOptionalAtomicType(optionalAtomicType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.SEQUENCE_TYPE: {
+            case XPath2Package.SEQUENCE_TYPE: {
                 SequenceType sequenceType = (SequenceType)theEObject;
                 T result = caseSequenceType(sequenceType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.EMPTY_SEQUENCE_TYPE: {
+            case XPath2Package.EMPTY_SEQUENCE_TYPE: {
                 EmptySequenceType emptySequenceType = (EmptySequenceType)theEObject;
                 T result = caseEmptySequenceType(emptySequenceType);
                 if (result == null) result = caseSequenceType(emptySequenceType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.ITEM_SEQUENCE_TYPE: {
+            case XPath2Package.ITEM_SEQUENCE_TYPE: {
                 ItemSequenceType itemSequenceType = (ItemSequenceType)theEObject;
                 T result = caseItemSequenceType(itemSequenceType);
                 if (result == null) result = caseSequenceType(itemSequenceType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.ITEM_TYPE: {
+            case XPath2Package.ITEM_TYPE: {
                 ItemType itemType = (ItemType)theEObject;
                 T result = caseItemType(itemType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.ITEM_KIND_TEST: {
+            case XPath2Package.ITEM_KIND_TEST: {
                 ItemKindTest itemKindTest = (ItemKindTest)theEObject;
                 T result = caseItemKindTest(itemKindTest);
                 if (result == null) result = caseItemType(itemKindTest);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.ANY_ITEM_TYPE: {
+            case XPath2Package.ANY_ITEM_TYPE: {
                 AnyItemType anyItemType = (AnyItemType)theEObject;
                 T result = caseAnyItemType(anyItemType);
                 if (result == null) result = caseItemType(anyItemType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.ATOMIC_ITEM_TYPE: {
+            case XPath2Package.ATOMIC_ITEM_TYPE: {
                 AtomicItemType atomicItemType = (AtomicItemType)theEObject;
                 T result = caseAtomicItemType(atomicItemType);
                 if (result == null) result = caseItemType(atomicItemType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.KIND_TEST: {
+            case XPath2Package.KIND_TEST: {
                 KindTest kindTest = (KindTest)theEObject;
                 T result = caseKindTest(kindTest);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.DOCUMENT_TEST: {
+            case XPath2Package.DOCUMENT_TEST: {
                 DocumentTest documentTest = (DocumentTest)theEObject;
                 T result = caseDocumentTest(documentTest);
                 if (result == null) result = caseKindTest(documentTest);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.ELEMENT_TEST: {
+            case XPath2Package.ELEMENT_TEST: {
                 ElementTest elementTest = (ElementTest)theEObject;
                 T result = caseElementTest(elementTest);
                 if (result == null) result = caseKindTest(elementTest);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.NAME_ELEMENT_TEST: {
+            case XPath2Package.NAME_ELEMENT_TEST: {
                 NameElementTest nameElementTest = (NameElementTest)theEObject;
                 T result = caseNameElementTest(nameElementTest);
                 if (result == null) result = caseElementTest(nameElementTest);
@@ -1448,7 +1448,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.WILDCARD_ELEMENT_TEST: {
+            case XPath2Package.WILDCARD_ELEMENT_TEST: {
                 WildcardElementTest wildcardElementTest = (WildcardElementTest)theEObject;
                 T result = caseWildcardElementTest(wildcardElementTest);
                 if (result == null) result = caseElementTest(wildcardElementTest);
@@ -1456,14 +1456,14 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.ATTRIBUTE_TEST: {
+            case XPath2Package.ATTRIBUTE_TEST: {
                 AttributeTest attributeTest = (AttributeTest)theEObject;
                 T result = caseAttributeTest(attributeTest);
                 if (result == null) result = caseKindTest(attributeTest);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.NAME_ATTRIBUTE_TEST: {
+            case XPath2Package.NAME_ATTRIBUTE_TEST: {
                 NameAttributeTest nameAttributeTest = (NameAttributeTest)theEObject;
                 T result = caseNameAttributeTest(nameAttributeTest);
                 if (result == null) result = caseAttributeTest(nameAttributeTest);
@@ -1471,7 +1471,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.WILDCARD_ATTRIBUTE_TEST: {
+            case XPath2Package.WILDCARD_ATTRIBUTE_TEST: {
                 WildcardAttributeTest wildcardAttributeTest = (WildcardAttributeTest)theEObject;
                 T result = caseWildcardAttributeTest(wildcardAttributeTest);
                 if (result == null) result = caseAttributeTest(wildcardAttributeTest);
@@ -1479,28 +1479,28 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.SCHEMA_ELEMENT_TEST: {
+            case XPath2Package.SCHEMA_ELEMENT_TEST: {
                 SchemaElementTest schemaElementTest = (SchemaElementTest)theEObject;
                 T result = caseSchemaElementTest(schemaElementTest);
                 if (result == null) result = caseKindTest(schemaElementTest);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.SCHEMA_ATTRIBUTE_TEST: {
+            case XPath2Package.SCHEMA_ATTRIBUTE_TEST: {
                 SchemaAttributeTest schemaAttributeTest = (SchemaAttributeTest)theEObject;
                 T result = caseSchemaAttributeTest(schemaAttributeTest);
                 if (result == null) result = caseKindTest(schemaAttributeTest);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.PI_TEST: {
+            case XPath2Package.PI_TEST: {
                 PITest piTest = (PITest)theEObject;
                 T result = casePITest(piTest);
                 if (result == null) result = caseKindTest(piTest);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.NC_NAME_PI_TEST: {
+            case XPath2Package.NC_NAME_PI_TEST: {
                 NCNamePITest ncNamePITest = (NCNamePITest)theEObject;
                 T result = caseNCNamePITest(ncNamePITest);
                 if (result == null) result = casePITest(ncNamePITest);
@@ -1508,7 +1508,7 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.STRING_LITERAL_PI_TEST: {
+            case XPath2Package.STRING_LITERAL_PI_TEST: {
                 StringLiteralPITest stringLiteralPITest = (StringLiteralPITest)theEObject;
                 T result = caseStringLiteralPITest(stringLiteralPITest);
                 if (result == null) result = casePITest(stringLiteralPITest);
@@ -1516,28 +1516,28 @@ public class Xpath2Switch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.COMMENT_TEST: {
+            case XPath2Package.COMMENT_TEST: {
                 CommentTest commentTest = (CommentTest)theEObject;
                 T result = caseCommentTest(commentTest);
                 if (result == null) result = caseKindTest(commentTest);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.TEXT_TEST: {
+            case XPath2Package.TEXT_TEST: {
                 TextTest textTest = (TextTest)theEObject;
                 T result = caseTextTest(textTest);
                 if (result == null) result = caseKindTest(textTest);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.ANY_KIND_TEST: {
+            case XPath2Package.ANY_KIND_TEST: {
                 AnyKindTest anyKindTest = (AnyKindTest)theEObject;
                 T result = caseAnyKindTest(anyKindTest);
                 if (result == null) result = caseKindTest(anyKindTest);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case Xpath2Package.COMMENT: {
+            case XPath2Package.COMMENT: {
                 Comment comment = (Comment)theEObject;
                 T result = caseComment(comment);
                 if (result == null) result = defaultCase(theEObject);
@@ -3108,4 +3108,4 @@ public class Xpath2Switch<T> extends Switch<T> {
         return null;
     }
 
-} //Xpath2Switch
+} //XPath2Switch

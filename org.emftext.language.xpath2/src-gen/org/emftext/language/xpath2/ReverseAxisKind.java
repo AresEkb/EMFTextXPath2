@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Reverse Axis Kind</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.emftext.language.xpath2.Xpath2Package#getReverseAxisKind()
+ * @see org.emftext.language.xpath2.XPath2Package#getReverseAxisKind()
  * @model
  * @generated
  */
@@ -178,6 +178,8 @@ public enum ReverseAxisKind implements Enumerator {
      * Returns the '<em><b>Reverse Axis Kind</b></em>' literal with the specified literal value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param literal the literal.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static ReverseAxisKind get(String literal) {
@@ -194,6 +196,8 @@ public enum ReverseAxisKind implements Enumerator {
      * Returns the '<em><b>Reverse Axis Kind</b></em>' literal with the specified name.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param name the name.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static ReverseAxisKind getByName(String name) {
@@ -210,6 +214,8 @@ public enum ReverseAxisKind implements Enumerator {
      * Returns the '<em><b>Reverse Axis Kind</b></em>' literal with the specified integer value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param value the integer value.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static ReverseAxisKind get(int value) {

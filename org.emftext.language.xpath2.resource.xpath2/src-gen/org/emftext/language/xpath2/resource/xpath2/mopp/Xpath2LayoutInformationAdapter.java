@@ -18,6 +18,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 
 /**
+ * <p>
  * A Xpath2LayoutInformationAdapter is used to store layout information that is
  * found while parsing text files. Layout information does include all unused
  * tokens. Usually, these are whitespace characters, line breaks and comments, but
@@ -25,10 +26,13 @@ import org.eclipse.emf.ecore.EObject;
  * Xpath2LayoutInformationAdapters are attached to EObjects and aggregate multiple
  * LayoutInformation objects. Each of these objects contains the layout that was
  * found before a keyword, attribute or reference.
+ * </p>
  * 
+ * <p>
  * Since layout information is stored in EAdapters, models can be transformed and
  * modified, while still keeping the formatting of the original text document from
  * which the model was originally created.
+ * </p>
  */
 public class Xpath2LayoutInformationAdapter implements Adapter {
 	

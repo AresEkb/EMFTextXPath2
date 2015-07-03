@@ -19,13 +19,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.AdditiveExpr#getOperand <em>Operand</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.AdditiveExpr#getOperator <em>Operator</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getAdditiveExpr()
+ * @see org.emftext.language.xpath2.XPath2Package#getAdditiveExpr()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface AdditiveExpr extends RangeExprChild {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Operand</em>' containment reference list.
-     * @see org.emftext.language.xpath2.Xpath2Package#getAdditiveExpr_Operand()
+     * @see org.emftext.language.xpath2.XPath2Package#getAdditiveExpr_Operand()
      * @model containment="true" required="true"
      * @generated
      */
@@ -58,7 +58,7 @@ public interface AdditiveExpr extends RangeExprChild {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Operator</em>' attribute list.
      * @see org.emftext.language.xpath2.AdditiveOpKind
-     * @see org.emftext.language.xpath2.Xpath2Package#getAdditiveExpr_Operator()
+     * @see org.emftext.language.xpath2.XPath2Package#getAdditiveExpr_Operator()
      * @model unique="false"
      * @generated
      */

@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.GeneralComp;
 import org.emftext.language.xpath2.GeneralCompKind;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,10 +26,10 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.GeneralCompImpl#getOperator <em>Operator</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -70,7 +70,7 @@ public class GeneralCompImpl extends CompImpl implements GeneralComp {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.GENERAL_COMP;
+        return XPath2Package.Literals.GENERAL_COMP;
     }
 
     /**
@@ -91,7 +91,7 @@ public class GeneralCompImpl extends CompImpl implements GeneralComp {
         GeneralCompKind oldOperator = operator;
         operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.GENERAL_COMP__OPERATOR, oldOperator, operator));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.GENERAL_COMP__OPERATOR, oldOperator, operator));
     }
 
     /**
@@ -102,7 +102,7 @@ public class GeneralCompImpl extends CompImpl implements GeneralComp {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.GENERAL_COMP__OPERATOR:
+            case XPath2Package.GENERAL_COMP__OPERATOR:
                 return getOperator();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -116,7 +116,7 @@ public class GeneralCompImpl extends CompImpl implements GeneralComp {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.GENERAL_COMP__OPERATOR:
+            case XPath2Package.GENERAL_COMP__OPERATOR:
                 setOperator((GeneralCompKind)newValue);
                 return;
         }
@@ -131,7 +131,7 @@ public class GeneralCompImpl extends CompImpl implements GeneralComp {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.GENERAL_COMP__OPERATOR:
+            case XPath2Package.GENERAL_COMP__OPERATOR:
                 setOperator(OPERATOR_EDEFAULT);
                 return;
         }
@@ -146,7 +146,7 @@ public class GeneralCompImpl extends CompImpl implements GeneralComp {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.GENERAL_COMP__OPERATOR:
+            case XPath2Package.GENERAL_COMP__OPERATOR:
                 return operator != OPERATOR_EDEFAULT;
         }
         return super.eIsSet(featureID);

@@ -32,11 +32,15 @@ public interface IXpath2TextResource extends Resource, org.emftext.language.xpat
 	public EList<EObject> getContentsInternal();
 	
 	/**
+	 * <p>
 	 * Try to load the content of this resource from the given stream. If loading
 	 * fails, the state of this resource is kept. If loading is successful, the
 	 * content of this resource is replaced with the new content.
+	 * </p>
+	 * <p>
 	 * This method can be used to try loading erroneous files, as e.g., needed during
 	 * background parsing in the editor.
+	 * </p>
 	 * 
 	 * @param stream the stream to read from
 	 * @param options the load options to use
@@ -46,8 +50,10 @@ public interface IXpath2TextResource extends Resource, org.emftext.language.xpat
 	public void reload(InputStream stream, Map<?,?> options) throws IOException;
 	
 	/**
+	 * <p>
 	 * Returns a map containing information about the location of model elements in
 	 * the text.
+	 * </p>
 	 * 
 	 * @return the model element to text location mapping
 	 */
@@ -64,8 +70,10 @@ public interface IXpath2TextResource extends Resource, org.emftext.language.xpat
 	public void addProblem(org.emftext.language.xpath2.resource.xpath2.IXpath2Problem problem, int column, int line, int charStart, int charEnd);
 	
 	/**
+	 * <p>
 	 * Internal method used by the parser to register a context dependent proxy object
 	 * for later resolution.
+	 * </p>
 	 * 
 	 * @param container
 	 * @param reference

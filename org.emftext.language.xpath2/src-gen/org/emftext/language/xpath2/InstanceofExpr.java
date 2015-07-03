@@ -18,13 +18,13 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.InstanceofExpr#getOperand <em>Operand</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.InstanceofExpr#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getInstanceofExpr()
+ * @see org.emftext.language.xpath2.XPath2Package#getInstanceofExpr()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface InstanceofExpr extends IntersectExceptExprChild {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Operand</em>' containment reference.
      * @see #setOperand(InstanceofExprChild)
-     * @see org.emftext.language.xpath2.Xpath2Package#getInstanceofExpr_Operand()
+     * @see org.emftext.language.xpath2.XPath2Package#getInstanceofExpr_Operand()
      * @model containment="true" required="true"
      * @generated
      */
@@ -65,7 +65,7 @@ public interface InstanceofExpr extends IntersectExceptExprChild {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Type</em>' containment reference.
      * @see #setType(SequenceType)
-     * @see org.emftext.language.xpath2.Xpath2Package#getInstanceofExpr_Type()
+     * @see org.emftext.language.xpath2.XPath2Package#getInstanceofExpr_Type()
      * @model containment="true"
      * @generated
      */

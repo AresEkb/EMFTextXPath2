@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.ItemKindTest;
 import org.emftext.language.xpath2.KindTest;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,10 +28,10 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.ItemKindTestImpl#getTest <em>Test</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -62,7 +62,7 @@ public class ItemKindTestImpl extends ItemTypeImpl implements ItemKindTest {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.ITEM_KIND_TEST;
+        return XPath2Package.Literals.ITEM_KIND_TEST;
     }
 
     /**
@@ -83,7 +83,7 @@ public class ItemKindTestImpl extends ItemTypeImpl implements ItemKindTest {
         KindTest oldTest = test;
         test = newTest;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.ITEM_KIND_TEST__TEST, oldTest, newTest);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.ITEM_KIND_TEST__TEST, oldTest, newTest);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -98,14 +98,14 @@ public class ItemKindTestImpl extends ItemTypeImpl implements ItemKindTest {
         if (newTest != test) {
             NotificationChain msgs = null;
             if (test != null)
-                msgs = ((InternalEObject)test).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.ITEM_KIND_TEST__TEST, null, msgs);
+                msgs = ((InternalEObject)test).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.ITEM_KIND_TEST__TEST, null, msgs);
             if (newTest != null)
-                msgs = ((InternalEObject)newTest).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.ITEM_KIND_TEST__TEST, null, msgs);
+                msgs = ((InternalEObject)newTest).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.ITEM_KIND_TEST__TEST, null, msgs);
             msgs = basicSetTest(newTest, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ITEM_KIND_TEST__TEST, newTest, newTest));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.ITEM_KIND_TEST__TEST, newTest, newTest));
     }
 
     /**
@@ -116,7 +116,7 @@ public class ItemKindTestImpl extends ItemTypeImpl implements ItemKindTest {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.ITEM_KIND_TEST__TEST:
+            case XPath2Package.ITEM_KIND_TEST__TEST:
                 return basicSetTest(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -130,7 +130,7 @@ public class ItemKindTestImpl extends ItemTypeImpl implements ItemKindTest {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.ITEM_KIND_TEST__TEST:
+            case XPath2Package.ITEM_KIND_TEST__TEST:
                 return getTest();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -144,7 +144,7 @@ public class ItemKindTestImpl extends ItemTypeImpl implements ItemKindTest {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.ITEM_KIND_TEST__TEST:
+            case XPath2Package.ITEM_KIND_TEST__TEST:
                 setTest((KindTest)newValue);
                 return;
         }
@@ -159,7 +159,7 @@ public class ItemKindTestImpl extends ItemTypeImpl implements ItemKindTest {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.ITEM_KIND_TEST__TEST:
+            case XPath2Package.ITEM_KIND_TEST__TEST:
                 setTest((KindTest)null);
                 return;
         }
@@ -174,7 +174,7 @@ public class ItemKindTestImpl extends ItemTypeImpl implements ItemKindTest {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.ITEM_KIND_TEST__TEST:
+            case XPath2Package.ITEM_KIND_TEST__TEST:
                 return test != null;
         }
         return super.eIsSet(featureID);

@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.LocalNameWildcard;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,10 +25,10 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.LocalNameWildcardImpl#getNamespace <em>Namespace</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -69,7 +69,7 @@ public class LocalNameWildcardImpl extends WildcardImpl implements LocalNameWild
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.LOCAL_NAME_WILDCARD;
+        return XPath2Package.Literals.LOCAL_NAME_WILDCARD;
     }
 
     /**
@@ -90,7 +90,7 @@ public class LocalNameWildcardImpl extends WildcardImpl implements LocalNameWild
         String oldNamespace = namespace;
         namespace = newNamespace;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.LOCAL_NAME_WILDCARD__NAMESPACE, oldNamespace, namespace));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.LOCAL_NAME_WILDCARD__NAMESPACE, oldNamespace, namespace));
     }
 
     /**
@@ -101,7 +101,7 @@ public class LocalNameWildcardImpl extends WildcardImpl implements LocalNameWild
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.LOCAL_NAME_WILDCARD__NAMESPACE:
+            case XPath2Package.LOCAL_NAME_WILDCARD__NAMESPACE:
                 return getNamespace();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -115,7 +115,7 @@ public class LocalNameWildcardImpl extends WildcardImpl implements LocalNameWild
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.LOCAL_NAME_WILDCARD__NAMESPACE:
+            case XPath2Package.LOCAL_NAME_WILDCARD__NAMESPACE:
                 setNamespace((String)newValue);
                 return;
         }
@@ -130,7 +130,7 @@ public class LocalNameWildcardImpl extends WildcardImpl implements LocalNameWild
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.LOCAL_NAME_WILDCARD__NAMESPACE:
+            case XPath2Package.LOCAL_NAME_WILDCARD__NAMESPACE:
                 setNamespace(NAMESPACE_EDEFAULT);
                 return;
         }
@@ -145,7 +145,7 @@ public class LocalNameWildcardImpl extends WildcardImpl implements LocalNameWild
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.LOCAL_NAME_WILDCARD__NAMESPACE:
+            case XPath2Package.LOCAL_NAME_WILDCARD__NAMESPACE:
                 return NAMESPACE_EDEFAULT == null ? namespace != null : !NAMESPACE_EDEFAULT.equals(namespace);
         }
         return super.eIsSet(featureID);

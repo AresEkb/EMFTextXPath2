@@ -136,8 +136,8 @@ import org.emftext.language.xpath2.VarRef;
 import org.emftext.language.xpath2.Wildcard;
 import org.emftext.language.xpath2.WildcardAttributeTest;
 import org.emftext.language.xpath2.WildcardElementTest;
-import org.emftext.language.xpath2.Xpath2Factory;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Factory;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -145,7 +145,7 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * @generated
  */
-public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
+public class XPath2PackageImpl extends EPackageImpl implements XPath2Package {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -969,12 +969,12 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.eclipse.emf.ecore.EPackage.Registry
-     * @see org.emftext.language.xpath2.Xpath2Package#eNS_URI
+     * @see org.emftext.language.xpath2.XPath2Package#eNS_URI
      * @see #init()
      * @generated
      */
-    private Xpath2PackageImpl() {
-        super(eNS_URI, Xpath2Factory.eINSTANCE);
+    private XPath2PackageImpl() {
+        super(eNS_URI, XPath2Factory.eINSTANCE);
     }
 
     /**
@@ -987,7 +987,7 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
     /**
      * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
      * 
-     * <p>This method is used to initialize {@link Xpath2Package#eINSTANCE} when that field is accessed.
+     * <p>This method is used to initialize {@link XPath2Package#eINSTANCE} when that field is accessed.
      * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -996,11 +996,11 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
      * @see #initializePackageContents()
      * @generated
      */
-    public static Xpath2Package init() {
-        if (isInited) return (Xpath2Package)EPackage.Registry.INSTANCE.getEPackage(Xpath2Package.eNS_URI);
+    public static XPath2Package init() {
+        if (isInited) return (XPath2Package)EPackage.Registry.INSTANCE.getEPackage(XPath2Package.eNS_URI);
 
         // Obtain or create and register package
-        Xpath2PackageImpl theXpath2Package = (Xpath2PackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof Xpath2PackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new Xpath2PackageImpl());
+        XPath2PackageImpl theXPath2Package = (XPath2PackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof XPath2PackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new XPath2PackageImpl());
 
         isInited = true;
 
@@ -1008,18 +1008,18 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
         XMLTypePackage.eINSTANCE.eClass();
 
         // Create package meta-data objects
-        theXpath2Package.createPackageContents();
+        theXPath2Package.createPackageContents();
 
         // Initialize created meta-data
-        theXpath2Package.initializePackageContents();
+        theXPath2Package.initializePackageContents();
 
         // Mark meta-data to indicate it can't be changed
-        theXpath2Package.freeze();
+        theXPath2Package.freeze();
 
   
         // Update the registry and return the package
-        EPackage.Registry.INSTANCE.put(Xpath2Package.eNS_URI, theXpath2Package);
-        return theXpath2Package;
+        EPackage.Registry.INSTANCE.put(XPath2Package.eNS_URI, theXPath2Package);
+        return theXPath2Package;
     }
 
     /**
@@ -2863,8 +2863,8 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Xpath2Factory getXpath2Factory() {
-        return (Xpath2Factory)getEFactoryInstance();
+    public XPath2Factory getXPath2Factory() {
+        return (XPath2Factory)getEFactoryInstance();
     }
 
     /**
@@ -3688,4 +3688,4 @@ public class Xpath2PackageImpl extends EPackageImpl implements Xpath2Package {
         createResource(eNS_URI);
     }
 
-} //Xpath2PackageImpl
+} //XPath2PackageImpl

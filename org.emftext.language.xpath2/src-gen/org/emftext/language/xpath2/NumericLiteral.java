@@ -17,7 +17,7 @@ package org.emftext.language.xpath2;
  * <!-- end-user-doc -->
  *
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getNumericLiteral()
+ * @see org.emftext.language.xpath2.XPath2Package#getNumericLiteral()
  * @model abstract="true"
  * @generated
  */

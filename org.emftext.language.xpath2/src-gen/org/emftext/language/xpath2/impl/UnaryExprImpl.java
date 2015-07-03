@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.emftext.language.xpath2.UnaryExpr;
 import org.emftext.language.xpath2.UnaryExprChild;
 import org.emftext.language.xpath2.UnaryOp;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,11 +35,11 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.UnaryExprImpl#getOperand <em>Operand</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.UnaryExprImpl#getOperator <em>Operator</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -80,7 +80,7 @@ public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.UNARY_EXPR;
+        return XPath2Package.Literals.UNARY_EXPR;
     }
 
     /**
@@ -101,7 +101,7 @@ public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
         UnaryExprChild oldOperand = operand;
         operand = newOperand;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.UNARY_EXPR__OPERAND, oldOperand, newOperand);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.UNARY_EXPR__OPERAND, oldOperand, newOperand);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -116,14 +116,14 @@ public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
         if (newOperand != operand) {
             NotificationChain msgs = null;
             if (operand != null)
-                msgs = ((InternalEObject)operand).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.UNARY_EXPR__OPERAND, null, msgs);
+                msgs = ((InternalEObject)operand).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.UNARY_EXPR__OPERAND, null, msgs);
             if (newOperand != null)
-                msgs = ((InternalEObject)newOperand).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.UNARY_EXPR__OPERAND, null, msgs);
+                msgs = ((InternalEObject)newOperand).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.UNARY_EXPR__OPERAND, null, msgs);
             msgs = basicSetOperand(newOperand, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.UNARY_EXPR__OPERAND, newOperand, newOperand));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.UNARY_EXPR__OPERAND, newOperand, newOperand));
     }
 
     /**
@@ -133,7 +133,7 @@ public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
      */
     public EList<UnaryOp> getOperator() {
         if (operator == null) {
-            operator = new EDataTypeEList<UnaryOp>(UnaryOp.class, this, Xpath2Package.UNARY_EXPR__OPERATOR);
+            operator = new EDataTypeEList<UnaryOp>(UnaryOp.class, this, XPath2Package.UNARY_EXPR__OPERATOR);
         }
         return operator;
     }
@@ -146,7 +146,7 @@ public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.UNARY_EXPR__OPERAND:
+            case XPath2Package.UNARY_EXPR__OPERAND:
                 return basicSetOperand(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -160,9 +160,9 @@ public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.UNARY_EXPR__OPERAND:
+            case XPath2Package.UNARY_EXPR__OPERAND:
                 return getOperand();
-            case Xpath2Package.UNARY_EXPR__OPERATOR:
+            case XPath2Package.UNARY_EXPR__OPERATOR:
                 return getOperator();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -177,10 +177,10 @@ public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.UNARY_EXPR__OPERAND:
+            case XPath2Package.UNARY_EXPR__OPERAND:
                 setOperand((UnaryExprChild)newValue);
                 return;
-            case Xpath2Package.UNARY_EXPR__OPERATOR:
+            case XPath2Package.UNARY_EXPR__OPERATOR:
                 getOperator().clear();
                 getOperator().addAll((Collection<? extends UnaryOp>)newValue);
                 return;
@@ -196,10 +196,10 @@ public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.UNARY_EXPR__OPERAND:
+            case XPath2Package.UNARY_EXPR__OPERAND:
                 setOperand((UnaryExprChild)null);
                 return;
-            case Xpath2Package.UNARY_EXPR__OPERATOR:
+            case XPath2Package.UNARY_EXPR__OPERATOR:
                 getOperator().clear();
                 return;
         }
@@ -214,9 +214,9 @@ public class UnaryExprImpl extends CastExprChildImpl implements UnaryExpr {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.UNARY_EXPR__OPERAND:
+            case XPath2Package.UNARY_EXPR__OPERAND:
                 return operand != null;
-            case Xpath2Package.UNARY_EXPR__OPERATOR:
+            case XPath2Package.UNARY_EXPR__OPERATOR:
                 return operator != null && !operator.isEmpty();
         }
         return super.eIsSet(featureID);

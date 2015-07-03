@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.emftext.language.xpath2.PathExpr;
 import org.emftext.language.xpath2.PathExprChild;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,10 +32,10 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.PathExprImpl#getStep <em>Step</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -66,7 +66,7 @@ public class PathExprImpl extends ValueExprImpl implements PathExpr {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.PATH_EXPR;
+        return XPath2Package.Literals.PATH_EXPR;
     }
 
     /**
@@ -76,7 +76,7 @@ public class PathExprImpl extends ValueExprImpl implements PathExpr {
      */
     public EList<PathExprChild> getStep() {
         if (step == null) {
-            step = new EObjectContainmentEList<PathExprChild>(PathExprChild.class, this, Xpath2Package.PATH_EXPR__STEP);
+            step = new EObjectContainmentEList<PathExprChild>(PathExprChild.class, this, XPath2Package.PATH_EXPR__STEP);
         }
         return step;
     }
@@ -89,7 +89,7 @@ public class PathExprImpl extends ValueExprImpl implements PathExpr {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.PATH_EXPR__STEP:
+            case XPath2Package.PATH_EXPR__STEP:
                 return ((InternalEList<?>)getStep()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -103,7 +103,7 @@ public class PathExprImpl extends ValueExprImpl implements PathExpr {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.PATH_EXPR__STEP:
+            case XPath2Package.PATH_EXPR__STEP:
                 return getStep();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -118,7 +118,7 @@ public class PathExprImpl extends ValueExprImpl implements PathExpr {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.PATH_EXPR__STEP:
+            case XPath2Package.PATH_EXPR__STEP:
                 getStep().clear();
                 getStep().addAll((Collection<? extends PathExprChild>)newValue);
                 return;
@@ -134,7 +134,7 @@ public class PathExprImpl extends ValueExprImpl implements PathExpr {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.PATH_EXPR__STEP:
+            case XPath2Package.PATH_EXPR__STEP:
                 getStep().clear();
                 return;
         }
@@ -149,7 +149,7 @@ public class PathExprImpl extends ValueExprImpl implements PathExpr {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.PATH_EXPR__STEP:
+            case XPath2Package.PATH_EXPR__STEP:
                 return step != null && !step.isEmpty();
         }
         return super.eIsSet(featureID);

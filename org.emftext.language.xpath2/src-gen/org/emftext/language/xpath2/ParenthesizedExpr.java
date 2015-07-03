@@ -18,12 +18,12 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.ParenthesizedExpr#getExpr <em>Expr</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getParenthesizedExpr()
+ * @see org.emftext.language.xpath2.XPath2Package#getParenthesizedExpr()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface ParenthesizedExpr extends PrimaryExpr {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Expr</em>' containment reference.
      * @see #setExpr(ParenthesizedExprChild)
-     * @see org.emftext.language.xpath2.Xpath2Package#getParenthesizedExpr_Expr()
+     * @see org.emftext.language.xpath2.XPath2Package#getParenthesizedExpr_Expr()
      * @model containment="true"
      * @generated
      */

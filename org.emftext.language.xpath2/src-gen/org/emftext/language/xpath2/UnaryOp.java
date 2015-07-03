@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Unary Op</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.emftext.language.xpath2.Xpath2Package#getUnaryOp()
+ * @see org.emftext.language.xpath2.XPath2Package#getUnaryOp()
  * @model
  * @generated
  */
@@ -100,6 +100,8 @@ public enum UnaryOp implements Enumerator {
      * Returns the '<em><b>Unary Op</b></em>' literal with the specified literal value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param literal the literal.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static UnaryOp get(String literal) {
@@ -116,6 +118,8 @@ public enum UnaryOp implements Enumerator {
      * Returns the '<em><b>Unary Op</b></em>' literal with the specified name.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param name the name.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static UnaryOp getByName(String name) {
@@ -132,6 +136,8 @@ public enum UnaryOp implements Enumerator {
      * Returns the '<em><b>Unary Op</b></em>' literal with the specified integer value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param value the integer value.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static UnaryOp get(int value) {

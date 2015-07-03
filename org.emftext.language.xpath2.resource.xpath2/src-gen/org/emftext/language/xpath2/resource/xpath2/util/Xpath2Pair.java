@@ -12,7 +12,9 @@ package org.emftext.language.xpath2.resource.xpath2.util;
 
 
 /**
+ * <p>
  * A typed pair of objects.
+ * </p>
  * 
  * @param <T1> the type of the first (left) object
  * @param <T2> the type of the second (right) object

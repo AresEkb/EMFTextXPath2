@@ -19,12 +19,12 @@ import javax.xml.namespace.QName;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.VarRef#getVarName <em>Var Name</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getVarRef()
+ * @see org.emftext.language.xpath2.XPath2Package#getVarRef()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface VarRef extends PrimaryExpr {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Var Name</em>' attribute.
      * @see #setVarName(QName)
-     * @see org.emftext.language.xpath2.Xpath2Package#getVarRef_VarName()
+     * @see org.emftext.language.xpath2.XPath2Package#getVarRef_VarName()
      * @model dataType="org.eclipse.emf.ecore.xml.type.QName" required="true"
      * @generated
      */

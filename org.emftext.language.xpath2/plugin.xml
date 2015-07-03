@@ -10,7 +10,7 @@
       <!-- @generated xpath2 -->
       <package
             uri="http://www.emftext.org/language/xpath2"
-            class="org.emftext.language.xpath2.Xpath2Package"
+            class="org.emftext.language.xpath2.XPath2Package"
             genModel="metamodel/xpath2.genmodel"/>
    </extension>
 

@@ -29,7 +29,7 @@ import org.emftext.language.xpath2.ExprSingle;
 import org.emftext.language.xpath2.Iterator;
 import org.emftext.language.xpath2.QuantifiedExpr;
 import org.emftext.language.xpath2.QuantifierKind;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,12 +37,12 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.QuantifiedExprImpl#getQuantifier <em>Quantifier</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.QuantifiedExprImpl#getIterator <em>Iterator</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.QuantifiedExprImpl#getSatisfies <em>Satisfies</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -103,7 +103,7 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.QUANTIFIED_EXPR;
+        return XPath2Package.Literals.QUANTIFIED_EXPR;
     }
 
     /**
@@ -124,7 +124,7 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
         QuantifierKind oldQuantifier = quantifier;
         quantifier = newQuantifier == null ? QUANTIFIER_EDEFAULT : newQuantifier;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.QUANTIFIED_EXPR__QUANTIFIER, oldQuantifier, quantifier));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.QUANTIFIED_EXPR__QUANTIFIER, oldQuantifier, quantifier));
     }
 
     /**
@@ -134,7 +134,7 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
      */
     public EList<Iterator> getIterator() {
         if (iterator == null) {
-            iterator = new EObjectContainmentEList<Iterator>(Iterator.class, this, Xpath2Package.QUANTIFIED_EXPR__ITERATOR);
+            iterator = new EObjectContainmentEList<Iterator>(Iterator.class, this, XPath2Package.QUANTIFIED_EXPR__ITERATOR);
         }
         return iterator;
     }
@@ -157,7 +157,7 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
         ExprSingle oldSatisfies = satisfies;
         satisfies = newSatisfies;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.QUANTIFIED_EXPR__SATISFIES, oldSatisfies, newSatisfies);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.QUANTIFIED_EXPR__SATISFIES, oldSatisfies, newSatisfies);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -172,14 +172,14 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
         if (newSatisfies != satisfies) {
             NotificationChain msgs = null;
             if (satisfies != null)
-                msgs = ((InternalEObject)satisfies).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.QUANTIFIED_EXPR__SATISFIES, null, msgs);
+                msgs = ((InternalEObject)satisfies).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.QUANTIFIED_EXPR__SATISFIES, null, msgs);
             if (newSatisfies != null)
-                msgs = ((InternalEObject)newSatisfies).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.QUANTIFIED_EXPR__SATISFIES, null, msgs);
+                msgs = ((InternalEObject)newSatisfies).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.QUANTIFIED_EXPR__SATISFIES, null, msgs);
             msgs = basicSetSatisfies(newSatisfies, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.QUANTIFIED_EXPR__SATISFIES, newSatisfies, newSatisfies));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.QUANTIFIED_EXPR__SATISFIES, newSatisfies, newSatisfies));
     }
 
     /**
@@ -190,9 +190,9 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.QUANTIFIED_EXPR__ITERATOR:
+            case XPath2Package.QUANTIFIED_EXPR__ITERATOR:
                 return ((InternalEList<?>)getIterator()).basicRemove(otherEnd, msgs);
-            case Xpath2Package.QUANTIFIED_EXPR__SATISFIES:
+            case XPath2Package.QUANTIFIED_EXPR__SATISFIES:
                 return basicSetSatisfies(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -206,11 +206,11 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.QUANTIFIED_EXPR__QUANTIFIER:
+            case XPath2Package.QUANTIFIED_EXPR__QUANTIFIER:
                 return getQuantifier();
-            case Xpath2Package.QUANTIFIED_EXPR__ITERATOR:
+            case XPath2Package.QUANTIFIED_EXPR__ITERATOR:
                 return getIterator();
-            case Xpath2Package.QUANTIFIED_EXPR__SATISFIES:
+            case XPath2Package.QUANTIFIED_EXPR__SATISFIES:
                 return getSatisfies();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -225,14 +225,14 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.QUANTIFIED_EXPR__QUANTIFIER:
+            case XPath2Package.QUANTIFIED_EXPR__QUANTIFIER:
                 setQuantifier((QuantifierKind)newValue);
                 return;
-            case Xpath2Package.QUANTIFIED_EXPR__ITERATOR:
+            case XPath2Package.QUANTIFIED_EXPR__ITERATOR:
                 getIterator().clear();
                 getIterator().addAll((Collection<? extends Iterator>)newValue);
                 return;
-            case Xpath2Package.QUANTIFIED_EXPR__SATISFIES:
+            case XPath2Package.QUANTIFIED_EXPR__SATISFIES:
                 setSatisfies((ExprSingle)newValue);
                 return;
         }
@@ -247,13 +247,13 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.QUANTIFIED_EXPR__QUANTIFIER:
+            case XPath2Package.QUANTIFIED_EXPR__QUANTIFIER:
                 setQuantifier(QUANTIFIER_EDEFAULT);
                 return;
-            case Xpath2Package.QUANTIFIED_EXPR__ITERATOR:
+            case XPath2Package.QUANTIFIED_EXPR__ITERATOR:
                 getIterator().clear();
                 return;
-            case Xpath2Package.QUANTIFIED_EXPR__SATISFIES:
+            case XPath2Package.QUANTIFIED_EXPR__SATISFIES:
                 setSatisfies((ExprSingle)null);
                 return;
         }
@@ -268,11 +268,11 @@ public class QuantifiedExprImpl extends ExprSingleImpl implements QuantifiedExpr
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.QUANTIFIED_EXPR__QUANTIFIER:
+            case XPath2Package.QUANTIFIED_EXPR__QUANTIFIER:
                 return quantifier != QUANTIFIER_EDEFAULT;
-            case Xpath2Package.QUANTIFIED_EXPR__ITERATOR:
+            case XPath2Package.QUANTIFIED_EXPR__ITERATOR:
                 return iterator != null && !iterator.isEmpty();
-            case Xpath2Package.QUANTIFIED_EXPR__SATISFIES:
+            case XPath2Package.QUANTIFIED_EXPR__SATISFIES:
                 return satisfies != null;
         }
         return super.eIsSet(featureID);

@@ -18,12 +18,12 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.DecimalLiteral#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getDecimalLiteral()
+ * @see org.emftext.language.xpath2.XPath2Package#getDecimalLiteral()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface DecimalLiteral extends NumericLiteral {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Value</em>' attribute.
      * @see #setValue(float)
-     * @see org.emftext.language.xpath2.Xpath2Package#getDecimalLiteral_Value()
+     * @see org.emftext.language.xpath2.XPath2Package#getDecimalLiteral_Value()
      * @model required="true"
      * @generated
      */

@@ -18,13 +18,13 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.ItemSequenceType#getItemType <em>Item Type</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.ItemSequenceType#getOccurrence <em>Occurrence</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getItemSequenceType()
+ * @see org.emftext.language.xpath2.XPath2Package#getItemSequenceType()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface ItemSequenceType extends SequenceType {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Item Type</em>' containment reference.
      * @see #setItemType(ItemType)
-     * @see org.emftext.language.xpath2.Xpath2Package#getItemSequenceType_ItemType()
+     * @see org.emftext.language.xpath2.XPath2Package#getItemSequenceType_ItemType()
      * @model containment="true" required="true"
      * @generated
      */
@@ -67,7 +67,7 @@ public interface ItemSequenceType extends SequenceType {
      * @return the value of the '<em>Occurrence</em>' attribute.
      * @see org.emftext.language.xpath2.OccurrenceIndicatorKind
      * @see #setOccurrence(OccurrenceIndicatorKind)
-     * @see org.emftext.language.xpath2.Xpath2Package#getItemSequenceType_Occurrence()
+     * @see org.emftext.language.xpath2.XPath2Package#getItemSequenceType_Occurrence()
      * @model required="true"
      * @generated
      */

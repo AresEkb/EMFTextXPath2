@@ -12,6 +12,10 @@ package org.emftext.language.xpath2.resource.xpath2.mopp;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -41,7 +45,7 @@ public class Xpath2TaskItemBuilder {
 			subMonitor.done();
 			return;
 		}
-		java.util.List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItem> taskItems = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItem>();
+		List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItem> taskItems = new ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItem>();
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItemDetector taskItemDetector = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItemDetector();
 		InputStream inputStream = null;
 		try {
@@ -73,7 +77,7 @@ public class Xpath2TaskItemBuilder {
 		subMonitor.worked(1);
 		
 		for (org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItem taskItem : taskItems) {
-			java.util.Map<String, Object> markerAttributes = new java.util.LinkedHashMap<String, Object>();
+			Map<String, Object> markerAttributes = new LinkedHashMap<String, Object>();
 			markerAttributes.put(IMarker.USER_EDITABLE, false);
 			markerAttributes.put(IMarker.DONE, false);
 			markerAttributes.put(IMarker.LINE_NUMBER, taskItem.getLine());

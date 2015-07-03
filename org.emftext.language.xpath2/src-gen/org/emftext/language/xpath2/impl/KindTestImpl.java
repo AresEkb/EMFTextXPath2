@@ -15,14 +15,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.emftext.language.xpath2.KindTest;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Kind Test</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -43,7 +41,7 @@ public abstract class KindTestImpl extends EObjectImpl implements KindTest {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.KIND_TEST;
+        return XPath2Package.Literals.KIND_TEST;
     }
 
 } //KindTestImpl

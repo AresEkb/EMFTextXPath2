@@ -13,7 +13,9 @@ package org.emftext.language.xpath2.resource.xpath2.mopp;
 import org.antlr.runtime3_4_0.RecognitionException;
 
 /**
+ * <p>
  * An Excpetion to represent invalid content types for parser instances.
+ * </p>
  * 
  * @see
  * org.emftext.language.xpath2.resource.xpath2.IXpath2Options.RESOURCE_CONTENT_TYPE

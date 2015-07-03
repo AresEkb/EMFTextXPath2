@@ -68,7 +68,9 @@ public class Xpath2Occurrence {
 	private Region tokenRegion;
 	
 	/**
+	 * <p>
 	 * Creates a Xpath2Occurrence object to find positions to highlight.
+	 * </p>
 	 * 
 	 * @param textResource the text resource for location
 	 * @param projectionViewer the viewer for the text
@@ -86,7 +88,9 @@ public class Xpath2Occurrence {
 	}
 	
 	/**
+	 * <p>
 	 * Tries to resolve the first proxy object in the given list.
+	 * </p>
 	 * 
 	 * @param objects the <code>EObject</code>s located at the caret position
 	 * 
@@ -135,8 +139,10 @@ public class Xpath2Occurrence {
 	}
 	
 	/**
+	 * <p>
 	 * Returns the text of the token that was found at the caret position at the time
 	 * occurrence we computed last.
+	 * </p>
 	 * 
 	 * @return the token text
 	 */
@@ -400,6 +406,11 @@ public class Xpath2Occurrence {
 	
 	protected int getCaretOffset() {
 		StyledText textWidget = getSourceViewer().getTextWidget();
+		
+		if (textWidget == null) {
+			return -1;
+		}
+		
 		int widgetOffset = textWidget.getCaretOffset();
 		return getTextViewerExtension5().widgetOffset2ModelOffset(widgetOffset);
 	}

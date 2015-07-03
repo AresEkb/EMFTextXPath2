@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.emftext.language.xpath2.Xpath2Factory
+ * @see org.emftext.language.xpath2.XPath2Factory
  * @model kind="package"
  * @generated
  */
-public interface Xpath2Package extends EPackage {
+public interface XPath2Package extends EPackage {
     /**
      * The package name.
      * <!-- begin-user-doc -->
@@ -62,14 +62,14 @@ public interface Xpath2Package extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    Xpath2Package eINSTANCE = org.emftext.language.xpath2.impl.Xpath2PackageImpl.init();
+    XPath2Package eINSTANCE = org.emftext.language.xpath2.impl.XPath2PackageImpl.init();
 
     /**
      * The meta object id for the '{@link org.emftext.language.xpath2.impl.ParenthesizedExprChildImpl <em>Parenthesized Expr Child</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.ParenthesizedExprChildImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getParenthesizedExprChild()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getParenthesizedExprChild()
      * @generated
      */
     int PARENTHESIZED_EXPR_CHILD = 64;
@@ -88,7 +88,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.AnyExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAnyExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAnyExpr()
      * @generated
      */
     int ANY_EXPR = 0;
@@ -107,7 +107,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.ExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getExpr()
      * @generated
      */
     int EXPR = 1;
@@ -135,7 +135,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.ExprSingleImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getExprSingle()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getExprSingle()
      * @generated
      */
     int EXPR_SINGLE = 2;
@@ -154,7 +154,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.ForExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getForExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getForExpr()
      * @generated
      */
     int FOR_EXPR = 3;
@@ -191,7 +191,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.QuantifiedExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getQuantifiedExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getQuantifiedExpr()
      * @generated
      */
     int QUANTIFIED_EXPR = 4;
@@ -237,7 +237,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.IfExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getIfExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getIfExpr()
      * @generated
      */
     int IF_EXPR = 5;
@@ -283,7 +283,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.IteratorImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getIterator()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getIterator()
      * @generated
      */
     int ITERATOR = 6;
@@ -320,7 +320,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.OrExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getOrExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getOrExpr()
      * @generated
      */
     int OR_EXPR = 7;
@@ -348,7 +348,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.OrExprChildImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getOrExprChild()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getOrExprChild()
      * @generated
      */
     int OR_EXPR_CHILD = 8;
@@ -367,7 +367,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.AndExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAndExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAndExpr()
      * @generated
      */
     int AND_EXPR = 9;
@@ -395,7 +395,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.AndExprChildImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAndExprChild()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAndExprChild()
      * @generated
      */
     int AND_EXPR_CHILD = 10;
@@ -414,7 +414,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.ComparisonExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getComparisonExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getComparisonExpr()
      * @generated
      */
     int COMPARISON_EXPR = 11;
@@ -460,7 +460,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.ComparisonExprChildImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getComparisonExprChild()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getComparisonExprChild()
      * @generated
      */
     int COMPARISON_EXPR_CHILD = 12;
@@ -479,7 +479,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.RangeExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getRangeExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getRangeExpr()
      * @generated
      */
     int RANGE_EXPR = 13;
@@ -516,7 +516,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.RangeExprChildImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getRangeExprChild()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getRangeExprChild()
      * @generated
      */
     int RANGE_EXPR_CHILD = 14;
@@ -535,7 +535,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.AdditiveExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAdditiveExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAdditiveExpr()
      * @generated
      */
     int ADDITIVE_EXPR = 15;
@@ -572,7 +572,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.AdditiveExprChildImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAdditiveExprChild()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAdditiveExprChild()
      * @generated
      */
     int ADDITIVE_EXPR_CHILD = 16;
@@ -591,7 +591,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.MultiplicativeExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getMultiplicativeExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getMultiplicativeExpr()
      * @generated
      */
     int MULTIPLICATIVE_EXPR = 17;
@@ -628,7 +628,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.MultiplicativeExprChildImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getMultiplicativeExprChild()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getMultiplicativeExprChild()
      * @generated
      */
     int MULTIPLICATIVE_EXPR_CHILD = 18;
@@ -647,7 +647,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.UnionExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getUnionExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getUnionExpr()
      * @generated
      */
     int UNION_EXPR = 19;
@@ -684,7 +684,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.UnionExprChildImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getUnionExprChild()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getUnionExprChild()
      * @generated
      */
     int UNION_EXPR_CHILD = 20;
@@ -703,7 +703,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.IntersectExceptExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getIntersectExceptExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getIntersectExceptExpr()
      * @generated
      */
     int INTERSECT_EXCEPT_EXPR = 21;
@@ -740,7 +740,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.IntersectExceptExprChildImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getIntersectExceptExprChild()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getIntersectExceptExprChild()
      * @generated
      */
     int INTERSECT_EXCEPT_EXPR_CHILD = 22;
@@ -759,7 +759,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.InstanceofExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getInstanceofExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getInstanceofExpr()
      * @generated
      */
     int INSTANCEOF_EXPR = 23;
@@ -796,7 +796,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.InstanceofExprChildImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getInstanceofExprChild()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getInstanceofExprChild()
      * @generated
      */
     int INSTANCEOF_EXPR_CHILD = 24;
@@ -815,7 +815,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.TreatExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getTreatExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getTreatExpr()
      * @generated
      */
     int TREAT_EXPR = 25;
@@ -852,7 +852,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.TreatExprChildImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getTreatExprChild()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getTreatExprChild()
      * @generated
      */
     int TREAT_EXPR_CHILD = 26;
@@ -871,7 +871,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.CastableExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getCastableExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getCastableExpr()
      * @generated
      */
     int CASTABLE_EXPR = 27;
@@ -908,7 +908,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.CastableExprChildImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getCastableExprChild()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getCastableExprChild()
      * @generated
      */
     int CASTABLE_EXPR_CHILD = 28;
@@ -927,7 +927,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.CastExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getCastExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getCastExpr()
      * @generated
      */
     int CAST_EXPR = 29;
@@ -964,7 +964,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.CastExprChildImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getCastExprChild()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getCastExprChild()
      * @generated
      */
     int CAST_EXPR_CHILD = 30;
@@ -983,7 +983,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.UnaryExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getUnaryExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getUnaryExpr()
      * @generated
      */
     int UNARY_EXPR = 31;
@@ -1020,7 +1020,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.UnaryExprChildImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getUnaryExprChild()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getUnaryExprChild()
      * @generated
      */
     int UNARY_EXPR_CHILD = 32;
@@ -1039,7 +1039,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.ValueExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getValueExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getValueExpr()
      * @generated
      */
     int VALUE_EXPR = 33;
@@ -1058,7 +1058,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.PathExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getPathExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getPathExpr()
      * @generated
      */
     int PATH_EXPR = 34;
@@ -1086,7 +1086,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.PathExprChildImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getPathExprChild()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getPathExprChild()
      * @generated
      */
     int PATH_EXPR_CHILD = 35;
@@ -1105,7 +1105,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.RootStepExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getRootStepExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getRootStepExpr()
      * @generated
      */
     int ROOT_STEP_EXPR = 36;
@@ -1124,7 +1124,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.ChildStepExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getChildStepExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getChildStepExpr()
      * @generated
      */
     int CHILD_STEP_EXPR = 37;
@@ -1152,7 +1152,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.DescOrSelfStepExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getDescOrSelfStepExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getDescOrSelfStepExpr()
      * @generated
      */
     int DESC_OR_SELF_STEP_EXPR = 38;
@@ -1180,7 +1180,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.SelfStepExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSelfStepExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getSelfStepExpr()
      * @generated
      */
     int SELF_STEP_EXPR = 39;
@@ -1208,7 +1208,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.SelfStepExprChildImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSelfStepExprChild()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getSelfStepExprChild()
      * @generated
      */
     int SELF_STEP_EXPR_CHILD = 40;
@@ -1227,7 +1227,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.StepExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getStepExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getStepExpr()
      * @generated
      */
     int STEP_EXPR = 41;
@@ -1246,7 +1246,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.FilterExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getFilterExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getFilterExpr()
      * @generated
      */
     int FILTER_EXPR = 42;
@@ -1283,7 +1283,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.FilterExprChildImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getFilterExprChild()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getFilterExprChild()
      * @generated
      */
     int FILTER_EXPR_CHILD = 43;
@@ -1302,7 +1302,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.AxisStepImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAxisStep()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAxisStep()
      * @generated
      */
     int AXIS_STEP = 44;
@@ -1330,7 +1330,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.ForwardStepImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getForwardStep()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getForwardStep()
      * @generated
      */
     int FORWARD_STEP = 45;
@@ -1358,7 +1358,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.ReverseStepImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getReverseStep()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getReverseStep()
      * @generated
      */
     int REVERSE_STEP = 46;
@@ -1386,7 +1386,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.GeneralForwardStepImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getGeneralForwardStep()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getGeneralForwardStep()
      * @generated
      */
     int GENERAL_FORWARD_STEP = 47;
@@ -1432,7 +1432,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.AbbrevForwardStepImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAbbrevForwardStep()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAbbrevForwardStep()
      * @generated
      */
     int ABBREV_FORWARD_STEP = 48;
@@ -1478,7 +1478,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.GeneralReverseStepImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getGeneralReverseStep()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getGeneralReverseStep()
      * @generated
      */
     int GENERAL_REVERSE_STEP = 49;
@@ -1524,7 +1524,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.AbbrevReverseStepImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAbbrevReverseStep()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAbbrevReverseStep()
      * @generated
      */
     int ABBREV_REVERSE_STEP = 50;
@@ -1561,7 +1561,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.NodeTestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNodeTest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNodeTest()
      * @generated
      */
     int NODE_TEST = 51;
@@ -1580,7 +1580,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.NodeKindTestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNodeKindTest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNodeKindTest()
      * @generated
      */
     int NODE_KIND_TEST = 52;
@@ -1608,7 +1608,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.NameTestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNameTest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNameTest()
      * @generated
      */
     int NAME_TEST = 53;
@@ -1627,7 +1627,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.QNameTestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getQNameTest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getQNameTest()
      * @generated
      */
     int QNAME_TEST = 54;
@@ -1655,7 +1655,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.WildcardImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getWildcard()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getWildcard()
      * @generated
      */
     int WILDCARD = 55;
@@ -1674,7 +1674,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.AnyWildcardImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAnyWildcard()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAnyWildcard()
      * @generated
      */
     int ANY_WILDCARD = 56;
@@ -1693,7 +1693,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.LocalNameWildcardImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getLocalNameWildcard()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getLocalNameWildcard()
      * @generated
      */
     int LOCAL_NAME_WILDCARD = 57;
@@ -1721,7 +1721,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.NamespaceWildcardImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNamespaceWildcard()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNamespaceWildcard()
      * @generated
      */
     int NAMESPACE_WILDCARD = 58;
@@ -1749,7 +1749,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.PredicateImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getPredicate()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getPredicate()
      * @generated
      */
     int PREDICATE = 59;
@@ -1777,7 +1777,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.PrimaryExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getPrimaryExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getPrimaryExpr()
      * @generated
      */
     int PRIMARY_EXPR = 60;
@@ -1796,7 +1796,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.LiteralImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getLiteral()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getLiteral()
      * @generated
      */
     int LITERAL = 61;
@@ -1815,7 +1815,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.VarRefImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getVarRef()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getVarRef()
      * @generated
      */
     int VAR_REF = 62;
@@ -1843,7 +1843,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.ParenthesizedExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getParenthesizedExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getParenthesizedExpr()
      * @generated
      */
     int PARENTHESIZED_EXPR = 63;
@@ -1871,7 +1871,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.ContextItemExprImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getContextItemExpr()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getContextItemExpr()
      * @generated
      */
     int CONTEXT_ITEM_EXPR = 65;
@@ -1890,7 +1890,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.FunctionCallImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getFunctionCall()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getFunctionCall()
      * @generated
      */
     int FUNCTION_CALL = 66;
@@ -1927,7 +1927,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.NumericLiteralImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNumericLiteral()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNumericLiteral()
      * @generated
      */
     int NUMERIC_LITERAL = 67;
@@ -1946,7 +1946,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.StringLiteralImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getStringLiteral()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getStringLiteral()
      * @generated
      */
     int STRING_LITERAL = 68;
@@ -1974,7 +1974,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.IntegerLiteralImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getIntegerLiteral()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getIntegerLiteral()
      * @generated
      */
     int INTEGER_LITERAL = 69;
@@ -2002,7 +2002,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.DecimalLiteralImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getDecimalLiteral()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getDecimalLiteral()
      * @generated
      */
     int DECIMAL_LITERAL = 70;
@@ -2030,7 +2030,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.DoubleLiteralImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getDoubleLiteral()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getDoubleLiteral()
      * @generated
      */
     int DOUBLE_LITERAL = 71;
@@ -2058,7 +2058,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.CompImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getComp()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getComp()
      * @generated
      */
     int COMP = 72;
@@ -2077,7 +2077,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.GeneralCompImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getGeneralComp()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getGeneralComp()
      * @generated
      */
     int GENERAL_COMP = 73;
@@ -2105,7 +2105,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.ValueCompImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getValueComp()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getValueComp()
      * @generated
      */
     int VALUE_COMP = 74;
@@ -2133,7 +2133,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.NodeCompImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNodeComp()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNodeComp()
      * @generated
      */
     int NODE_COMP = 75;
@@ -2161,7 +2161,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.SingleTypeImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSingleType()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getSingleType()
      * @generated
      */
     int SINGLE_TYPE = 76;
@@ -2198,7 +2198,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.AtomicTypeImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAtomicType()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAtomicType()
      * @generated
      */
     int ATOMIC_TYPE = 77;
@@ -2226,7 +2226,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.OptionalAtomicTypeImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getOptionalAtomicType()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getOptionalAtomicType()
      * @generated
      */
     int OPTIONAL_ATOMIC_TYPE = 78;
@@ -2263,7 +2263,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.SequenceTypeImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSequenceType()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getSequenceType()
      * @generated
      */
     int SEQUENCE_TYPE = 79;
@@ -2282,7 +2282,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.EmptySequenceTypeImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getEmptySequenceType()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getEmptySequenceType()
      * @generated
      */
     int EMPTY_SEQUENCE_TYPE = 80;
@@ -2301,7 +2301,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.ItemSequenceTypeImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getItemSequenceType()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getItemSequenceType()
      * @generated
      */
     int ITEM_SEQUENCE_TYPE = 81;
@@ -2338,7 +2338,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.ItemTypeImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getItemType()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getItemType()
      * @generated
      */
     int ITEM_TYPE = 82;
@@ -2357,7 +2357,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.ItemKindTestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getItemKindTest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getItemKindTest()
      * @generated
      */
     int ITEM_KIND_TEST = 83;
@@ -2385,7 +2385,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.AnyItemTypeImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAnyItemType()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAnyItemType()
      * @generated
      */
     int ANY_ITEM_TYPE = 84;
@@ -2404,7 +2404,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.AtomicItemTypeImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAtomicItemType()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAtomicItemType()
      * @generated
      */
     int ATOMIC_ITEM_TYPE = 85;
@@ -2432,7 +2432,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.KindTestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getKindTest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getKindTest()
      * @generated
      */
     int KIND_TEST = 86;
@@ -2451,7 +2451,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.DocumentTestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getDocumentTest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getDocumentTest()
      * @generated
      */
     int DOCUMENT_TEST = 87;
@@ -2479,7 +2479,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.ElementTestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getElementTest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getElementTest()
      * @generated
      */
     int ELEMENT_TEST = 88;
@@ -2498,7 +2498,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.NameElementTestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNameElementTest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNameElementTest()
      * @generated
      */
     int NAME_ELEMENT_TEST = 89;
@@ -2535,7 +2535,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.WildcardElementTestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getWildcardElementTest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getWildcardElementTest()
      * @generated
      */
     int WILDCARD_ELEMENT_TEST = 90;
@@ -2563,7 +2563,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.AttributeTestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAttributeTest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAttributeTest()
      * @generated
      */
     int ATTRIBUTE_TEST = 91;
@@ -2582,7 +2582,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.NameAttributeTestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNameAttributeTest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNameAttributeTest()
      * @generated
      */
     int NAME_ATTRIBUTE_TEST = 92;
@@ -2619,7 +2619,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.WildcardAttributeTestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getWildcardAttributeTest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getWildcardAttributeTest()
      * @generated
      */
     int WILDCARD_ATTRIBUTE_TEST = 93;
@@ -2647,7 +2647,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.SchemaElementTestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSchemaElementTest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getSchemaElementTest()
      * @generated
      */
     int SCHEMA_ELEMENT_TEST = 94;
@@ -2675,7 +2675,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.SchemaAttributeTestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSchemaAttributeTest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getSchemaAttributeTest()
      * @generated
      */
     int SCHEMA_ATTRIBUTE_TEST = 95;
@@ -2703,7 +2703,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.PITestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getPITest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getPITest()
      * @generated
      */
     int PI_TEST = 96;
@@ -2722,7 +2722,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.NCNamePITestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNCNamePITest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNCNamePITest()
      * @generated
      */
     int NC_NAME_PI_TEST = 97;
@@ -2750,7 +2750,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.StringLiteralPITestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getStringLiteralPITest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getStringLiteralPITest()
      * @generated
      */
     int STRING_LITERAL_PI_TEST = 98;
@@ -2778,7 +2778,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.CommentTestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getCommentTest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getCommentTest()
      * @generated
      */
     int COMMENT_TEST = 99;
@@ -2797,7 +2797,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.TextTestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getTextTest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getTextTest()
      * @generated
      */
     int TEXT_TEST = 100;
@@ -2816,7 +2816,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.AnyKindTestImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAnyKindTest()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAnyKindTest()
      * @generated
      */
     int ANY_KIND_TEST = 101;
@@ -2835,7 +2835,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.impl.CommentImpl
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getComment()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getComment()
      * @generated
      */
     int COMMENT = 102;
@@ -2872,7 +2872,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.ForwardAxisKind
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getForwardAxisKind()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getForwardAxisKind()
      * @generated
      */
     int FORWARD_AXIS_KIND = 103;
@@ -2882,7 +2882,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.AbbrevForwardStepKind
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAbbrevForwardStepKind()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAbbrevForwardStepKind()
      * @generated
      */
     int ABBREV_FORWARD_STEP_KIND = 104;
@@ -2892,7 +2892,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.ReverseAxisKind
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getReverseAxisKind()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getReverseAxisKind()
      * @generated
      */
     int REVERSE_AXIS_KIND = 105;
@@ -2902,7 +2902,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.AbbrevReverseStepKind
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAbbrevReverseStepKind()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAbbrevReverseStepKind()
      * @generated
      */
     int ABBREV_REVERSE_STEP_KIND = 106;
@@ -2912,7 +2912,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.UnionOp
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getUnionOp()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getUnionOp()
      * @generated
      */
     int UNION_OP = 107;
@@ -2922,7 +2922,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.AdditiveOpKind
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAdditiveOpKind()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAdditiveOpKind()
      * @generated
      */
     int ADDITIVE_OP_KIND = 108;
@@ -2932,7 +2932,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.MultiplicativeOpKind
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getMultiplicativeOpKind()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getMultiplicativeOpKind()
      * @generated
      */
     int MULTIPLICATIVE_OP_KIND = 109;
@@ -2942,7 +2942,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.QuantifierKind
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getQuantifierKind()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getQuantifierKind()
      * @generated
      */
     int QUANTIFIER_KIND = 110;
@@ -2952,7 +2952,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.IntersectExceptOpKind
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getIntersectExceptOpKind()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getIntersectExceptOpKind()
      * @generated
      */
     int INTERSECT_EXCEPT_OP_KIND = 111;
@@ -2962,7 +2962,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.UnaryOp
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getUnaryOp()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getUnaryOp()
      * @generated
      */
     int UNARY_OP = 112;
@@ -2972,7 +2972,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.GeneralCompKind
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getGeneralCompKind()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getGeneralCompKind()
      * @generated
      */
     int GENERAL_COMP_KIND = 113;
@@ -2982,7 +2982,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.NodeCompKind
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNodeCompKind()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNodeCompKind()
      * @generated
      */
     int NODE_COMP_KIND = 114;
@@ -2992,7 +2992,7 @@ public interface Xpath2Package extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.emftext.language.xpath2.OccurrenceIndicatorKind
-     * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getOccurrenceIndicatorKind()
+     * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getOccurrenceIndicatorKind()
      * @generated
      */
     int OCCURRENCE_INDICATOR_KIND = 115;
@@ -5133,7 +5133,7 @@ public interface Xpath2Package extends EPackage {
      * @return the factory that creates the instances of the model.
      * @generated
      */
-    Xpath2Factory getXpath2Factory();
+    XPath2Factory getXPath2Factory();
 
     /**
      * <!-- begin-user-doc -->
@@ -5153,7 +5153,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.AnyExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAnyExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAnyExpr()
          * @generated
          */
         EClass ANY_EXPR = eINSTANCE.getAnyExpr();
@@ -5163,7 +5163,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.ExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getExpr()
          * @generated
          */
         EClass EXPR = eINSTANCE.getExpr();
@@ -5181,7 +5181,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.ExprSingleImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getExprSingle()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getExprSingle()
          * @generated
          */
         EClass EXPR_SINGLE = eINSTANCE.getExprSingle();
@@ -5191,7 +5191,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.ForExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getForExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getForExpr()
          * @generated
          */
         EClass FOR_EXPR = eINSTANCE.getForExpr();
@@ -5217,7 +5217,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.QuantifiedExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getQuantifiedExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getQuantifiedExpr()
          * @generated
          */
         EClass QUANTIFIED_EXPR = eINSTANCE.getQuantifiedExpr();
@@ -5251,7 +5251,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.IfExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getIfExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getIfExpr()
          * @generated
          */
         EClass IF_EXPR = eINSTANCE.getIfExpr();
@@ -5285,7 +5285,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.IteratorImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getIterator()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getIterator()
          * @generated
          */
         EClass ITERATOR = eINSTANCE.getIterator();
@@ -5311,7 +5311,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.OrExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getOrExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getOrExpr()
          * @generated
          */
         EClass OR_EXPR = eINSTANCE.getOrExpr();
@@ -5329,7 +5329,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.OrExprChildImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getOrExprChild()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getOrExprChild()
          * @generated
          */
         EClass OR_EXPR_CHILD = eINSTANCE.getOrExprChild();
@@ -5339,7 +5339,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.AndExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAndExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAndExpr()
          * @generated
          */
         EClass AND_EXPR = eINSTANCE.getAndExpr();
@@ -5357,7 +5357,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.AndExprChildImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAndExprChild()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAndExprChild()
          * @generated
          */
         EClass AND_EXPR_CHILD = eINSTANCE.getAndExprChild();
@@ -5367,7 +5367,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.ComparisonExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getComparisonExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getComparisonExpr()
          * @generated
          */
         EClass COMPARISON_EXPR = eINSTANCE.getComparisonExpr();
@@ -5401,7 +5401,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.ComparisonExprChildImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getComparisonExprChild()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getComparisonExprChild()
          * @generated
          */
         EClass COMPARISON_EXPR_CHILD = eINSTANCE.getComparisonExprChild();
@@ -5411,7 +5411,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.RangeExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getRangeExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getRangeExpr()
          * @generated
          */
         EClass RANGE_EXPR = eINSTANCE.getRangeExpr();
@@ -5437,7 +5437,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.RangeExprChildImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getRangeExprChild()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getRangeExprChild()
          * @generated
          */
         EClass RANGE_EXPR_CHILD = eINSTANCE.getRangeExprChild();
@@ -5447,7 +5447,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.AdditiveExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAdditiveExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAdditiveExpr()
          * @generated
          */
         EClass ADDITIVE_EXPR = eINSTANCE.getAdditiveExpr();
@@ -5473,7 +5473,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.AdditiveExprChildImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAdditiveExprChild()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAdditiveExprChild()
          * @generated
          */
         EClass ADDITIVE_EXPR_CHILD = eINSTANCE.getAdditiveExprChild();
@@ -5483,7 +5483,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.MultiplicativeExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getMultiplicativeExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getMultiplicativeExpr()
          * @generated
          */
         EClass MULTIPLICATIVE_EXPR = eINSTANCE.getMultiplicativeExpr();
@@ -5509,7 +5509,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.MultiplicativeExprChildImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getMultiplicativeExprChild()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getMultiplicativeExprChild()
          * @generated
          */
         EClass MULTIPLICATIVE_EXPR_CHILD = eINSTANCE.getMultiplicativeExprChild();
@@ -5519,7 +5519,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.UnionExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getUnionExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getUnionExpr()
          * @generated
          */
         EClass UNION_EXPR = eINSTANCE.getUnionExpr();
@@ -5545,7 +5545,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.UnionExprChildImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getUnionExprChild()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getUnionExprChild()
          * @generated
          */
         EClass UNION_EXPR_CHILD = eINSTANCE.getUnionExprChild();
@@ -5555,7 +5555,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.IntersectExceptExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getIntersectExceptExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getIntersectExceptExpr()
          * @generated
          */
         EClass INTERSECT_EXCEPT_EXPR = eINSTANCE.getIntersectExceptExpr();
@@ -5581,7 +5581,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.IntersectExceptExprChildImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getIntersectExceptExprChild()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getIntersectExceptExprChild()
          * @generated
          */
         EClass INTERSECT_EXCEPT_EXPR_CHILD = eINSTANCE.getIntersectExceptExprChild();
@@ -5591,7 +5591,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.InstanceofExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getInstanceofExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getInstanceofExpr()
          * @generated
          */
         EClass INSTANCEOF_EXPR = eINSTANCE.getInstanceofExpr();
@@ -5617,7 +5617,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.InstanceofExprChildImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getInstanceofExprChild()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getInstanceofExprChild()
          * @generated
          */
         EClass INSTANCEOF_EXPR_CHILD = eINSTANCE.getInstanceofExprChild();
@@ -5627,7 +5627,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.TreatExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getTreatExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getTreatExpr()
          * @generated
          */
         EClass TREAT_EXPR = eINSTANCE.getTreatExpr();
@@ -5653,7 +5653,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.TreatExprChildImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getTreatExprChild()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getTreatExprChild()
          * @generated
          */
         EClass TREAT_EXPR_CHILD = eINSTANCE.getTreatExprChild();
@@ -5663,7 +5663,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.CastableExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getCastableExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getCastableExpr()
          * @generated
          */
         EClass CASTABLE_EXPR = eINSTANCE.getCastableExpr();
@@ -5689,7 +5689,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.CastableExprChildImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getCastableExprChild()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getCastableExprChild()
          * @generated
          */
         EClass CASTABLE_EXPR_CHILD = eINSTANCE.getCastableExprChild();
@@ -5699,7 +5699,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.CastExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getCastExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getCastExpr()
          * @generated
          */
         EClass CAST_EXPR = eINSTANCE.getCastExpr();
@@ -5725,7 +5725,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.CastExprChildImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getCastExprChild()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getCastExprChild()
          * @generated
          */
         EClass CAST_EXPR_CHILD = eINSTANCE.getCastExprChild();
@@ -5735,7 +5735,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.UnaryExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getUnaryExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getUnaryExpr()
          * @generated
          */
         EClass UNARY_EXPR = eINSTANCE.getUnaryExpr();
@@ -5761,7 +5761,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.UnaryExprChildImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getUnaryExprChild()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getUnaryExprChild()
          * @generated
          */
         EClass UNARY_EXPR_CHILD = eINSTANCE.getUnaryExprChild();
@@ -5771,7 +5771,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.ValueExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getValueExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getValueExpr()
          * @generated
          */
         EClass VALUE_EXPR = eINSTANCE.getValueExpr();
@@ -5781,7 +5781,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.PathExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getPathExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getPathExpr()
          * @generated
          */
         EClass PATH_EXPR = eINSTANCE.getPathExpr();
@@ -5799,7 +5799,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.PathExprChildImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getPathExprChild()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getPathExprChild()
          * @generated
          */
         EClass PATH_EXPR_CHILD = eINSTANCE.getPathExprChild();
@@ -5809,7 +5809,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.RootStepExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getRootStepExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getRootStepExpr()
          * @generated
          */
         EClass ROOT_STEP_EXPR = eINSTANCE.getRootStepExpr();
@@ -5819,7 +5819,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.ChildStepExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getChildStepExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getChildStepExpr()
          * @generated
          */
         EClass CHILD_STEP_EXPR = eINSTANCE.getChildStepExpr();
@@ -5837,7 +5837,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.DescOrSelfStepExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getDescOrSelfStepExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getDescOrSelfStepExpr()
          * @generated
          */
         EClass DESC_OR_SELF_STEP_EXPR = eINSTANCE.getDescOrSelfStepExpr();
@@ -5855,7 +5855,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.SelfStepExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSelfStepExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getSelfStepExpr()
          * @generated
          */
         EClass SELF_STEP_EXPR = eINSTANCE.getSelfStepExpr();
@@ -5873,7 +5873,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.SelfStepExprChildImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSelfStepExprChild()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getSelfStepExprChild()
          * @generated
          */
         EClass SELF_STEP_EXPR_CHILD = eINSTANCE.getSelfStepExprChild();
@@ -5883,7 +5883,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.StepExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getStepExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getStepExpr()
          * @generated
          */
         EClass STEP_EXPR = eINSTANCE.getStepExpr();
@@ -5893,7 +5893,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.FilterExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getFilterExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getFilterExpr()
          * @generated
          */
         EClass FILTER_EXPR = eINSTANCE.getFilterExpr();
@@ -5919,7 +5919,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.FilterExprChildImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getFilterExprChild()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getFilterExprChild()
          * @generated
          */
         EClass FILTER_EXPR_CHILD = eINSTANCE.getFilterExprChild();
@@ -5929,7 +5929,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.AxisStepImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAxisStep()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAxisStep()
          * @generated
          */
         EClass AXIS_STEP = eINSTANCE.getAxisStep();
@@ -5947,7 +5947,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.ForwardStepImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getForwardStep()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getForwardStep()
          * @generated
          */
         EClass FORWARD_STEP = eINSTANCE.getForwardStep();
@@ -5957,7 +5957,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.ReverseStepImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getReverseStep()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getReverseStep()
          * @generated
          */
         EClass REVERSE_STEP = eINSTANCE.getReverseStep();
@@ -5967,7 +5967,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.GeneralForwardStepImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getGeneralForwardStep()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getGeneralForwardStep()
          * @generated
          */
         EClass GENERAL_FORWARD_STEP = eINSTANCE.getGeneralForwardStep();
@@ -5993,7 +5993,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.AbbrevForwardStepImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAbbrevForwardStep()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAbbrevForwardStep()
          * @generated
          */
         EClass ABBREV_FORWARD_STEP = eINSTANCE.getAbbrevForwardStep();
@@ -6019,7 +6019,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.GeneralReverseStepImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getGeneralReverseStep()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getGeneralReverseStep()
          * @generated
          */
         EClass GENERAL_REVERSE_STEP = eINSTANCE.getGeneralReverseStep();
@@ -6045,7 +6045,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.AbbrevReverseStepImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAbbrevReverseStep()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAbbrevReverseStep()
          * @generated
          */
         EClass ABBREV_REVERSE_STEP = eINSTANCE.getAbbrevReverseStep();
@@ -6063,7 +6063,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.NodeTestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNodeTest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNodeTest()
          * @generated
          */
         EClass NODE_TEST = eINSTANCE.getNodeTest();
@@ -6073,7 +6073,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.NodeKindTestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNodeKindTest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNodeKindTest()
          * @generated
          */
         EClass NODE_KIND_TEST = eINSTANCE.getNodeKindTest();
@@ -6091,7 +6091,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.NameTestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNameTest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNameTest()
          * @generated
          */
         EClass NAME_TEST = eINSTANCE.getNameTest();
@@ -6101,7 +6101,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.QNameTestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getQNameTest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getQNameTest()
          * @generated
          */
         EClass QNAME_TEST = eINSTANCE.getQNameTest();
@@ -6119,7 +6119,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.WildcardImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getWildcard()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getWildcard()
          * @generated
          */
         EClass WILDCARD = eINSTANCE.getWildcard();
@@ -6129,7 +6129,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.AnyWildcardImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAnyWildcard()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAnyWildcard()
          * @generated
          */
         EClass ANY_WILDCARD = eINSTANCE.getAnyWildcard();
@@ -6139,7 +6139,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.LocalNameWildcardImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getLocalNameWildcard()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getLocalNameWildcard()
          * @generated
          */
         EClass LOCAL_NAME_WILDCARD = eINSTANCE.getLocalNameWildcard();
@@ -6157,7 +6157,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.NamespaceWildcardImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNamespaceWildcard()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNamespaceWildcard()
          * @generated
          */
         EClass NAMESPACE_WILDCARD = eINSTANCE.getNamespaceWildcard();
@@ -6175,7 +6175,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.PredicateImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getPredicate()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getPredicate()
          * @generated
          */
         EClass PREDICATE = eINSTANCE.getPredicate();
@@ -6193,7 +6193,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.PrimaryExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getPrimaryExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getPrimaryExpr()
          * @generated
          */
         EClass PRIMARY_EXPR = eINSTANCE.getPrimaryExpr();
@@ -6203,7 +6203,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.LiteralImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getLiteral()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getLiteral()
          * @generated
          */
         EClass LITERAL = eINSTANCE.getLiteral();
@@ -6213,7 +6213,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.VarRefImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getVarRef()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getVarRef()
          * @generated
          */
         EClass VAR_REF = eINSTANCE.getVarRef();
@@ -6231,7 +6231,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.ParenthesizedExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getParenthesizedExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getParenthesizedExpr()
          * @generated
          */
         EClass PARENTHESIZED_EXPR = eINSTANCE.getParenthesizedExpr();
@@ -6249,7 +6249,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.ParenthesizedExprChildImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getParenthesizedExprChild()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getParenthesizedExprChild()
          * @generated
          */
         EClass PARENTHESIZED_EXPR_CHILD = eINSTANCE.getParenthesizedExprChild();
@@ -6259,7 +6259,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.ContextItemExprImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getContextItemExpr()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getContextItemExpr()
          * @generated
          */
         EClass CONTEXT_ITEM_EXPR = eINSTANCE.getContextItemExpr();
@@ -6269,7 +6269,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.FunctionCallImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getFunctionCall()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getFunctionCall()
          * @generated
          */
         EClass FUNCTION_CALL = eINSTANCE.getFunctionCall();
@@ -6295,7 +6295,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.NumericLiteralImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNumericLiteral()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNumericLiteral()
          * @generated
          */
         EClass NUMERIC_LITERAL = eINSTANCE.getNumericLiteral();
@@ -6305,7 +6305,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.StringLiteralImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getStringLiteral()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getStringLiteral()
          * @generated
          */
         EClass STRING_LITERAL = eINSTANCE.getStringLiteral();
@@ -6323,7 +6323,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.IntegerLiteralImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getIntegerLiteral()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getIntegerLiteral()
          * @generated
          */
         EClass INTEGER_LITERAL = eINSTANCE.getIntegerLiteral();
@@ -6341,7 +6341,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.DecimalLiteralImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getDecimalLiteral()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getDecimalLiteral()
          * @generated
          */
         EClass DECIMAL_LITERAL = eINSTANCE.getDecimalLiteral();
@@ -6359,7 +6359,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.DoubleLiteralImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getDoubleLiteral()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getDoubleLiteral()
          * @generated
          */
         EClass DOUBLE_LITERAL = eINSTANCE.getDoubleLiteral();
@@ -6377,7 +6377,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.CompImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getComp()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getComp()
          * @generated
          */
         EClass COMP = eINSTANCE.getComp();
@@ -6387,7 +6387,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.GeneralCompImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getGeneralComp()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getGeneralComp()
          * @generated
          */
         EClass GENERAL_COMP = eINSTANCE.getGeneralComp();
@@ -6405,7 +6405,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.ValueCompImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getValueComp()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getValueComp()
          * @generated
          */
         EClass VALUE_COMP = eINSTANCE.getValueComp();
@@ -6423,7 +6423,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.NodeCompImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNodeComp()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNodeComp()
          * @generated
          */
         EClass NODE_COMP = eINSTANCE.getNodeComp();
@@ -6441,7 +6441,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.SingleTypeImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSingleType()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getSingleType()
          * @generated
          */
         EClass SINGLE_TYPE = eINSTANCE.getSingleType();
@@ -6467,7 +6467,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.AtomicTypeImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAtomicType()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAtomicType()
          * @generated
          */
         EClass ATOMIC_TYPE = eINSTANCE.getAtomicType();
@@ -6485,7 +6485,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.OptionalAtomicTypeImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getOptionalAtomicType()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getOptionalAtomicType()
          * @generated
          */
         EClass OPTIONAL_ATOMIC_TYPE = eINSTANCE.getOptionalAtomicType();
@@ -6511,7 +6511,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.SequenceTypeImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSequenceType()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getSequenceType()
          * @generated
          */
         EClass SEQUENCE_TYPE = eINSTANCE.getSequenceType();
@@ -6521,7 +6521,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.EmptySequenceTypeImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getEmptySequenceType()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getEmptySequenceType()
          * @generated
          */
         EClass EMPTY_SEQUENCE_TYPE = eINSTANCE.getEmptySequenceType();
@@ -6531,7 +6531,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.ItemSequenceTypeImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getItemSequenceType()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getItemSequenceType()
          * @generated
          */
         EClass ITEM_SEQUENCE_TYPE = eINSTANCE.getItemSequenceType();
@@ -6557,7 +6557,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.ItemTypeImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getItemType()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getItemType()
          * @generated
          */
         EClass ITEM_TYPE = eINSTANCE.getItemType();
@@ -6567,7 +6567,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.ItemKindTestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getItemKindTest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getItemKindTest()
          * @generated
          */
         EClass ITEM_KIND_TEST = eINSTANCE.getItemKindTest();
@@ -6585,7 +6585,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.AnyItemTypeImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAnyItemType()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAnyItemType()
          * @generated
          */
         EClass ANY_ITEM_TYPE = eINSTANCE.getAnyItemType();
@@ -6595,7 +6595,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.AtomicItemTypeImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAtomicItemType()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAtomicItemType()
          * @generated
          */
         EClass ATOMIC_ITEM_TYPE = eINSTANCE.getAtomicItemType();
@@ -6613,7 +6613,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.KindTestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getKindTest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getKindTest()
          * @generated
          */
         EClass KIND_TEST = eINSTANCE.getKindTest();
@@ -6623,7 +6623,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.DocumentTestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getDocumentTest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getDocumentTest()
          * @generated
          */
         EClass DOCUMENT_TEST = eINSTANCE.getDocumentTest();
@@ -6641,7 +6641,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.ElementTestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getElementTest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getElementTest()
          * @generated
          */
         EClass ELEMENT_TEST = eINSTANCE.getElementTest();
@@ -6651,7 +6651,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.NameElementTestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNameElementTest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNameElementTest()
          * @generated
          */
         EClass NAME_ELEMENT_TEST = eINSTANCE.getNameElementTest();
@@ -6677,7 +6677,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.WildcardElementTestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getWildcardElementTest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getWildcardElementTest()
          * @generated
          */
         EClass WILDCARD_ELEMENT_TEST = eINSTANCE.getWildcardElementTest();
@@ -6695,7 +6695,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.AttributeTestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAttributeTest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAttributeTest()
          * @generated
          */
         EClass ATTRIBUTE_TEST = eINSTANCE.getAttributeTest();
@@ -6705,7 +6705,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.NameAttributeTestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNameAttributeTest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNameAttributeTest()
          * @generated
          */
         EClass NAME_ATTRIBUTE_TEST = eINSTANCE.getNameAttributeTest();
@@ -6731,7 +6731,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.WildcardAttributeTestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getWildcardAttributeTest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getWildcardAttributeTest()
          * @generated
          */
         EClass WILDCARD_ATTRIBUTE_TEST = eINSTANCE.getWildcardAttributeTest();
@@ -6749,7 +6749,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.SchemaElementTestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSchemaElementTest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getSchemaElementTest()
          * @generated
          */
         EClass SCHEMA_ELEMENT_TEST = eINSTANCE.getSchemaElementTest();
@@ -6767,7 +6767,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.SchemaAttributeTestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getSchemaAttributeTest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getSchemaAttributeTest()
          * @generated
          */
         EClass SCHEMA_ATTRIBUTE_TEST = eINSTANCE.getSchemaAttributeTest();
@@ -6785,7 +6785,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.PITestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getPITest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getPITest()
          * @generated
          */
         EClass PI_TEST = eINSTANCE.getPITest();
@@ -6795,7 +6795,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.NCNamePITestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNCNamePITest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNCNamePITest()
          * @generated
          */
         EClass NC_NAME_PI_TEST = eINSTANCE.getNCNamePITest();
@@ -6813,7 +6813,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.StringLiteralPITestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getStringLiteralPITest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getStringLiteralPITest()
          * @generated
          */
         EClass STRING_LITERAL_PI_TEST = eINSTANCE.getStringLiteralPITest();
@@ -6831,7 +6831,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.CommentTestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getCommentTest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getCommentTest()
          * @generated
          */
         EClass COMMENT_TEST = eINSTANCE.getCommentTest();
@@ -6841,7 +6841,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.TextTestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getTextTest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getTextTest()
          * @generated
          */
         EClass TEXT_TEST = eINSTANCE.getTextTest();
@@ -6851,7 +6851,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.AnyKindTestImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAnyKindTest()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAnyKindTest()
          * @generated
          */
         EClass ANY_KIND_TEST = eINSTANCE.getAnyKindTest();
@@ -6861,7 +6861,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.impl.CommentImpl
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getComment()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getComment()
          * @generated
          */
         EClass COMMENT = eINSTANCE.getComment();
@@ -6887,7 +6887,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.ForwardAxisKind
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getForwardAxisKind()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getForwardAxisKind()
          * @generated
          */
         EEnum FORWARD_AXIS_KIND = eINSTANCE.getForwardAxisKind();
@@ -6897,7 +6897,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.AbbrevForwardStepKind
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAbbrevForwardStepKind()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAbbrevForwardStepKind()
          * @generated
          */
         EEnum ABBREV_FORWARD_STEP_KIND = eINSTANCE.getAbbrevForwardStepKind();
@@ -6907,7 +6907,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.ReverseAxisKind
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getReverseAxisKind()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getReverseAxisKind()
          * @generated
          */
         EEnum REVERSE_AXIS_KIND = eINSTANCE.getReverseAxisKind();
@@ -6917,7 +6917,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.AbbrevReverseStepKind
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAbbrevReverseStepKind()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAbbrevReverseStepKind()
          * @generated
          */
         EEnum ABBREV_REVERSE_STEP_KIND = eINSTANCE.getAbbrevReverseStepKind();
@@ -6927,7 +6927,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.UnionOp
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getUnionOp()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getUnionOp()
          * @generated
          */
         EEnum UNION_OP = eINSTANCE.getUnionOp();
@@ -6937,7 +6937,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.AdditiveOpKind
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getAdditiveOpKind()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getAdditiveOpKind()
          * @generated
          */
         EEnum ADDITIVE_OP_KIND = eINSTANCE.getAdditiveOpKind();
@@ -6947,7 +6947,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.MultiplicativeOpKind
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getMultiplicativeOpKind()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getMultiplicativeOpKind()
          * @generated
          */
         EEnum MULTIPLICATIVE_OP_KIND = eINSTANCE.getMultiplicativeOpKind();
@@ -6957,7 +6957,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.QuantifierKind
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getQuantifierKind()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getQuantifierKind()
          * @generated
          */
         EEnum QUANTIFIER_KIND = eINSTANCE.getQuantifierKind();
@@ -6967,7 +6967,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.IntersectExceptOpKind
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getIntersectExceptOpKind()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getIntersectExceptOpKind()
          * @generated
          */
         EEnum INTERSECT_EXCEPT_OP_KIND = eINSTANCE.getIntersectExceptOpKind();
@@ -6977,7 +6977,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.UnaryOp
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getUnaryOp()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getUnaryOp()
          * @generated
          */
         EEnum UNARY_OP = eINSTANCE.getUnaryOp();
@@ -6987,7 +6987,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.GeneralCompKind
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getGeneralCompKind()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getGeneralCompKind()
          * @generated
          */
         EEnum GENERAL_COMP_KIND = eINSTANCE.getGeneralCompKind();
@@ -6997,7 +6997,7 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.NodeCompKind
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getNodeCompKind()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getNodeCompKind()
          * @generated
          */
         EEnum NODE_COMP_KIND = eINSTANCE.getNodeCompKind();
@@ -7007,11 +7007,11 @@ public interface Xpath2Package extends EPackage {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @see org.emftext.language.xpath2.OccurrenceIndicatorKind
-         * @see org.emftext.language.xpath2.impl.Xpath2PackageImpl#getOccurrenceIndicatorKind()
+         * @see org.emftext.language.xpath2.impl.XPath2PackageImpl#getOccurrenceIndicatorKind()
          * @generated
          */
         EEnum OCCURRENCE_INDICATOR_KIND = eINSTANCE.getOccurrenceIndicatorKind();
 
     }
 
-} //Xpath2Package
+} //XPath2Package

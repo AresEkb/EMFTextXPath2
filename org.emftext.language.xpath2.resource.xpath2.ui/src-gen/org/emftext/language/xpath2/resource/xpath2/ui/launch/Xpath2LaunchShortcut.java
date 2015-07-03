@@ -29,9 +29,13 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 
 /**
+ * <p>
  * A class that converts the current selection or active editor to a launch
  * configuration.
+ * </p>
+ * <p>
  * Set the overrideLaunchShortcut option to false to customize this class.
+ * </p>
  */
 public class Xpath2LaunchShortcut implements ILaunchShortcut2 {
 	

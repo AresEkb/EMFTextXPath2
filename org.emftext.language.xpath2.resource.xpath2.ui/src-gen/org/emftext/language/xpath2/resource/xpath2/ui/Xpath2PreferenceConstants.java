@@ -29,4 +29,13 @@ public interface Xpath2PreferenceConstants {
 	public static final String EDITOR_MATCHING_BRACKETS_CHECKBOX = "_matchingBracketsCheckbox";
 	public static final String EDITOR_BRACKETS_SUFFIX = "_brackets";
 	
+	// Constants for content assists
+	public static final String EDITOR_CONTENT_ASSIST_ENABLED 	= "_activationEnabled";
+	public static final String EDITOR_CONTENT_ASSIST_DELAY 		= "_activationDelay";
+	public static final String EDITOR_CONTENT_ASSIST_TRIGGERS 	= "_activationTriggers";
+	// and their defaults
+	public static final boolean EDITOR_CONTENT_ASSIST_ENABLED_DEFAULT	= true;
+	public static final int EDITOR_CONTENT_ASSIST_DELAY_DEFAULT			= 200;
+	public static final String EDITOR_CONTENT_ASSIST_TRIGGERS_DEFAULT 	= "$/*:.";
+	
 }

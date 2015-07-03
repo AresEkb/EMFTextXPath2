@@ -21,13 +21,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.Comment#getText <em>Text</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.Comment#getComment <em>Comment</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getComment()
+ * @see org.emftext.language.xpath2.XPath2Package#getComment()
  * @model
  * @generated
  */
@@ -42,7 +42,7 @@ public interface Comment extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Text</em>' attribute list.
-     * @see org.emftext.language.xpath2.Xpath2Package#getComment_Text()
+     * @see org.emftext.language.xpath2.XPath2Package#getComment_Text()
      * @model
      * @generated
      */
@@ -58,7 +58,7 @@ public interface Comment extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Comment</em>' containment reference list.
-     * @see org.emftext.language.xpath2.Xpath2Package#getComment_Comment()
+     * @see org.emftext.language.xpath2.XPath2Package#getComment_Comment()
      * @model containment="true"
      * @generated
      */

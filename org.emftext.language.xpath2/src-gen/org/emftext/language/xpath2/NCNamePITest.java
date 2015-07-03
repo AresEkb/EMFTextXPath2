@@ -18,12 +18,12 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.NCNamePITest#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getNCNamePITest()
+ * @see org.emftext.language.xpath2.XPath2Package#getNCNamePITest()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface NCNamePITest extends PITest {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(String)
-     * @see org.emftext.language.xpath2.Xpath2Package#getNCNamePITest_Name()
+     * @see org.emftext.language.xpath2.XPath2Package#getNCNamePITest_Name()
      * @model required="true"
      * @generated
      */

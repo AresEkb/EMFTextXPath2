@@ -17,10 +17,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -35,7 +37,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 public class Xpath2ResourceUtil {
 	
 	/**
+	 * <p>
 	 * Searches for all unresolved proxy objects in the given resource set.
+	 * </p>
 	 * 
 	 * @param resourceSet
 	 * 
@@ -46,7 +50,9 @@ public class Xpath2ResourceUtil {
 	}
 	
 	/**
+	 * <p>
 	 * Searches for all unresolved proxy objects in the given resource.
+	 * </p>
 	 * 
 	 * @param resource
 	 * 
@@ -57,9 +63,11 @@ public class Xpath2ResourceUtil {
 	}
 	
 	/**
+	 * <p>
 	 * Tries to resolve all unresolved proxy objects in the given resource. If all
 	 * proxies were resolved true is returned. If some could not be resolved, false is
 	 * returned.
+	 * </p>
 	 * 
 	 * @param resource the resource containing the proxy object
 	 * 
@@ -114,17 +122,45 @@ public class Xpath2ResourceUtil {
 	}
 	
 	/**
-	 * Returns the resource after parsing the given text.
+	 * Returns the resource after parsing the given text. This method is deprecated
+	 * because it uses the default platform encoding. Use {@link #getResource(byte[])}
+	 * instead.
 	 */
+	@Deprecated
 	public static Resource getResource(String text) {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		return getResource(text, resourceSet);
 	}
 	
 	/**
-	 * Returns the resource after parsing the given text.
+	 * Returns the resource after parsing the given text. This method is deprecated
+	 * because it uses the default platform encoding. Use {@link #getResource(byte[],
+	 * ResourceSet)} instead.
 	 */
+	@Deprecated
 	public static Resource getResource(String text, ResourceSet resourceSet) {
+		return getResource(text.getBytes(), resourceSet);
+	}
+	
+	/**
+	 * Returns the resource after parsing the given bytes.
+	 */
+	public static Resource getResource(byte[] content) {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		return getResource(content, resourceSet);
+	}
+	
+	/**
+	 * Returns the resource after parsing the given bytes.
+	 */
+	public static Resource getResource(byte[] content, ResourceSet resourceSet) {
+		return getResource(content, resourceSet, null);
+	}
+	
+	/**
+	 * Returns the resource after parsing the given bytes using the given load options.
+	 */
+	public static Resource getResource(byte[] content, ResourceSet resourceSet, Map<?, ?> loadOptions) {
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation metaInformation = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation();
 		metaInformation.registerResourceFactory();
 		URI uri = URI.createURI("temp." + metaInformation.getSyntaxName());
@@ -132,9 +168,9 @@ public class Xpath2ResourceUtil {
 		if (resource == null) {
 			return null;
 		}
-		ByteArrayInputStream inputStream = new ByteArrayInputStream(text.getBytes());
+		ByteArrayInputStream inputStream = new ByteArrayInputStream(content);
 		try {
-			resource.load(inputStream, null);
+			resource.load(inputStream, loadOptions);
 		} catch (IOException ioe) {
 			return null;
 		}
@@ -168,7 +204,22 @@ public class Xpath2ResourceUtil {
 	 * Returns the root element after parsing the given text.
 	 */
 	public static org.emftext.language.xpath2.Expr getResourceContent(String text) {
-		Resource resource = getResource(text);
+		return (org.emftext.language.xpath2.Expr) getResourceContent(text, null);
+	}
+	
+	/**
+	 * Returns the root element after parsing the given text assuming the specified
+	 * EClass as start rule.
+	 */
+	public static EObject getResourceContent(String text, EClass startEClass) {
+		Map<Object, Object> loadOptions = new LinkedHashMap<Object, Object>();
+		
+		if (startEClass != null) {
+			loadOptions.put(org.emftext.language.xpath2.resource.xpath2.IXpath2Options.RESOURCE_CONTENT_TYPE, startEClass);
+		}
+		
+		Resource resource = getResource(text.getBytes(), new ResourceSetImpl(), loadOptions);
+		
 		if (resource == null) {
 			return null;
 		}

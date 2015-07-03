@@ -10,6 +10,7 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.grammar;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -19,7 +20,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  */
 public class Xpath2EnumerationTerminal extends org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Terminal {
 	
-	private java.util.Map<String, String> mapping = new java.util.LinkedHashMap<String, String>();
+	private Map<String, String> mapping = new LinkedHashMap<String, String>();
 	
 	public Xpath2EnumerationTerminal(EStructuralFeature attribute, String[] literalMappings, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality cardinality, int mandatoryOccurrencesAfter) {
 		super(attribute, cardinality, mandatoryOccurrencesAfter);

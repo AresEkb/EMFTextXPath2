@@ -15,11 +15,13 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 
 /**
+ * <p>
  * A FuzzyResolveResult is an implementation of the IXpath2ReferenceResolveResult
  * interface that delegates all method calls to a given
  * IXpath2ReferenceResolveResult with ReferenceType EObject. It is used by
  * reference resolver switches to collect results from different reference
  * resolvers in a type safe manner.
+ * </p>
  * 
  * @param <ReferenceType> the type of the reference that is resolved
  */

@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.emftext.language.xpath2.AnyExpr;
 import org.emftext.language.xpath2.ExprSingle;
 import org.emftext.language.xpath2.IfExpr;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,12 +29,12 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.IfExprImpl#getTest <em>Test</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.IfExprImpl#getThen <em>Then</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.IfExprImpl#getElse <em>Else</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -85,7 +85,7 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.IF_EXPR;
+        return XPath2Package.Literals.IF_EXPR;
     }
 
     /**
@@ -106,7 +106,7 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
         AnyExpr oldTest = test;
         test = newTest;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.IF_EXPR__TEST, oldTest, newTest);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.IF_EXPR__TEST, oldTest, newTest);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -121,14 +121,14 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
         if (newTest != test) {
             NotificationChain msgs = null;
             if (test != null)
-                msgs = ((InternalEObject)test).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.IF_EXPR__TEST, null, msgs);
+                msgs = ((InternalEObject)test).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.IF_EXPR__TEST, null, msgs);
             if (newTest != null)
-                msgs = ((InternalEObject)newTest).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.IF_EXPR__TEST, null, msgs);
+                msgs = ((InternalEObject)newTest).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.IF_EXPR__TEST, null, msgs);
             msgs = basicSetTest(newTest, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.IF_EXPR__TEST, newTest, newTest));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.IF_EXPR__TEST, newTest, newTest));
     }
 
     /**
@@ -149,7 +149,7 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
         ExprSingle oldThen = then;
         then = newThen;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.IF_EXPR__THEN, oldThen, newThen);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.IF_EXPR__THEN, oldThen, newThen);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -164,14 +164,14 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
         if (newThen != then) {
             NotificationChain msgs = null;
             if (then != null)
-                msgs = ((InternalEObject)then).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.IF_EXPR__THEN, null, msgs);
+                msgs = ((InternalEObject)then).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.IF_EXPR__THEN, null, msgs);
             if (newThen != null)
-                msgs = ((InternalEObject)newThen).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.IF_EXPR__THEN, null, msgs);
+                msgs = ((InternalEObject)newThen).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.IF_EXPR__THEN, null, msgs);
             msgs = basicSetThen(newThen, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.IF_EXPR__THEN, newThen, newThen));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.IF_EXPR__THEN, newThen, newThen));
     }
 
     /**
@@ -192,7 +192,7 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
         ExprSingle oldElse = else_;
         else_ = newElse;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.IF_EXPR__ELSE, oldElse, newElse);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.IF_EXPR__ELSE, oldElse, newElse);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -207,14 +207,14 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
         if (newElse != else_) {
             NotificationChain msgs = null;
             if (else_ != null)
-                msgs = ((InternalEObject)else_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.IF_EXPR__ELSE, null, msgs);
+                msgs = ((InternalEObject)else_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.IF_EXPR__ELSE, null, msgs);
             if (newElse != null)
-                msgs = ((InternalEObject)newElse).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.IF_EXPR__ELSE, null, msgs);
+                msgs = ((InternalEObject)newElse).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.IF_EXPR__ELSE, null, msgs);
             msgs = basicSetElse(newElse, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.IF_EXPR__ELSE, newElse, newElse));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.IF_EXPR__ELSE, newElse, newElse));
     }
 
     /**
@@ -225,11 +225,11 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.IF_EXPR__TEST:
+            case XPath2Package.IF_EXPR__TEST:
                 return basicSetTest(null, msgs);
-            case Xpath2Package.IF_EXPR__THEN:
+            case XPath2Package.IF_EXPR__THEN:
                 return basicSetThen(null, msgs);
-            case Xpath2Package.IF_EXPR__ELSE:
+            case XPath2Package.IF_EXPR__ELSE:
                 return basicSetElse(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -243,11 +243,11 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.IF_EXPR__TEST:
+            case XPath2Package.IF_EXPR__TEST:
                 return getTest();
-            case Xpath2Package.IF_EXPR__THEN:
+            case XPath2Package.IF_EXPR__THEN:
                 return getThen();
-            case Xpath2Package.IF_EXPR__ELSE:
+            case XPath2Package.IF_EXPR__ELSE:
                 return getElse();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -261,13 +261,13 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.IF_EXPR__TEST:
+            case XPath2Package.IF_EXPR__TEST:
                 setTest((AnyExpr)newValue);
                 return;
-            case Xpath2Package.IF_EXPR__THEN:
+            case XPath2Package.IF_EXPR__THEN:
                 setThen((ExprSingle)newValue);
                 return;
-            case Xpath2Package.IF_EXPR__ELSE:
+            case XPath2Package.IF_EXPR__ELSE:
                 setElse((ExprSingle)newValue);
                 return;
         }
@@ -282,13 +282,13 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.IF_EXPR__TEST:
+            case XPath2Package.IF_EXPR__TEST:
                 setTest((AnyExpr)null);
                 return;
-            case Xpath2Package.IF_EXPR__THEN:
+            case XPath2Package.IF_EXPR__THEN:
                 setThen((ExprSingle)null);
                 return;
-            case Xpath2Package.IF_EXPR__ELSE:
+            case XPath2Package.IF_EXPR__ELSE:
                 setElse((ExprSingle)null);
                 return;
         }
@@ -303,11 +303,11 @@ public class IfExprImpl extends ExprSingleImpl implements IfExpr {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.IF_EXPR__TEST:
+            case XPath2Package.IF_EXPR__TEST:
                 return test != null;
-            case Xpath2Package.IF_EXPR__THEN:
+            case XPath2Package.IF_EXPR__THEN:
                 return then != null;
-            case Xpath2Package.IF_EXPR__ELSE:
+            case XPath2Package.IF_EXPR__ELSE:
                 return else_ != null;
         }
         return super.eIsSet(featureID);

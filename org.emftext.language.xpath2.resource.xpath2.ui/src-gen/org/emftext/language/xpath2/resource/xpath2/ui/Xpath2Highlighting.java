@@ -129,7 +129,9 @@ public class Xpath2Highlighting implements ISelectionProvider, ISelectionChanged
 	}
 	
 	/**
+	 * <p>
 	 * Creates the highlighting manager class.
+	 * </p>
 	 * 
 	 * @param textResource the text resource to be provided to other classes
 	 * @param sourceviewer the source viewer converts offset between master and slave

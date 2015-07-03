@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Abbrev Reverse Step Kind</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.emftext.language.xpath2.Xpath2Package#getAbbrevReverseStepKind()
+ * @see org.emftext.language.xpath2.XPath2Package#getAbbrevReverseStepKind()
  * @model
  * @generated
  */
@@ -74,6 +74,8 @@ public enum AbbrevReverseStepKind implements Enumerator {
      * Returns the '<em><b>Abbrev Reverse Step Kind</b></em>' literal with the specified literal value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param literal the literal.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static AbbrevReverseStepKind get(String literal) {
@@ -90,6 +92,8 @@ public enum AbbrevReverseStepKind implements Enumerator {
      * Returns the '<em><b>Abbrev Reverse Step Kind</b></em>' literal with the specified name.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param name the name.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static AbbrevReverseStepKind getByName(String name) {
@@ -106,6 +110,8 @@ public enum AbbrevReverseStepKind implements Enumerator {
      * Returns the '<em><b>Abbrev Reverse Step Kind</b></em>' literal with the specified integer value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param value the integer value.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static AbbrevReverseStepKind get(int value) {

@@ -31,7 +31,9 @@ public class Xpath2EClassUtil {
 	}
 	
 	/**
+	 * <p>
 	 * Returns all subclasses of 'superClass' that are contained in 'availableClasses'.
+	 * </p>
 	 * 
 	 * @param superClass the superclass
 	 * @param availableClasses the set of classes to search in

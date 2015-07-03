@@ -24,7 +24,7 @@ public class Xpath2NewFileContentProvider {
 	
 	public String getNewFileContent(String newFileName) {
 		return getExampleContent(new EClass[] {
-			org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getExpr(),
+			org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(),
 		}, getMetaInformation().getClassesWithSyntax(), newFileName);
 	}
 	

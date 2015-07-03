@@ -13,14 +13,12 @@ package org.emftext.language.xpath2.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.emftext.language.xpath2.ForwardStep;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Forward Step</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -41,7 +39,7 @@ public abstract class ForwardStepImpl extends AxisStepImpl implements ForwardSte
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.FORWARD_STEP;
+        return XPath2Package.Literals.FORWARD_STEP;
     }
 
 } //ForwardStepImpl

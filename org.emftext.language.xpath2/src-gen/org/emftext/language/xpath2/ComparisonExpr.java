@@ -18,14 +18,14 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.ComparisonExpr#getLeft <em>Left</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.ComparisonExpr#getOperator <em>Operator</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.ComparisonExpr#getRight <em>Right</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getComparisonExpr()
+ * @see org.emftext.language.xpath2.XPath2Package#getComparisonExpr()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface ComparisonExpr extends AndExprChild {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Left</em>' containment reference.
      * @see #setLeft(ComparisonExprChild)
-     * @see org.emftext.language.xpath2.Xpath2Package#getComparisonExpr_Left()
+     * @see org.emftext.language.xpath2.XPath2Package#getComparisonExpr_Left()
      * @model containment="true" required="true"
      * @generated
      */
@@ -66,7 +66,7 @@ public interface ComparisonExpr extends AndExprChild {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Operator</em>' containment reference.
      * @see #setOperator(Comp)
-     * @see org.emftext.language.xpath2.Xpath2Package#getComparisonExpr_Operator()
+     * @see org.emftext.language.xpath2.XPath2Package#getComparisonExpr_Operator()
      * @model containment="true"
      * @generated
      */
@@ -92,7 +92,7 @@ public interface ComparisonExpr extends AndExprChild {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Right</em>' containment reference.
      * @see #setRight(ComparisonExprChild)
-     * @see org.emftext.language.xpath2.Xpath2Package#getComparisonExpr_Right()
+     * @see org.emftext.language.xpath2.XPath2Package#getComparisonExpr_Right()
      * @model containment="true"
      * @generated
      */

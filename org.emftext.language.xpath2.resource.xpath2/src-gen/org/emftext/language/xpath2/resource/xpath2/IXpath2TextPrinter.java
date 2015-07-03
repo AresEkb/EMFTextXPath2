@@ -19,8 +19,10 @@ import org.eclipse.emf.ecore.EObject;
 public interface IXpath2TextPrinter extends org.emftext.language.xpath2.resource.xpath2.IXpath2Configurable {
 	
 	/**
+	 * <p>
 	 * Prints the given <code>EObject</code> and its content to the underlying output
 	 * stream that was passed to this printer upon creation.
+	 * </p>
 	 * 
 	 * @param element The element to print.
 	 * 

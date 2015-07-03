@@ -19,12 +19,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.Predicate#getExpr <em>Expr</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getPredicate()
+ * @see org.emftext.language.xpath2.XPath2Package#getPredicate()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface Predicate extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Expr</em>' containment reference.
      * @see #setExpr(AnyExpr)
-     * @see org.emftext.language.xpath2.Xpath2Package#getPredicate_Expr()
+     * @see org.emftext.language.xpath2.XPath2Package#getPredicate_Expr()
      * @model containment="true" required="true"
      * @generated
      */

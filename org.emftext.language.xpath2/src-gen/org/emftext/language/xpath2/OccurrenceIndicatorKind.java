@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Occurrence Indicator Kind</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.emftext.language.xpath2.Xpath2Package#getOccurrenceIndicatorKind()
+ * @see org.emftext.language.xpath2.XPath2Package#getOccurrenceIndicatorKind()
  * @model
  * @generated
  */
@@ -152,6 +152,8 @@ public enum OccurrenceIndicatorKind implements Enumerator {
      * Returns the '<em><b>Occurrence Indicator Kind</b></em>' literal with the specified literal value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param literal the literal.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static OccurrenceIndicatorKind get(String literal) {
@@ -168,6 +170,8 @@ public enum OccurrenceIndicatorKind implements Enumerator {
      * Returns the '<em><b>Occurrence Indicator Kind</b></em>' literal with the specified name.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param name the name.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static OccurrenceIndicatorKind getByName(String name) {
@@ -184,6 +188,8 @@ public enum OccurrenceIndicatorKind implements Enumerator {
      * Returns the '<em><b>Occurrence Indicator Kind</b></em>' literal with the specified integer value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param value the integer value.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static OccurrenceIndicatorKind get(int value) {

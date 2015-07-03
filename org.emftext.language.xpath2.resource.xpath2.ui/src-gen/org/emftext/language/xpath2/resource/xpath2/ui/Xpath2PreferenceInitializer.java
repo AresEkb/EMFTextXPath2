@@ -23,6 +23,7 @@ public class Xpath2PreferenceInitializer extends AbstractPreferenceInitializer {
 		
 		initializeDefaultSyntaxHighlighting();
 		initializeDefaultBrackets();
+		initializeDefaultsContentAssist();
 		
 		IPreferenceStore store = org.emftext.language.xpath2.resource.xpath2.ui.Xpath2UIPlugin.getDefault().getPreferenceStore();
 		// Set default value for matching brackets
@@ -70,6 +71,13 @@ public class Xpath2PreferenceInitializer extends AbstractPreferenceInitializer {
 				setProperties(store, languageId, tokenName, "0,0,0", false, false, false, false, false);
 			}
 		}
+	}
+	
+	private void initializeDefaultsContentAssist() {
+		IPreferenceStore store = org.emftext.language.xpath2.resource.xpath2.ui.Xpath2UIPlugin.getDefault().getPreferenceStore();
+		store.setDefault(org.emftext.language.xpath2.resource.xpath2.ui.Xpath2PreferenceConstants.EDITOR_CONTENT_ASSIST_ENABLED, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2PreferenceConstants.EDITOR_CONTENT_ASSIST_ENABLED_DEFAULT);
+		store.setDefault(org.emftext.language.xpath2.resource.xpath2.ui.Xpath2PreferenceConstants.EDITOR_CONTENT_ASSIST_DELAY, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2PreferenceConstants.EDITOR_CONTENT_ASSIST_DELAY_DEFAULT);
+		store.setDefault(org.emftext.language.xpath2.resource.xpath2.ui.Xpath2PreferenceConstants.EDITOR_CONTENT_ASSIST_TRIGGERS, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2PreferenceConstants.EDITOR_CONTENT_ASSIST_TRIGGERS_DEFAULT);
 	}
 	
 	protected void setProperties(IPreferenceStore store, String languageID, String tokenName, String color, boolean bold, boolean enable, boolean italic, boolean strikethrough, boolean underline) {

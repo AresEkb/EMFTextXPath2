@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.emftext.language.xpath2.UnionExpr;
 import org.emftext.language.xpath2.UnionExprChild;
 import org.emftext.language.xpath2.UnionOp;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,11 +34,11 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.UnionExprImpl#getOperand <em>Operand</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.UnionExprImpl#getOperation <em>Operation</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -79,7 +79,7 @@ public class UnionExprImpl extends MultiplicativeExprChildImpl implements UnionE
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.UNION_EXPR;
+        return XPath2Package.Literals.UNION_EXPR;
     }
 
     /**
@@ -89,7 +89,7 @@ public class UnionExprImpl extends MultiplicativeExprChildImpl implements UnionE
      */
     public EList<UnionExprChild> getOperand() {
         if (operand == null) {
-            operand = new EObjectContainmentEList<UnionExprChild>(UnionExprChild.class, this, Xpath2Package.UNION_EXPR__OPERAND);
+            operand = new EObjectContainmentEList<UnionExprChild>(UnionExprChild.class, this, XPath2Package.UNION_EXPR__OPERAND);
         }
         return operand;
     }
@@ -101,7 +101,7 @@ public class UnionExprImpl extends MultiplicativeExprChildImpl implements UnionE
      */
     public EList<UnionOp> getOperation() {
         if (operation == null) {
-            operation = new EDataTypeEList<UnionOp>(UnionOp.class, this, Xpath2Package.UNION_EXPR__OPERATION);
+            operation = new EDataTypeEList<UnionOp>(UnionOp.class, this, XPath2Package.UNION_EXPR__OPERATION);
         }
         return operation;
     }
@@ -114,7 +114,7 @@ public class UnionExprImpl extends MultiplicativeExprChildImpl implements UnionE
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.UNION_EXPR__OPERAND:
+            case XPath2Package.UNION_EXPR__OPERAND:
                 return ((InternalEList<?>)getOperand()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -128,9 +128,9 @@ public class UnionExprImpl extends MultiplicativeExprChildImpl implements UnionE
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.UNION_EXPR__OPERAND:
+            case XPath2Package.UNION_EXPR__OPERAND:
                 return getOperand();
-            case Xpath2Package.UNION_EXPR__OPERATION:
+            case XPath2Package.UNION_EXPR__OPERATION:
                 return getOperation();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -145,11 +145,11 @@ public class UnionExprImpl extends MultiplicativeExprChildImpl implements UnionE
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.UNION_EXPR__OPERAND:
+            case XPath2Package.UNION_EXPR__OPERAND:
                 getOperand().clear();
                 getOperand().addAll((Collection<? extends UnionExprChild>)newValue);
                 return;
-            case Xpath2Package.UNION_EXPR__OPERATION:
+            case XPath2Package.UNION_EXPR__OPERATION:
                 getOperation().clear();
                 getOperation().addAll((Collection<? extends UnionOp>)newValue);
                 return;
@@ -165,10 +165,10 @@ public class UnionExprImpl extends MultiplicativeExprChildImpl implements UnionE
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.UNION_EXPR__OPERAND:
+            case XPath2Package.UNION_EXPR__OPERAND:
                 getOperand().clear();
                 return;
-            case Xpath2Package.UNION_EXPR__OPERATION:
+            case XPath2Package.UNION_EXPR__OPERATION:
                 getOperation().clear();
                 return;
         }
@@ -183,9 +183,9 @@ public class UnionExprImpl extends MultiplicativeExprChildImpl implements UnionE
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.UNION_EXPR__OPERAND:
+            case XPath2Package.UNION_EXPR__OPERAND:
                 return operand != null && !operand.isEmpty();
-            case Xpath2Package.UNION_EXPR__OPERATION:
+            case XPath2Package.UNION_EXPR__OPERATION:
                 return operation != null && !operation.isEmpty();
         }
         return super.eIsSet(featureID);

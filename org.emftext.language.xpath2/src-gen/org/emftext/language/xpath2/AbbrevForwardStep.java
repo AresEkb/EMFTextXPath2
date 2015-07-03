@@ -18,13 +18,13 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.AbbrevForwardStep#getKind <em>Kind</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.AbbrevForwardStep#getNodeTest <em>Node Test</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getAbbrevForwardStep()
+ * @see org.emftext.language.xpath2.XPath2Package#getAbbrevForwardStep()
  * @model
  * @generated
  */
@@ -41,7 +41,7 @@ public interface AbbrevForwardStep extends ForwardStep {
      * @return the value of the '<em>Kind</em>' attribute.
      * @see org.emftext.language.xpath2.AbbrevForwardStepKind
      * @see #setKind(AbbrevForwardStepKind)
-     * @see org.emftext.language.xpath2.Xpath2Package#getAbbrevForwardStep_Kind()
+     * @see org.emftext.language.xpath2.XPath2Package#getAbbrevForwardStep_Kind()
      * @model required="true"
      * @generated
      */
@@ -68,7 +68,7 @@ public interface AbbrevForwardStep extends ForwardStep {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Node Test</em>' containment reference.
      * @see #setNodeTest(NodeTest)
-     * @see org.emftext.language.xpath2.Xpath2Package#getAbbrevForwardStep_NodeTest()
+     * @see org.emftext.language.xpath2.XPath2Package#getAbbrevForwardStep_NodeTest()
      * @model containment="true" required="true"
      * @generated
      */

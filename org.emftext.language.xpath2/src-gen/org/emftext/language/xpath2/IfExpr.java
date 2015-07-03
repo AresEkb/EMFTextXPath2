@@ -18,14 +18,14 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.IfExpr#getTest <em>Test</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.IfExpr#getThen <em>Then</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.IfExpr#getElse <em>Else</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getIfExpr()
+ * @see org.emftext.language.xpath2.XPath2Package#getIfExpr()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface IfExpr extends ExprSingle {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Test</em>' containment reference.
      * @see #setTest(AnyExpr)
-     * @see org.emftext.language.xpath2.Xpath2Package#getIfExpr_Test()
+     * @see org.emftext.language.xpath2.XPath2Package#getIfExpr_Test()
      * @model containment="true" required="true"
      * @generated
      */
@@ -66,7 +66,7 @@ public interface IfExpr extends ExprSingle {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Then</em>' containment reference.
      * @see #setThen(ExprSingle)
-     * @see org.emftext.language.xpath2.Xpath2Package#getIfExpr_Then()
+     * @see org.emftext.language.xpath2.XPath2Package#getIfExpr_Then()
      * @model containment="true" required="true"
      * @generated
      */
@@ -92,7 +92,7 @@ public interface IfExpr extends ExprSingle {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Else</em>' containment reference.
      * @see #setElse(ExprSingle)
-     * @see org.emftext.language.xpath2.Xpath2Package#getIfExpr_Else()
+     * @see org.emftext.language.xpath2.XPath2Package#getIfExpr_Else()
      * @model containment="true" required="true"
      * @generated
      */

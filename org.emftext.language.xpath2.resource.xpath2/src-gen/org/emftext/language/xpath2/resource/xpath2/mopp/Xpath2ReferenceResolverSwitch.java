@@ -27,7 +27,7 @@ public class Xpath2ReferenceResolverSwitch implements org.emftext.language.xpath
 	protected org.emftext.language.xpath2.resource.xpath2.analysis.StringLiteralPITestLiteralReferenceResolver stringLiteralPITestLiteralReferenceResolver = new org.emftext.language.xpath2.resource.xpath2.analysis.StringLiteralPITestLiteralReferenceResolver();
 	
 	public org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolver<org.emftext.language.xpath2.StringLiteralPITest, org.emftext.language.xpath2.StringLiteral> getStringLiteralPITestLiteralReferenceResolver() {
-		return getResolverChain(org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getStringLiteralPITest_Literal(), stringLiteralPITestLiteralReferenceResolver);
+		return getResolverChain(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getStringLiteralPITest_Literal(), stringLiteralPITestLiteralReferenceResolver);
 	}
 	
 	public void setOptions(Map<?, ?> options) {
@@ -42,7 +42,7 @@ public class Xpath2ReferenceResolverSwitch implements org.emftext.language.xpath
 		if (container == null) {
 			return;
 		}
-		if (org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getStringLiteralPITest().isInstance(container)) {
+		if (org.emftext.language.xpath2.XPath2Package.eINSTANCE.getStringLiteralPITest().isInstance(container)) {
 			Xpath2FuzzyResolveResult<org.emftext.language.xpath2.StringLiteral> frr = new Xpath2FuzzyResolveResult<org.emftext.language.xpath2.StringLiteral>(result);
 			String referenceName = reference.getName();
 			EStructuralFeature feature = container.eClass().getEStructuralFeature(referenceName);
@@ -53,7 +53,7 @@ public class Xpath2ReferenceResolverSwitch implements org.emftext.language.xpath
 	}
 	
 	public org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolver<? extends EObject, ? extends EObject> getResolver(EStructuralFeature reference) {
-		if (reference == org.emftext.language.xpath2.Xpath2Package.eINSTANCE.getStringLiteralPITest_Literal()) {
+		if (reference == org.emftext.language.xpath2.XPath2Package.eINSTANCE.getStringLiteralPITest_Literal()) {
 			return getResolverChain(reference, stringLiteralPITestLiteralReferenceResolver);
 		}
 		return null;

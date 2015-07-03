@@ -13,14 +13,12 @@ package org.emftext.language.xpath2.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.emftext.language.xpath2.AnyItemType;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Any Item Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -41,7 +39,7 @@ public class AnyItemTypeImpl extends ItemTypeImpl implements AnyItemType {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.ANY_ITEM_TYPE;
+        return XPath2Package.Literals.ANY_ITEM_TYPE;
     }
 
 } //AnyItemTypeImpl

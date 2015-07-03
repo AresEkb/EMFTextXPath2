@@ -17,7 +17,7 @@ package org.emftext.language.xpath2;
  * <!-- end-user-doc -->
  *
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getForwardStep()
+ * @see org.emftext.language.xpath2.XPath2Package#getForwardStep()
  * @model abstract="true"
  * @generated
  */

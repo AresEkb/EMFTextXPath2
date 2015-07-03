@@ -18,12 +18,12 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.ItemKindTest#getTest <em>Test</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getItemKindTest()
+ * @see org.emftext.language.xpath2.XPath2Package#getItemKindTest()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface ItemKindTest extends ItemType {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Test</em>' containment reference.
      * @see #setTest(KindTest)
-     * @see org.emftext.language.xpath2.Xpath2Package#getItemKindTest_Test()
+     * @see org.emftext.language.xpath2.XPath2Package#getItemKindTest_Test()
      * @model containment="true" required="true"
      * @generated
      */

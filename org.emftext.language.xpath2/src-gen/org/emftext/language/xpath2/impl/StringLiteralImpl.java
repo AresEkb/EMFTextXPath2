@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.StringLiteral;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,10 +25,10 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.StringLiteralImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -69,7 +69,7 @@ public class StringLiteralImpl extends LiteralImpl implements StringLiteral {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.STRING_LITERAL;
+        return XPath2Package.Literals.STRING_LITERAL;
     }
 
     /**
@@ -90,7 +90,7 @@ public class StringLiteralImpl extends LiteralImpl implements StringLiteral {
         String oldValue = value;
         value = newValue;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.STRING_LITERAL__VALUE, oldValue, value));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.STRING_LITERAL__VALUE, oldValue, value));
     }
 
     /**
@@ -101,7 +101,7 @@ public class StringLiteralImpl extends LiteralImpl implements StringLiteral {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.STRING_LITERAL__VALUE:
+            case XPath2Package.STRING_LITERAL__VALUE:
                 return getValue();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -115,7 +115,7 @@ public class StringLiteralImpl extends LiteralImpl implements StringLiteral {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.STRING_LITERAL__VALUE:
+            case XPath2Package.STRING_LITERAL__VALUE:
                 setValue((String)newValue);
                 return;
         }
@@ -130,7 +130,7 @@ public class StringLiteralImpl extends LiteralImpl implements StringLiteral {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.STRING_LITERAL__VALUE:
+            case XPath2Package.STRING_LITERAL__VALUE:
                 setValue(VALUE_EDEFAULT);
                 return;
         }
@@ -145,7 +145,7 @@ public class StringLiteralImpl extends LiteralImpl implements StringLiteral {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.STRING_LITERAL__VALUE:
+            case XPath2Package.STRING_LITERAL__VALUE:
                 return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
         }
         return super.eIsSet(featureID);

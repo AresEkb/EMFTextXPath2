@@ -18,12 +18,12 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.AbbrevReverseStep#getKind <em>Kind</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getAbbrevReverseStep()
+ * @see org.emftext.language.xpath2.XPath2Package#getAbbrevReverseStep()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface AbbrevReverseStep extends ReverseStep {
      * @return the value of the '<em>Kind</em>' attribute.
      * @see org.emftext.language.xpath2.AbbrevReverseStepKind
      * @see #setKind(AbbrevReverseStepKind)
-     * @see org.emftext.language.xpath2.Xpath2Package#getAbbrevReverseStep_Kind()
+     * @see org.emftext.language.xpath2.XPath2Package#getAbbrevReverseStep_Kind()
      * @model required="true"
      * @generated
      */

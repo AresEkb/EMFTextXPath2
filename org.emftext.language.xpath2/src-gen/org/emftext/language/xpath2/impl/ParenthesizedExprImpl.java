@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.ParenthesizedExpr;
 import org.emftext.language.xpath2.ParenthesizedExprChild;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,10 +28,10 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.ParenthesizedExprImpl#getExpr <em>Expr</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -62,7 +62,7 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.PARENTHESIZED_EXPR;
+        return XPath2Package.Literals.PARENTHESIZED_EXPR;
     }
 
     /**
@@ -83,7 +83,7 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
         ParenthesizedExprChild oldExpr = expr;
         expr = newExpr;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.PARENTHESIZED_EXPR__EXPR, oldExpr, newExpr);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.PARENTHESIZED_EXPR__EXPR, oldExpr, newExpr);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -98,14 +98,14 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
         if (newExpr != expr) {
             NotificationChain msgs = null;
             if (expr != null)
-                msgs = ((InternalEObject)expr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.PARENTHESIZED_EXPR__EXPR, null, msgs);
+                msgs = ((InternalEObject)expr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.PARENTHESIZED_EXPR__EXPR, null, msgs);
             if (newExpr != null)
-                msgs = ((InternalEObject)newExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.PARENTHESIZED_EXPR__EXPR, null, msgs);
+                msgs = ((InternalEObject)newExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.PARENTHESIZED_EXPR__EXPR, null, msgs);
             msgs = basicSetExpr(newExpr, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.PARENTHESIZED_EXPR__EXPR, newExpr, newExpr));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.PARENTHESIZED_EXPR__EXPR, newExpr, newExpr));
     }
 
     /**
@@ -116,7 +116,7 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.PARENTHESIZED_EXPR__EXPR:
+            case XPath2Package.PARENTHESIZED_EXPR__EXPR:
                 return basicSetExpr(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -130,7 +130,7 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.PARENTHESIZED_EXPR__EXPR:
+            case XPath2Package.PARENTHESIZED_EXPR__EXPR:
                 return getExpr();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -144,7 +144,7 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.PARENTHESIZED_EXPR__EXPR:
+            case XPath2Package.PARENTHESIZED_EXPR__EXPR:
                 setExpr((ParenthesizedExprChild)newValue);
                 return;
         }
@@ -159,7 +159,7 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.PARENTHESIZED_EXPR__EXPR:
+            case XPath2Package.PARENTHESIZED_EXPR__EXPR:
                 setExpr((ParenthesizedExprChild)null);
                 return;
         }
@@ -174,7 +174,7 @@ public class ParenthesizedExprImpl extends PrimaryExprImpl implements Parenthesi
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.PARENTHESIZED_EXPR__EXPR:
+            case XPath2Package.PARENTHESIZED_EXPR__EXPR:
                 return expr != null;
         }
         return super.eIsSet(featureID);

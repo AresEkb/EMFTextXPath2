@@ -18,13 +18,13 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.GeneralReverseStep#getAxis <em>Axis</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.GeneralReverseStep#getNodeTest <em>Node Test</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getGeneralReverseStep()
+ * @see org.emftext.language.xpath2.XPath2Package#getGeneralReverseStep()
  * @model
  * @generated
  */
@@ -41,7 +41,7 @@ public interface GeneralReverseStep extends ReverseStep {
      * @return the value of the '<em>Axis</em>' attribute.
      * @see org.emftext.language.xpath2.ReverseAxisKind
      * @see #setAxis(ReverseAxisKind)
-     * @see org.emftext.language.xpath2.Xpath2Package#getGeneralReverseStep_Axis()
+     * @see org.emftext.language.xpath2.XPath2Package#getGeneralReverseStep_Axis()
      * @model required="true"
      * @generated
      */
@@ -68,7 +68,7 @@ public interface GeneralReverseStep extends ReverseStep {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Node Test</em>' containment reference.
      * @see #setNodeTest(NodeTest)
-     * @see org.emftext.language.xpath2.Xpath2Package#getGeneralReverseStep_NodeTest()
+     * @see org.emftext.language.xpath2.XPath2Package#getGeneralReverseStep_NodeTest()
      * @model containment="true" required="true"
      * @generated
      */

@@ -109,8 +109,10 @@ public class Xpath2LaunchConfigurationHelper {
 		return -1;
 	}
 	/**
+	 * <p>
 	 * Throws an exception with a new status containing the given message and optional
 	 * exception.
+	 * </p>
 	 * 
 	 * @param message error message
 	 * @param e underlying exception

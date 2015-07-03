@@ -19,12 +19,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.Expr#getExpr <em>Expr</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getExpr()
+ * @see org.emftext.language.xpath2.XPath2Package#getExpr()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface Expr extends AnyExpr {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Expr</em>' containment reference list.
-     * @see org.emftext.language.xpath2.Xpath2Package#getExpr_Expr()
+     * @see org.emftext.language.xpath2.XPath2Package#getExpr_Expr()
      * @model containment="true" required="true"
      * @generated
      */

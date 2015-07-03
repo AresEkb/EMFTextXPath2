@@ -27,24 +27,24 @@ import org.emftext.language.xpath2.*;
  * <!-- end-user-doc -->
  * @generated
  */
-public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
+public class XPath2FactoryImpl extends EFactoryImpl implements XPath2Factory {
     /**
      * Creates the default factory implementation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static Xpath2Factory init() {
+    public static XPath2Factory init() {
         try {
-            Xpath2Factory theXpath2Factory = (Xpath2Factory)EPackage.Registry.INSTANCE.getEFactory(Xpath2Package.eNS_URI);
-            if (theXpath2Factory != null) {
-                return theXpath2Factory;
+            XPath2Factory theXPath2Factory = (XPath2Factory)EPackage.Registry.INSTANCE.getEFactory(XPath2Package.eNS_URI);
+            if (theXPath2Factory != null) {
+                return theXPath2Factory;
             }
         }
         catch (Exception exception) {
             EcorePlugin.INSTANCE.log(exception);
         }
-        return new Xpath2FactoryImpl();
+        return new XPath2FactoryImpl();
     }
 
     /**
@@ -53,7 +53,7 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Xpath2FactoryImpl() {
+    public XPath2FactoryImpl() {
         super();
     }
 
@@ -65,75 +65,75 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
-            case Xpath2Package.EXPR: return createExpr();
-            case Xpath2Package.FOR_EXPR: return createForExpr();
-            case Xpath2Package.QUANTIFIED_EXPR: return createQuantifiedExpr();
-            case Xpath2Package.IF_EXPR: return createIfExpr();
-            case Xpath2Package.ITERATOR: return createIterator();
-            case Xpath2Package.OR_EXPR: return createOrExpr();
-            case Xpath2Package.AND_EXPR: return createAndExpr();
-            case Xpath2Package.COMPARISON_EXPR: return createComparisonExpr();
-            case Xpath2Package.RANGE_EXPR: return createRangeExpr();
-            case Xpath2Package.ADDITIVE_EXPR: return createAdditiveExpr();
-            case Xpath2Package.MULTIPLICATIVE_EXPR: return createMultiplicativeExpr();
-            case Xpath2Package.UNION_EXPR: return createUnionExpr();
-            case Xpath2Package.INTERSECT_EXCEPT_EXPR: return createIntersectExceptExpr();
-            case Xpath2Package.INSTANCEOF_EXPR: return createInstanceofExpr();
-            case Xpath2Package.TREAT_EXPR: return createTreatExpr();
-            case Xpath2Package.CASTABLE_EXPR: return createCastableExpr();
-            case Xpath2Package.CAST_EXPR: return createCastExpr();
-            case Xpath2Package.UNARY_EXPR: return createUnaryExpr();
-            case Xpath2Package.PATH_EXPR: return createPathExpr();
-            case Xpath2Package.ROOT_STEP_EXPR: return createRootStepExpr();
-            case Xpath2Package.CHILD_STEP_EXPR: return createChildStepExpr();
-            case Xpath2Package.DESC_OR_SELF_STEP_EXPR: return createDescOrSelfStepExpr();
-            case Xpath2Package.SELF_STEP_EXPR: return createSelfStepExpr();
-            case Xpath2Package.FILTER_EXPR: return createFilterExpr();
-            case Xpath2Package.GENERAL_FORWARD_STEP: return createGeneralForwardStep();
-            case Xpath2Package.ABBREV_FORWARD_STEP: return createAbbrevForwardStep();
-            case Xpath2Package.GENERAL_REVERSE_STEP: return createGeneralReverseStep();
-            case Xpath2Package.ABBREV_REVERSE_STEP: return createAbbrevReverseStep();
-            case Xpath2Package.NODE_KIND_TEST: return createNodeKindTest();
-            case Xpath2Package.QNAME_TEST: return createQNameTest();
-            case Xpath2Package.ANY_WILDCARD: return createAnyWildcard();
-            case Xpath2Package.LOCAL_NAME_WILDCARD: return createLocalNameWildcard();
-            case Xpath2Package.NAMESPACE_WILDCARD: return createNamespaceWildcard();
-            case Xpath2Package.PREDICATE: return createPredicate();
-            case Xpath2Package.VAR_REF: return createVarRef();
-            case Xpath2Package.PARENTHESIZED_EXPR: return createParenthesizedExpr();
-            case Xpath2Package.CONTEXT_ITEM_EXPR: return createContextItemExpr();
-            case Xpath2Package.FUNCTION_CALL: return createFunctionCall();
-            case Xpath2Package.STRING_LITERAL: return createStringLiteral();
-            case Xpath2Package.INTEGER_LITERAL: return createIntegerLiteral();
-            case Xpath2Package.DECIMAL_LITERAL: return createDecimalLiteral();
-            case Xpath2Package.DOUBLE_LITERAL: return createDoubleLiteral();
-            case Xpath2Package.GENERAL_COMP: return createGeneralComp();
-            case Xpath2Package.VALUE_COMP: return createValueComp();
-            case Xpath2Package.NODE_COMP: return createNodeComp();
-            case Xpath2Package.SINGLE_TYPE: return createSingleType();
-            case Xpath2Package.ATOMIC_TYPE: return createAtomicType();
-            case Xpath2Package.OPTIONAL_ATOMIC_TYPE: return createOptionalAtomicType();
-            case Xpath2Package.EMPTY_SEQUENCE_TYPE: return createEmptySequenceType();
-            case Xpath2Package.ITEM_SEQUENCE_TYPE: return createItemSequenceType();
-            case Xpath2Package.ITEM_KIND_TEST: return createItemKindTest();
-            case Xpath2Package.ANY_ITEM_TYPE: return createAnyItemType();
-            case Xpath2Package.ATOMIC_ITEM_TYPE: return createAtomicItemType();
-            case Xpath2Package.DOCUMENT_TEST: return createDocumentTest();
-            case Xpath2Package.ELEMENT_TEST: return createElementTest();
-            case Xpath2Package.NAME_ELEMENT_TEST: return createNameElementTest();
-            case Xpath2Package.WILDCARD_ELEMENT_TEST: return createWildcardElementTest();
-            case Xpath2Package.ATTRIBUTE_TEST: return createAttributeTest();
-            case Xpath2Package.NAME_ATTRIBUTE_TEST: return createNameAttributeTest();
-            case Xpath2Package.WILDCARD_ATTRIBUTE_TEST: return createWildcardAttributeTest();
-            case Xpath2Package.SCHEMA_ELEMENT_TEST: return createSchemaElementTest();
-            case Xpath2Package.SCHEMA_ATTRIBUTE_TEST: return createSchemaAttributeTest();
-            case Xpath2Package.PI_TEST: return createPITest();
-            case Xpath2Package.NC_NAME_PI_TEST: return createNCNamePITest();
-            case Xpath2Package.STRING_LITERAL_PI_TEST: return createStringLiteralPITest();
-            case Xpath2Package.COMMENT_TEST: return createCommentTest();
-            case Xpath2Package.TEXT_TEST: return createTextTest();
-            case Xpath2Package.ANY_KIND_TEST: return createAnyKindTest();
-            case Xpath2Package.COMMENT: return createComment();
+            case XPath2Package.EXPR: return createExpr();
+            case XPath2Package.FOR_EXPR: return createForExpr();
+            case XPath2Package.QUANTIFIED_EXPR: return createQuantifiedExpr();
+            case XPath2Package.IF_EXPR: return createIfExpr();
+            case XPath2Package.ITERATOR: return createIterator();
+            case XPath2Package.OR_EXPR: return createOrExpr();
+            case XPath2Package.AND_EXPR: return createAndExpr();
+            case XPath2Package.COMPARISON_EXPR: return createComparisonExpr();
+            case XPath2Package.RANGE_EXPR: return createRangeExpr();
+            case XPath2Package.ADDITIVE_EXPR: return createAdditiveExpr();
+            case XPath2Package.MULTIPLICATIVE_EXPR: return createMultiplicativeExpr();
+            case XPath2Package.UNION_EXPR: return createUnionExpr();
+            case XPath2Package.INTERSECT_EXCEPT_EXPR: return createIntersectExceptExpr();
+            case XPath2Package.INSTANCEOF_EXPR: return createInstanceofExpr();
+            case XPath2Package.TREAT_EXPR: return createTreatExpr();
+            case XPath2Package.CASTABLE_EXPR: return createCastableExpr();
+            case XPath2Package.CAST_EXPR: return createCastExpr();
+            case XPath2Package.UNARY_EXPR: return createUnaryExpr();
+            case XPath2Package.PATH_EXPR: return createPathExpr();
+            case XPath2Package.ROOT_STEP_EXPR: return createRootStepExpr();
+            case XPath2Package.CHILD_STEP_EXPR: return createChildStepExpr();
+            case XPath2Package.DESC_OR_SELF_STEP_EXPR: return createDescOrSelfStepExpr();
+            case XPath2Package.SELF_STEP_EXPR: return createSelfStepExpr();
+            case XPath2Package.FILTER_EXPR: return createFilterExpr();
+            case XPath2Package.GENERAL_FORWARD_STEP: return createGeneralForwardStep();
+            case XPath2Package.ABBREV_FORWARD_STEP: return createAbbrevForwardStep();
+            case XPath2Package.GENERAL_REVERSE_STEP: return createGeneralReverseStep();
+            case XPath2Package.ABBREV_REVERSE_STEP: return createAbbrevReverseStep();
+            case XPath2Package.NODE_KIND_TEST: return createNodeKindTest();
+            case XPath2Package.QNAME_TEST: return createQNameTest();
+            case XPath2Package.ANY_WILDCARD: return createAnyWildcard();
+            case XPath2Package.LOCAL_NAME_WILDCARD: return createLocalNameWildcard();
+            case XPath2Package.NAMESPACE_WILDCARD: return createNamespaceWildcard();
+            case XPath2Package.PREDICATE: return createPredicate();
+            case XPath2Package.VAR_REF: return createVarRef();
+            case XPath2Package.PARENTHESIZED_EXPR: return createParenthesizedExpr();
+            case XPath2Package.CONTEXT_ITEM_EXPR: return createContextItemExpr();
+            case XPath2Package.FUNCTION_CALL: return createFunctionCall();
+            case XPath2Package.STRING_LITERAL: return createStringLiteral();
+            case XPath2Package.INTEGER_LITERAL: return createIntegerLiteral();
+            case XPath2Package.DECIMAL_LITERAL: return createDecimalLiteral();
+            case XPath2Package.DOUBLE_LITERAL: return createDoubleLiteral();
+            case XPath2Package.GENERAL_COMP: return createGeneralComp();
+            case XPath2Package.VALUE_COMP: return createValueComp();
+            case XPath2Package.NODE_COMP: return createNodeComp();
+            case XPath2Package.SINGLE_TYPE: return createSingleType();
+            case XPath2Package.ATOMIC_TYPE: return createAtomicType();
+            case XPath2Package.OPTIONAL_ATOMIC_TYPE: return createOptionalAtomicType();
+            case XPath2Package.EMPTY_SEQUENCE_TYPE: return createEmptySequenceType();
+            case XPath2Package.ITEM_SEQUENCE_TYPE: return createItemSequenceType();
+            case XPath2Package.ITEM_KIND_TEST: return createItemKindTest();
+            case XPath2Package.ANY_ITEM_TYPE: return createAnyItemType();
+            case XPath2Package.ATOMIC_ITEM_TYPE: return createAtomicItemType();
+            case XPath2Package.DOCUMENT_TEST: return createDocumentTest();
+            case XPath2Package.ELEMENT_TEST: return createElementTest();
+            case XPath2Package.NAME_ELEMENT_TEST: return createNameElementTest();
+            case XPath2Package.WILDCARD_ELEMENT_TEST: return createWildcardElementTest();
+            case XPath2Package.ATTRIBUTE_TEST: return createAttributeTest();
+            case XPath2Package.NAME_ATTRIBUTE_TEST: return createNameAttributeTest();
+            case XPath2Package.WILDCARD_ATTRIBUTE_TEST: return createWildcardAttributeTest();
+            case XPath2Package.SCHEMA_ELEMENT_TEST: return createSchemaElementTest();
+            case XPath2Package.SCHEMA_ATTRIBUTE_TEST: return createSchemaAttributeTest();
+            case XPath2Package.PI_TEST: return createPITest();
+            case XPath2Package.NC_NAME_PI_TEST: return createNCNamePITest();
+            case XPath2Package.STRING_LITERAL_PI_TEST: return createStringLiteralPITest();
+            case XPath2Package.COMMENT_TEST: return createCommentTest();
+            case XPath2Package.TEXT_TEST: return createTextTest();
+            case XPath2Package.ANY_KIND_TEST: return createAnyKindTest();
+            case XPath2Package.COMMENT: return createComment();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -147,31 +147,31 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
     @Override
     public Object createFromString(EDataType eDataType, String initialValue) {
         switch (eDataType.getClassifierID()) {
-            case Xpath2Package.FORWARD_AXIS_KIND:
+            case XPath2Package.FORWARD_AXIS_KIND:
                 return createForwardAxisKindFromString(eDataType, initialValue);
-            case Xpath2Package.ABBREV_FORWARD_STEP_KIND:
+            case XPath2Package.ABBREV_FORWARD_STEP_KIND:
                 return createAbbrevForwardStepKindFromString(eDataType, initialValue);
-            case Xpath2Package.REVERSE_AXIS_KIND:
+            case XPath2Package.REVERSE_AXIS_KIND:
                 return createReverseAxisKindFromString(eDataType, initialValue);
-            case Xpath2Package.ABBREV_REVERSE_STEP_KIND:
+            case XPath2Package.ABBREV_REVERSE_STEP_KIND:
                 return createAbbrevReverseStepKindFromString(eDataType, initialValue);
-            case Xpath2Package.UNION_OP:
+            case XPath2Package.UNION_OP:
                 return createUnionOpFromString(eDataType, initialValue);
-            case Xpath2Package.ADDITIVE_OP_KIND:
+            case XPath2Package.ADDITIVE_OP_KIND:
                 return createAdditiveOpKindFromString(eDataType, initialValue);
-            case Xpath2Package.MULTIPLICATIVE_OP_KIND:
+            case XPath2Package.MULTIPLICATIVE_OP_KIND:
                 return createMultiplicativeOpKindFromString(eDataType, initialValue);
-            case Xpath2Package.QUANTIFIER_KIND:
+            case XPath2Package.QUANTIFIER_KIND:
                 return createQuantifierKindFromString(eDataType, initialValue);
-            case Xpath2Package.INTERSECT_EXCEPT_OP_KIND:
+            case XPath2Package.INTERSECT_EXCEPT_OP_KIND:
                 return createIntersectExceptOpKindFromString(eDataType, initialValue);
-            case Xpath2Package.UNARY_OP:
+            case XPath2Package.UNARY_OP:
                 return createUnaryOpFromString(eDataType, initialValue);
-            case Xpath2Package.GENERAL_COMP_KIND:
+            case XPath2Package.GENERAL_COMP_KIND:
                 return createGeneralCompKindFromString(eDataType, initialValue);
-            case Xpath2Package.NODE_COMP_KIND:
+            case XPath2Package.NODE_COMP_KIND:
                 return createNodeCompKindFromString(eDataType, initialValue);
-            case Xpath2Package.OCCURRENCE_INDICATOR_KIND:
+            case XPath2Package.OCCURRENCE_INDICATOR_KIND:
                 return createOccurrenceIndicatorKindFromString(eDataType, initialValue);
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
@@ -186,31 +186,31 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
     @Override
     public String convertToString(EDataType eDataType, Object instanceValue) {
         switch (eDataType.getClassifierID()) {
-            case Xpath2Package.FORWARD_AXIS_KIND:
+            case XPath2Package.FORWARD_AXIS_KIND:
                 return convertForwardAxisKindToString(eDataType, instanceValue);
-            case Xpath2Package.ABBREV_FORWARD_STEP_KIND:
+            case XPath2Package.ABBREV_FORWARD_STEP_KIND:
                 return convertAbbrevForwardStepKindToString(eDataType, instanceValue);
-            case Xpath2Package.REVERSE_AXIS_KIND:
+            case XPath2Package.REVERSE_AXIS_KIND:
                 return convertReverseAxisKindToString(eDataType, instanceValue);
-            case Xpath2Package.ABBREV_REVERSE_STEP_KIND:
+            case XPath2Package.ABBREV_REVERSE_STEP_KIND:
                 return convertAbbrevReverseStepKindToString(eDataType, instanceValue);
-            case Xpath2Package.UNION_OP:
+            case XPath2Package.UNION_OP:
                 return convertUnionOpToString(eDataType, instanceValue);
-            case Xpath2Package.ADDITIVE_OP_KIND:
+            case XPath2Package.ADDITIVE_OP_KIND:
                 return convertAdditiveOpKindToString(eDataType, instanceValue);
-            case Xpath2Package.MULTIPLICATIVE_OP_KIND:
+            case XPath2Package.MULTIPLICATIVE_OP_KIND:
                 return convertMultiplicativeOpKindToString(eDataType, instanceValue);
-            case Xpath2Package.QUANTIFIER_KIND:
+            case XPath2Package.QUANTIFIER_KIND:
                 return convertQuantifierKindToString(eDataType, instanceValue);
-            case Xpath2Package.INTERSECT_EXCEPT_OP_KIND:
+            case XPath2Package.INTERSECT_EXCEPT_OP_KIND:
                 return convertIntersectExceptOpKindToString(eDataType, instanceValue);
-            case Xpath2Package.UNARY_OP:
+            case XPath2Package.UNARY_OP:
                 return convertUnaryOpToString(eDataType, instanceValue);
-            case Xpath2Package.GENERAL_COMP_KIND:
+            case XPath2Package.GENERAL_COMP_KIND:
                 return convertGeneralCompKindToString(eDataType, instanceValue);
-            case Xpath2Package.NODE_COMP_KIND:
+            case XPath2Package.NODE_COMP_KIND:
                 return convertNodeCompKindToString(eDataType, instanceValue);
-            case Xpath2Package.OCCURRENCE_INDICATOR_KIND:
+            case XPath2Package.OCCURRENCE_INDICATOR_KIND:
                 return convertOccurrenceIndicatorKindToString(eDataType, instanceValue);
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
@@ -1172,8 +1172,8 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Xpath2Package getXpath2Package() {
-        return (Xpath2Package)getEPackage();
+    public XPath2Package getXPath2Package() {
+        return (XPath2Package)getEPackage();
     }
 
     /**
@@ -1183,8 +1183,8 @@ public class Xpath2FactoryImpl extends EFactoryImpl implements Xpath2Factory {
      * @generated
      */
     @Deprecated
-    public static Xpath2Package getPackage() {
-        return Xpath2Package.eINSTANCE;
+    public static XPath2Package getPackage() {
+        return XPath2Package.eINSTANCE;
     }
 
-} //Xpath2FactoryImpl
+} //XPath2FactoryImpl

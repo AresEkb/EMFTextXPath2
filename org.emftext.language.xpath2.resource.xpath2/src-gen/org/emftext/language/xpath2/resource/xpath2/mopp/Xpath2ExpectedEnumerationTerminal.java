@@ -10,6 +10,7 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -29,7 +30,7 @@ public class Xpath2ExpectedEnumerationTerminal extends org.emftext.language.xpat
 	public Set<String> getTokenNames() {
 		// EnumerationTerminals are associated with multiple tokens, one for each literal
 		// that was mapped to a string
-		java.util.Set<String> tokenNames = new java.util.LinkedHashSet<String>();
+		Set<String> tokenNames = new LinkedHashSet<String>();
 		Map<String, String> mapping = enumerationTerminal.getLiteralMapping();
 		for (String literalName : mapping.keySet()) {
 			String text = mapping.get(literalName);

@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.SelfStepExpr;
 import org.emftext.language.xpath2.SelfStepExprChild;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,10 +28,10 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.SelfStepExprImpl#getStep <em>Step</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -62,7 +62,7 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.SELF_STEP_EXPR;
+        return XPath2Package.Literals.SELF_STEP_EXPR;
     }
 
     /**
@@ -83,7 +83,7 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
         SelfStepExprChild oldStep = step;
         step = newStep;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.SELF_STEP_EXPR__STEP, oldStep, newStep);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.SELF_STEP_EXPR__STEP, oldStep, newStep);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -98,14 +98,14 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
         if (newStep != step) {
             NotificationChain msgs = null;
             if (step != null)
-                msgs = ((InternalEObject)step).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.SELF_STEP_EXPR__STEP, null, msgs);
+                msgs = ((InternalEObject)step).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.SELF_STEP_EXPR__STEP, null, msgs);
             if (newStep != null)
-                msgs = ((InternalEObject)newStep).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.SELF_STEP_EXPR__STEP, null, msgs);
+                msgs = ((InternalEObject)newStep).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.SELF_STEP_EXPR__STEP, null, msgs);
             msgs = basicSetStep(newStep, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.SELF_STEP_EXPR__STEP, newStep, newStep));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.SELF_STEP_EXPR__STEP, newStep, newStep));
     }
 
     /**
@@ -116,7 +116,7 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.SELF_STEP_EXPR__STEP:
+            case XPath2Package.SELF_STEP_EXPR__STEP:
                 return basicSetStep(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -130,7 +130,7 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.SELF_STEP_EXPR__STEP:
+            case XPath2Package.SELF_STEP_EXPR__STEP:
                 return getStep();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -144,7 +144,7 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.SELF_STEP_EXPR__STEP:
+            case XPath2Package.SELF_STEP_EXPR__STEP:
                 setStep((SelfStepExprChild)newValue);
                 return;
         }
@@ -159,7 +159,7 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.SELF_STEP_EXPR__STEP:
+            case XPath2Package.SELF_STEP_EXPR__STEP:
                 setStep((SelfStepExprChild)null);
                 return;
         }
@@ -174,7 +174,7 @@ public class SelfStepExprImpl extends PathExprChildImpl implements SelfStepExpr 
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.SELF_STEP_EXPR__STEP:
+            case XPath2Package.SELF_STEP_EXPR__STEP:
                 return step != null;
         }
         return super.eIsSet(featureID);

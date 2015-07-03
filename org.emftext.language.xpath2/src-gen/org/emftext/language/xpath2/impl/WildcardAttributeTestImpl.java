@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.WildcardAttributeTest;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,10 +27,10 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.WildcardAttributeTestImpl#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -71,7 +71,7 @@ public class WildcardAttributeTestImpl extends AttributeTestImpl implements Wild
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.WILDCARD_ATTRIBUTE_TEST;
+        return XPath2Package.Literals.WILDCARD_ATTRIBUTE_TEST;
     }
 
     /**
@@ -92,7 +92,7 @@ public class WildcardAttributeTestImpl extends AttributeTestImpl implements Wild
         QName oldType = type;
         type = newType;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE, oldType, type));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE, oldType, type));
     }
 
     /**
@@ -103,7 +103,7 @@ public class WildcardAttributeTestImpl extends AttributeTestImpl implements Wild
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE:
+            case XPath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE:
                 return getType();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -117,7 +117,7 @@ public class WildcardAttributeTestImpl extends AttributeTestImpl implements Wild
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE:
+            case XPath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE:
                 setType((QName)newValue);
                 return;
         }
@@ -132,7 +132,7 @@ public class WildcardAttributeTestImpl extends AttributeTestImpl implements Wild
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE:
+            case XPath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE:
                 setType(TYPE_EDEFAULT);
                 return;
         }
@@ -147,7 +147,7 @@ public class WildcardAttributeTestImpl extends AttributeTestImpl implements Wild
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE:
+            case XPath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE:
                 return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
         }
         return super.eIsSet(featureID);

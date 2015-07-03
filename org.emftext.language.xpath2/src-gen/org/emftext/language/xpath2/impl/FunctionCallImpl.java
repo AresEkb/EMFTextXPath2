@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.emftext.language.xpath2.ExprSingle;
 import org.emftext.language.xpath2.FunctionCall;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,11 +37,11 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.FunctionCallImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.FunctionCallImpl#getArg <em>Arg</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -92,7 +92,7 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.FUNCTION_CALL;
+        return XPath2Package.Literals.FUNCTION_CALL;
     }
 
     /**
@@ -113,7 +113,7 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall {
         QName oldName = name;
         name = newName;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.FUNCTION_CALL__NAME, oldName, name));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.FUNCTION_CALL__NAME, oldName, name));
     }
 
     /**
@@ -123,7 +123,7 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall {
      */
     public EList<ExprSingle> getArg() {
         if (arg == null) {
-            arg = new EObjectContainmentEList<ExprSingle>(ExprSingle.class, this, Xpath2Package.FUNCTION_CALL__ARG);
+            arg = new EObjectContainmentEList<ExprSingle>(ExprSingle.class, this, XPath2Package.FUNCTION_CALL__ARG);
         }
         return arg;
     }
@@ -136,7 +136,7 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.FUNCTION_CALL__ARG:
+            case XPath2Package.FUNCTION_CALL__ARG:
                 return ((InternalEList<?>)getArg()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -150,9 +150,9 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.FUNCTION_CALL__NAME:
+            case XPath2Package.FUNCTION_CALL__NAME:
                 return getName();
-            case Xpath2Package.FUNCTION_CALL__ARG:
+            case XPath2Package.FUNCTION_CALL__ARG:
                 return getArg();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -167,10 +167,10 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.FUNCTION_CALL__NAME:
+            case XPath2Package.FUNCTION_CALL__NAME:
                 setName((QName)newValue);
                 return;
-            case Xpath2Package.FUNCTION_CALL__ARG:
+            case XPath2Package.FUNCTION_CALL__ARG:
                 getArg().clear();
                 getArg().addAll((Collection<? extends ExprSingle>)newValue);
                 return;
@@ -186,10 +186,10 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.FUNCTION_CALL__NAME:
+            case XPath2Package.FUNCTION_CALL__NAME:
                 setName(NAME_EDEFAULT);
                 return;
-            case Xpath2Package.FUNCTION_CALL__ARG:
+            case XPath2Package.FUNCTION_CALL__ARG:
                 getArg().clear();
                 return;
         }
@@ -204,9 +204,9 @@ public class FunctionCallImpl extends PrimaryExprImpl implements FunctionCall {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.FUNCTION_CALL__NAME:
+            case XPath2Package.FUNCTION_CALL__NAME:
                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-            case Xpath2Package.FUNCTION_CALL__ARG:
+            case XPath2Package.FUNCTION_CALL__ARG:
                 return arg != null && !arg.isEmpty();
         }
         return super.eIsSet(featureID);

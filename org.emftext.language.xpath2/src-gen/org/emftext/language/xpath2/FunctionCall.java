@@ -21,13 +21,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.FunctionCall#getName <em>Name</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.FunctionCall#getArg <em>Arg</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getFunctionCall()
+ * @see org.emftext.language.xpath2.XPath2Package#getFunctionCall()
  * @model
  * @generated
  */
@@ -42,7 +42,7 @@ public interface FunctionCall extends PrimaryExpr {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(QName)
-     * @see org.emftext.language.xpath2.Xpath2Package#getFunctionCall_Name()
+     * @see org.emftext.language.xpath2.XPath2Package#getFunctionCall_Name()
      * @model dataType="org.eclipse.emf.ecore.xml.type.QName" required="true"
      * @generated
      */
@@ -68,7 +68,7 @@ public interface FunctionCall extends PrimaryExpr {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Arg</em>' containment reference list.
-     * @see org.emftext.language.xpath2.Xpath2Package#getFunctionCall_Arg()
+     * @see org.emftext.language.xpath2.XPath2Package#getFunctionCall_Arg()
      * @model containment="true"
      * @generated
      */

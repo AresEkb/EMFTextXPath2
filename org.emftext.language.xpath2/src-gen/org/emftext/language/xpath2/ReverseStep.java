@@ -17,7 +17,7 @@ package org.emftext.language.xpath2;
  * <!-- end-user-doc -->
  *
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getReverseStep()
+ * @see org.emftext.language.xpath2.XPath2Package#getReverseStep()
  * @model abstract="true"
  * @generated
  */

@@ -45,7 +45,9 @@ public interface IXpath2TextDiagnostic extends Resource.Diagnostic {
 	public org.emftext.language.xpath2.resource.xpath2.IXpath2Problem getProblem();
 	
 	/**
+	 * <p>
 	 * Checks whether the problem was caused by the given element.
+	 * </p>
 	 * 
 	 * @return true if the problem was caused by <code>element</code>
 	 */

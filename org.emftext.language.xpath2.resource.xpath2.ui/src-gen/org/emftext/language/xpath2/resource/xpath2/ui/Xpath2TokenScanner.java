@@ -40,7 +40,9 @@ public class Xpath2TokenScanner implements org.emftext.language.xpath2.resource.
 	private org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource;
 	
 	/**
+	 * <p>
 	 * Creates a new Xpath2TokenScanner.
+	 * </p>
 	 * 
 	 * @param resource The resource to scan
 	 * @param colorManager A manager to obtain color objects
@@ -191,7 +193,7 @@ public class Xpath2TokenScanner implements org.emftext.language.xpath2.resource.
 		// this is the offset for the next token to be added
 		int offset = charStart;
 		int itemBeginRelative;
-		java.util.List<org.emftext.language.xpath2.resource.xpath2.IXpath2TextToken> newItems = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2TextToken>();
+		List<org.emftext.language.xpath2.resource.xpath2.IXpath2TextToken> newItems = new ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2TextToken>();
 		for (org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TaskItem taskItem : taskItems) {
 			int itemBegin = taskItem.getCharStart();
 			int itemLine = taskItem.getLine();

@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.emftext.language.xpath2.Comp;
 import org.emftext.language.xpath2.ComparisonExpr;
 import org.emftext.language.xpath2.ComparisonExprChild;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,12 +29,12 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.ComparisonExprImpl#getLeft <em>Left</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.ComparisonExprImpl#getOperator <em>Operator</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.ComparisonExprImpl#getRight <em>Right</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -85,7 +85,7 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.COMPARISON_EXPR;
+        return XPath2Package.Literals.COMPARISON_EXPR;
     }
 
     /**
@@ -106,7 +106,7 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
         ComparisonExprChild oldLeft = left;
         left = newLeft;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.COMPARISON_EXPR__LEFT, oldLeft, newLeft);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.COMPARISON_EXPR__LEFT, oldLeft, newLeft);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -121,14 +121,14 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
         if (newLeft != left) {
             NotificationChain msgs = null;
             if (left != null)
-                msgs = ((InternalEObject)left).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.COMPARISON_EXPR__LEFT, null, msgs);
+                msgs = ((InternalEObject)left).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.COMPARISON_EXPR__LEFT, null, msgs);
             if (newLeft != null)
-                msgs = ((InternalEObject)newLeft).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.COMPARISON_EXPR__LEFT, null, msgs);
+                msgs = ((InternalEObject)newLeft).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.COMPARISON_EXPR__LEFT, null, msgs);
             msgs = basicSetLeft(newLeft, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.COMPARISON_EXPR__LEFT, newLeft, newLeft));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.COMPARISON_EXPR__LEFT, newLeft, newLeft));
     }
 
     /**
@@ -149,7 +149,7 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
         Comp oldOperator = operator;
         operator = newOperator;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.COMPARISON_EXPR__OPERATOR, oldOperator, newOperator);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.COMPARISON_EXPR__OPERATOR, oldOperator, newOperator);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -164,14 +164,14 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
         if (newOperator != operator) {
             NotificationChain msgs = null;
             if (operator != null)
-                msgs = ((InternalEObject)operator).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.COMPARISON_EXPR__OPERATOR, null, msgs);
+                msgs = ((InternalEObject)operator).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.COMPARISON_EXPR__OPERATOR, null, msgs);
             if (newOperator != null)
-                msgs = ((InternalEObject)newOperator).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.COMPARISON_EXPR__OPERATOR, null, msgs);
+                msgs = ((InternalEObject)newOperator).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.COMPARISON_EXPR__OPERATOR, null, msgs);
             msgs = basicSetOperator(newOperator, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.COMPARISON_EXPR__OPERATOR, newOperator, newOperator));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.COMPARISON_EXPR__OPERATOR, newOperator, newOperator));
     }
 
     /**
@@ -192,7 +192,7 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
         ComparisonExprChild oldRight = right;
         right = newRight;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.COMPARISON_EXPR__RIGHT, oldRight, newRight);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.COMPARISON_EXPR__RIGHT, oldRight, newRight);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -207,14 +207,14 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
         if (newRight != right) {
             NotificationChain msgs = null;
             if (right != null)
-                msgs = ((InternalEObject)right).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.COMPARISON_EXPR__RIGHT, null, msgs);
+                msgs = ((InternalEObject)right).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.COMPARISON_EXPR__RIGHT, null, msgs);
             if (newRight != null)
-                msgs = ((InternalEObject)newRight).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.COMPARISON_EXPR__RIGHT, null, msgs);
+                msgs = ((InternalEObject)newRight).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.COMPARISON_EXPR__RIGHT, null, msgs);
             msgs = basicSetRight(newRight, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.COMPARISON_EXPR__RIGHT, newRight, newRight));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.COMPARISON_EXPR__RIGHT, newRight, newRight));
     }
 
     /**
@@ -225,11 +225,11 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.COMPARISON_EXPR__LEFT:
+            case XPath2Package.COMPARISON_EXPR__LEFT:
                 return basicSetLeft(null, msgs);
-            case Xpath2Package.COMPARISON_EXPR__OPERATOR:
+            case XPath2Package.COMPARISON_EXPR__OPERATOR:
                 return basicSetOperator(null, msgs);
-            case Xpath2Package.COMPARISON_EXPR__RIGHT:
+            case XPath2Package.COMPARISON_EXPR__RIGHT:
                 return basicSetRight(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -243,11 +243,11 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.COMPARISON_EXPR__LEFT:
+            case XPath2Package.COMPARISON_EXPR__LEFT:
                 return getLeft();
-            case Xpath2Package.COMPARISON_EXPR__OPERATOR:
+            case XPath2Package.COMPARISON_EXPR__OPERATOR:
                 return getOperator();
-            case Xpath2Package.COMPARISON_EXPR__RIGHT:
+            case XPath2Package.COMPARISON_EXPR__RIGHT:
                 return getRight();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -261,13 +261,13 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.COMPARISON_EXPR__LEFT:
+            case XPath2Package.COMPARISON_EXPR__LEFT:
                 setLeft((ComparisonExprChild)newValue);
                 return;
-            case Xpath2Package.COMPARISON_EXPR__OPERATOR:
+            case XPath2Package.COMPARISON_EXPR__OPERATOR:
                 setOperator((Comp)newValue);
                 return;
-            case Xpath2Package.COMPARISON_EXPR__RIGHT:
+            case XPath2Package.COMPARISON_EXPR__RIGHT:
                 setRight((ComparisonExprChild)newValue);
                 return;
         }
@@ -282,13 +282,13 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.COMPARISON_EXPR__LEFT:
+            case XPath2Package.COMPARISON_EXPR__LEFT:
                 setLeft((ComparisonExprChild)null);
                 return;
-            case Xpath2Package.COMPARISON_EXPR__OPERATOR:
+            case XPath2Package.COMPARISON_EXPR__OPERATOR:
                 setOperator((Comp)null);
                 return;
-            case Xpath2Package.COMPARISON_EXPR__RIGHT:
+            case XPath2Package.COMPARISON_EXPR__RIGHT:
                 setRight((ComparisonExprChild)null);
                 return;
         }
@@ -303,11 +303,11 @@ public class ComparisonExprImpl extends AndExprChildImpl implements ComparisonEx
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.COMPARISON_EXPR__LEFT:
+            case XPath2Package.COMPARISON_EXPR__LEFT:
                 return left != null;
-            case Xpath2Package.COMPARISON_EXPR__OPERATOR:
+            case XPath2Package.COMPARISON_EXPR__OPERATOR:
                 return operator != null;
-            case Xpath2Package.COMPARISON_EXPR__RIGHT:
+            case XPath2Package.COMPARISON_EXPR__RIGHT:
                 return right != null;
         }
         return super.eIsSet(featureID);

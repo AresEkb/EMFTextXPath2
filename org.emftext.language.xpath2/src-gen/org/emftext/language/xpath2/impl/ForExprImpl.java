@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.emftext.language.xpath2.ExprSingle;
 import org.emftext.language.xpath2.ForExpr;
 import org.emftext.language.xpath2.Iterator;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,11 +36,11 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.ForExprImpl#getIterator <em>Iterator</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.ForExprImpl#getReturn <em>Return</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -81,7 +81,7 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.FOR_EXPR;
+        return XPath2Package.Literals.FOR_EXPR;
     }
 
     /**
@@ -91,7 +91,7 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
      */
     public EList<Iterator> getIterator() {
         if (iterator == null) {
-            iterator = new EObjectContainmentEList<Iterator>(Iterator.class, this, Xpath2Package.FOR_EXPR__ITERATOR);
+            iterator = new EObjectContainmentEList<Iterator>(Iterator.class, this, XPath2Package.FOR_EXPR__ITERATOR);
         }
         return iterator;
     }
@@ -114,7 +114,7 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
         ExprSingle oldReturn = return_;
         return_ = newReturn;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.FOR_EXPR__RETURN, oldReturn, newReturn);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.FOR_EXPR__RETURN, oldReturn, newReturn);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -129,14 +129,14 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
         if (newReturn != return_) {
             NotificationChain msgs = null;
             if (return_ != null)
-                msgs = ((InternalEObject)return_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.FOR_EXPR__RETURN, null, msgs);
+                msgs = ((InternalEObject)return_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.FOR_EXPR__RETURN, null, msgs);
             if (newReturn != null)
-                msgs = ((InternalEObject)newReturn).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.FOR_EXPR__RETURN, null, msgs);
+                msgs = ((InternalEObject)newReturn).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.FOR_EXPR__RETURN, null, msgs);
             msgs = basicSetReturn(newReturn, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.FOR_EXPR__RETURN, newReturn, newReturn));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.FOR_EXPR__RETURN, newReturn, newReturn));
     }
 
     /**
@@ -147,9 +147,9 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.FOR_EXPR__ITERATOR:
+            case XPath2Package.FOR_EXPR__ITERATOR:
                 return ((InternalEList<?>)getIterator()).basicRemove(otherEnd, msgs);
-            case Xpath2Package.FOR_EXPR__RETURN:
+            case XPath2Package.FOR_EXPR__RETURN:
                 return basicSetReturn(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -163,9 +163,9 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.FOR_EXPR__ITERATOR:
+            case XPath2Package.FOR_EXPR__ITERATOR:
                 return getIterator();
-            case Xpath2Package.FOR_EXPR__RETURN:
+            case XPath2Package.FOR_EXPR__RETURN:
                 return getReturn();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -180,11 +180,11 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.FOR_EXPR__ITERATOR:
+            case XPath2Package.FOR_EXPR__ITERATOR:
                 getIterator().clear();
                 getIterator().addAll((Collection<? extends Iterator>)newValue);
                 return;
-            case Xpath2Package.FOR_EXPR__RETURN:
+            case XPath2Package.FOR_EXPR__RETURN:
                 setReturn((ExprSingle)newValue);
                 return;
         }
@@ -199,10 +199,10 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.FOR_EXPR__ITERATOR:
+            case XPath2Package.FOR_EXPR__ITERATOR:
                 getIterator().clear();
                 return;
-            case Xpath2Package.FOR_EXPR__RETURN:
+            case XPath2Package.FOR_EXPR__RETURN:
                 setReturn((ExprSingle)null);
                 return;
         }
@@ -217,9 +217,9 @@ public class ForExprImpl extends ExprSingleImpl implements ForExpr {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.FOR_EXPR__ITERATOR:
+            case XPath2Package.FOR_EXPR__ITERATOR:
                 return iterator != null && !iterator.isEmpty();
-            case Xpath2Package.FOR_EXPR__RETURN:
+            case XPath2Package.FOR_EXPR__RETURN:
                 return return_ != null;
         }
         return super.eIsSet(featureID);

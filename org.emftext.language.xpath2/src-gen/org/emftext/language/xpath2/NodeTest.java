@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getNodeTest()
+ * @see org.emftext.language.xpath2.XPath2Package#getNodeTest()
  * @model abstract="true"
  * @generated
  */

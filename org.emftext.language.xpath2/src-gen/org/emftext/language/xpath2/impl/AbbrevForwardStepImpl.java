@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.emftext.language.xpath2.AbbrevForwardStep;
 import org.emftext.language.xpath2.AbbrevForwardStepKind;
 import org.emftext.language.xpath2.NodeTest;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,11 +29,11 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.AbbrevForwardStepImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.AbbrevForwardStepImpl#getNodeTest <em>Node Test</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -84,7 +84,7 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.ABBREV_FORWARD_STEP;
+        return XPath2Package.Literals.ABBREV_FORWARD_STEP;
     }
 
     /**
@@ -105,7 +105,7 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
         AbbrevForwardStepKind oldKind = kind;
         kind = newKind == null ? KIND_EDEFAULT : newKind;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ABBREV_FORWARD_STEP__KIND, oldKind, kind));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.ABBREV_FORWARD_STEP__KIND, oldKind, kind));
     }
 
     /**
@@ -126,7 +126,7 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
         NodeTest oldNodeTest = nodeTest;
         nodeTest = newNodeTest;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.ABBREV_FORWARD_STEP__NODE_TEST, oldNodeTest, newNodeTest);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.ABBREV_FORWARD_STEP__NODE_TEST, oldNodeTest, newNodeTest);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -141,14 +141,14 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
         if (newNodeTest != nodeTest) {
             NotificationChain msgs = null;
             if (nodeTest != null)
-                msgs = ((InternalEObject)nodeTest).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.ABBREV_FORWARD_STEP__NODE_TEST, null, msgs);
+                msgs = ((InternalEObject)nodeTest).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.ABBREV_FORWARD_STEP__NODE_TEST, null, msgs);
             if (newNodeTest != null)
-                msgs = ((InternalEObject)newNodeTest).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.ABBREV_FORWARD_STEP__NODE_TEST, null, msgs);
+                msgs = ((InternalEObject)newNodeTest).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.ABBREV_FORWARD_STEP__NODE_TEST, null, msgs);
             msgs = basicSetNodeTest(newNodeTest, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ABBREV_FORWARD_STEP__NODE_TEST, newNodeTest, newNodeTest));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.ABBREV_FORWARD_STEP__NODE_TEST, newNodeTest, newNodeTest));
     }
 
     /**
@@ -159,7 +159,7 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.ABBREV_FORWARD_STEP__NODE_TEST:
+            case XPath2Package.ABBREV_FORWARD_STEP__NODE_TEST:
                 return basicSetNodeTest(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -173,9 +173,9 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.ABBREV_FORWARD_STEP__KIND:
+            case XPath2Package.ABBREV_FORWARD_STEP__KIND:
                 return getKind();
-            case Xpath2Package.ABBREV_FORWARD_STEP__NODE_TEST:
+            case XPath2Package.ABBREV_FORWARD_STEP__NODE_TEST:
                 return getNodeTest();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -189,10 +189,10 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.ABBREV_FORWARD_STEP__KIND:
+            case XPath2Package.ABBREV_FORWARD_STEP__KIND:
                 setKind((AbbrevForwardStepKind)newValue);
                 return;
-            case Xpath2Package.ABBREV_FORWARD_STEP__NODE_TEST:
+            case XPath2Package.ABBREV_FORWARD_STEP__NODE_TEST:
                 setNodeTest((NodeTest)newValue);
                 return;
         }
@@ -207,10 +207,10 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.ABBREV_FORWARD_STEP__KIND:
+            case XPath2Package.ABBREV_FORWARD_STEP__KIND:
                 setKind(KIND_EDEFAULT);
                 return;
-            case Xpath2Package.ABBREV_FORWARD_STEP__NODE_TEST:
+            case XPath2Package.ABBREV_FORWARD_STEP__NODE_TEST:
                 setNodeTest((NodeTest)null);
                 return;
         }
@@ -225,9 +225,9 @@ public class AbbrevForwardStepImpl extends ForwardStepImpl implements AbbrevForw
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.ABBREV_FORWARD_STEP__KIND:
+            case XPath2Package.ABBREV_FORWARD_STEP__KIND:
                 return kind != KIND_EDEFAULT;
-            case Xpath2Package.ABBREV_FORWARD_STEP__NODE_TEST:
+            case XPath2Package.ABBREV_FORWARD_STEP__NODE_TEST:
                 return nodeTest != null;
         }
         return super.eIsSet(featureID);

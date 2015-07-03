@@ -19,13 +19,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.SingleType#getType <em>Type</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.SingleType#isOptional <em>Optional</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getSingleType()
+ * @see org.emftext.language.xpath2.XPath2Package#getSingleType()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface SingleType extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Type</em>' containment reference.
      * @see #setType(AtomicType)
-     * @see org.emftext.language.xpath2.Xpath2Package#getSingleType_Type()
+     * @see org.emftext.language.xpath2.XPath2Package#getSingleType_Type()
      * @model containment="true" required="true"
      * @generated
      */
@@ -66,7 +66,7 @@ public interface SingleType extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Optional</em>' attribute.
      * @see #setOptional(boolean)
-     * @see org.emftext.language.xpath2.Xpath2Package#getSingleType_Optional()
+     * @see org.emftext.language.xpath2.XPath2Package#getSingleType_Optional()
      * @model required="true"
      * @generated
      */

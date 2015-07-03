@@ -19,13 +19,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.IntersectExceptExpr#getOperand <em>Operand</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.IntersectExceptExpr#getOperator <em>Operator</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getIntersectExceptExpr()
+ * @see org.emftext.language.xpath2.XPath2Package#getIntersectExceptExpr()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface IntersectExceptExpr extends UnionExprChild {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Operand</em>' containment reference list.
-     * @see org.emftext.language.xpath2.Xpath2Package#getIntersectExceptExpr_Operand()
+     * @see org.emftext.language.xpath2.XPath2Package#getIntersectExceptExpr_Operand()
      * @model containment="true" required="true"
      * @generated
      */
@@ -58,7 +58,7 @@ public interface IntersectExceptExpr extends UnionExprChild {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Operator</em>' attribute list.
      * @see org.emftext.language.xpath2.IntersectExceptOpKind
-     * @see org.emftext.language.xpath2.Xpath2Package#getIntersectExceptExpr_Operator()
+     * @see org.emftext.language.xpath2.XPath2Package#getIntersectExceptExpr_Operator()
      * @model unique="false"
      * @generated
      */

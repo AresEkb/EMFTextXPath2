@@ -18,12 +18,12 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.WildcardElementTest#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getWildcardElementTest()
+ * @see org.emftext.language.xpath2.XPath2Package#getWildcardElementTest()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface WildcardElementTest extends ElementTest {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Type</em>' containment reference.
      * @see #setType(OptionalAtomicType)
-     * @see org.emftext.language.xpath2.Xpath2Package#getWildcardElementTest_Type()
+     * @see org.emftext.language.xpath2.XPath2Package#getWildcardElementTest_Type()
      * @model containment="true"
      * @generated
      */

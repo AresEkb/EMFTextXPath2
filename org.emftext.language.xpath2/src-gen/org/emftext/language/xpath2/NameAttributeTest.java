@@ -19,13 +19,13 @@ import javax.xml.namespace.QName;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.NameAttributeTest#getName <em>Name</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.NameAttributeTest#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getNameAttributeTest()
+ * @see org.emftext.language.xpath2.XPath2Package#getNameAttributeTest()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface NameAttributeTest extends AttributeTest {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(QName)
-     * @see org.emftext.language.xpath2.Xpath2Package#getNameAttributeTest_Name()
+     * @see org.emftext.language.xpath2.XPath2Package#getNameAttributeTest_Name()
      * @model dataType="org.eclipse.emf.ecore.xml.type.QName" required="true"
      * @generated
      */
@@ -66,7 +66,7 @@ public interface NameAttributeTest extends AttributeTest {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Type</em>' attribute.
      * @see #setType(QName)
-     * @see org.emftext.language.xpath2.Xpath2Package#getNameAttributeTest_Type()
+     * @see org.emftext.language.xpath2.XPath2Package#getNameAttributeTest_Type()
      * @model dataType="org.eclipse.emf.ecore.xml.type.QName"
      * @generated
      */

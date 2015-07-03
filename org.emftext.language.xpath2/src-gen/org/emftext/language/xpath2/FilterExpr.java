@@ -19,13 +19,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.FilterExpr#getPrimaryExpr <em>Primary Expr</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.FilterExpr#getPredicate <em>Predicate</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getFilterExpr()
+ * @see org.emftext.language.xpath2.XPath2Package#getFilterExpr()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface FilterExpr extends StepExpr {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Primary Expr</em>' containment reference.
      * @see #setPrimaryExpr(FilterExprChild)
-     * @see org.emftext.language.xpath2.Xpath2Package#getFilterExpr_PrimaryExpr()
+     * @see org.emftext.language.xpath2.XPath2Package#getFilterExpr_PrimaryExpr()
      * @model containment="true" required="true"
      * @generated
      */
@@ -66,7 +66,7 @@ public interface FilterExpr extends StepExpr {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Predicate</em>' containment reference list.
-     * @see org.emftext.language.xpath2.Xpath2Package#getFilterExpr_Predicate()
+     * @see org.emftext.language.xpath2.XPath2Package#getFilterExpr_Predicate()
      * @model containment="true"
      * @generated
      */

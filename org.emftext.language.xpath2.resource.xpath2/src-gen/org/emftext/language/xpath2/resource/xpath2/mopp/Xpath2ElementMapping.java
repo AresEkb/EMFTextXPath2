@@ -12,8 +12,10 @@ package org.emftext.language.xpath2.resource.xpath2.mopp;
 
 
 /**
+ * <p>
  * A basic implementation of the
  * org.emftext.language.xpath2.resource.xpath2.IXpath2ElementMapping interface.
+ * </p>
  * 
  * @param <ReferenceType> the type of the reference that can be mapped to
  */

@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.emftext.language.xpath2.ExprSingle;
 import org.emftext.language.xpath2.Iterator;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,11 +31,11 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.IteratorImpl#getVarName <em>Var Name</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.IteratorImpl#getList <em>List</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -86,7 +86,7 @@ public class IteratorImpl extends EObjectImpl implements Iterator {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.ITERATOR;
+        return XPath2Package.Literals.ITERATOR;
     }
 
     /**
@@ -107,7 +107,7 @@ public class IteratorImpl extends EObjectImpl implements Iterator {
         QName oldVarName = varName;
         varName = newVarName;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ITERATOR__VAR_NAME, oldVarName, varName));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.ITERATOR__VAR_NAME, oldVarName, varName));
     }
 
     /**
@@ -128,7 +128,7 @@ public class IteratorImpl extends EObjectImpl implements Iterator {
         ExprSingle oldList = list;
         list = newList;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.ITERATOR__LIST, oldList, newList);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.ITERATOR__LIST, oldList, newList);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -143,14 +143,14 @@ public class IteratorImpl extends EObjectImpl implements Iterator {
         if (newList != list) {
             NotificationChain msgs = null;
             if (list != null)
-                msgs = ((InternalEObject)list).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.ITERATOR__LIST, null, msgs);
+                msgs = ((InternalEObject)list).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.ITERATOR__LIST, null, msgs);
             if (newList != null)
-                msgs = ((InternalEObject)newList).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.ITERATOR__LIST, null, msgs);
+                msgs = ((InternalEObject)newList).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.ITERATOR__LIST, null, msgs);
             msgs = basicSetList(newList, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ITERATOR__LIST, newList, newList));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.ITERATOR__LIST, newList, newList));
     }
 
     /**
@@ -161,7 +161,7 @@ public class IteratorImpl extends EObjectImpl implements Iterator {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.ITERATOR__LIST:
+            case XPath2Package.ITERATOR__LIST:
                 return basicSetList(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -175,9 +175,9 @@ public class IteratorImpl extends EObjectImpl implements Iterator {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.ITERATOR__VAR_NAME:
+            case XPath2Package.ITERATOR__VAR_NAME:
                 return getVarName();
-            case Xpath2Package.ITERATOR__LIST:
+            case XPath2Package.ITERATOR__LIST:
                 return getList();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -191,10 +191,10 @@ public class IteratorImpl extends EObjectImpl implements Iterator {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.ITERATOR__VAR_NAME:
+            case XPath2Package.ITERATOR__VAR_NAME:
                 setVarName((QName)newValue);
                 return;
-            case Xpath2Package.ITERATOR__LIST:
+            case XPath2Package.ITERATOR__LIST:
                 setList((ExprSingle)newValue);
                 return;
         }
@@ -209,10 +209,10 @@ public class IteratorImpl extends EObjectImpl implements Iterator {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.ITERATOR__VAR_NAME:
+            case XPath2Package.ITERATOR__VAR_NAME:
                 setVarName(VAR_NAME_EDEFAULT);
                 return;
-            case Xpath2Package.ITERATOR__LIST:
+            case XPath2Package.ITERATOR__LIST:
                 setList((ExprSingle)null);
                 return;
         }
@@ -227,9 +227,9 @@ public class IteratorImpl extends EObjectImpl implements Iterator {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.ITERATOR__VAR_NAME:
+            case XPath2Package.ITERATOR__VAR_NAME:
                 return VAR_NAME_EDEFAULT == null ? varName != null : !VAR_NAME_EDEFAULT.equals(varName);
-            case Xpath2Package.ITERATOR__LIST:
+            case XPath2Package.ITERATOR__LIST:
                 return list != null;
         }
         return super.eIsSet(featureID);

@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.emftext.language.xpath2.ItemSequenceType;
 import org.emftext.language.xpath2.ItemType;
 import org.emftext.language.xpath2.OccurrenceIndicatorKind;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,11 +29,11 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.ItemSequenceTypeImpl#getItemType <em>Item Type</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.ItemSequenceTypeImpl#getOccurrence <em>Occurrence</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -84,7 +84,7 @@ public class ItemSequenceTypeImpl extends SequenceTypeImpl implements ItemSequen
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.ITEM_SEQUENCE_TYPE;
+        return XPath2Package.Literals.ITEM_SEQUENCE_TYPE;
     }
 
     /**
@@ -105,7 +105,7 @@ public class ItemSequenceTypeImpl extends SequenceTypeImpl implements ItemSequen
         ItemType oldItemType = itemType;
         itemType = newItemType;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE, oldItemType, newItemType);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE, oldItemType, newItemType);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -120,14 +120,14 @@ public class ItemSequenceTypeImpl extends SequenceTypeImpl implements ItemSequen
         if (newItemType != itemType) {
             NotificationChain msgs = null;
             if (itemType != null)
-                msgs = ((InternalEObject)itemType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE, null, msgs);
+                msgs = ((InternalEObject)itemType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE, null, msgs);
             if (newItemType != null)
-                msgs = ((InternalEObject)newItemType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE, null, msgs);
+                msgs = ((InternalEObject)newItemType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE, null, msgs);
             msgs = basicSetItemType(newItemType, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE, newItemType, newItemType));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE, newItemType, newItemType));
     }
 
     /**
@@ -148,7 +148,7 @@ public class ItemSequenceTypeImpl extends SequenceTypeImpl implements ItemSequen
         OccurrenceIndicatorKind oldOccurrence = occurrence;
         occurrence = newOccurrence == null ? OCCURRENCE_EDEFAULT : newOccurrence;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE, oldOccurrence, occurrence));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE, oldOccurrence, occurrence));
     }
 
     /**
@@ -159,7 +159,7 @@ public class ItemSequenceTypeImpl extends SequenceTypeImpl implements ItemSequen
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE:
+            case XPath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE:
                 return basicSetItemType(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -173,9 +173,9 @@ public class ItemSequenceTypeImpl extends SequenceTypeImpl implements ItemSequen
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE:
+            case XPath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE:
                 return getItemType();
-            case Xpath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE:
+            case XPath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE:
                 return getOccurrence();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -189,10 +189,10 @@ public class ItemSequenceTypeImpl extends SequenceTypeImpl implements ItemSequen
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE:
+            case XPath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE:
                 setItemType((ItemType)newValue);
                 return;
-            case Xpath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE:
+            case XPath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE:
                 setOccurrence((OccurrenceIndicatorKind)newValue);
                 return;
         }
@@ -207,10 +207,10 @@ public class ItemSequenceTypeImpl extends SequenceTypeImpl implements ItemSequen
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE:
+            case XPath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE:
                 setItemType((ItemType)null);
                 return;
-            case Xpath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE:
+            case XPath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE:
                 setOccurrence(OCCURRENCE_EDEFAULT);
                 return;
         }
@@ -225,9 +225,9 @@ public class ItemSequenceTypeImpl extends SequenceTypeImpl implements ItemSequen
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE:
+            case XPath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE:
                 return itemType != null;
-            case Xpath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE:
+            case XPath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE:
                 return occurrence != OCCURRENCE_EDEFAULT;
         }
         return super.eIsSet(featureID);

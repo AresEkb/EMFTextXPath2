@@ -18,13 +18,13 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.CastExpr#getOperand <em>Operand</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.CastExpr#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getCastExpr()
+ * @see org.emftext.language.xpath2.XPath2Package#getCastExpr()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface CastExpr extends CastableExprChild {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Operand</em>' containment reference.
      * @see #setOperand(CastExprChild)
-     * @see org.emftext.language.xpath2.Xpath2Package#getCastExpr_Operand()
+     * @see org.emftext.language.xpath2.XPath2Package#getCastExpr_Operand()
      * @model containment="true" required="true"
      * @generated
      */
@@ -65,7 +65,7 @@ public interface CastExpr extends CastableExprChild {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Type</em>' containment reference.
      * @see #setType(SingleType)
-     * @see org.emftext.language.xpath2.Xpath2Package#getCastExpr_Type()
+     * @see org.emftext.language.xpath2.XPath2Package#getCastExpr_Type()
      * @model containment="true"
      * @generated
      */

@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.emftext.language.xpath2.AndExpr;
 import org.emftext.language.xpath2.AndExprChild;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,10 +32,10 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.AndExprImpl#getOperand <em>Operand</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -66,7 +66,7 @@ public class AndExprImpl extends OrExprChildImpl implements AndExpr {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.AND_EXPR;
+        return XPath2Package.Literals.AND_EXPR;
     }
 
     /**
@@ -76,7 +76,7 @@ public class AndExprImpl extends OrExprChildImpl implements AndExpr {
      */
     public EList<AndExprChild> getOperand() {
         if (operand == null) {
-            operand = new EObjectContainmentEList<AndExprChild>(AndExprChild.class, this, Xpath2Package.AND_EXPR__OPERAND);
+            operand = new EObjectContainmentEList<AndExprChild>(AndExprChild.class, this, XPath2Package.AND_EXPR__OPERAND);
         }
         return operand;
     }
@@ -89,7 +89,7 @@ public class AndExprImpl extends OrExprChildImpl implements AndExpr {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.AND_EXPR__OPERAND:
+            case XPath2Package.AND_EXPR__OPERAND:
                 return ((InternalEList<?>)getOperand()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -103,7 +103,7 @@ public class AndExprImpl extends OrExprChildImpl implements AndExpr {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.AND_EXPR__OPERAND:
+            case XPath2Package.AND_EXPR__OPERAND:
                 return getOperand();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -118,7 +118,7 @@ public class AndExprImpl extends OrExprChildImpl implements AndExpr {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.AND_EXPR__OPERAND:
+            case XPath2Package.AND_EXPR__OPERAND:
                 getOperand().clear();
                 getOperand().addAll((Collection<? extends AndExprChild>)newValue);
                 return;
@@ -134,7 +134,7 @@ public class AndExprImpl extends OrExprChildImpl implements AndExpr {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.AND_EXPR__OPERAND:
+            case XPath2Package.AND_EXPR__OPERAND:
                 getOperand().clear();
                 return;
         }
@@ -149,7 +149,7 @@ public class AndExprImpl extends OrExprChildImpl implements AndExpr {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.AND_EXPR__OPERAND:
+            case XPath2Package.AND_EXPR__OPERAND:
                 return operand != null && !operand.isEmpty();
         }
         return super.eIsSet(featureID);

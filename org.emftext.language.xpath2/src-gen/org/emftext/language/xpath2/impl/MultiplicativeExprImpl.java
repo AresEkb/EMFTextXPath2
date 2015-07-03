@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.emftext.language.xpath2.MultiplicativeExpr;
 import org.emftext.language.xpath2.MultiplicativeExprChild;
 import org.emftext.language.xpath2.MultiplicativeOpKind;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,11 +34,11 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.MultiplicativeExprImpl#getOperand <em>Operand</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.MultiplicativeExprImpl#getOperator <em>Operator</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -79,7 +79,7 @@ public class MultiplicativeExprImpl extends AdditiveExprChildImpl implements Mul
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.MULTIPLICATIVE_EXPR;
+        return XPath2Package.Literals.MULTIPLICATIVE_EXPR;
     }
 
     /**
@@ -89,7 +89,7 @@ public class MultiplicativeExprImpl extends AdditiveExprChildImpl implements Mul
      */
     public EList<MultiplicativeExprChild> getOperand() {
         if (operand == null) {
-            operand = new EObjectContainmentEList<MultiplicativeExprChild>(MultiplicativeExprChild.class, this, Xpath2Package.MULTIPLICATIVE_EXPR__OPERAND);
+            operand = new EObjectContainmentEList<MultiplicativeExprChild>(MultiplicativeExprChild.class, this, XPath2Package.MULTIPLICATIVE_EXPR__OPERAND);
         }
         return operand;
     }
@@ -101,7 +101,7 @@ public class MultiplicativeExprImpl extends AdditiveExprChildImpl implements Mul
      */
     public EList<MultiplicativeOpKind> getOperator() {
         if (operator == null) {
-            operator = new EDataTypeEList<MultiplicativeOpKind>(MultiplicativeOpKind.class, this, Xpath2Package.MULTIPLICATIVE_EXPR__OPERATOR);
+            operator = new EDataTypeEList<MultiplicativeOpKind>(MultiplicativeOpKind.class, this, XPath2Package.MULTIPLICATIVE_EXPR__OPERATOR);
         }
         return operator;
     }
@@ -114,7 +114,7 @@ public class MultiplicativeExprImpl extends AdditiveExprChildImpl implements Mul
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.MULTIPLICATIVE_EXPR__OPERAND:
+            case XPath2Package.MULTIPLICATIVE_EXPR__OPERAND:
                 return ((InternalEList<?>)getOperand()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -128,9 +128,9 @@ public class MultiplicativeExprImpl extends AdditiveExprChildImpl implements Mul
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.MULTIPLICATIVE_EXPR__OPERAND:
+            case XPath2Package.MULTIPLICATIVE_EXPR__OPERAND:
                 return getOperand();
-            case Xpath2Package.MULTIPLICATIVE_EXPR__OPERATOR:
+            case XPath2Package.MULTIPLICATIVE_EXPR__OPERATOR:
                 return getOperator();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -145,11 +145,11 @@ public class MultiplicativeExprImpl extends AdditiveExprChildImpl implements Mul
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.MULTIPLICATIVE_EXPR__OPERAND:
+            case XPath2Package.MULTIPLICATIVE_EXPR__OPERAND:
                 getOperand().clear();
                 getOperand().addAll((Collection<? extends MultiplicativeExprChild>)newValue);
                 return;
-            case Xpath2Package.MULTIPLICATIVE_EXPR__OPERATOR:
+            case XPath2Package.MULTIPLICATIVE_EXPR__OPERATOR:
                 getOperator().clear();
                 getOperator().addAll((Collection<? extends MultiplicativeOpKind>)newValue);
                 return;
@@ -165,10 +165,10 @@ public class MultiplicativeExprImpl extends AdditiveExprChildImpl implements Mul
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.MULTIPLICATIVE_EXPR__OPERAND:
+            case XPath2Package.MULTIPLICATIVE_EXPR__OPERAND:
                 getOperand().clear();
                 return;
-            case Xpath2Package.MULTIPLICATIVE_EXPR__OPERATOR:
+            case XPath2Package.MULTIPLICATIVE_EXPR__OPERATOR:
                 getOperator().clear();
                 return;
         }
@@ -183,9 +183,9 @@ public class MultiplicativeExprImpl extends AdditiveExprChildImpl implements Mul
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.MULTIPLICATIVE_EXPR__OPERAND:
+            case XPath2Package.MULTIPLICATIVE_EXPR__OPERAND:
                 return operand != null && !operand.isEmpty();
-            case Xpath2Package.MULTIPLICATIVE_EXPR__OPERATOR:
+            case XPath2Package.MULTIPLICATIVE_EXPR__OPERATOR:
                 return operator != null && !operator.isEmpty();
         }
         return super.eIsSet(featureID);

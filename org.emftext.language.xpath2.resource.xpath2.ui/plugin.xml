@@ -25,6 +25,8 @@
 		</page>
 		<page name="Brackets" id="org.emftext.language.xpath2.resource.xpath2.ui.Xpath2BracketPreferencePage" class="org.emftext.language.xpath2.resource.xpath2.ui.Xpath2BracketPreferencePage" category="org.emftext.language.xpath2.resource.xpath2.ui.Xpath2PreferencePage">
 		</page>
+		<page name="Content Assist" id="org.emftext.language.xpath2.resource.xpath2.ui.Xpath2ContentAssistPreferencePage" class="org.emftext.language.xpath2.resource.xpath2.ui.Xpath2ContentAssistPreferencePage" category="org.emftext.language.xpath2.resource.xpath2.ui.Xpath2PreferencePage">
+		</page>
 	</extension>
 	
 	<extension point="org.eclipse.ui.newWizards">

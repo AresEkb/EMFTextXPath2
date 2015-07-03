@@ -18,9 +18,11 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 
 /**
+ * <p>
  * A basic implementation of the
  * org.emftext.language.xpath2.resource.xpath2.IXpath2ReferenceResolveResult
  * interface that collects mappings in a list.
+ * </p>
  * 
  * @param <ReferenceType> the type of the references that can be contained in this
  * result

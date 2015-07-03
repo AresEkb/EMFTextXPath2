@@ -18,12 +18,12 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.StringLiteralPITest#getLiteral <em>Literal</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getStringLiteralPITest()
+ * @see org.emftext.language.xpath2.XPath2Package#getStringLiteralPITest()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface StringLiteralPITest extends PITest {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Literal</em>' reference.
      * @see #setLiteral(StringLiteral)
-     * @see org.emftext.language.xpath2.Xpath2Package#getStringLiteralPITest_Literal()
+     * @see org.emftext.language.xpath2.XPath2Package#getStringLiteralPITest_Literal()
      * @model required="true"
      * @generated
      */

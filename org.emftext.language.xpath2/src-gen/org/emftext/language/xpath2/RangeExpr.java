@@ -18,13 +18,13 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.RangeExpr#getFrom <em>From</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.RangeExpr#getTo <em>To</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getRangeExpr()
+ * @see org.emftext.language.xpath2.XPath2Package#getRangeExpr()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface RangeExpr extends ComparisonExprChild {
      * <!-- end-user-doc -->
      * @return the value of the '<em>From</em>' containment reference.
      * @see #setFrom(RangeExprChild)
-     * @see org.emftext.language.xpath2.Xpath2Package#getRangeExpr_From()
+     * @see org.emftext.language.xpath2.XPath2Package#getRangeExpr_From()
      * @model containment="true" required="true"
      * @generated
      */
@@ -65,7 +65,7 @@ public interface RangeExpr extends ComparisonExprChild {
      * <!-- end-user-doc -->
      * @return the value of the '<em>To</em>' containment reference.
      * @see #setTo(RangeExprChild)
-     * @see org.emftext.language.xpath2.Xpath2Package#getRangeExpr_To()
+     * @see org.emftext.language.xpath2.XPath2Package#getRangeExpr_To()
      * @model containment="true"
      * @generated
      */

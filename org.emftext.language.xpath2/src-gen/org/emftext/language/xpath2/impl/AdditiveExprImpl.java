@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.emftext.language.xpath2.AdditiveExpr;
 import org.emftext.language.xpath2.AdditiveExprChild;
 import org.emftext.language.xpath2.AdditiveOpKind;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,11 +34,11 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.AdditiveExprImpl#getOperand <em>Operand</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.AdditiveExprImpl#getOperator <em>Operator</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -79,7 +79,7 @@ public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.ADDITIVE_EXPR;
+        return XPath2Package.Literals.ADDITIVE_EXPR;
     }
 
     /**
@@ -89,7 +89,7 @@ public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr
      */
     public EList<AdditiveExprChild> getOperand() {
         if (operand == null) {
-            operand = new EObjectContainmentEList<AdditiveExprChild>(AdditiveExprChild.class, this, Xpath2Package.ADDITIVE_EXPR__OPERAND);
+            operand = new EObjectContainmentEList<AdditiveExprChild>(AdditiveExprChild.class, this, XPath2Package.ADDITIVE_EXPR__OPERAND);
         }
         return operand;
     }
@@ -101,7 +101,7 @@ public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr
      */
     public EList<AdditiveOpKind> getOperator() {
         if (operator == null) {
-            operator = new EDataTypeEList<AdditiveOpKind>(AdditiveOpKind.class, this, Xpath2Package.ADDITIVE_EXPR__OPERATOR);
+            operator = new EDataTypeEList<AdditiveOpKind>(AdditiveOpKind.class, this, XPath2Package.ADDITIVE_EXPR__OPERATOR);
         }
         return operator;
     }
@@ -114,7 +114,7 @@ public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.ADDITIVE_EXPR__OPERAND:
+            case XPath2Package.ADDITIVE_EXPR__OPERAND:
                 return ((InternalEList<?>)getOperand()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -128,9 +128,9 @@ public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.ADDITIVE_EXPR__OPERAND:
+            case XPath2Package.ADDITIVE_EXPR__OPERAND:
                 return getOperand();
-            case Xpath2Package.ADDITIVE_EXPR__OPERATOR:
+            case XPath2Package.ADDITIVE_EXPR__OPERATOR:
                 return getOperator();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -145,11 +145,11 @@ public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.ADDITIVE_EXPR__OPERAND:
+            case XPath2Package.ADDITIVE_EXPR__OPERAND:
                 getOperand().clear();
                 getOperand().addAll((Collection<? extends AdditiveExprChild>)newValue);
                 return;
-            case Xpath2Package.ADDITIVE_EXPR__OPERATOR:
+            case XPath2Package.ADDITIVE_EXPR__OPERATOR:
                 getOperator().clear();
                 getOperator().addAll((Collection<? extends AdditiveOpKind>)newValue);
                 return;
@@ -165,10 +165,10 @@ public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.ADDITIVE_EXPR__OPERAND:
+            case XPath2Package.ADDITIVE_EXPR__OPERAND:
                 getOperand().clear();
                 return;
-            case Xpath2Package.ADDITIVE_EXPR__OPERATOR:
+            case XPath2Package.ADDITIVE_EXPR__OPERATOR:
                 getOperator().clear();
                 return;
         }
@@ -183,9 +183,9 @@ public class AdditiveExprImpl extends RangeExprChildImpl implements AdditiveExpr
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.ADDITIVE_EXPR__OPERAND:
+            case XPath2Package.ADDITIVE_EXPR__OPERAND:
                 return operand != null && !operand.isEmpty();
-            case Xpath2Package.ADDITIVE_EXPR__OPERATOR:
+            case XPath2Package.ADDITIVE_EXPR__OPERATOR:
                 return operator != null && !operator.isEmpty();
         }
         return super.eIsSet(featureID);

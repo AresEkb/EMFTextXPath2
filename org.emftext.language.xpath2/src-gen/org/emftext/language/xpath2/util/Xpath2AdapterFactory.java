@@ -24,17 +24,17 @@ import org.emftext.language.xpath2.*;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.emftext.language.xpath2.Xpath2Package
+ * @see org.emftext.language.xpath2.XPath2Package
  * @generated
  */
-public class Xpath2AdapterFactory extends AdapterFactoryImpl {
+public class XPath2AdapterFactory extends AdapterFactoryImpl {
     /**
      * The cached model package.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected static Xpath2Package modelPackage;
+    protected static XPath2Package modelPackage;
 
     /**
      * Creates an instance of the adapter factory.
@@ -42,9 +42,9 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Xpath2AdapterFactory() {
+    public XPath2AdapterFactory() {
         if (modelPackage == null) {
-            modelPackage = Xpath2Package.eINSTANCE;
+            modelPackage = XPath2Package.eINSTANCE;
         }
     }
 
@@ -73,8 +73,8 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
      * <!-- end-user-doc -->
      * @generated
      */
-    protected Xpath2Switch<Adapter> modelSwitch =
-        new Xpath2Switch<Adapter>() {
+    protected XPath2Switch<Adapter> modelSwitch =
+        new XPath2Switch<Adapter>() {
             @Override
             public Adapter caseAnyExpr(AnyExpr object) {
                 return createAnyExprAdapter();
@@ -1961,4 +1961,4 @@ public class Xpath2AdapterFactory extends AdapterFactoryImpl {
         return null;
     }
 
-} //Xpath2AdapterFactory
+} //XPath2AdapterFactory

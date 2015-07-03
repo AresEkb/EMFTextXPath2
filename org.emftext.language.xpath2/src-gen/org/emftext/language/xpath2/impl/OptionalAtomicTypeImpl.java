@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.emftext.language.xpath2.OptionalAtomicType;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,11 +28,11 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.OptionalAtomicTypeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.OptionalAtomicTypeImpl#isOptional <em>Optional</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -93,7 +93,7 @@ public class OptionalAtomicTypeImpl extends EObjectImpl implements OptionalAtomi
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.OPTIONAL_ATOMIC_TYPE;
+        return XPath2Package.Literals.OPTIONAL_ATOMIC_TYPE;
     }
 
     /**
@@ -114,7 +114,7 @@ public class OptionalAtomicTypeImpl extends EObjectImpl implements OptionalAtomi
         QName oldName = name;
         name = newName;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.OPTIONAL_ATOMIC_TYPE__NAME, oldName, name));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.OPTIONAL_ATOMIC_TYPE__NAME, oldName, name));
     }
 
     /**
@@ -135,7 +135,7 @@ public class OptionalAtomicTypeImpl extends EObjectImpl implements OptionalAtomi
         boolean oldOptional = optional;
         optional = newOptional;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL, oldOptional, optional));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL, oldOptional, optional));
     }
 
     /**
@@ -146,9 +146,9 @@ public class OptionalAtomicTypeImpl extends EObjectImpl implements OptionalAtomi
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.OPTIONAL_ATOMIC_TYPE__NAME:
+            case XPath2Package.OPTIONAL_ATOMIC_TYPE__NAME:
                 return getName();
-            case Xpath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL:
+            case XPath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL:
                 return isOptional();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -162,10 +162,10 @@ public class OptionalAtomicTypeImpl extends EObjectImpl implements OptionalAtomi
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.OPTIONAL_ATOMIC_TYPE__NAME:
+            case XPath2Package.OPTIONAL_ATOMIC_TYPE__NAME:
                 setName((QName)newValue);
                 return;
-            case Xpath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL:
+            case XPath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL:
                 setOptional((Boolean)newValue);
                 return;
         }
@@ -180,10 +180,10 @@ public class OptionalAtomicTypeImpl extends EObjectImpl implements OptionalAtomi
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.OPTIONAL_ATOMIC_TYPE__NAME:
+            case XPath2Package.OPTIONAL_ATOMIC_TYPE__NAME:
                 setName(NAME_EDEFAULT);
                 return;
-            case Xpath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL:
+            case XPath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL:
                 setOptional(OPTIONAL_EDEFAULT);
                 return;
         }
@@ -198,9 +198,9 @@ public class OptionalAtomicTypeImpl extends EObjectImpl implements OptionalAtomi
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.OPTIONAL_ATOMIC_TYPE__NAME:
+            case XPath2Package.OPTIONAL_ATOMIC_TYPE__NAME:
                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-            case Xpath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL:
+            case XPath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL:
                 return optional != OPTIONAL_EDEFAULT;
         }
         return super.eIsSet(featureID);

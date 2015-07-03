@@ -17,7 +17,7 @@ package org.emftext.language.xpath2;
  * <!-- end-user-doc -->
  *
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getAnyExpr()
+ * @see org.emftext.language.xpath2.XPath2Package#getAnyExpr()
  * @model abstract="true"
  * @generated
  */

@@ -21,13 +21,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.Iterator#getVarName <em>Var Name</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.Iterator#getList <em>List</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getIterator()
+ * @see org.emftext.language.xpath2.XPath2Package#getIterator()
  * @model
  * @generated
  */
@@ -42,7 +42,7 @@ public interface Iterator extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Var Name</em>' attribute.
      * @see #setVarName(QName)
-     * @see org.emftext.language.xpath2.Xpath2Package#getIterator_VarName()
+     * @see org.emftext.language.xpath2.XPath2Package#getIterator_VarName()
      * @model dataType="org.eclipse.emf.ecore.xml.type.QName" required="true"
      * @generated
      */
@@ -68,7 +68,7 @@ public interface Iterator extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>List</em>' containment reference.
      * @see #setList(ExprSingle)
-     * @see org.emftext.language.xpath2.Xpath2Package#getIterator_List()
+     * @see org.emftext.language.xpath2.XPath2Package#getIterator_List()
      * @model containment="true" required="true"
      * @generated
      */

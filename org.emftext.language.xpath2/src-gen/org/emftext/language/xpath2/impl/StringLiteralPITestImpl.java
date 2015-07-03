@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.StringLiteral;
 import org.emftext.language.xpath2.StringLiteralPITest;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,10 +27,10 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.StringLiteralPITestImpl#getLiteral <em>Literal</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -61,7 +61,7 @@ public class StringLiteralPITestImpl extends PITestImpl implements StringLiteral
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.STRING_LITERAL_PI_TEST;
+        return XPath2Package.Literals.STRING_LITERAL_PI_TEST;
     }
 
     /**
@@ -75,7 +75,7 @@ public class StringLiteralPITestImpl extends PITestImpl implements StringLiteral
             literal = (StringLiteral)eResolveProxy(oldLiteral);
             if (literal != oldLiteral) {
                 if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpath2Package.STRING_LITERAL_PI_TEST__LITERAL, oldLiteral, literal));
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, XPath2Package.STRING_LITERAL_PI_TEST__LITERAL, oldLiteral, literal));
             }
         }
         return literal;
@@ -99,7 +99,7 @@ public class StringLiteralPITestImpl extends PITestImpl implements StringLiteral
         StringLiteral oldLiteral = literal;
         literal = newLiteral;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.STRING_LITERAL_PI_TEST__LITERAL, oldLiteral, literal));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.STRING_LITERAL_PI_TEST__LITERAL, oldLiteral, literal));
     }
 
     /**
@@ -110,7 +110,7 @@ public class StringLiteralPITestImpl extends PITestImpl implements StringLiteral
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.STRING_LITERAL_PI_TEST__LITERAL:
+            case XPath2Package.STRING_LITERAL_PI_TEST__LITERAL:
                 if (resolve) return getLiteral();
                 return basicGetLiteral();
         }
@@ -125,7 +125,7 @@ public class StringLiteralPITestImpl extends PITestImpl implements StringLiteral
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.STRING_LITERAL_PI_TEST__LITERAL:
+            case XPath2Package.STRING_LITERAL_PI_TEST__LITERAL:
                 setLiteral((StringLiteral)newValue);
                 return;
         }
@@ -140,7 +140,7 @@ public class StringLiteralPITestImpl extends PITestImpl implements StringLiteral
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.STRING_LITERAL_PI_TEST__LITERAL:
+            case XPath2Package.STRING_LITERAL_PI_TEST__LITERAL:
                 setLiteral((StringLiteral)null);
                 return;
         }
@@ -155,7 +155,7 @@ public class StringLiteralPITestImpl extends PITestImpl implements StringLiteral
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.STRING_LITERAL_PI_TEST__LITERAL:
+            case XPath2Package.STRING_LITERAL_PI_TEST__LITERAL:
                 return literal != null;
         }
         return super.eIsSet(featureID);

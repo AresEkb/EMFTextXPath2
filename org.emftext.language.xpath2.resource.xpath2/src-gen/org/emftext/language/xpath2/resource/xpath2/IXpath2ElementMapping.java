@@ -12,7 +12,9 @@ package org.emftext.language.xpath2.resource.xpath2;
 
 
 /**
+ * <p>
  * A mapping from an identifier to an EObject.
+ * </p>
  * 
  * @param <ReferenceType> the type of the reference this mapping points to.
  */

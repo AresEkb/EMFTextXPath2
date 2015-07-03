@@ -18,13 +18,13 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.GeneralForwardStep#getAxis <em>Axis</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.GeneralForwardStep#getNodeTest <em>Node Test</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getGeneralForwardStep()
+ * @see org.emftext.language.xpath2.XPath2Package#getGeneralForwardStep()
  * @model
  * @generated
  */
@@ -41,7 +41,7 @@ public interface GeneralForwardStep extends ForwardStep {
      * @return the value of the '<em>Axis</em>' attribute.
      * @see org.emftext.language.xpath2.ForwardAxisKind
      * @see #setAxis(ForwardAxisKind)
-     * @see org.emftext.language.xpath2.Xpath2Package#getGeneralForwardStep_Axis()
+     * @see org.emftext.language.xpath2.XPath2Package#getGeneralForwardStep_Axis()
      * @model required="true"
      * @generated
      */
@@ -68,7 +68,7 @@ public interface GeneralForwardStep extends ForwardStep {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Node Test</em>' containment reference.
      * @see #setNodeTest(NodeTest)
-     * @see org.emftext.language.xpath2.Xpath2Package#getGeneralForwardStep_NodeTest()
+     * @see org.emftext.language.xpath2.XPath2Package#getGeneralForwardStep_NodeTest()
      * @model containment="true" required="true"
      * @generated
      */

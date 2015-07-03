@@ -43,6 +43,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkingSet;
 import org.eclipse.ui.IWorkingSetManager;
 import org.eclipse.ui.PlatformUI;
@@ -63,7 +64,7 @@ public class Xpath2NewProjectWizardLogic {
 	 */
 	public void createExampleProject(IProgressMonitor monitor, IPath projectPath, String projectName, String bundleName, String newProjectZip) throws InterruptedException {
 		try {
-			monitor.beginTask("Creating Example Project", 120);
+			monitor.beginTask(getTaskName(), 120);
 			
 			// Create the project folder
 			String projectFolder = projectPath.toOSString() + File.separator + projectName;
@@ -110,17 +111,7 @@ public class Xpath2NewProjectWizardLogic {
 				project.open(monitor);
 				renameProject(project, projectName);
 				
-				IFile defaultNewFile = project.getFile("NEW_FILE_PLACEHOLDER");
-				if (newProjectZipURL == null) {
-					defaultNewFile.create(new ByteArrayInputStream(new byte[0]), true, null);
-				}
-				if (defaultNewFile.exists()) {
-					org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation info = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation();
-					String fileName = "new_file." + info.getSyntaxName();
-					String content = info.getNewFileContentProvider().getNewFileContent("new_file." + info.getSyntaxName());
-					defaultNewFile.setContents(new ByteArrayInputStream(content.getBytes()), IFile.FORCE, null);
-					defaultNewFile.move(project.getProjectRelativePath().append(fileName), true, null);
-				}
+				createDefaultNewFile(project, newProjectZipURL == null);
 			}
 			
 			monitor.worked(10);
@@ -138,13 +129,19 @@ public class Xpath2NewProjectWizardLogic {
 	}
 	
 	/**
+	 * <p>
 	 * Adds the newly created project to the currently selected working set.
+	 * </p>
 	 * 
 	 * @param project the project to be added to the selected working set
 	 */
 	private void addProjectToSelectedWorkingSet(IProject project) {
 		IWorkbench workbench = PlatformUI.getWorkbench();
-		ISelectionService selectionService = workbench.getActiveWorkbenchWindow().getSelectionService();
+		IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
+		if (workbenchWindow == null) {
+			return;
+		}
+		ISelectionService selectionService = workbenchWindow.getSelectionService();
 		ISelection selection = selectionService.getSelection();
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
@@ -162,7 +159,9 @@ public class Xpath2NewProjectWizardLogic {
 	}
 	
 	/**
+	 * <p>
 	 * Unzip the project archive to the specified folder
+	 * </p>
 	 * 
 	 * @param projectFolderFile The folder where to unzip the project archive
 	 * @param monitor Monitor to display progress and/or cancel operation
@@ -193,7 +192,9 @@ public class Xpath2NewProjectWizardLogic {
 	}
 	
 	/**
+	 * <p>
 	 * Unzips the platform formatted zip file to specified folder
+	 * </p>
 	 * 
 	 * @param zipFile The platform formatted zip file
 	 * @param projectFolderFile The folder where to unzip the project archive
@@ -205,7 +206,7 @@ public class Xpath2NewProjectWizardLogic {
 	 * 
 	 * @throws InterruptedException
 	 */
-	private void unzip(ZipFile zipFile, File projectFolderFile, IProgressMonitor monitor) throws IOException, FileNotFoundException, InterruptedException {
+	protected void unzip(ZipFile zipFile, File projectFolderFile, IProgressMonitor monitor) throws IOException, FileNotFoundException, InterruptedException {
 		
 		Enumeration<? extends ZipEntry> e = zipFile.entries();
 		
@@ -283,16 +284,36 @@ public class Xpath2NewProjectWizardLogic {
 	}
 	
 	/**
+	 * <p>
 	 * Renames the specified project to the specified name.
+	 * </p>
 	 * 
 	 * @param project a project to rename
 	 * @param projectName a new name for the project
 	 * 
 	 * @throws CoreException if something goes wrong
 	 */
-	private void renameProject(IProject project, String projectName) throws CoreException {
+	protected void renameProject(IProject project, String projectName) throws CoreException {
 		IProjectDescription description = project.getDescription();
 		description.setName(projectName);
+	}
+	
+	protected String getTaskName() {
+		return "Creating Example Project";
+	}
+	
+	protected void createDefaultNewFile(IProject project, boolean createDefaultNewFile) throws CoreException {
+		IFile defaultNewFile = project.getFile("NEW_FILE_PLACEHOLDER");
+		if (createDefaultNewFile) {
+			defaultNewFile.create(new ByteArrayInputStream(new byte[0]), true, null);
+		}
+		if (defaultNewFile.exists()) {
+			org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation info = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation();
+			String fileName = "new_file." + info.getSyntaxName();
+			String content = info.getNewFileContentProvider().getNewFileContent("new_file." + info.getSyntaxName());
+			defaultNewFile.setContents(new ByteArrayInputStream(content.getBytes()), IFile.FORCE, null);
+			defaultNewFile.move(project.getProjectRelativePath().append(fileName), true, null);
+		}
 	}
 	
 }

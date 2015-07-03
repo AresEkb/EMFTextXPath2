@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.emftext.language.xpath2.AxisStep;
 import org.emftext.language.xpath2.Predicate;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,10 +32,10 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.AxisStepImpl#getPredicate <em>Predicate</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -66,7 +66,7 @@ public abstract class AxisStepImpl extends StepExprImpl implements AxisStep {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.AXIS_STEP;
+        return XPath2Package.Literals.AXIS_STEP;
     }
 
     /**
@@ -76,7 +76,7 @@ public abstract class AxisStepImpl extends StepExprImpl implements AxisStep {
      */
     public EList<Predicate> getPredicate() {
         if (predicate == null) {
-            predicate = new EObjectContainmentEList<Predicate>(Predicate.class, this, Xpath2Package.AXIS_STEP__PREDICATE);
+            predicate = new EObjectContainmentEList<Predicate>(Predicate.class, this, XPath2Package.AXIS_STEP__PREDICATE);
         }
         return predicate;
     }
@@ -89,7 +89,7 @@ public abstract class AxisStepImpl extends StepExprImpl implements AxisStep {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.AXIS_STEP__PREDICATE:
+            case XPath2Package.AXIS_STEP__PREDICATE:
                 return ((InternalEList<?>)getPredicate()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -103,7 +103,7 @@ public abstract class AxisStepImpl extends StepExprImpl implements AxisStep {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.AXIS_STEP__PREDICATE:
+            case XPath2Package.AXIS_STEP__PREDICATE:
                 return getPredicate();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -118,7 +118,7 @@ public abstract class AxisStepImpl extends StepExprImpl implements AxisStep {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.AXIS_STEP__PREDICATE:
+            case XPath2Package.AXIS_STEP__PREDICATE:
                 getPredicate().clear();
                 getPredicate().addAll((Collection<? extends Predicate>)newValue);
                 return;
@@ -134,7 +134,7 @@ public abstract class AxisStepImpl extends StepExprImpl implements AxisStep {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.AXIS_STEP__PREDICATE:
+            case XPath2Package.AXIS_STEP__PREDICATE:
                 getPredicate().clear();
                 return;
         }
@@ -149,7 +149,7 @@ public abstract class AxisStepImpl extends StepExprImpl implements AxisStep {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.AXIS_STEP__PREDICATE:
+            case XPath2Package.AXIS_STEP__PREDICATE:
                 return predicate != null && !predicate.isEmpty();
         }
         return super.eIsSet(featureID);

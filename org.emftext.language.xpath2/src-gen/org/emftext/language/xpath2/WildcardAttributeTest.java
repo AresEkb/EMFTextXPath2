@@ -19,12 +19,12 @@ import javax.xml.namespace.QName;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.WildcardAttributeTest#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getWildcardAttributeTest()
+ * @see org.emftext.language.xpath2.XPath2Package#getWildcardAttributeTest()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface WildcardAttributeTest extends AttributeTest {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Type</em>' attribute.
      * @see #setType(QName)
-     * @see org.emftext.language.xpath2.Xpath2Package#getWildcardAttributeTest_Type()
+     * @see org.emftext.language.xpath2.XPath2Package#getWildcardAttributeTest_Type()
      * @model dataType="org.eclipse.emf.ecore.xml.type.QName"
      * @generated
      */

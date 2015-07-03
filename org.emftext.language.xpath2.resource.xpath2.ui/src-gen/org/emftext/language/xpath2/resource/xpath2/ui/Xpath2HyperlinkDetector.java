@@ -30,7 +30,9 @@ public class Xpath2HyperlinkDetector implements IHyperlinkDetector {
 	private org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource textResource;
 	
 	/**
+	 * <p>
 	 * Creates a hyperlink detector.
+	 * </p>
 	 * 
 	 * @param resource the resource to use for calculating the locations.
 	 */

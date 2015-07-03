@@ -19,12 +19,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.PathExpr#getStep <em>Step</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getPathExpr()
+ * @see org.emftext.language.xpath2.XPath2Package#getPathExpr()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface PathExpr extends ValueExpr {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Step</em>' containment reference list.
-     * @see org.emftext.language.xpath2.Xpath2Package#getPathExpr_Step()
+     * @see org.emftext.language.xpath2.XPath2Package#getPathExpr_Step()
      * @model containment="true" required="true"
      * @generated
      */

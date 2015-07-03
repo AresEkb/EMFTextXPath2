@@ -21,13 +21,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.OptionalAtomicType#getName <em>Name</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.OptionalAtomicType#isOptional <em>Optional</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getOptionalAtomicType()
+ * @see org.emftext.language.xpath2.XPath2Package#getOptionalAtomicType()
  * @model
  * @generated
  */
@@ -42,7 +42,7 @@ public interface OptionalAtomicType extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(QName)
-     * @see org.emftext.language.xpath2.Xpath2Package#getOptionalAtomicType_Name()
+     * @see org.emftext.language.xpath2.XPath2Package#getOptionalAtomicType_Name()
      * @model dataType="org.eclipse.emf.ecore.xml.type.QName" required="true"
      * @generated
      */
@@ -68,7 +68,7 @@ public interface OptionalAtomicType extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Optional</em>' attribute.
      * @see #setOptional(boolean)
-     * @see org.emftext.language.xpath2.Xpath2Package#getOptionalAtomicType_Optional()
+     * @see org.emftext.language.xpath2.XPath2Package#getOptionalAtomicType_Optional()
      * @model required="true"
      * @generated
      */

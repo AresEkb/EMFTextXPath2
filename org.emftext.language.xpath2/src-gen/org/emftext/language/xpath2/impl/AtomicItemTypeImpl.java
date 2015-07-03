@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.AtomicItemType;
 import org.emftext.language.xpath2.AtomicType;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,10 +28,10 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.AtomicItemTypeImpl#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -62,7 +62,7 @@ public class AtomicItemTypeImpl extends ItemTypeImpl implements AtomicItemType {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.ATOMIC_ITEM_TYPE;
+        return XPath2Package.Literals.ATOMIC_ITEM_TYPE;
     }
 
     /**
@@ -83,7 +83,7 @@ public class AtomicItemTypeImpl extends ItemTypeImpl implements AtomicItemType {
         AtomicType oldType = type;
         type = newType;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.ATOMIC_ITEM_TYPE__TYPE, oldType, newType);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.ATOMIC_ITEM_TYPE__TYPE, oldType, newType);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -98,14 +98,14 @@ public class AtomicItemTypeImpl extends ItemTypeImpl implements AtomicItemType {
         if (newType != type) {
             NotificationChain msgs = null;
             if (type != null)
-                msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.ATOMIC_ITEM_TYPE__TYPE, null, msgs);
+                msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.ATOMIC_ITEM_TYPE__TYPE, null, msgs);
             if (newType != null)
-                msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.ATOMIC_ITEM_TYPE__TYPE, null, msgs);
+                msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.ATOMIC_ITEM_TYPE__TYPE, null, msgs);
             msgs = basicSetType(newType, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ATOMIC_ITEM_TYPE__TYPE, newType, newType));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.ATOMIC_ITEM_TYPE__TYPE, newType, newType));
     }
 
     /**
@@ -116,7 +116,7 @@ public class AtomicItemTypeImpl extends ItemTypeImpl implements AtomicItemType {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.ATOMIC_ITEM_TYPE__TYPE:
+            case XPath2Package.ATOMIC_ITEM_TYPE__TYPE:
                 return basicSetType(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -130,7 +130,7 @@ public class AtomicItemTypeImpl extends ItemTypeImpl implements AtomicItemType {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.ATOMIC_ITEM_TYPE__TYPE:
+            case XPath2Package.ATOMIC_ITEM_TYPE__TYPE:
                 return getType();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -144,7 +144,7 @@ public class AtomicItemTypeImpl extends ItemTypeImpl implements AtomicItemType {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.ATOMIC_ITEM_TYPE__TYPE:
+            case XPath2Package.ATOMIC_ITEM_TYPE__TYPE:
                 setType((AtomicType)newValue);
                 return;
         }
@@ -159,7 +159,7 @@ public class AtomicItemTypeImpl extends ItemTypeImpl implements AtomicItemType {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.ATOMIC_ITEM_TYPE__TYPE:
+            case XPath2Package.ATOMIC_ITEM_TYPE__TYPE:
                 setType((AtomicType)null);
                 return;
         }
@@ -174,7 +174,7 @@ public class AtomicItemTypeImpl extends ItemTypeImpl implements AtomicItemType {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.ATOMIC_ITEM_TYPE__TYPE:
+            case XPath2Package.ATOMIC_ITEM_TYPE__TYPE:
                 return type != null;
         }
         return super.eIsSet(featureID);

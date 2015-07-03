@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.AbbrevReverseStep;
 import org.emftext.language.xpath2.AbbrevReverseStepKind;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,10 +26,10 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.AbbrevReverseStepImpl#getKind <em>Kind</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -70,7 +70,7 @@ public class AbbrevReverseStepImpl extends ReverseStepImpl implements AbbrevReve
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.ABBREV_REVERSE_STEP;
+        return XPath2Package.Literals.ABBREV_REVERSE_STEP;
     }
 
     /**
@@ -91,7 +91,7 @@ public class AbbrevReverseStepImpl extends ReverseStepImpl implements AbbrevReve
         AbbrevReverseStepKind oldKind = kind;
         kind = newKind == null ? KIND_EDEFAULT : newKind;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.ABBREV_REVERSE_STEP__KIND, oldKind, kind));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.ABBREV_REVERSE_STEP__KIND, oldKind, kind));
     }
 
     /**
@@ -102,7 +102,7 @@ public class AbbrevReverseStepImpl extends ReverseStepImpl implements AbbrevReve
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.ABBREV_REVERSE_STEP__KIND:
+            case XPath2Package.ABBREV_REVERSE_STEP__KIND:
                 return getKind();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -116,7 +116,7 @@ public class AbbrevReverseStepImpl extends ReverseStepImpl implements AbbrevReve
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.ABBREV_REVERSE_STEP__KIND:
+            case XPath2Package.ABBREV_REVERSE_STEP__KIND:
                 setKind((AbbrevReverseStepKind)newValue);
                 return;
         }
@@ -131,7 +131,7 @@ public class AbbrevReverseStepImpl extends ReverseStepImpl implements AbbrevReve
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.ABBREV_REVERSE_STEP__KIND:
+            case XPath2Package.ABBREV_REVERSE_STEP__KIND:
                 setKind(KIND_EDEFAULT);
                 return;
         }
@@ -146,7 +146,7 @@ public class AbbrevReverseStepImpl extends ReverseStepImpl implements AbbrevReve
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.ABBREV_REVERSE_STEP__KIND:
+            case XPath2Package.ABBREV_REVERSE_STEP__KIND:
                 return kind != KIND_EDEFAULT;
         }
         return super.eIsSet(featureID);

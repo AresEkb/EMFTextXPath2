@@ -50,9 +50,11 @@ public class Xpath2CodeCompletionHelper {
 	private org.emftext.language.xpath2.resource.xpath2.IXpath2MetaInformation metaInformation = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation();
 	
 	/**
+	 * <p>
 	 * Computes a set of proposals for the given document assuming the cursor is at
 	 * 'cursorOffset'. The proposals are derived using the meta information, i.e., the
 	 * generated language plug-in.
+	 * </p>
 	 * 
 	 * @param originalResource the resource to compute completions for
 	 * @param content the documents content
@@ -192,7 +194,7 @@ public class Xpath2CodeCompletionHelper {
 			org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal elementAtNext = expectedElements.get(i + 1);
 			
 			// If the two expected elements have a different parent in the syntax definition,
-			// we must not discard the second element, because is probably stems from a parent
+			// we must not discard the second element, because it probably stems from a parent
 			// rule.
 			org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement symtaxElementOfThis = elementAtIndex.getTerminal().getSymtaxElement();
 			org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement symtaxElementOfNext = elementAtNext.getTerminal().getSymtaxElement();
@@ -212,7 +214,7 @@ public class Xpath2CodeCompletionHelper {
 	 * Removes all proposals for keywords that end before the given index.
 	 */
 	protected void removeKeywordsEndingBeforeIndex(Collection<org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal> proposals, int index) {
-		java.util.List<org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal> toRemove = new java.util.ArrayList<org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal>();
+		List<org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal> toRemove = new ArrayList<org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal>();
 		for (org.emftext.language.xpath2.resource.xpath2.ui.Xpath2CompletionProposal proposal : proposals) {
 			org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal expectedTerminal = proposal.getExpectedTerminal();
 			org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement terminal = expectedTerminal.getTerminal();

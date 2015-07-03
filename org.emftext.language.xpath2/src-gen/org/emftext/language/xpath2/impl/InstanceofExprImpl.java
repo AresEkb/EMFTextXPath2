@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.emftext.language.xpath2.InstanceofExpr;
 import org.emftext.language.xpath2.InstanceofExprChild;
 import org.emftext.language.xpath2.SequenceType;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,11 +29,11 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.InstanceofExprImpl#getOperand <em>Operand</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.InstanceofExprImpl#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -74,7 +74,7 @@ public class InstanceofExprImpl extends IntersectExceptExprChildImpl implements 
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.INSTANCEOF_EXPR;
+        return XPath2Package.Literals.INSTANCEOF_EXPR;
     }
 
     /**
@@ -95,7 +95,7 @@ public class InstanceofExprImpl extends IntersectExceptExprChildImpl implements 
         InstanceofExprChild oldOperand = operand;
         operand = newOperand;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.INSTANCEOF_EXPR__OPERAND, oldOperand, newOperand);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.INSTANCEOF_EXPR__OPERAND, oldOperand, newOperand);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -110,14 +110,14 @@ public class InstanceofExprImpl extends IntersectExceptExprChildImpl implements 
         if (newOperand != operand) {
             NotificationChain msgs = null;
             if (operand != null)
-                msgs = ((InternalEObject)operand).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.INSTANCEOF_EXPR__OPERAND, null, msgs);
+                msgs = ((InternalEObject)operand).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.INSTANCEOF_EXPR__OPERAND, null, msgs);
             if (newOperand != null)
-                msgs = ((InternalEObject)newOperand).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.INSTANCEOF_EXPR__OPERAND, null, msgs);
+                msgs = ((InternalEObject)newOperand).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.INSTANCEOF_EXPR__OPERAND, null, msgs);
             msgs = basicSetOperand(newOperand, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.INSTANCEOF_EXPR__OPERAND, newOperand, newOperand));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.INSTANCEOF_EXPR__OPERAND, newOperand, newOperand));
     }
 
     /**
@@ -138,7 +138,7 @@ public class InstanceofExprImpl extends IntersectExceptExprChildImpl implements 
         SequenceType oldType = type;
         type = newType;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.INSTANCEOF_EXPR__TYPE, oldType, newType);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.INSTANCEOF_EXPR__TYPE, oldType, newType);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -153,14 +153,14 @@ public class InstanceofExprImpl extends IntersectExceptExprChildImpl implements 
         if (newType != type) {
             NotificationChain msgs = null;
             if (type != null)
-                msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.INSTANCEOF_EXPR__TYPE, null, msgs);
+                msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.INSTANCEOF_EXPR__TYPE, null, msgs);
             if (newType != null)
-                msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.INSTANCEOF_EXPR__TYPE, null, msgs);
+                msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.INSTANCEOF_EXPR__TYPE, null, msgs);
             msgs = basicSetType(newType, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.INSTANCEOF_EXPR__TYPE, newType, newType));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.INSTANCEOF_EXPR__TYPE, newType, newType));
     }
 
     /**
@@ -171,9 +171,9 @@ public class InstanceofExprImpl extends IntersectExceptExprChildImpl implements 
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.INSTANCEOF_EXPR__OPERAND:
+            case XPath2Package.INSTANCEOF_EXPR__OPERAND:
                 return basicSetOperand(null, msgs);
-            case Xpath2Package.INSTANCEOF_EXPR__TYPE:
+            case XPath2Package.INSTANCEOF_EXPR__TYPE:
                 return basicSetType(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -187,9 +187,9 @@ public class InstanceofExprImpl extends IntersectExceptExprChildImpl implements 
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.INSTANCEOF_EXPR__OPERAND:
+            case XPath2Package.INSTANCEOF_EXPR__OPERAND:
                 return getOperand();
-            case Xpath2Package.INSTANCEOF_EXPR__TYPE:
+            case XPath2Package.INSTANCEOF_EXPR__TYPE:
                 return getType();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -203,10 +203,10 @@ public class InstanceofExprImpl extends IntersectExceptExprChildImpl implements 
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.INSTANCEOF_EXPR__OPERAND:
+            case XPath2Package.INSTANCEOF_EXPR__OPERAND:
                 setOperand((InstanceofExprChild)newValue);
                 return;
-            case Xpath2Package.INSTANCEOF_EXPR__TYPE:
+            case XPath2Package.INSTANCEOF_EXPR__TYPE:
                 setType((SequenceType)newValue);
                 return;
         }
@@ -221,10 +221,10 @@ public class InstanceofExprImpl extends IntersectExceptExprChildImpl implements 
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.INSTANCEOF_EXPR__OPERAND:
+            case XPath2Package.INSTANCEOF_EXPR__OPERAND:
                 setOperand((InstanceofExprChild)null);
                 return;
-            case Xpath2Package.INSTANCEOF_EXPR__TYPE:
+            case XPath2Package.INSTANCEOF_EXPR__TYPE:
                 setType((SequenceType)null);
                 return;
         }
@@ -239,9 +239,9 @@ public class InstanceofExprImpl extends IntersectExceptExprChildImpl implements 
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.INSTANCEOF_EXPR__OPERAND:
+            case XPath2Package.INSTANCEOF_EXPR__OPERAND:
                 return operand != null;
-            case Xpath2Package.INSTANCEOF_EXPR__TYPE:
+            case XPath2Package.INSTANCEOF_EXPR__TYPE:
                 return type != null;
         }
         return super.eIsSet(featureID);

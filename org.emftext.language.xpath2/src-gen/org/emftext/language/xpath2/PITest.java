@@ -17,7 +17,7 @@ package org.emftext.language.xpath2;
  * <!-- end-user-doc -->
  *
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getPITest()
+ * @see org.emftext.language.xpath2.XPath2Package#getPITest()
  * @model
  * @generated
  */

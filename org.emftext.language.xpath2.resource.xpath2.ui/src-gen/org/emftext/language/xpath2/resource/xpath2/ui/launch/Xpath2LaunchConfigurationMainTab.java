@@ -42,9 +42,13 @@ import org.eclipse.ui.model.WorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 /**
+ * <p>
  * A class that provides the main tab to parameterize launch configurations.
+ * </p>
+ * <p>
  * Set the overrideLaunchConfigurationMainTab option to false to customize this
  * class.
+ * </p>
  */
 public class Xpath2LaunchConfigurationMainTab extends AbstractLaunchConfigurationTab {
 	

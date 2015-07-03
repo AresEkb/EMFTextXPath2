@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>General Comp Kind</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.emftext.language.xpath2.Xpath2Package#getGeneralCompKind()
+ * @see org.emftext.language.xpath2.XPath2Package#getGeneralCompKind()
  * @model
  * @generated
  */
@@ -204,6 +204,8 @@ public enum GeneralCompKind implements Enumerator {
      * Returns the '<em><b>General Comp Kind</b></em>' literal with the specified literal value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param literal the literal.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static GeneralCompKind get(String literal) {
@@ -220,6 +222,8 @@ public enum GeneralCompKind implements Enumerator {
      * Returns the '<em><b>General Comp Kind</b></em>' literal with the specified name.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param name the name.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static GeneralCompKind getByName(String name) {
@@ -236,6 +240,8 @@ public enum GeneralCompKind implements Enumerator {
      * Returns the '<em><b>General Comp Kind</b></em>' literal with the specified integer value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param value the integer value.
+     * @return the matching enumerator or <code>null</code>.
      * @generated
      */
     public static GeneralCompKind get(int value) {

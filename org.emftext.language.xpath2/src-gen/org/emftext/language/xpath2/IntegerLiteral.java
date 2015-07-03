@@ -18,12 +18,12 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.IntegerLiteral#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getIntegerLiteral()
+ * @see org.emftext.language.xpath2.XPath2Package#getIntegerLiteral()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface IntegerLiteral extends NumericLiteral {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Value</em>' attribute.
      * @see #setValue(int)
-     * @see org.emftext.language.xpath2.Xpath2Package#getIntegerLiteral_Value()
+     * @see org.emftext.language.xpath2.XPath2Package#getIntegerLiteral_Value()
      * @model required="true"
      * @generated
      */

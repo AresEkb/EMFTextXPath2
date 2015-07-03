@@ -20,8 +20,10 @@ import org.eclipse.emf.ecore.EReference;
 public interface IXpath2ReferenceResolverSwitch extends org.emftext.language.xpath2.resource.xpath2.IXpath2Configurable {
 	
 	/**
+	 * <p>
 	 * Attempts to resolve a reference string fuzzy (returning objects that do not
 	 * match exactly). This is need during code completion.
+	 * </p>
 	 * 
 	 * @param identifier The identifier for the reference.
 	 * @param container The object that contains the reference.

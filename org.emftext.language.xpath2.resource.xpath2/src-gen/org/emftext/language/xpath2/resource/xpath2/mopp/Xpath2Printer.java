@@ -400,7 +400,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.EXPR__EXPR));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.EXPR__EXPR));
 		printCountingMap.put("expr", temp == null ? 0 : ((Collection<?>) temp).size());
 		// print collected hidden tokens
 		int count;
@@ -411,7 +411,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("expr");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.EXPR__EXPR));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.EXPR__EXPR));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -452,7 +452,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("expr");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.EXPR__EXPR));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.EXPR__EXPR));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -477,9 +477,9 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FOR_EXPR__ITERATOR));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FOR_EXPR__ITERATOR));
 		printCountingMap.put("iterator", temp == null ? 0 : ((Collection<?>) temp).size());
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FOR_EXPR__RETURN));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FOR_EXPR__RETURN));
 		printCountingMap.put("return", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -494,7 +494,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("iterator");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FOR_EXPR__ITERATOR));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FOR_EXPR__ITERATOR));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -533,7 +533,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("return");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FOR_EXPR__RETURN));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FOR_EXPR__RETURN));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -551,7 +551,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("iterator");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FOR_EXPR__ITERATOR));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FOR_EXPR__ITERATOR));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -576,11 +576,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(3);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QUANTIFIED_EXPR__QUANTIFIER));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.QUANTIFIED_EXPR__QUANTIFIER));
 		printCountingMap.put("quantifier", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QUANTIFIED_EXPR__ITERATOR));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.QUANTIFIED_EXPR__ITERATOR));
 		printCountingMap.put("iterator", temp == null ? 0 : ((Collection<?>) temp).size());
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QUANTIFIED_EXPR__SATISFIES));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.QUANTIFIED_EXPR__SATISFIES));
 		printCountingMap.put("satisfies", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -591,7 +591,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (EnumTerminal)
 		count = printCountingMap.get("quantifier");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QUANTIFIED_EXPR__QUANTIFIER));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.QUANTIFIED_EXPR__QUANTIFIER));
 			if (o != null) {
 			}
 			printCountingMap.put("quantifier", count - 1);
@@ -601,7 +601,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("iterator");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QUANTIFIED_EXPR__ITERATOR));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.QUANTIFIED_EXPR__ITERATOR));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -638,7 +638,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("satisfies");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QUANTIFIED_EXPR__SATISFIES));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.QUANTIFIED_EXPR__SATISFIES));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -656,7 +656,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("iterator");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QUANTIFIED_EXPR__ITERATOR));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.QUANTIFIED_EXPR__ITERATOR));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -681,9 +681,9 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__VAR_NAME));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ITERATOR__VAR_NAME));
 		printCountingMap.put("varName", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__LIST));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ITERATOR__LIST));
 		printCountingMap.put("list", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -701,7 +701,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("list");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__LIST));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ITERATOR__LIST));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -725,11 +725,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 				// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 				count = printCountingMap.get("varName");
 				if (count > 0) {
-					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__VAR_NAME));
+					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ITERATOR__VAR_NAME));
 					if (o != null) {
 						org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("NCNAME");
 						resolver.setOptions(getOptions());
-						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__VAR_NAME), element));
+						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ITERATOR__VAR_NAME), element));
 						out.print(" ");
 					}
 					printCountingMap.put("varName", count - 1);
@@ -739,11 +739,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			default:			// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 			count = printCountingMap.get("varName");
 			if (count > 0) {
-				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__VAR_NAME));
+				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ITERATOR__VAR_NAME));
 				if (o != null) {
 					org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("QNAME");
 					resolver.setOptions(getOptions());
-					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITERATOR__VAR_NAME), element));
+					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ITERATOR__VAR_NAME), element));
 					out.print(" ");
 				}
 				printCountingMap.put("varName", count - 1);
@@ -761,11 +761,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(3);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__TEST));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.IF_EXPR__TEST));
 		printCountingMap.put("test", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__THEN));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.IF_EXPR__THEN));
 		printCountingMap.put("then", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__ELSE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.IF_EXPR__ELSE));
 		printCountingMap.put("else", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -779,7 +779,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("test");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__TEST));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.IF_EXPR__TEST));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -796,7 +796,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("then");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__THEN));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.IF_EXPR__THEN));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -811,7 +811,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("else");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.IF_EXPR__ELSE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.IF_EXPR__ELSE));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -829,7 +829,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.OR_EXPR__OPERAND));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.OR_EXPR__OPERAND));
 		printCountingMap.put("operand", temp == null ? 0 : ((Collection<?>) temp).size());
 		// print collected hidden tokens
 		int count;
@@ -840,7 +840,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("operand");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.OR_EXPR__OPERAND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.OR_EXPR__OPERAND));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -884,7 +884,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("operand");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.OR_EXPR__OPERAND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.OR_EXPR__OPERAND));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -909,7 +909,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.AND_EXPR__OPERAND));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.AND_EXPR__OPERAND));
 		printCountingMap.put("operand", temp == null ? 0 : ((Collection<?>) temp).size());
 		// print collected hidden tokens
 		int count;
@@ -920,7 +920,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("operand");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.AND_EXPR__OPERAND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.AND_EXPR__OPERAND));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -964,7 +964,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("operand");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.AND_EXPR__OPERAND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.AND_EXPR__OPERAND));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -989,11 +989,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(3);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.COMPARISON_EXPR__LEFT));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.COMPARISON_EXPR__LEFT));
 		printCountingMap.put("left", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.COMPARISON_EXPR__OPERATOR));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.COMPARISON_EXPR__OPERATOR));
 		printCountingMap.put("operator", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.COMPARISON_EXPR__RIGHT));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.COMPARISON_EXPR__RIGHT));
 		printCountingMap.put("right", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -1003,7 +1003,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("left");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.COMPARISON_EXPR__LEFT));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.COMPARISON_EXPR__LEFT));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -1032,7 +1032,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("operator");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.COMPARISON_EXPR__OPERATOR));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.COMPARISON_EXPR__OPERATOR));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -1043,7 +1043,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("right");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.COMPARISON_EXPR__RIGHT));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.COMPARISON_EXPR__RIGHT));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -1061,9 +1061,9 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.RANGE_EXPR__FROM));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.RANGE_EXPR__FROM));
 		printCountingMap.put("from", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.RANGE_EXPR__TO));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.RANGE_EXPR__TO));
 		printCountingMap.put("to", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -1073,7 +1073,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("from");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.RANGE_EXPR__FROM));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.RANGE_EXPR__FROM));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -1106,7 +1106,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("to");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.RANGE_EXPR__TO));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.RANGE_EXPR__TO));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -1123,14 +1123,14 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_COMP__OPERATOR));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.GENERAL_COMP__OPERATOR));
 		printCountingMap.put("operator", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (EnumTerminal)
 		count = printCountingMap.get("operator");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_COMP__OPERATOR));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.GENERAL_COMP__OPERATOR));
 			if (o != null) {
 			}
 			printCountingMap.put("operator", count - 1);
@@ -1146,14 +1146,14 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VALUE_COMP__OPERATOR));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.VALUE_COMP__OPERATOR));
 		printCountingMap.put("operator", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (EnumTerminal)
 		count = printCountingMap.get("operator");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VALUE_COMP__OPERATOR));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.VALUE_COMP__OPERATOR));
 			if (o != null) {
 			}
 			printCountingMap.put("operator", count - 1);
@@ -1169,14 +1169,14 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NODE_COMP__OPERATOR));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NODE_COMP__OPERATOR));
 		printCountingMap.put("operator", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (EnumTerminal)
 		count = printCountingMap.get("operator");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NODE_COMP__OPERATOR));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NODE_COMP__OPERATOR));
 			if (o != null) {
 			}
 			printCountingMap.put("operator", count - 1);
@@ -1193,9 +1193,9 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ADDITIVE_EXPR__OPERAND));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ADDITIVE_EXPR__OPERAND));
 		printCountingMap.put("operand", temp == null ? 0 : ((Collection<?>) temp).size());
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ADDITIVE_EXPR__OPERATOR));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ADDITIVE_EXPR__OPERATOR));
 		printCountingMap.put("operator", temp == null ? 0 : ((Collection<?>) temp).size());
 		// print collected hidden tokens
 		int count;
@@ -1206,7 +1206,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("operand");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ADDITIVE_EXPR__OPERAND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ADDITIVE_EXPR__OPERAND));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -1246,7 +1246,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (EnumTerminal)
 		count = printCountingMap.get("operator");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ADDITIVE_EXPR__OPERATOR));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ADDITIVE_EXPR__OPERATOR));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -1263,7 +1263,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("operand");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ADDITIVE_EXPR__OPERAND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ADDITIVE_EXPR__OPERAND));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -1288,9 +1288,9 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.MULTIPLICATIVE_EXPR__OPERAND));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.MULTIPLICATIVE_EXPR__OPERAND));
 		printCountingMap.put("operand", temp == null ? 0 : ((Collection<?>) temp).size());
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.MULTIPLICATIVE_EXPR__OPERATOR));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.MULTIPLICATIVE_EXPR__OPERATOR));
 		printCountingMap.put("operator", temp == null ? 0 : ((Collection<?>) temp).size());
 		// print collected hidden tokens
 		int count;
@@ -1301,7 +1301,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("operand");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.MULTIPLICATIVE_EXPR__OPERAND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.MULTIPLICATIVE_EXPR__OPERAND));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -1341,7 +1341,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (EnumTerminal)
 		count = printCountingMap.get("operator");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.MULTIPLICATIVE_EXPR__OPERATOR));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.MULTIPLICATIVE_EXPR__OPERATOR));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -1358,7 +1358,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("operand");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.MULTIPLICATIVE_EXPR__OPERAND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.MULTIPLICATIVE_EXPR__OPERAND));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -1383,9 +1383,9 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.UNION_EXPR__OPERAND));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.UNION_EXPR__OPERAND));
 		printCountingMap.put("operand", temp == null ? 0 : ((Collection<?>) temp).size());
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.UNION_EXPR__OPERATION));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.UNION_EXPR__OPERATION));
 		printCountingMap.put("operation", temp == null ? 0 : ((Collection<?>) temp).size());
 		// print collected hidden tokens
 		int count;
@@ -1396,7 +1396,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("operand");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.UNION_EXPR__OPERAND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.UNION_EXPR__OPERAND));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -1436,7 +1436,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (EnumTerminal)
 		count = printCountingMap.get("operation");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.UNION_EXPR__OPERATION));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.UNION_EXPR__OPERATION));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -1453,7 +1453,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("operand");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.UNION_EXPR__OPERAND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.UNION_EXPR__OPERAND));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -1478,9 +1478,9 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.INTERSECT_EXCEPT_EXPR__OPERAND));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.INTERSECT_EXCEPT_EXPR__OPERAND));
 		printCountingMap.put("operand", temp == null ? 0 : ((Collection<?>) temp).size());
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.INTERSECT_EXCEPT_EXPR__OPERATOR));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.INTERSECT_EXCEPT_EXPR__OPERATOR));
 		printCountingMap.put("operator", temp == null ? 0 : ((Collection<?>) temp).size());
 		// print collected hidden tokens
 		int count;
@@ -1491,7 +1491,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("operand");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.INTERSECT_EXCEPT_EXPR__OPERAND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.INTERSECT_EXCEPT_EXPR__OPERAND));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -1531,7 +1531,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (EnumTerminal)
 		count = printCountingMap.get("operator");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.INTERSECT_EXCEPT_EXPR__OPERATOR));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.INTERSECT_EXCEPT_EXPR__OPERATOR));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -1548,7 +1548,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("operand");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.INTERSECT_EXCEPT_EXPR__OPERAND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.INTERSECT_EXCEPT_EXPR__OPERAND));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -1573,9 +1573,9 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.INSTANCEOF_EXPR__OPERAND));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.INSTANCEOF_EXPR__OPERAND));
 		printCountingMap.put("operand", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.INSTANCEOF_EXPR__TYPE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.INSTANCEOF_EXPR__TYPE));
 		printCountingMap.put("type", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -1585,7 +1585,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("operand");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.INSTANCEOF_EXPR__OPERAND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.INSTANCEOF_EXPR__OPERAND));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -1620,7 +1620,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("type");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.INSTANCEOF_EXPR__TYPE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.INSTANCEOF_EXPR__TYPE));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -1638,9 +1638,9 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.TREAT_EXPR__OPERAND));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.TREAT_EXPR__OPERAND));
 		printCountingMap.put("operand", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.TREAT_EXPR__TYPE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.TREAT_EXPR__TYPE));
 		printCountingMap.put("type", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -1650,7 +1650,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("operand");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.TREAT_EXPR__OPERAND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.TREAT_EXPR__OPERAND));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -1685,7 +1685,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("type");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.TREAT_EXPR__TYPE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.TREAT_EXPR__TYPE));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -1703,9 +1703,9 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.CASTABLE_EXPR__OPERAND));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.CASTABLE_EXPR__OPERAND));
 		printCountingMap.put("operand", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.CASTABLE_EXPR__TYPE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.CASTABLE_EXPR__TYPE));
 		printCountingMap.put("type", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -1715,7 +1715,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("operand");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.CASTABLE_EXPR__OPERAND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.CASTABLE_EXPR__OPERAND));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -1750,7 +1750,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("type");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.CASTABLE_EXPR__TYPE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.CASTABLE_EXPR__TYPE));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -1768,9 +1768,9 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.CAST_EXPR__OPERAND));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.CAST_EXPR__OPERAND));
 		printCountingMap.put("operand", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.CAST_EXPR__TYPE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.CAST_EXPR__TYPE));
 		printCountingMap.put("type", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -1780,7 +1780,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("operand");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.CAST_EXPR__OPERAND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.CAST_EXPR__OPERAND));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -1815,7 +1815,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("type");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.CAST_EXPR__TYPE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.CAST_EXPR__TYPE));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -1833,16 +1833,16 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.UNARY_EXPR__OPERAND));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.UNARY_EXPR__OPERAND));
 		printCountingMap.put("operand", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.UNARY_EXPR__OPERATOR));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.UNARY_EXPR__OPERATOR));
 		printCountingMap.put("operator", temp == null ? 0 : ((Collection<?>) temp).size());
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (EnumTerminal)
 		count = printCountingMap.get("operator");
 		if (count > 0) {
-			List<?> list = (List<?>)element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.UNARY_EXPR__OPERATOR));
+			List<?> list = (List<?>)element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.UNARY_EXPR__OPERATOR));
 			int index  = list.size() - count;
 			if (index < 0) {
 				index = 0;
@@ -1856,7 +1856,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("operand");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.UNARY_EXPR__OPERAND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.UNARY_EXPR__OPERAND));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -1874,16 +1874,16 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FILTER_EXPR__PRIMARY_EXPR));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FILTER_EXPR__PRIMARY_EXPR));
 		printCountingMap.put("primaryExpr", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FILTER_EXPR__PREDICATE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FILTER_EXPR__PREDICATE));
 		printCountingMap.put("predicate", temp == null ? 0 : ((Collection<?>) temp).size());
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("primaryExpr");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FILTER_EXPR__PRIMARY_EXPR));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FILTER_EXPR__PRIMARY_EXPR));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -1892,7 +1892,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("predicate");
 		if (count > 0) {
-			List<?> list = (List<?>)element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FILTER_EXPR__PREDICATE));
+			List<?> list = (List<?>)element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FILTER_EXPR__PREDICATE));
 			int index  = list.size() - count;
 			if (index < 0) {
 				index = 0;
@@ -1916,9 +1916,9 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__NAME));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FUNCTION_CALL__NAME));
 		printCountingMap.put("name", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__ARG));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FUNCTION_CALL__ARG));
 		printCountingMap.put("arg", temp == null ? 0 : ((Collection<?>) temp).size());
 		// print collected hidden tokens
 		java.io.StringWriter sWriter = null;
@@ -1963,11 +1963,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 				// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 				count = printCountingMap.get("name");
 				if (count > 0) {
-					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__NAME));
+					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FUNCTION_CALL__NAME));
 					if (o != null) {
 						org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("NCNAME");
 						resolver.setOptions(getOptions());
-						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__NAME), element));
+						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FUNCTION_CALL__NAME), element));
 						out.print(" ");
 					}
 					printCountingMap.put("name", count - 1);
@@ -1977,11 +1977,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			default:			// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 			count = printCountingMap.get("name");
 			if (count > 0) {
-				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__NAME));
+				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FUNCTION_CALL__NAME));
 				if (o != null) {
 					org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("QNAME");
 					resolver.setOptions(getOptions());
-					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__NAME), element));
+					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FUNCTION_CALL__NAME), element));
 					out.print(" ");
 				}
 				printCountingMap.put("name", count - 1);
@@ -1999,7 +1999,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("arg");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__ARG));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FUNCTION_CALL__ARG));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -2041,7 +2041,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("arg");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.FUNCTION_CALL__ARG));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FUNCTION_CALL__ARG));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -2066,14 +2066,14 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.PATH_EXPR__STEP));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.PATH_EXPR__STEP));
 		printCountingMap.put("step", temp == null ? 0 : ((Collection<?>) temp).size());
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("step");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.PATH_EXPR__STEP));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.PATH_EXPR__STEP));
 			List<?> list = (List<?>) o;
 			int index = list.size() - count;
 			if (index >= 0) {
@@ -2089,7 +2089,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("step");
 		if (count > 0) {
-			List<?> list = (List<?>)element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.PATH_EXPR__STEP));
+			List<?> list = (List<?>)element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.PATH_EXPR__STEP));
 			int index  = list.size() - count;
 			if (index < 0) {
 				index = 0;
@@ -2113,7 +2113,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.CHILD_STEP_EXPR__STEP));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.CHILD_STEP_EXPR__STEP));
 		printCountingMap.put("step", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -2123,7 +2123,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("step");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.CHILD_STEP_EXPR__STEP));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.CHILD_STEP_EXPR__STEP));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -2141,7 +2141,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.DESC_OR_SELF_STEP_EXPR__STEP));
 		printCountingMap.put("step", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -2151,7 +2151,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("step");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DESC_OR_SELF_STEP_EXPR__STEP));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.DESC_OR_SELF_STEP_EXPR__STEP));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -2182,14 +2182,14 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SELF_STEP_EXPR__STEP));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.SELF_STEP_EXPR__STEP));
 		printCountingMap.put("step", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("step");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SELF_STEP_EXPR__STEP));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.SELF_STEP_EXPR__STEP));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -2207,18 +2207,18 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(3);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__PREDICATE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.GENERAL_FORWARD_STEP__PREDICATE));
 		printCountingMap.put("predicate", temp == null ? 0 : ((Collection<?>) temp).size());
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.GENERAL_FORWARD_STEP__AXIS));
 		printCountingMap.put("axis", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__NODE_TEST));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.GENERAL_FORWARD_STEP__NODE_TEST));
 		printCountingMap.put("nodeTest", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (EnumTerminal)
 		count = printCountingMap.get("axis");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__AXIS));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.GENERAL_FORWARD_STEP__AXIS));
 			if (o != null) {
 			}
 			printCountingMap.put("axis", count - 1);
@@ -2229,7 +2229,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("nodeTest");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__NODE_TEST));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.GENERAL_FORWARD_STEP__NODE_TEST));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -2238,7 +2238,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("predicate");
 		if (count > 0) {
-			List<?> list = (List<?>)element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_FORWARD_STEP__PREDICATE));
+			List<?> list = (List<?>)element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.GENERAL_FORWARD_STEP__PREDICATE));
 			int index  = list.size() - count;
 			if (index < 0) {
 				index = 0;
@@ -2262,18 +2262,18 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(3);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_FORWARD_STEP__PREDICATE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ABBREV_FORWARD_STEP__PREDICATE));
 		printCountingMap.put("predicate", temp == null ? 0 : ((Collection<?>) temp).size());
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_FORWARD_STEP__KIND));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ABBREV_FORWARD_STEP__KIND));
 		printCountingMap.put("kind", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_FORWARD_STEP__NODE_TEST));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ABBREV_FORWARD_STEP__NODE_TEST));
 		printCountingMap.put("nodeTest", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (EnumTerminal)
 		count = printCountingMap.get("kind");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_FORWARD_STEP__KIND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ABBREV_FORWARD_STEP__KIND));
 			if (o != null) {
 			}
 			printCountingMap.put("kind", count - 1);
@@ -2281,7 +2281,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("nodeTest");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_FORWARD_STEP__NODE_TEST));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ABBREV_FORWARD_STEP__NODE_TEST));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -2290,7 +2290,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("predicate");
 		if (count > 0) {
-			List<?> list = (List<?>)element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_FORWARD_STEP__PREDICATE));
+			List<?> list = (List<?>)element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ABBREV_FORWARD_STEP__PREDICATE));
 			int index  = list.size() - count;
 			if (index < 0) {
 				index = 0;
@@ -2314,18 +2314,18 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(3);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_REVERSE_STEP__PREDICATE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.GENERAL_REVERSE_STEP__PREDICATE));
 		printCountingMap.put("predicate", temp == null ? 0 : ((Collection<?>) temp).size());
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_REVERSE_STEP__AXIS));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.GENERAL_REVERSE_STEP__AXIS));
 		printCountingMap.put("axis", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_REVERSE_STEP__NODE_TEST));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.GENERAL_REVERSE_STEP__NODE_TEST));
 		printCountingMap.put("nodeTest", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (EnumTerminal)
 		count = printCountingMap.get("axis");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_REVERSE_STEP__AXIS));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.GENERAL_REVERSE_STEP__AXIS));
 			if (o != null) {
 			}
 			printCountingMap.put("axis", count - 1);
@@ -2336,7 +2336,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("nodeTest");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_REVERSE_STEP__NODE_TEST));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.GENERAL_REVERSE_STEP__NODE_TEST));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -2345,7 +2345,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("predicate");
 		if (count > 0) {
-			List<?> list = (List<?>)element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.GENERAL_REVERSE_STEP__PREDICATE));
+			List<?> list = (List<?>)element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.GENERAL_REVERSE_STEP__PREDICATE));
 			int index  = list.size() - count;
 			if (index < 0) {
 				index = 0;
@@ -2369,16 +2369,16 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_REVERSE_STEP__PREDICATE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ABBREV_REVERSE_STEP__PREDICATE));
 		printCountingMap.put("predicate", temp == null ? 0 : ((Collection<?>) temp).size());
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_REVERSE_STEP__KIND));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ABBREV_REVERSE_STEP__KIND));
 		printCountingMap.put("kind", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (EnumTerminal)
 		count = printCountingMap.get("kind");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_REVERSE_STEP__KIND));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ABBREV_REVERSE_STEP__KIND));
 			if (o != null) {
 			}
 			printCountingMap.put("kind", count - 1);
@@ -2386,7 +2386,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("predicate");
 		if (count > 0) {
-			List<?> list = (List<?>)element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ABBREV_REVERSE_STEP__PREDICATE));
+			List<?> list = (List<?>)element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ABBREV_REVERSE_STEP__PREDICATE));
 			int index  = list.size() - count;
 			if (index < 0) {
 				index = 0;
@@ -2410,14 +2410,14 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NODE_KIND_TEST__TEST));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NODE_KIND_TEST__TEST));
 		printCountingMap.put("test", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("test");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NODE_KIND_TEST__TEST));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NODE_KIND_TEST__TEST));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -2435,7 +2435,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QNAME_TEST__NAME));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.QNAME_TEST__NAME));
 		printCountingMap.put("name", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		// DEFINITION PART BEGINS (CompoundDefinition)
@@ -2458,11 +2458,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 				// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 				count = printCountingMap.get("name");
 				if (count > 0) {
-					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QNAME_TEST__NAME));
+					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.QNAME_TEST__NAME));
 					if (o != null) {
 						org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("NCNAME");
 						resolver.setOptions(getOptions());
-						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QNAME_TEST__NAME), element));
+						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.QNAME_TEST__NAME), element));
 						out.print(" ");
 					}
 					printCountingMap.put("name", count - 1);
@@ -2472,11 +2472,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			default:			// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 			count = printCountingMap.get("name");
 			if (count > 0) {
-				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QNAME_TEST__NAME));
+				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.QNAME_TEST__NAME));
 				if (o != null) {
 					org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("QNAME");
 					resolver.setOptions(getOptions());
-					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.QNAME_TEST__NAME), element));
+					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.QNAME_TEST__NAME), element));
 					out.print(" ");
 				}
 				printCountingMap.put("name", count - 1);
@@ -2506,18 +2506,18 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.LOCAL_NAME_WILDCARD__NAMESPACE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.LOCAL_NAME_WILDCARD__NAMESPACE));
 		printCountingMap.put("namespace", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 		count = printCountingMap.get("namespace");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.LOCAL_NAME_WILDCARD__NAMESPACE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.LOCAL_NAME_WILDCARD__NAMESPACE));
 			if (o != null) {
 				org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("NCNAME");
 				resolver.setOptions(getOptions());
-				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.LOCAL_NAME_WILDCARD__NAMESPACE), element));
+				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.LOCAL_NAME_WILDCARD__NAMESPACE), element));
 				out.print(" ");
 			}
 			printCountingMap.put("namespace", count - 1);
@@ -2539,7 +2539,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAMESPACE_WILDCARD__LOCAL_NAME));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAMESPACE_WILDCARD__LOCAL_NAME));
 		printCountingMap.put("localName", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -2552,11 +2552,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 		count = printCountingMap.get("localName");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAMESPACE_WILDCARD__LOCAL_NAME));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAMESPACE_WILDCARD__LOCAL_NAME));
 			if (o != null) {
 				org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("NCNAME");
 				resolver.setOptions(getOptions());
-				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAMESPACE_WILDCARD__LOCAL_NAME), element));
+				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAMESPACE_WILDCARD__LOCAL_NAME), element));
 				out.print(" ");
 			}
 			printCountingMap.put("localName", count - 1);
@@ -2573,7 +2573,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.PREDICATE__EXPR));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.PREDICATE__EXPR));
 		printCountingMap.put("expr", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -2583,7 +2583,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("expr");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.PREDICATE__EXPR));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.PREDICATE__EXPR));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -2604,7 +2604,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VAR_REF__VAR_NAME));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.VAR_REF__VAR_NAME));
 		printCountingMap.put("varName", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		// DEFINITION PART BEGINS (CsString)
@@ -2630,11 +2630,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 				// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 				count = printCountingMap.get("varName");
 				if (count > 0) {
-					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VAR_REF__VAR_NAME));
+					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.VAR_REF__VAR_NAME));
 					if (o != null) {
 						org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("NCNAME");
 						resolver.setOptions(getOptions());
-						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VAR_REF__VAR_NAME), element));
+						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.VAR_REF__VAR_NAME), element));
 						out.print(" ");
 					}
 					printCountingMap.put("varName", count - 1);
@@ -2644,11 +2644,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			default:			// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 			count = printCountingMap.get("varName");
 			if (count > 0) {
-				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VAR_REF__VAR_NAME));
+				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.VAR_REF__VAR_NAME));
 				if (o != null) {
 					org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("QNAME");
 					resolver.setOptions(getOptions());
-					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.VAR_REF__VAR_NAME), element));
+					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.VAR_REF__VAR_NAME), element));
 					out.print(" ");
 				}
 				printCountingMap.put("varName", count - 1);
@@ -2666,7 +2666,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.PARENTHESIZED_EXPR__EXPR));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.PARENTHESIZED_EXPR__EXPR));
 		printCountingMap.put("expr", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -2676,7 +2676,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("expr");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.PARENTHESIZED_EXPR__EXPR));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.PARENTHESIZED_EXPR__EXPR));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -2710,16 +2710,16 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SINGLE_TYPE__TYPE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.SINGLE_TYPE__TYPE));
 		printCountingMap.put("type", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SINGLE_TYPE__OPTIONAL));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.SINGLE_TYPE__OPTIONAL));
 		printCountingMap.put("optional", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("type");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SINGLE_TYPE__TYPE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.SINGLE_TYPE__TYPE));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -2728,7 +2728,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (BooleanTerminal)
 		count = printCountingMap.get("optional");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SINGLE_TYPE__OPTIONAL));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.SINGLE_TYPE__OPTIONAL));
 			if (o != null) {
 			}
 			printCountingMap.put("optional", count - 1);
@@ -2764,16 +2764,16 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE));
 		printCountingMap.put("itemType", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE));
 		printCountingMap.put("occurrence", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("itemType");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ITEM_SEQUENCE_TYPE__ITEM_TYPE));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -2782,7 +2782,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (EnumTerminal)
 		count = printCountingMap.get("occurrence");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ITEM_SEQUENCE_TYPE__OCCURRENCE));
 			if (o != null) {
 			}
 			printCountingMap.put("occurrence", count - 1);
@@ -2799,14 +2799,14 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITEM_KIND_TEST__TEST));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ITEM_KIND_TEST__TEST));
 		printCountingMap.put("test", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("test");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ITEM_KIND_TEST__TEST));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ITEM_KIND_TEST__TEST));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -2843,14 +2843,14 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ATOMIC_ITEM_TYPE__TYPE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ATOMIC_ITEM_TYPE__TYPE));
 		printCountingMap.put("type", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("type");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ATOMIC_ITEM_TYPE__TYPE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ATOMIC_ITEM_TYPE__TYPE));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -2868,7 +2868,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ATOMIC_TYPE__NAME));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ATOMIC_TYPE__NAME));
 		printCountingMap.put("name", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		// DEFINITION PART BEGINS (CompoundDefinition)
@@ -2891,11 +2891,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 				// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 				count = printCountingMap.get("name");
 				if (count > 0) {
-					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ATOMIC_TYPE__NAME));
+					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ATOMIC_TYPE__NAME));
 					if (o != null) {
 						org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("NCNAME");
 						resolver.setOptions(getOptions());
-						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ATOMIC_TYPE__NAME), element));
+						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ATOMIC_TYPE__NAME), element));
 						out.print(" ");
 					}
 					printCountingMap.put("name", count - 1);
@@ -2905,11 +2905,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			default:			// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 			count = printCountingMap.get("name");
 			if (count > 0) {
-				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ATOMIC_TYPE__NAME));
+				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ATOMIC_TYPE__NAME));
 				if (o != null) {
 					org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("QNAME");
 					resolver.setOptions(getOptions());
-					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.ATOMIC_TYPE__NAME), element));
+					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.ATOMIC_TYPE__NAME), element));
 					out.print(" ");
 				}
 				printCountingMap.put("name", count - 1);
@@ -2927,9 +2927,9 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.OPTIONAL_ATOMIC_TYPE__NAME));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.OPTIONAL_ATOMIC_TYPE__NAME));
 		printCountingMap.put("name", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL));
 		printCountingMap.put("optional", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -2938,7 +2938,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (BooleanTerminal)
 		count = printCountingMap.get("optional");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.OPTIONAL_ATOMIC_TYPE__OPTIONAL));
 			if (o != null) {
 			}
 			printCountingMap.put("optional", count - 1);
@@ -2961,11 +2961,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 				// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 				count = printCountingMap.get("name");
 				if (count > 0) {
-					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.OPTIONAL_ATOMIC_TYPE__NAME));
+					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.OPTIONAL_ATOMIC_TYPE__NAME));
 					if (o != null) {
 						org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("NCNAME");
 						resolver.setOptions(getOptions());
-						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.OPTIONAL_ATOMIC_TYPE__NAME), element));
+						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.OPTIONAL_ATOMIC_TYPE__NAME), element));
 						out.print(" ");
 					}
 					printCountingMap.put("name", count - 1);
@@ -2975,11 +2975,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			default:			// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 			count = printCountingMap.get("name");
 			if (count > 0) {
-				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.OPTIONAL_ATOMIC_TYPE__NAME));
+				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.OPTIONAL_ATOMIC_TYPE__NAME));
 				if (o != null) {
 					org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("QNAME");
 					resolver.setOptions(getOptions());
-					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.OPTIONAL_ATOMIC_TYPE__NAME), element));
+					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.OPTIONAL_ATOMIC_TYPE__NAME), element));
 					out.print(" ");
 				}
 				printCountingMap.put("name", count - 1);
@@ -3016,7 +3016,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DOCUMENT_TEST__TEST));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.DOCUMENT_TEST__TEST));
 		printCountingMap.put("test", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -3029,7 +3029,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("test");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DOCUMENT_TEST__TEST));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.DOCUMENT_TEST__TEST));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -3106,7 +3106,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NC_NAME_PI_TEST__NAME));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NC_NAME_PI_TEST__NAME));
 		printCountingMap.put("name", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -3119,11 +3119,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 		count = printCountingMap.get("name");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NC_NAME_PI_TEST__NAME));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NC_NAME_PI_TEST__NAME));
 			if (o != null) {
 				org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("NCNAME");
 				resolver.setOptions(getOptions());
-				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NC_NAME_PI_TEST__NAME), element));
+				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NC_NAME_PI_TEST__NAME), element));
 				out.print(" ");
 			}
 			printCountingMap.put("name", count - 1);
@@ -3142,7 +3142,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.STRING_LITERAL_PI_TEST__LITERAL));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.STRING_LITERAL_PI_TEST__LITERAL));
 		printCountingMap.put("literal", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
@@ -3155,11 +3155,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 		count = printCountingMap.get("literal");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.STRING_LITERAL_PI_TEST__LITERAL));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.STRING_LITERAL_PI_TEST__LITERAL));
 			if (o != null) {
 				org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("STRING_LITERAL");
 				resolver.setOptions(getOptions());
-				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getStringLiteralPITestLiteralReferenceResolver().deResolve((org.emftext.language.xpath2.StringLiteral) o, element, (EReference) element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.STRING_LITERAL_PI_TEST__LITERAL)), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.STRING_LITERAL_PI_TEST__LITERAL), element));
+				out.print(resolver.deResolve(getReferenceResolverSwitch() == null ? null : getReferenceResolverSwitch().getStringLiteralPITestLiteralReferenceResolver().deResolve((org.emftext.language.xpath2.StringLiteral) o, element, (EReference) element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.STRING_LITERAL_PI_TEST__LITERAL)), element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.STRING_LITERAL_PI_TEST__LITERAL), element));
 				out.print(" ");
 			}
 			printCountingMap.put("literal", count - 1);
@@ -3198,7 +3198,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE));
 		printCountingMap.put("type", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		java.io.StringWriter sWriter = null;
@@ -3257,11 +3257,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 				// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 				count = printCountingMap.get("type");
 				if (count > 0) {
-					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE));
+					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE));
 					if (o != null) {
 						org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("NCNAME");
 						resolver.setOptions(getOptions());
-						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE), element));
+						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE), element));
 						out.print(" ");
 					}
 					printCountingMap.put("type", count - 1);
@@ -3271,11 +3271,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			default:			// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 			count = printCountingMap.get("type");
 			if (count > 0) {
-				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE));
+				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE));
 				if (o != null) {
 					org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("QNAME");
 					resolver.setOptions(getOptions());
-					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE), element));
+					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.WILDCARD_ATTRIBUTE_TEST__TYPE), element));
 					out.print(" ");
 				}
 				printCountingMap.put("type", count - 1);
@@ -3293,9 +3293,9 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ATTRIBUTE_TEST__NAME));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAME_ATTRIBUTE_TEST__NAME));
 		printCountingMap.put("name", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAME_ATTRIBUTE_TEST__TYPE));
 		printCountingMap.put("type", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		java.io.StringWriter sWriter = null;
@@ -3343,11 +3343,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 				// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 				count = printCountingMap.get("name");
 				if (count > 0) {
-					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ATTRIBUTE_TEST__NAME));
+					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAME_ATTRIBUTE_TEST__NAME));
 					if (o != null) {
 						org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("NCNAME");
 						resolver.setOptions(getOptions());
-						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ATTRIBUTE_TEST__NAME), element));
+						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAME_ATTRIBUTE_TEST__NAME), element));
 						out.print(" ");
 					}
 					printCountingMap.put("name", count - 1);
@@ -3357,11 +3357,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			default:			// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 			count = printCountingMap.get("name");
 			if (count > 0) {
-				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ATTRIBUTE_TEST__NAME));
+				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAME_ATTRIBUTE_TEST__NAME));
 				if (o != null) {
 					org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("QNAME");
 					resolver.setOptions(getOptions());
-					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ATTRIBUTE_TEST__NAME), element));
+					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAME_ATTRIBUTE_TEST__NAME), element));
 					out.print(" ");
 				}
 				printCountingMap.put("name", count - 1);
@@ -3395,11 +3395,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 				// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 				count = printCountingMap.get("type");
 				if (count > 0) {
-					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE));
+					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAME_ATTRIBUTE_TEST__TYPE));
 					if (o != null) {
 						org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("NCNAME");
 						resolver.setOptions(getOptions());
-						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE), element));
+						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAME_ATTRIBUTE_TEST__TYPE), element));
 						out.print(" ");
 					}
 					printCountingMap.put("type", count - 1);
@@ -3409,11 +3409,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			default:			// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 			count = printCountingMap.get("type");
 			if (count > 0) {
-				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE));
+				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAME_ATTRIBUTE_TEST__TYPE));
 				if (o != null) {
 					org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("QNAME");
 					resolver.setOptions(getOptions());
-					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ATTRIBUTE_TEST__TYPE), element));
+					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAME_ATTRIBUTE_TEST__TYPE), element));
 					out.print(" ");
 				}
 				printCountingMap.put("type", count - 1);
@@ -3431,7 +3431,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SCHEMA_ATTRIBUTE_TEST__NAME));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.SCHEMA_ATTRIBUTE_TEST__NAME));
 		printCountingMap.put("name", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		// DEFINITION PART BEGINS (CsString)
@@ -3463,11 +3463,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 				// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 				count = printCountingMap.get("name");
 				if (count > 0) {
-					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SCHEMA_ATTRIBUTE_TEST__NAME));
+					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.SCHEMA_ATTRIBUTE_TEST__NAME));
 					if (o != null) {
 						org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("NCNAME");
 						resolver.setOptions(getOptions());
-						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SCHEMA_ATTRIBUTE_TEST__NAME), element));
+						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.SCHEMA_ATTRIBUTE_TEST__NAME), element));
 						out.print(" ");
 					}
 					printCountingMap.put("name", count - 1);
@@ -3477,11 +3477,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			default:			// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 			count = printCountingMap.get("name");
 			if (count > 0) {
-				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SCHEMA_ATTRIBUTE_TEST__NAME));
+				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.SCHEMA_ATTRIBUTE_TEST__NAME));
 				if (o != null) {
 					org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("QNAME");
 					resolver.setOptions(getOptions());
-					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SCHEMA_ATTRIBUTE_TEST__NAME), element));
+					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.SCHEMA_ATTRIBUTE_TEST__NAME), element));
 					out.print(" ");
 				}
 				printCountingMap.put("name", count - 1);
@@ -3518,7 +3518,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.WILDCARD_ELEMENT_TEST__TYPE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.WILDCARD_ELEMENT_TEST__TYPE));
 		printCountingMap.put("type", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		java.io.StringWriter sWriter = null;
@@ -3561,7 +3561,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("type");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.WILDCARD_ELEMENT_TEST__TYPE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.WILDCARD_ELEMENT_TEST__TYPE));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -3579,9 +3579,9 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ELEMENT_TEST__NAME));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAME_ELEMENT_TEST__NAME));
 		printCountingMap.put("name", temp == null ? 0 : 1);
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ELEMENT_TEST__TYPE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAME_ELEMENT_TEST__TYPE));
 		printCountingMap.put("type", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		java.io.StringWriter sWriter = null;
@@ -3629,11 +3629,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 				// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 				count = printCountingMap.get("name");
 				if (count > 0) {
-					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ELEMENT_TEST__NAME));
+					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAME_ELEMENT_TEST__NAME));
 					if (o != null) {
 						org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("NCNAME");
 						resolver.setOptions(getOptions());
-						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ELEMENT_TEST__NAME), element));
+						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAME_ELEMENT_TEST__NAME), element));
 						out.print(" ");
 					}
 					printCountingMap.put("name", count - 1);
@@ -3643,11 +3643,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			default:			// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 			count = printCountingMap.get("name");
 			if (count > 0) {
-				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ELEMENT_TEST__NAME));
+				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAME_ELEMENT_TEST__NAME));
 				if (o != null) {
 					org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("QNAME");
 					resolver.setOptions(getOptions());
-					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ELEMENT_TEST__NAME), element));
+					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAME_ELEMENT_TEST__NAME), element));
 					out.print(" ");
 				}
 				printCountingMap.put("name", count - 1);
@@ -3665,7 +3665,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// DEFINITION PART BEGINS (Containment)
 		count = printCountingMap.get("type");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.NAME_ELEMENT_TEST__TYPE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.NAME_ELEMENT_TEST__TYPE));
 			if (o != null) {
 				doPrint((EObject) o, out, localtab);
 			}
@@ -3683,7 +3683,7 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SCHEMA_ELEMENT_TEST__NAME));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.SCHEMA_ELEMENT_TEST__NAME));
 		printCountingMap.put("name", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		// DEFINITION PART BEGINS (CsString)
@@ -3715,11 +3715,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 				// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 				count = printCountingMap.get("name");
 				if (count > 0) {
-					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SCHEMA_ELEMENT_TEST__NAME));
+					Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.SCHEMA_ELEMENT_TEST__NAME));
 					if (o != null) {
 						org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("NCNAME");
 						resolver.setOptions(getOptions());
-						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SCHEMA_ELEMENT_TEST__NAME), element));
+						out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.SCHEMA_ELEMENT_TEST__NAME), element));
 						out.print(" ");
 					}
 					printCountingMap.put("name", count - 1);
@@ -3729,11 +3729,11 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 			default:			// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 			count = printCountingMap.get("name");
 			if (count > 0) {
-				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SCHEMA_ELEMENT_TEST__NAME));
+				Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.SCHEMA_ELEMENT_TEST__NAME));
 				if (o != null) {
 					org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("QNAME");
 					resolver.setOptions(getOptions());
-					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.SCHEMA_ELEMENT_TEST__NAME), element));
+					out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.SCHEMA_ELEMENT_TEST__NAME), element));
 					out.print(" ");
 				}
 				printCountingMap.put("name", count - 1);
@@ -3750,18 +3750,18 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.INTEGER_LITERAL__VALUE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.INTEGER_LITERAL__VALUE));
 		printCountingMap.put("value", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 		count = printCountingMap.get("value");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.INTEGER_LITERAL__VALUE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.INTEGER_LITERAL__VALUE));
 			if (o != null) {
 				org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("INTEGER_LITERAL");
 				resolver.setOptions(getOptions());
-				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.INTEGER_LITERAL__VALUE), element));
+				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.INTEGER_LITERAL__VALUE), element));
 				out.print(" ");
 			}
 			printCountingMap.put("value", count - 1);
@@ -3777,18 +3777,18 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DECIMAL_LITERAL__VALUE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.DECIMAL_LITERAL__VALUE));
 		printCountingMap.put("value", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 		count = printCountingMap.get("value");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DECIMAL_LITERAL__VALUE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.DECIMAL_LITERAL__VALUE));
 			if (o != null) {
 				org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("DECIMAL_LITERAL");
 				resolver.setOptions(getOptions());
-				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DECIMAL_LITERAL__VALUE), element));
+				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.DECIMAL_LITERAL__VALUE), element));
 				out.print(" ");
 			}
 			printCountingMap.put("value", count - 1);
@@ -3804,18 +3804,18 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DOUBLE_LITERAL__VALUE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.DOUBLE_LITERAL__VALUE));
 		printCountingMap.put("value", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 		count = printCountingMap.get("value");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DOUBLE_LITERAL__VALUE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.DOUBLE_LITERAL__VALUE));
 			if (o != null) {
 				org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("DOUBLE_LITERAL");
 				resolver.setOptions(getOptions());
-				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.DOUBLE_LITERAL__VALUE), element));
+				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.DOUBLE_LITERAL__VALUE), element));
 				out.print(" ");
 			}
 			printCountingMap.put("value", count - 1);
@@ -3831,18 +3831,18 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(1);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.STRING_LITERAL__VALUE));
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.STRING_LITERAL__VALUE));
 		printCountingMap.put("value", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (PlaceholderUsingSpecifiedToken)
 		count = printCountingMap.get("value");
 		if (count > 0) {
-			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.STRING_LITERAL__VALUE));
+			Object o = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.STRING_LITERAL__VALUE));
 			if (o != null) {
 				org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver resolver = tokenResolverFactory.createTokenResolver("STRING_LITERAL");
 				resolver.setOptions(getOptions());
-				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.Xpath2Package.STRING_LITERAL__VALUE), element));
+				out.print(resolver.deResolve((Object) o, element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.STRING_LITERAL__VALUE), element));
 				out.print(" ");
 			}
 			printCountingMap.put("value", count - 1);

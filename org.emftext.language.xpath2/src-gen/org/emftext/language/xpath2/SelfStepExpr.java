@@ -18,12 +18,12 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.SelfStepExpr#getStep <em>Step</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getSelfStepExpr()
+ * @see org.emftext.language.xpath2.XPath2Package#getSelfStepExpr()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface SelfStepExpr extends PathExprChild {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Step</em>' containment reference.
      * @see #setStep(SelfStepExprChild)
-     * @see org.emftext.language.xpath2.Xpath2Package#getSelfStepExpr_Step()
+     * @see org.emftext.language.xpath2.XPath2Package#getSelfStepExpr_Step()
      * @model containment="true" required="true"
      * @generated
      */

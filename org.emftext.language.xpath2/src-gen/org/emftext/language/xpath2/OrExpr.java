@@ -19,12 +19,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.OrExpr#getOperand <em>Operand</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getOrExpr()
+ * @see org.emftext.language.xpath2.XPath2Package#getOrExpr()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface OrExpr extends ExprSingle {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Operand</em>' containment reference list.
-     * @see org.emftext.language.xpath2.Xpath2Package#getOrExpr_Operand()
+     * @see org.emftext.language.xpath2.XPath2Package#getOrExpr_Operand()
      * @model containment="true" required="true"
      * @generated
      */

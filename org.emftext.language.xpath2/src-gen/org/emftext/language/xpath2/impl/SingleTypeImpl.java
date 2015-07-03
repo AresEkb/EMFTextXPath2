@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.emftext.language.xpath2.AtomicType;
 import org.emftext.language.xpath2.SingleType;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,11 +29,11 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.SingleTypeImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.emftext.language.xpath2.impl.SingleTypeImpl#isOptional <em>Optional</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -84,7 +84,7 @@ public class SingleTypeImpl extends EObjectImpl implements SingleType {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.SINGLE_TYPE;
+        return XPath2Package.Literals.SINGLE_TYPE;
     }
 
     /**
@@ -105,7 +105,7 @@ public class SingleTypeImpl extends EObjectImpl implements SingleType {
         AtomicType oldType = type;
         type = newType;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, Xpath2Package.SINGLE_TYPE__TYPE, oldType, newType);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.SINGLE_TYPE__TYPE, oldType, newType);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -120,14 +120,14 @@ public class SingleTypeImpl extends EObjectImpl implements SingleType {
         if (newType != type) {
             NotificationChain msgs = null;
             if (type != null)
-                msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.SINGLE_TYPE__TYPE, null, msgs);
+                msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.SINGLE_TYPE__TYPE, null, msgs);
             if (newType != null)
-                msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - Xpath2Package.SINGLE_TYPE__TYPE, null, msgs);
+                msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.SINGLE_TYPE__TYPE, null, msgs);
             msgs = basicSetType(newType, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.SINGLE_TYPE__TYPE, newType, newType));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.SINGLE_TYPE__TYPE, newType, newType));
     }
 
     /**
@@ -148,7 +148,7 @@ public class SingleTypeImpl extends EObjectImpl implements SingleType {
         boolean oldOptional = optional;
         optional = newOptional;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.SINGLE_TYPE__OPTIONAL, oldOptional, optional));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.SINGLE_TYPE__OPTIONAL, oldOptional, optional));
     }
 
     /**
@@ -159,7 +159,7 @@ public class SingleTypeImpl extends EObjectImpl implements SingleType {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case Xpath2Package.SINGLE_TYPE__TYPE:
+            case XPath2Package.SINGLE_TYPE__TYPE:
                 return basicSetType(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -173,9 +173,9 @@ public class SingleTypeImpl extends EObjectImpl implements SingleType {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.SINGLE_TYPE__TYPE:
+            case XPath2Package.SINGLE_TYPE__TYPE:
                 return getType();
-            case Xpath2Package.SINGLE_TYPE__OPTIONAL:
+            case XPath2Package.SINGLE_TYPE__OPTIONAL:
                 return isOptional();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -189,10 +189,10 @@ public class SingleTypeImpl extends EObjectImpl implements SingleType {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.SINGLE_TYPE__TYPE:
+            case XPath2Package.SINGLE_TYPE__TYPE:
                 setType((AtomicType)newValue);
                 return;
-            case Xpath2Package.SINGLE_TYPE__OPTIONAL:
+            case XPath2Package.SINGLE_TYPE__OPTIONAL:
                 setOptional((Boolean)newValue);
                 return;
         }
@@ -207,10 +207,10 @@ public class SingleTypeImpl extends EObjectImpl implements SingleType {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.SINGLE_TYPE__TYPE:
+            case XPath2Package.SINGLE_TYPE__TYPE:
                 setType((AtomicType)null);
                 return;
-            case Xpath2Package.SINGLE_TYPE__OPTIONAL:
+            case XPath2Package.SINGLE_TYPE__OPTIONAL:
                 setOptional(OPTIONAL_EDEFAULT);
                 return;
         }
@@ -225,9 +225,9 @@ public class SingleTypeImpl extends EObjectImpl implements SingleType {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.SINGLE_TYPE__TYPE:
+            case XPath2Package.SINGLE_TYPE__TYPE:
                 return type != null;
-            case Xpath2Package.SINGLE_TYPE__OPTIONAL:
+            case XPath2Package.SINGLE_TYPE__OPTIONAL:
                 return optional != OPTIONAL_EDEFAULT;
         }
         return super.eIsSet(featureID);

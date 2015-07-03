@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 Denis Nikiforov.
+ * Copyright (c) 2013, 2014 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,22 +10,26 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.analysis;
 
+import java.util.Map;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 public class Xpath2DECIMAL_LITERALTokenResolver implements org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolver {
 	
 	private org.emftext.language.xpath2.resource.xpath2.analysis.Xpath2DefaultTokenResolver defaultTokenResolver = new org.emftext.language.xpath2.resource.xpath2.analysis.Xpath2DefaultTokenResolver(true);
 	
-	public String deResolve(Object value, org.eclipse.emf.ecore.EStructuralFeature feature, org.eclipse.emf.ecore.EObject container) {
+	public String deResolve(Object value, EStructuralFeature feature, EObject container) {
 		// By default token de-resolving is delegated to the DefaultTokenResolver.
 		String result = defaultTokenResolver.deResolve(value, feature, container, null, null, null);
 		return result;
 	}
 	
-	public void resolve(String lexem, org.eclipse.emf.ecore.EStructuralFeature feature, org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolveResult result) {
+	public void resolve(String lexem, EStructuralFeature feature, org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolveResult result) {
 		// By default token resolving is delegated to the DefaultTokenResolver.
 		defaultTokenResolver.resolve(lexem, feature, result, null, null, null);
 	}
 	
-	public void setOptions(java.util.Map<?,?> options) {
+	public void setOptions(Map<?,?> options) {
 		defaultTokenResolver.setOptions(options);
 	}
 	

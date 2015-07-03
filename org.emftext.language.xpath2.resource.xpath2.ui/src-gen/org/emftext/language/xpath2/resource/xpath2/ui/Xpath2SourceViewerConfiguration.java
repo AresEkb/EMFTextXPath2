@@ -51,7 +51,9 @@ public class Xpath2SourceViewerConfiguration extends TextSourceViewerConfigurati
 	private org.emftext.language.xpath2.resource.xpath2.ui.IXpath2TokenScanner tokenScanner;
 	
 	/**
+	 * <p>
 	 * Creates a new editor configuration.
+	 * </p>
 	 * 
 	 * @param resourceProvider the provider for the resource (usually this is the
 	 * editor)

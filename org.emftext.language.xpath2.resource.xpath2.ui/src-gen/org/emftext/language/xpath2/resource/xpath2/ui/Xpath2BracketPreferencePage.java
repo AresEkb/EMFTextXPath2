@@ -35,12 +35,24 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
 /**
+ * <p>
  * The preference page for the bracket setting with following features:
+ * </p>
+ * <p>
  * <ul>
+ * </p>
+ * <p>
  * <li>enables bracket matching</li>
+ * </p>
+ * <p>
  * <li>chooses matching highlight color</li>
+ * </p>
+ * <p>
  * <li>customizes bracket set</li>
+ * </p>
+ * <p>
  * </ul>
+ * </p>
  */
 public class Xpath2BracketPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
 	
@@ -160,7 +172,7 @@ public class Xpath2BracketPreferencePage extends PreferencePage implements IWork
 		gd.verticalIndent = 20;
 		configurePairsLabel.setText("Configure bracket pairs");
 		configurePairsLabel.setLayoutData(gd);
-		bracketsList = new List(tokenSelectionComposite, SWT.SINGLE);
+		bracketsList = new List(tokenSelectionComposite, SWT.SINGLE | SWT.BORDER);
 		gd = new GridData(GridData.CENTER, GridData.FILL, false, true);
 		gd.horizontalSpan = 2;
 		gd.verticalSpan = 4;

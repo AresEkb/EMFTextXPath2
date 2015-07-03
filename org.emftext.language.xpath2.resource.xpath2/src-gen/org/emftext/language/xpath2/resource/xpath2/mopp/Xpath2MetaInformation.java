@@ -12,7 +12,9 @@ package org.emftext.language.xpath2.resource.xpath2.mopp;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 
@@ -119,7 +121,7 @@ public class Xpath2MetaInformation implements org.emftext.language.xpath2.resour
 	
 	public String[] getSyntaxHighlightableTokenNames() {
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2AntlrTokenHelper tokenHelper = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2AntlrTokenHelper();
-		java.util.List<String> highlightableTokens = new java.util.ArrayList<String>();
+		List<String> highlightableTokens = new ArrayList<String>();
 		String[] parserTokenNames = getTokenNames();
 		for (int i = 0; i < parserTokenNames.length; i++) {
 			// If ANTLR is used we need to normalize the token names

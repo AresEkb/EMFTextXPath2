@@ -10,6 +10,7 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.mopp;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -28,7 +29,7 @@ public class Xpath2BuilderAdapter extends IncrementalProjectBuilder {
 	
 	private static class ResourceCollector implements IResourceDeltaVisitor, IResourceVisitor {
 		
-		private java.util.Map<IResource, Boolean> resourceMap = new java.util.LinkedHashMap<IResource, Boolean>();
+		private Map<IResource, Boolean> resourceMap = new LinkedHashMap<IResource, Boolean>();
 		
 		public boolean visit(IResourceDelta delta) throws CoreException {
 			IResource resource = delta.getResource();

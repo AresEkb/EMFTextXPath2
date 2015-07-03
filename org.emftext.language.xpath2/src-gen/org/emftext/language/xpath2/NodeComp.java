@@ -18,12 +18,12 @@ package org.emftext.language.xpath2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.NodeComp#getOperator <em>Operator</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.emftext.language.xpath2.Xpath2Package#getNodeComp()
+ * @see org.emftext.language.xpath2.XPath2Package#getNodeComp()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface NodeComp extends Comp {
      * @return the value of the '<em>Operator</em>' attribute.
      * @see org.emftext.language.xpath2.NodeCompKind
      * @see #setOperator(NodeCompKind)
-     * @see org.emftext.language.xpath2.Xpath2Package#getNodeComp_Operator()
+     * @see org.emftext.language.xpath2.XPath2Package#getNodeComp_Operator()
      * @model required="true"
      * @generated
      */

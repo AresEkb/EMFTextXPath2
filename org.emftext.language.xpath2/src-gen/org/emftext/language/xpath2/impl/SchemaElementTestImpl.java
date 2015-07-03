@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.SchemaElementTest;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,10 +27,10 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.SchemaElementTestImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -71,7 +71,7 @@ public class SchemaElementTestImpl extends KindTestImpl implements SchemaElement
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.SCHEMA_ELEMENT_TEST;
+        return XPath2Package.Literals.SCHEMA_ELEMENT_TEST;
     }
 
     /**
@@ -92,7 +92,7 @@ public class SchemaElementTestImpl extends KindTestImpl implements SchemaElement
         QName oldName = name;
         name = newName;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.SCHEMA_ELEMENT_TEST__NAME, oldName, name));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.SCHEMA_ELEMENT_TEST__NAME, oldName, name));
     }
 
     /**
@@ -103,7 +103,7 @@ public class SchemaElementTestImpl extends KindTestImpl implements SchemaElement
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.SCHEMA_ELEMENT_TEST__NAME:
+            case XPath2Package.SCHEMA_ELEMENT_TEST__NAME:
                 return getName();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -117,7 +117,7 @@ public class SchemaElementTestImpl extends KindTestImpl implements SchemaElement
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.SCHEMA_ELEMENT_TEST__NAME:
+            case XPath2Package.SCHEMA_ELEMENT_TEST__NAME:
                 setName((QName)newValue);
                 return;
         }
@@ -132,7 +132,7 @@ public class SchemaElementTestImpl extends KindTestImpl implements SchemaElement
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.SCHEMA_ELEMENT_TEST__NAME:
+            case XPath2Package.SCHEMA_ELEMENT_TEST__NAME:
                 setName(NAME_EDEFAULT);
                 return;
         }
@@ -147,7 +147,7 @@ public class SchemaElementTestImpl extends KindTestImpl implements SchemaElement
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.SCHEMA_ELEMENT_TEST__NAME:
+            case XPath2Package.SCHEMA_ELEMENT_TEST__NAME:
                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
         }
         return super.eIsSet(featureID);

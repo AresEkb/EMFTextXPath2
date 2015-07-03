@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.xpath2.VarRef;
-import org.emftext.language.xpath2.Xpath2Package;
+import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,10 +27,10 @@ import org.emftext.language.xpath2.Xpath2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.emftext.language.xpath2.impl.VarRefImpl#getVarName <em>Var Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -71,7 +71,7 @@ public class VarRefImpl extends PrimaryExprImpl implements VarRef {
      */
     @Override
     protected EClass eStaticClass() {
-        return Xpath2Package.Literals.VAR_REF;
+        return XPath2Package.Literals.VAR_REF;
     }
 
     /**
@@ -92,7 +92,7 @@ public class VarRefImpl extends PrimaryExprImpl implements VarRef {
         QName oldVarName = varName;
         varName = newVarName;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, Xpath2Package.VAR_REF__VAR_NAME, oldVarName, varName));
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.VAR_REF__VAR_NAME, oldVarName, varName));
     }
 
     /**
@@ -103,7 +103,7 @@ public class VarRefImpl extends PrimaryExprImpl implements VarRef {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case Xpath2Package.VAR_REF__VAR_NAME:
+            case XPath2Package.VAR_REF__VAR_NAME:
                 return getVarName();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -117,7 +117,7 @@ public class VarRefImpl extends PrimaryExprImpl implements VarRef {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case Xpath2Package.VAR_REF__VAR_NAME:
+            case XPath2Package.VAR_REF__VAR_NAME:
                 setVarName((QName)newValue);
                 return;
         }
@@ -132,7 +132,7 @@ public class VarRefImpl extends PrimaryExprImpl implements VarRef {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case Xpath2Package.VAR_REF__VAR_NAME:
+            case XPath2Package.VAR_REF__VAR_NAME:
                 setVarName(VAR_NAME_EDEFAULT);
                 return;
         }
@@ -147,7 +147,7 @@ public class VarRefImpl extends PrimaryExprImpl implements VarRef {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case Xpath2Package.VAR_REF__VAR_NAME:
+            case XPath2Package.VAR_REF__VAR_NAME:
                 return VAR_NAME_EDEFAULT == null ? varName != null : !VAR_NAME_EDEFAULT.equals(varName);
         }
         return super.eIsSet(featureID);

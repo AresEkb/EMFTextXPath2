@@ -32,7 +32,9 @@ public class Xpath2UnicodeConverter extends org.emftext.language.xpath2.resource
 	private InputStream inputStream;
 	
 	/**
+	 * <p>
 	 * Creates a new UnicodeConverter that reads from the given stream.
+	 * </p>
 	 * 
 	 * @param inputStream the original stream to read from
 	 */
