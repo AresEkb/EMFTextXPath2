@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: EMFText Parser Plugin: xpath2
+Bundle-Name: EMFText Parser Plugin: XPath 2.0
 Bundle-SymbolicName: org.emftext.language.xpath2.resource.xpath2;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Software Technology Group - TU Dresden Germany
 Require-Bundle: org.eclipse.core.runtime;resolution:=optional,
   org.eclipse.core.resources;resolution:=optional,
