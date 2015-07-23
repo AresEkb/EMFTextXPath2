@@ -127,10 +127,9 @@ public class Xpath2BuilderAdapter extends IncrementalProjectBuilder {
 		}
 		
 		if (resource instanceof IFile && resource.getName().endsWith("." + new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation().getSyntaxName())) {
-			// First, call the default generated builder that is usually customized to add
-			// compilation-like behavior. The Builder may consume one tick from the progress
-			// monitor.
-			build((IFile) resource, resourceSet, monitor);
+			// Calling the default generated builder is disabled because of syntax option
+			// 'disableBuilder'.
+			monitor.worked(1);
 			// Second, call the task item builder that searches for task items in DSL
 			// documents and creates task markers. The TaskItemBuilder may consume one tick
 			// from the progress monitor.

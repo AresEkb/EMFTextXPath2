@@ -10,13 +10,8 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.debug;
 
-import org.eclipse.debug.core.sourcelookup.AbstractSourceLookupDirector;
-import org.eclipse.debug.core.sourcelookup.ISourceLookupParticipant;
 
-public class Xpath2SourceLocator extends AbstractSourceLookupDirector {
-	
-	public void initializeParticipants() {
-		addParticipants(new ISourceLookupParticipant[]{new org.emftext.language.xpath2.resource.xpath2.debug.Xpath2SourceLookupParticipant()});
-	}
-	
+public class Xpath2SourceLocator {
+	// The generator for this class is currently disabled by option
+	// 'disableDebugSupport' in the .cs file.
 }

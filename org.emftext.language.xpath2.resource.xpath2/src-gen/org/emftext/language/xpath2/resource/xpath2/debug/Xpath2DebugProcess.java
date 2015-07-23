@@ -10,63 +10,8 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.debug;
 
-import org.eclipse.debug.core.DebugException;
-import org.eclipse.debug.core.ILaunch;
-import org.eclipse.debug.core.model.IProcess;
-import org.eclipse.debug.core.model.IStreamsProxy;
 
-public class Xpath2DebugProcess extends org.emftext.language.xpath2.resource.xpath2.debug.Xpath2DebugElement implements IProcess, org.emftext.language.xpath2.resource.xpath2.debug.IXpath2DebugEventListener {
-	
-	private ILaunch launch;
-	
-	private boolean terminated = false;
-	
-	public Xpath2DebugProcess(ILaunch launch) {
-		super(launch.getDebugTarget());
-		this.launch = launch;
-	}
-	
-	public boolean canTerminate() {
-		return !terminated;
-	}
-	
-	public boolean isTerminated() {
-		return terminated;
-	}
-	
-	public void terminate() throws DebugException {
-		terminated = true;
-	}
-	
-	public String getLabel() {
-		return null;
-	}
-	
-	public ILaunch getLaunch() {
-		return launch;
-	}
-	
-	public IStreamsProxy getStreamsProxy() {
-		return null;
-	}
-	
-	public void setAttribute(String key, String value) {
-	}
-	
-	public String getAttribute(String key) {
-		return null;
-	}
-	
-	public int getExitValue() throws DebugException {
-		return 0;
-	}
-	
-	public void handleMessage(org.emftext.language.xpath2.resource.xpath2.debug.Xpath2DebugMessage message) {
-		if (message.hasType(org.emftext.language.xpath2.resource.xpath2.debug.EXpath2DebugMessageTypes.TERMINATED)) {
-			terminated = true;
-		} else {
-			// ignore other events
-		}
-	}
-	
+public class Xpath2DebugProcess {
+	// The generator for this class is currently disabled by option
+	// 'disableDebugSupport' in the .cs file.
 }

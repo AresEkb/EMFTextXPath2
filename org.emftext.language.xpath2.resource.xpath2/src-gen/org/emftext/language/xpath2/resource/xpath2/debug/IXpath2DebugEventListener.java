@@ -11,10 +11,7 @@
 package org.emftext.language.xpath2.resource.xpath2.debug;
 
 
-public interface IXpath2DebugEventListener {
-	
-	/**
-	 * Notification that the given event occurred in the while debugging.
-	 */
-	public void handleMessage(org.emftext.language.xpath2.resource.xpath2.debug.Xpath2DebugMessage message);
+public class IXpath2DebugEventListener {
+	// The generator for this class is currently disabled by option
+	// 'disableDebugSupport' in the .cs file.
 }

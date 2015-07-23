@@ -15,11 +15,15 @@ OPTIONS {
     reloadGeneratorModel = "true";
     generateCodeFromGeneratorModel = "true";
     usePredefinedTokens = "false";
-    disableTokenSorting = "true";
     overridePluginXML = "false";
     ignoreTypeRestrictionsForPrinting = "true";
     licenceHeader = "licenceHeader.txt";
     editorName = "EMFText XPath 2.0 Editor";
+    disableBuilder = "true";
+    disableDebugSupport = "true";
+    disableLaunchSupport = "true";
+    disableNewProjectWizard = "true";
+    disableTokenSorting = "true";
 }
 
 TOKENS {

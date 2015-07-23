@@ -84,7 +84,7 @@
 	
 	<extension-point id="org.emftext.language.xpath2.resource.xpath2.default_load_options" name="Default Load Options" schema="schema/default_load_options.exsd">
 	</extension-point>
-	
+
 	<extension point="org.emftext.language.xpath2.resource.xpath2.default_load_options">
 		<provider class="org.emftext.language.xpath2.resource.xpath2.post.PostProcessor"
 			id="org.emftext.language.xpath2.resource.xpath2.post.PostProcessor">
@@ -98,34 +98,5 @@
 	
 	<extension-point id="org.emftext.language.xpath2.resource.xpath2.additional_extension_parser" name="Additional Extension Parser" schema="schema/additional_extension_parser.exsd">
 	</extension-point>
-	
-	<extension point="org.eclipse.debug.core.breakpoints">
-		<breakpoint class="org.emftext.language.xpath2.resource.xpath2.debug.Xpath2LineBreakpoint" id="org.emftext.language.xpath2.resource.xpath2.debug.breakpoint" markerType="org.emftext.language.xpath2.resource.xpath2.debug.lineBreakpoint.marker" name="xpath2 Breakpoint">
-		</breakpoint>
-	</extension>
-	
-	<extension id="org.emftext.language.xpath2.resource.xpath2.debug.lineBreakpoint.marker" point="org.eclipse.core.resources.markers">
-		<super type="org.eclipse.debug.core.lineBreakpointMarker">
-		</super>
-		<super type="org.eclipse.core.resources.textmarker">
-		</super>
-		<persistent value="true">
-		</persistent>
-	</extension>
-	
-	<extension point="org.eclipse.debug.core.launchConfigurationTypes">
-		<launchConfigurationType id="org.emftext.language.xpath2.resource.xpath2.ui.launchConfigurationType" delegate="org.emftext.language.xpath2.resource.xpath2.launch.Xpath2LaunchConfigurationDelegate" modes="run,debug" name="xpath2 Application" sourceLocatorId="org.emftext.language.xpath2.resource.xpath2.ui.sourceLocator" sourcePathComputerId="org.emftext.language.xpath2.resource.xpath2.ui.sourcePathComputer" delegateName="xpath2 Launch Tooling" delegateDescription="This will run or debug .xpath2 files.">
-		</launchConfigurationType>
-	</extension>
-	
-	<extension point="org.eclipse.debug.core.sourcePathComputers">
-		<sourcePathComputer class="org.emftext.language.xpath2.resource.xpath2.debug.Xpath2SourcePathComputerDelegate" id="org.emftext.language.xpath2.resource.xpath2.ui.sourcePathComputer">
-		</sourcePathComputer>
-	</extension>
-	
-	<extension point="org.eclipse.debug.core.sourceLocators">
-		<sourceLocator id="org.emftext.language.xpath2.resource.xpath2.ui.sourceLocator" class="org.emftext.language.xpath2.resource.xpath2.debug.Xpath2SourceLocator" name="xpath2 Source Locator">
-		</sourceLocator>
-	</extension>
 	
 </plugin>

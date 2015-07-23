@@ -34,10 +34,6 @@
 		</category>
 		<wizard category="org.emftext.runtime.ui.EMFTextFileCategory" icon="/icons/default_new_icon.gif" class="org.emftext.language.xpath2.resource.xpath2.ui.Xpath2NewFileWizard" id="org.emftext.language.xpath2.resource.xpath2.ui.Xpath2NewFileWizard" name="EMFText .xpath2 file">
 		</wizard>
-		<category id="org.emftext.runtime.ui.EMFTextProjectCategory" name="EMFText Project">
-		</category>
-		<wizard category="org.emftext.runtime.ui.EMFTextProjectCategory" icon="/icons/default_new_icon.gif" class="org.emftext.language.xpath2.resource.xpath2.ui.Xpath2NewProjectWizard" id="org.emftext.language.xpath2.resource.xpath2.ui.Xpath2NewProjectWizard" name="EMFText xpath2 project" project="true">
-		</wizard>
 	</extension>
 	
 	<extension point="org.eclipse.ui.ide.markerResolution">
@@ -94,92 +90,6 @@
 	<extension point="org.eclipse.ui.bindings">
 		<key sequence="M1+7" commandId="org.emftext.language.xpath2.resource.xpath2.ui.command.togglecomment" schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" contextId="org.emftext.language.xpath2.resource.xpath2.EditorScope">
 		</key>
-	</extension>
-	
-	<extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
-		<launchConfigurationTypeImage icon="/icons/launch_type_icon.gif" configTypeID="org.emftext.language.xpath2.resource.xpath2.ui.launchConfigurationType" id="org.emftext.language.xpath2.launchImage">
-		</launchConfigurationTypeImage>
-	</extension>
-	
-	<extension point="org.eclipse.debug.ui.launchConfigurationTabGroups">
-		<launchConfigurationTabGroup type="org.emftext.language.xpath2.resource.xpath2.ui.launchConfigurationType" class="org.emftext.language.xpath2.resource.xpath2.ui.launch.Xpath2LaunchConfigurationTabGroup" id="org.emftext.language.xpath2.launchConfigurationTabGroup" helpContextId="org.emftext.language.xpath2.launchConfigHelpContext">
-			<launchMode mode="debug" perspective="org.eclipse.debug.ui.DebugPerspective" description="Debug xpath2 model.">
-			</launchMode>
-			<launchMode mode="run" description="Run xpath2 model.">
-			</launchMode>
-		</launchConfigurationTabGroup>
-	</extension>
-	
-	<extension point="org.eclipse.debug.ui.launchShortcuts">
-		<shortcut label="xpath2 Application" icon="/icons/launch_shortcut_icon.gif" helpContextId="org.emftext.language.xpath2.launch" modes="run,debug" class="org.emftext.language.xpath2.resource.xpath2.ui.launch.Xpath2LaunchShortcut" description="Launch a xpath2 model" id="org.emftext.language.xpath2.launchShortcut">
-			<description description="Run xpath2 model" mode="run">
-			</description>
-			<description description="Debug xpath2 model" mode="debug">
-			</description>
-			<contextualLaunch>
-				<enablement>
-					<with variable="selection">
-						<count value="1">
-						</count>
-						<iterate>
-							<test property="org.emftext.language.xpath2.isLaunchable">
-							</test>
-						</iterate>
-					</with>
-				</enablement>
-			</contextualLaunch>
-			<configurationType id="org.emftext.language.xpath2.resource.xpath2.ui.launchConfigurationType">
-			</configurationType>
-		</shortcut>
-	</extension>
-	
-	<extension point="org.eclipse.core.expressions.propertyTesters">
-		<propertyTester id="org.emftext.language.xpath2.PropertyTester" type="java.lang.Object" namespace="org.emftext.language.xpath2" properties="isLaunchable" class="org.emftext.language.xpath2.resource.xpath2.ui.Xpath2PropertyTester">
-		</propertyTester>
-	</extension>
-	
-	<extension point="org.eclipse.ui.editors.annotationTypes">
-		<type name="org.emftext.language.xpath2.resource.xpath2.ui.debug.lineBreakpoint" markerType="org.emftext.language.xpath2.resource.xpath2.debug.lineBreakpoint.marker" super="org.eclipse.debug.core.breakpoint">
-		</type>
-	</extension>
-	
-	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
-		<specification annotationType="org.emftext.language.xpath2.resource.xpath2.ui.debug.lineBreakpoint" label="Breakpoints (in .xpath2 files)" icon="/icons/breakpoint_icon.gif" textPreferenceKey="org.emftext.language.xpath2.resource.xpath2.ui.lineBreakpoint" textPreferenceValue="false" highlightPreferenceKey="org.emftext.language.xpath2.resource.xpath2.ui.lineBreakpointHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="org.emftext.language.xpath2.resource.xpath2.ui.lineBreakpointIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="org.emftext.language.xpath2.resource.xpath2.ui.lineBreakpointIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="org.emftext.language.xpath2.resource.xpath2.ui.lineBreakpointColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="org.emftext.language.xpath2.resource.xpath2.ui.showLineBreakpointInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="org.emftext.language.xpath2.resource.xpath2.ui.isLineBreakpointGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="org.emftext.language.xpath2.resource.xpath2.ui.isLineBreakpointGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="org.emftext.language.xpath2.resource.xpath2.ui.lineBreakpointTextStyle" textStylePreferenceValue="NONE">
-		</specification>
-	</extension>
-	
-	<extension point="org.eclipse.core.runtime.adapters">
-		<factory adaptableType="org.emftext.language.xpath2.resource.xpath2.ui.Xpath2Editor" class="org.emftext.language.xpath2.resource.xpath2.ui.debug.Xpath2AdapterFactory">
-			<adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget">
-			</adapter>
-		</factory>
-		<factory adaptableType="org.emftext.language.xpath2.resource.xpath2.debug.Xpath2DebugVariable" class="org.emftext.language.xpath2.resource.xpath2.ui.debug.Xpath2AdapterFactory">
-			<adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementLabelProvider">
-			</adapter>
-		</factory>
-		<factory adaptableType="org.emftext.language.xpath2.resource.xpath2.debug.Xpath2DebugVariable" class="org.emftext.language.xpath2.resource.xpath2.ui.debug.Xpath2AdapterFactory">
-			<adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementContentProvider">
-			</adapter>
-		</factory>
-	</extension>
-	
-	<extension point="org.eclipse.ui.popupMenus">
-		<viewerContribution id="org.emftext.language.xpath2.resource.xpath2.ui.RulerPopupActions" targetID="org.emftext.language.xpath2.resource.xpath2.EditorRuler">
-			<action id="org.emftext.language.xpath2.resource.xpath2.ui.toggleBreakpointAction" icon="icons/breakpoint_icon.gif" label="Toggle Breakpoint" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" menubarPath="debug">
-			</action>
-		</viewerContribution>
-	</extension>
-	
-	<extension point="org.eclipse.ui.editorActions">
-		<editorContribution targetID="org.emftext.language.xpath2.resource.xpath2.ui.Xpath2Editor" id="org.emftext.language.xpath2.resource.xpath2.ui.BreakpointRulerActions">
-			<action id="org.emftext.language.xpath2.resource.xpath2.ui.debug.RulerToggleBreakpointAction" label="Add breakpoint" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" actionID="RulerDoubleClick">
-			</action>
-		</editorContribution>
-	</extension>
-	
-	<extension point="org.eclipse.debug.ui.debugModelPresentations">
-		<debugModelPresentation id="org.emftext.language.xpath2.resource.xpath2.debugModel" class="org.emftext.language.xpath2.resource.xpath2.ui.debug.Xpath2DebugModelPresentation">
-		</debugModelPresentation>
 	</extension>
 	
 </plugin>

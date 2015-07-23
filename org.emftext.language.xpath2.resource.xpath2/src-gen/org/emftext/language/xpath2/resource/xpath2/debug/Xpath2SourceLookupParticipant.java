@@ -10,17 +10,8 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.debug;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.debug.core.sourcelookup.AbstractSourceLookupParticipant;
 
-public class Xpath2SourceLookupParticipant extends AbstractSourceLookupParticipant {
-	
-	public String getSourceName(Object object) throws CoreException {
-		if (object instanceof org.emftext.language.xpath2.resource.xpath2.debug.Xpath2StackFrame) {
-			org.emftext.language.xpath2.resource.xpath2.debug.Xpath2StackFrame frame = (org.emftext.language.xpath2.resource.xpath2.debug.Xpath2StackFrame) object;
-			return frame.getResourceURI();
-		}
-		return null;
-	}
-	
+public class Xpath2SourceLookupParticipant {
+	// The generator for this class is currently disabled by option
+	// 'disableDebugSupport' in the .cs file.
 }

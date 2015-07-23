@@ -10,33 +10,8 @@
  */
 package org.emftext.language.xpath2.resource.xpath2.debug;
 
-import org.eclipse.debug.core.DebugPlugin;
-import org.eclipse.debug.core.IBreakpointManager;
-import org.eclipse.debug.core.model.DebugElement;
-import org.eclipse.debug.core.model.IDebugTarget;
 
-public abstract class Xpath2DebugElement extends DebugElement {
-	
-	/**
-	 * Constructs a new debug element in the given target.
-	 */
-	public Xpath2DebugElement(IDebugTarget target) {
-		super(target);
-	}
-	
-	public String getModelIdentifier() {
-		return org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Plugin.DEBUG_MODEL_ID;
-	}
-	
-	/**
-	 * <p>
-	 * Returns the breakpoint manager.
-	 * </p>
-	 * 
-	 * @return the breakpoint manager
-	 */
-	protected IBreakpointManager getBreakpointManager() {
-		return DebugPlugin.getDefault().getBreakpointManager();
-	}
-	
+public class Xpath2DebugElement {
+	// The generator for this class is currently disabled by option
+	// 'disableDebugSupport' in the .cs file.
 }
