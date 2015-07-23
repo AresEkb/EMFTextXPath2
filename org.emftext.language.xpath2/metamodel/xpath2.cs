@@ -7,6 +7,7 @@
 // Contributors:
 //    Denis Nikiforov - initial API and implementation
 
+@SuppressWarnings(noRuleForMetaClass) // Comment meta class isn't supported yet
 SYNTAXDEF xpath2
 FOR <http://www.emftext.org/language/xpath2>
 START Expr
@@ -41,7 +42,7 @@ TOKENS {
     DEFINE FRAGMENT CHAR $'\u0009'|'\u000A'|'\u000D'|'\u0020'..'\uD7FF'|'\uE000'..'\uFFFD'$;
     DEFINE INTEGER_LITERAL DIGITS;
     DEFINE DECIMAL_LITERAL $('.'$ + DIGITS + $)|($ + DIGITS + $'.'('0'..'9')*)$; 
-    DEFINE DOUBLE_LITERAL $('.'$ + DIGITS + $)|($ + DIGITS + $('.'('0'..'9')*)?)('e'|'E')('+'|'-')?$ + DIGITS;
+    DEFINE DOUBLE_LITERAL $(('.'$ + DIGITS + $)|($ + DIGITS + $('.'('0'..'9')*)?))('e'|'E')('+'|'-')?$ + DIGITS;
     DEFINE STRING_LITERAL $('\"')($ + ESCAPE_QUOT + $|~('\"'))*('\"')|('\'')($ + ESCAPE_APOS + $|~('\''))*('\'')$;  
 
 //    DEFINE FRAGMENT NAME_START_CHAR $':'|'A'..'Z'|'_'|'a'..'z'|'\u00C0'..'\u00D6'|'\u00D8'..'\u00F6'|'\u00F8'..'\u02FF'|'\u0370'..'\u037D'|'\u037F'..'\u1FFF'|'\u200C'..'\u200D'|'\u2070'..'\u218F'|'\u2C00'..'\u2FEF'|'\u3001'..'\uD7FF'|'\uF900'..'\uFDCF'|'\uFDF0'..'\uFFFD'|'\u10000'..'\uEFFFF'$;
@@ -51,6 +52,7 @@ TOKENS {
     // TODO: '\u10000'..'\uEFFFF' is not supported
     DEFINE FRAGMENT NCNAME_START_CHAR $'A'..'Z'|'_'|'a'..'z'|'\u00C0'..'\u00D6'|'\u00D8'..'\u00F6'|'\u00F8'..'\u02FF'|'\u0370'..'\u037D'|'\u037F'..'\u1FFF'|'\u200C'..'\u200D'|'\u2070'..'\u218F'|'\u2C00'..'\u2FEF'|'\u3001'..'\uD7FF'|'\uF900'..'\uFDCF'|'\uFDF0'..'\uFFFD'$;
     DEFINE FRAGMENT NCNAME_CHAR NCNAME_START_CHAR + $|'-'|'.'|'0'..'9'|'\u00B7'|'\u0300'..'\u036F'|'\u203F'..'\u2040'$;
+    @SuppressWarnings(tokenOverlapping) // I think it's impossible to avoid overlapping
     DEFINE NCNAME $($ + NCNAME_START_CHAR + $)($ + NCNAME_CHAR + $)*$;
 
     DEFINE QNAME NCNAME + $':'$ + NCNAME;
