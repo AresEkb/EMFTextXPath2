@@ -29,20 +29,20 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface AxisStep extends StepExpr {
-    /**
-     * Returns the value of the '<em><b>Predicate</b></em>' containment reference list.
-     * The list contents are of type {@link org.emftext.language.xpath2.Predicate}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Predicate</em>' containment reference list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Predicate</em>' containment reference list.
-     * @see org.emftext.language.xpath2.XPath2Package#getAxisStep_Predicate()
-     * @model containment="true"
-     * @generated
-     */
-    EList<Predicate> getPredicate();
+	/**
+	 * Returns the value of the '<em><b>Predicate</b></em>' containment reference list.
+	 * The list contents are of type {@link org.emftext.language.xpath2.Predicate}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Predicate</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Predicate</em>' containment reference list.
+	 * @see org.emftext.language.xpath2.XPath2Package#getAxisStep_Predicate()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Predicate> getPredicate();
 
 } // AxisStep

@@ -32,5 +32,10 @@ public class Xpath2Rule extends org.emftext.language.xpath2.resource.xpath2.gram
 		return (org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice) getChildren()[0];
 	}
 	
+	@Deprecated
+	public String toString() {
+		return metaclass == null ? "null" : metaclass.getName() + " ::= " + getDefinition().toString();
+	}
+	
 }
 

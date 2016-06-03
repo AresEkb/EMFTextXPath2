@@ -25,23 +25,23 @@ import org.emftext.language.xpath2.XPath2Package;
  * @generated
  */
 public abstract class NodeTestImpl extends EObjectImpl implements NodeTest {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected NodeTestImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NodeTestImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return XPath2Package.Literals.NODE_TEST;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return XPath2Package.Literals.NODE_TEST;
+	}
 
 } //NodeTestImpl

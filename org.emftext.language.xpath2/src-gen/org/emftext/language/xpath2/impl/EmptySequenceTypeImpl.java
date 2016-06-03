@@ -23,23 +23,23 @@ import org.emftext.language.xpath2.XPath2Package;
  * @generated
  */
 public class EmptySequenceTypeImpl extends SequenceTypeImpl implements EmptySequenceType {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EmptySequenceTypeImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EmptySequenceTypeImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return XPath2Package.Literals.EMPTY_SEQUENCE_TYPE;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return XPath2Package.Literals.EMPTY_SEQUENCE_TYPE;
+	}
 
 } //EmptySequenceTypeImpl

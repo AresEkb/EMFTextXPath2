@@ -23,23 +23,23 @@ import org.emftext.language.xpath2.XPath2Package;
  * @generated
  */
 public abstract class LiteralImpl extends PrimaryExprImpl implements Literal {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected LiteralImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LiteralImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return XPath2Package.Literals.LITERAL;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return XPath2Package.Literals.LITERAL;
+	}
 
 } //LiteralImpl

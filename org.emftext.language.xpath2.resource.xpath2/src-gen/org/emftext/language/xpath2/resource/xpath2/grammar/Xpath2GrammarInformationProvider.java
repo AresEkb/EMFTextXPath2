@@ -68,6 +68,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_0_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class Expr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_0 = INSTANCE.getXPATH2_0();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_0() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), XPATH2_0_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -148,6 +151,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_1_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class ForExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_1 = INSTANCE.getXPATH2_1();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_1() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), XPATH2_1_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -223,6 +229,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_2_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * QuantifiedExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_2 = INSTANCE.getXPATH2_2();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_2() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), XPATH2_2_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -293,6 +303,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_3_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class Iterator
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_3 = INSTANCE.getXPATH2_3();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_3() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), XPATH2_3_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -373,6 +386,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_4_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class IfExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_4 = INSTANCE.getXPATH2_4();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_4() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), XPATH2_4_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -428,6 +444,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_5_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class OrExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_5 = INSTANCE.getXPATH2_5();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_5() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), XPATH2_5_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -483,6 +502,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_6_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class AndExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_6 = INSTANCE.getXPATH2_6();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_6() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), XPATH2_6_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -538,6 +560,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_7_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * ComparisonExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_7 = INSTANCE.getXPATH2_7();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_7() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), XPATH2_7_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -593,6 +619,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_8_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class RangeExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_8 = INSTANCE.getXPATH2_8();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_8() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), XPATH2_8_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -613,6 +642,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_9_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class GeneralComp
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_9 = INSTANCE.getXPATH2_9();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_9() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralComp(), XPATH2_9_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -633,6 +665,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_10_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class ValueComp
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_10 = INSTANCE.getXPATH2_10();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_10() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getValueComp(), XPATH2_10_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -653,6 +688,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_11_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class NodeComp
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_11 = INSTANCE.getXPATH2_11();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_11() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getNodeComp(), XPATH2_11_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -708,6 +746,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_12_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class AdditiveExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_12 = INSTANCE.getXPATH2_12();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_12() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), XPATH2_12_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -763,6 +804,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_13_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * MultiplicativeExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_13 = INSTANCE.getXPATH2_13();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_13() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), XPATH2_13_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -818,6 +863,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_14_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class UnionExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_14 = INSTANCE.getXPATH2_14();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_14() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), XPATH2_14_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -873,6 +921,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_15_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * IntersectExceptExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_15 = INSTANCE.getXPATH2_15();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_15() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), XPATH2_15_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -928,6 +980,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_16_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * InstanceofExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_16 = INSTANCE.getXPATH2_16();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_16() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), XPATH2_16_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -983,6 +1039,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_17_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class TreatExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_17 = INSTANCE.getXPATH2_17();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_17() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), XPATH2_17_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1038,6 +1097,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_18_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class CastableExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_18 = INSTANCE.getXPATH2_18();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_18() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getCastableExpr(), XPATH2_18_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1093,6 +1155,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_19_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class CastExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_19 = INSTANCE.getXPATH2_19();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_19() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getCastExpr(), XPATH2_19_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1118,6 +1183,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_20_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class UnaryExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_20 = INSTANCE.getXPATH2_20();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_20() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnaryExpr(), XPATH2_20_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1143,6 +1211,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_21_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class FilterExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_21 = INSTANCE.getXPATH2_21();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_21() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), XPATH2_21_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1248,6 +1319,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_22_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class FunctionCall
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_22 = INSTANCE.getXPATH2_22();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_22() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), XPATH2_22_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1273,6 +1347,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_23_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class PathExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_23 = INSTANCE.getXPATH2_23();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_23() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), XPATH2_23_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1285,7 +1362,7 @@ public class Xpath2GrammarInformationProvider {
 	
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment XPATH2_24_0_0_1 = INSTANCE.getXPATH2_24_0_0_1();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment getXPATH2_24_0_0_1() {
-		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getChildStepExpr().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.CHILD_STEP_EXPR__STEP), org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, new EClass[] {org.emftext.language.xpath2.XPath2Package.eINSTANCE.getStepExpr(), }, 0);
+		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getChildStepExpr().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.CHILD_STEP_EXPR__STEP), org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, new EClass[] {org.emftext.language.xpath2.XPath2Package.eINSTANCE.getStepExprChild(), }, 0);
 	}
 	
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Sequence XPATH2_24_0_0 = INSTANCE.getXPATH2_24_0_0();
@@ -1298,6 +1375,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_24_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * ChildStepExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_24 = INSTANCE.getXPATH2_24();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_24() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getChildStepExpr(), XPATH2_24_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1310,7 +1391,7 @@ public class Xpath2GrammarInformationProvider {
 	
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment XPATH2_25_0_0_1 = INSTANCE.getXPATH2_25_0_0_1();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment getXPATH2_25_0_0_1() {
-		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDescOrSelfStepExpr().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.DESC_OR_SELF_STEP_EXPR__STEP), org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, new EClass[] {org.emftext.language.xpath2.XPath2Package.eINSTANCE.getStepExpr(), }, 0);
+		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDescOrSelfStepExpr().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.DESC_OR_SELF_STEP_EXPR__STEP), org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, new EClass[] {org.emftext.language.xpath2.XPath2Package.eINSTANCE.getStepExprChild(), }, 0);
 	}
 	
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Sequence XPATH2_25_0_0 = INSTANCE.getXPATH2_25_0_0();
@@ -1323,6 +1404,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_25_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * DescOrSelfStepExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_25 = INSTANCE.getXPATH2_25();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_25() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDescOrSelfStepExpr(), XPATH2_25_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1343,6 +1428,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_26_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class RootStepExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_26 = INSTANCE.getXPATH2_26();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_26() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRootStepExpr(), XPATH2_26_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1350,7 +1438,7 @@ public class Xpath2GrammarInformationProvider {
 	
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment XPATH2_27_0_0_0 = INSTANCE.getXPATH2_27_0_0_0();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment getXPATH2_27_0_0_0() {
-		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getSelfStepExpr().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.SELF_STEP_EXPR__STEP), org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, new EClass[] {org.emftext.language.xpath2.XPath2Package.eINSTANCE.getSelfStepExprChild(), }, 0);
+		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Containment(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getSelfStepExpr().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.SELF_STEP_EXPR__STEP), org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, new EClass[] {org.emftext.language.xpath2.XPath2Package.eINSTANCE.getStepExprChild(), }, 0);
 	}
 	
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Sequence XPATH2_27_0_0 = INSTANCE.getXPATH2_27_0_0();
@@ -1363,6 +1451,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_27_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class SelfStepExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_27 = INSTANCE.getXPATH2_27();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_27() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getSelfStepExpr(), XPATH2_27_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1398,6 +1489,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_28_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * GeneralForwardStep
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_28 = INSTANCE.getXPATH2_28();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_28() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), XPATH2_28_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1428,6 +1523,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_29_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * AbbrevForwardStep
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_29 = INSTANCE.getXPATH2_29();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_29() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), XPATH2_29_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1463,6 +1562,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_30_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * GeneralReverseStep
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_30 = INSTANCE.getXPATH2_30();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_30() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), XPATH2_30_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1488,6 +1591,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_31_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * AbbrevReverseStep
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_31 = INSTANCE.getXPATH2_31();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_31() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevReverseStep(), XPATH2_31_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1508,6 +1615,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_32_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class NodeKindTest
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_32 = INSTANCE.getXPATH2_32();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_32() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getNodeKindTest(), XPATH2_32_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1553,6 +1663,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_33_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class QNameTest
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_33 = INSTANCE.getXPATH2_33();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_33() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQNameTest(), XPATH2_33_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1573,6 +1686,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_34_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class AnyWildcard
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_34 = INSTANCE.getXPATH2_34();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_34() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAnyWildcard(), XPATH2_34_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1603,6 +1719,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_35_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * LocalNameWildcard
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_35 = INSTANCE.getXPATH2_35();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_35() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getLocalNameWildcard(), XPATH2_35_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1633,6 +1753,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_36_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * NamespaceWildcard
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_36 = INSTANCE.getXPATH2_36();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_36() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getNamespaceWildcard(), XPATH2_36_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1663,6 +1787,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_37_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class Predicate
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_37 = INSTANCE.getXPATH2_37();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_37() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), XPATH2_37_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1713,6 +1840,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_38_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class VarRef
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_38 = INSTANCE.getXPATH2_38();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_38() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getVarRef(), XPATH2_38_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1743,6 +1873,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_39_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * ParenthesizedExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_39 = INSTANCE.getXPATH2_39();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_39() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), XPATH2_39_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1763,6 +1897,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_40_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * ContextItemExpr
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_40 = INSTANCE.getXPATH2_40();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_40() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getContextItemExpr(), XPATH2_40_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1788,6 +1926,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_41_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class SingleType
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_41 = INSTANCE.getXPATH2_41();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_41() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getSingleType(), XPATH2_41_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1818,6 +1959,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_42_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * EmptySequenceType
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_42 = INSTANCE.getXPATH2_42();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_42() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getEmptySequenceType(), XPATH2_42_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1843,6 +1988,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_43_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * ItemSequenceType
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_43 = INSTANCE.getXPATH2_43();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_43() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getItemSequenceType(), XPATH2_43_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1863,6 +2012,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_44_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class ItemKindTest
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_44 = INSTANCE.getXPATH2_44();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_44() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getItemKindTest(), XPATH2_44_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1893,6 +2045,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_45_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class AnyItemType
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_45 = INSTANCE.getXPATH2_45();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_45() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAnyItemType(), XPATH2_45_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1913,6 +2068,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_46_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * AtomicItemType
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_46 = INSTANCE.getXPATH2_46();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_46() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAtomicItemType(), XPATH2_46_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -1958,6 +2117,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_47_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class AtomicType
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_47 = INSTANCE.getXPATH2_47();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_47() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAtomicType(), XPATH2_47_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2008,6 +2170,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_48_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * OptionalAtomicType
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_48 = INSTANCE.getXPATH2_48();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_48() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOptionalAtomicType(), XPATH2_48_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2038,6 +2204,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_49_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class AnyKindTest
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_49 = INSTANCE.getXPATH2_49();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_49() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAnyKindTest(), XPATH2_49_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2073,6 +2242,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_50_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class DocumentTest
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_50 = INSTANCE.getXPATH2_50();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_50() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDocumentTest(), XPATH2_50_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2103,6 +2275,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_51_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class TextTest
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_51 = INSTANCE.getXPATH2_51();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_51() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTextTest(), XPATH2_51_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2133,6 +2308,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_52_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class CommentTest
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_52 = INSTANCE.getXPATH2_52();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_52() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getCommentTest(), XPATH2_52_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2163,6 +2341,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_53_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class PITest
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_53 = INSTANCE.getXPATH2_53();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_53() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPITest(), XPATH2_53_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2198,6 +2379,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_54_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class NCNamePITest
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_54 = INSTANCE.getXPATH2_54();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_54() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getNCNamePITest(), XPATH2_54_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2233,6 +2417,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_55_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * StringLiteralPITest
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_55 = INSTANCE.getXPATH2_55();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_55() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getStringLiteralPITest(), XPATH2_55_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2263,6 +2451,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_56_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * AttributeTest
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_56 = INSTANCE.getXPATH2_56();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_56() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAttributeTest(), XPATH2_56_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2353,6 +2545,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_57_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * WildcardAttributeTest
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_57 = INSTANCE.getXPATH2_57();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_57() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getWildcardAttributeTest(), XPATH2_57_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2468,6 +2664,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_58_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * NameAttributeTest
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_58 = INSTANCE.getXPATH2_58();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_58() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getNameAttributeTest(), XPATH2_58_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2528,6 +2728,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_59_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * SchemaAttributeTest
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_59 = INSTANCE.getXPATH2_59();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_59() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getSchemaAttributeTest(), XPATH2_59_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2558,6 +2762,9 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_60_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class ElementTest
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_60 = INSTANCE.getXPATH2_60();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_60() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getElementTest(), XPATH2_60_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2623,6 +2830,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_61_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * WildcardElementTest
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_61 = INSTANCE.getXPATH2_61();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_61() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getWildcardElementTest(), XPATH2_61_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2713,6 +2924,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_62_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * NameElementTest
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_62 = INSTANCE.getXPATH2_62();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_62() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getNameElementTest(), XPATH2_62_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2773,6 +2988,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_63_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * SchemaElementTest
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_63 = INSTANCE.getXPATH2_63();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_63() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getSchemaElementTest(), XPATH2_63_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2793,6 +3012,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_64_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * IntegerLiteral
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_64 = INSTANCE.getXPATH2_64();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_64() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntegerLiteral(), XPATH2_64_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2813,6 +3036,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_65_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * DecimalLiteral
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_65 = INSTANCE.getXPATH2_65();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_65() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDecimalLiteral(), XPATH2_65_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2833,6 +3060,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_66_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * DoubleLiteral
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_66 = INSTANCE.getXPATH2_66();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_66() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDoubleLiteral(), XPATH2_66_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);
@@ -2853,6 +3084,10 @@ public class Xpath2GrammarInformationProvider {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Choice(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE, XPATH2_67_0_0);
 	}
 	
+	/**
+	 * This constant refers to the definition of the syntax for meta class
+	 * StringLiteral
+	 */
 	public final static org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule XPATH2_67 = INSTANCE.getXPATH2_67();
 	private org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getXPATH2_67() {
 		return new org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getStringLiteral(), XPATH2_67_0, org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality.ONE);

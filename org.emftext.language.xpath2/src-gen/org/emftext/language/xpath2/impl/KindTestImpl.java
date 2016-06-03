@@ -25,23 +25,23 @@ import org.emftext.language.xpath2.XPath2Package;
  * @generated
  */
 public abstract class KindTestImpl extends EObjectImpl implements KindTest {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected KindTestImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected KindTestImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return XPath2Package.Literals.KIND_TEST;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return XPath2Package.Literals.KIND_TEST;
+	}
 
 } //KindTestImpl

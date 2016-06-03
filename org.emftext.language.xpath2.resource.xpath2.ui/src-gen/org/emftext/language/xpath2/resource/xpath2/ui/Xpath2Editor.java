@@ -172,7 +172,8 @@ public class Xpath2Editor extends TextEditor implements IEditingDomainProvider, 
 						}
 						int deltaKind = delta.getKind();
 						if (deltaKind == IResourceDelta.CHANGED && delta.getFlags() != IResourceDelta.MARKERS) {
-							Resource changedResource = resourceSet.getResource(URI.createURI(delta.getFullPath().toString()), false);
+							URI platformURI = URI.createPlatformResourceURI(delta.getFullPath().toString(), true);
+							Resource changedResource = resourceSet.getResource(platformURI, false);
 							if (changedResource != null) {
 								changedResource.unload();
 								org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource currentResource = getResource();

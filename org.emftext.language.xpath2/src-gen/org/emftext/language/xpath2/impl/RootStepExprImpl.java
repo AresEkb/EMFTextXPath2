@@ -23,23 +23,23 @@ import org.emftext.language.xpath2.XPath2Package;
  * @generated
  */
 public class RootStepExprImpl extends PathExprChildImpl implements RootStepExpr {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected RootStepExprImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RootStepExprImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return XPath2Package.Literals.ROOT_STEP_EXPR;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return XPath2Package.Literals.ROOT_STEP_EXPR;
+	}
 
 } //RootStepExprImpl

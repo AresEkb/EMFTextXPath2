@@ -28,30 +28,30 @@ package org.emftext.language.xpath2;
  * @generated
  */
 public interface DescOrSelfStepExpr extends PathExprChild {
-    /**
-     * Returns the value of the '<em><b>Step</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Step</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Step</em>' containment reference.
-     * @see #setStep(StepExpr)
-     * @see org.emftext.language.xpath2.XPath2Package#getDescOrSelfStepExpr_Step()
-     * @model containment="true" required="true"
-     * @generated
-     */
-    StepExpr getStep();
+	/**
+	 * Returns the value of the '<em><b>Step</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Step</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Step</em>' containment reference.
+	 * @see #setStep(StepExprChild)
+	 * @see org.emftext.language.xpath2.XPath2Package#getDescOrSelfStepExpr_Step()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	StepExprChild getStep();
 
-    /**
-     * Sets the value of the '{@link org.emftext.language.xpath2.DescOrSelfStepExpr#getStep <em>Step</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Step</em>' containment reference.
-     * @see #getStep()
-     * @generated
-     */
-    void setStep(StepExpr value);
+	/**
+	 * Sets the value of the '{@link org.emftext.language.xpath2.DescOrSelfStepExpr#getStep <em>Step</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Step</em>' containment reference.
+	 * @see #getStep()
+	 * @generated
+	 */
+	void setStep(StepExprChild value);
 
 } // DescOrSelfStepExpr

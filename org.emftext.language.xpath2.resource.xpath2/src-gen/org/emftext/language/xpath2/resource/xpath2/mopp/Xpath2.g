@@ -152,6 +152,16 @@ import org.eclipse.emf.ecore.EReference;
 		addErrorToResource(message.getMessage(), message.getColumn(), message.getLine(), message.getCharStart(), message.getCharEnd());
 	}
 	
+	public void addExpectedElement(EClass eClass, int expectationStartIndex, int expectationEndIndex) {
+		for (int expectationIndex = expectationStartIndex; expectationIndex <= expectationEndIndex; expectationIndex++) {
+			addExpectedElement(eClass, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[expectationIndex]);
+		}
+	}
+	
+	public void addExpectedElement(EClass eClass, int expectationIndex) {
+		addExpectedElement(eClass, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[expectationIndex]);
+	}
+	
 	public void addExpectedElement(EClass eClass, int[] ids) {
 		if (!this.rememberExpectedElements) {
 			return;
@@ -168,11 +178,6 @@ import org.eclipse.emf.ecore.EReference;
 		org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal expectedElement = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal(container, terminal, followSetID, containmentTrace);
 		setPosition(expectedElement, input.index());
 		int startIncludingHiddenTokens = expectedElement.getStartIncludingHiddenTokens();
-		if (lastStartIncludingHidden >= 0 && lastStartIncludingHidden < startIncludingHiddenTokens && cursorOffset > startIncludingHiddenTokens) {
-			// clear list of expected elements
-			this.expectedElements.clear();
-			this.expectedElementsIndexOfLastCompleteElement = 0;
-		}
 		lastStartIncludingHidden = startIncludingHiddenTokens;
 		this.expectedElements.add(expectedElement);
 	}
@@ -568,8 +573,6 @@ import org.eclipse.emf.ecore.EReference;
 				command.execute(dummyResource);
 			}
 		}
-		// remove all expected elements that were added after the last complete element
-		expectedElements = expectedElements.subList(0, expectedElementsIndexOfLastCompleteElement + 1);
 		int lastFollowSetID = expectedElements.get(expectedElementsIndexOfLastCompleteElement).getFollowSetID();
 		Set<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> currentFollowSet = new LinkedHashSet<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal>();
 		List<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal> newFollowSet = new ArrayList<org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectedTerminal>();
@@ -660,9 +663,7 @@ import org.eclipse.emf.ecore.EReference;
 	
 	private void completedElement(Object object, boolean isContainment) {
 		if (isContainment && !this.incompleteObjects.isEmpty()) {
-			boolean exists = this.incompleteObjects.remove(object);
-			if (!exists) {
-			}
+			this.incompleteObjects.remove(object);
 		}
 		if (object instanceof EObject) {
 			this.tokenIndexOfLastCompleteElement = getTokenStream().index();
@@ -683,27 +684,8 @@ start returns [ EObject element = null]
 :
 	{
 		// follow set for start rule(s)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[0]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[3]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[4]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[5]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[6]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[7]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[8]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[9]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[10]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[11]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[12]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[13]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[14]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[15]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[16]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[17]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[18]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[19]);
-		expectedElementsIndexOfLastCompleteElement = 0;
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), 0, 90);
+		expectedElementsIndexOfLastCompleteElement = 90;
 	}
 	(
 		c0 = parse_org_emftext_language_xpath2_Expr{ element = c0; }
@@ -798,10 +780,7 @@ parse_org_emftext_language_xpath2_Expr returns [org.emftext.language.xpath2.Expr
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[20]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[21]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[22]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[23]);
+		addExpectedElement(null, 91, 94);
 	}
 	
 	(
@@ -817,26 +796,7 @@ parse_org_emftext_language_xpath2_Expr returns [org.emftext.language.xpath2.Expr
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[24]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[25]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[26]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[27]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[28]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[29]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[30]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[31]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[32]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[33]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[34]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[35]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[36]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[37]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[38]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[39]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[40]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[41]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[42]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[43]);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), 95, 185);
 			}
 			
 			(
@@ -919,20 +879,20 @@ parse_org_emftext_language_xpath2_Expr returns [org.emftext.language.xpath2.Expr
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[44]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[45]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[46]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[47]);
+				// We've found the last token for this rule. The constructed EObject is now
+				// complete.
+				completedElement(element, true);
+				addExpectedElement(null, 186, 189);
 			}
 			
 		)
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[48]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[49]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[50]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[51]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 190, 193);
 	}
 	
 ;
@@ -952,7 +912,7 @@ parse_org_emftext_language_xpath2_ForExpr returns [org.emftext.language.xpath2.F
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[52]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), 194);
 	}
 	
 	(
@@ -978,8 +938,7 @@ parse_org_emftext_language_xpath2_ForExpr returns [org.emftext.language.xpath2.F
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[53]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[54]);
+		addExpectedElement(null, 195, 196);
 	}
 	
 	(
@@ -995,7 +954,7 @@ parse_org_emftext_language_xpath2_ForExpr returns [org.emftext.language.xpath2.F
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[55]);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), 197);
 			}
 			
 			(
@@ -1021,16 +980,14 @@ parse_org_emftext_language_xpath2_ForExpr returns [org.emftext.language.xpath2.F
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[56]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[57]);
+				addExpectedElement(null, 198, 199);
 			}
 			
 		)
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[58]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[59]);
+		addExpectedElement(null, 200, 201);
 	}
 	
 	a4 = 'return' {
@@ -1044,26 +1001,7 @@ parse_org_emftext_language_xpath2_ForExpr returns [org.emftext.language.xpath2.F
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[60]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[61]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[62]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[63]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[64]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[65]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[66]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[67]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[68]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[69]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[70]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[71]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[72]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[73]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[74]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[75]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[76]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[77]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[78]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[79]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getForExpr(), 202, 1522);
 	}
 	
 	(
@@ -1089,12 +1027,10 @@ parse_org_emftext_language_xpath2_ForExpr returns [org.emftext.language.xpath2.F
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[80]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[81]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[82]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[83]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[84]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[85]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 1523, 1528);
 	}
 	
 ;
@@ -1135,7 +1071,7 @@ parse_org_emftext_language_xpath2_QuantifiedExpr returns [org.emftext.language.x
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[86]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), 1529);
 	}
 	
 	(
@@ -1161,8 +1097,7 @@ parse_org_emftext_language_xpath2_QuantifiedExpr returns [org.emftext.language.x
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[87]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[88]);
+		addExpectedElement(null, 1530, 1531);
 	}
 	
 	(
@@ -1178,7 +1113,7 @@ parse_org_emftext_language_xpath2_QuantifiedExpr returns [org.emftext.language.x
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[89]);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), 1532);
 			}
 			
 			(
@@ -1204,16 +1139,14 @@ parse_org_emftext_language_xpath2_QuantifiedExpr returns [org.emftext.language.x
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[90]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[91]);
+				addExpectedElement(null, 1533, 1534);
 			}
 			
 		)
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[92]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[93]);
+		addExpectedElement(null, 1535, 1536);
 	}
 	
 	a7 = 'satisfies' {
@@ -1227,26 +1160,7 @@ parse_org_emftext_language_xpath2_QuantifiedExpr returns [org.emftext.language.x
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[94]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[95]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[96]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[97]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[98]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[99]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[100]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[101]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[102]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[103]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[104]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[105]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[106]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[107]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[108]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[109]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[110]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[111]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[112]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[113]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQuantifiedExpr(), 1537, 1627);
 	}
 	
 	(
@@ -1329,12 +1243,10 @@ parse_org_emftext_language_xpath2_QuantifiedExpr returns [org.emftext.language.x
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[114]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[115]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[116]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[117]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[118]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[119]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 1628, 1633);
 	}
 	
 ;
@@ -1354,8 +1266,7 @@ parse_org_emftext_language_xpath2_Iterator returns [org.emftext.language.xpath2.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[120]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[121]);
+		addExpectedElement(null, 1634, 1635);
 	}
 	
 	(
@@ -1392,7 +1303,7 @@ parse_org_emftext_language_xpath2_Iterator returns [org.emftext.language.xpath2.
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[122]);
+			addExpectedElement(null, 1636);
 		}
 		
 		
@@ -1429,13 +1340,13 @@ parse_org_emftext_language_xpath2_Iterator returns [org.emftext.language.xpath2.
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[123]);
+			addExpectedElement(null, 1637);
 		}
 		
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[124]);
+		addExpectedElement(null, 1638);
 	}
 	
 	a3 = 'in' {
@@ -1449,26 +1360,7 @@ parse_org_emftext_language_xpath2_Iterator returns [org.emftext.language.xpath2.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[125]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[126]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[127]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[128]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[129]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[130]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[131]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[132]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[133]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[134]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[135]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[136]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[137]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[138]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[139]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[140]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[141]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[142]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[143]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[144]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIterator(), 1639, 1729);
 	}
 	
 	(
@@ -1551,10 +1443,10 @@ parse_org_emftext_language_xpath2_Iterator returns [org.emftext.language.xpath2.
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[145]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[146]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[147]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[148]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 1730, 1733);
 	}
 	
 ;
@@ -1574,7 +1466,7 @@ parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.If
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[149]);
+		addExpectedElement(null, 1734);
 	}
 	
 	a1 = '(' {
@@ -1588,26 +1480,7 @@ parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.If
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[150]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[151]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[152]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[153]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[154]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[155]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[156]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[157]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[158]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[159]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[160]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[161]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[162]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[163]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[164]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[165]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[166]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[167]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[168]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[169]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), 1735, 1916);
 	}
 	
 	(
@@ -1709,7 +1582,7 @@ parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.If
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[170]);
+		addExpectedElement(null, 1917);
 	}
 	
 	a3 = ')' {
@@ -1723,7 +1596,7 @@ parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.If
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[171]);
+		addExpectedElement(null, 1918);
 	}
 	
 	a4 = 'then' {
@@ -1737,26 +1610,7 @@ parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.If
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[172]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[173]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[174]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[175]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[176]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[177]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[178]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[179]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[180]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[181]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[182]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[183]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[184]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[185]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[186]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[187]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[188]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[189]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[190]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[191]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), 1919, 2009);
 	}
 	
 	(
@@ -1839,7 +1693,7 @@ parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.If
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[192]);
+		addExpectedElement(null, 2010);
 	}
 	
 	a6 = 'else' {
@@ -1853,26 +1707,7 @@ parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.If
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[193]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[194]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[195]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[196]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[197]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[198]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[199]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[200]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[201]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[202]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[203]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[204]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[205]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[206]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[207]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[208]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[209]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[210]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[211]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[212]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIfExpr(), 2011, 2101);
 	}
 	
 	(
@@ -1955,12 +1790,10 @@ parse_org_emftext_language_xpath2_IfExpr returns [org.emftext.language.xpath2.If
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[213]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[214]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[215]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[216]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[217]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[218]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 2102, 2107);
 	}
 	
 ;
@@ -1992,13 +1825,7 @@ parse_org_emftext_language_xpath2_OrExpr returns [org.emftext.language.xpath2.Or
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[219]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[220]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[221]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[222]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[223]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[224]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[225]);
+		addExpectedElement(null, 2108, 2114);
 	}
 	
 	(
@@ -2014,23 +1841,7 @@ parse_org_emftext_language_xpath2_OrExpr returns [org.emftext.language.xpath2.Or
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[226]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[227]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[228]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[229]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[230]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[231]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[232]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[233]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[234]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[235]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[236]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[237]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[238]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[239]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[240]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[241]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[242]);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOrExpr(), 2115, 2202);
 			}
 			
 			(
@@ -2056,26 +1867,20 @@ parse_org_emftext_language_xpath2_OrExpr returns [org.emftext.language.xpath2.Or
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[243]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[244]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[245]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[246]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[247]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[248]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[249]);
+				// We've found the last token for this rule. The constructed EObject is now
+				// complete.
+				completedElement(element, true);
+				addExpectedElement(null, 2203, 2209);
 			}
 			
 		)
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[250]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[251]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[252]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[253]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[254]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[255]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[256]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 2210, 2216);
 	}
 	
 ;
@@ -2107,14 +1912,7 @@ parse_org_emftext_language_xpath2_AndExpr returns [org.emftext.language.xpath2.A
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[257]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[258]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[259]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[260]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[261]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[262]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[263]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[264]);
+		addExpectedElement(null, 2217, 2224);
 	}
 	
 	(
@@ -2130,23 +1928,7 @@ parse_org_emftext_language_xpath2_AndExpr returns [org.emftext.language.xpath2.A
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[265]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[266]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[267]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[268]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[269]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[270]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[271]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[272]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[273]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[274]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[275]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[276]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[277]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[278]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[279]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[280]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[281]);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAndExpr(), 2225, 2312);
 			}
 			
 			(
@@ -2172,28 +1954,20 @@ parse_org_emftext_language_xpath2_AndExpr returns [org.emftext.language.xpath2.A
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[282]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[283]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[284]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[285]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[286]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[287]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[288]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[289]);
+				// We've found the last token for this rule. The constructed EObject is now
+				// complete.
+				completedElement(element, true);
+				addExpectedElement(null, 2313, 2320);
 			}
 			
 		)
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[290]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[291]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[292]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[293]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[294]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[295]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[296]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[297]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 2321, 2328);
 	}
 	
 ;
@@ -2225,17 +1999,8 @@ parse_org_emftext_language_xpath2_ComparisonExpr returns [org.emftext.language.x
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[298]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[299]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[300]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[301]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[302]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[303]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[304]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[305]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[306]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[307]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[308]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 2329, 2331);
+		addExpectedElement(null, 2332, 2339);
 	}
 	
 	(
@@ -2263,23 +2028,7 @@ parse_org_emftext_language_xpath2_ComparisonExpr returns [org.emftext.language.x
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[309]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[310]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[311]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[312]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[313]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[314]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[315]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[316]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[317]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[318]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[319]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[320]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[321]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[322]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[323]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[324]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[325]);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 2340, 2427);
 			}
 			
 			(
@@ -2305,28 +2054,20 @@ parse_org_emftext_language_xpath2_ComparisonExpr returns [org.emftext.language.x
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[326]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[327]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[328]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[329]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[330]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[331]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[332]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[333]);
+				// We've found the last token for this rule. The constructed EObject is now
+				// complete.
+				completedElement(element, true);
+				addExpectedElement(null, 2428, 2435);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[334]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[335]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[336]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[337]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[338]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[339]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[340]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[341]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 2436, 2443);
 	}
 	
 ;
@@ -2358,18 +2099,9 @@ parse_org_emftext_language_xpath2_RangeExpr returns [org.emftext.language.xpath2
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[342]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[343]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[344]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[345]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[346]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[347]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[348]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[349]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[350]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[351]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[352]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[353]);
+		addExpectedElement(null, 2444, 2450);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 2451, 2453);
+		addExpectedElement(null, 2454, 2455);
 	}
 	
 	(
@@ -2385,23 +2117,7 @@ parse_org_emftext_language_xpath2_RangeExpr returns [org.emftext.language.xpath2
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[354]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[355]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[356]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[357]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[358]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[359]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[360]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[361]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[362]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[363]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[364]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[365]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[366]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[367]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[368]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[369]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[370]);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), 2456, 2543);
 			}
 			
 			(
@@ -2427,34 +2143,24 @@ parse_org_emftext_language_xpath2_RangeExpr returns [org.emftext.language.xpath2
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[371]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[372]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[373]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[374]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[375]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[376]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[377]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[378]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[379]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[380]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[381]);
+				// We've found the last token for this rule. The constructed EObject is now
+				// complete.
+				completedElement(element, true);
+				addExpectedElement(null, 2544, 2549);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 2550, 2552);
+				addExpectedElement(null, 2553, 2554);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[382]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[383]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[384]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[385]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[386]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[387]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[388]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[389]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[390]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[391]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[392]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 2555, 2560);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 2561, 2563);
+		addExpectedElement(null, 2564, 2565);
 	}
 	
 ;
@@ -2547,23 +2253,10 @@ parse_org_emftext_language_xpath2_GeneralComp returns [org.emftext.language.xpat
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[393]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[394]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[395]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[396]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[397]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[398]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[399]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[400]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[401]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[402]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[403]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[404]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[405]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[406]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[407]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[408]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[409]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 2566, 2653);
 	}
 	
 ;
@@ -2656,23 +2349,10 @@ parse_org_emftext_language_xpath2_ValueComp returns [org.emftext.language.xpath2
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[410]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[411]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[412]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[413]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[414]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[415]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[416]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[417]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[418]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[419]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[420]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[421]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[422]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[423]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[424]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[425]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[426]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 2654, 2741);
 	}
 	
 ;
@@ -2726,23 +2406,10 @@ parse_org_emftext_language_xpath2_NodeComp returns [org.emftext.language.xpath2.
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[427]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[428]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[429]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[430]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[431]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[432]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[433]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[434]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[435]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[436]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[437]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[438]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[439]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[440]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[441]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[442]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[443]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 2742, 2829);
 	}
 	
 ;
@@ -2774,19 +2441,9 @@ parse_org_emftext_language_xpath2_AdditiveExpr returns [org.emftext.language.xpa
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[444]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[445]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[446]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[447]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[448]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[449]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[450]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[451]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[452]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[453]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[454]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[455]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[456]);
+		addExpectedElement(null, 2830, 2837);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 2838, 2840);
+		addExpectedElement(null, 2841, 2842);
 	}
 	
 	(
@@ -2823,23 +2480,7 @@ parse_org_emftext_language_xpath2_AdditiveExpr returns [org.emftext.language.xpa
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[457]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[458]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[459]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[460]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[461]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[462]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[463]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[464]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[465]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[466]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[467]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[468]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[469]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[470]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[471]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[472]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[473]);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), 2843, 2930);
 			}
 			
 			(
@@ -2865,38 +2506,24 @@ parse_org_emftext_language_xpath2_AdditiveExpr returns [org.emftext.language.xpa
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[474]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[475]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[476]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[477]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[478]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[479]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[480]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[481]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[482]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[483]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[484]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[485]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[486]);
+				// We've found the last token for this rule. The constructed EObject is now
+				// complete.
+				completedElement(element, true);
+				addExpectedElement(null, 2931, 2938);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 2939, 2941);
+				addExpectedElement(null, 2942, 2943);
 			}
 			
 		)
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[487]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[488]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[489]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[490]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[491]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[492]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[493]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[494]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[495]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[496]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[497]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[498]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[499]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 2944, 2951);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 2952, 2954);
+		addExpectedElement(null, 2955, 2956);
 	}
 	
 ;
@@ -2928,20 +2555,9 @@ parse_org_emftext_language_xpath2_MultiplicativeExpr returns [org.emftext.langua
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[500]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[501]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[502]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[503]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[504]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[505]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[506]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[507]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[508]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[509]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[510]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[511]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[512]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[513]);
+		addExpectedElement(null, 2957, 2965);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 2966, 2968);
+		addExpectedElement(null, 2969, 2970);
 	}
 	
 	(
@@ -3004,23 +2620,7 @@ parse_org_emftext_language_xpath2_MultiplicativeExpr returns [org.emftext.langua
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[514]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[515]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[516]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[517]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[518]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[519]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[520]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[521]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[522]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[523]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[524]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[525]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[526]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[527]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[528]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[529]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[530]);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getMultiplicativeExpr(), 2971, 3058);
 			}
 			
 			(
@@ -3046,40 +2646,24 @@ parse_org_emftext_language_xpath2_MultiplicativeExpr returns [org.emftext.langua
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[531]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[532]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[533]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[534]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[535]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[536]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[537]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[538]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[539]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[540]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[541]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[542]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[543]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[544]);
+				// We've found the last token for this rule. The constructed EObject is now
+				// complete.
+				completedElement(element, true);
+				addExpectedElement(null, 3059, 3067);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3068, 3070);
+				addExpectedElement(null, 3071, 3072);
 			}
 			
 		)
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[545]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[546]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[547]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[548]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[549]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[550]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[551]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[552]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[553]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[554]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[555]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[556]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[557]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[558]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 3073, 3081);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3082, 3084);
+		addExpectedElement(null, 3085, 3086);
 	}
 	
 ;
@@ -3111,21 +2695,9 @@ parse_org_emftext_language_xpath2_UnionExpr returns [org.emftext.language.xpath2
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[559]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[560]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[561]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[562]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[563]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[564]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[565]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[566]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[567]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[568]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[569]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[570]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[571]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[572]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[573]);
+		addExpectedElement(null, 3087, 3096);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3097, 3099);
+		addExpectedElement(null, 3100, 3101);
 	}
 	
 	(
@@ -3162,23 +2734,7 @@ parse_org_emftext_language_xpath2_UnionExpr returns [org.emftext.language.xpath2
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[574]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[575]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[576]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[577]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[578]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[579]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[580]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[581]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[582]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[583]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[584]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[585]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[586]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[587]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[588]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[589]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[590]);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnionExpr(), 3102, 3189);
 			}
 			
 			(
@@ -3204,42 +2760,24 @@ parse_org_emftext_language_xpath2_UnionExpr returns [org.emftext.language.xpath2
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[591]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[592]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[593]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[594]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[595]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[596]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[597]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[598]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[599]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[600]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[601]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[602]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[603]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[604]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[605]);
+				// We've found the last token for this rule. The constructed EObject is now
+				// complete.
+				completedElement(element, true);
+				addExpectedElement(null, 3190, 3199);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3200, 3202);
+				addExpectedElement(null, 3203, 3204);
 			}
 			
 		)
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[606]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[607]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[608]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[609]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[610]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[611]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[612]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[613]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[614]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[615]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[616]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[617]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[618]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[619]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[620]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 3205, 3214);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3215, 3217);
+		addExpectedElement(null, 3218, 3219);
 	}
 	
 ;
@@ -3271,22 +2809,9 @@ parse_org_emftext_language_xpath2_IntersectExceptExpr returns [org.emftext.langu
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[621]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[622]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[623]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[624]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[625]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[626]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[627]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[628]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[629]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[630]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[631]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[632]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[633]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[634]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[635]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[636]);
+		addExpectedElement(null, 3220, 3230);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3231, 3233);
+		addExpectedElement(null, 3234, 3235);
 	}
 	
 	(
@@ -3323,23 +2848,7 @@ parse_org_emftext_language_xpath2_IntersectExceptExpr returns [org.emftext.langu
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[637]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[638]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[639]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[640]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[641]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[642]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[643]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[644]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[645]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[646]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[647]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[648]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[649]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[650]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[651]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[652]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[653]);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getIntersectExceptExpr(), 3236, 3323);
 			}
 			
 			(
@@ -3365,44 +2874,24 @@ parse_org_emftext_language_xpath2_IntersectExceptExpr returns [org.emftext.langu
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[654]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[655]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[656]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[657]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[658]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[659]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[660]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[661]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[662]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[663]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[664]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[665]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[666]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[667]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[668]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[669]);
+				// We've found the last token for this rule. The constructed EObject is now
+				// complete.
+				completedElement(element, true);
+				addExpectedElement(null, 3324, 3334);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3335, 3337);
+				addExpectedElement(null, 3338, 3339);
 			}
 			
 		)
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[670]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[671]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[672]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[673]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[674]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[675]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[676]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[677]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[678]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[679]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[680]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[681]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[682]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[683]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[684]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[685]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 3340, 3350);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3351, 3353);
+		addExpectedElement(null, 3354, 3355);
 	}
 	
 ;
@@ -3434,23 +2923,9 @@ parse_org_emftext_language_xpath2_InstanceofExpr returns [org.emftext.language.x
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[686]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[687]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[688]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[689]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[690]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[691]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[692]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[693]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[694]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[695]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[696]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[697]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[698]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[699]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[700]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[701]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[702]);
+		addExpectedElement(null, 3356, 3367);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3368, 3370);
+		addExpectedElement(null, 3371, 3372);
 	}
 	
 	(
@@ -3466,7 +2941,7 @@ parse_org_emftext_language_xpath2_InstanceofExpr returns [org.emftext.language.x
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[703]);
+				addExpectedElement(null, 3373);
 			}
 			
 			a2 = 'of' {
@@ -3480,25 +2955,7 @@ parse_org_emftext_language_xpath2_InstanceofExpr returns [org.emftext.language.x
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[704]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[705]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[706]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[707]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[708]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[709]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[710]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[711]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[712]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[713]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[714]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[715]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[716]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[717]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[718]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[719]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[720]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[721]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[722]);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getInstanceofExpr(), 3374, 3392);
 			}
 			
 			(
@@ -3524,44 +2981,24 @@ parse_org_emftext_language_xpath2_InstanceofExpr returns [org.emftext.language.x
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[723]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[724]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[725]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[726]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[727]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[728]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[729]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[730]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[731]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[732]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[733]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[734]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[735]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[736]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[737]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[738]);
+				// We've found the last token for this rule. The constructed EObject is now
+				// complete.
+				completedElement(element, true);
+				addExpectedElement(null, 3393, 3403);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3404, 3406);
+				addExpectedElement(null, 3407, 3408);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[739]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[740]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[741]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[742]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[743]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[744]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[745]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[746]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[747]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[748]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[749]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[750]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[751]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[752]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[753]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[754]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 3409, 3419);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3420, 3422);
+		addExpectedElement(null, 3423, 3424);
 	}
 	
 ;
@@ -3593,24 +3030,9 @@ parse_org_emftext_language_xpath2_TreatExpr returns [org.emftext.language.xpath2
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[755]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[756]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[757]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[758]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[759]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[760]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[761]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[762]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[763]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[764]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[765]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[766]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[767]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[768]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[769]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[770]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[771]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[772]);
+		addExpectedElement(null, 3425, 3437);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3438, 3440);
+		addExpectedElement(null, 3441, 3442);
 	}
 	
 	(
@@ -3626,7 +3048,7 @@ parse_org_emftext_language_xpath2_TreatExpr returns [org.emftext.language.xpath2
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[773]);
+				addExpectedElement(null, 3443);
 			}
 			
 			a2 = 'as' {
@@ -3640,25 +3062,7 @@ parse_org_emftext_language_xpath2_TreatExpr returns [org.emftext.language.xpath2
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[774]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[775]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[776]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[777]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[778]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[779]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[780]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[781]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[782]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[783]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[784]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[785]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[786]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[787]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[788]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[789]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[790]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[791]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[792]);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getTreatExpr(), 3444, 3462);
 			}
 			
 			(
@@ -3684,46 +3088,24 @@ parse_org_emftext_language_xpath2_TreatExpr returns [org.emftext.language.xpath2
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[793]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[794]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[795]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[796]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[797]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[798]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[799]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[800]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[801]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[802]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[803]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[804]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[805]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[806]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[807]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[808]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[809]);
+				// We've found the last token for this rule. The constructed EObject is now
+				// complete.
+				completedElement(element, true);
+				addExpectedElement(null, 3463, 3474);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3475, 3477);
+				addExpectedElement(null, 3478, 3479);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[810]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[811]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[812]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[813]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[814]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[815]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[816]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[817]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[818]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[819]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[820]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[821]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[822]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[823]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[824]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[825]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[826]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 3480, 3491);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3492, 3494);
+		addExpectedElement(null, 3495, 3496);
 	}
 	
 ;
@@ -3755,25 +3137,9 @@ parse_org_emftext_language_xpath2_CastableExpr returns [org.emftext.language.xpa
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[827]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[828]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[829]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[830]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[831]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[832]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[833]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[834]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[835]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[836]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[837]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[838]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[839]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[840]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[841]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[842]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[843]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[844]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[845]);
+		addExpectedElement(null, 3497, 3510);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3511, 3513);
+		addExpectedElement(null, 3514, 3515);
 	}
 	
 	(
@@ -3789,7 +3155,7 @@ parse_org_emftext_language_xpath2_CastableExpr returns [org.emftext.language.xpa
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[846]);
+				addExpectedElement(null, 3516);
 			}
 			
 			a2 = 'as' {
@@ -3803,8 +3169,7 @@ parse_org_emftext_language_xpath2_CastableExpr returns [org.emftext.language.xpa
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getCastableExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[847]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getCastableExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[848]);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getCastableExpr(), 3517, 3518);
 			}
 			
 			(
@@ -3830,48 +3195,24 @@ parse_org_emftext_language_xpath2_CastableExpr returns [org.emftext.language.xpa
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[849]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[850]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[851]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[852]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[853]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[854]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[855]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[856]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[857]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[858]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[859]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[860]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[861]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[862]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[863]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[864]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[865]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[866]);
+				// We've found the last token for this rule. The constructed EObject is now
+				// complete.
+				completedElement(element, true);
+				addExpectedElement(null, 3519, 3531);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3532, 3534);
+				addExpectedElement(null, 3535, 3536);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[867]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[868]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[869]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[870]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[871]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[872]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[873]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[874]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[875]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[876]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[877]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[878]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[879]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[880]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[881]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[882]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[883]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[884]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 3537, 3549);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3550, 3552);
+		addExpectedElement(null, 3553, 3554);
 	}
 	
 ;
@@ -3903,26 +3244,9 @@ parse_org_emftext_language_xpath2_CastExpr returns [org.emftext.language.xpath2.
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[885]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[886]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[887]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[888]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[889]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[890]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[891]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[892]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[893]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[894]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[895]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[896]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[897]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[898]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[899]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[900]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[901]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[902]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[903]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[904]);
+		addExpectedElement(null, 3555, 3569);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3570, 3572);
+		addExpectedElement(null, 3573, 3574);
 	}
 	
 	(
@@ -3938,7 +3262,7 @@ parse_org_emftext_language_xpath2_CastExpr returns [org.emftext.language.xpath2.
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[905]);
+				addExpectedElement(null, 3575);
 			}
 			
 			a2 = 'as' {
@@ -3952,8 +3276,7 @@ parse_org_emftext_language_xpath2_CastExpr returns [org.emftext.language.xpath2.
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getCastExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[906]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getCastExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[907]);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getCastExpr(), 3576, 3577);
 			}
 			
 			(
@@ -3979,50 +3302,24 @@ parse_org_emftext_language_xpath2_CastExpr returns [org.emftext.language.xpath2.
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[908]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[909]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[910]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[911]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[912]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[913]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[914]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[915]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[916]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[917]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[918]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[919]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[920]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[921]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[922]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[923]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[924]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[925]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[926]);
+				// We've found the last token for this rule. The constructed EObject is now
+				// complete.
+				completedElement(element, true);
+				addExpectedElement(null, 3578, 3591);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3592, 3594);
+				addExpectedElement(null, 3595, 3596);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[927]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[928]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[929]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[930]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[931]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[932]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[933]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[934]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[935]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[936]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[937]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[938]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[939]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[940]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[941]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[942]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[943]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[944]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[945]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 3597, 3610);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3611, 3613);
+		addExpectedElement(null, 3614, 3615);
 	}
 	
 ;
@@ -4065,23 +3362,8 @@ parse_org_emftext_language_xpath2_UnaryExpr returns [org.emftext.language.xpath2
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[946]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnaryExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[947]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnaryExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[948]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnaryExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[949]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnaryExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[950]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnaryExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[951]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnaryExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[952]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnaryExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[953]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnaryExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[954]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnaryExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[955]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnaryExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[956]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnaryExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[957]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnaryExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[958]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnaryExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[959]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnaryExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[960]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnaryExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[961]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnaryExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[962]);
+		addExpectedElement(null, 3616);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getUnaryExpr(), 3617, 3703);
 	}
 	
 	(
@@ -4107,26 +3389,12 @@ parse_org_emftext_language_xpath2_UnaryExpr returns [org.emftext.language.xpath2
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[963]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[964]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[965]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[966]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[967]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[968]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[969]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[970]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[971]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[972]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[973]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[974]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[975]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[976]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[977]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[978]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[979]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[980]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[981]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[982]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 3704, 3718);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3719, 3721);
+		addExpectedElement(null, 3722, 3723);
 	}
 	
 ;
@@ -4158,29 +3426,12 @@ parse_org_emftext_language_xpath2_FilterExpr returns [org.emftext.language.xpath
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[983]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[984]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[985]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[986]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[987]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[988]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[989]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[990]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[991]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[992]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[993]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[994]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[995]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[996]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[997]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[998]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[999]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1000]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1001]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1002]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1003]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1004]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1005]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), 3724);
+		addExpectedElement(null, 3725, 3730);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 3731, 3732);
+		addExpectedElement(null, 3733, 3741);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3742, 3744);
+		addExpectedElement(null, 3745, 3746);
 	}
 	
 	(
@@ -4208,29 +3459,15 @@ parse_org_emftext_language_xpath2_FilterExpr returns [org.emftext.language.xpath
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1006]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1007]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1008]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1009]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1010]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1011]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1012]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1013]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1014]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1015]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1016]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1017]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1018]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1019]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1020]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1021]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1022]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1023]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1024]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1025]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1026]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1027]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1028]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), 3747);
+		addExpectedElement(null, 3748, 3753);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 3754, 3755);
+		addExpectedElement(null, 3756, 3764);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3765, 3767);
+		addExpectedElement(null, 3768, 3769);
 	}
 	
 ;
@@ -4273,7 +3510,7 @@ parse_org_emftext_language_xpath2_FunctionCall returns [org.emftext.language.xpa
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1029]);
+			addExpectedElement(null, 3770);
 		}
 		
 		
@@ -4310,13 +3547,13 @@ parse_org_emftext_language_xpath2_FunctionCall returns [org.emftext.language.xpa
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1030]);
+			addExpectedElement(null, 3771);
 		}
 		
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1031]);
+		addExpectedElement(null, 3772);
 	}
 	
 	a2 = '(' {
@@ -4330,27 +3567,8 @@ parse_org_emftext_language_xpath2_FunctionCall returns [org.emftext.language.xpa
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1032]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1033]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1034]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1035]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1036]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1037]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1038]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1039]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1040]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1041]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1042]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1043]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1044]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1045]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1046]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1047]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1048]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1049]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1050]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1051]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1052]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), 3773, 3863);
+		addExpectedElement(null, 3864);
 	}
 	
 	(
@@ -4435,8 +3653,7 @@ parse_org_emftext_language_xpath2_FunctionCall returns [org.emftext.language.xpa
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1053]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1054]);
+				addExpectedElement(null, 3865, 3866);
 			}
 			
 			(
@@ -4452,26 +3669,7 @@ parse_org_emftext_language_xpath2_FunctionCall returns [org.emftext.language.xpa
 					}
 					{
 						// expected elements (follow set)
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1055]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1056]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1057]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1058]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1059]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1060]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1061]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1062]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1063]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1064]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1065]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1066]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1067]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1068]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1069]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1070]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1071]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1072]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1073]);
-						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1074]);
+						addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall(), 3867, 3957);
 					}
 					
 					(
@@ -4554,23 +3752,21 @@ parse_org_emftext_language_xpath2_FunctionCall returns [org.emftext.language.xpa
 					)
 					{
 						// expected elements (follow set)
-						addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1075]);
-						addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1076]);
+						addExpectedElement(null, 3958, 3959);
 					}
 					
 				)
 				
 			)*			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1077]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1078]);
+				addExpectedElement(null, 3960, 3961);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1079]);
+		addExpectedElement(null, 3962);
 	}
 	
 	a6 = ')' {
@@ -4584,29 +3780,15 @@ parse_org_emftext_language_xpath2_FunctionCall returns [org.emftext.language.xpa
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1080]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1081]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1082]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1083]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1084]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1085]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1086]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1087]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1088]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1089]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1090]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1091]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1092]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1093]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1094]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1095]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1096]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1097]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1098]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1099]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1100]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1101]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1102]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 3963, 3968);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), 3969);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 3970, 3971);
+		addExpectedElement(null, 3972, 3980);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 3981, 3983);
+		addExpectedElement(null, 3984, 3985);
 	}
 	
 ;
@@ -4638,28 +3820,10 @@ parse_org_emftext_language_xpath2_PathExpr returns [org.emftext.language.xpath2.
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1103]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1104]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1105]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1106]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1107]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1108]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1109]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1110]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1111]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1112]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1113]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1114]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1115]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1116]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1117]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1118]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1119]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1120]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1121]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1122]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1123]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1124]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 3986, 3987);
+		addExpectedElement(null, 3988, 4002);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4003, 4005);
+		addExpectedElement(null, 4006, 4007);
 	}
 	
 	(
@@ -4706,28 +3870,13 @@ parse_org_emftext_language_xpath2_PathExpr returns [org.emftext.language.xpath2.
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1125]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1126]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1127]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1128]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1129]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1130]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1131]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1132]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1133]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1134]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1135]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1136]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1137]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1138]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1139]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1140]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1141]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1142]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1143]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1144]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1145]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1146]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4008, 4009);
+		addExpectedElement(null, 4010, 4024);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4025, 4027);
+		addExpectedElement(null, 4028, 4029);
 	}
 	
 ;
@@ -4747,23 +3896,11 @@ parse_org_emftext_language_xpath2_ChildStepExpr returns [org.emftext.language.xp
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1147]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1148]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1149]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1150]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1151]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1152]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1153]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1154]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1155]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1156]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1157]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1158]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getChildStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1159]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getChildStepExpr(), 4030, 4071);
 	}
 	
 	(
-		a1_0 = parse_org_emftext_language_xpath2_StepExpr		{
+		a1_0 = parse_org_emftext_language_xpath2_StepExprChild		{
 			if (terminateParsing) {
 				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
 			}
@@ -4785,28 +3922,14 @@ parse_org_emftext_language_xpath2_ChildStepExpr returns [org.emftext.language.xp
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1160]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1161]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1162]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1163]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1164]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1165]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1166]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1167]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1168]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1169]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1170]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1171]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1172]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1173]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1174]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1175]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1176]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1177]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1178]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1179]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1180]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1181]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 4072, 4077);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4078, 4079);
+		addExpectedElement(null, 4080, 4088);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4089, 4091);
+		addExpectedElement(null, 4092, 4093);
 	}
 	
 ;
@@ -4826,23 +3949,11 @@ parse_org_emftext_language_xpath2_DescOrSelfStepExpr returns [org.emftext.langua
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1182]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1183]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1184]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1185]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1186]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1187]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1188]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1189]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1190]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1191]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1192]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1193]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDescOrSelfStepExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1194]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDescOrSelfStepExpr(), 4094, 4135);
 	}
 	
 	(
-		a1_0 = parse_org_emftext_language_xpath2_StepExpr		{
+		a1_0 = parse_org_emftext_language_xpath2_StepExprChild		{
 			if (terminateParsing) {
 				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
 			}
@@ -4864,28 +3975,14 @@ parse_org_emftext_language_xpath2_DescOrSelfStepExpr returns [org.emftext.langua
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1195]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1196]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1197]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1198]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1199]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1200]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1201]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1202]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1203]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1204]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1205]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1206]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1207]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1208]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1209]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1210]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1211]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1212]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1213]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1214]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1215]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1216]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 4136, 4141);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4142, 4143);
+		addExpectedElement(null, 4144, 4152);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4153, 4155);
+		addExpectedElement(null, 4156, 4157);
 	}
 	
 ;
@@ -4905,28 +4002,14 @@ parse_org_emftext_language_xpath2_RootStepExpr returns [org.emftext.language.xpa
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1217]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1218]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1219]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1220]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1221]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1222]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1223]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1224]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1225]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1226]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1227]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1228]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1229]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1230]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1231]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1232]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1233]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1234]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1235]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1236]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1237]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1238]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 4158, 4163);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4164, 4165);
+		addExpectedElement(null, 4166, 4174);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4175, 4177);
+		addExpectedElement(null, 4178, 4179);
 	}
 	
 ;
@@ -4936,7 +4019,7 @@ parse_org_emftext_language_xpath2_SelfStepExpr returns [org.emftext.language.xpa
 }
 :
 	(
-		a0_0 = parse_org_emftext_language_xpath2_SelfStepExprChild		{
+		a0_0 = parse_org_emftext_language_xpath2_StepExprChild		{
 			if (terminateParsing) {
 				throw new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TerminateParsingException();
 			}
@@ -4958,28 +4041,14 @@ parse_org_emftext_language_xpath2_SelfStepExpr returns [org.emftext.language.xpa
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1239]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1240]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1241]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1242]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1243]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1244]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1245]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1246]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1247]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1248]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1249]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1250]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1251]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1252]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1253]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1254]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1255]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1256]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1257]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1258]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1259]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1260]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 4180, 4185);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4186, 4187);
+		addExpectedElement(null, 4188, 4196);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4197, 4199);
+		addExpectedElement(null, 4200, 4201);
 	}
 	
 ;
@@ -5098,7 +4167,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1261]);
+		addExpectedElement(null, 4202);
 	}
 	
 	a10 = '::' {
@@ -5112,26 +4181,7 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1262]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1263]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1264]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1265]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1266]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1267]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1268]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1269]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1270]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1271]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1272]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1273]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1274]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1275]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1276]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1277]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1278]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1279]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1280]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1281]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 4203, 4222);
 	}
 	
 	(
@@ -5157,29 +4207,12 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1282]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1283]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1284]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1285]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1286]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1287]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1288]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1289]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1290]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1291]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1292]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1293]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1294]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1295]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1296]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1297]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1298]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1299]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1300]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1301]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1302]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1303]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1304]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 4223);
+		addExpectedElement(null, 4224, 4229);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4230, 4231);
+		addExpectedElement(null, 4232, 4240);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4241, 4243);
+		addExpectedElement(null, 4244, 4245);
 	}
 	
 	(
@@ -5207,29 +4240,15 @@ parse_org_emftext_language_xpath2_GeneralForwardStep returns [org.emftext.langua
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1305]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1306]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1307]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1308]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1309]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1310]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1311]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1312]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1313]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1314]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1315]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1316]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1317]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1318]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1319]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1320]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1321]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1322]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1323]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1324]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1325]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1326]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1327]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 4246);
+		addExpectedElement(null, 4247, 4252);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4253, 4254);
+		addExpectedElement(null, 4255, 4263);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4264, 4266);
+		addExpectedElement(null, 4267, 4268);
 	}
 	
 ;
@@ -5259,26 +4278,7 @@ parse_org_emftext_language_xpath2_AbbrevForwardStep returns [org.emftext.languag
 		)?	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1328]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1329]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1330]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1331]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1332]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1333]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1334]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1335]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1336]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1337]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1338]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1339]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1340]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1341]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1342]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1343]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1344]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1345]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1346]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1347]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 4269, 4288);
 	}
 	
 	(
@@ -5307,29 +4307,12 @@ parse_org_emftext_language_xpath2_AbbrevForwardStep returns [org.emftext.languag
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1348]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1349]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1350]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1351]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1352]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1353]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1354]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1355]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1356]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1357]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1358]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1359]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1360]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1361]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1362]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1363]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1364]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1365]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1366]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1367]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1368]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1369]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1370]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 4289);
+		addExpectedElement(null, 4290, 4295);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4296, 4297);
+		addExpectedElement(null, 4298, 4306);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4307, 4309);
+		addExpectedElement(null, 4310, 4311);
 	}
 	
 	(
@@ -5360,29 +4343,15 @@ parse_org_emftext_language_xpath2_AbbrevForwardStep returns [org.emftext.languag
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1371]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1372]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1373]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1374]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1375]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1376]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1377]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1378]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1379]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1380]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1381]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1382]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1383]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1384]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1385]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1386]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1387]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1388]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1389]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1390]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1391]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1392]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1393]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 4312);
+		addExpectedElement(null, 4313, 4318);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4319, 4320);
+		addExpectedElement(null, 4321, 4329);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4330, 4332);
+		addExpectedElement(null, 4333, 4334);
 	}
 	
 ;
@@ -5462,7 +4431,7 @@ parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.langua
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1394]);
+		addExpectedElement(null, 4335);
 	}
 	
 	a7 = '::' {
@@ -5476,26 +4445,7 @@ parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.langua
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1395]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1396]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1397]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1398]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1399]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1400]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1401]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1402]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1403]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1404]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1405]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1406]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1407]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1408]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1409]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1410]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1411]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1412]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1413]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1414]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 4336, 4355);
 	}
 	
 	(
@@ -5521,29 +4471,12 @@ parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.langua
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1415]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1416]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1417]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1418]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1419]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1420]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1421]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1422]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1423]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1424]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1425]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1426]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1427]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1428]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1429]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1430]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1431]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1432]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1433]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1434]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1435]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1436]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1437]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 4356);
+		addExpectedElement(null, 4357, 4362);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4363, 4364);
+		addExpectedElement(null, 4365, 4373);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4374, 4376);
+		addExpectedElement(null, 4377, 4378);
 	}
 	
 	(
@@ -5571,29 +4504,15 @@ parse_org_emftext_language_xpath2_GeneralReverseStep returns [org.emftext.langua
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1438]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1439]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1440]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1441]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1442]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1443]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1444]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1445]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1446]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1447]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1448]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1449]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1450]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1451]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1452]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1453]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1454]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1455]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1456]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1457]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1458]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1459]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1460]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 4379);
+		addExpectedElement(null, 4380, 4385);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4386, 4387);
+		addExpectedElement(null, 4388, 4396);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4397, 4399);
+		addExpectedElement(null, 4400, 4401);
 	}
 	
 ;
@@ -5621,29 +4540,12 @@ parse_org_emftext_language_xpath2_AbbrevReverseStep returns [org.emftext.languag
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1461]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1462]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1463]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1464]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1465]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1466]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1467]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1468]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1469]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1470]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1471]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1472]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1473]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1474]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1475]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1476]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1477]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1478]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1479]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1480]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1481]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1482]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1483]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevReverseStep(), 4402);
+		addExpectedElement(null, 4403, 4408);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4409, 4410);
+		addExpectedElement(null, 4411, 4419);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4420, 4422);
+		addExpectedElement(null, 4423, 4424);
 	}
 	
 	(
@@ -5671,29 +4573,15 @@ parse_org_emftext_language_xpath2_AbbrevReverseStep returns [org.emftext.languag
 		
 	)*	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevReverseStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1484]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1485]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1486]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1487]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1488]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1489]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1490]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1491]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1492]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1493]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1494]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1495]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1496]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1497]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1498]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1499]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1500]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1501]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1502]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1503]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1504]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1505]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1506]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevReverseStep(), 4425);
+		addExpectedElement(null, 4426, 4431);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4432, 4433);
+		addExpectedElement(null, 4434, 4442);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4443, 4445);
+		addExpectedElement(null, 4446, 4447);
 	}
 	
 ;
@@ -5725,29 +4613,17 @@ parse_org_emftext_language_xpath2_NodeKindTest returns [org.emftext.language.xpa
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1507]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1508]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1509]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1510]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1511]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1512]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1513]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1514]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1515]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1516]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1517]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1518]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1519]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1520]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1521]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1522]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1523]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1524]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1525]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1526]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1527]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1528]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1529]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 4448);
+		addExpectedElement(null, 4449, 4454);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4455, 4456);
+		addExpectedElement(null, 4457, 4465);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4466, 4468);
+		addExpectedElement(null, 4469, 4470);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 4471);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 4472);
 	}
 	
 ;
@@ -5790,29 +4666,14 @@ parse_org_emftext_language_xpath2_QNameTest returns [org.emftext.language.xpath2
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1530]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1531]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1532]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1533]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1534]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1535]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1536]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1537]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1538]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1539]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1540]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1541]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1542]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1543]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1544]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1545]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1546]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1547]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1548]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1549]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1550]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1551]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1552]);
+			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 4473);
+			addExpectedElement(null, 4474, 4479);
+			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4480, 4481);
+			addExpectedElement(null, 4482, 4490);
+			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4491, 4493);
+			addExpectedElement(null, 4494, 4495);
+			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 4496);
+			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 4497);
 		}
 		
 		
@@ -5849,57 +4710,33 @@ parse_org_emftext_language_xpath2_QNameTest returns [org.emftext.language.xpath2
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1553]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1554]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1555]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1556]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1557]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1558]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1559]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1560]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1561]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1562]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1563]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1564]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1565]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1566]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1567]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1568]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1569]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1570]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1571]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1572]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1573]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1574]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1575]);
+			// We've found the last token for this rule. The constructed EObject is now
+			// complete.
+			completedElement(element, true);
+			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 4498);
+			addExpectedElement(null, 4499, 4504);
+			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4505, 4506);
+			addExpectedElement(null, 4507, 4515);
+			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4516, 4518);
+			addExpectedElement(null, 4519, 4520);
+			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 4521);
+			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 4522);
 		}
 		
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1576]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1577]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1578]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1579]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1580]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1581]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1582]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1583]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1584]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1585]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1586]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1587]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1588]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1589]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1590]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1591]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1592]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1593]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1594]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1595]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1596]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1597]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1598]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 4523);
+		addExpectedElement(null, 4524, 4529);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4530, 4531);
+		addExpectedElement(null, 4532, 4540);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4541, 4543);
+		addExpectedElement(null, 4544, 4545);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 4546);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 4547);
 	}
 	
 ;
@@ -5919,29 +4756,17 @@ parse_org_emftext_language_xpath2_AnyWildcard returns [org.emftext.language.xpat
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1599]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1600]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1601]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1602]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1603]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1604]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1605]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1606]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1607]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1608]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1609]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1610]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1611]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1612]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1613]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1614]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1615]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1616]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1617]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1618]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1619]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1620]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1621]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 4548);
+		addExpectedElement(null, 4549, 4554);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4555, 4556);
+		addExpectedElement(null, 4557, 4565);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4566, 4568);
+		addExpectedElement(null, 4569, 4570);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 4571);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 4572);
 	}
 	
 ;
@@ -5983,7 +4808,7 @@ parse_org_emftext_language_xpath2_LocalNameWildcard returns [org.emftext.languag
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1622]);
+		addExpectedElement(null, 4573);
 	}
 	
 	a1 = ':' {
@@ -5997,7 +4822,7 @@ parse_org_emftext_language_xpath2_LocalNameWildcard returns [org.emftext.languag
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1623]);
+		addExpectedElement(null, 4574);
 	}
 	
 	a2 = '*' {
@@ -6011,29 +4836,17 @@ parse_org_emftext_language_xpath2_LocalNameWildcard returns [org.emftext.languag
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1624]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1625]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1626]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1627]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1628]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1629]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1630]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1631]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1632]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1633]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1634]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1635]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1636]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1637]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1638]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1639]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1640]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1641]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1642]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1643]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1644]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1645]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1646]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 4575);
+		addExpectedElement(null, 4576, 4581);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4582, 4583);
+		addExpectedElement(null, 4584, 4592);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4593, 4595);
+		addExpectedElement(null, 4596, 4597);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 4598);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 4599);
 	}
 	
 ;
@@ -6053,7 +4866,7 @@ parse_org_emftext_language_xpath2_NamespaceWildcard returns [org.emftext.languag
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1647]);
+		addExpectedElement(null, 4600);
 	}
 	
 	a1 = ':' {
@@ -6067,7 +4880,7 @@ parse_org_emftext_language_xpath2_NamespaceWildcard returns [org.emftext.languag
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1648]);
+		addExpectedElement(null, 4601);
 	}
 	
 	(
@@ -6103,29 +4916,17 @@ parse_org_emftext_language_xpath2_NamespaceWildcard returns [org.emftext.languag
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1649]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1650]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1651]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1652]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1653]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1654]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1655]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1656]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1657]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1658]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1659]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1660]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1661]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1662]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1663]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1664]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1665]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1666]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1667]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1668]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1669]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1670]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1671]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 4602);
+		addExpectedElement(null, 4603, 4608);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4609, 4610);
+		addExpectedElement(null, 4611, 4619);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4620, 4622);
+		addExpectedElement(null, 4623, 4624);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 4625);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 4626);
 	}
 	
 ;
@@ -6145,26 +4946,7 @@ parse_org_emftext_language_xpath2_Predicate returns [org.emftext.language.xpath2
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1672]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1673]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1674]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1675]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1676]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1677]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1678]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1679]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1680]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1681]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1682]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1683]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1684]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1685]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1686]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1687]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1688]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1689]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1690]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1691]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), 4627, 4717);
 	}
 	
 	(
@@ -6190,7 +4972,7 @@ parse_org_emftext_language_xpath2_Predicate returns [org.emftext.language.xpath2
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1692]);
+		addExpectedElement(null, 4718);
 	}
 	
 	a2 = ']' {
@@ -6204,29 +4986,19 @@ parse_org_emftext_language_xpath2_Predicate returns [org.emftext.language.xpath2
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1693]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1694]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1695]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1696]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1697]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1698]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1699]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1700]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1701]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1702]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1703]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1704]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1705]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1706]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1707]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1708]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1709]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1710]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1711]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1712]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1713]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1714]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1715]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), 4719);
+		addExpectedElement(null, 4720, 4725);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4726, 4727);
+		addExpectedElement(null, 4728, 4736);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4737, 4739);
+		addExpectedElement(null, 4740, 4741);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 4742);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 4743);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 4744);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevReverseStep(), 4745);
 	}
 	
 ;
@@ -6246,8 +5018,7 @@ parse_org_emftext_language_xpath2_VarRef returns [org.emftext.language.xpath2.Va
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1716]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1717]);
+		addExpectedElement(null, 4746, 4747);
 	}
 	
 	(
@@ -6284,29 +5055,12 @@ parse_org_emftext_language_xpath2_VarRef returns [org.emftext.language.xpath2.Va
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1718]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1719]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1720]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1721]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1722]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1723]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1724]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1725]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1726]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1727]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1728]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1729]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1730]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1731]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1732]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1733]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1734]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1735]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1736]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1737]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1738]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1739]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1740]);
+			addExpectedElement(null, 4748, 4753);
+			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), 4754);
+			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4755, 4756);
+			addExpectedElement(null, 4757, 4765);
+			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4766, 4768);
+			addExpectedElement(null, 4769, 4770);
 		}
 		
 		
@@ -6343,57 +5097,29 @@ parse_org_emftext_language_xpath2_VarRef returns [org.emftext.language.xpath2.Va
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1741]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1742]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1743]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1744]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1745]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1746]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1747]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1748]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1749]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1750]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1751]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1752]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1753]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1754]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1755]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1756]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1757]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1758]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1759]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1760]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1761]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1762]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1763]);
+			// We've found the last token for this rule. The constructed EObject is now
+			// complete.
+			completedElement(element, true);
+			addExpectedElement(null, 4771, 4776);
+			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), 4777);
+			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4778, 4779);
+			addExpectedElement(null, 4780, 4788);
+			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4789, 4791);
+			addExpectedElement(null, 4792, 4793);
 		}
 		
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1764]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1765]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1766]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1767]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1768]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1769]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1770]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1771]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1772]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1773]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1774]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1775]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1776]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1777]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1778]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1779]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1780]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1781]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1782]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1783]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1784]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1785]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1786]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 4794, 4799);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), 4800);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4801, 4802);
+		addExpectedElement(null, 4803, 4811);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4812, 4814);
+		addExpectedElement(null, 4815, 4816);
 	}
 	
 ;
@@ -6413,27 +5139,8 @@ parse_org_emftext_language_xpath2_ParenthesizedExpr returns [org.emftext.languag
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1787]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1788]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1789]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1790]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1791]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1792]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1793]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1794]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1795]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1796]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1797]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1798]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1799]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1800]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1801]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1802]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1803]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1804]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1805]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1806]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1807]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr(), 4817, 4907);
+		addExpectedElement(null, 4908);
 	}
 	
 	(
@@ -6461,7 +5168,7 @@ parse_org_emftext_language_xpath2_ParenthesizedExpr returns [org.emftext.languag
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1808]);
+		addExpectedElement(null, 4909);
 	}
 	
 	a2 = ')' {
@@ -6475,29 +5182,15 @@ parse_org_emftext_language_xpath2_ParenthesizedExpr returns [org.emftext.languag
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1809]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1810]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1811]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1812]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1813]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1814]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1815]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1816]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1817]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1818]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1819]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1820]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1821]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1822]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1823]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1824]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1825]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1826]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1827]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1828]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1829]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1830]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1831]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 4910, 4915);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), 4916);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4917, 4918);
+		addExpectedElement(null, 4919, 4927);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4928, 4930);
+		addExpectedElement(null, 4931, 4932);
 	}
 	
 ;
@@ -6517,29 +5210,15 @@ parse_org_emftext_language_xpath2_ContextItemExpr returns [org.emftext.language.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1832]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1833]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1834]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1835]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1836]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1837]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1838]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1839]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1840]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1841]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1842]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1843]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1844]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1845]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1846]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1847]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1848]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1849]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1850]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1851]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1852]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1853]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1854]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 4933, 4938);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), 4939);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 4940, 4941);
+		addExpectedElement(null, 4942, 4950);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4951, 4953);
+		addExpectedElement(null, 4954, 4955);
 	}
 	
 ;
@@ -6576,25 +5255,9 @@ parse_org_emftext_language_xpath2_SingleType returns [org.emftext.language.xpath
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1855]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1856]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1857]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1858]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1859]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1860]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1861]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1862]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1863]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1864]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1865]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1866]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1867]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1868]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1869]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1870]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1871]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1872]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1873]);
+		addExpectedElement(null, 4956, 4969);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4970, 4972);
+		addExpectedElement(null, 4973, 4974);
 	}
 	
 	(
@@ -6620,24 +5283,12 @@ parse_org_emftext_language_xpath2_SingleType returns [org.emftext.language.xpath
 		)?	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1874]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1875]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1876]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1877]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1878]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1879]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1880]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1881]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1882]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1883]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1884]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1885]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1886]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1887]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1888]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1889]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1890]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1891]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 4975, 4987);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 4988, 4990);
+		addExpectedElement(null, 4991, 4992);
 	}
 	
 ;
@@ -6657,7 +5308,7 @@ parse_org_emftext_language_xpath2_EmptySequenceType returns [org.emftext.languag
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1892]);
+		addExpectedElement(null, 4993);
 	}
 	
 	a1 = '(' {
@@ -6671,7 +5322,7 @@ parse_org_emftext_language_xpath2_EmptySequenceType returns [org.emftext.languag
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1893]);
+		addExpectedElement(null, 4994);
 	}
 	
 	a2 = ')' {
@@ -6685,22 +5336,12 @@ parse_org_emftext_language_xpath2_EmptySequenceType returns [org.emftext.languag
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1894]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1895]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1896]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1897]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1898]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1899]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1900]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1901]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1902]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1903]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1904]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1905]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1906]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1907]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1908]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1909]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 4995, 5005);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5006, 5008);
+		addExpectedElement(null, 5009, 5010);
 	}
 	
 ;
@@ -6735,7 +5376,9 @@ parse_org_emftext_language_xpath2_ItemSequenceType returns [org.emftext.language
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1910]);
+		addExpectedElement(null, 5011, 5022);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5023, 5025);
+		addExpectedElement(null, 5026, 5027);
 	}
 	
 	(
@@ -6791,22 +5434,12 @@ parse_org_emftext_language_xpath2_ItemSequenceType returns [org.emftext.language
 		)?	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1911]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1912]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1913]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1914]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1915]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1916]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1917]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1918]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1919]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1920]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1921]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1922]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1923]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1924]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1925]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1926]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 5028, 5038);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5039, 5041);
+		addExpectedElement(null, 5042, 5043);
 	}
 	
 ;
@@ -6838,7 +5471,12 @@ parse_org_emftext_language_xpath2_ItemKindTest returns [org.emftext.language.xpa
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1927]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 5044, 5055);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5056, 5058);
+		addExpectedElement(null, 5059, 5060);
 	}
 	
 ;
@@ -6858,7 +5496,7 @@ parse_org_emftext_language_xpath2_AnyItemType returns [org.emftext.language.xpat
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1928]);
+		addExpectedElement(null, 5061);
 	}
 	
 	a1 = '(' {
@@ -6872,7 +5510,7 @@ parse_org_emftext_language_xpath2_AnyItemType returns [org.emftext.language.xpat
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1929]);
+		addExpectedElement(null, 5062);
 	}
 	
 	a2 = ')' {
@@ -6886,7 +5524,12 @@ parse_org_emftext_language_xpath2_AnyItemType returns [org.emftext.language.xpat
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1930]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 5063, 5074);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5075, 5077);
+		addExpectedElement(null, 5078, 5079);
 	}
 	
 ;
@@ -6918,7 +5561,12 @@ parse_org_emftext_language_xpath2_AtomicItemType returns [org.emftext.language.x
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1931]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 5080, 5091);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5092, 5094);
+		addExpectedElement(null, 5095, 5096);
 	}
 	
 ;
@@ -6961,26 +5609,9 @@ parse_org_emftext_language_xpath2_AtomicType returns [org.emftext.language.xpath
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1932]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1933]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1934]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1935]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1936]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1937]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1938]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1939]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1940]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1941]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1942]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1943]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1944]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1945]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1946]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1947]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1948]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1949]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1950]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1951]);
+			addExpectedElement(null, 5097, 5110);
+			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5111, 5113);
+			addExpectedElement(null, 5114, 5116);
 		}
 		
 		
@@ -7017,51 +5648,23 @@ parse_org_emftext_language_xpath2_AtomicType returns [org.emftext.language.xpath
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1952]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1953]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1954]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1955]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1956]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1957]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1958]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1959]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1960]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1961]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1962]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1963]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1964]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1965]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1966]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1967]);
-			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1968]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1969]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1970]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1971]);
+			// We've found the last token for this rule. The constructed EObject is now
+			// complete.
+			completedElement(element, true);
+			addExpectedElement(null, 5117, 5130);
+			addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5131, 5133);
+			addExpectedElement(null, 5134, 5136);
 		}
 		
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1972]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1973]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1974]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1975]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1976]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1977]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1978]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1979]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1980]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1981]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1982]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1983]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1984]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1985]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1986]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1987]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1988]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1989]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1990]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1991]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 5137, 5150);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5151, 5153);
+		addExpectedElement(null, 5154, 5156);
 	}
 	
 ;
@@ -7109,9 +5712,7 @@ parse_org_emftext_language_xpath2_OptionalAtomicType returns [org.emftext.langua
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1992]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1993]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1994]);
+			addExpectedElement(null, 5157, 5159);
 		}
 		
 		
@@ -7153,17 +5754,13 @@ parse_org_emftext_language_xpath2_OptionalAtomicType returns [org.emftext.langua
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1995]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1996]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1997]);
+			addExpectedElement(null, 5160, 5162);
 		}
 		
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1998]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[1999]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2000]);
+		addExpectedElement(null, 5163, 5165);
 	}
 	
 	(
@@ -7189,8 +5786,10 @@ parse_org_emftext_language_xpath2_OptionalAtomicType returns [org.emftext.langua
 		)?	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2001]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2002]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 5166, 5167);
 	}
 	
 ;
@@ -7210,7 +5809,7 @@ parse_org_emftext_language_xpath2_AnyKindTest returns [org.emftext.language.xpat
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2003]);
+		addExpectedElement(null, 5168);
 	}
 	
 	a1 = '(' {
@@ -7224,7 +5823,7 @@ parse_org_emftext_language_xpath2_AnyKindTest returns [org.emftext.language.xpat
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2004]);
+		addExpectedElement(null, 5169);
 	}
 	
 	a2 = ')' {
@@ -7238,30 +5837,18 @@ parse_org_emftext_language_xpath2_AnyKindTest returns [org.emftext.language.xpat
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2005]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2006]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2007]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2008]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2009]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2010]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2011]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2012]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2013]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2014]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2015]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2016]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2017]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2018]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2019]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2020]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2021]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2022]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2023]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2024]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2025]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2026]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2027]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2028]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 5170);
+		addExpectedElement(null, 5171, 5176);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5177, 5178);
+		addExpectedElement(null, 5179, 5187);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5188, 5190);
+		addExpectedElement(null, 5191, 5192);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 5193);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 5194);
+		addExpectedElement(null, 5195);
 	}
 	
 ;
@@ -7281,7 +5868,7 @@ parse_org_emftext_language_xpath2_DocumentTest returns [org.emftext.language.xpa
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2029]);
+		addExpectedElement(null, 5196);
 	}
 	
 	a1 = '(' {
@@ -7295,11 +5882,8 @@ parse_org_emftext_language_xpath2_DocumentTest returns [org.emftext.language.xpa
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDocumentTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2030]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDocumentTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2031]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDocumentTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2032]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDocumentTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2033]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2034]);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDocumentTest(), 5197, 5200);
+		addExpectedElement(null, 5201);
 	}
 	
 	(
@@ -7346,7 +5930,7 @@ parse_org_emftext_language_xpath2_DocumentTest returns [org.emftext.language.xpa
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2035]);
+		addExpectedElement(null, 5202);
 	}
 	
 	a3 = ')' {
@@ -7360,30 +5944,18 @@ parse_org_emftext_language_xpath2_DocumentTest returns [org.emftext.language.xpa
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2036]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2037]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2038]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2039]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2040]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2041]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2042]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2043]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2044]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2045]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2046]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2047]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2048]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2049]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2050]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2051]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2052]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2053]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2054]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2055]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2056]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2057]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2058]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2059]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 5203);
+		addExpectedElement(null, 5204, 5209);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5210, 5211);
+		addExpectedElement(null, 5212, 5220);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5221, 5223);
+		addExpectedElement(null, 5224, 5225);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 5226);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 5227);
+		addExpectedElement(null, 5228);
 	}
 	
 ;
@@ -7403,7 +5975,7 @@ parse_org_emftext_language_xpath2_TextTest returns [org.emftext.language.xpath2.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2060]);
+		addExpectedElement(null, 5229);
 	}
 	
 	a1 = '(' {
@@ -7417,7 +5989,7 @@ parse_org_emftext_language_xpath2_TextTest returns [org.emftext.language.xpath2.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2061]);
+		addExpectedElement(null, 5230);
 	}
 	
 	a2 = ')' {
@@ -7431,30 +6003,18 @@ parse_org_emftext_language_xpath2_TextTest returns [org.emftext.language.xpath2.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2062]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2063]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2064]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2065]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2066]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2067]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2068]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2069]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2070]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2071]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2072]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2073]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2074]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2075]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2076]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2077]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2078]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2079]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2080]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2081]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2082]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2083]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2084]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2085]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 5231);
+		addExpectedElement(null, 5232, 5237);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5238, 5239);
+		addExpectedElement(null, 5240, 5248);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5249, 5251);
+		addExpectedElement(null, 5252, 5253);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 5254);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 5255);
+		addExpectedElement(null, 5256);
 	}
 	
 ;
@@ -7474,7 +6034,7 @@ parse_org_emftext_language_xpath2_CommentTest returns [org.emftext.language.xpat
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2086]);
+		addExpectedElement(null, 5257);
 	}
 	
 	a1 = '(' {
@@ -7488,7 +6048,7 @@ parse_org_emftext_language_xpath2_CommentTest returns [org.emftext.language.xpat
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2087]);
+		addExpectedElement(null, 5258);
 	}
 	
 	a2 = ')' {
@@ -7502,30 +6062,18 @@ parse_org_emftext_language_xpath2_CommentTest returns [org.emftext.language.xpat
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2088]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2089]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2090]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2091]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2092]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2093]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2094]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2095]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2096]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2097]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2098]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2099]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2100]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2101]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2102]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2103]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2104]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2105]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2106]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2107]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2108]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2109]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2110]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2111]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 5259);
+		addExpectedElement(null, 5260, 5265);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5266, 5267);
+		addExpectedElement(null, 5268, 5276);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5277, 5279);
+		addExpectedElement(null, 5280, 5281);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 5282);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 5283);
+		addExpectedElement(null, 5284);
 	}
 	
 ;
@@ -7545,7 +6093,7 @@ parse_org_emftext_language_xpath2_PITest returns [org.emftext.language.xpath2.PI
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2112]);
+		addExpectedElement(null, 5285);
 	}
 	
 	a1 = '(' {
@@ -7559,7 +6107,7 @@ parse_org_emftext_language_xpath2_PITest returns [org.emftext.language.xpath2.PI
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2113]);
+		addExpectedElement(null, 5286);
 	}
 	
 	a2 = ')' {
@@ -7573,30 +6121,18 @@ parse_org_emftext_language_xpath2_PITest returns [org.emftext.language.xpath2.PI
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2114]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2115]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2116]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2117]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2118]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2119]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2120]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2121]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2122]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2123]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2124]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2125]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2126]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2127]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2128]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2129]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2130]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2131]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2132]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2133]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2134]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2135]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2136]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2137]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 5287);
+		addExpectedElement(null, 5288, 5293);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5294, 5295);
+		addExpectedElement(null, 5296, 5304);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5305, 5307);
+		addExpectedElement(null, 5308, 5309);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 5310);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 5311);
+		addExpectedElement(null, 5312);
 	}
 	
 	|//derived choice rules for sub-classes: 
@@ -7621,7 +6157,7 @@ parse_org_emftext_language_xpath2_NCNamePITest returns [org.emftext.language.xpa
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2138]);
+		addExpectedElement(null, 5313);
 	}
 	
 	a1 = '(' {
@@ -7635,7 +6171,7 @@ parse_org_emftext_language_xpath2_NCNamePITest returns [org.emftext.language.xpa
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2139]);
+		addExpectedElement(null, 5314);
 	}
 	
 	(
@@ -7671,7 +6207,7 @@ parse_org_emftext_language_xpath2_NCNamePITest returns [org.emftext.language.xpa
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2140]);
+		addExpectedElement(null, 5315);
 	}
 	
 	a3 = ')' {
@@ -7685,30 +6221,18 @@ parse_org_emftext_language_xpath2_NCNamePITest returns [org.emftext.language.xpa
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2141]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2142]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2143]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2144]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2145]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2146]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2147]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2148]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2149]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2150]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2151]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2152]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2153]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2154]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2155]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2156]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2157]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2158]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2159]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2160]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2161]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2162]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2163]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2164]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 5316);
+		addExpectedElement(null, 5317, 5322);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5323, 5324);
+		addExpectedElement(null, 5325, 5333);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5334, 5336);
+		addExpectedElement(null, 5337, 5338);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 5339);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 5340);
+		addExpectedElement(null, 5341);
 	}
 	
 ;
@@ -7728,7 +6252,7 @@ parse_org_emftext_language_xpath2_StringLiteralPITest returns [org.emftext.langu
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2165]);
+		addExpectedElement(null, 5342);
 	}
 	
 	a1 = '(' {
@@ -7742,7 +6266,7 @@ parse_org_emftext_language_xpath2_StringLiteralPITest returns [org.emftext.langu
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2166]);
+		addExpectedElement(null, 5343);
 	}
 	
 	(
@@ -7782,7 +6306,7 @@ parse_org_emftext_language_xpath2_StringLiteralPITest returns [org.emftext.langu
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2167]);
+		addExpectedElement(null, 5344);
 	}
 	
 	a3 = ')' {
@@ -7796,30 +6320,18 @@ parse_org_emftext_language_xpath2_StringLiteralPITest returns [org.emftext.langu
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2168]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2169]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2170]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2171]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2172]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2173]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2174]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2175]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2176]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2177]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2178]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2179]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2180]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2181]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2182]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2183]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2184]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2185]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2186]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2187]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2188]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2189]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2190]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2191]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 5345);
+		addExpectedElement(null, 5346, 5351);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5352, 5353);
+		addExpectedElement(null, 5354, 5362);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5363, 5365);
+		addExpectedElement(null, 5366, 5367);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 5368);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 5369);
+		addExpectedElement(null, 5370);
 	}
 	
 ;
@@ -7839,7 +6351,7 @@ parse_org_emftext_language_xpath2_AttributeTest returns [org.emftext.language.xp
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2192]);
+		addExpectedElement(null, 5371);
 	}
 	
 	a1 = '(' {
@@ -7853,7 +6365,7 @@ parse_org_emftext_language_xpath2_AttributeTest returns [org.emftext.language.xp
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2193]);
+		addExpectedElement(null, 5372);
 	}
 	
 	a2 = ')' {
@@ -7867,30 +6379,18 @@ parse_org_emftext_language_xpath2_AttributeTest returns [org.emftext.language.xp
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2194]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2195]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2196]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2197]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2198]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2199]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2200]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2201]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2202]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2203]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2204]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2205]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2206]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2207]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2208]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2209]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2210]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2211]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2212]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2213]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2214]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2215]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2216]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2217]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 5373);
+		addExpectedElement(null, 5374, 5379);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5380, 5381);
+		addExpectedElement(null, 5382, 5390);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5391, 5393);
+		addExpectedElement(null, 5394, 5395);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 5396);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 5397);
+		addExpectedElement(null, 5398);
 	}
 	
 	|//derived choice rules for sub-classes: 
@@ -7915,7 +6415,7 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2218]);
+		addExpectedElement(null, 5399);
 	}
 	
 	a1 = '(' {
@@ -7929,7 +6429,7 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2219]);
+		addExpectedElement(null, 5400);
 	}
 	
 	a2 = '*' {
@@ -7943,8 +6443,7 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2220]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2221]);
+		addExpectedElement(null, 5401, 5402);
 	}
 	
 	(
@@ -7960,8 +6459,7 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2222]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2223]);
+				addExpectedElement(null, 5403, 5404);
 			}
 			
 			(
@@ -7998,7 +6496,7 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 				)
 				{
 					// expected elements (follow set)
-					addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2224]);
+					addExpectedElement(null, 5405);
 				}
 				
 				
@@ -8035,20 +6533,20 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 				)
 				{
 					// expected elements (follow set)
-					addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2225]);
+					addExpectedElement(null, 5406);
 				}
 				
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2226]);
+				addExpectedElement(null, 5407);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2227]);
+		addExpectedElement(null, 5408);
 	}
 	
 	a6 = ')' {
@@ -8062,30 +6560,18 @@ parse_org_emftext_language_xpath2_WildcardAttributeTest returns [org.emftext.lan
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2228]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2229]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2230]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2231]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2232]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2233]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2234]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2235]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2236]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2237]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2238]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2239]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2240]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2241]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2242]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2243]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2244]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2245]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2246]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2247]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2248]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2249]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2250]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2251]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 5409);
+		addExpectedElement(null, 5410, 5415);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5416, 5417);
+		addExpectedElement(null, 5418, 5426);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5427, 5429);
+		addExpectedElement(null, 5430, 5431);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 5432);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 5433);
+		addExpectedElement(null, 5434);
 	}
 	
 ;
@@ -8105,7 +6591,7 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2252]);
+		addExpectedElement(null, 5435);
 	}
 	
 	a1 = '(' {
@@ -8119,8 +6605,7 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2253]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2254]);
+		addExpectedElement(null, 5436, 5437);
 	}
 	
 	(
@@ -8157,8 +6642,7 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2255]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2256]);
+			addExpectedElement(null, 5438, 5439);
 		}
 		
 		
@@ -8195,15 +6679,13 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2257]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2258]);
+			addExpectedElement(null, 5440, 5441);
 		}
 		
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2259]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2260]);
+		addExpectedElement(null, 5442, 5443);
 	}
 	
 	(
@@ -8219,8 +6701,7 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2261]);
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2262]);
+				addExpectedElement(null, 5444, 5445);
 			}
 			
 			(
@@ -8257,7 +6738,7 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 				)
 				{
 					// expected elements (follow set)
-					addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2263]);
+					addExpectedElement(null, 5446);
 				}
 				
 				
@@ -8294,20 +6775,20 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 				)
 				{
 					// expected elements (follow set)
-					addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2264]);
+					addExpectedElement(null, 5447);
 				}
 				
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2265]);
+				addExpectedElement(null, 5448);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2266]);
+		addExpectedElement(null, 5449);
 	}
 	
 	a7 = ')' {
@@ -8321,30 +6802,18 @@ parse_org_emftext_language_xpath2_NameAttributeTest returns [org.emftext.languag
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2267]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2268]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2269]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2270]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2271]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2272]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2273]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2274]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2275]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2276]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2277]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2278]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2279]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2280]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2281]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2282]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2283]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2284]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2285]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2286]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2287]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2288]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2289]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2290]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 5450);
+		addExpectedElement(null, 5451, 5456);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5457, 5458);
+		addExpectedElement(null, 5459, 5467);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5468, 5470);
+		addExpectedElement(null, 5471, 5472);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 5473);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 5474);
+		addExpectedElement(null, 5475);
 	}
 	
 ;
@@ -8364,7 +6833,7 @@ parse_org_emftext_language_xpath2_SchemaAttributeTest returns [org.emftext.langu
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2291]);
+		addExpectedElement(null, 5476);
 	}
 	
 	a1 = '(' {
@@ -8378,8 +6847,7 @@ parse_org_emftext_language_xpath2_SchemaAttributeTest returns [org.emftext.langu
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2292]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2293]);
+		addExpectedElement(null, 5477, 5478);
 	}
 	
 	(
@@ -8416,7 +6884,7 @@ parse_org_emftext_language_xpath2_SchemaAttributeTest returns [org.emftext.langu
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2294]);
+			addExpectedElement(null, 5479);
 		}
 		
 		
@@ -8453,13 +6921,13 @@ parse_org_emftext_language_xpath2_SchemaAttributeTest returns [org.emftext.langu
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2295]);
+			addExpectedElement(null, 5480);
 		}
 		
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2296]);
+		addExpectedElement(null, 5481);
 	}
 	
 	a4 = ')' {
@@ -8473,30 +6941,18 @@ parse_org_emftext_language_xpath2_SchemaAttributeTest returns [org.emftext.langu
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2297]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2298]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2299]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2300]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2301]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2302]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2303]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2304]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2305]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2306]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2307]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2308]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2309]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2310]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2311]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2312]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2313]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2314]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2315]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2316]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2317]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2318]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2319]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2320]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 5482);
+		addExpectedElement(null, 5483, 5488);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5489, 5490);
+		addExpectedElement(null, 5491, 5499);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5500, 5502);
+		addExpectedElement(null, 5503, 5504);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 5505);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 5506);
+		addExpectedElement(null, 5507);
 	}
 	
 ;
@@ -8516,7 +6972,7 @@ parse_org_emftext_language_xpath2_ElementTest returns [org.emftext.language.xpat
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2321]);
+		addExpectedElement(null, 5508);
 	}
 	
 	a1 = '(' {
@@ -8530,7 +6986,7 @@ parse_org_emftext_language_xpath2_ElementTest returns [org.emftext.language.xpat
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2322]);
+		addExpectedElement(null, 5509);
 	}
 	
 	a2 = ')' {
@@ -8544,31 +7000,18 @@ parse_org_emftext_language_xpath2_ElementTest returns [org.emftext.language.xpat
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2323]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2324]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2325]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2326]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2327]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2328]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2329]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2330]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2331]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2332]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2333]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2334]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2335]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2336]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2337]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2338]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2339]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2340]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2341]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2342]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2343]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2344]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2345]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2346]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2347]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 5510);
+		addExpectedElement(null, 5511, 5516);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5517, 5518);
+		addExpectedElement(null, 5519, 5527);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5528, 5530);
+		addExpectedElement(null, 5531, 5532);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 5533);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 5534);
+		addExpectedElement(null, 5535, 5536);
 	}
 	
 	|//derived choice rules for sub-classes: 
@@ -8593,7 +7036,7 @@ parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.langu
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2348]);
+		addExpectedElement(null, 5537);
 	}
 	
 	a1 = '(' {
@@ -8607,7 +7050,7 @@ parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.langu
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2349]);
+		addExpectedElement(null, 5538);
 	}
 	
 	a2 = '*' {
@@ -8621,8 +7064,7 @@ parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.langu
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2350]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2351]);
+		addExpectedElement(null, 5539, 5540);
 	}
 	
 	(
@@ -8638,8 +7080,7 @@ parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.langu
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getWildcardElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2352]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getWildcardElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2353]);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getWildcardElementTest(), 5541, 5542);
 			}
 			
 			(
@@ -8665,14 +7106,14 @@ parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.langu
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2354]);
+				addExpectedElement(null, 5543);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2355]);
+		addExpectedElement(null, 5544);
 	}
 	
 	a5 = ')' {
@@ -8686,31 +7127,18 @@ parse_org_emftext_language_xpath2_WildcardElementTest returns [org.emftext.langu
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2356]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2357]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2358]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2359]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2360]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2361]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2362]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2363]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2364]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2365]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2366]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2367]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2368]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2369]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2370]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2371]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2372]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2373]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2374]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2375]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2376]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2377]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2378]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2379]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2380]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 5545);
+		addExpectedElement(null, 5546, 5551);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5552, 5553);
+		addExpectedElement(null, 5554, 5562);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5563, 5565);
+		addExpectedElement(null, 5566, 5567);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 5568);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 5569);
+		addExpectedElement(null, 5570, 5571);
 	}
 	
 ;
@@ -8730,7 +7158,7 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2381]);
+		addExpectedElement(null, 5572);
 	}
 	
 	a1 = '(' {
@@ -8744,8 +7172,7 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2382]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2383]);
+		addExpectedElement(null, 5573, 5574);
 	}
 	
 	(
@@ -8782,8 +7209,7 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2384]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2385]);
+			addExpectedElement(null, 5575, 5576);
 		}
 		
 		
@@ -8820,15 +7246,13 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2386]);
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2387]);
+			addExpectedElement(null, 5577, 5578);
 		}
 		
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2388]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2389]);
+		addExpectedElement(null, 5579, 5580);
 	}
 	
 	(
@@ -8844,8 +7268,7 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 			}
 			{
 				// expected elements (follow set)
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2390]);
-				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getNameElementTest(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2391]);
+				addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getNameElementTest(), 5581, 5582);
 			}
 			
 			(
@@ -8871,14 +7294,14 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 			)
 			{
 				// expected elements (follow set)
-				addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2392]);
+				addExpectedElement(null, 5583);
 			}
 			
 		)
 		
 	)?	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2393]);
+		addExpectedElement(null, 5584);
 	}
 	
 	a6 = ')' {
@@ -8892,31 +7315,18 @@ parse_org_emftext_language_xpath2_NameElementTest returns [org.emftext.language.
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2394]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2395]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2396]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2397]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2398]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2399]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2400]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2401]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2402]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2403]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2404]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2405]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2406]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2407]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2408]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2409]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2410]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2411]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2412]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2413]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2414]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2415]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2416]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2417]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2418]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 5585);
+		addExpectedElement(null, 5586, 5591);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5592, 5593);
+		addExpectedElement(null, 5594, 5602);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5603, 5605);
+		addExpectedElement(null, 5606, 5607);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 5608);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 5609);
+		addExpectedElement(null, 5610, 5611);
 	}
 	
 ;
@@ -8936,7 +7346,7 @@ parse_org_emftext_language_xpath2_SchemaElementTest returns [org.emftext.languag
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2419]);
+		addExpectedElement(null, 5612);
 	}
 	
 	a1 = '(' {
@@ -8950,8 +7360,7 @@ parse_org_emftext_language_xpath2_SchemaElementTest returns [org.emftext.languag
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2420]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2421]);
+		addExpectedElement(null, 5613, 5614);
 	}
 	
 	(
@@ -8988,7 +7397,7 @@ parse_org_emftext_language_xpath2_SchemaElementTest returns [org.emftext.languag
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2422]);
+			addExpectedElement(null, 5615);
 		}
 		
 		
@@ -9025,13 +7434,13 @@ parse_org_emftext_language_xpath2_SchemaElementTest returns [org.emftext.languag
 		)
 		{
 			// expected elements (follow set)
-			addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2423]);
+			addExpectedElement(null, 5616);
 		}
 		
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2424]);
+		addExpectedElement(null, 5617);
 	}
 	
 	a4 = ')' {
@@ -9045,31 +7454,18 @@ parse_org_emftext_language_xpath2_SchemaElementTest returns [org.emftext.languag
 	}
 	{
 		// expected elements (follow set)
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2425]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2426]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2427]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2428]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2429]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2430]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2431]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2432]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2433]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2434]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2435]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2436]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2437]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2438]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2439]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2440]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2441]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2442]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2443]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2444]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2445]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2446]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2447]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2448]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2449]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep(), 5618);
+		addExpectedElement(null, 5619, 5624);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5625, 5626);
+		addExpectedElement(null, 5627, 5635);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5636, 5638);
+		addExpectedElement(null, 5639, 5640);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAbbrevForwardStep(), 5641);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep(), 5642);
+		addExpectedElement(null, 5643, 5644);
 	}
 	
 ;
@@ -9111,29 +7507,15 @@ parse_org_emftext_language_xpath2_IntegerLiteral returns [org.emftext.language.x
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2450]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2451]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2452]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2453]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2454]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2455]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2456]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2457]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2458]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2459]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2460]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2461]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2462]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2463]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2464]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2465]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2466]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2467]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2468]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2469]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2470]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2471]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2472]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 5645, 5650);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), 5651);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5652, 5653);
+		addExpectedElement(null, 5654, 5662);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5663, 5665);
+		addExpectedElement(null, 5666, 5667);
 	}
 	
 ;
@@ -9175,29 +7557,15 @@ parse_org_emftext_language_xpath2_DecimalLiteral returns [org.emftext.language.x
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2473]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2474]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2475]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2476]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2477]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2478]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2479]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2480]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2481]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2482]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2483]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2484]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2485]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2486]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2487]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2488]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2489]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2490]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2491]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2492]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2493]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2494]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2495]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 5668, 5673);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), 5674);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5675, 5676);
+		addExpectedElement(null, 5677, 5685);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5686, 5688);
+		addExpectedElement(null, 5689, 5690);
 	}
 	
 ;
@@ -9239,29 +7607,15 @@ parse_org_emftext_language_xpath2_DoubleLiteral returns [org.emftext.language.xp
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2496]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2497]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2498]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2499]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2500]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2501]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2502]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2503]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2504]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2505]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2506]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2507]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2508]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2509]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2510]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2511]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2512]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2513]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2514]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2515]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2516]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2517]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2518]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 5691, 5696);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), 5697);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5698, 5699);
+		addExpectedElement(null, 5700, 5708);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5709, 5711);
+		addExpectedElement(null, 5712, 5713);
 	}
 	
 ;
@@ -9303,29 +7657,15 @@ parse_org_emftext_language_xpath2_StringLiteral returns [org.emftext.language.xp
 	)
 	{
 		// expected elements (follow set)
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2519]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2520]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2521]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2522]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2523]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2524]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2525]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2526]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2527]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2528]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2529]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2530]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2531]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2532]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2533]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2534]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2535]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2536]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2537]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2538]);
-		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2539]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2540]);
-		addExpectedElement(null, org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ExpectationConstants.EXPECTATIONS[2541]);
+		// We've found the last token for this rule. The constructed EObject is now
+		// complete.
+		completedElement(element, true);
+		addExpectedElement(null, 5714, 5719);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr(), 5720);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPathExpr(), 5721, 5722);
+		addExpectedElement(null, 5723, 5731);
+		addExpectedElement(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr(), 5732, 5734);
+		addExpectedElement(null, 5735, 5736);
 	}
 	
 ;
@@ -9425,17 +7765,7 @@ parse_org_emftext_language_xpath2_PathExprChild returns [org.emftext.language.xp
 	
 ;
 
-parse_org_emftext_language_xpath2_StepExpr returns [org.emftext.language.xpath2.StepExpr element = null]
-:
-	c0 = parse_org_emftext_language_xpath2_FilterExpr{ element = c0; /* this is a subclass or primitive expression choice */ }
-	|	c1 = parse_org_emftext_language_xpath2_GeneralForwardStep{ element = c1; /* this is a subclass or primitive expression choice */ }
-	|	c2 = parse_org_emftext_language_xpath2_AbbrevForwardStep{ element = c2; /* this is a subclass or primitive expression choice */ }
-	|	c3 = parse_org_emftext_language_xpath2_GeneralReverseStep{ element = c3; /* this is a subclass or primitive expression choice */ }
-	|	c4 = parse_org_emftext_language_xpath2_AbbrevReverseStep{ element = c4; /* this is a subclass or primitive expression choice */ }
-	
-;
-
-parse_org_emftext_language_xpath2_SelfStepExprChild returns [org.emftext.language.xpath2.SelfStepExprChild element = null]
+parse_org_emftext_language_xpath2_StepExprChild returns [org.emftext.language.xpath2.StepExprChild element = null]
 :
 	c0 = parse_org_emftext_language_xpath2_FilterExpr{ element = c0; /* this is a subclass or primitive expression choice */ }
 	|	c1 = parse_org_emftext_language_xpath2_FunctionCall{ element = c1; /* this is a subclass or primitive expression choice */ }
@@ -9498,7 +7828,7 @@ DECIMAL_LITERAL:
 	(('.'('0'..'9')+)|(('0'..'9')+'.'('0'..'9')*))
 ;
 DOUBLE_LITERAL:
-	(('.'('0'..'9')+)|(('0'..'9')+('.'('0'..'9')*)?)('e'|'E')('+'|'-')?('0'..'9')+)
+	((('.'('0'..'9')+)|(('0'..'9')+('.'('0'..'9')*)?))('e'|'E')('+'|'-')?('0'..'9')+)
 ;
 QNAME:
 	(('A'..'Z'|'_'|'a'..'z'|'\u00C0'..'\u00D6'|'\u00D8'..'\u00F6'|'\u00F8'..'\u02FF'|'\u0370'..'\u037D'|'\u037F'..'\u1FFF'|'\u200C'..'\u200D'|'\u2070'..'\u218F'|'\u2C00'..'\u2FEF'|'\u3001'..'\uD7FF'|'\uF900'..'\uFDCF'|'\uFDF0'..'\uFFFD')('A'..'Z'|'_'|'a'..'z'|'\u00C0'..'\u00D6'|'\u00D8'..'\u00F6'|'\u00F8'..'\u02FF'|'\u0370'..'\u037D'|'\u037F'..'\u1FFF'|'\u200C'..'\u200D'|'\u2070'..'\u218F'|'\u2C00'..'\u2FEF'|'\u3001'..'\uD7FF'|'\uF900'..'\uFDCF'|'\uFDF0'..'\uFFFD'|'-'|'.'|'0'..'9'|'\u00B7'|'\u0300'..'\u036F'|'\u203F'..'\u2040')*':'('A'..'Z'|'_'|'a'..'z'|'\u00C0'..'\u00D6'|'\u00D8'..'\u00F6'|'\u00F8'..'\u02FF'|'\u0370'..'\u037D'|'\u037F'..'\u1FFF'|'\u200C'..'\u200D'|'\u2070'..'\u218F'|'\u2C00'..'\u2FEF'|'\u3001'..'\uD7FF'|'\uF900'..'\uFDCF'|'\uFDF0'..'\uFFFD')('A'..'Z'|'_'|'a'..'z'|'\u00C0'..'\u00D6'|'\u00D8'..'\u00F6'|'\u00F8'..'\u02FF'|'\u0370'..'\u037D'|'\u037F'..'\u1FFF'|'\u200C'..'\u200D'|'\u2070'..'\u218F'|'\u2C00'..'\u2FEF'|'\u3001'..'\uD7FF'|'\uF900'..'\uFDCF'|'\uFDF0'..'\uFFFD'|'-'|'.'|'0'..'9'|'\u00B7'|'\u0300'..'\u036F'|'\u203F'..'\u2040')*)

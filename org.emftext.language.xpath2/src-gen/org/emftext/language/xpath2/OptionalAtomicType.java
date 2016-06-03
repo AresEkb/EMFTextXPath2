@@ -32,56 +32,56 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface OptionalAtomicType extends EObject {
-    /**
-     * Returns the value of the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Name</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Name</em>' attribute.
-     * @see #setName(QName)
-     * @see org.emftext.language.xpath2.XPath2Package#getOptionalAtomicType_Name()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.QName" required="true"
-     * @generated
-     */
-    QName getName();
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(QName)
+	 * @see org.emftext.language.xpath2.XPath2Package#getOptionalAtomicType_Name()
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.QName" required="true"
+	 * @generated
+	 */
+	QName getName();
 
-    /**
-     * Sets the value of the '{@link org.emftext.language.xpath2.OptionalAtomicType#getName <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Name</em>' attribute.
-     * @see #getName()
-     * @generated
-     */
-    void setName(QName value);
+	/**
+	 * Sets the value of the '{@link org.emftext.language.xpath2.OptionalAtomicType#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(QName value);
 
-    /**
-     * Returns the value of the '<em><b>Optional</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Optional</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Optional</em>' attribute.
-     * @see #setOptional(boolean)
-     * @see org.emftext.language.xpath2.XPath2Package#getOptionalAtomicType_Optional()
-     * @model required="true"
-     * @generated
-     */
-    boolean isOptional();
+	/**
+	 * Returns the value of the '<em><b>Optional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Optional</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Optional</em>' attribute.
+	 * @see #setOptional(boolean)
+	 * @see org.emftext.language.xpath2.XPath2Package#getOptionalAtomicType_Optional()
+	 * @model required="true"
+	 * @generated
+	 */
+	boolean isOptional();
 
-    /**
-     * Sets the value of the '{@link org.emftext.language.xpath2.OptionalAtomicType#isOptional <em>Optional</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Optional</em>' attribute.
-     * @see #isOptional()
-     * @generated
-     */
-    void setOptional(boolean value);
+	/**
+	 * Sets the value of the '{@link org.emftext.language.xpath2.OptionalAtomicType#isOptional <em>Optional</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Optional</em>' attribute.
+	 * @see #isOptional()
+	 * @generated
+	 */
+	void setOptional(boolean value);
 
 } // OptionalAtomicType

@@ -34,7 +34,7 @@ public class Xpath2ExpectedStructuralFeature extends org.emftext.language.xpath2
 	/**
 	 * Returns the expected placeholder.
 	 */
-	public org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement getSymtaxElement() {
+	public org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement getSyntaxElement() {
 		return placeholder;
 	}
 	

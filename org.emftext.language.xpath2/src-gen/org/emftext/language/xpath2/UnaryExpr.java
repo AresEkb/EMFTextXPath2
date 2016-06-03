@@ -30,48 +30,48 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface UnaryExpr extends CastExprChild {
-    /**
-     * Returns the value of the '<em><b>Operand</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Operand</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Operand</em>' containment reference.
-     * @see #setOperand(UnaryExprChild)
-     * @see org.emftext.language.xpath2.XPath2Package#getUnaryExpr_Operand()
-     * @model containment="true" required="true"
-     * @generated
-     */
-    UnaryExprChild getOperand();
+	/**
+	 * Returns the value of the '<em><b>Operand</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Operand</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Operand</em>' containment reference.
+	 * @see #setOperand(UnaryExprChild)
+	 * @see org.emftext.language.xpath2.XPath2Package#getUnaryExpr_Operand()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	UnaryExprChild getOperand();
 
-    /**
-     * Sets the value of the '{@link org.emftext.language.xpath2.UnaryExpr#getOperand <em>Operand</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Operand</em>' containment reference.
-     * @see #getOperand()
-     * @generated
-     */
-    void setOperand(UnaryExprChild value);
+	/**
+	 * Sets the value of the '{@link org.emftext.language.xpath2.UnaryExpr#getOperand <em>Operand</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Operand</em>' containment reference.
+	 * @see #getOperand()
+	 * @generated
+	 */
+	void setOperand(UnaryExprChild value);
 
-    /**
-     * Returns the value of the '<em><b>Operator</b></em>' attribute list.
-     * The list contents are of type {@link org.emftext.language.xpath2.UnaryOp}.
-     * The literals are from the enumeration {@link org.emftext.language.xpath2.UnaryOp}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Operator</em>' attribute list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Operator</em>' attribute list.
-     * @see org.emftext.language.xpath2.UnaryOp
-     * @see org.emftext.language.xpath2.XPath2Package#getUnaryExpr_Operator()
-     * @model unique="false"
-     * @generated
-     */
-    EList<UnaryOp> getOperator();
+	/**
+	 * Returns the value of the '<em><b>Operator</b></em>' attribute list.
+	 * The list contents are of type {@link org.emftext.language.xpath2.UnaryOp}.
+	 * The literals are from the enumeration {@link org.emftext.language.xpath2.UnaryOp}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Operator</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Operator</em>' attribute list.
+	 * @see org.emftext.language.xpath2.UnaryOp
+	 * @see org.emftext.language.xpath2.XPath2Package#getUnaryExpr_Operator()
+	 * @model unique="false"
+	 * @generated
+	 */
+	EList<UnaryOp> getOperator();
 
 } // UnaryExpr

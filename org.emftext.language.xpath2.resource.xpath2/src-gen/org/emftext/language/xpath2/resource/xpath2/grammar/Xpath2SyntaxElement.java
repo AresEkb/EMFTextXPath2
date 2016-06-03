@@ -49,6 +49,17 @@ public abstract class Xpath2SyntaxElement {
 		return parent;
 	}
 	
+	/**
+	 * Returns the rule of this syntax element. The rule is determined by the
+	 * containment hierarchy in the CS model.
+	 */
+	public org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule getRule() {
+		if (this instanceof org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule) {
+			return (org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule) this;
+		}
+		return parent.getRule();
+	}
+	
 	public Xpath2SyntaxElement[] getChildren() {
 		if (children == null) {
 			return new Xpath2SyntaxElement[0];
@@ -62,6 +73,16 @@ public abstract class Xpath2SyntaxElement {
 	
 	public org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Cardinality getCardinality() {
 		return cardinality;
+	}
+	
+	public boolean hasContainment(EClass metaclass) {
+		org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement[] children = getChildren();
+		for (org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement child : children) {
+			if (child.hasContainment(metaclass)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }

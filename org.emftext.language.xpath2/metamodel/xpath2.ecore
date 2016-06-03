@@ -136,26 +136,26 @@
   <eClassifiers xsi:type="ecore:EClass" name="PathExprChild" abstract="true" eSuperTypes="#//UnaryExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="RootStepExpr" eSuperTypes="#//PathExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="ChildStepExpr" eSuperTypes="#//PathExprChild">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1" eType="#//StepExpr"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1" eType="#//StepExprChild"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DescOrSelfStepExpr" eSuperTypes="#//PathExprChild">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1" eType="#//StepExpr"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1" eType="#//StepExprChild"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SelfStepExpr" eSuperTypes="#//PathExprChild">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1" eType="#//SelfStepExprChild"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1" eType="#//StepExprChild"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SelfStepExprChild" abstract="true" eSuperTypes="#//PathExprChild"/>
-  <eClassifiers xsi:type="ecore:EClass" name="StepExpr" abstract="true" eSuperTypes="#//SelfStepExprChild"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StepExprChild" abstract="true" eSuperTypes="#//PathExprChild"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StepExpr" abstract="true" eSuperTypes="#//StepExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="FilterExpr" eSuperTypes="#//StepExpr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="primaryExpr" lowerBound="1"
         eType="#//FilterExprChild" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" upperBound="-1"
         eType="#//Predicate" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FilterExprChild" abstract="true" eSuperTypes="#//SelfStepExprChild"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FilterExprChild" abstract="true" eSuperTypes="#//StepExprChild"/>
   <eClassifiers xsi:type="ecore:EClass" name="AxisStep" abstract="true" eSuperTypes="#//StepExpr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" upperBound="-1"
         eType="#//Predicate" containment="true"/>

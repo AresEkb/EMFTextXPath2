@@ -24,6 +24,14 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
+/**
+ * This class provides an implementation of the
+ * org.emftext.language.xpath2.resource.xpath2.IXpath2TextDiagnostic interface.
+ * However, it is recommended to use the
+ * org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2Printer2 instead,
+ * because it provides advanced printing features. There are even some features
+ * (e.g., printing enumeration terminals) which are only supported by that class.
+ */
 public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath2.IXpath2TextPrinter {
 	
 	protected org.emftext.language.xpath2.resource.xpath2.IXpath2TokenResolverFactory tokenResolverFactory = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2TokenResolverFactory();

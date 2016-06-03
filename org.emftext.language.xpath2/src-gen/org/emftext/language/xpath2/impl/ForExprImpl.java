@@ -45,184 +45,184 @@ import org.emftext.language.xpath2.XPath2Package;
  * @generated
  */
 public class ForExprImpl extends ExprSingleImpl implements ForExpr {
-    /**
-     * The cached value of the '{@link #getIterator() <em>Iterator</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getIterator()
-     * @generated
-     * @ordered
-     */
-    protected EList<Iterator> iterator;
+	/**
+	 * The cached value of the '{@link #getIterator() <em>Iterator</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIterator()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Iterator> iterator;
 
-    /**
-     * The cached value of the '{@link #getReturn() <em>Return</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getReturn()
-     * @generated
-     * @ordered
-     */
-    protected ExprSingle return_;
+	/**
+	 * The cached value of the '{@link #getReturn() <em>Return</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReturn()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExprSingle return_;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ForExprImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ForExprImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return XPath2Package.Literals.FOR_EXPR;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return XPath2Package.Literals.FOR_EXPR;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EList<Iterator> getIterator() {
-        if (iterator == null) {
-            iterator = new EObjectContainmentEList<Iterator>(Iterator.class, this, XPath2Package.FOR_EXPR__ITERATOR);
-        }
-        return iterator;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Iterator> getIterator() {
+		if (iterator == null) {
+			iterator = new EObjectContainmentEList<Iterator>(Iterator.class, this, XPath2Package.FOR_EXPR__ITERATOR);
+		}
+		return iterator;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ExprSingle getReturn() {
-        return return_;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExprSingle getReturn() {
+		return return_;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetReturn(ExprSingle newReturn, NotificationChain msgs) {
-        ExprSingle oldReturn = return_;
-        return_ = newReturn;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.FOR_EXPR__RETURN, oldReturn, newReturn);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetReturn(ExprSingle newReturn, NotificationChain msgs) {
+		ExprSingle oldReturn = return_;
+		return_ = newReturn;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XPath2Package.FOR_EXPR__RETURN, oldReturn, newReturn);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setReturn(ExprSingle newReturn) {
-        if (newReturn != return_) {
-            NotificationChain msgs = null;
-            if (return_ != null)
-                msgs = ((InternalEObject)return_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.FOR_EXPR__RETURN, null, msgs);
-            if (newReturn != null)
-                msgs = ((InternalEObject)newReturn).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.FOR_EXPR__RETURN, null, msgs);
-            msgs = basicSetReturn(newReturn, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.FOR_EXPR__RETURN, newReturn, newReturn));
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReturn(ExprSingle newReturn) {
+		if (newReturn != return_) {
+			NotificationChain msgs = null;
+			if (return_ != null)
+				msgs = ((InternalEObject)return_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XPath2Package.FOR_EXPR__RETURN, null, msgs);
+			if (newReturn != null)
+				msgs = ((InternalEObject)newReturn).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XPath2Package.FOR_EXPR__RETURN, null, msgs);
+			msgs = basicSetReturn(newReturn, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.FOR_EXPR__RETURN, newReturn, newReturn));
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case XPath2Package.FOR_EXPR__ITERATOR:
-                return ((InternalEList<?>)getIterator()).basicRemove(otherEnd, msgs);
-            case XPath2Package.FOR_EXPR__RETURN:
-                return basicSetReturn(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case XPath2Package.FOR_EXPR__ITERATOR:
+				return ((InternalEList<?>)getIterator()).basicRemove(otherEnd, msgs);
+			case XPath2Package.FOR_EXPR__RETURN:
+				return basicSetReturn(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case XPath2Package.FOR_EXPR__ITERATOR:
-                return getIterator();
-            case XPath2Package.FOR_EXPR__RETURN:
-                return getReturn();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case XPath2Package.FOR_EXPR__ITERATOR:
+				return getIterator();
+			case XPath2Package.FOR_EXPR__RETURN:
+				return getReturn();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case XPath2Package.FOR_EXPR__ITERATOR:
-                getIterator().clear();
-                getIterator().addAll((Collection<? extends Iterator>)newValue);
-                return;
-            case XPath2Package.FOR_EXPR__RETURN:
-                setReturn((ExprSingle)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case XPath2Package.FOR_EXPR__ITERATOR:
+				getIterator().clear();
+				getIterator().addAll((Collection<? extends Iterator>)newValue);
+				return;
+			case XPath2Package.FOR_EXPR__RETURN:
+				setReturn((ExprSingle)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-            case XPath2Package.FOR_EXPR__ITERATOR:
-                getIterator().clear();
-                return;
-            case XPath2Package.FOR_EXPR__RETURN:
-                setReturn((ExprSingle)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case XPath2Package.FOR_EXPR__ITERATOR:
+				getIterator().clear();
+				return;
+			case XPath2Package.FOR_EXPR__RETURN:
+				setReturn((ExprSingle)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case XPath2Package.FOR_EXPR__ITERATOR:
-                return iterator != null && !iterator.isEmpty();
-            case XPath2Package.FOR_EXPR__RETURN:
-                return return_ != null;
-        }
-        return super.eIsSet(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case XPath2Package.FOR_EXPR__ITERATOR:
+				return iterator != null && !iterator.isEmpty();
+			case XPath2Package.FOR_EXPR__RETURN:
+				return return_ != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //ForExprImpl

@@ -12,23 +12,23 @@ package org.emftext.language.xpath2.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.emftext.language.xpath2.ComparisonExprChild;
+import org.emftext.language.xpath2.StepExprChild;
 import org.emftext.language.xpath2.XPath2Package;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Comparison Expr Child</b></em>'.
+ * An implementation of the model object '<em><b>Step Expr Child</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public abstract class ComparisonExprChildImpl extends AndExprChildImpl implements ComparisonExprChild {
+public abstract class StepExprChildImpl extends PathExprChildImpl implements StepExprChild {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ComparisonExprChildImpl() {
+	protected StepExprChildImpl() {
 		super();
 	}
 
@@ -39,7 +39,7 @@ public abstract class ComparisonExprChildImpl extends AndExprChildImpl implement
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return XPath2Package.Literals.COMPARISON_EXPR_CHILD;
+		return XPath2Package.Literals.STEP_EXPR_CHILD;
 	}
 
-} //ComparisonExprChildImpl
+} //StepExprChildImpl

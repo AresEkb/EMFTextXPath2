@@ -24,7 +24,6 @@ import org.eclipse.jface.text.quickassist.IQuickAssistAssistant;
 import org.eclipse.jface.text.reconciler.IReconciler;
 import org.eclipse.jface.text.reconciler.IReconcilingStrategy;
 import org.eclipse.jface.text.reconciler.MonoReconciler;
-import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
 import org.eclipse.jface.text.rules.ITokenScanner;
 import org.eclipse.jface.text.source.DefaultAnnotationHover;
 import org.eclipse.jface.text.source.IAnnotationHover;
@@ -105,9 +104,9 @@ public class Xpath2SourceViewerConfiguration extends TextSourceViewerConfigurati
 	public IPresentationReconciler getPresentationReconciler(ISourceViewer sourceViewer) {
 		
 		PresentationReconciler reconciler = new PresentationReconciler();
-		DefaultDamagerRepairer repairer = new DefaultDamagerRepairer(getScanner());
-		reconciler.setDamager(repairer, IDocument.DEFAULT_CONTENT_TYPE);
-		reconciler.setRepairer(repairer, IDocument.DEFAULT_CONTENT_TYPE);
+		org.emftext.language.xpath2.resource.xpath2.ui.Xpath2DamagerRepairer damagerRepairer = new org.emftext.language.xpath2.resource.xpath2.ui.Xpath2DamagerRepairer(getScanner(), resourceProvider);
+		reconciler.setDamager(damagerRepairer, IDocument.DEFAULT_CONTENT_TYPE);
+		reconciler.setRepairer(damagerRepairer, IDocument.DEFAULT_CONTENT_TYPE);
 		
 		return reconciler;
 	}

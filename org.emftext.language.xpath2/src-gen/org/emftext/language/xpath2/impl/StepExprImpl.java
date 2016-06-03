@@ -22,24 +22,24 @@ import org.emftext.language.xpath2.XPath2Package;
  *
  * @generated
  */
-public abstract class StepExprImpl extends SelfStepExprChildImpl implements StepExpr {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected StepExprImpl() {
-        super();
-    }
+public abstract class StepExprImpl extends StepExprChildImpl implements StepExpr {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StepExprImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return XPath2Package.Literals.STEP_EXPR;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return XPath2Package.Literals.STEP_EXPR;
+	}
 
 } //StepExprImpl

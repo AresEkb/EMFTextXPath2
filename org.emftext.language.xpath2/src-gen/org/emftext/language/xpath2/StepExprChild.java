@@ -13,13 +13,13 @@ package org.emftext.language.xpath2;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Self Step Expr Child</b></em>'.
+ * A representation of the model object '<em><b>Step Expr Child</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.emftext.language.xpath2.XPath2Package#getSelfStepExprChild()
+ * @see org.emftext.language.xpath2.XPath2Package#getStepExprChild()
  * @model abstract="true"
  * @generated
  */
-public interface SelfStepExprChild extends PathExprChild {
-} // SelfStepExprChild
+public interface StepExprChild extends PathExprChild {
+} // StepExprChild

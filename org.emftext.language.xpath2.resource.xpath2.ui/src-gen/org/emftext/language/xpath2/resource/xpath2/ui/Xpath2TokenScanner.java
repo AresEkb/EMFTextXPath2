@@ -41,21 +41,32 @@ public class Xpath2TokenScanner implements org.emftext.language.xpath2.resource.
 	
 	/**
 	 * <p>
-	 * Creates a new Xpath2TokenScanner.
+	 * Creates a new Xpath2TokenScanner. Uses the preference store belonging to the
+	 * corresponding org.emftext.language.xpath2.resource.xpath2.ui.Xpath2UIPlugin.
 	 * </p>
 	 * 
 	 * @param resource The resource to scan
 	 * @param colorManager A manager to obtain color objects
 	 */
 	public Xpath2TokenScanner(org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2ColorManager colorManager) {
+		this(resource, colorManager, (org.emftext.language.xpath2.resource.xpath2.ui.Xpath2UIPlugin.getDefault() == null ? null : org.emftext.language.xpath2.resource.xpath2.ui.Xpath2UIPlugin.getDefault().getPreferenceStore()));
+	}
+	
+	/**
+	 * <p>
+	 * Creates a new Xpath2TokenScanner.
+	 * </p>
+	 * 
+	 * @param resource The resource to scan
+	 * @param colorManager A manager to obtain color objects
+	 * @param preferenceStore The preference store to retrieve the defined token colors
+	 */
+	public Xpath2TokenScanner(org.emftext.language.xpath2.resource.xpath2.IXpath2TextResource resource, org.emftext.language.xpath2.resource.xpath2.ui.Xpath2ColorManager colorManager, IPreferenceStore preferenceStore) {
 		this.resource = resource;
 		this.colorManager = colorManager;
 		this.lexer = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation().createLexer();
 		this.languageId = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2MetaInformation().getSyntaxName();
-		org.emftext.language.xpath2.resource.xpath2.ui.Xpath2UIPlugin plugin = org.emftext.language.xpath2.resource.xpath2.ui.Xpath2UIPlugin.getDefault();
-		if (plugin != null) {
-			this.store = plugin.getPreferenceStore();
-		}
+		this.store = preferenceStore;
 		this.nextTokens = new ArrayList<org.emftext.language.xpath2.resource.xpath2.IXpath2TextToken>();
 	}
 	

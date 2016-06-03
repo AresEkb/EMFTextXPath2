@@ -101,10 +101,10 @@ import org.emftext.language.xpath2.RootStepExpr;
 import org.emftext.language.xpath2.SchemaAttributeTest;
 import org.emftext.language.xpath2.SchemaElementTest;
 import org.emftext.language.xpath2.SelfStepExpr;
-import org.emftext.language.xpath2.SelfStepExprChild;
 import org.emftext.language.xpath2.SequenceType;
 import org.emftext.language.xpath2.SingleType;
 import org.emftext.language.xpath2.StepExpr;
+import org.emftext.language.xpath2.StepExprChild;
 import org.emftext.language.xpath2.StringLiteral;
 import org.emftext.language.xpath2.StringLiteralPITest;
 import org.emftext.language.xpath2.TextTest;
@@ -443,8 +443,8 @@ public class AbstractXpath2Interpreter<ResultType, ContextType> {
 		if (result != null) {
 			return result;
 		}
-		if (object instanceof org.emftext.language.xpath2.SelfStepExprChild) {
-			result = interprete_org_emftext_language_xpath2_SelfStepExprChild((org.emftext.language.xpath2.SelfStepExprChild) object, context);
+		if (object instanceof org.emftext.language.xpath2.StepExprChild) {
+			result = interprete_org_emftext_language_xpath2_StepExprChild((org.emftext.language.xpath2.StepExprChild) object, context);
 		}
 		if (result != null) {
 			return result;
@@ -954,7 +954,7 @@ public class AbstractXpath2Interpreter<ResultType, ContextType> {
 		return null;
 	}
 	
-	public ResultType interprete_org_emftext_language_xpath2_SelfStepExprChild(SelfStepExprChild selfStepExprChild, ContextType context) {
+	public ResultType interprete_org_emftext_language_xpath2_StepExprChild(StepExprChild stepExprChild, ContextType context) {
 		return null;
 	}
 	

@@ -21,5 +21,5 @@ package org.emftext.language.xpath2;
  * @model abstract="true"
  * @generated
  */
-public interface FilterExprChild extends SelfStepExprChild {
+public interface FilterExprChild extends StepExprChild {
 } // FilterExprChild

@@ -29,20 +29,20 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface AndExpr extends OrExprChild {
-    /**
-     * Returns the value of the '<em><b>Operand</b></em>' containment reference list.
-     * The list contents are of type {@link org.emftext.language.xpath2.AndExprChild}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Operand</em>' containment reference list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Operand</em>' containment reference list.
-     * @see org.emftext.language.xpath2.XPath2Package#getAndExpr_Operand()
-     * @model containment="true" required="true"
-     * @generated
-     */
-    EList<AndExprChild> getOperand();
+	/**
+	 * Returns the value of the '<em><b>Operand</b></em>' containment reference list.
+	 * The list contents are of type {@link org.emftext.language.xpath2.AndExprChild}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Operand</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Operand</em>' containment reference list.
+	 * @see org.emftext.language.xpath2.XPath2Package#getAndExpr_Operand()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	EList<AndExprChild> getOperand();
 
 } // AndExpr

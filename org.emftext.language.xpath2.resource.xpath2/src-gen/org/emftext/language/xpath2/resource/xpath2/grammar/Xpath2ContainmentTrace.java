@@ -56,7 +56,23 @@ public class Xpath2ContainmentTrace {
 	}
 	
 	public String toString() {
-		return (startClass == null ? "null" : startClass.getName()) + "->" + org.emftext.language.xpath2.resource.xpath2.util.Xpath2StringUtil.explode(path, "->");
+		return (startClass == null ? "null" : startClass.getName()) + "." + org.emftext.language.xpath2.resource.xpath2.util.Xpath2StringUtil.explode(path, "->");
+	}
+	
+	public boolean contains(org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2Rule rule) {
+		if (path == null) {
+			return false;
+		}
+		
+		EClass ruleMetaclass = rule.getMetaclass();
+		for (org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature pathElement : path) {
+			EClass containerClass = pathElement.getContainerClass();
+			if (containerClass == ruleMetaclass) {
+				return true;
+			}
+		}
+		
+		return startClass == ruleMetaclass;
 	}
 	
 }

@@ -28,7 +28,7 @@ public class Xpath2Keyword extends org.emftext.language.xpath2.resource.xpath2.g
 	}
 	
 	public String toString() {
-		return value;
+		return "\"" + value + "\"";
 	}
 	
 }

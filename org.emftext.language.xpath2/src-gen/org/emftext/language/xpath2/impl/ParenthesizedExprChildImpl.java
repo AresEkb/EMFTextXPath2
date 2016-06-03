@@ -25,23 +25,23 @@ import org.emftext.language.xpath2.XPath2Package;
  * @generated
  */
 public abstract class ParenthesizedExprChildImpl extends EObjectImpl implements ParenthesizedExprChild {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ParenthesizedExprChildImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ParenthesizedExprChildImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return XPath2Package.Literals.PARENTHESIZED_EXPR_CHILD;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return XPath2Package.Literals.PARENTHESIZED_EXPR_CHILD;
+	}
 
 } //ParenthesizedExprChildImpl

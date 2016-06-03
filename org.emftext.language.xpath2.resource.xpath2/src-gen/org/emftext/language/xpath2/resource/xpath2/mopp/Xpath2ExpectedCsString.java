@@ -33,7 +33,7 @@ public class Xpath2ExpectedCsString extends org.emftext.language.xpath2.resource
 	/**
 	 * Returns the expected keyword.
 	 */
-	public org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement getSymtaxElement() {
+	public org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement getSyntaxElement() {
 		return keyword;
 	}
 	

@@ -32,7 +32,7 @@ public interface IXpath2ExpectedElement {
 	/**
 	 * Returns the syntax element that is expected.
 	 */
-	public org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement getSymtaxElement();
+	public org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement getSyntaxElement();
 	
 	/**
 	 * Adds an element that is a valid follower for this element.

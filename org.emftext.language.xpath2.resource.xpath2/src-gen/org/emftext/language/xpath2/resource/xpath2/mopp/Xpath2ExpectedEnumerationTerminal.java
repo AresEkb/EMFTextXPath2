@@ -48,7 +48,7 @@ public class Xpath2ExpectedEnumerationTerminal extends org.emftext.language.xpat
 	/**
 	 * Returns the expected enumeration terminal.
 	 */
-	public org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement getSymtaxElement() {
+	public org.emftext.language.xpath2.resource.xpath2.grammar.Xpath2SyntaxElement getSyntaxElement() {
 		return enumerationTerminal;
 	}
 	
