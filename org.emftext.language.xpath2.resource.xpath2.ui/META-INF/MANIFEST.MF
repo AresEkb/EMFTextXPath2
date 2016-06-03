@@ -7,9 +7,6 @@ Bundle-Vendor: Software Technology Group - TU Dresden Germany
 Require-Bundle: org.eclipse.core.runtime,
   org.eclipse.core.resources,
   org.emftext.access;resolution:=optional,
-  org.eclipse.core.expressions,
-  org.eclipse.debug.core,
-  org.eclipse.debug.ui,
   org.eclipse.emf,
   org.eclipse.emf.codegen.ecore,
   org.eclipse.emf.ecore,
@@ -25,7 +22,7 @@ Require-Bundle: org.eclipse.core.runtime,
   org.emftext.commons.antlr3_4_0,
   org.emftext.language.xpath2
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.emftext.language.xpath2.resource.xpath2.ui
 Bundle-Activator: org.emftext.language.xpath2.resource.xpath2.ui.Xpath2UIPlugin
 Import-Package: org.eclipse.ui.texteditor.spelling
