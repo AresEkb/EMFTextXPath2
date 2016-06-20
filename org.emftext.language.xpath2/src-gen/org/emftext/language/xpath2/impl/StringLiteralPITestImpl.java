@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013, 2014 Denis Nikiforov.
+ * Copyright (c) 2013, 2016 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -35,130 +35,130 @@ import org.emftext.language.xpath2.XPath2Package;
  * @generated
  */
 public class StringLiteralPITestImpl extends PITestImpl implements StringLiteralPITest {
-	/**
-	 * The cached value of the '{@link #getLiteral() <em>Literal</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLiteral()
-	 * @generated
-	 * @ordered
-	 */
-	protected StringLiteral literal;
+    /**
+     * The cached value of the '{@link #getLiteral() <em>Literal</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getLiteral()
+     * @generated
+     * @ordered
+     */
+    protected StringLiteral literal;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected StringLiteralPITestImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected StringLiteralPITestImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return XPath2Package.Literals.STRING_LITERAL_PI_TEST;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return XPath2Package.Literals.STRING_LITERAL_PI_TEST;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StringLiteral getLiteral() {
-		if (literal != null && literal.eIsProxy()) {
-			InternalEObject oldLiteral = (InternalEObject)literal;
-			literal = (StringLiteral)eResolveProxy(oldLiteral);
-			if (literal != oldLiteral) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, XPath2Package.STRING_LITERAL_PI_TEST__LITERAL, oldLiteral, literal));
-			}
-		}
-		return literal;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public StringLiteral getLiteral() {
+        if (literal != null && literal.eIsProxy()) {
+            InternalEObject oldLiteral = (InternalEObject)literal;
+            literal = (StringLiteral)eResolveProxy(oldLiteral);
+            if (literal != oldLiteral) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, XPath2Package.STRING_LITERAL_PI_TEST__LITERAL, oldLiteral, literal));
+            }
+        }
+        return literal;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StringLiteral basicGetLiteral() {
-		return literal;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public StringLiteral basicGetLiteral() {
+        return literal;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLiteral(StringLiteral newLiteral) {
-		StringLiteral oldLiteral = literal;
-		literal = newLiteral;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.STRING_LITERAL_PI_TEST__LITERAL, oldLiteral, literal));
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setLiteral(StringLiteral newLiteral) {
+        StringLiteral oldLiteral = literal;
+        literal = newLiteral;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, XPath2Package.STRING_LITERAL_PI_TEST__LITERAL, oldLiteral, literal));
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case XPath2Package.STRING_LITERAL_PI_TEST__LITERAL:
-				if (resolve) return getLiteral();
-				return basicGetLiteral();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case XPath2Package.STRING_LITERAL_PI_TEST__LITERAL:
+                if (resolve) return getLiteral();
+                return basicGetLiteral();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case XPath2Package.STRING_LITERAL_PI_TEST__LITERAL:
-				setLiteral((StringLiteral)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case XPath2Package.STRING_LITERAL_PI_TEST__LITERAL:
+                setLiteral((StringLiteral)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case XPath2Package.STRING_LITERAL_PI_TEST__LITERAL:
-				setLiteral((StringLiteral)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case XPath2Package.STRING_LITERAL_PI_TEST__LITERAL:
+                setLiteral((StringLiteral)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case XPath2Package.STRING_LITERAL_PI_TEST__LITERAL:
-				return literal != null;
-		}
-		return super.eIsSet(featureID);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case XPath2Package.STRING_LITERAL_PI_TEST__LITERAL:
+                return literal != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //StringLiteralPITestImpl

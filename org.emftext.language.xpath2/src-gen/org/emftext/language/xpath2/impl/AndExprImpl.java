@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013, 2014 Denis Nikiforov.
+ * Copyright (c) 2013, 2016 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -40,119 +40,119 @@ import org.emftext.language.xpath2.XPath2Package;
  * @generated
  */
 public class AndExprImpl extends OrExprChildImpl implements AndExpr {
-	/**
-	 * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOperand()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AndExprChild> operand;
+    /**
+     * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getOperand()
+     * @generated
+     * @ordered
+     */
+    protected EList<AndExprChild> operand;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AndExprImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected AndExprImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return XPath2Package.Literals.AND_EXPR;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return XPath2Package.Literals.AND_EXPR;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<AndExprChild> getOperand() {
-		if (operand == null) {
-			operand = new EObjectContainmentEList<AndExprChild>(AndExprChild.class, this, XPath2Package.AND_EXPR__OPERAND);
-		}
-		return operand;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<AndExprChild> getOperand() {
+        if (operand == null) {
+            operand = new EObjectContainmentEList<AndExprChild>(AndExprChild.class, this, XPath2Package.AND_EXPR__OPERAND);
+        }
+        return operand;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case XPath2Package.AND_EXPR__OPERAND:
-				return ((InternalEList<?>)getOperand()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case XPath2Package.AND_EXPR__OPERAND:
+                return ((InternalEList<?>)getOperand()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case XPath2Package.AND_EXPR__OPERAND:
-				return getOperand();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case XPath2Package.AND_EXPR__OPERAND:
+                return getOperand();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case XPath2Package.AND_EXPR__OPERAND:
-				getOperand().clear();
-				getOperand().addAll((Collection<? extends AndExprChild>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case XPath2Package.AND_EXPR__OPERAND:
+                getOperand().clear();
+                getOperand().addAll((Collection<? extends AndExprChild>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case XPath2Package.AND_EXPR__OPERAND:
-				getOperand().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case XPath2Package.AND_EXPR__OPERAND:
+                getOperand().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case XPath2Package.AND_EXPR__OPERAND:
-				return operand != null && !operand.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case XPath2Package.AND_EXPR__OPERAND:
+                return operand != null && !operand.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //AndExprImpl

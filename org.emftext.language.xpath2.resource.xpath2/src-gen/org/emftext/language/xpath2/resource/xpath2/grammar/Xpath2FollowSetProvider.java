@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013, 2015 Denis Nikiforov.
+ * Copyright (c) 2013, 2016 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,10 +22,10 @@ public class Xpath2FollowSetProvider {
 	public final static org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement TERMINALS[] = new org.emftext.language.xpath2.resource.xpath2.IXpath2ExpectedElement[148];
 	
 	public static int featureIndex;
-	public final static EStructuralFeature[] FEATURES = new EStructuralFeature[50];
+	public final static EStructuralFeature[] FEATURES = new EStructuralFeature[49];
 	
 	public static int linkIndex;
-	public final static org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[] LINKS = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[213];
+	public final static org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[] LINKS = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[212];
 	
 	public final static org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[] EMPTY_LINK_ARRAY = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature[0];
 	
@@ -223,13 +223,12 @@ public class Xpath2FollowSetProvider {
 		FEATURES[featureIndex++] = org.emftext.language.xpath2.XPath2Package.eINSTANCE.getCastableExpr().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.CASTABLE_EXPR__TYPE);
 		FEATURES[featureIndex++] = org.emftext.language.xpath2.XPath2Package.eINSTANCE.getCastExpr().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.CAST_EXPR__TYPE);
 		FEATURES[featureIndex++] = org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFunctionCall().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FUNCTION_CALL__ARG);
-		FEATURES[featureIndex++] = org.emftext.language.xpath2.XPath2Package.eINSTANCE.getFilterExpr().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FILTER_EXPR__PREDICATE);
+		FEATURES[featureIndex++] = org.emftext.language.xpath2.XPath2Package.eINSTANCE.getStepExpr().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.STEP_EXPR__PREDICATE);
 		FEATURES[featureIndex++] = org.emftext.language.xpath2.XPath2Package.eINSTANCE.getComparisonExpr().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.COMPARISON_EXPR__OPERATOR);
 		FEATURES[featureIndex++] = org.emftext.language.xpath2.XPath2Package.eINSTANCE.getChildStepExpr().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.CHILD_STEP_EXPR__STEP);
 		FEATURES[featureIndex++] = org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDescOrSelfStepExpr().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.DESC_OR_SELF_STEP_EXPR__STEP);
 		FEATURES[featureIndex++] = org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralForwardStep().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.GENERAL_FORWARD_STEP__NODE_TEST);
 		FEATURES[featureIndex++] = org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralReverseStep().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.GENERAL_REVERSE_STEP__NODE_TEST);
-		FEATURES[featureIndex++] = org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAxisStep().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.AXIS_STEP__PREDICATE);
 		FEATURES[featureIndex++] = org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.PREDICATE__EXPR);
 		FEATURES[featureIndex++] = org.emftext.language.xpath2.XPath2Package.eINSTANCE.getParenthesizedExpr().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.PARENTHESIZED_EXPR__EXPR);
 		FEATURES[featureIndex++] = org.emftext.language.xpath2.XPath2Package.eINSTANCE.getDocumentTest().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.DOCUMENT_TEST__TEST);
@@ -379,7 +378,7 @@ public class Xpath2FollowSetProvider {
 		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getGeneralComp(), FEATURES[38]);
 		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getValueComp(), FEATURES[38]);
 		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getNodeComp(), FEATURES[38]);
-		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), FEATURES[49]);
+		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getRangeExpr(), FEATURES[48]);
 		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAdditiveExpr(), FEATURES[27]);
 		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getEmptySequenceType(), FEATURES[28]);
 		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAnyKindTest(), FEATURES[29]);
@@ -443,20 +442,19 @@ public class Xpath2FollowSetProvider {
 		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAnyWildcard(), FEATURES[41]);
 		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getLocalNameWildcard(), FEATURES[41]);
 		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getNamespaceWildcard(), FEATURES[41]);
-		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getPredicate(), FEATURES[43]);
 		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getNodeKindTest(), FEATURES[42]);
 		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getQNameTest(), FEATURES[42]);
 		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getAnyWildcard(), FEATURES[42]);
 		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getLocalNameWildcard(), FEATURES[42]);
 		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getNamespaceWildcard(), FEATURES[42]);
+		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), FEATURES[43]);
 		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), FEATURES[44]);
-		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getExpr(), FEATURES[45]);
-		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getElementTest(), FEATURES[46]);
-		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getWildcardElementTest(), FEATURES[46]);
-		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getNameElementTest(), FEATURES[46]);
-		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getSchemaElementTest(), FEATURES[46]);
+		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getElementTest(), FEATURES[45]);
+		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getWildcardElementTest(), FEATURES[45]);
+		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getNameElementTest(), FEATURES[45]);
+		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getSchemaElementTest(), FEATURES[45]);
+		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOptionalAtomicType(), FEATURES[46]);
 		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOptionalAtomicType(), FEATURES[47]);
-		LINKS[linkIndex++] = new org.emftext.language.xpath2.resource.xpath2.mopp.Xpath2ContainedFeature(org.emftext.language.xpath2.XPath2Package.eINSTANCE.getOptionalAtomicType(), FEATURES[48]);
 	}
 	
 	public static void initializeLinks() {

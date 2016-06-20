@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013, 2015 Denis Nikiforov.
+ * Copyright (c) 2013, 2016 Denis Nikiforov.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -1882,10 +1882,10 @@ public class Xpath2Printer implements org.emftext.language.xpath2.resource.xpath
 		// 0 (if the feature is null).
 		Map<String, Integer> printCountingMap = new LinkedHashMap<String, Integer>(2);
 		Object temp;
-		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FILTER_EXPR__PRIMARY_EXPR));
-		printCountingMap.put("primaryExpr", temp == null ? 0 : 1);
 		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FILTER_EXPR__PREDICATE));
 		printCountingMap.put("predicate", temp == null ? 0 : ((Collection<?>) temp).size());
+		temp = element.eGet(element.eClass().getEStructuralFeature(org.emftext.language.xpath2.XPath2Package.FILTER_EXPR__PRIMARY_EXPR));
+		printCountingMap.put("primaryExpr", temp == null ? 0 : 1);
 		// print collected hidden tokens
 		int count;
 		// DEFINITION PART BEGINS (Containment)
