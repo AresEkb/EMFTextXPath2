@@ -179,15 +179,14 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//SelfStepExpr/step"/>
     </genClasses>
     <genClasses image="false" ecoreClass="xpath2.ecore#//StepExprChild"/>
-    <genClasses image="false" ecoreClass="xpath2.ecore#//StepExpr"/>
+    <genClasses image="false" ecoreClass="xpath2.ecore#//StepExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//StepExpr/predicate"/>
+    </genClasses>
     <genClasses ecoreClass="xpath2.ecore#//FilterExpr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//FilterExpr/primaryExpr"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//FilterExpr/predicate"/>
     </genClasses>
     <genClasses ecoreClass="xpath2.ecore#//FilterExprChild"/>
-    <genClasses ecoreClass="xpath2.ecore#//AxisStep">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpath2.ecore#//AxisStep/predicate"/>
-    </genClasses>
+    <genClasses ecoreClass="xpath2.ecore#//AxisStep"/>
     <genClasses ecoreClass="xpath2.ecore#//ForwardStep"/>
     <genClasses ecoreClass="xpath2.ecore#//ReverseStep"/>
     <genClasses ecoreClass="xpath2.ecore#//GeneralForwardStep">
